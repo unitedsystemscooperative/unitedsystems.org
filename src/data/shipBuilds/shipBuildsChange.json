@@ -1,0 +1,1028 @@
+[
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a3"
+    },
+    "shipId": "type_9_heavy",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "Lightly Engineered Miner",
+    "buildLink": "https://coriolis.io/outfit/type_9_heavy?code=A0pktkFklndpsif63N3R2m2l2l023K04040707Cj4fCeC01vC0P92i3x.Iw18ZQ%3D%3D.EwBhrSuyMo%3D%3D.H4sIAAAAAAAAA2P8Z8%2FAwPCXEUj8qQUSHF%2BATH6ef%2F%2F%2Fi21gYWD4z%2FRPDCTPDJIvARL8NX%2F%2B%2FxcR%2Bvv%2Fv6gGFwODhAJQRnkBP1Al8z8pkEpWkMoKkEqVX%2F%2F%2FC%2B3gZmAQqREFqrwDlPnP%2F88dbt0cIMENtq4AaJ0giCUBIlRAxH8BolWK%2FPODOzEHZDHITkEDoBNVBPiA8v8ZwAAAK2X4weoAAAA%3D.EweloBhA2AWECsBGUBTAhgcwDapCJCIkKUoA&bn=Type%209%20Miner%20Lightly%20Engineered",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Lightly Engineered Big Miner achievable with just engineering from Felicity Farseer and Elvira Martusk.\n\nProvides a hold 512 cargo bay and 11 active collector limpets"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017678"
+    },
+    "shipId": "diamondback_explorer",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Jump Ship"],
+    "title": "Bubble Hopper for New Pilots in Open",
+    "buildLink": "https://coriolis.io/outfit/diamondback_explorer?code=A0pataFflddasdf5---0208080832B3C702v60d2i3w.Iw18SQ%3D%3D.IwBj4z1Mg%3D%3D%3D..EweloBhBmSQUwIYHMA28QgIwVyKBQA%3D%3D&bn=DBX%20Bubble%20Hopper%20(Open)",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": true,
+    "author": "IM2D",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767d"
+    },
+    "shipId": "diamondback_explorer",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "High End Engineered DBX, 68 LY jump Range",
+    "buildLink": "https://coriolis.io/outfit/diamondback_explorer?code=A0p0tdFfldddsdf5---02---1P32430iv6012i3w.Iw1%2BgDJpA%3D%3D%3D.Aw18SQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf8Zw9SyQhSWQskOECi%2FDz%2F%2Fv8X28AClGf6JwE3qQhI8B%2F4%2Bf%2B%2FiMSf%2F%2F9FP3AxMEg4sDEwKE948f%2F%2Ff%2BZ%2FUnCVFSCVKr%2F%2B%2FwfbJFIjClR5Byjzn%2BWfIUwRf8UboPyZe0CtrP%2Bs4FobgQRngTgDA5eBIAODIsgQJRChCiLUQA77z%2FYvAdWQAw%2F%2B%2F9ez%2BQaU4kYyVfCfD9zUXJBakAohkLzIir9A94McJJHwAahS9F8sTKWQgDoDg2mHMNCt%2FxngAAC%2FW6jbUAEAAA%3D%3D.EweloBhBmcQUwIYHMA28RgBwDYr5AiA%3D&bn=DBX%20Distance%20Hopper",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017698"
+    },
+    "shipId": "vulture",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - Anti-Xeno"],
+    "title": "Introduction to Xeno Combat",
+    "buildLink": "https://coriolis.io/outfit/vulture?code=A2patfFalddksif3x3x3040402xsB22d03279sy1m1m1.Iw18cQ%3D%3D.IwBj4yqA..EweloBhAOEoUwIYHMA28QgIwV3fEQA%3D%3D&bn=Vulture%20AX",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LordAn00bis",
+    "jsonBuild": "",
+    "description": "No engineering, works well with scouts and cyclops."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769c"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "Shielded Cargo Transporter",
+    "buildLink": "https://coriolis.io/outfit/imperial_cutter?code=A0putuFplxdusCf67o7l7lihih1c1c040404040402030307070505p10404m92d320225.Iw18ZlA%3D.Aw18ZlA%3D..EweloBhA2AWEDsF4FMCGBzANikICMERIUpQA",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "Stealthie",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a6"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "672T cargo Cutter - No Engineering",
+    "buildLink": "https://coriolis.io/outfit/imperial_cutter?code=A0pftpFplxdxsCf6---------------070705054f1O04--323x3w.Iw18ZlA%3D.EwRgDBldMn42EA%3D%3D..EweloBhA2AWHZQKYEMDmAbJIQEYIEhTFA%3D%3D%3D&bn=CUTTER%20CARGO",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Luisqa",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767a"
+    },
+    "shipId": "anaconda",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Jumpaconda (77 Ly) with a ~1000 MJ shield",
+    "buildLink": "https://coriolis.io/outfit/anaconda?code=A0p5tiFklndisxf5--------02030808080808083h1111052i9q1O-v6p4F13w3x.Iw18WAMUry3kA%3D%3D%3D.MwBhEYy6dgmKowBYzGEA.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf8Zw9XWQskOI5wMjDw23z7%2F19sAT9QnumfGFy%2BBEjwq%2Fz6%2F19E7vf%2F%2F6IgeYkNLAwMygXiQJXM%2F6TgKitgKsE2idSIAlXeAcr8Z%2FlnCFPEX%2FEGKH%2Fm3v%2F%2F%2F1n%2FWcG1NgAJTpCBXAaCDAyKIEOUQIQqiFDj%2BQdUzvYvAdWQAw%2F%2B%2F9cDufm%2FwD9OLOYLYhUV%2BucKt3UOSArkQiGDUqBbQYEgf4MP6GBhYhSJ%2FPNAUcRdAHSmIIhQ6eECyov%2Bc0eVX8IGNCkAGIiCIBbYJBUQ678Y0SrFiVYp8y8WplJIQJ2BwbRDGCiq%2BM8Hrj%2BXARrnQqDQEVnxFxi7IH9KJHwAhpPSP3ksofefAQMAABb1S7t2AgAA.EweloBhBmUDYAsICmBDA5gG2SEBGCQkKEoA%3D&bn=Jump%20Aconda%202.0p",
+    "engLevel": 3,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Utilizes a 3A Prismatic shield and E Rated shield boosters to have a solid shield while maintaining a 77 LY jump range with all the fixings. Massively engineered build."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767f"
+    },
+    "shipId": "krait_phantom",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Krait Explorer 55LY Jump Range, Partially Eng",
+    "buildLink": "https://coriolis.io/outfit/krait_phantom?code=A0p0tdFfliddssf5----02---3c040s049qv6432i3w.Iw1%2BgDBQ.MwBj4yWAmDSA.H4sIAAAAAAAAA2P8Z8%2FAwPCXEUj8qQUSHF%2BATH6ef%2F%2F%2Fi21gYWD4z%2FxPCiTPCpKvABL8Kr%2F%2B%2Fxfawc3AIFIjysAgcQco85%2FtXwJIETNI3uMLUL7izf%2F%2FeiCV%2F4X%2BgUT%2FsoCkDsQCNTjIAzX8B3IZAJrFSSl7AAAA.EweloBhBmUA4QFMCGBzANokICMF8hRFA&bn=Partially%20Engineered%20Krait%20Explorer",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "This is a Krait Phantom Explorer built out with what you can engineer with just Felicity Farseer unlocked."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017680"
+    },
+    "shipId": "krait_phantom",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Long Range Explorer with 67 LY Jump Range",
+    "buildLink": "https://coriolis.io/outfit/krait_phantom?code=A0p0tdFfliddssf5----02---3c1Ov60s43029q2i3w.AwRj4y2UVo%3D%3D.EwBjIRg81MGZ4QCwuWIA.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf8Zw9SyQhSWQskOECi%2FDz%2F%2Fv8X28AClGf6JwY3qQRI8Kv8%2Bv9fRO73%2F%2F%2BiC%2FgZGCRAipQLxIEqmf9JwVVWwFSCbRKpEQWqvAOU%2Bc%2FyzxCmiL%2FiDVD%2BzL3%2F%2F%2F%2Bz%2FrOCa20EEpwgA7kMBBkYFEGGKIEIVRChBnLYf7Z%2FCaiGHHjw%2F7%2BezTegFA%2BSqSL%2FfOCm5oLUglQIgeRFVvwFuh%2FkIImED0CV4v9iYSqFPtz4%2F19SwQ%2Fo1v8McAAAAJP97VABAAA%3D.EweloBhBmUA4QFMCGBzANokICMF8hRFA&bn=Deep%20Range%20Explorer%20v2",
+    "engLevel": 2,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Fully Kitted out and engineered long range explorer focused on jump range.\n\nWhile the Anaconda gets better jump range this one doesn't manuever quite like a boat."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017689"
+    },
+    "shipId": "alliance_chieftain",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Unengineered Starting Combat Ship",
+    "buildLink": "https://coriolis.io/outfit/alliance_chieftain?code=A2pktkFflndpsff47l7l2717171702040404B12dm7m3m32b2b2b2j.Iw18RQ%3D%3D.Aw18RQ%3D%3D..EweloBhBGA2EoFMCGBzANokMK4fiIA%3D%3D&bn=Unengineered%20Chieftain",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": true,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017691"
+    },
+    "shipId": "krait_mkii",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Wing Support Fighter; Heals/Repairs and collector.",
+    "buildLink": "https://coriolis.io/outfit/krait_mkii?code=A4pptkFfliduspf57l7l7l0s0s02040404B1fm5i5i0W9r2H27C5.Iw18eQ%3D%3D.AwRlwyui3I%3D%3D.H4sIAAAAAAAAA42SP0jDUBDGr20S26b%2FkqY1VVFsU%2BtiKeLSRVxUEISCS0cdXMTBReigoCDiKOro0MHRwdHB0dHB0UGKYxF1EUS03nlX6ENBIYF8fLz3u3t37x6gAQBfOkvniMW80ADiMSSyVtnZe49E3lQYgAI4rchtlnDtkyj5UAbISox928dQELM9KOl9ELmy5QwzmWkmAQob%2FQyFcEBlarDYl2YPv%2BdFZyvDkIaTAoUkU22OofECr%2BpYVaG7LEWpdOzEAoiIi4obFZcXRwau9JLYcnS58k6U626Fsa4y8Q%2BanK%2FXBwGM8zhXKpVQxA8U%2FQGF%2FoNMXFKQw6IvR3h%2F%2FYV7nnkmKhy2iSjmB4pjUaCA9JQqsR6kAYZEKIGzKv5ULk6OtiubAO41Zxq5SzCU9AOlcP4XZJ4ZMgeeoyWuS3riyMJFRa6xBN0OkSFjN6t8G1aLJSM5vSt5IGlcEFwTfJ8lsPPKr0jG0s1ZajNeaL5xn45v0sUJVcKxFJvnEhLSliXOa%2FDLoxym1MtsPBHZNy0OJfjr%2BwZGAfDDFQMAAA%3D%3D.EweloBhBmUEYBsICmBDA5gG2SEcIEhTFA%3D%3D%3D&bn=Krait%20Support%20Beamer%202.0",
+    "engLevel": 3,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769b"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "High End Engineered Mining Cutter",
+    "buildLink": "https://coriolis.io/outfit/imperial_cutter?code=A0putuFplxdusCf60x7l7l2m2m2m2m040404040404023J0707B1CeCeCeCe5i5i1vP92i.Iw18ZlA%3D.AwRm4yuk0vxA.H4sIAAAAAAAAA42SO0gDQRCGJyYX8%2FRyl4cxiYmai7GS2AvaiGIhgk3KgJ1YWCimEbQRCwuxTpHC0sLSwtLSwtJCLMVCrYIEHzv%2BE3ILQoQ7uJ9h55t%2FZ3eH1DAR%2FRiQ73NI%2FDBGZNWHiJyOjyh6g4h9akEgv0AHkNAjeNP5ZM7MRJAfUhltskv9VPYqQJQqfjGnN02i8s4oSL%2FKabIJsa%2BjLi6eqX0bUEDNuduZKx1mu%2FXMzIaa16VHkIoYTtcsorDUR0QmRaZiCnhQNVwTu%2FnK3HOalTyH1IZ2OoUYjTBRcPsdTSy%2BMZfPXgCFVV1D%2BCkgpUY9D%2FIyjuNIuxzxAplqWUMtSPQiiIOt42IsibK32N2RiBOeScszaaulP6QpPdm1vT5UehgBlPQCpbxAaVVxr51OksgnqkQFiXhMren6LalvYyws6dnpzUZOJdy8KS9m3z3hHfIDVwsDV8cHrhbVqp7eY4iv%2FYFx6M3cPYa%2FOoFMudsFWfJMMv3z%2FQKNTQZzUAMAAA%3D%3D.EweloBhA2AWECsBGUBTAhgcwDapCJCIkKUoA&bn=High%20End%20Mining%20Cutter",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "High end badass mining cutter.\n\nNote: It's worth leaving a 5A Fuel Scoop and 5H Guardian Frame Shift booster at a nearby station or carrier. When it is time sell swap out a pair of your collector limpets for those to bring your jump range up for going to sell."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017675"
+    },
+    "title": "Fast Bubble Taxi and HGE Salvage",
+    "shipId": "imperial_courier",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Jump Ship", "HGE Farming"],
+    "buildLink": "https://coriolis.io/outfit/imperial_courier?code=A0p0tzF5l3dds8f3Ph26260200030i021N3u012oC53w3x.Iw18SQ%3D%3D.Aw18SQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf8Zw9SyQJSWQskOC4AdfIb%2FPj%2FX%2BwJUPl%2Fpn9icJNKgAS%2Fyq%2F%2F%2F0Xkfv%2F%2FL7qAn4FBYgNQp3KBOFAl8z8puMoKmEqwTSI1okCVd4Ay%2F1n%2BGcIU8Ve8Acqfuff%2F%2F3%2FWf1ZwrY1AghNkIJeBIAODIsgQJRChCiLUeP4BlbP9S0A15MCD%2F%2F%2F1bL4BpTj%2BhcFNAgUBW8in%2F%2F%2F5J7wAKrpx5%2F9%2FiYQPQEWcSIp4cCniIkYR9z9OLN7hwSrKi1WUD6uo4D8fuOWFICmQ54RA8iIr%2FgKDHhSWEBeI%2FBPAov8%2FAxoAAGQb35sRAgAA.EweloBhAOEEZQFMCGBzANok8K5FAoA%3D%3D&bn=Courier%20Bubble%20Hopper%20V3",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Very Fast Bubble Hopper; Built for Speed and quick turning to grab High Grade Emissions quickly.\n\n-Swapping the Guarding FSD out for a Class 3 Cargo works pretty well.\n\nPro's:\n-Very Speed and Turning, practically a racing ship.\n-High Jump Range\n-Ideal bubble Taxi since you can fly somewhere to retrieve another ship and ship it back to you for cheap.\n\nCons:\n-Requires a lot of Engineering\n-Squishy, shields are paper and you will blow up if you hit things at high speed.\n-Runs a bit hot fuel Scooping so you have to pay attention.\n-Doesn't carry at ton of limpets for collecting high grade emissions you generally have to refill after 1-2 sets of filling up."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017685"
+    },
+    "shipId": "asp_scout",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["HGE Farming"],
+    "title": "HGE specialized farmer",
+    "buildLink": "https://coriolis.io/outfit/asp_scout?code=A0p0tdFaldddsif4------0432C7B401013w.Iw18UA%3D%3D.Aw18UA%3D%3D..EweloBhBGA2EoFMCGBzANokMK4fiIA%3D%3D&bn=AspS%20HGE%20Farmer",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "IM2D",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767c"
+    },
+    "shipId": "diamondback_explorer",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Unengineered Entry Level Explorer. 36LY Range",
+    "buildLink": "https://coriolis.io/outfit/diamondback_explorer?code=A0p5tdFfldddsdf5---02---0332430iv69q2i3w.Iw1%2BgDGQ.Aw18SQ%3D%3D..EweloBhBmcQUwIYHMA28RgBwDYr5AiA%3D&bn=DBX%20UnEngineered%20Explorer",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017687"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "256 Cargo Hauler",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pttoFflidyssf5-----0404040405050504041P2t403x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf%2BJwVXWQEk%2BFV%2B%2Ff8PlhepEWVgkLgDlPnP%2B88drmgOyLglbECVAb%2F%2F%2FxcEsSSOcAKNA7H%2B8xGtkv%2BfK4pKfpBNQgalUEXyN%2FiAigSIUSTxzw%2BuKAekaAE%2F0J8gO1UKxIHy%2FxkgAAAfSdSdFQEAAA%3D%3D.EweloBhBmUA5QFMCGBzANokICMF8hRFA&bn=Deliverator%20256%20Cargo%20Medium%20Hauler",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Cargo Hauler intended to land on medium landing pads to ferry things from a carrier or do smaller trade hops.\n\nCould pair well with a big mining ship + carrier for drop of LTD's at high demand Medium landing pad stations. Fill up a big cargo hold on mining, use this to ferry it all for sale."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768b"
+    },
+    "shipId": "alliance_chieftain",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Pure Hull Tank with 10k Hull",
+    "buildLink": "https://coriolis.io/outfit/alliance_chieftain?code=A4pktkFflndpsff47l7l27242424020000032d2d2b2G2G2b2b2b08.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA42SPU7DQBCFX4gTnMQh8cZJHAgISPgRBUI0CIkiFTUNUlpuQEFBEQo6OigQNQegoIMqZ6CgpKDkBAhBmGHGklcIYWkt%2Bemt37czO1qDfADfBZHJpUhlMGEORyL91ybAORpontP8TMTfe2c2V7JuPRMzT1HL7j8RqfU%2FmaOFL%2BbmbQ2I7z2gd9yWSnmateRpSprHChCNpFP8Igl7tK1QXvODfcCs9%2BRrgXbt1nORUiCty9chsKRuWd2KulV1XKSjtIjR1ptbH8ydJPJpaCvJC08PURjOAcW7qpw0OUTJBSr%2FgoIsqOICBS5QlQ4tpIOhviakSjJi%2FDQNzMdybVyjIJ0eFw3JFeq%2ByZrr2VFIO1mRoQ3b%2BkZ%2FkQexM4tdIFRn9J776rjhTEZ%2FybElx5ZUx21nMnYmO84k49%2FnB3mDJx42AwAA.EweloBhBGA2EoGMD2AjATgQwPoFsDW2AliSDBBQlREA%3D&bn=Blunt%20Instrument",
+    "engLevel": 3,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "High end Hull tanking Chieftain.\n\nNo Shield,\n10k Hull and Chaff are used to keep you alive. Guardian Module Reinforcement and \nLifesupport engineering in place to keep your internals operational with a AMFU.\n\nUses some multicannons set with incindiary rounds to take down shields on the Class 2 and 2/3 Class 1 Slots."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768e"
+    },
+    "shipId": "fer_de_lance",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Solo PVE Combat",
+    "buildLink": "https://coriolis.io/outfit/fer_de_lance?code=A2pktfFalidpsff37o27270s0s020404040404B25d5d01C525.Iw18WQ%3D%3D.IwBj4yoJmag%3D.H4sIAAAAAAAAA42SvUvDYBDGn37aNm3TpF%2BpFr%2BaWukg%2FQMEJxEcxM2uruLgoNBBoYKIs4iTQwdHB0cHR0cHF8FBnB26KSJa77wLJCA4JPA%2BHO%2F93ruHy4HGAPwkREanIsZtFMj1s4DVlci%2BMQD3PQJwhJaUjCp5IJJ6jQGmM2KubEsNjlIlqLQrYrpfzKWhSHlgAs51HGjsVIWM0XhA9nzS61TaLwv5LBlO0GIAHYqkFcqozKjMZom5qeXmOpbgSdpUXCzB1tuFzidz7UxTKeoGleQgru8T3QkgeZUTT167dBgoEwYyaMN3MpoUac%2BrpwcZkXMklzVvBNkwUI6aPoSTouQLLaCuEedpOXByoSPU1nZnT97fpYGpp7xAZhioQCt%2FIOMyKeT6N7OlkUe6GrEVmrRDk0VaC8gttairYinpeiMo0arm45o%2FFon035hN%2FbdekZbuYGPwwbJkockqFfyeZm8om3f%2FIrcOtQMn5%2Br5UcL8dF3saGSrMVcjZvz7%2FQK3y%2Bb6SgMAAA%3D%3D.IwOgrA9AzBqQDBAHBRBTAhgcwDZorPEaifEA&bn=FDL%20Solo%20Combatant",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Relies on an Overcharged G2 Power plant + a pair of G3 Long Beams with Thermal Vent to keep it cool while fighting.\n\nYou will have to watch your weapon power a bit when you fire all weapons continuously but it's very managable."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3f96396556612740176a9"
+    },
+    "shipId": "imperial_clipper",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["HGE Farming"],
+    "title": "Clipper HGE Chaser 2.0",
+    "buildLink": "https://coriolis.io/outfit/imperial_clipper?code=A00CtkFflndfsnf4----02---3h05481PC0--3w3x.Iw18WQ%3D%3D.Aw18WQ%3D%3D..EweloBhBGA2MQFMCGBzANokMK5FAoA%3D%3D",
+    "engLevel": 3,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Optionally drop the weapons"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767b"
+    },
+    "shipId": "asp_explorer",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "General AspX Explorer Unengineered",
+    "buildLink": "https://coriolis.io/outfit/asp?code=A0p5tdFfliddsnf5------02---3c0s43029qv62i3w.Iw19gDBQ.Aw1%2BgjBxA%3D%3D%3D..EweloBhBmUA4QFMCGBzANokICMF8hRFA&bn=AspX%20General%20Explorer",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Damn good starting Explorer Build focusing on jump range. However given the available internal slots one may want to consider the Krait Phantom instead."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769e"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "Robigo passenger missions",
+    "buildLink": "https://coriolis.io/import?data=H4sIAM73U1sC_71YXU_jOBT9K1WeSxTH-ewbULoglaVLK0ba1SoyidtapHbWcZjtIP77XielJA2QFGaHh9K49rnXPud-OE_GtUiKlObG6K8n40rRjTEysq1aCx7FIn7ImDKGxg03RkoWdGjMJBOSqa0xQkNjngoF0-drlp3v5j4P9ygbDUxkTORK3JNtIoTcQS1JmjewrD3WuZ59SVS8rkPtHCJyIwoZrSRJKOp067ScXcJc8BXjlErGV8boyThLC5rBg7oawwI78Hzse97wdfx3sqGAMBPfqZylhKvoTIhc0QSMvmDB75dUksGCcFYb1pDYsqwQ9jSljzQ1RvZQHzJbMiqrY56Sez1uXHFFV6Xbem6eX-W_CZGUx3EjGeCR9I6AT8bIt0wY3D142LT0rl5gSjfPSUbiPlDIrkEhx7QD8BbV8S4pURfLJYsZ5fEhIGoBWqazx4PvzvPfQ-OPgqQVHdrVFxrhZKNMO5uVZ5qzHxRHcUry3O1k85WLnox6bthmtFoWjZksT6rG5UyKJWxTyMEMXOdtRm0bju3i3wxsbihXJIUjorF2Lc9ozEga0QpcPFKZCpBoqZbWgmgqYrCQw88jYyzJajCW7BECcK8X9-t6QZZXYzm0TAQkW15LNWD_eyfBnonsV_GZgQsc14Cqc7rJFNuQ9BrI7PQucOpy9rHb1PMecEblUsgN4THtsWOroWvXxAFyQ7sNrOV9SxTt3Dcy8R7QhjgJGsq2zNBvSnvHv5a1-7GsX_PdNWG8civvq-vQaet6Mh-DrvjqlvAVbQp7QlOmE8NgQmSuh1rKhqPrUPYyT6I1JY_bbkVrAQyuCSer0lSXpN_QS5sIu06t7TXVckRQNHBCbIIOLcv5XFBYplfLel5YRwE2jgkHZLkN7XpBaHou8hBqCQ43FbfeAheJTh_HqW4iQTZQtpeqzD19lOdj5IS4rbxrlsfRlK3W6hvVn03xnbE0HSwKyd_SHQhvLxD8JYE49eMzHdf5nED8emkETnAIf4dRH3huk4SUQeEoskzIqqQ5FQt2JwtTWDivFvbtUnD4TpcyZrmS7L5QQkaXwMNE0n-KXfmu8bFY08H4O03TN_NA0JUHyuKd1EwtSa66cwJsksrBueBJwVSfQveNkkzwvHdP04gfSP1uRdywhXhL4zV0mN3lxDVfS55vBth2mtVzl7N7e6hr3B4QI_OtwtTfO1zzzjEDFIZOA2--hWZ187O826F9zbuDTBZAcmv3hXVp6VDy-ia0wxjoldGAUh-142lOObSB7-e0BYPqNphA1BacvtEn-j8rq6F6DxdAZ-34Yfi5zBZ-dH-oNrzQ3Kp5TPgpX6U9WG4UZYi5wzyJnIP-KC_t5HVmu5PkLUmIrN8FNdKyoKki_KFe9XDnFWICq-C29lCinW424oqfpyyDrdhNKQIa9HIUrq73jNfd7b506n8WiuZ6TcsO8rrsuEfZsX-RHfyL7DilHfd_t-O-YyfoMuMcZcYrzTgtM06XGXyUGb80g9uq7mnG7mcmeMdMZ-zYR-0mLM3YhxGv3xhQRbJMChKvc-gjaPcrg2qN3J7uls3LZTXkR8FiCjXyIYI7e5VHP4a8g5RI0zu9zND5Tr_62r-fMqrnqrzsvifQE-l8f3qC8AwmQF0oB6aCJKLQlQXuCTRXZKNxbOjBTiz_xLYXFh6hcOTYfxrP_wHshIHLpBMAAA%3D%3D",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Akhaten",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017681"
+    },
+    "shipId": "viper",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Racing"],
+    "title": "Top Max & Boost Speed (745, 932 m/s)",
+    "buildLink": "https://coriolis.io/outfit/viper?code=A0p3tzF3l8d3sdf1----------B63x3w.AwRj4zKA.Aw19gjJQ.H4sIAAAAAAAAAz2PsQ7BUBSGT7UVGsmNhqpFQhGTsIrEC3iIziaDQUQiEg9iNBo8gAcxiNlgMtCe3zlB7%2FAN9%2F%2Fy%2F%2FdaPCGi1BYkG0Hh4hKZ9gsIeh4Rchxo7mq%2BoF9UabyB6t4QhUeHKJrXxLS5njWtBNbyDph1IvpOLiM14fBQJUeb4gfgn24AXB5lI1tBUQu9QZmoqXMtRUfRLbHoeY7%2FutER%2F3wF%2BuOnRD5Ps6aZ5nrrq1Q5pPJm%2FV2owwB9zwc1Fg%2FHAQEAAA%3D%3D.EweloBjEoUwQwOYBtYhARgtmuJA%3D&bn=Marlin",
+    "engLevel": 3,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "MINI",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017682"
+    },
+    "shipId": "imperial_eagle",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Racing"],
+    "title": "G0 Canyon Racing",
+    "buildLink": "https://coriolis.io/outfit/imperial_eagle?code=A0p8t5F8l3d8s8f1-----v6-B6---.Iw19kA%3D%3D.Aw19kA%3D%3D..EweloBjEoUwQwOYBtYhARgtmuJA%3D&bn=G0%20Eagle",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017684"
+    },
+    "shipId": "viper",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Racing"],
+    "title": "G3 Racing viper. Faster than eagle but less manuverable.",
+    "buildLink": "https://coriolis.io/outfit/viper?code=A0p0tzF3l8ddsdf1-------v6-3u---.Iw18UA%3D%3D.Aw18UA%3D%3D.H4sIAAAAAAAAA2P6J8bAwPCXGUj8KQES%2FDV%2F%2Fv8XEfr7%2F7%2BoBhcDg4QCUEZ5AT8Dw%2F%2F%2FDADHlxi3LAAAAA%3D%3D.EweloBjEoUwQwOYBtYhARgtmuJA%3D",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017677"
+    },
+    "shipId": "diamondback_explorer",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Jump Ship"],
+    "title": "Bubble Hopper for New Pilots",
+    "buildLink": "https://coriolis.io/outfit/diamondback_explorer?code=A0p5tdFfldddsdf5---0203--3203C7B4v60d2i3w.Iw18SQ%3D%3D.IwBj4z1Mg%3D%3D%3D..EweloBhBmSQUwIYHMA28QgIwVyKBQA%3D%3D&bn=DBX%20Bubble%20Hopper",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": true,
+    "author": "IM2D",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017686"
+    },
+    "shipId": "asp_scout",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["HGE Farming"],
+    "title": "HGE specialized farmer w/ Engineering (Max)",
+    "buildLink": "https://coriolis.io/outfit/asp_scout?code=A0p3tdFaldd3sif4------0432C71N01013w.Iw18UA%3D%3D.Aw18UA%3D%3D.H4sIAAAAAAAAA1WNvw7BYBTFT6v1r5WmUtXYUEZhFYnXMHoAg0k6kBg8gHgSo8HgAQwGo4jRYBSD1HfdSzTxDb98ye%2Fcc6AyAF4mI14xrK0OFOY24A74V9xYQHjXANJUX5K6JGeM7DUFOEFM5I%2B4g3Tli9fETxjOURF5aSIqrQ0gWLKpHySZUpVkM5Jk%2BCT6LHnTEidPbMhQnV%2FIiW7s92euMlU3OV0wcuMykG%2B7QFVKaoKGoGnzOqXV8L9kdyFq9R6sCN%2F3BnCbg0ABAQAA.EweloBhBGA2EAsUCmBDA5gG2SGF8hRFA&bn=AspS%20HGE%20Farmer%20Max",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "IM2D",
+    "jsonBuild": "",
+    "description": "This build is shieldless."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768a"
+    },
+    "shipId": "alliance_chieftain",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "PVE Engineered v2.0",
+    "buildLink": "https://coriolis.io/outfit/alliance_chieftain?code=A4pktkFflndpsif47l7l260p0p0p04040404B1m92b27272b2b2b66.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA43SOUgDURAG4DGXJptrlySuMV7JeiAYxE4QsVFTKARsLLUVCwtFBQXB1kJUrCwsLC0sLYKVrWBpIWJpo5VYeMz4TyAPFYQNZPjJfLtv8t4jbiairzDK5wGKtd9ElNiJE9nrSM6lReTVAkTSxONGbqO0VD9EUo9lotxFCPIWL5IA5wxaRUl57yKZTsjsaYrIVVlaaYUMct7IzYasL5fZykLeoyMhHlEU1H51CosMlPBrmEfNo7so0TiLxI5soh5NRU29mvo0SYQXG9xJ9xOVK68ibTMdaLXwvHkTvhTSIcLz7USR8wQmrQ8R9YNiP1DwP2TxnEEZlPBCFP3lFxF34lmktP8kInE%2FKOEHJXnSoBPdQh3CGV7D7l6Dd90lMVPKD0rz9C9knUX0RHCstqa69DSJzZXfcgXnYGvx9mLoOzxr%2BksoAfdTJKLXwhrFvtkPKFld06vpfcrwoOHH%2BrorxGR3AVKTo5fK0yTZv%2FLGyBsjNUmOh4w8VFnECEn927YmbwNSWn0v7PqWbb5lngsqsSsU1yvrais%2F9oZDFfrv8w0tTEeVywMAAA%3D%3D.EweloBhBGA2EoGMD2AjATgQwPoFsDW2AliSDBBQlREA%3D&bn=Chieften%20of%20the%20Line%202.0",
+    "engLevel": 3,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Another Take on a High Engineered PVE Chieftain.\n\nUses Overcharged on the Multicannons for Damage.\n\nAlso carries a collector limpet with 4 limpet capacity to grab really valuable engineering materials that drop from killing big/rare ships."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768c"
+    },
+    "shipId": "cobra_mk_iii",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvP"],
+    "title": "PvP Mine Bomber Build. ",
+    "buildLink": "https://coriolis.io/outfit/cobra_mk_iii?code=A2pctaF5ldddsdf32k2k2j2j02022b2b2b27276b2E2E.Iw18cQ%3D%3D.Aw18cQ%3D%3D.H4sIAAAAAAAAA42RvUoDURCFJ3FXs9nd7GZjYiIbUbMqWIhaioWlhQ%2Bgnb6BhYUIgr6ChZWFj5DCwkLEBzCQBxARCysRi2Dhz4xnkL0ENbC3OBzmfnMuc4d4hIi%2BbMjnCcS9yhP5Rx5ReRMuunSJkl6OSHK8ZshDSOHsSSTqor2WvItInmvmfg8SaHV04kOkeh4Q1dsWUWt3DElD3DDkASR38yDyg9%2Bh2NJMsXhJIUuTtl%2Fx0sUjHrF5xbQeQxwNLC6Wiaa0f1plRmXWY%2BDDvJPiUThHtLDeE2lsNJFf4C2TVIXY2hAuw8U6WLP7gn4nC1TsgyqDILcP8gdBHjspFOw%2FY%2Bbbe1T9f6slnjeBp7q4a9jSZIzFqYv0zxN1EmQmw8xk%2BTfZMWTHkOokykxWOE437umy6no1vvqGYYX%2Bnm%2BfllN9ugIAAA%3D%3D.IwegLCoAwgHCMCmBDA5gG0SSVcP1EA%3D%3D&bn=Cobra%20Wing%20Bomber",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": "Hull Tank Mine Bomber.\n\nA wing of these will fill the sky with mines crashing into an opponent smashing them with explosives and keeping them from jumping away."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a4"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "Engineered Mining Cutter for HighRes/HazRes",
+    "buildLink": "https://coriolis.io/import?data=H4sIAAAAAAAEAO1b23LbOBL9Fz17UAQBXuC3xE7G2bU3GTuVeZhKsSASkjChCC5IOqNN5d%2B3QUoWJYISJfmSVCUPSYmUDpvo06cbjc63kbgXWTk6H10rnqiqHJ2N7mYyhwsXVVkKDZ9vVFKlohid%2F%2FVt9K4Uc7gX1%2FeiV3quKh1NNU8EMb9MlYFqLsPn99novNSVOBt90FJpWS5G5%2Fhs9CabykwILbPp6Pzb6HVaiRw%2BlO8u4bYb%2BgHxKT1bX%2F8Pn4sH2OhK8PvFZQVYZ6NrsD4dnXtnoz8qntb4DgoZrY2WEyl0Y%2FY1H5vvjW54UcDPPnGAHp0HIXLASC3BHJ4uL%2FqOuXgtiuJd8btSSfMG38%2FWIJdiIrJYrJ4A9qTl7KZKS5mnsl6xJRQBLEwpC1nnKa7XecyEp8XGc%2F4Ni1TK%2BFYUsig5PHGN%2FBumCDuh47gd5N9cQDZ%2F6B74jzOh53Z4ipjDGAs74PuNfvNPnqpC3gur2YQg7HqM%2BV2zCUPM%2FPFtD%2Fj83TxjSb654SPXMddTNeaLRCm95t6FuXrFy3jWwz%2BnhfQuK6PZIhc60WBxVMj%2FiSCKUyCJt0Z8q4F%2BEBOT8tJ8qw92EK2ZhdZv7y6ja5VNb3k2FX2cZr43jNPYoRZSh3tJDUshpvWrrKHcELk0dHDXW9ine5nwQX0V%2BlLzry1E5BDPQiq22zZYofd5Kec83XxXSqiLvAAHQdANsMDpIevnM0NScNMchI%2BnbyYTERs%2FF7mIJU%2BjSZFEM6Mxo%2B9bVJlUIgVGf6mJ4jdEacneW7j9EW73Cd8WWionoqjyXOmyzTx3DXgN37hrvjGQzKKmYA0Xdoh8w2XWcLQ4icRe2CVx87PoUuq2LtNNXfZxrzDb6Ec9hI0idJ2Lfe8o%2BmEUdjUNg2W7%2Bde8nJWCxHFt8UZIN410pXIF%2B0HoidLzTa3EJEAEY9chFouHgkNuKm952YJ1ISN1QxAjYlmCfZGyZJu6FzqF6kEknYjJUw45jOe5VjyeFZWsTVny8UNzUy9eLe%2FfLe8PiZ7cuDeBDKPluCqV7hHvhgXrr51C%2FMCzqPf2A6IV6J%2BC5yor7IKOjf%2FskbD83QXPebwZD46HqMn5Xff5eC8flrC3Ip5BhmwRIkS%2BE5JuHeEjPIhiFkuBuT4J6wpkC5TuN3SJ2jWUIGIxc38eulsUQJvHNnOJajMzcC2Ix%2BWiDsvj1Vt0Is1804Rb2aP%2BNVFNyPXlkkGFeeCznhiooaPXSsG6JP2leegfkgJcWE2LWg2V%2F67Pvboip5a6mfh7MY2agotkLKH%2Bb4E6yCKpcPEISW25MVYqtUhqIbJC6aJH7255wo8XuYA6mPhdB9%2FVz9xfpbo%2BJgPL1CY%2FHlymNpZ8NCFX3sU8e5VN03Z2w7ZkvD9brt7qgXeYecinAfVxBy4A%2BvREc9tXyy1yrOIvuSzXHjK764uHi0NSXb3R0Tz%2B0o5s3EKEfxwc3ZmbAyETyLsS2FVUesJjUcBKZmBsKbPFJi52alw8sP4cZKo72NR7JWORGzjY7s1Ea5v3CRZfpJ%2FM%2FQE4YzUep1AWw9JH0ySLJnI6M865b5n2uv6O4w2Aa%2BqeuCpKNZcFL6XKIl2L3hKrCbMLle5og7TwcijMy7%2FVOFpyJq3mMlMVxDjofi4iqK%2FcyKEtLTc%2F%2BJcaD8D%2BWuf9HbY2hcFgW2sJmkmRJlMBlOGr0svvSFHta1L72j%2Bl7AptvaC72oTfH0xYNjN68w7t1SVb2gkZVFoBtrQp8IA0saNv4wYPTY5tkdrV%2FhjWtSEhwqCrTleydveEPm%2BnmEQroLfKSq1SELA0hRxleGP87DV%2Bplt%2BDmo%2F9wXPgMxDsEecrp9vZBFH1yZc%2FxTm7z4HE%2BoOSzw%2BYo5nWX73iAaJFyBLcYJ7ipPHWGbvxHA6dZkDioctM2RPeBrrNj5%2FkoX2X5jPwdB%2Bn4c8z1LMvvQqw4belLSr7EDs2YHVq0wGFhdaTGDJ9aJGpHbEsEakAxCv8lUiG9d7lsZQpwP7EWqiK66TXIEXe%2BugQXunkPQlstdLEyxnG5s9NOqRoRW2i9yuO4lx8aG8cBEL3NCSV2h4XBeYdjfIGLkHnbo062Y7dQFzQXscpyvyw7OgIQfswoo5r92eNM%2BOykprUW6VyRsE6VWMU5l3Ugn1GMzzdnRvn4x5BLmMYctB1I%2FJPHhHU4CdyryDydG3l3o2chD6AuRwUWgppH9MZmDk%2B6CgXQl9YmYEL84M9iLMMKphOTj6McnBkM9ceqhsDJ0UaPaVx5zl79hrngK7e0TgUOB9HdXNkIlnVfZls3t%2BVFz1VpjPFVch6e%2BkP2E69inzfpq48lBIqeNYpm%2BeVnTdlyYH8V9klxBS4v40uwSGKHNsHYpfovujim5vo%2BDZRBe77Jfo7owrnyDqMIq7PalfcfVMcTWXGYQBBBJ8ZSL%2FEUk0F4ms5uuouqk%2F7%2B9qnQrcmwi3gQ2RzBmkyqKpnI%2FhTdPlVMVqFM58fJwE6zmW86TmFCx6fy90M9DRO8LAgrBPAuwTjzi0jjwGewKOz%2FlUfIBQMz3VpHXKQxB2GLEcTYWIEVLPyOxkbIO8BqSI%2BT61TMGYhL4Paz2asvneUIMQy%2BSGU6virveuw5SnZhp9A4116wrTdtgN9mo%2BVxepzE1PeI0WBJYhAXZkRDbnq1HSLOrhoXhVtXg9NBDHgs8b0GW07InD43crAWGOWfqeeFlNw%2FSeY4Re7zmGJVoc5JHAlp32TeT3BQsmEBMeJpYRUhd5eyOlj90g65iFftdSUifXg%2FntIhx4ltFUD21H86AhIi2WZ%2FP1IZf4b2VSd4ebh5Lo%2BOrrZBL5Xu92podFrmVq9iQW%2BZ7l1PhUEjkBtgj58SQKcWAZkXxSFh2auk86QfPM3N4hqZsMm7l9lsTtMkh%2B1q7k8ZmbhEFXNU7M29iycTk%2BbweWtuaxiTt0nyVxm7PmaQWElTxrCm4tZDZROhYGqz020PrPGjcSaMb1whk6K7ccQhvzRXuAantYju6e%2BHg8s%2Ftr9c%2Ff%2Fw%2Fd78q%2FJjgAAA%3D%3D&bn=CUTTER%20MINING",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Luisqa",
+    "jsonBuild": "",
+    "description": "Can remove the Fighter bay for another Collector Limpet\n\nHas a fighter bay to help with aggro and support."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017683"
+    },
+    "shipId": "imperial_eagle",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Racing"],
+    "title": "G3 Canyon Racing w/ Dirty Drag Enhanced drives",
+    "buildLink": "https://coriolis.io/outfit/imperial_eagle?code=A0p8tzF3l3d8s8f2-----v6-B6---.Iw1kAweQ.Aw19kA%3D%3D.H4sIAAAAAAAAA2P6J8bAwPCXGUj8KQES%2FDV%2F%2Fv8XEfr7%2F7%2BoBhcDg4QCUEZ5AT8Dw%2F%2F%2FDADHlxi3LAAAAA%3D%3D.EweloBhAWEoUwIYHMA28QgIwV3fEQA%3D%3D&bn=G3%20Eagle",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017696"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Combat Collecter for engineering Mats",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pptkFflidussf57l7l7l0s0s04040402054h5n5iCe2b292t--.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA42QvQ4BURCFh0X8X7sWi0ZiEyrxFkSh1mpVCoVCrVYoFUqFB1B4FIXSAyhEmHFGYkMh3OSeTHK%2BM%2FfmhLlIRHcLcptAzOwm4jp3kUIzSeTV4NTXhkgsrigZVXKqpH8VcXYpIndWAHmAIzEevtY54xJRq30RKS9tWHEeBHlcimg%2BOqgSxbYZPPLMJ%2F6Bkm%2BQ9Q3KcEehkEIrSOqM0YxZxNbJU%2FFVJMvdT3IlgFT8fRi%2B%2BeE73A8qHGkx2ondRoV%2BLgs%2Fz70gP4eEjqjYpPET74RQYwGnvgEu7t%2Bk0Nt5ALTNMyvEAQAA.EweloBhBmUDYAsICmBDA5gG2SEBGCQkKEoA%3D",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Achievable with only 3 Engineers (Farseer, Tod the Blaster and Elvira).\n\nThe intent is for players trying to get a leg up in combat to use this alongside veterans and scoop all the engineering materials as the fights progress. Carries 64 Limpets with a 5A collector for this purpose."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a7"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "Basic Miner Python",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pftkFflidussf5--2m2m2m---030505051OCeC0401qP42i.Iw18AztQ.EwRgDBldK9FA..EweloBhBmUEYCcoCmBDA5gG2SEcIEhTFA%3D%3D%3D&bn=PYTHON%20-%20MINER",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Luisqa",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3f96396556612740176a8"
+    },
+    "shipId": "imperial_clipper",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["HGE Farming"],
+    "title": "Clipping HGE Farmer",
+    "buildLink": "https://coriolis.io/outfit/imperial_clipper?code=A00CtkFflndfsnf4----02---3h05481PC0--3w3x.Iw18WQ%3D%3D.Aw18WQ%3D%3D..EweloBhBGA2MQFMCGBzANokMK5FAoA%3D%3D",
+    "engLevel": 0,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Admiralfeb",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017690"
+    },
+    "shipId": "krait_mkii",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Basic Combat Krait with Fighter + Collector",
+    "buildLink": "https://coriolis.io/outfit/krait_mkii?code=A0pptkFfliduspf57l7l7l0s0s04040404B1fm04042b29C0279s.Iw18eQ%3D%3D.AwRlwyui3I%3D%3D..EweloBhBmSQUwIYHMA28QgIwVyKBQA%3D%3D&bn=Unengineered%20Wing%20Mat%20Farmer",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a2"
+    },
+    "shipId": "type_9_heavy",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "Type 9 heavy Cargo with basic protections",
+    "buildLink": "https://coriolis.io/outfit/type_9_heavy?code=A0pktpFkln3Tsif3-----04040404070706054a03032t013w3x.Iw18ZQ%3D%3D.Aw18ZQ%3D%3D..EweloBhAOEHYCMA2EBTAhgcwDapCBCIkKUoA&bn=Fat%20Ass%20Cargo%20Hauler",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a5"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "672T cargo Cutter",
+    "buildLink": "https://coriolis.io/outfit/imperial_cutter?code=A0pftpFplxdxsCf6---------------070705054f1O04--323x3w.Iw18ZlA%3D.EwRgDBldMn42EA%3D%3D.H4sIAAAAAAAAA2P8Z8%2FAwPCXEUjw8%2Fz7%2F19sNgsDA8cXIP8%2F0z8xkBQLSCrg9%2F%2F%2FEi%2BYGRhEJP78%2Fy%2B6gIeBQblDGKiI%2BZ8UTJHQEU6Yyg1AvshVfqA86z9LkDxQJ4PqFaD5akxcDAycIBYXiKUIYimBWP%2Bl%2F%2FmCVLICiT85QIIJZBMbyCRuS6B2wXtAQvQGHwODyh52oPL%2FDCAAAMYiaJe%2FAAAA.EweloBhA2AWHZQKYEMDmAbJIQEYIEhTFA%3D%3D%3D&bn=CUTTER%20CARGO",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Luisqa",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768d"
+    },
+    "shipId": "diamondback_scout",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE", "Combat - PvP"],
+    "title": "Corvette Killer",
+    "buildLink": "https://coriolis.io/outfit/diamondback?code=A4pctaFal8das8f4ihih292903020000292929m3.Iw1%2FkA%3D%3D.Aw1%2FkA%3D%3D.H4sIAAAAAAAAA42RPS9DYRiG71ZL21M9PSf9QEhwDk0kGkaJmA0GM0uHYzcQHUj4B6Ji9hMMBoPBZPYDDI25g0EM1HN7HknfMEh6hjtX8lznfr8gYwC%2Bshr9Cw3vPAWMnxaB4EgpvPOA%2BD4NMCUbzjzRyG1%2Fkn63CdRuMmo%2BaRHTUnPSgYYff5CVnkb12gcmzIz262qOyJQz2wPzZ7nKcVXNZ50wI6smZWzeetX57QvJrKy5X8808kUhC5cBMGc0b7RgtGjEUWkNdL%2Fd05KHLtlcf9emnOy6pj2brxzqScoNoG6bjDbfVMoPIxVkx0mJRnZrBpi05SI7OL1fJcl%2FJWVZctKVPcajYml2Wh%2FDKLSm2IjB0GYoy87smNnokyW73cAoTmx3xJ%2FvG08ycs8VAgAA.EweloBhBGA2EoFMCGBzANokMK4fiIA%3D%3D&bn=LOKi%20DBS",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017676"
+    },
+    "shipId": "imperial_courier",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Jump Ship"],
+    "title": "Bubble Hopper V4, Significantly Enhanced",
+    "buildLink": "https://coriolis.io/outfit/imperial_courier?code=A0p0tzF5l3dds8f32iPhPh02080808021N3u012oC5003w.Iw18SQ%3D%3D.Aw19gTKQ.H4sIAAAAAAAAA42Rvy9DURTHT6t9%2Bn6013t5rUaE4DFKrSIxCYPBIGLsH2DoQNKBhN0gZoPBYDQaDAajP6BDI0aDQUQM6Dm%2Bp%2FTGk0q84ZuTfD%2F3e8%2F7XuJBIurkIR%2FHEP8qS1TcD4jCTUzRpU%2BUvGSIJMOLltyDFG5cIrPwKlI5NfCzXLH%2BNsQkbyLx2LtIWf3qRY5oqjEMcoBHLNnskd2b4t0yyDYcyfFcDzLNR%2Fi3dyKS53l79ADiaqBXC4kmNGRSZVplJmDgDtfTIdf3IrO6sxR4wybhUnLWn0XM0QOgVlukWn8C5P6ARv%2BCvP9APrt9fifgFXv0RNtvYOtQJTn0UEKRl1K%2B0Wqi2g5K0vbHWyVAJV5Oh5w5INdQfKhTl0x0kpBXLblF368X6TrxeQfvpOlf68Y81GddoV%2FfJ9ZCOFA%2BAgAA.EweloBhAOEEZQFMCGBzANok8K5FAoA%3D%3D&bn=Courier%20Bubble%20Hopper%20V4",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "As previous bubble hopper but with higher focused shields a torpedo pylon and lightweight low power draw packhounds to deal with attackers just because why not..."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017692"
+    },
+    "shipId": "krait_mkii",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - Anti-Xeno"],
+    "title": "Anti-Xeno",
+    "buildLink": "https://coriolis.io/outfit/krait_mkii?code=A2pntkFilidussf5x82Q2Q0H0HxsSn0202B12d2d2d2J2H02y1-.Iw18WAMQ.Aw18eQ%3D%3D.H4sIAAAAAAAAA32QP08CQRDFH3CoiLJ3x4HEUPjnwEQTEzoLEr%2BAH8CS0lhZWFCYSGlpodaWlhYmUlhY%2BDEsiDWFhTHEwDxnjGxodIuXt3m%2FmZ0dyDyASV5lfKlSfMoCy70lIDpUF%2FeLQPqRAZiRfU%2Beqyy8FADX%2FiSrt07zrFR9fqri0i8yGapULK%2FdB8DmyYqSOVn1ZHdK%2FryUnFWUfNWEgbQMCizvvGv%2B8EYyL3u%2BtKdSOAqBxdGIdFa%2FbtcNuzbMNc1xTjrTGtcdaqfnAblrg9NJw6KcCi7K%2Bt1wC6ibY%2Fh3FMmBH%2BIYv0uIrXVyN9Hv2vw1m5mx7Hjy2rbb1k2ULI9aYzI1YVm2PXRl0KPa0lpdIXOxbS81x2SGvPmXJGbPNyIOsIrlAQAA.EweloBhBmSQUwIYHMA28QgIwVyKBQA%3D%3D&bn=LOKi%20Krait%20Mk%20II%20-%20Thargoid",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017697"
+    },
+    "shipId": "vulture",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Non-engineered, Hull Reinforced",
+    "buildLink": "https://coriolis.io/outfit/vulture?code=A2patfFalddksff31d7l0l040000B22d2bm3m1252525.AwRj4yOYg%3D%3D%3D.CwBhGYQJjK4RkfMKxA%3D%3D..EweloBhAOEoUwIYHMA28QgIwV3fEQA%3D%3D&bn=Ekzim.Vulture",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Ekzim (Modded)",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769f"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "Basic Miner with a Shield",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pktkFflidussf52m2m2m2727040403020505CeCeCe451qP92o2i.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA2P%2BJ8XAwPCXFUj8qQAS%2FCq%2F%2Fv8X2sHNwCBSI8rAIHEHKPP%2FPwMAbA6BIicAAAA%3D.EweloBhBmUEZgA4QFMCGBzANikAFATwBcALAewDsACAWQEsKUAnEOCdkKLoA&bn=Python%20Miner",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017679"
+    },
+    "shipId": "anaconda",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Jumpaconda (76.1 Lyrs but with SRV)",
+    "buildLink": "https://coriolis.io/outfit/anaconda?code=A0pitnFklndnsxf5---------------023h--141O-04-48v6-242i.Iw18ZUAxA%3D%3D%3D.Aw18ZXEA.H4sIAAAAAAAAA2P4x8bAwPCXFUj8mQQkuE04GBh4ef79%2Fy%2FIwc7AINTy6v9%2FlTtA6f%2BM%2F%2BxBKplAKuuBBMcLZgYGfok%2F%2F%2F%2BL5QBV%2Fmf6JwY3qQxI8Kv8%2Bv9f5A2QEF3Az8AgsYGFgUG5QByokvmfFFxlBUyl0A5uBgaRGlGgSrB1LP8MQYpYQPIJH4DyWx79%2F%2F%2Bf9Z8FXGsLkODMEGBg4Prx4%2F9%2FfpB%2BRRBXCcRVBbHUQKz%2FbP8SYHr4K94ATTrw4P9%2FPZtvQClxiMCZe0C2wj8%2FuNGFILUgVwsG%2FAb6H%2BxqlX%2BxMHkhAXUGBtMOYaDofwY4AABjdi93SwEAAA%3D%3D.EweloRhBmUBYQFMCGBzANokIIAZ8i6GFA%3D%3D%3D&bn=LOKi%20Jump%20Conda",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768f"
+    },
+    "shipId": "fer_de_lance",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Wing Fighter with Efficient Heal Beams",
+    "buildLink": "https://coriolis.io/outfit/fer_de_lance?code=A2pktfFalidpsff37o27270s0s020404040404B25d5d01C525.Iw18WQ%3D%3D.EwBj4yuGg%3D%3D%3D.H4sIAAAAAAAAA42SP0jDUBDGr21S26ZtmjRtoxb809SCghScnHQRwUEEl466SgcHhQ4KdRFHEXFy6ODo4Ojg4ODoKjiIc4fqoohovfMu0AeCwwvk4%2BPd79378nKAQwDwY7L0T1ismyhApp0GcBrs3GsLIHiPAFAEF4SMCrnPkujGAGy%2FT1Rscg%2BKYlF12mGxgy8ir8dS6NgA%2FpUBUNkuMRnDEUW2BmR4krdXYPKJK2Tg3ACy67u8ejvDqybOq60HLMk0EqVOHYAJcZPiquKmxFEcNwXnoODK0bP1T6LhsJTAhurELxgSwmyMAsQvM5w0DJHUgVI6kIXrCvJYzI0k15uvRP7iC1HluEtEaR0og9XBN8FRnj8sVwMoi6MsLqn953JxcrQb3t4ddxp7zDJk60A5XP4DWRdxJte%2BiRxxIRmII0ebdLXJPK4qcksiygA5QgbhAHm4InVD6ocskfYbkS3%2FNmxSk8msdD74sgraZAlzat5aPZ7H%2B2de9XFaJTmTzA9ss%2BNljiPOlWCBOCL4%2F%2FkFN7ZuLmEDAAA%3D.IwOgrA9AzBqQDBAHBALBApgQwOYBsMJZ4SJFyg%3D%3D&bn=FDL%20Wing%20Fighter",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Efficient Heal Beams used for keeping your Wing Buddies Shields up.\n\nWhile Long Range Regen Beams would be better it just overheats too much in that configuration as the FDL is a heater ship.\n\nCould be done with Long Range G3 Heal Beams and keeping FSD offline in combat while watching heat.\n\nPower plant is sized for lower heat as well with this build in mind."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017693"
+    },
+    "shipId": "mamba",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE", "Combat - PvP"],
+    "title": "PvE, PvP",
+    "buildLink": "https://coriolis.io/outfit/mamba?code=A4pktfFalidpsif37sApAp2e2e020004040404p25d1F27273w.Iw18WQ%3D%3D.Aw18WQ%3D%3D.H4sIAAAAAAAAA42SO0gDQRRFX8zH%2FDe7iUn8BH%2BrgQgSS0HQRgULsRFTWltZKKQIqJ2IlYhYWKSwtLC0tLBUsLQQSWlhJ4hofM93FzMohGCKy2XvmTsvM0McJqKvoErzSCU21xSxaypuo4dIfDxr8h2V8E2EyJp5E8nWLc27OGvyLRXL%2FRDJvKj0IM9fBohGN3NK%2BrnPkNUW6VzFiDI13Sn%2FqIkEeKoFWdUXzW%2BfRCTI02bpnkokziLRY5toGG4EbgxuHE5CvP635LohMomZJcwV03SgEqz0E4UuEjqkt3%2BE10yuCZVWVLwhvfl6U0WiCYhEf5GFjmSMVw3ZrUL4GoA4OJj8vX4sPPuVjP8iUx3JBI%2BB9APaT2sOaABOkhxvE3mrUrxo%2Bs9w2echPaKVT71xuDzu1oUTmxcMeQoSp2sfRjWHE4fn%2FzRZ%2BM9OefunZPAhqSVpXjbQBiC8CBvbud6LyPAScn0h5Nt9FbHK7yLe%2BiLGHa3jxrJcMiUnmORObXJoQJvgHHS6cJL7NynU7vcNR5rYYQsDAAA%3D.EweloBhAOEoUwIYHMA28QgIwV3fEQA%3D%3D&bn=LOKi%20Mamba",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "LOKi",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769d"
+    },
+    "shipId": "imperial_cutter",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "High End Ridiculous Trading Cutter",
+    "buildLink": "https://coriolis.io/outfit/imperial_cutter?code=A0putuFplxdusCf60x0v0vPhPhPhPh020404040404040407070505p11O045i5i323w3x.Iw18ZlA%3D.IwBj4yqgmc5EA%3D%3D%3D.H4sIAAAAAAAAA42TMU%2FCUBDHDygIFCwtFIsKRCliHAyOJiRORmI0YTG6%2BgFMGDRh0AQTY4xxcnZg8AM4OjA6Ojg6GGYHNokxiu%2B8q%2FQlDMbX4Z9L%2F7939%2B56BTEBAN9hkuE1id4NAiTbCQBzjyLrXgdwBwEADIg1SZ6QRB9iAEbtHTHbMcgPiqz0D0kM9xMx0yex2XfuNIBSc4rIkJiWZMsnvUqZY5vIF3JQEys%2BZLT65D%2F2EDEsavLoKUmMj8ZZ5ljmEwKxzEUWqiYliYh9H7dSFYDl%2BgAxt5UnKyp2ZaYCyVIDRu169XOMY%2BwXCklokaEnGplzRi9zXjtxFUgXO7LcJQlwfo3FYt9hPO8MqcWEMplUJieVSUOU%2FWbgIj0a2yxHmBIbMskNr8pthL5N4wvR5MjhfXA5QlOsj5EGT9SqHo2g4vMkQZYKlFaBMqI%2BfrEmbYHJ4l7Fybf%2F8bPKjc2IbUkekAR5ZhHebH2VRmb2SGy%2Bk9uliWJBbDKuMX5OEmi%2F0YSrH4hezsor4aUO%2FUFYVCYR%2Fnp%2BAJbj803LAwAA.EweloBhAWEEYBsICmBDA5gG2SeF8hRFA&bn=Armed%20Trader%202.0",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": true,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767e"
+    },
+    "shipId": "krait_phantom",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Exploration"],
+    "title": "Basic Explorer - no engineering",
+    "buildLink": "https://coriolis.io/outfit/krait_phantom?code=A0p0tdFfliddssf5----02---3c040s049qv6432i3w.Iw1%2BgDMnSQ%3D%3D.MwBj4yWAmDSA.H4sIAAAAAAAAAxP6x8zAwPCXBUjwH4hlYJBwkGdg%2BP%2BfAQBXZWTLGAAAAA%3D%3D.EweloBhBmUA4QFMCGBzANokICMF8hRFA&bn=Unengineered%20Krait%20Explorer",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Solid great exploration ship focused on jump range.\n\nNote it's supported by a 2A power plant for better weight for jumping. The AMFU, Vehicle bay and limpet controller should be powered off during flight."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017688"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "256 Cargo Hauler",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pttoFflidyssf5-----0404040405050504041P2t403x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D..EweloBhBmUA5QFMCGBzANokICMF8hRFA&bn=Deliverator%20256%20Cargo%20Medium%20Hauler",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": true,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017695"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "Base Combat collector",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pptkFflidussf57l7l7l0s0s02040404B1052d2d2dm72tC03x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D..EweloBhBmUEYAcICmBDA5gG2SEcIEhTFA%3D%3D%3D&bn=Python%20Combat%20Starter",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": true,
+    "author": "Admiralfeb",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769a"
+    },
+    "shipId": "alliance_chieftain",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - Anti-Xeno"],
+    "title": "Competitive Xeno Combat",
+    "buildLink": "https://coriolis.io/outfit/alliance_chieftain?code=A2pktkFflndpsif40H0Hx80pyLyL020202Sn2d9v0W27272J2J2b1V.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA42QvU4CYRBFLyD%2BLbKwsqtrkIgsmlDQ21hbWNBp6xtYWFhoQmltjLWPYKeF4Q1IfAALH4IKda4zBCaRhMSvuDnJPZnJN5AVAD9Fje97jeAtD2z0S0D1XCl6DYBslAOYk2M3bzVWe19k%2BNkFkuclNd91EPOSuHSlEWZjstZQM34KgW0zW5dbahZkx83rmTlZV7uJ1fzQhkU5cqmvsVYScv2hCjSN9o3aRgdGXJaLmR5VDoHuyYhMT3e1CuTMJzU0Oj1MfzfZlJrOsrRNKmjgbnM6pG7EcHFVWVxF0vGtj3bdF8XyXl2vaxTZTTIjxvPm0M2hm0ZM%2Fm2m8%2BbAzYGbRiT%2BvF8A42X0FQIAAA%3D%3D.EweloBhBGA2EoFMCGBzANokMK4fiIA%3D%3D&bn=AX%20Chieftain",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Mgram",
+    "jsonBuild": "",
+    "description": "Requirements:\n- Be competent in FA-off\n- Be competent in Cold Orbiting\n- Understand basic Thargoid Mechanics\n\nGreat anti-xeno companion ship for competitive anti-xeno hunters. Able to destroy Medusa and Hydra variants due to great hardpoint placements and maneuverability.\n\nShieldless build to maximize performance and lethal potential."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a1"
+    },
+    "shipId": "type_9_heavy",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Miner"],
+    "title": "Unengineered Type 9 miner",
+    "buildLink": "https://coriolis.io/outfit/type_9_heavy?code=A0pktsFklndpsif62m2m2m--040404020707Cj4fCeC01vP9C03x2i.Iw18ZQ%3D%3D.Aw18ZQ%3D%3D..IwelBYQBhA2SBMBmA7CApgQwOYBt0gjIAcaM5QA%3D&bn=Type%209%20Miner%20Unengineered",
+    "engLevel": 0,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Completely unengineered miner. Unforunately it's very defenseless and is effectively a target."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017694"
+    },
+    "shipId": "mamba",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - PvE"],
+    "title": "General purpose Combat Mamba",
+    "buildLink": "https://coriolis.io/outfit/mamba?code=A0pktfFalidpsif37o7l7l0p0p020404040404B25d58272766.Iw18WQ%3D%3D.EwBhEYy6egWEwg%3D%3D.H4sIAAAAAAAAA42TO0sDURCFT54m2U02u3mtMfjKxkgKSWtjJ4KF2JnfYGWhYKEQQcRaxMoihaWFpYWlrWBpYWFpYaeIaLzjzMVcECzuwh4OO9%2FOzM7OhRoD8J1iGZ6wODdxIN93Ab%2FHLrh2gOgtBlBMLRlynyWz%2FkXkPS0A1askk%2FeciOKqaqBtFi%2F6JCq%2FsFQGHhAK2dyqMZlQdUPujkhdrrxXYfKRI5RSiwY6YMm6iih36gMz4mbFtcTNiaOM6hmcbyQlZ6o3AaQv81xY58zaQDkbyFEbAiUEmmTpzON3DuEhPxzX3%2BnaQHnVGkE4LnG82AYa4qiglk0n5zInKR10d%2Fj92yww9VBgyLOBimrlD%2BRcpJmUv%2BiL02QkjnxrMrAmS2rNkJvSouyDL2SkR1BWqxJPSvyIJdZ%2F5fXqfhDpJO1nHk5z8E68SdZkVXVMzTPp7o5tYbrBhcUF0kIkjmrWZKgaQvKJgKtXWsrVwyGXI%2Fx7%2FQAZcbjsYwMAAA%3D%3D.IwOgrA9AzBqQDBAHBRBTAhgcwDZorPEaifEA&bn=Mamba%20Interceptor",
+    "engLevel": 1,
+    "hasGuardian": false,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": ""
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017699"
+    },
+    "shipId": "krait_mkii",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Combat - Anti-Xeno"],
+    "title": "Casual Xeno Combat",
+    "buildLink": "https://coriolis.io/outfit/krait_mkii?code=A2pptkFflidussf5xy2Q2Q0H0HxsSn0202B12d2d2d2J2H2H0d3w.Iw18eQ%3D%3D.Aw18eQ%3D%3D.H4sIAAAAAAAAA42QsU4CURBFL4uguMiyyy4gQSO6aGJBT2NNoQklra0VhYWFJJTUxFj7CXZa8BGWFsT4EVSKM94x8mJjwituTnJP3mQGsgngK8dYThn%2BzAN2xkUgHJCiZx9IFxlAM3LmzBFjq%2F%2BpGrx3gOrjBs0XfqSeVJ10zQjSD9V4n2byEAB1M4%2BGNZpZaTjzZmX%2BjItvE5pzNpqTrpPGjEJRVLfvQqBldGjUNjo20rxcrvSofAJ0egvV3fM9VoG0rcoyMKn89k0jLf9fhXLh5l8xvPpSNW9L%2BF364RsjeS3xRDPbPpJTp9%2FbMZ%2BIpYMmTaPITpAaaWVtM17bVPx532TnYcjYAQAA.EweloBhBmSQUwIYHMA28QgIwVyKBQA%3D%3D&bn=AX%20Krait",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "IM2D",
+    "jsonBuild": "",
+    "description": "Requirements:\n- Be involved with light Xeno Combat\n- Must be engineered completely\n- Must be able to manage PIPs efficiently and effectively.\n\nFor CMDRs who wants a casual approach to Xeno Combat. Great for taking out Cyclops and Basilisks.\n\nStruggles with Medusa and harder due to heat and boost-maneuverability problems. Shields is also the prime suspect here for depleting systems capacitor."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a0"
+    },
+    "shipId": "python",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "specializations": ["Cargo"],
+    "title": "256 Cargo Hauler, Engineering Optional",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pttoFflidyssf5-----0404040405050504041P2t403x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf%2BJwVXWQEk%2BFV%2B%2Ff8PlhepEWVgkLgDlPnP%2B88drmgOyLglbECVAb%2F%2F%2FxcEsSSOcAKNA7H%2B8xGtkv%2BfK4pKfpBNQgalUEXyN%2FiAigSIUSTxzw%2BuKAekaAE%2F0J8gO1UKxIHy%2FxkgAAAfSdSdFQEAAA%3D%3D.EweloBhBmUA5QFMCGBzANokICMF8hRFA&bn=Deliverator%20256%20Cargo%20Medium%20Hauler",
+    "engLevel": 1,
+    "hasGuardian": true,
+    "hasPowerplay": false,
+    "isBeginner": false,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "description": "Cargo Hauler intended to land on medium landing pads to ferry things from a carrier or do smaller trade hops.\n\nCould pair well with a big mining ship + carrier for drop of LTD's at high demand Medium landing pad stations. Fill up a big cargo hold on mining, use this to ferry it all for sale."
+  },
+  {
+    "_id": {
+      "$oid": "5fc926dee5b2c0512a10acda"
+    },
+    "specializations": ["Combat - PvE"],
+    "title": "FDL Endurance 3.0p",
+    "hasGuardian": false,
+    "hasPowerplay": true,
+    "shipId": "fer_de_lance",
+    "isVariant": false,
+    "variants": [],
+    "related": [],
+    "engLevel": 3,
+    "author": "Clever Ape",
+    "jsonBuild": "",
+    "buildLink": "https://coriolis.io/outfit/fer_de_lance?code=A4pktfFalidpsff32c0s0s0s0s040404040404p25d5d2o6625.Iw18WQ%3D%3D.AwiMIysgmOg%3D.H4sIAAAAAAAAA42SO0sDURCFJ681yW6y2TWbrMEHmtVUSgSbgKCNIIKVf0ALuxQpFFIoGBCrFKKWCvkJlhaWlhaWFpLKIki0EUQkzjgTyEVB8W5xOHC%2BvTN37gAaAPAZY%2BmdsJiXUYCUhUTONjv38IkoWIgDUAiXhIwKuc8SvxsCsMvvRLlHi%2FMw5tRJOyx28EGU7bJ4LRvAl4OLtTyTESwosj4g3SsTILvnMfnACUVxfgDZ9S7nt20iimFF%2FdpgSUinyTMHYFLclLhpcTPiyMAtwSMsrpSek3ZH%2BlEcN9RJFyyxzQSAUX0h8pefiYrHHS6X%2BAaN%2FwUldSBTB7J0oBSuKOhcpiPjcsu7PLgbxifu03y7tA5k60AZHcjB1R%2BQWZMFEgmaSc7df%2FJhXFd5lSXs94gM2Rizwo%2FntFk8qRRc89JRFtfUKh6xhA5eifqr2O%2Bp1GG82HrjYXnaZB5HB6SVKfHtZGkLixL5OKu6O5Xux7i7tMzBERc0mSSC378vtRFkEGEDAAA%3D&bn=FDL%20Endurance%203.0p",
+    "description": "Endurance oriented FDL that never needs ammo for it's weapons:\n-Requires really high end engineering including a trip to Colonia\n-Uses Plasma Slug for it's Huge Plasma Accelerator so it burns fuel instead of having 100 PA shots.\n-Uses Gimbled Efficient Thermal Vent Beams to dump heat quickly and effectively.\n-Should only have to go rearm if fuel gets low or you run out of Shield Cell bank Ammunition.\n\n-Alternate variation: Swap the SCB's for Guardian Shield Reinforcements and change the shield's experimental to High Cap. If you run out of shields you run away.",
+    "isBeginner": false
+  }
+]

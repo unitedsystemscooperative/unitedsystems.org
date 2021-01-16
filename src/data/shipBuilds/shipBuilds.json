@@ -1,0 +1,821 @@
+[
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017675"
+    },
+    "id": 0,
+    "description": "Fast Bubble Taxi and HGE Salvage",
+    "ship": 13,
+    "specializations": ["Jump Ship", "HGE Farming"],
+    "buildLink": "https://s.orbis.zone/7WxX",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Very Fast Bubble Hopper; Built for Speed and quick turning to grab High Grade Emissions quickly.\n\n-Swapping the Guarding FSD out for a Class 3 Cargo works pretty well.\n\nPro's:\n-Very Speed and Turning, practically a racing ship.\n-High Jump Range\n-Ideal bubble Taxi since you can fly somewhere to retrieve another ship and ship it back to you for cheap.\n\nCons:\n-Requires a lot of Engineering\n-Squishy, shields are paper and you will blow up if you hit things at high speed.\n-Runs a bit hot fuel Scooping so you have to pay attention.\n-Doesn't carry at ton of limpets for collecting high grade emissions you generally have to refill after 1-2 sets of filling up."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017676"
+    },
+    "id": 1,
+    "ship": 13,
+    "specializations": ["Jump Ship"],
+    "description": "Bubble Hopper V4, Significantly Enhanced",
+    "buildLink": "https://s.orbis.zone/8o9Y",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "As previous bubble hopper but with higher focused shields a torpedo pylon and lightweight low power draw packhounds to deal with attackers just because why not..."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017677"
+    },
+    "id": 2,
+    "ship": 12,
+    "specializations": ["Jump Ship"],
+    "description": "Bubble Hopper for New Pilots",
+    "buildLink": "https://s.orbis.zone/aer8",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": true,
+    "author": "IM2D"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017678"
+    },
+    "id": 3,
+    "ship": 12,
+    "specializations": ["Jump Ship"],
+    "description": "Bubble Hopper for New Pilots in Open",
+    "buildLink": "https://s.orbis.zone/aerf",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": true,
+    "author": "IM2D"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017679"
+    },
+    "id": 4,
+    "ship": 35,
+    "specializations": ["Exploration"],
+    "description": "Jumpaconda (76.1 Lyrs but with SRV)",
+    "buildLink": "https://s.orbis.zone/7Wy3",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767a"
+    },
+    "id": 5,
+    "ship": 35,
+    "specializations": ["Exploration"],
+    "description": "Jumpaconda (77 Ly) with a ~1000 MJ shield",
+    "buildLink": "https://s.orbis.zone/aktT",
+    "engLevel": 3,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Utilizes a 3A Prismatic shield and E Rated shield boosters to have a solid shield while maintaining a 77 LY jump range with all the fixings. Massively engineered build."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767b"
+    },
+    "id": 6,
+    "ship": 17,
+    "specializations": ["Exploration"],
+    "description": "General AspX Explorer Unengineered",
+    "buildLink": "https://s.orbis.zone/7qyE",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Damn good starting Explorer Build focusing on jump range. However given the available internal slots one may want to consider the Krait Phantom instead."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767c"
+    },
+    "id": 7,
+    "ship": 12,
+    "specializations": ["Exploration"],
+    "description": "Unengineered Entry Level Explorer. 36LY Range",
+    "buildLink": "https://s.orbis.zone/8mjk",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767d"
+    },
+    "id": 8,
+    "ship": 12,
+    "specializations": ["Exploration"],
+    "description": "High End Engineered DBX, 68 LY jump Range",
+    "buildLink": "https://s.orbis.zone/8xag",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767e"
+    },
+    "id": 9,
+    "ship": 26,
+    "specializations": ["Exploration"],
+    "description": "Basic Explorer - no engineering",
+    "buildLink": "https://s.orbis.zone/8ok4",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Solid great exploration ship focused on jump range.\n\nNote it's supported by a 2A power plant for better weight for jumping. The AMFU, Vehicle bay and limpet controller should be powered off during flight."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401767f"
+    },
+    "id": 10,
+    "ship": 26,
+    "specializations": ["Exploration"],
+    "description": "Krait Explorer 55LY Jump Range, Partially Eng",
+    "buildLink": "https://s.orbis.zone/8dd4",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "This is a Krait Phantom Explorer built out with what you can engineer with just Felicity Farseer unlocked."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017680"
+    },
+    "id": 11,
+    "ship": 26,
+    "specializations": ["Exploration"],
+    "description": "Long Range Explorer with 67 LY Jump Range",
+    "buildLink": "https://s.orbis.zone/8jkB",
+    "engLevel": 2,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Fully Kitted out and engineered long range explorer focused on jump range.\n\nWhile the Anaconda gets better jump range this one doesn't manuever quite like a boat."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017681"
+    },
+    "id": 12,
+    "ship": 5,
+    "specializations": ["Racing"],
+    "description": "Top Max & Boost Speed (745, 932 m/s)",
+    "buildLink": "https://s.orbis.zone/7efu",
+    "engLevel": 3,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "MINI"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017682"
+    },
+    "id": 13,
+    "ship": 4,
+    "specializations": ["Racing"],
+    "description": "G0 Canyon Racing",
+    "buildLink": "https://s.orbis.zone/9bwD",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017683"
+    },
+    "id": 14,
+    "ship": 4,
+    "specializations": ["Racing"],
+    "description": "G3 Canyon Racing w/ Dirty Drag Enhanced drives",
+    "buildLink": "https://s.orbis.zone/9bxl",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017684"
+    },
+    "id": 15,
+    "ship": 5,
+    "specializations": ["Racing"],
+    "description": "G3 Racing viper. Faster than eagle but less manuverable.",
+    "buildLink": "https://s.orbis.zone/9bxf",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017685"
+    },
+    "id": 16,
+    "ship": 15,
+    "specializations": ["HGE Farming"],
+    "description": "HGE specialized farmer",
+    "buildLink": "https://s.orbis.zone/aer0 ",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "IM2D"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017686"
+    },
+    "id": 17,
+    "ship": 15,
+    "specializations": ["HGE Farming"],
+    "description": "HGE specialized farmer w/ Engineering (Max)",
+    "buildLink": "https://s.orbis.zone/aer4",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "IM2D",
+    "moreInfo": "This build is shieldless."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017687"
+    },
+    "id": 18,
+    "ship": 31,
+    "specializations": ["Cargo"],
+    "description": "256 Cargo Hauler",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pttoFflidyssf5-----0404040405050504041P2t403x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf%2BJwVXWQEk%2BFV%2B%2Ff8PlhepEWVgkLgDlPnP%2B88drmgOyLglbECVAb%2F%2F%2FxcEsSSOcAKNA7H%2B8xGtkv%2BfK4pKfpBNQgalUEXyN%2FiAigSIUSTxzw%2BuKAekaAE%2F0J8gO1UKxIHy%2FxkgAAAfSdSdFQEAAA%3D%3D.EweloBhBmUA5QFMCGBzANokICMF8hRFA&bn=Deliverator%20256%20Cargo%20Medium%20Hauler",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Cargo Hauler intended to land on medium landing pads to ferry things from a carrier or do smaller trade hops.\n\nCould pair well with a big mining ship + carrier for drop of LTD's at high demand Medium landing pad stations. Fill up a big cargo hold on mining, use this to ferry it all for sale."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017688"
+    },
+    "id": 19,
+    "ship": 31,
+    "specializations": ["Cargo"],
+    "description": "256 Cargo Hauler",
+    "buildLink": "https://s.orbis.zone/9q-k",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": true,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017689"
+    },
+    "id": 20,
+    "ship": 20,
+    "specializations": ["Combat - PvE"],
+    "description": "Unengineered Starting Combat Ship",
+    "buildLink": "https://s.orbis.zone/aguE",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": true,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768a"
+    },
+    "id": 21,
+    "ship": 20,
+    "specializations": ["Combat - PvE"],
+    "description": "PVE Engineered v2.0",
+    "buildLink": "https://s.orbis.zone/8p_p",
+    "engLevel": 3,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Another Take on a High Engineered PVE Chieftain.\n\nUses Overcharged on the Multicannons for Damage.\n\nAlso carries a collector limpet with 4 limpet capacity to grab really valuable engineering materials that drop from killing big/rare ships."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768b"
+    },
+    "id": 22,
+    "ship": 20,
+    "specializations": ["Combat - PvE"],
+    "description": "Pure Hull Tank with 10k Hull",
+    "buildLink": "https://s.orbis.zone/915m",
+    "engLevel": 3,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "High end Hull tanking Chieftain.\n\nNo Shield,\n10k Hull and Chaff are used to keep you alive. Guardian Module Reinforcement and \nLifesupport engineering in place to keep your internals operational with a AMFU.\n\nUses some multicannons set with incindiary rounds to take down shields on the Class 2 and 2/3 Class 1 Slots."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768c"
+    },
+    "id": 23,
+    "ship": 6,
+    "specializations": ["Combat - PvP"],
+    "description": "PvP Mine Bomber Build. ",
+    "buildLink": "https://coriolis.io/outfit/cobra_mk_iii?code=A2pctaF5ldddsdf32k2k2j2j02022b2b2b27276b2E2E.Iw18cQ%3D%3D.Aw18cQ%3D%3D.H4sIAAAAAAAAA42RvUoDURCFJ3FXs9nd7GZjYiIbUbMqWIhaioWlhQ%2Bgnb6BhYUIgr6ChZWFj5DCwkLEBzCQBxARCysRi2Dhz4xnkL0ENbC3OBzmfnMuc4d4hIi%2BbMjnCcS9yhP5Rx5ReRMuunSJkl6OSHK8ZshDSOHsSSTqor2WvItInmvmfg8SaHV04kOkeh4Q1dsWUWt3DElD3DDkASR38yDyg9%2Bh2NJMsXhJIUuTtl%2Fx0sUjHrF5xbQeQxwNLC6Wiaa0f1plRmXWY%2BDDvJPiUThHtLDeE2lsNJFf4C2TVIXY2hAuw8U6WLP7gn4nC1TsgyqDILcP8gdBHjspFOw%2FY%2Bbbe1T9f6slnjeBp7q4a9jSZIzFqYv0zxN1EmQmw8xk%2BTfZMWTHkOokykxWOE437umy6no1vvqGYYX%2Bnm%2BfllN9ugIAAA%3D%3D.IwegLCoAwgHCMCmBDA5gG0SSVcP1EA%3D%3D&bn=Cobra%20Wing%20Bomber",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LOKi",
+    "moreInfo": "Hull Tank Mine Bomber.\n\nA wing of these will fill the sky with mines crashing into an opponent smashing them with explosives and keeping them from jumping away."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768d"
+    },
+    "id": 24,
+    "ship": 8,
+    "specializations": ["Combat - PvE", "Combat - PvP"],
+    "description": "Corvette Killer",
+    "buildLink": "https://s.orbis.zone/7efo",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768e"
+    },
+    "id": 25,
+    "ship": 29,
+    "specializations": ["Combat - PvE"],
+    "description": "Solo PVE Combat",
+    "buildLink": "https://s.orbis.zone/8q7t",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Relies on an Overcharged G2 Power plant + a pair of G3 Long Beams with Thermal Vent to keep it cool while fighting.\n\nYou will have to watch your weapon power a bit when you fire all weapons continuously but it's very managable."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401768f"
+    },
+    "id": 26,
+    "ship": 29,
+    "specializations": ["Combat - PvE"],
+    "description": "Wing Fighter with Efficient Heal Beams",
+    "buildLink": "https://s.orbis.zone/8o9G",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Efficient Heal Beams used for keeping your Wing Buddies Shields up.\n\nWhile Long Range Regen Beams would be better it just overheats too much in that configuration as the FDL is a heater ship.\n\nCould be done with Long Range G3 Heal Beams and keeping FSD offline in combat while watching heat.\n\nPower plant is sized for lower heat as well with this build in mind."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017690"
+    },
+    "id": 27,
+    "ship": 27,
+    "specializations": ["Combat - PvE"],
+    "description": "Basic Combat Krait with Fighter + Collector",
+    "buildLink": "https://s.orbis.zone/amjj",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017691"
+    },
+    "id": 28,
+    "ship": 27,
+    "specializations": ["Combat - PvE"],
+    "description": "Wing Support Fighter; Heals/Repairs and collector.",
+    "buildLink": "https://s.orbis.zone/amiE",
+    "engLevel": 3,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017692"
+    },
+    "id": 29,
+    "ship": 27,
+    "specializations": ["Combat - Anti-Xeno"],
+    "description": "Anti-Xeno",
+    "buildLink": "https://s.orbis.zone/7efz",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017693"
+    },
+    "id": 30,
+    "ship": 30,
+    "specializations": ["Combat - PvE", "Combat - PvP"],
+    "description": "PvE, PvP",
+    "buildLink": "https://s.orbis.zone/7WxV",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "LOKi"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017694"
+    },
+    "id": 31,
+    "ship": 30,
+    "specializations": ["Combat - PvE"],
+    "description": "General purpose Combat Mamba",
+    "buildLink": "https://s.orbis.zone/8odj",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017695"
+    },
+    "id": 32,
+    "ship": 31,
+    "specializations": ["Combat - PvE"],
+    "description": "Base Combat collector",
+    "buildLink": "https://s.orbis.zone/8r-0",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": true,
+    "author": "Admiralfeb"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017696"
+    },
+    "id": 33,
+    "ship": 31,
+    "specializations": ["Combat - PvE"],
+    "description": "Combat Collecter for engineering Mats",
+    "buildLink": "https://s.orbis.zone/8sip",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Achievable with only 3 Engineers (Farseer, Tod the Blaster and Elvira).\n\nThe intent is for players trying to get a leg up in combat to use this alongside veterans and scoop all the engineering materials as the fights progress. Carries 64 Limpets with a 5A collector for this purpose."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017697"
+    },
+    "id": 34,
+    "ship": 16,
+    "specializations": ["Combat - PvE"],
+    "description": "Non-engineered, Hull Reinforced",
+    "buildLink": "https://s.orbis.zone/9ivY",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Ekzim (Modded)"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017698"
+    },
+    "id": 35,
+    "ship": 16,
+    "specializations": ["Combat - Anti-Xeno"],
+    "description": "Introduction to Xeno Combat",
+    "buildLink": "https://s.orbis.zone/aerj",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "LordAn00bis",
+    "moreInfo": "No engineering, works well with scouts and cyclops."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b9655661274017699"
+    },
+    "id": 36,
+    "ship": 27,
+    "specializations": ["Combat - Anti-Xeno"],
+    "description": "Casual Xeno Combat",
+    "buildLink": "https://s.orbis.zone/aerp",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "IM2D",
+    "moreInfo": "Requirements:\n- Be involved with light Xeno Combat\n- Must be engineered completely\n- Must be able to manage PIPs efficiently and effectively.\n\nFor CMDRs who wants a casual approach to Xeno Combat. Great for taking out Cyclops and Basilisks.\n\nStruggles with Medusa and harder due to heat and boost-maneuverability problems. Shields is also the prime suspect here for depleting systems capacitor."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769a"
+    },
+    "id": 37,
+    "ship": 20,
+    "specializations": ["Combat - Anti-Xeno"],
+    "description": "Competitive Xeno Combat",
+    "buildLink": "https://s.orbis.zone/aerv",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Mgram",
+    "moreInfo": "Requirements:\n- Be competent in FA-off\n- Be competent in Cold Orbiting\n- Understand basic Thargoid Mechanics\n\nGreat anti-xeno companion ship for competitive anti-xeno hunters. Able to destroy Medusa and Hydra variants due to great hardpoint placements and maneuverability.\n\nShieldless build to maximize performance and lethal potential."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769b"
+    },
+    "id": 38,
+    "ship": 37,
+    "specializations": ["Miner"],
+    "description": "High End Engineered Mining Cutter",
+    "buildLink": "https://s.orbis.zone/8jh6",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "High end badass mining cutter.\n\nNote: It's worth leaving a 5A Fuel Scoop and 5H Guardian Frame Shift booster at a nearby station or carrier. When it is time sell swap out a pair of your collector limpets for those to bring your jump range up for going to sell."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769c"
+    },
+    "id": 39,
+    "ship": 37,
+    "specializations": ["Cargo"],
+    "description": "Shielded Cargo Transporter",
+    "buildLink": "https://s.orbis.zone/9iw1",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": true,
+    "beginner": false,
+    "author": "Stealthie"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769d"
+    },
+    "id": 40,
+    "ship": 37,
+    "specializations": ["Cargo"],
+    "description": "High End Ridiculous Trading Cutter",
+    "buildLink": "https://s.orbis.zone/9oG5",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769e"
+    },
+    "id": 41,
+    "ship": 31,
+    "specializations": ["Cargo"],
+    "description": "Robigo passenger missions",
+    "buildLink": "https://s.orbis.zone/80fU",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Akhaten"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b965566127401769f"
+    },
+    "id": 42,
+    "ship": 31,
+    "specializations": ["Miner"],
+    "description": "Basic Miner with a Shield",
+    "buildLink": "https://s.orbis.zone/9frE",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a0"
+    },
+    "id": 43,
+    "ship": 31,
+    "specializations": ["Cargo"],
+    "description": "256 Cargo Hauler, Engineering Optional",
+    "buildLink": "https://coriolis.io/outfit/python?code=A0pttoFflidyssf5-----0404040405050504041P2t403x3w.Iw18RQ%3D%3D.Aw18RQ%3D%3D.H4sIAAAAAAAAA2P4x87AwPCXFUj8mQQkuPcwMTDwNvAwMAhGAFlCO7gZGFS%2BMDIw%2FGf%2BJwVXWQEk%2BFV%2B%2Ff8PlhepEWVgkLgDlPnP%2B88drmgOyLglbECVAb%2F%2F%2FxcEsSSOcAKNA7H%2B8xGtkv%2BfK4pKfpBNQgalUEXyN%2FiAigSIUSTxzw%2BuKAekaAE%2F0J8gO1UKxIHy%2FxkgAAAfSdSdFQEAAA%3D%3D.EweloBhBmUA5QFMCGBzANokICMF8hRFA&bn=Deliverator%20256%20Cargo%20Medium%20Hauler",
+    "engLevel": 1,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Cargo Hauler intended to land on medium landing pads to ferry things from a carrier or do smaller trade hops.\n\nCould pair well with a big mining ship + carrier for drop of LTD's at high demand Medium landing pad stations. Fill up a big cargo hold on mining, use this to ferry it all for sale."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a1"
+    },
+    "id": 44,
+    "ship": 32,
+    "specializations": ["Miner"],
+    "description": "Unengineered Type 9 miner",
+    "buildLink": "https://s.orbis.zone/9jxd",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Completely unengineered miner. Unforunately it's very defenseless and is effectively a target."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a2"
+    },
+    "id": 45,
+    "ship": 27,
+    "specializations": ["Cargo"],
+    "description": "Type 9 heavy Cargo with basic protections",
+    "buildLink": "https://s.orbis.zone/9oF8",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a3"
+    },
+    "id": 46,
+    "ship": 32,
+    "specializations": ["Miner"],
+    "description": "Lightly Engineered Miner",
+    "buildLink": "https://s.orbis.zone/7zA_",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Lightly Engineered Big Miner achievable with just engineering from Felicity Farseer and Elvira Martusk.\n\nProvides a hold 512 cargo bay and 11 active collector limpets"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a4"
+    },
+    "id": 47,
+    "ship": 37,
+    "specializations": ["Miner"],
+    "description": "Engineered Mining Cutter for HighRes/HazRes",
+    "buildLink": "https://s.orbis.zone/af7e",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Luisqa",
+    "moreInfo": "Can remove the Fighter bay for another Collector Limpet\n\nHas a fighter bay to help with aggro and support."
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a5"
+    },
+    "id": 48,
+    "ship": 37,
+    "specializations": ["Cargo"],
+    "description": "672T cargo Cutter",
+    "buildLink": "https://s.orbis.zone/af7i",
+    "engLevel": 1,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Luisqa"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a6"
+    },
+    "id": 49,
+    "ship": 37,
+    "specializations": ["Cargo"],
+    "description": "672T cargo Cutter - No Engineering",
+    "buildLink": "https://s.orbis.zone/antV",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Luisqa"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3ef3b96556612740176a7"
+    },
+    "id": 50,
+    "ship": 31,
+    "specializations": ["Miner"],
+    "description": "Basic Miner Python",
+    "buildLink": "https://s.orbis.zone/af8a",
+    "engLevel": 0,
+    "guardian": false,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Luisqa"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3f96396556612740176a8"
+    },
+    "id": 51,
+    "ship": 22,
+    "specializations": ["HGE Farming"],
+    "description": "Clipping HGE Farmer",
+    "buildLink": "https://s.orbis.zone/as8g",
+    "engLevel": 0,
+    "guardian": true,
+    "powerplay": false,
+    "beginner": false,
+    "author": "Admiralfeb"
+  },
+  {
+    "_id": {
+      "$oid": "5fc3f96396556612740176a9"
+    },
+    "id": 52,
+    "ship": 22,
+    "specializations": ["HGE Farming"],
+    "description": "Clipper HGE Chaser 2.0",
+    "buildLink": "https://s.orbis.zone/as8g",
+    "engLevel": 3,
+    "guardian": true,
+    "powerplay": true,
+    "beginner": false,
+    "author": "Clever Ape",
+    "moreInfo": "Optionally drop the weapons"
+  }
+]

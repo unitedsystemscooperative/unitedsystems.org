@@ -1,0 +1,19 @@
+{
+  "_id": {
+    "$oid": "5fc926dee5b2c0512a10acda"
+  },
+  "specializations": ["Combat - PvE"],
+  "title": "FDL Endurance 3.0p",
+  "hasGuardian": false,
+  "hasPowerplay": true,
+  "shipId": "fer_de_lance",
+  "isVariant": false,
+  "variants": [],
+  "related": [],
+  "engLevel": 3,
+  "author": "Clever Ape",
+  "jsonBuild": "{}",
+  "buildLink": "https://coriolis.io/outfit/fer_de_lance?code=A4pktfFalidpsff32c0s0s0s0s040404040404p25d5d2o6625.Iw18WQ%3D%3D.AwiMIysgmOg%3D.H4sIAAAAAAAAA42SO0sDURCFJ681yW6y2TWbrMEHmtVUSgSbgKCNIIKVf0ALuxQpFFIoGBCrFKKWCvkJlhaWlhaWFpLKIki0EUQkzjgTyEVB8W5xOHC%2BvTN37gAaAPAZY%2BmdsJiXUYCUhUTONjv38IkoWIgDUAiXhIwKuc8SvxsCsMvvRLlHi%2FMw5tRJOyx28EGU7bJ4LRvAl4OLtTyTESwosj4g3SsTILvnMfnACUVxfgDZ9S7nt20iimFF%2FdpgSUinyTMHYFLclLhpcTPiyMAtwSMsrpSek3ZH%2BlEcN9RJFyyxzQSAUX0h8pefiYrHHS6X%2BAaN%2FwUldSBTB7J0oBSuKOhcpiPjcsu7PLgbxifu03y7tA5k60AZHcjB1R%2BQWZMFEgmaSc7df%2FJhXFd5lSXs94gM2Rizwo%2FntFk8qRRc89JRFtfUKh6xhA5eifqr2O%2Bp1GG82HrjYXnaZB5HB6SVKfHtZGkLixL5OKu6O5Xux7i7tMzBERc0mSSC378vtRFkEGEDAAA%3D&bn=FDL%20Endurance%203.0p",
+  "description": "Endurance oriented FDL that never needs ammo for its weapons:\n- Requires really high end engineering including a trip to Colonia\n- Uses Plasma Slug for its Huge Plasma Accelerator so it burns fuel instead of having 100 PA shots.\n- Uses Gimbled Efficient Thermal Vent Beams to dump heat quickly and effectively.\n- Should only have to go rearm if fuel gets low or you run out of Shield Cell bank Ammunition.\n- Alternate variation: Swap the SCB's for Guardian Shield Reinforcements and change the shield's experimental to High Cap. If you run out of shields you run away.",
+  "isBeginner": false
+}

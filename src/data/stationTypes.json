@@ -1,0 +1,30 @@
+[
+  {
+    "type": "Coriolis Starport",
+    "maxPadSize": "Large"
+  },
+  {
+    "type": "Orbis Starport",
+    "maxPadSize": "Large"
+  },
+  {
+    "type": "Ocellus Starport",
+    "maxPadSize": "Large"
+  },
+  {
+    "type": "Outpost",
+    "maxPadSize": "Medium"
+  },
+  {
+    "type": "Planetary Settlement",
+    "maxPadSize": "Large"
+  },
+  {
+    "type": "Planetary Outpost",
+    "maxPadSize": "Large"
+  },
+  {
+    "type": "Planetary Port",
+    "maxPadSize": "Large"
+  }
+]

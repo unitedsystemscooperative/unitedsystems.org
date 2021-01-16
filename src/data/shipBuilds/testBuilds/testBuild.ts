@@ -1,0 +1,36 @@
+import { IBuildInfov2 } from 'models/shipBuilds';
+
+export const testBuildNoExtra: IBuildInfov2 = {
+  _id: { $oid: '1234' },
+  shipId: 'imperial_clipper',
+  title: 'clipper',
+  specializations: [],
+  buildLink: '',
+  engLevel: 0,
+  hasGuardian: false,
+  hasPowerplay: false,
+  isBeginner: false,
+  author: 'author',
+  isVariant: false,
+  variants: [],
+  related: [],
+  description: 'description',
+  jsonBuild: '',
+};
+export const testBuildExtraBuilds: IBuildInfov2 = {
+  _id: { $oid: '1234' },
+  shipId: 'imperial_clipper',
+  title: 'clipper',
+  specializations: [],
+  buildLink: '',
+  engLevel: 0,
+  hasGuardian: false,
+  hasPowerplay: false,
+  isBeginner: false,
+  author: 'author',
+  isVariant: false,
+  variants: ['1234'],
+  related: ['1234'],
+  description: 'description',
+  jsonBuild: '',
+};

@@ -62,7 +62,6 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
                   href={x.to}
                   color='secondary'
                   className={classes.navLinkJoin}
-                  // activeClassName={classes.activeJoin}
                   variant='contained'>
                   <a>{x.text}</a>
                 </Button>
@@ -72,12 +71,7 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
         } else {
           return (
             <Link key={x.to} href={x.to}>
-              <Button
-                key={x.to}
-                href={x.to}
-                className={classes.navLink}
-                // activeClassName={classes.active}
-              >
+              <Button key={x.to} href={x.to} className={classes.navLink}>
                 <a>{x.text}</a>
               </Button>
             </Link>

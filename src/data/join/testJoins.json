@@ -1,0 +1,48 @@
+[
+  {
+    "timeStamp": "2012-04-23T18:25:43.511Z",
+    "type": "join",
+    "cmdr": "Admiralfeb",
+    "discord": "Admiralfeb#0652",
+    "platforms": {
+      "pc": true,
+      "xbox": false,
+      "ps": false
+    },
+    "playingLength": "lessthanMonth",
+    "reference": "player",
+    "reference2": "Admiralfeb",
+    "rules": true,
+    "timezone": "UTC-5"
+  },
+  {
+    "timeStamp": "2012-04-23T18:25:43.511Z",
+    "type": "guest",
+    "cmdr": "Guest",
+    "discord": "Guest#1234",
+    "platforms": {
+      "pc": true,
+      "xbox": false,
+      "ps": false
+    },
+    "reference": "player",
+    "reference2": "Admiralfeb",
+    "rules": true,
+    "timezone": "UTC-5"
+  },
+  {
+    "timeStamp": "2012-04-23T18:25:43.511Z",
+    "type": "ambassador",
+    "cmdr": "Ambassador",
+    "discord": "Ambassador#1234",
+    "platforms": {
+      "pc": true,
+      "xbox": false,
+      "ps": false
+    },
+    "group": "The Coalition",
+    "needPrivate": false,
+    "rules": true,
+    "timezone": "UTC-5"
+  }
+]

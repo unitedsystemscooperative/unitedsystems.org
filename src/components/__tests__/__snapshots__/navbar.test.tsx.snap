@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar should match the snapshot 1`] = `
+<body>
+  <div>
+    <nav
+      class="makeStyles-root-1"
+    >
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-navLink-2"
+        href="/home"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Home
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-navLink-2"
+        href="/about"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          About
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-navLink-2"
+        href="/information"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Information
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-navLink-2"
+        href="/builds"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          USC Builds
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+      <div
+        class="makeStyles-filler-6"
+      />
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-navLinkJoin-4 MuiButton-containedSecondary"
+        href="/join"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Join
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+    </nav>
+  </div>
+</body>
+`;

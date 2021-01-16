@@ -1,0 +1,352 @@
+[
+  {
+    "shipId": "sidewinder",
+    "name": "Sidewinder",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/sidewinder.svg",
+    "shipReview": "https://www.youtube.com/watch?v=us8Py8q9LPY",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "sidewinder"
+  },
+  {
+    "shipId": "eagle",
+    "name": "Eagle Mk II",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/eagle-mk-ii.svg",
+    "shipReview": "https://www.youtube.com/watch?v=Hco80Bwp5aY",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "eagle"
+  },
+  {
+    "shipId": "hauler",
+    "name": "Hauler",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/hauler.svg",
+    "shipReview": "https://www.youtube.com/watch?v=VgOJsZltZag",
+    "manufacturer": "Zorgon Peterson",
+    "blueprint": "hauler"
+  },
+  {
+    "shipId": "adder",
+    "name": "Adder",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/adder.svg",
+    "shipReview": "https://www.youtube.com/watch?v=M8xBafT4cSA",
+    "manufacturer": "Zorgon Peterson",
+    "blueprint": "adder"
+  },
+  {
+    "shipId": "imperial_eagle",
+    "name": "Imperial Eagle",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/imperial-eagle.svg",
+    "shipReview": "https://www.youtube.com/watch?v=7x_LUflCTF8",
+    "manufacturer": "Gutamaya",
+    "blueprint": "imperial-eagle"
+  },
+  {
+    "shipId": "viper",
+    "name": "Viper Mk III",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/viper-mk-iii.svg",
+    "shipReview": "https://www.youtube.com/watch?v=P-6y2oa2RD0",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "viper-mk-iii"
+  },
+  {
+    "shipId": "cobra_mk_iii",
+    "name": "Cobra Mk III",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/cobra-mk-iii.svg",
+    "shipReview": "https://www.youtube.com/watch?v=5jNIVw8xVnM",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "cobra-mk-iii"
+  },
+  {
+    "shipId": "viper_mk_iv",
+    "name": "Viper Mk IV",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/viper-mk-iv.svg",
+    "shipReview": "https://www.youtube.com/watch?v=nhgbzUC7XNM",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "viper-mk-iv"
+  },
+  {
+    "shipId": "diamondback_scout",
+    "name": "Diamondback Scout",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/diamondback-scout.svg",
+    "shipReview": "https://www.youtube.com/watch?v=mR9IPElkV-0",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "diamondback-scout"
+  },
+  {
+    "shipId": "cobra_mk_iv",
+    "name": "Cobra Mk IV",
+    "requires": "Horizons Early Adopter",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/cobra-mk-iv.svg",
+    "shipReview": "https://www.youtube.com/watch?v=QcoXjxf-Si8",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "cobra-mk-iv"
+  },
+  {
+    "shipId": "type_6_transporter",
+    "name": "Type-6 Transporter",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/type-6-transporter.svg",
+    "shipReview": "https://www.youtube.com/watch?v=dA7iXfzvD0A",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "type-6-transporter"
+  },
+  {
+    "shipId": "dolphin",
+    "name": "Dolphin",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/dolphin.svg",
+    "shipReview": "https://www.youtube.com/watch?v=V_pzt8v2YeA",
+    "manufacturer": "Saud Kruger",
+    "blueprint": "dolphin"
+  },
+  {
+    "shipId": "diamondback_explorer",
+    "name": "Diamondback Explorer (DBX)",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/diamondback-explorer.svg",
+    "shipReview": "https://www.youtube.com/watch?v=1XkAFcQ3YKk",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "diamondback-explorer"
+  },
+  {
+    "shipId": "imperial_courier",
+    "name": "Imperial Courier",
+    "requires": "Imperial Rank: Master",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/imperial-courier.svg",
+    "shipReview": "https://www.youtube.com/watch?v=rbghWgQ26Ro",
+    "manufacturer": "Gutamaya",
+    "blueprint": "imperial-courier"
+  },
+  {
+    "shipId": "keelback",
+    "name": "Keelback",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/keelback.svg",
+    "shipReview": "https://www.youtube.com/watch?v=WFVzSKjhGfc",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "keelback"
+  },
+  {
+    "shipId": "asp_scout",
+    "name": "Asp Scout",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/asp-scout.svg",
+    "shipReview": "https://www.youtube.com/watch?v=ZSAZ4vyv9Ww",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "asp-scout"
+  },
+  {
+    "shipId": "vulture",
+    "name": "Vulture",
+    "size": 1,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/vulture.svg",
+    "shipReview": "https://www.youtube.com/watch?v=lfcpY1RDY7I",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "vulture"
+  },
+  {
+    "shipId": "asp_explorer",
+    "name": "Asp Explorer",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/asp-explorer.svg",
+    "shipReview": "https://www.youtube.com/watch?v=v6D0aXjkQ8A",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "asp-explorer"
+  },
+  {
+    "shipId": "federal_dropship",
+    "name": "Federal Dropship",
+    "requires": "Federal Rank: Midshipman",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/federal-dropship.svg",
+    "shipReview": "https://www.youtube.com/watch?v=I65NNMbSJFQ",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "federal-dropship"
+  },
+  {
+    "shipId": "type_7_transporter",
+    "name": "Type-7 Transporter",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/type-7-transporter.svg",
+    "shipReview": "https://www.youtube.com/watch?v=TaSUc12ZiiU",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "type-7-transporter"
+  },
+  {
+    "shipId": "alliance_chieftain",
+    "name": "Alliance Chieftain",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/alliance-chieftain.svg",
+    "shipReview": "https://www.youtube.com/watch?v=bx8w0J2HcuA",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "alliance-chieftain"
+  },
+  {
+    "shipId": "federal_assault_ship",
+    "name": "Federal Assault Ship (FAS)",
+    "requires": "Federal Rank: Chief Petty Officer",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/federal-assult-ship.svg",
+    "shipReview": "https://www.youtube.com/watch?v=eD-ZX63ryk8",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "federal-assault-ship"
+  },
+  {
+    "shipId": "imperial_clipper",
+    "name": "Imperial Clipper",
+    "requires": "Imperial Rank: Baron",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/imperial-clipper.svg",
+    "shipReview": "https://www.youtube.com/watch?v=B4eNWtlBELQ",
+    "manufacturer": "Gutamaya",
+    "blueprint": "imperial-clipper"
+  },
+  {
+    "shipId": "alliance_crusader",
+    "name": "Alliance Crusader",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/alliance-crusader.svg",
+    "shipReview": "https://www.youtube.com/watch?v=oireiRh9KR8",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "alliance-crusader"
+  },
+  {
+    "shipId": "alliance_challenger",
+    "name": "Alliance Challenger",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/alliance-challenger.svg",
+    "shipReview": "https://www.youtube.com/watch?v=wknziF5OusI",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "alliance-challenger"
+  },
+  {
+    "shipId": "federal_gunship",
+    "name": "Federal Gunship",
+    "requires": "Federal Rank: Ensign",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/federal-gunship.svg",
+    "shipReview": "https://www.youtube.com/watch?v=gjZ9LLVkaqI",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "federal-gunship"
+  },
+  {
+    "shipId": "krait_phantom",
+    "name": "Krait Phantom",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/krait-phantom.svg",
+    "shipReview": "https://www.youtube.com/watch?v=aLgYskzDU5o",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "krait-phantom"
+  },
+  {
+    "shipId": "krait_mkii",
+    "name": "Krait Mk II",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/krait-mk-ii.svg",
+    "shipReview": "https://www.youtube.com/watch?v=Rl9Sg600Jww",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "krait-mk-ii"
+  },
+  {
+    "shipId": "orca",
+    "name": "Orca",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/orca.svg",
+    "shipReview": "https://www.youtube.com/watch?v=9v0RlaMNT5E",
+    "manufacturer": "Saud Kruger",
+    "blueprint": "orca"
+  },
+  {
+    "shipId": "fer_de_lance",
+    "name": "Fer-de-lance",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/fer-de-lance.svg",
+    "shipReview": "https://www.youtube.com/watch?v=IMaL4Bf6KSM",
+    "manufacturer": "Zorgon Peterson",
+    "blueprint": "fer-de-lance"
+  },
+  {
+    "shipId": "mamba",
+    "name": "Mamba",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/mamba.svg",
+    "shipReview": "https://www.youtube.com/watch?v=oCmC2jzRPBo",
+    "manufacturer": "Zorgon Peterson",
+    "blueprint": "mamba"
+  },
+  {
+    "shipId": "python",
+    "name": "Python",
+    "size": 2,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/python.svg",
+    "shipReview": "https://www.youtube.com/watch?v=rb5VtSU17DY",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "python"
+  },
+  {
+    "shipId": "type_9_heavy",
+    "name": "Type-9 Heavy",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/type-9-heavy.svg",
+    "shipReview": "https://www.youtube.com/watch?v=GTflMKCtOak",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "type-9-heavy"
+  },
+  {
+    "shipId": "beluga_liner",
+    "name": "Beluga Liner",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/beluga-liner.svg",
+    "shipReview": "https://www.youtube.com/watch?v=5KC68-muhIg",
+    "manufacturer": "Saud Kruger",
+    "blueprint": "beluga-liner"
+  },
+  {
+    "shipId": "type_10_defender",
+    "name": "Type-10 Defender",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/type-10-defender.svg",
+    "shipReview": "https://www.youtube.com/watch?v=Y4drJDk-7As",
+    "manufacturer": "Lakon Spaceway",
+    "blueprint": "type-10-defender"
+  },
+  {
+    "shipId": "anaconda",
+    "name": "Anaconda",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/anaconda.svg",
+    "shipReview": "https://www.youtube.com/watch?v=lCdbkzyJhas",
+    "manufacturer": "Falcon Delacy",
+    "blueprint": "anaconda"
+  },
+  {
+    "shipId": "federal_corvette",
+    "name": "Federal Corvette",
+    "requires": "Federal Rank: Rear Admiral",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/federal-corvette.svg",
+    "shipReview": "https://www.youtube.com/watch?v=VflbALuYeMI",
+    "manufacturer": "Core Dynamics",
+    "blueprint": "federal-corvette"
+  },
+  {
+    "shipId": "imperial_cutter",
+    "name": "Imperial Cutter",
+    "requires": "Imperial Rank: Duke",
+    "size": 3,
+    "shipImg": "https://edassets.org/static/img/ship-schematics/qohen-leth/imperial-cutter.svg",
+    "shipReview": "https://www.youtube.com/watch?v=HSgg_Ne20LM",
+    "manufacturer": "Gutamaya",
+    "blueprint": "imperial-cutter"
+  }
+]

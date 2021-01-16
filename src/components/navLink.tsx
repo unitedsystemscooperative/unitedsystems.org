@@ -16,5 +16,9 @@ export default function NavLink({
     className = `${className} active`;
   }
 
-  return <Link href={href}>{cloneElement(children, { className })}</Link>;
+  return (
+    <Link href={href} passHref>
+      {cloneElement(children, { className, href })}
+    </Link>
+  );
 }

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Join should match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="makeStyles-root-1"
+      style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <h3
+        class="MuiTypography-root makeStyles-header-2 MuiTypography-h3"
+      >
+        Join Us!
+      </h3>
+      <div
+        class="MuiPaper-root makeStyles-paper-3 MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Step 1: Read the rules on the
+           
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="/about/rules"
+            target="_blank"
+          >
+            About Page
+          </a>
+          .
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Step 2: Fill out the
+           
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfw7vIL8FY8ZGTF8YFjn3x-zGdhP5k9J6JALXAjXA7_Mm3-Rw/viewform?usp=sf_link"
+            target="_blank"
+          >
+            USC Join Form
+          </a>
+          .
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Step 3: Join our
+           
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="https://discord.gg/br8Fy2M6cv"
+            target="_blank"
+          >
+            Discord
+          </a>
+          .
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Recommended: Find us in-game! (UCPC for PC | UCXB for Xbox | UCPS for PlayStation)
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Recommended: Join our
+           
+          <a
+            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            href="https://inara.cz/squadron/7028/"
+            target="_blank"
+          >
+            Inara Squadron
+          </a>
+          .
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;
