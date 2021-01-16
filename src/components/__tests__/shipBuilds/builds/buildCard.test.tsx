@@ -1,10 +1,10 @@
 import { cleanup, render } from '@testing-library/react';
-import { BuildCard } from 'components/shipBuilds/builds/buildCard';
+import { BuildCard } from 'components/builds/builds/buildCard';
 import {
   testBuildExtraBuilds,
   testBuildNoExtra,
-} from 'data/shipBuilds/testBuilds/testBuild';
-import { MemoryRouter } from 'react-router-dom';
+} from 'data/builds/testBuilds/testBuild';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
 
 describe('BuildCard', () => {
   afterEach(cleanup);

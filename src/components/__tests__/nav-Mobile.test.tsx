@@ -1,7 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
 import { NavMobile } from 'components/nav-Mobile';
 import { navItems } from 'data/navItems';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
 
 describe('Nav Mobile', () => {
   afterEach(cleanup);
@@ -9,7 +9,7 @@ describe('Nav Mobile', () => {
   it('should match snapshot', () => {
     const screen = render(
       <MemoryRouter>
-        <NavMobile title="Title" navItems={navItems} />
+        <NavMobile title='Title' navItems={navItems} />
       </MemoryRouter>
     );
 

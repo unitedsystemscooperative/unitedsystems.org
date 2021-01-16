@@ -15,9 +15,9 @@ import {
 import { useContext } from 'react';
 import { RealmAppContext } from 'providers';
 import { useForm } from 'react-hook-form';
-import { NavLink, useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { LoginProviders } from 'models/loginProviders';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,7 +50,7 @@ export const Login = () => {
   const realm = useContext(RealmAppContext);
   const { register, handleSubmit, reset } = useForm<ICredentials>();
   const { enqueueSnackbar } = useSnackbar();
-  const history = useHistory();
+  const history = useRouter();
 
   const onSubmit = async (data: ICredentials) => {
     const { email, password } = data;
@@ -76,57 +76,55 @@ export const Login = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Log in
         </Typography>
         <form
           className={classes.form}
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label='Email Address'
+            name='email'
+            autoComplete='email'
             autoFocus
             inputRef={register({ required: true })}
           />
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
+            name='password'
+            label='Password'
+            type='password'
+            autoComplete='current-password'
             inputRef={register({ required: true })}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
           />
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+            variant='contained'
+            color='primary'
+            className={classes.submit}>
             Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link variant="body2" component={NavLink} to="/resetPassword">
+              <Link variant='body2' component={NavLink} to='/resetPassword'>
                 Forgot password?
               </Link>
             </Grid>

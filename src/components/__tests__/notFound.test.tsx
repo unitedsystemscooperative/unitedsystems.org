@@ -1,5 +1,5 @@
 import { cleanup, render, RenderResult } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
 import { NotFound } from 'components/notFound';
 
 let componentBody: RenderResult;

@@ -1,7 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
-import { BuildDetail } from 'components/shipBuilds';
-import { MemoryRouter } from 'react-router-dom';
-import * as hooks from 'hooks/shipBuilds/useShipBuildInfo';
+import { BuildDetail } from 'components/builds';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
+import * as hooks from 'hooks/builds/useShipBuildInfo';
 
 describe('Build Detail Parent', () => {
   afterEach(cleanup);

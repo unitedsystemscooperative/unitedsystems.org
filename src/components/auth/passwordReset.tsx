@@ -12,9 +12,8 @@ import { useContext } from 'react';
 import { RealmAppContext } from 'providers';
 import { useForm } from 'react-hook-form';
 import { IRealmContext } from 'models/realmContext';
-import { useUrlQuery } from 'hooks/useURLQuery';
-import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,37 +50,35 @@ const RequestPasswordReset = (props: { realm: IRealmContext | null }) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Password Reset
         </Typography>
         <form
           className={classes.form}
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label='Email Address'
+            name='email'
+            autoComplete='email'
             autoFocus
             inputRef={register}
           />
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+            variant='contained'
+            color='primary'
+            className={classes.submit}>
             Request Reset
           </Button>
         </form>
@@ -98,7 +95,7 @@ const CompletePasswordReset = (props: {
   const { realm, token, tokenId } = props;
   const classes = useStyles();
   const { register, handleSubmit } = useForm<{ password: string }>();
-  const history = useHistory();
+  const history = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const onSubmit = async (data: { password: string }) => {
@@ -121,38 +118,36 @@ const CompletePasswordReset = (props: {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Password Reset
         </Typography>
         <form
           className={classes.form}
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            label="New Password"
-            name="password"
-            autoComplete="password"
-            type="password"
+            label='New Password'
+            name='password'
+            autoComplete='password'
+            type='password'
             autoFocus
             inputRef={register}
           />
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+            variant='contained'
+            color='primary'
+            className={classes.submit}>
             Complete Reset
           </Button>
         </form>

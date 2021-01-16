@@ -1,6 +1,6 @@
 import { cleanup, renderHook } from '@testing-library/react-hooks';
-import { useShipIdfromMap } from 'hooks/shipBuilds/useShipMap';
-import Ships from 'data/shipBuilds/shipMap.json';
+import { useShipIdfromMap } from 'hooks/builds/useShipMap';
+import Ships from 'data/builds/shipMap.json';
 
 describe('useShipMapbyID', () => {
   afterEach(cleanup);

@@ -1,5 +1,5 @@
 import { cleanup, render } from '@testing-library/react';
-import { EngIcons } from 'components/shipBuilds/builds/engIcons';
+import { EngIcons } from 'components/builds/builds/engIcons';
 
 describe('Engineering Icons', () => {
   afterEach(cleanup);

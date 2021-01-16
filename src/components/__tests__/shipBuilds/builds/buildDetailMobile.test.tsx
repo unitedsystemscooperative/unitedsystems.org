@@ -1,8 +1,8 @@
 import { cleanup, render } from '@testing-library/react';
-import { BuildDetailMobile } from 'components/shipBuilds/builds/buildDetailMobile';
-import { testBuildNoExtra } from 'data/shipBuilds/testBuilds/testBuild';
-import { getShipInfofromID } from 'functions/shipBuilds';
-import { MemoryRouter } from 'react-router-dom';
+import { BuildDetailMobile } from 'components/builds/builds/buildDetailMobile';
+import { testBuildNoExtra } from 'data/builds/testBuilds/testBuild';
+import { getShipInfofromID } from 'functions/builds';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
 
 describe('BuildDetailMobile', () => {
   afterEach(cleanup);

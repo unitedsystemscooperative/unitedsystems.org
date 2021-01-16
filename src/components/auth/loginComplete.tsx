@@ -1,8 +1,8 @@
 import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { RealmAppContext } from 'providers';
 import { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
 export const LoginComplete = () => {
   const classes = useStyles();
   const realm = useContext(RealmAppContext);
-  const history = useHistory();
+  const history = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   if (realm && realm.checkUserProvider('local-userpass')) {
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Login Complete
           </Typography>
           <Typography></Typography>

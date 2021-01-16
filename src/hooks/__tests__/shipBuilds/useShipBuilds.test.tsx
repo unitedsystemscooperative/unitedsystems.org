@@ -1,8 +1,8 @@
-import { useAllShipBuilds } from 'hooks/shipBuilds/useShipBuilds';
+import { useAllShipBuilds } from 'hooks/builds/useShipBuilds';
 
 import { MockedProvider } from '@apollo/client/testing';
 import { cleanup, renderHook } from '@testing-library/react-hooks';
-import shipBuilds from 'data/shipBuilds/builds.json';
+import shipBuilds from 'data/builds/builds.json';
 
 import { QueryAllShipBuilds } from 'gql/queries/shipBuilds';
 

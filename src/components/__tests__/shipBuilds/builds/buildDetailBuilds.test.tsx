@@ -1,9 +1,9 @@
 import { cleanup, render } from '@testing-library/react';
-import { BuildDetailBuilds } from 'components/shipBuilds/builds/buildDetailBuilds';
+import { BuildDetailBuilds } from 'components/builds/builds/buildDetailBuilds';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import * as shipHooks from 'hooks/shipBuilds/useShipBuilds';
-import { testBuildNoExtra } from 'data/shipBuilds/testBuilds/testBuild';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
+import * as shipHooks from 'hooks/builds/useShipBuilds';
+import { testBuildNoExtra } from 'data/builds/testBuilds/testBuild';
 
 describe('BuildDetailBuilds', () => {
   afterEach(cleanup);
@@ -20,7 +20,7 @@ describe('BuildDetailBuilds', () => {
     });
     const { getByText } = render(
       <MemoryRouter>
-        <BuildDetailBuilds title="title" buildIDs={[]} />
+        <BuildDetailBuilds title='title' buildIDs={[]} />
       </MemoryRouter>
     );
     expect(getByText('Loading')).toBeDefined();
@@ -38,7 +38,7 @@ describe('BuildDetailBuilds', () => {
     });
     const { getByText } = render(
       <MemoryRouter>
-        <BuildDetailBuilds title="title" buildIDs={['1234']} />
+        <BuildDetailBuilds title='title' buildIDs={['1234']} />
       </MemoryRouter>
     );
     expect(getByText('title')).toBeDefined();

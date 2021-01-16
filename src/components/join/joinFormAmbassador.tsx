@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'components/builds/builds/node_modules/react-router-dom';
 import { useForm } from 'react-hook-form';
 import { IJoinInfo } from 'models/join/joinInfo';
 
@@ -67,7 +67,7 @@ export const JoinFormAmbassador = (props: {
 
   return (
     <Container>
-      <Typography variant="h3" className={classes.header}>
+      <Typography variant='h3' className={classes.header}>
         Ambassador
       </Typography>
       <Paper className={classes.paper}>
@@ -78,12 +78,12 @@ export const JoinFormAmbassador = (props: {
           <div className={classes.question}>
             <Typography>Please enter your in-game CMDR name</Typography>
             <TextField
-              label="CMDR Name"
+              label='CMDR Name'
               inputRef={register({ required: true, minLength: 2 })}
-              name="cmdr"
+              name='cmdr'
             />
             {errors.cmdr && (
-              <Typography color="error">CMDR Name is required</Typography>
+              <Typography color='error'>CMDR Name is required</Typography>
             )}
           </div>
           <div className={classes.question}>
@@ -91,12 +91,12 @@ export const JoinFormAmbassador = (props: {
               Please enter your discord name in format: name#1234
             </Typography>
             <TextField
-              label="Discord Name"
+              label='Discord Name'
               inputRef={register({ required: true, pattern: /^.+#\d{4}$/gi })}
-              name="discord"
+              name='discord'
             />
             {errors.discord && (
-              <Typography color="error">
+              <Typography color='error'>
                 Discord Name is required and must be in name#1234 format
               </Typography>
             )}
@@ -105,33 +105,33 @@ export const JoinFormAmbassador = (props: {
             <Typography>
               Which platform(s) do you play on? Choose all that apply.
             </Typography>
-            <FormControl component="fieldset" required>
+            <FormControl component='fieldset' required>
               <FormGroup row>
                 <FormControlLabel
-                  label="PC"
+                  label='PC'
                   control={
                     <Checkbox
-                      name="pc"
+                      name='pc'
                       checked={platforms.pc}
                       onChange={handlePlatformChange}
                     />
                   }
                 />
                 <FormControlLabel
-                  label="Xbox One"
+                  label='Xbox One'
                   control={
                     <Checkbox
-                      name="xbox"
+                      name='xbox'
                       checked={platforms.xbox}
                       onChange={handlePlatformChange}
                     />
                   }
                 />
                 <FormControlLabel
-                  label="PS4 / PS5"
+                  label='PS4 / PS5'
                   control={
                     <Checkbox
-                      name="ps"
+                      name='ps'
                       checked={platforms.ps}
                       onChange={handlePlatformChange}
                     />
@@ -140,16 +140,16 @@ export const JoinFormAmbassador = (props: {
               </FormGroup>
             </FormControl>
             {errors.platforms && (
-              <Typography color="error">
+              <Typography color='error'>
                 You must select at least one platform.
               </Typography>
             )}
           </div>
           <div className={classes.question}>
             <Typography>What faction/group do you represent?</Typography>
-            <TextField inputRef={register} name="group" />
+            <TextField inputRef={register} name='group' />
             {errors.group && (
-              <Typography color="error">
+              <Typography color='error'>
                 Please enter the group you represent.
               </Typography>
             )}
@@ -158,26 +158,26 @@ export const JoinFormAmbassador = (props: {
             <Typography>
               Do you have private information to discuss with High Command?
             </Typography>
-            <FormControl component="fieldset" required>
+            <FormControl component='fieldset' required>
               <FormGroup row>
                 <FormControlLabel
-                  label="Yes"
-                  control={<Checkbox name="needPrivate" inputRef={register} />}
+                  label='Yes'
+                  control={<Checkbox name='needPrivate' inputRef={register} />}
                 />
               </FormGroup>
             </FormControl>
           </div>
           <div className={classes.question}>
             <Typography>What timezone are you in?</Typography>
-            <TextField inputRef={register} name="timezone" />
+            <TextField inputRef={register} name='timezone' />
             {errors.timezone && (
-              <Typography color="error">Please enter your timezone.</Typography>
+              <Typography color='error'>Please enter your timezone.</Typography>
             )}
           </div>
           <div className={classes.question}>
             <Typography>
               I have read and agree to the{' '}
-              <Link component={NavLink} to="/about/rules" target="_blank">
+              <Link component={NavLink} to='/about/rules' target='_blank'>
                 rules
               </Link>
               .
@@ -185,20 +185,20 @@ export const JoinFormAmbassador = (props: {
             <FormControlLabel
               control={
                 <Checkbox
-                  name="rules"
+                  name='rules'
                   inputRef={register({ required: true })}
                 />
               }
-              label="Yes"
+              label='Yes'
             />
             {errors.rules && (
-              <Typography color="error">
+              <Typography color='error'>
                 You must read and agree to abide by the rules.
               </Typography>
             )}
           </div>
           <div className={classes.header}>
-            <Button type="submit" color="primary" variant="outlined">
+            <Button type='submit' color='primary' variant='outlined'>
               Submit Form
             </Button>
           </div>

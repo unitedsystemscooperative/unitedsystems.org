@@ -1,4 +1,4 @@
-import reviews from 'data/shipBuilds/shipMap.json';
+import reviews from 'data/builds/shipMap.json';
 import { sortItems } from 'functions/sort';
 import { IShipReview } from 'models/information/shipReview';
 

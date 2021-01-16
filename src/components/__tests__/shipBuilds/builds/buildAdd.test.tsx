@@ -5,10 +5,10 @@ import {
   RenderResult,
   waitFor,
 } from '@testing-library/react';
-import { BuildAdd } from 'components/shipBuilds';
+import { BuildAdd } from 'components/builds';
 import { SnackbarProvider } from 'notistack';
-import { MemoryRouter } from 'react-router-dom';
-import * as shipHooks from 'hooks/shipBuilds/useShipBuilds';
+import { MemoryRouter } from 'components/builds/builds/node_modules/react-router-dom';
+import * as shipHooks from 'hooks/builds/useShipBuilds';
 
 describe('BuildAdd', () => {
   afterEach(cleanup);

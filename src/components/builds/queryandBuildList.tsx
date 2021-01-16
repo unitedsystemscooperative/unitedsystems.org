@@ -9,9 +9,9 @@ import {
   useTheme,
 } from '@material-ui/core';
 import { useCallback, useRef, useState } from 'react';
-import { BuildList } from 'components/builds/builds/buildList';
+import { BuildList } from './builds/buildList';
 import { IQuery } from 'models/builds';
-import { Query } from 'components/builds/query/query';
+import { Query } from './query/query';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const useStyles = makeStyles({
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const QueryandBuildList = () => {
+export const QueryandBuildList = () => {
   const [query, setQuery] = useState<IQuery>();
   const buildRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
@@ -66,5 +66,3 @@ const QueryandBuildList = () => {
     </Fade>
   );
 };
-
-export default QueryandBuildList;
