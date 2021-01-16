@@ -1,0 +1,54 @@
+[
+  {
+    "system": "Col 285 Sector KM-V d2-106",
+    "body": "5 Ring A",
+    "material": "Platinum",
+    "materialInara": 81,
+    "miningType": "Surface Laser",
+    "link": "https://docs.google.com/document/d/1IQ_izr_kqtKkEUWrVkVjdKoDq3cHw7NZyaZZRY5p60s/edit"
+  },
+  {
+    "system": "Lalande 34968",
+    "body": "AB 8",
+    "material": "Platinum",
+    "materialInara": 81,
+    "miningType": "Surface Laser",
+    "overlap": "Hazardous",
+    "link": "https://docs.google.com/document/d/1okp9xLc_TsSleibSONaK1q8oGXxMMUm4wJmRm2ZbyPM/edit"
+  },
+  {
+    "system": "HIP 60953",
+    "body": "ABC 8",
+    "material": "Painite",
+    "materialInara": 84,
+    "miningType": "Surface Laser",
+    "overlap": "Hazardous",
+    "link": "https://imgur.com/gallery/VJuICjZ"
+  },
+  {
+    "system": "HIP 35219",
+    "body": "2",
+    "material": "Painite",
+    "materialInara": 84,
+    "miningType": "Surface Laser",
+    "overlap": "Hazardous",
+    "link": "https://docs.google.com/document/d/1DmJwuwOQYuLB8_-KZSfqwaKmU7aDv0ZR6Mhmmaiz2ag/edit"
+  },
+  {
+    "system": "HIP 21991",
+    "body": "2",
+    "material": "Painite",
+    "materialInara": 84,
+    "miningType": "Surface Laser",
+    "overlap": "High",
+    "link": "https://docs.google.com/document/d/1CqLij-LZ4Yog_nkE2hVGBUll951RBHLXdj5lt57l2yc/edit"
+  },
+  {
+    "system": "Hyades Sector DB-X d1-112",
+    "body": "2 Ring A",
+    "material": "Painite",
+    "materialInara": 84,
+    "miningType": "Surface Laser",
+    "link": "https://docs.google.com/document/d/1cuy00PplPzpd0mgJoZE7O1nQiprTXgz8zf0PGoLn0Cs/edit"
+  }
+]

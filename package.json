@@ -1,5 +1,5 @@
 {
-  "name": "usc-website-nextjs",
+  "name": "usc-website-next",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "@admiralfeb/react-components": "^1.1.1",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@rehooks/local-storage": "^2.4.0",
+    "axios": "^0.21.1",
+    "bson": "^4.2.2",
     "next": "10.0.5",
+    "notistack": "^1.0.3",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-markdown": "^5.0.3",
+    "remark-gfm": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.21",
+    "@types/react": "^17.0.0",
+    "typescript": "^4.1.3"
   }
 }

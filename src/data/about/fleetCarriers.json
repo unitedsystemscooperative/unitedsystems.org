@@ -1,0 +1,137 @@
+[
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176aa"
+    },
+    "owner": "Pablok",
+    "name": "Almagest",
+    "id": "J0Y-N4Y",
+    "purpose": "Exploration"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b1"
+    },
+    "owner": "Luisqa",
+    "name": "Pillar of Autumn",
+    "id": "V7X-23Z",
+    "purpose": "Mining"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176ae"
+    },
+    "owner": "thegoog",
+    "name": "Moya",
+    "id": "QOB-4VT",
+    "purpose": "Personal"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b6"
+    },
+    "owner": "Lokioo42",
+    "name": "Sulaco",
+    "id": "K0X-T6X",
+    "purpose": "Anti-Xeno"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176ab"
+    },
+    "owner": "Redfang Culph",
+    "name": "Cabal Enforcer",
+    "id": "J8W-3XG",
+    "purpose": "Operations"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b4"
+    },
+    "owner": "Aurelius Publius",
+    "name": "Spirit of Alethea",
+    "id": "KFV-G9K",
+    "purpose": "Community Goals"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176af"
+    },
+    "owner": "Clever Ape",
+    "name": "Overcompensation",
+    "id": "V2V-9HT",
+    "purpose": "Operations"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b2"
+    },
+    "owner": "Luisqa",
+    "name": "The Shaft",
+    "id": "V6L-06J",
+    "purpose": "Mining / Recruitment"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b3"
+    },
+    "owner": "Skeetmeister11",
+    "name": "Roamer's Recess",
+    "id": "V3H-B8T",
+    "purpose": "Personal"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b8"
+    },
+    "owner": "UltraNeros",
+    "name": "Verrows Chamber",
+    "id": "JGK-L1T",
+    "purpose": "Personal"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b9"
+    },
+    "owner": "Admiralfeb",
+    "name": "Zocalo",
+    "id": "J9H-22H",
+    "purpose": "Engineering / Trading"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176ac"
+    },
+    "owner": "PracticalHalo",
+    "name": "Chaldea",
+    "id": "J2T-37X",
+    "purpose": "Personal"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176ad"
+    },
+    "owner": "Ellen Jameson",
+    "name": "Ellen's Catgirl Cafe",
+    "id": "Q7Z-42X",
+    "purpose": "Personal / Anti-Xeno"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b0"
+    },
+    "owner": "Clever Ape",
+    "name": "Wastage",
+    "id": "VBV-T7G",
+    "purpose": "Outfitting"
+  },
+  {
+    "_id": {
+      "$oid": "5fc816a996556612740176b7"
+    },
+    "owner": "Eolin Solarviento",
+    "name": "Tranquility Base",
+    "id": "KHM-BQN",
+    "purpose": "Personal"
+  }
+]

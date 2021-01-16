@@ -1,0 +1,26 @@
+[
+  {
+    "key": "Allied",
+    "value": 0.48
+  },
+  {
+    "key": "Friendly",
+    "value": 0.362
+  },
+  {
+    "key": "Cordial",
+    "value": 0.241
+  },
+  {
+    "key": "Neutral",
+    "value": 0.241
+  },
+  {
+    "key": "Unfriendly",
+    "value": 0.001
+  },
+  {
+    "key": "hostile",
+    "value": 0.000001
+  }
+]
