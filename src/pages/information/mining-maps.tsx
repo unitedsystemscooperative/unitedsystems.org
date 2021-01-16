@@ -18,6 +18,7 @@ import { useMiningMaps } from 'hooks/information/useMiningMaps';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { useLinks } from 'hooks/useLinks';
+import { PrimaryLayout } from 'components/layouts/primary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,16 +26,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const MiningMap = () => {
+const MiningMap = () => {
   const maps = useMiningMaps();
   const classes = useStyles();
   const { inaraCommodity } = useLinks();
 
   return (
-    <Fade in={true}>
-      <Container maxWidth="md" className={classes.root}>
-        <Typography variant="h3">Mining Maps</Typography>
-        <Typography variant="subtitle1">Compiled by Luisqa</Typography>
+    <PrimaryLayout>
+      <Container maxWidth='md' className={classes.root}>
+        <Typography variant='h3'>Mining Maps</Typography>
+        <Typography variant='subtitle1'>Compiled by Luisqa</Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -53,10 +54,9 @@ export const MiningMap = () => {
                   <TableCell>
                     {map.system}{' '}
                     <IconButton
-                      size="small"
-                      color="secondary"
-                      onClick={() => copytoClipboard(map.system)}
-                    >
+                      size='small'
+                      color='secondary'
+                      onClick={() => copytoClipboard(map.system)}>
                       <FileCopyIcon />
                     </IconButton>
                   </TableCell>
@@ -64,8 +64,7 @@ export const MiningMap = () => {
                   <TableCell>
                     <Link
                       href={`${inaraCommodity}${map.materialInara}`}
-                      target="_blank"
-                    >
+                      target='_blank'>
                       {map.material}
                     </Link>
                   </TableCell>
@@ -73,11 +72,10 @@ export const MiningMap = () => {
                   <TableCell>{map.overlap}</TableCell>
                   <TableCell>
                     <Button
-                      variant="contained"
-                      color="primary"
+                      variant='contained'
+                      color='primary'
                       href={map.link}
-                      target="_blank"
-                    >
+                      target='_blank'>
                       Open Map
                     </Button>
                   </TableCell>
@@ -87,6 +85,8 @@ export const MiningMap = () => {
           </Table>
         </TableContainer>
       </Container>
-    </Fade>
+    </PrimaryLayout>
   );
 };
+
+export default MiningMap;

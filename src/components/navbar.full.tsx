@@ -63,7 +63,7 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
                   color='secondary'
                   className={classes.navLinkJoin}
                   variant='contained'>
-                  <a>{x.text}</a>
+                  {x.text}
                 </Button>
               </Link>
             </Fragment>
@@ -72,7 +72,7 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
           return (
             <Link key={x.to} href={x.to}>
               <Button key={x.to} href={x.to} className={classes.navLink}>
-                <a>{x.text}</a>
+                {x.text}
               </Button>
             </Link>
           );

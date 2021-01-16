@@ -1,6 +1,5 @@
 import { IRealmContext } from 'models/realmContext';
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import * as Realm from 'realm-web';
 
 export const RealmAppContext = createContext<IRealmContext | null>(null);
@@ -14,7 +13,7 @@ export const RealmAppProvider = (props: {
     throw new Error('appId is not defined');
   }
   const [app, setApp] = useState(new Realm.App(appId));
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     setApp(new Realm.App(appId));
@@ -49,7 +48,7 @@ export const RealmAppProvider = (props: {
     // If another user was logged in too, they're now the current user.
     // Otherwise, app.currentUser is null.
     setCurrentUser(app.currentUser);
-    history.push('/login');
+    // history.push('/login');
   };
 
   const requestPasswordReset = async (email: string) => {

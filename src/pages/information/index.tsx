@@ -1,16 +1,15 @@
 import {
   Button,
   Container,
-  Fade,
   makeStyles,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core';
-import { InfoSection } from './infoSection';
+import { InfoSection } from 'components/information/infoSection';
+import { PrimaryLayout } from 'components/layouts/primary';
 import { useInfoButtons } from 'hooks/useInfoButtons';
 import { MutableRefObject, useRef } from 'react';
-import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /** Information Landing Component */
-export const Information = () => {
+const Information = () => {
   const classes = useStyles();
   const { toolsList, docsList, guidesList } = useInfoButtons();
   const guidesRef = useRef<HTMLDivElement | null>(null);
@@ -50,14 +49,14 @@ export const Information = () => {
   };
 
   return (
-    <Fade in={true}>
-      <Container maxWidth="lg">
-        <Typography variant="h3" className={classes.header}>
+    <PrimaryLayout>
+      <Container maxWidth='lg'>
+        <Typography variant='h3' className={classes.header}>
           Information Archive
         </Typography>
 
         <Paper className={classes.paper}>
-          <Typography variant="subtitle1">
+          <Typography variant='subtitle1'>
             New Players look to the{' '}
             <span className={classes.secondary}> blue buttons </span>for helpful
             tips in getting started with the Guides, Tools, and Documentation
@@ -66,55 +65,54 @@ export const Information = () => {
         </Paper>
         {isMobile && (
           <Paper className={classes.paper}>
-            <Typography variant="subtitle1">Scroll To:</Typography>
+            <Typography variant='subtitle1'>Scroll To:</Typography>
             <Button
-              variant="outlined"
+              variant='outlined'
               onClick={() => handleScroll(guidesRef)}
-              title="guides"
-            >
+              title='guides'>
               Guides
             </Button>
             <Button
-              variant="outlined"
+              variant='outlined'
               onClick={() => handleScroll(toolsRef)}
-              title="tools"
-            >
+              title='tools'>
               Tools
             </Button>
             <Button
-              variant="outlined"
+              variant='outlined'
               onClick={() => handleScroll(docsRef)}
-              title="docs"
-            >
+              title='docs'>
               Documentation
             </Button>
           </Paper>
         )}
         <div ref={guidesRef}>
           <InfoSection
-            id="guides"
-            key="guides"
-            header="Guides"
+            id='guides'
+            key='guides'
+            header='Guides'
             buttons={guidesList}
           />
         </div>
         <div ref={toolsRef}>
           <InfoSection
-            id="tools"
-            key="tools"
-            header="Tools"
+            id='tools'
+            key='tools'
+            header='Tools'
             buttons={toolsList}
           />
         </div>
         <div ref={docsRef}>
           <InfoSection
-            id="docs"
-            key="docs"
-            header="Documentation"
+            id='docs'
+            key='docs'
+            header='Documentation'
             buttons={docsList}
           />
         </div>
       </Container>
-    </Fade>
+    </PrimaryLayout>
   );
 };
+
+export default Information;

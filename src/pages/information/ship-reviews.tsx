@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useShipReviews } from 'hooks/information/useShipReviews';
+import { PrimaryLayout } from 'components/layouts/primary';
 
 const useStyles = makeStyles({
   table: {
@@ -21,13 +22,13 @@ const useStyles = makeStyles({
 });
 
 /** Displays the ship Review Table */
-export const ShipReviews = () => {
+const ShipReviews = () => {
   const classes = useStyles();
   const shipReviews = useShipReviews();
   return (
-    <Fade in={true}>
-      <Container maxWidth="sm" className={classes.table}>
-        <Typography variant="h3">Ship Reviews</Typography>
+    <PrimaryLayout>
+      <Container maxWidth='sm' className={classes.table}>
+        <Typography variant='h3'>Ship Reviews</Typography>
         <TableContainer component={Paper}>
           <Table className={classes.table}>
             <TableHead>
@@ -45,10 +46,9 @@ export const ShipReviews = () => {
                   <TableCell>
                     <Button
                       href={review.shipReview}
-                      target="_blank"
-                      variant="contained"
-                      color="secondary"
-                    >
+                      target='_blank'
+                      variant='contained'
+                      color='secondary'>
                       Pilot Review
                     </Button>
                   </TableCell>
@@ -58,6 +58,8 @@ export const ShipReviews = () => {
           </Table>
         </TableContainer>
       </Container>
-    </Fade>
+    </PrimaryLayout>
   );
 };
+
+export default ShipReviews;

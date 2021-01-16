@@ -1,5 +1,5 @@
 import { Button, makeStyles } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,20 +18,16 @@ export const QueryActions = (props: { resetQueries: () => void }) => {
     <div className={classes.root}>
       <Button
         onClick={resetQueries}
-        color="primary"
-        variant="outlined"
-        className="resetButton"
-      >
+        color='primary'
+        variant='outlined'
+        className='resetButton'>
         Reset Selections
       </Button>
-      <Button
-        variant="outlined"
-        color="secondary"
-        component={NavLink}
-        to="/builds/add"
-      >
-        Add Build
-      </Button>
+      <Link href='/builds/add' passHref>
+        <Button variant='outlined' color='secondary'>
+          Add Build
+        </Button>
+      </Link>
     </div>
   );
 };

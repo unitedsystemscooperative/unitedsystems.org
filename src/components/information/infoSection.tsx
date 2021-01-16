@@ -1,6 +1,6 @@
 import { Button, makeStyles, Paper, Typography } from '@material-ui/core';
-import { Link, useRouteMatch } from 'react-router-dom';
 import { IInfoButton } from 'models/information/infoButtonModel';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,86 +50,63 @@ interface ISectionProps {
  */
 export const InfoSection = (props: ISectionProps) => {
   const classes = useStyles();
-  const { url } = useRouteMatch();
+  const url = '/information';
   const { id, header, buttons } = props;
 
   return (
     <Paper id={id} className={classes.paper}>
-      <Typography variant="h4">{header}</Typography>
+      <Typography variant='h4'>{header}</Typography>
       <div className={classes.grid}>
         <div className={classes.buttonList}>
           {buttons
             .filter((x) => x.beginner === true)
             .map((guide) => {
-              if (guide.local === true) {
-                return (
+              return guide.local ? (
+                <Link
+                  href={`/information/${guide.link}`}
+                  key={guide.title}
+                  passHref>
                   <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                    component={Link}
-                    to={`${url}${guide.link}`}
-                    key={guide.title}
-                  >
+                    variant='outlined'
+                    color={guide.beginner ? 'secondary' : 'primary'}>
                     <div className={classes.specialButton}>
                       <Typography>{guide.title}</Typography>
-                      <Typography variant="caption">{guide.caption}</Typography>
+                      <Typography variant='caption'>{guide.caption}</Typography>
                     </div>
                   </Button>
-                );
-              } else {
-                return (
+                </Link>
+              ) : (
+                <Link href={`${guide.link}`} key={guide.title} passHref>
                   <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                    href={guide.link}
-                    target="_blank"
-                    key={guide.title}
-                  >
+                    variant='outlined'
+                    color={guide.beginner ? 'secondary' : 'primary'}>
                     <div className={classes.specialButton}>
                       <Typography>{guide.title}</Typography>
-                      <Typography variant="caption">{guide.caption}</Typography>
+                      <Typography variant='caption'>{guide.caption}</Typography>
                     </div>
                   </Button>
-                );
-              }
+                </Link>
+              );
             })}
         </div>
         <div className={classes.buttonList}>
           {buttons
             .filter((x) => x.beginner === false)
-            .map((guide) => {
-              if (guide.local === true) {
-                return (
-                  <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                    component={Link}
-                    to={`${url}${guide.link}`}
-                    key={guide.title}
-                  >
-                    <div className={classes.specialButton}>
-                      <Typography>{guide.title}</Typography>
-                      <Typography variant="caption">{guide.caption}</Typography>
-                    </div>
-                  </Button>
-                );
-              } else {
-                return (
-                  <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                    href={guide.link}
-                    target="_blank"
-                    key={guide.title}
-                  >
-                    <div className={classes.specialButton}>
-                      <Typography>{guide.title}</Typography>
-                      <Typography variant="caption">{guide.caption}</Typography>
-                    </div>
-                  </Button>
-                );
-              }
-            })}
+            .map((guide) => (
+              <Link
+                href={`/information/${guide.link}`}
+                key={guide.title}
+                passHref>
+                <Button
+                  variant='outlined'
+                  color={guide.beginner ? 'secondary' : 'primary'}>
+                  <div className={classes.specialButton}>
+                    <Typography>{guide.title}</Typography>
+                    <Typography variant='caption'>{guide.caption}</Typography>
+                  </div>
+                </Button>
+              </Link>
+            ))}
         </div>
       </div>
     </Paper>

@@ -6,10 +6,9 @@ import { QuerySpecialization } from './querySpecialities';
 import { QueryShip } from './queryShip';
 import { QueryEngineering } from './queryEngineering';
 import { QueryOther } from './queryOther';
-import { useUrlQuery } from 'hooks/useURLQuery';
 import { QueryActions } from './queryActions';
 import qs from 'query-string';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,19 +44,20 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
     beginner: null,
     showVariants: null,
   });
-  const urlQuery = useUrlQuery();
-  const history = useHistory();
+  const router = useRouter();
   const { updateQuery } = props;
   const classes = useStyles();
 
   useEffect(() => {
-    const shipParam = urlQuery.get('ship');
-    if (shipParam) {
+    const params = router.query;
+    console.log(params);
+    const shipParam = params['ship'];
+    if (shipParam && !Array.isArray(shipParam)) {
       setShipType(shipParam);
     }
 
-    const sizeParam = urlQuery.get('size');
-    if (sizeParam) {
+    const sizeParam = params['size'];
+    if (sizeParam && !Array.isArray(sizeParam)) {
       try {
         const sizeNumber = parseInt(sizeParam);
         setShipSize(sizeNumber);
@@ -66,8 +66,8 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
       }
     }
 
-    const engParam = urlQuery.get('engLevel');
-    if (engParam) {
+    const engParam = params['engLevel'];
+    if (engParam && !Array.isArray(engParam)) {
       try {
         const engNumber = parseInt(engParam);
         setEngLevel(engNumber);
@@ -75,31 +75,36 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
         // do nothing
       }
     }
-    const specialtiesParam = urlQuery.getAll('specialties');
-    if (specialtiesParam && specialtiesParam.length > 0) {
+
+    const specialtiesParam = params['specialties'];
+    if (
+      specialtiesParam &&
+      Array.isArray(specialtiesParam) &&
+      specialtiesParam.length > 0
+    ) {
       setSpecialties(specialtiesParam);
     }
-    const guardianParam = urlQuery.get('guardian');
+
+    const guardianParam = params['guardian'];
     const guardianValue =
       guardianParam === '1' ? 1 : guardianParam === '0' ? 0 : null;
     setOther((other) => ({ ...other, guardian: guardianValue }));
 
-    const powerplayParam = urlQuery.get('powerplay');
+    const powerplayParam = params['powerplay'];
     const powerplayValue =
       powerplayParam === '1' ? 1 : powerplayParam === '0' ? 0 : null;
     setOther((other) => ({ ...other, powerplay: powerplayValue }));
 
-    const beginnerParam = urlQuery.get('beginner');
+    const beginnerParam = params['beginner'];
     if (beginnerParam === 'true' || beginnerParam === '1') {
       setOther((other) => ({ ...other, beginner: 1 }));
     } else if (beginnerParam === '0') {
       setOther((other) => ({ ...other, beginner: 0 }));
     }
 
-    const variantsParam = urlQuery.get('showVariants');
+    const variantsParam = params['showVariants'];
     const variantValue = variantsParam === 'true' ? true : false;
     setOther((other) => ({ ...other, showVariants: variantValue }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -111,17 +116,14 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
       ...other,
     };
     const queryString = qs.stringify(query);
-    history.push(`/builds/?${queryString}`);
+    router.push({ pathname: '/builds', query: queryString }, undefined, {
+      shallow: true,
+    });
+    // router.push(`/builds?${queryString}`, `/builds?${queryString}`, {
+    //   shallow: true,
+    // });
     updateQuery(query);
-  }, [
-    shipType,
-    shipSize,
-    engLevel,
-    selectedSpecialties,
-    other,
-    updateQuery,
-    history,
-  ]);
+  }, [shipType, shipSize, engLevel, selectedSpecialties, other, updateQuery]);
 
   const resetQueries = () => {
     setShipType(null);

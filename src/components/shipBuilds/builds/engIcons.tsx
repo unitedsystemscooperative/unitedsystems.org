@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import engineerIcon from 'assets/shipBuilds/Engineer_icon.svg';
+const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';
 
 const useStyles = makeStyles({
   engineering: {
@@ -26,7 +26,7 @@ export const EngIcons = (props: { engLevel: number }) => {
     for (let i = 1; i <= props.engLevel; i++) {
       icons = [
         ...icons,
-        <img src={engineerIcon} key={i} alt="Engineering Icon" />,
+        <img src={engineerIcon} key={i} alt='Engineering Icon' />,
       ];
     }
     return (

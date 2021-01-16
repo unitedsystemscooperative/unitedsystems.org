@@ -18,7 +18,7 @@ export default function NavLink({
 
   return (
     <Link href={href} passHref>
-      {cloneElement(children, { className, href })}
+      {cloneElement(children, { className })}
     </Link>
   );
 }

@@ -1,45 +1,37 @@
-import CaveJohnson from 'assets/information/Cave Johnson.png';
-import StationMap from 'assets/information/ED station landing pad map.png';
-import FSS from 'assets/information/FSS-1.jpg';
-import Scoopable from 'assets/information/KBGFoam.jpg';
-import Coriolis from 'assets/information/Entrance_on_a_Coriolis_Dock.png';
-import ErrorCodes from 'assets/information/ED error codes.png';
-import Radar from 'assets/information/radar.png';
-
-export const infoGraphics = [
+export const infoGraphics: { id: string; title: string; img: string }[] = [
   {
     id: 'cave-johnson',
     title: 'Cave Johnson',
-    img: CaveJohnson,
+    img: '/img/information/Cave Johnson.png',
   },
   {
     id: 'station-map',
     title: 'Station Map',
-    img: StationMap,
+    img: '/img/information/ED station landing pad map.png',
   },
   {
     id: 'fss',
     title: 'Full Spectrum Scanner',
-    img: FSS,
+    img: '/img/information/FSS-1.jpg',
   },
   {
     id: 'scoopable',
     title: 'Scoopable Stars',
-    img: Scoopable,
+    img: '/img/information/KBGFoam.jpg',
   },
   {
     id: 'coriolis',
     title: 'Find the Coriolis Slot',
-    img: Coriolis,
+    img: '/img/information/Entrance_on_a_Coriolis_Dock.png',
   },
   {
     id: 'error-codes',
     title: 'Error Codes',
-    img: ErrorCodes,
+    img: '/img/information/ED error codes.png',
   },
   {
     id: 'radar',
     title: 'Radar',
-    img: Radar,
+    img: '/img/information/radar.png',
   },
 ];

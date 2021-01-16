@@ -10,10 +10,10 @@ import {
 } from '@material-ui/core';
 import { IBuildInfov2, ShipSize } from 'models/shipBuilds';
 import { EngIcons } from './engIcons';
-import { NavLink } from 'react-router-dom';
 import { useShipIdfromMap } from 'hooks/shipBuilds/useShipMap';
 import { TagGroup } from './tagGroup';
 import { theme } from 'theme';
+import Link from 'next/link';
 
 const useStyles = makeStyles({
   root: {
@@ -60,7 +60,7 @@ export const BuildCard = (props: { shipBuild: IBuildInfov2 | undefined }) => {
 
   return shipBuild && shipInfo ? (
     <Fade in={true} timeout={500}>
-      <Card variant="outlined" className={classes.root}>
+      <Card variant='outlined' className={classes.root}>
         <div className={classes.mediaAndActions}>
           <CardMedia
             className={classes.media}
@@ -70,21 +70,19 @@ export const BuildCard = (props: { shipBuild: IBuildInfov2 | undefined }) => {
           <Typography>{ShipSize[shipInfo.size]}</Typography>
           <div className={classes.actions}>
             <Button
-              variant="contained"
-              color="secondary"
+              variant='contained'
+              color='secondary'
               href={shipBuild.buildLink}
-              target="_blank"
-            >
+              target='_blank'>
               View Build
             </Button>
-            <Button
-              to={`/builds/detail/${(shipBuild._id as unknown) as string}`}
-              component={NavLink}
-              color="primary"
-              variant="contained"
-            >
-              More Details
-            </Button>
+            <Link
+              href={`/builds/detail/${(shipBuild._id as unknown) as string}`}
+              passHref>
+              <Button color='primary' variant='contained'>
+                More Details
+              </Button>
+            </Link>
           </div>
         </div>
         <CardContent className={classes.content}>
