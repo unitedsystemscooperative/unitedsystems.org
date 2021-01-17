@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const QueryAllFleetCarriers = gql`
+export const QueryAllFleetCarriers = /* GraphQL */ `
   query AllFleetCarriers {
     fleetCarriers {
       id

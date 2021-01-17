@@ -2,7 +2,7 @@ import {
   useFleetCarriers,
   usePersonalCarriers,
   useSquadCarriers,
-} from 'hooks/information/useFleetCarriers';
+} from 'hooks/about/useFleetCarriers';
 import { MockedProvider } from '@apollo/client/testing';
 import { cleanup, renderHook } from '@testing-library/react-hooks';
 import fleetCarrierData from 'data/about/fleetCarriers.json';

@@ -1,18 +1,21 @@
-import { useQuery } from '@apollo/client';
 import { sortItems } from 'functions/sort';
 import { IFleetCarrier } from 'models/information/fleetCarrier';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { QueryAllFleetCarriers } from 'gql/queries/fleetCarriers';
+import useSWR from 'swr';
+import { gqlFetcher } from 'gql/fetcher';
+import { RealmAppContext } from 'providers';
 
 export const useFleetCarriers = () => {
-  const { data, loading, error } = useQuery<{ fleetCarriers: IFleetCarrier[] }>(
-    QueryAllFleetCarriers
+  const realm = useContext(RealmAppContext);
+  const { data, error } = useSWR(QueryAllFleetCarriers, (query) =>
+    gqlFetcher(query, undefined, realm)
   );
   if (error) {
     throw new Error(`Failed to fetch carriers: ${error.message}`);
   }
   let fleetCarriers = data?.fleetCarriers;
-  return { fleetCarriers, loading };
+  return { fleetCarriers, isLoading: !error && !data };
 };
 
 export const usePersonalCarriers = (

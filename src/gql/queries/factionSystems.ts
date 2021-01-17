@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const AllFactionSystems = gql`
+export const AllFactionSystems = /* GraphQL */ `
   query AllSystems {
     factionSystems(sortBy: TEXT_ASC) {
       text

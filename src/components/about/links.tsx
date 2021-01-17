@@ -5,7 +5,7 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import NavLink from 'components/navLink';
+import NavLink from 'next/link';
 import { IInfoButton } from 'models/information/infoButtonModel';
 
 const useStyles = makeStyles((theme) => ({

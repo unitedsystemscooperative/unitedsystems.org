@@ -6,5 +6,5 @@ export const navItems: INavItem[] = [
   { to: '/information', text: 'Information' },
   { to: '/builds', text: 'USC Builds' },
   // { to: '/massacres', text: 'Massacre Mission Tracker' },
-  // { to: '/join', text: 'Join' },
+  { to: '/join', text: 'Join' },
 ];

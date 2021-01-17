@@ -8,15 +8,16 @@ import {
 import { PrimaryLayout } from 'components/layouts/primary';
 import NextLink from 'next/link';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
+    marginTop: theme.spacing(1),
   },
   img: {
     maxWidth: '100%',
     height: 'auto',
   },
-});
+}));
 
 export const NotFound = () => {
   const classes = useStyles();

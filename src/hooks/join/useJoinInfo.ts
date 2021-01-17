@@ -1,8 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { IJoinInfo } from 'models/join/joinInfo';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { QueryAllJoiners } from 'gql/queries/joiners';
 import { InsertJoiner } from 'gql/mutations/joiner.insert';
+import { RealmAppContext } from 'providers';
+import useSWR from 'swr';
+import { gqlFetcher } from 'gql/fetcher';
 
 export const useJoinInfo = () => {
   const { allJoiners, loading, error } = useAllJoinInfo();
@@ -31,12 +34,13 @@ export const useJoinInfo = () => {
 };
 
 export const useAllJoinInfo = () => {
-  const { data, loading, error } = useQuery<{ joiners: IJoinInfo[] }>(
-    QueryAllJoiners
+  const realm = useContext(RealmAppContext);
+  const { data, error } = useSWR(QueryAllJoiners, (query) =>
+    gqlFetcher(query, undefined, realm)
   );
   const allJoiners = data?.joiners ?? [];
 
-  return { allJoiners, loading, error };
+  return { allJoiners, loading: !error && !data, error };
 };
 
 export const useAddJoinInfo = () => {

@@ -4,7 +4,6 @@ import {
   Button,
   Collapse,
   Container,
-  Fade,
   IconButton,
   makeStyles,
   Paper,
@@ -22,6 +21,7 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { useSnackbar } from 'notistack';
+import { PrimaryLayout } from 'components/layouts/primary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,29 +88,26 @@ export const JoinList = () => {
   }
 
   return (
-    <Fade in={true}>
+    <PrimaryLayout>
       <Container className={classes.root}>
-        <Typography variant="h3">Join List</Typography>
+        <Typography variant='h3'>Join List</Typography>
         <div className={classes.joinTypes}>
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setSelect(0)}
-          >
+            variant='contained'
+            color='primary'
+            onClick={() => setSelect(0)}>
             Members
           </Button>
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setSelect(1)}
-          >
+            variant='contained'
+            color='primary'
+            onClick={() => setSelect(1)}>
             Guests
           </Button>
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setSelect(2)}
-          >
+            variant='contained'
+            color='primary'
+            onClick={() => setSelect(2)}>
             Ambassadors
           </Button>
         </div>
@@ -121,7 +118,7 @@ export const JoinList = () => {
         )}
         <Collapse in={select === 0}>
           <div>
-            <Typography variant="h4">Members</Typography>
+            <Typography variant='h4'>Members</Typography>
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
@@ -144,22 +141,20 @@ export const JoinList = () => {
                         <TableCell>
                           {map.cmdr}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
+                            size='small'
+                            color='secondary'
                             onClick={() =>
                               copytoClipboard(map.cmdr.toUpperCase())
-                            }
-                          >
+                            }>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
                         <TableCell>
                           {map.discord}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() => copytoClipboard(map.discord)}
-                          >
+                            size='small'
+                            color='secondary'
+                            onClick={() => copytoClipboard(map.discord)}>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
@@ -180,7 +175,7 @@ export const JoinList = () => {
         </Collapse>
         <Collapse in={select === 1}>
           <div>
-            <Typography variant="h4">Guests</Typography>
+            <Typography variant='h4'>Guests</Typography>
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
@@ -202,22 +197,20 @@ export const JoinList = () => {
                         <TableCell>
                           {map.cmdr}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
+                            size='small'
+                            color='secondary'
                             onClick={() =>
                               copytoClipboard(map.cmdr.toUpperCase())
-                            }
-                          >
+                            }>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
                         <TableCell>
                           {map.discord}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() => copytoClipboard(map.discord)}
-                          >
+                            size='small'
+                            color='secondary'
+                            onClick={() => copytoClipboard(map.discord)}>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
@@ -235,7 +228,7 @@ export const JoinList = () => {
         </Collapse>
         <Collapse in={select === 2}>
           <div>
-            <Typography variant="h4">Ambassadors</Typography>
+            <Typography variant='h4'>Ambassadors</Typography>
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
@@ -257,22 +250,20 @@ export const JoinList = () => {
                         <TableCell>
                           {map.cmdr}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
+                            size='small'
+                            color='secondary'
                             onClick={() =>
                               copytoClipboard(map.cmdr.toUpperCase())
-                            }
-                          >
+                            }>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
                         <TableCell>
                           {map.discord}{' '}
                           <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() => copytoClipboard(map.discord)}
-                          >
+                            size='small'
+                            color='secondary'
+                            onClick={() => copytoClipboard(map.discord)}>
                             <FileCopyIcon />
                           </IconButton>
                         </TableCell>
@@ -289,6 +280,8 @@ export const JoinList = () => {
           </div>
         </Collapse>
       </Container>
-    </Fade>
+    </PrimaryLayout>
   );
 };
+
+export default JoinList;
