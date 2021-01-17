@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from '@apollo/client';
 import { IJoinInfo } from 'models/join/joinInfo';
 import { useContext, useMemo } from 'react';
 import { QueryAllJoiners } from 'gql/queries/joiners';
@@ -35,8 +34,8 @@ export const useJoinInfo = () => {
 
 export const useAllJoinInfo = () => {
   const realm = useContext(RealmAppContext);
-  const { data, error } = useSWR(QueryAllJoiners, (query) =>
-    gqlFetcher(query, undefined, realm)
+  const { data, error } = useSWR('/api/joiners', (query) =>
+    gqlFetcher(QueryAllJoiners, undefined, realm)
   );
   const allJoiners = data?.joiners ?? [];
 
@@ -44,19 +43,18 @@ export const useAllJoinInfo = () => {
 };
 
 export const useAddJoinInfo = () => {
-  const [addJoinerMutation] = useMutation<{ insertOneJoiner: IJoinInfo }>(
-    InsertJoiner
-  );
-
+  const realm = useContext(RealmAppContext);
   const addJoiner = async (joiner: IJoinInfo) => {
     try {
-      const addedJoiner = await addJoinerMutation({
-        variables: {
+      const addedJoiner = await gqlFetcher(
+        InsertJoiner,
+        {
           joiner: {
             ...joiner,
           },
         },
-      });
+        realm
+      );
       return addedJoiner;
     } catch (e) {
       throw new Error(`Unable to add. ${e.message}`);

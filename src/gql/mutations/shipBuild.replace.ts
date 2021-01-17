@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const ReplaceShipBuild = gql`
+export const ReplaceShipBuild = /* GraphQL */ `
   mutation ReplaceBuild($build: ShipBuildsv2InsertInput!) {
     replaceOneShipBuildsv2(query: { _id: $buildID }, data: $build) {
       _id

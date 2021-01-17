@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const QueryAllShipBuilds = gql`
+export const QueryAllShipBuilds = /* GraphQL */ `
   query AllShipBuildsv2s {
     shipBuildsv2s(sortBy: SHIPID_ASC) {
       _id

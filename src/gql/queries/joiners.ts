@@ -1,5 +1,3 @@
-import { gql } from '@apollo/client';
-
 export const QueryAllJoiners = /* GraphQL */ `
   query AllJoiners {
     joiners(sortBy: TIMESTAMP_DESC) {

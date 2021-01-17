@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const UpdateRelatedShipBuilds = gql`
+export const UpdateRelatedShipBuilds = /* GraphQL */ `
   mutation UpdateRelatedOneShipBuildsv2(
     $build: ShipBuildsv2QueryInput
     $input: ShipBuildsv2UpdateInput!

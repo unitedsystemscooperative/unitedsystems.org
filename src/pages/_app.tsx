@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
-import { RealmApolloProvider, RealmAppProvider } from 'providers';
+import { RealmAppProvider } from 'providers';
 import React, { useEffect } from 'react';
 import { theme } from 'theme';
 
@@ -35,14 +35,12 @@ function USCApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <RealmAppProvider appId={realmID}>
-        <RealmApolloProvider>
-          <SnackbarProvider maxSnack={3}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ThemeProvider>
-          </SnackbarProvider>
-        </RealmApolloProvider>
+        <SnackbarProvider maxSnack={3}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </SnackbarProvider>
       </RealmAppProvider>
     </>
   );

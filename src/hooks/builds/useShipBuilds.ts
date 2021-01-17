@@ -1,8 +1,11 @@
-import { useQuery } from '@apollo/client';
 import { IBuildInfov2 } from 'models/builds';
 import { useShipBuildMutations } from './useShipBuildMutations';
 import { IBuildInfoInsert } from 'models/builds/buildInfoInsert';
 import { QueryAllShipBuilds } from 'gql/queries/shipBuilds';
+import { useContext } from 'react';
+import { RealmAppContext } from 'providers';
+import useSWR, { mutate } from 'swr';
+import { gqlFetcher } from 'gql/fetcher';
 
 export const useShipBuilds = () => {
   const addRelated = useAddRelatedBuild();
@@ -21,12 +24,13 @@ export const useShipBuilds = () => {
 };
 
 export const useAllShipBuilds = () => {
-  const { data, loading, error } = useQuery<{
-    shipBuildsv2s: IBuildInfov2[];
-  }>(QueryAllShipBuilds);
+  const realm = useContext(RealmAppContext);
+  const { data, error } = useSWR('/api/shipBuilds', () =>
+    gqlFetcher(QueryAllShipBuilds, undefined, realm)
+  );
   const shipBuilds = data?.shipBuildsv2s ?? [];
 
-  return { shipBuilds, loading, error };
+  return { shipBuilds, loading: !error && !data, error };
 };
 
 const useAddRelatedBuild = () => {
@@ -45,14 +49,12 @@ const useAddRelatedBuild = () => {
       const tempBuild = buildtoInsert;
       tempBuild.related = currentBuild.related;
       tempBuild.related = [...tempBuild.related, currentID];
-      const addedBuild:
-        | { insertOneShipBuildsv2: IBuildInfov2 }
-        | undefined
-        | null = (await addBuild(tempBuild)).data;
+      const addedBuild: IBuildInfov2 | undefined | null = (
+        await addBuild(tempBuild)
+      ).data;
       console.log(addedBuild);
       if (addedBuild) {
-        const buildID = (addedBuild.insertOneShipBuildsv2
-          ._id as unknown) as string;
+        const buildID = (addedBuild._id as unknown) as string;
         if (buildID) {
           await updateRelated(currentID, [...relatedBuilds, buildID]);
           for (const id of relatedBuilds) {
@@ -64,6 +66,7 @@ const useAddRelatedBuild = () => {
               await updateRelated((build._id as unknown) as string, newRelated);
             }
           }
+          mutate('/api/shipBuilds');
         }
       } else {
         throw new Error('Reference build and related builds not updated');
@@ -91,13 +94,11 @@ const useAddVariantBuild = () => {
       const tempBuild = buildtoInsert;
       tempBuild.isVariant = true;
       tempBuild.related = variantBuilds;
-      const addedBuild:
-        | { insertOneShipBuildsv2: IBuildInfov2 }
-        | undefined
-        | null = (await addBuild(tempBuild)).data;
+      const addedBuild: IBuildInfov2 | undefined | null = (
+        await addBuild(tempBuild)
+      ).data;
       if (addedBuild) {
-        const buildID = (addedBuild.insertOneShipBuildsv2
-          ._id as unknown) as string;
+        const buildID = (addedBuild._id as unknown) as string;
         if (buildID) {
           console.log(buildID);
           await updateVariants(parentID, [...variantBuilds, buildID]);
@@ -112,6 +113,7 @@ const useAddVariantBuild = () => {
               await updateRelated((build._id as unknown) as string, newRelated);
             }
           }
+          mutate('/api/shipBuilds');
         }
       } else {
         throw new Error('Parent and related builds were not updated');

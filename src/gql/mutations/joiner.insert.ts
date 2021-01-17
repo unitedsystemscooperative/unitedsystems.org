@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const InsertJoiner = gql`
+export const InsertJoiner = /* GraphQL */ `
   mutation AddJoiner($joiner: JoinerInsertInput!) {
     insertOneJoiner(data: $joiner) {
       timeStamp
