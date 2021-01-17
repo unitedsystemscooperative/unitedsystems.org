@@ -12,7 +12,7 @@ export default function NavLink({
   const router = useRouter();
 
   let className = children.props.className || '';
-  if (router.pathname === href) {
+  if (router.pathname.startsWith(href)) {
     className = `${className} active`;
   }
 

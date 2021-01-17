@@ -21,6 +21,7 @@ import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import qs from 'query-string';
+import Head from 'next/head';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -286,65 +287,71 @@ const AddBuild = () => {
   }
 
   return (
-    <Container maxWidth='lg'>
-      <Typography variant='h3' className={classes.center}>
-        Add Build Form
-      </Typography>
-      <Paper className={classes.root}>
-        <NextLink href='/builds' passHref>
-          <Button color='secondary' variant='outlined'>
-            Return to builds
-          </Button>
-        </NextLink>
-        <Typography>
-          Save your build in Coriolis and choose Export. Paste the exported JSON
-          into the Exported JSON field.
+    <>
+      <Head>
+        <title>USC Add Build</title>
+        <meta name='description' content='Add Builld Form' />
+      </Head>
+      <Container maxWidth='lg'>
+        <Typography variant='h3' className={classes.center}>
+          Add Build Form
         </Typography>
-        <Typography>
-          Verify/enter remaining information and click Submit Build at the
-          bottom.
-        </Typography>
-        {textFields.map((field) => (
-          <Fragment key={field.id}>
-            <BuildAddText {...field} />
-            {field.id === 'description' && (
-              <Button
-                href='https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
-                target='_blank'
-                color='primary'>
-                Markdown Cheatsheet - Opens a new tab
-              </Button>
-            )}
-          </Fragment>
-        ))}
-        <ShipAutocomplete
-          shipType={buildInfo.shipId}
-          handleShipChange={handleShipChange}
-        />
-        <QuerySpecialization
-          selectedSpecialties={buildInfo.specializations}
-          setSpecialties={setSpecialties}
-        />
-        <div className={classes.center}>
-          <EngToggleGroup
-            engLevel={buildInfo.engLevel}
-            handleEngLevelChange={handleEngLevelChange}
-          />
-        </div>
-        <FormGroup row className={classes.center}>
-          {checkFields.map((check) => (
-            <BuildCheckBox
-              key={check.name}
-              {...check}
-              onChange={handleOtherChange}
-            />
+        <Paper className={classes.root}>
+          <NextLink href='/builds' passHref>
+            <Button color='secondary' variant='outlined'>
+              Return to builds
+            </Button>
+          </NextLink>
+          <Typography>
+            Save your build in Coriolis and choose Export. Paste the exported
+            JSON into the Exported JSON field.
+          </Typography>
+          <Typography>
+            Verify/enter remaining information and click Submit Build at the
+            bottom.
+          </Typography>
+          {textFields.map((field) => (
+            <Fragment key={field.id}>
+              <BuildAddText {...field} />
+              {field.id === 'description' && (
+                <Button
+                  href='https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
+                  target='_blank'
+                  color='primary'>
+                  Markdown Cheatsheet - Opens a new tab
+                </Button>
+              )}
+            </Fragment>
           ))}
-        </FormGroup>
-        <Button onClick={handleSubmit} variant='outlined'>
-          Submit Build
-        </Button>
-      </Paper>
-    </Container>
+          <ShipAutocomplete
+            shipType={buildInfo.shipId}
+            handleShipChange={handleShipChange}
+          />
+          <QuerySpecialization
+            selectedSpecialties={buildInfo.specializations}
+            setSpecialties={setSpecialties}
+          />
+          <div className={classes.center}>
+            <EngToggleGroup
+              engLevel={buildInfo.engLevel}
+              handleEngLevelChange={handleEngLevelChange}
+            />
+          </div>
+          <FormGroup row className={classes.center}>
+            {checkFields.map((check) => (
+              <BuildCheckBox
+                key={check.name}
+                {...check}
+                onChange={handleOtherChange}
+              />
+            ))}
+          </FormGroup>
+          <Button onClick={handleSubmit} variant='outlined'>
+            Submit Build
+          </Button>
+        </Paper>
+      </Container>
+    </>
   );
 };
 

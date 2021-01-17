@@ -8,6 +8,7 @@ import {
   videoID,
   videoPosterID,
 } from 'data/home';
+import Head from 'next/head';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -55,31 +56,40 @@ export default function Home() {
   const { getDownloadLink } = useDownloadLink();
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth='lg'>
-        <Typography component='h1' variant='h3' className={classes.header}>
-          United Systems Cooperative
-        </Typography>
-        <Paper className={classes.paper}>
-          <Typography className={classes.lore}>{lore}</Typography>
-          <div className={classes.motto}>
-            <Typography className={classes.latin} variant='h4'>
-              {latin}
-            </Typography>
-            <Typography variant='subtitle2' className={classes.subtitle}>
-              {latinTranslation}
-            </Typography>
-          </div>
-          <video
-            controls
-            className={classes.video}
-            poster={getDownloadLink(videoPosterID)}
-            controlsList='nodownload'>
-            <source src={getDownloadLink(videoID)} type='video/mp4' />
-            "Your browser does not support this video"
-          </video>
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+    <>
+      <Head>
+        <title>United Systems Cooperative</title>
+        <meta
+          name='description'
+          content='Web site of the United Systems Cooperative'
+        />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='lg'>
+          <Typography component='h1' variant='h3' className={classes.header}>
+            United Systems Cooperative
+          </Typography>
+          <Paper className={classes.paper}>
+            <Typography className={classes.lore}>{lore}</Typography>
+            <div className={classes.motto}>
+              <Typography className={classes.latin} variant='h4'>
+                {latin}
+              </Typography>
+              <Typography variant='subtitle2' className={classes.subtitle}>
+                {latinTranslation}
+              </Typography>
+            </div>
+            <video
+              controls
+              className={classes.video}
+              poster={getDownloadLink(videoPosterID)}
+              controlsList='nodownload'>
+              <source src={getDownloadLink(videoID)} type='video/mp4' />
+              "Your browser does not support this video"
+            </video>
+          </Paper>
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 }

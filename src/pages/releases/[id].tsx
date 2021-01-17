@@ -15,6 +15,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import NextLink from 'next/link';
+import Head from 'next/head';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,25 +34,31 @@ const Release = ({
 }) => {
   const classes = useStyles();
   return (
-    <PrimaryLayout>
-      <Container maxWidth='lg' className={classes.root}>
-        <NextLink href='/releases' passHref>
-          <Button color='secondary' variant='contained'>
-            Return to Releases
-          </Button>
-        </NextLink>
-        <Paper className={classes.paper}>
-          <Typography variant='h4'>{releaseData.title}</Typography>
-          <Typography variant='subtitle1'>{releaseData.date}</Typography>
-          <Divider />
-          <ReactMarkdown
-            plugins={[gfm]}
-            renderers={{ paragraph: Typography, link: Link }}
-            children={releaseData.content}
-          />
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+    <>
+      <Head>
+        <title>{releaseData.title}</title>
+        <meta name='description' content='Release of the website' />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='lg' className={classes.root}>
+          <NextLink href='/releases' passHref>
+            <Button color='secondary' variant='contained'>
+              Return to Releases
+            </Button>
+          </NextLink>
+          <Paper className={classes.paper}>
+            <Typography variant='h4'>{releaseData.title}</Typography>
+            <Typography variant='subtitle1'>{releaseData.date}</Typography>
+            <Divider />
+            <ReactMarkdown
+              plugins={[gfm]}
+              renderers={{ paragraph: Typography, link: Link }}
+              children={releaseData.content}
+            />
+          </Paper>
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 

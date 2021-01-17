@@ -18,6 +18,7 @@ import {
   JoinNextSteps,
 } from 'components/join';
 import { PrimaryLayout } from 'components/layouts/primary';
+import Head from 'next/head';
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -60,62 +61,68 @@ export const JoinNew = () => {
   };
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth='sm'>
-        <Fade in={true}>
-          <Container maxWidth='sm'>
-            <Typography variant='h3' className={classes.textCenter}>
-              Join Us
-            </Typography>
-            <Paper className={classes.paper}>
-              <Typography className={classes.textCenter}>
-                Welcome to USC. Please select how you'd like to join us below.
+    <>
+      <Head>
+        <title>Join USC!</title>
+        <meta name='description' content='Join the USC! We have cookies!' />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='sm'>
+          <Fade in={true}>
+            <Container maxWidth='sm'>
+              <Typography variant='h3' className={classes.textCenter}>
+                Join Us
               </Typography>
-              <div className={classes.joinTypes}>
-                <Button
-                  variant='outlined'
-                  color='primary'
-                  onClick={() => setForm(0)}>
-                  As a member
-                </Button>
-                <Button
-                  variant='outlined'
-                  color='primary'
-                  onClick={() => setForm(1)}>
-                  As a guest
-                </Button>
-                <Button
-                  variant='outlined'
-                  color='primary'
-                  onClick={() => setForm(2)}>
-                  As an ambassador
-                </Button>
-              </div>
-            </Paper>
-          </Container>
-        </Fade>
-        <Collapse in={form === 0} unmountOnExit mountOnEnter>
-          <div>
-            <JoinFormMember onSubmit={onSubmit} />
-          </div>
-        </Collapse>
-        <Collapse in={form === 1} unmountOnExit mountOnEnter>
-          <div>
-            <JoinFormGuest onSubmit={onSubmit} />
-          </div>
-        </Collapse>
-        <Collapse in={form === 2} unmountOnExit mountOnEnter>
-          <div>
-            <JoinFormAmbassador onSubmit={onSubmit} />
-          </div>
-        </Collapse>
-        <Collapse in={form === 3} unmountOnExit mountOnEnter>
-          <div>
-            <JoinNextSteps />
-          </div>
-        </Collapse>
-      </Container>
-    </PrimaryLayout>
+              <Paper className={classes.paper}>
+                <Typography className={classes.textCenter}>
+                  Welcome to USC. Please select how you'd like to join us below.
+                </Typography>
+                <div className={classes.joinTypes}>
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => setForm(0)}>
+                    As a member
+                  </Button>
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => setForm(1)}>
+                    As a guest
+                  </Button>
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => setForm(2)}>
+                    As an ambassador
+                  </Button>
+                </div>
+              </Paper>
+            </Container>
+          </Fade>
+          <Collapse in={form === 0} unmountOnExit mountOnEnter>
+            <div>
+              <JoinFormMember onSubmit={onSubmit} />
+            </div>
+          </Collapse>
+          <Collapse in={form === 1} unmountOnExit mountOnEnter>
+            <div>
+              <JoinFormGuest onSubmit={onSubmit} />
+            </div>
+          </Collapse>
+          <Collapse in={form === 2} unmountOnExit mountOnEnter>
+            <div>
+              <JoinFormAmbassador onSubmit={onSubmit} />
+            </div>
+          </Collapse>
+          <Collapse in={form === 3} unmountOnExit mountOnEnter>
+            <div>
+              <JoinNextSteps />
+            </div>
+          </Collapse>
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 

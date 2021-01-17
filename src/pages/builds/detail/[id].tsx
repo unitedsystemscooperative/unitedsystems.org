@@ -10,13 +10,9 @@ import { BuildDetailFull } from 'components/builds/builds/buildDetailFull';
 import { BuildDetailMobile } from 'components/builds/builds/buildDetailMobile';
 import { BuildDetailBuilds } from 'components/builds/builds/buildDetailBuilds';
 import { useShipBuildInfo } from 'hooks/builds/useShipBuildInfo';
-import qs from 'query-string';
 import { useRouter } from 'next/router';
 import { PrimaryLayout } from 'components/layouts/primary';
-
-interface RouteParams {
-  id: string;
-}
+import Head from 'next/head';
 
 const useStyles = makeStyles({
   textCenter: {
@@ -39,34 +35,40 @@ export const BuildDetail = () => {
   }
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth='lg'>
-        <Typography variant='h3' className={classes.textCenter}>
-          Build Detail
-        </Typography>
-        {foundBuild ? (
-          isMobile ? (
-            <BuildDetailMobile foundBuild={foundBuild} shipInfo={shipInfo} />
+    <>
+      <Head>
+        <title>USC Build</title>
+        <meta name='description' content='USC Build Detail' />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='lg'>
+          <Typography variant='h3' className={classes.textCenter}>
+            Build Detail
+          </Typography>
+          {foundBuild ? (
+            isMobile ? (
+              <BuildDetailMobile foundBuild={foundBuild} shipInfo={shipInfo} />
+            ) : (
+              <BuildDetailFull foundBuild={foundBuild} shipInfo={shipInfo} />
+            )
           ) : (
-            <BuildDetailFull foundBuild={foundBuild} shipInfo={shipInfo} />
-          )
-        ) : (
-          <></>
-        )}
-        {foundBuild && foundBuild.variants.length > 0 ? (
-          <BuildDetailBuilds
-            title='Build Variants'
-            buildIDs={foundBuild.variants}
-          />
-        ) : null}
-        {foundBuild && foundBuild.related.length > 0 ? (
-          <BuildDetailBuilds
-            title='Related Builds'
-            buildIDs={foundBuild.related}
-          />
-        ) : null}
-      </Container>
-    </PrimaryLayout>
+            <></>
+          )}
+          {foundBuild && foundBuild.variants.length > 0 ? (
+            <BuildDetailBuilds
+              title='Build Variants'
+              buildIDs={foundBuild.variants}
+            />
+          ) : null}
+          {foundBuild && foundBuild.related.length > 0 ? (
+            <BuildDetailBuilds
+              title='Related Builds'
+              buildIDs={foundBuild.related}
+            />
+          ) : null}
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 

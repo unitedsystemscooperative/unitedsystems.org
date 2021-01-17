@@ -66,7 +66,7 @@ export const AboutLinks = (props: ISectionProps) => {
               .map((guide) => {
                 if (guide.local === true) {
                   return (
-                    <NavLink href={guide.link} key={guide.title}>
+                    <NavLink href={guide.link} key={guide.title} passHref>
                       <Button
                         variant='outlined'
                         color={guide.beginner ? 'secondary' : 'primary'}>
@@ -104,7 +104,7 @@ export const AboutLinks = (props: ISectionProps) => {
               .map((guide) => {
                 if (guide.local === true) {
                   return (
-                    <NavLink key={guide.title} href={guide.link}>
+                    <NavLink key={guide.title} href={guide.link} passHref>
                       <Button
                         variant='outlined'
                         color={guide.beginner ? 'secondary' : 'primary'}>

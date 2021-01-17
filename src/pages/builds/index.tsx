@@ -14,6 +14,7 @@ import { IQuery } from 'models/builds';
 import { Query } from 'components/builds/query/query';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { PrimaryLayout } from 'components/layouts/primary';
+import Head from 'next/head';
 
 const useStyles = makeStyles({
   root: {
@@ -47,24 +48,30 @@ const QueryandBuildList = () => {
   };
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth='xl' className={classes.root}>
-        <Typography variant='h3' className={classes.header}>
-          Ship Build Archive
-        </Typography>
-        <Query updateQuery={handleQuery} />
-        <div ref={buildRef}>
-          <BuildList buildQuery={query} />
-        </div>
-        <Slide direction='left' in={isMobile} timeout={1000}>
-          <div className={classes.fab}>
-            <Fab color='primary' className='fab' onClick={handleFab}>
-              <ArrowDownwardIcon />
-            </Fab>
+    <>
+      <Head>
+        <title>USC Build Archive</title>
+        <meta name='description' content='Builds of the USC' />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='xl' className={classes.root}>
+          <Typography variant='h3' className={classes.header}>
+            Ship Build Archive
+          </Typography>
+          <Query updateQuery={handleQuery} />
+          <div ref={buildRef}>
+            <BuildList buildQuery={query} />
           </div>
-        </Slide>
-      </Container>
-    </PrimaryLayout>
+          <Slide direction='left' in={isMobile} timeout={1000}>
+            <div className={classes.fab}>
+              <Fab color='primary' className='fab' onClick={handleFab}>
+                <ArrowDownwardIcon />
+              </Fab>
+            </div>
+          </Slide>
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 

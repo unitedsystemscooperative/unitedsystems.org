@@ -1,6 +1,7 @@
 import { Container, makeStyles, Typography } from '@material-ui/core';
 import { PrimaryLayout } from 'components/layouts/primary';
 import { infoGraphics } from 'data/information/infographicList';
+import Head from 'next/head';
 
 const useStyles = makeStyles({
   root: {
@@ -19,18 +20,24 @@ const Infographic = ({
 }) => {
   const classes = useStyles();
   return (
-    <PrimaryLayout>
-      <Container className={classes.root}>
-        {infographic ? (
-          <>
-            <Typography variant='h3'>{infographic.title}</Typography>
-            <img src={infographic.img} alt={infographic.title} />
-          </>
-        ) : (
-          <Typography>Image not found</Typography>
-        )}
-      </Container>
-    </PrimaryLayout>
+    <>
+      <Head>
+        <title>USC Infographic</title>
+        <meta name='description' content='Infographic' />
+      </Head>
+      <PrimaryLayout>
+        <Container className={classes.root}>
+          {infographic ? (
+            <>
+              <Typography variant='h3'>{infographic.title}</Typography>
+              <img src={infographic.img} alt={infographic.title} />
+            </>
+          ) : (
+            <Typography>Image not found</Typography>
+          )}
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 

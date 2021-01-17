@@ -9,6 +9,7 @@ import { Typography, Paper } from '@material-ui/core';
 import { InfoSection } from 'components/information/infoSection';
 import { PrimaryLayout } from 'components/layouts/primary';
 import { useInfoButtons } from 'hooks/useInfoButtons';
+import Head from 'next/head';
 import { MutableRefObject, useRef } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,69 +50,75 @@ const Information = () => {
   };
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth='lg'>
-        <Typography variant='h3' className={classes.header}>
-          Information Archive
-        </Typography>
-
-        <Paper className={classes.paper}>
-          <Typography variant='subtitle1'>
-            New Players look to the{' '}
-            <span className={classes.secondary}> blue buttons </span>for helpful
-            tips in getting started with the Guides, Tools, and Documentation
-            below.
+    <>
+      <Head>
+        <title>USC Information Archive</title>
+        <meta name='description' content='USC Information Archive' />
+      </Head>
+      <PrimaryLayout>
+        <Container maxWidth='lg'>
+          <Typography variant='h3' className={classes.header}>
+            Information Archive
           </Typography>
-        </Paper>
-        {isMobile && (
+
           <Paper className={classes.paper}>
-            <Typography variant='subtitle1'>Scroll To:</Typography>
-            <Button
-              variant='outlined'
-              onClick={() => handleScroll(guidesRef)}
-              title='guides'>
-              Guides
-            </Button>
-            <Button
-              variant='outlined'
-              onClick={() => handleScroll(toolsRef)}
-              title='tools'>
-              Tools
-            </Button>
-            <Button
-              variant='outlined'
-              onClick={() => handleScroll(docsRef)}
-              title='docs'>
-              Documentation
-            </Button>
+            <Typography variant='subtitle1'>
+              New Players look to the{' '}
+              <span className={classes.secondary}> blue buttons </span>for
+              helpful tips in getting started with the Guides, Tools, and
+              Documentation below.
+            </Typography>
           </Paper>
-        )}
-        <div ref={guidesRef}>
-          <InfoSection
-            id='guides'
-            key='guides'
-            header='Guides'
-            buttons={guidesList}
-          />
-        </div>
-        <div ref={toolsRef}>
-          <InfoSection
-            id='tools'
-            key='tools'
-            header='Tools'
-            buttons={toolsList}
-          />
-        </div>
-        <div ref={docsRef}>
-          <InfoSection
-            id='docs'
-            key='docs'
-            header='Documentation'
-            buttons={docsList}
-          />
-        </div>
-      </Container>
-    </PrimaryLayout>
+          {isMobile && (
+            <Paper className={classes.paper}>
+              <Typography variant='subtitle1'>Scroll To:</Typography>
+              <Button
+                variant='outlined'
+                onClick={() => handleScroll(guidesRef)}
+                title='guides'>
+                Guides
+              </Button>
+              <Button
+                variant='outlined'
+                onClick={() => handleScroll(toolsRef)}
+                title='tools'>
+                Tools
+              </Button>
+              <Button
+                variant='outlined'
+                onClick={() => handleScroll(docsRef)}
+                title='docs'>
+                Documentation
+              </Button>
+            </Paper>
+          )}
+          <div ref={guidesRef}>
+            <InfoSection
+              id='guides'
+              key='guides'
+              header='Guides'
+              buttons={guidesList}
+            />
+          </div>
+          <div ref={toolsRef}>
+            <InfoSection
+              id='tools'
+              key='tools'
+              header='Tools'
+              buttons={toolsList}
+            />
+          </div>
+          <div ref={docsRef}>
+            <InfoSection
+              id='docs'
+              key='docs'
+              header='Documentation'
+              buttons={docsList}
+            />
+          </div>
+        </Container>
+      </PrimaryLayout>
+    </>
   );
 };
 
