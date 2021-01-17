@@ -83,25 +83,28 @@ export const BuildDetailFull = (props: {
               )}
 
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 href={foundBuild!.buildLink}
-                target='_blank'>
+                target="_blank"
+              >
                 Show Build
               </Button>
               <div className={classes.buttonGrid}>
                 <Button
-                  variant='contained'
-                  color='secondary'
+                  variant="contained"
+                  color="secondary"
                   href={shipInfo.shipReview}
-                  target='_blank'>
-                  Pilot's Review
+                  target="_blank"
+                >
+                  {`Pilot's Review`}
                 </Button>
                 <Button
-                  variant='contained'
-                  color='secondary'
+                  variant="contained"
+                  color="secondary"
                   href={`${blueprints}?s=${shipInfo.blueprint}`}
-                  target='_blank'>
+                  target="_blank"
+                >
                   Ship Anatomy
                 </Button>
                 <Link
@@ -111,8 +114,10 @@ export const BuildDetailFull = (props: {
                       type: 'variant',
                       refID: (foundBuild!._id as unknown) as string,
                     },
-                  }}>
-                  <Button variant='contained' color='secondary' component='a'>
+                  }}
+                  passHref
+                >
+                  <Button variant="contained" color="secondary" component="a">
                     Add Variant
                   </Button>
                 </Link>
@@ -123,18 +128,21 @@ export const BuildDetailFull = (props: {
                       type: 'related',
                       refID: (foundBuild!._id as unknown) as string,
                     },
-                  }}>
-                  <Button variant='contained' color='secondary' component='a'>
+                  }}
+                  passHref
+                >
+                  <Button variant="contained" color="secondary" component="a">
                     Add Related
                   </Button>
                 </Link>
               </div>
             </div>
           )}
-          <Divider orientation='vertical' flexItem />
+          <Divider orientation="vertical" flexItem />
           <div
-            className={`${classes.flexDown} ${classes.spacer} ${classes.margin}`}>
-            <Typography variant='h5'>{foundBuild?.title}</Typography>
+            className={`${classes.flexDown} ${classes.spacer} ${classes.margin}`}
+          >
+            <Typography variant="h5">{foundBuild?.title}</Typography>
             <Typography>Author: {foundBuild?.author}</Typography>
             <EngIcons engLevel={foundBuild!.engLevel} />
             <TagGroup build={foundBuild!} />
@@ -142,8 +150,9 @@ export const BuildDetailFull = (props: {
               <ReactMarkdown
                 plugins={[gfm]}
                 renderers={{ paragraph: Typography, link: Link }}
-                children={foundBuild.description}
-              />
+              >
+                {foundBuild.description}
+              </ReactMarkdown>
             )}
           </div>
         </div>

@@ -2,7 +2,7 @@ import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { IMassacreContext } from 'models/massacreContext';
 import { IMassacreTrack } from 'models/massacreTrack';
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import massacreDefaults from 'data/information/massacre/massacreDefaults.json';
+import massacreDefaults from 'data/massacre/massacreDefaults.json';
 
 export const MassacreContext = createContext<IMassacreContext | null>(null);
 

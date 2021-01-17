@@ -30,7 +30,7 @@ export const BuildDetailBuilds = (props: {
 
   return (
     <div className={classes.textCenter}>
-      <Typography variant='h4'>{title}</Typography>
+      <Typography variant="h4">{title}</Typography>
       <div className={classes.paper}>
         {buildIDs.map((id) => {
           const build = shipBuilds.find(
