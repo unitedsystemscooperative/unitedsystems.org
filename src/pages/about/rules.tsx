@@ -1,4 +1,4 @@
-import { AboutRules } from 'components/about';
+import { USCRules } from 'components/about';
 import { AboutLayout } from 'components/layouts';
 import Head from 'next/head';
 
@@ -10,7 +10,7 @@ const Rules = () => {
         <meta name='description' content='USC Rules List' />
       </Head>
       <AboutLayout>
-        <AboutRules />
+        <USCRules />
       </AboutLayout>
     </>
   );

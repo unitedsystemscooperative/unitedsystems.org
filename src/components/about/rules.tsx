@@ -46,15 +46,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /** Displays the rules */
-export const AboutRules = () => {
+export const USCRules = () => {
   const classes = useStyles();
   return (
     <Fade in={true}>
-      <Container maxWidth="lg" className={classes.header}>
-        <Typography variant="h4">Rules</Typography>
+      <Container maxWidth='lg' className={classes.header}>
+        <Typography variant='h4'>Rules</Typography>
         <Paper className={classes.root}>
           <div className={classes.rules}>
-            <Typography variant="h5">Discord</Typography>
+            <Typography variant='h5'>Discord</Typography>
             <List>
               {discordRules.map((rule: string, index: number) => (
                 <ListItem key={index} className={classes.listItem}>
@@ -64,7 +64,7 @@ export const AboutRules = () => {
             </List>
           </div>
           <div className={classes.rules}>
-            <Typography variant="h5">Members of USC</Typography>
+            <Typography variant='h5'>Members of USC</Typography>
             <List>
               {memberRules.map((rule: string, index: number) => (
                 <ListItem key={index} className={classes.listItem}>
