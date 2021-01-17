@@ -8,18 +8,19 @@ import {
 } from '@material-ui/core';
 import { ObjectId } from 'bson';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { processJSONBuild } from 'functions/builds';
 import { IShipInfo, IBuildInfoInsert } from 'models/builds';
-import { QuerySpecialization } from '../query/querySpecialities';
-import { EngToggleGroup } from '../engToggleGroup';
-import { BuildAddText } from './buildAddText';
-import { ShipAutocomplete } from '../shipAutocomplete';
-import { BuildCheckBox } from './buildCheckBox';
+import { QuerySpecialization } from 'components/builds/query/querySpecialities';
+import { EngToggleGroup } from 'components/builds/engToggleGroup';
+import { BuildAddText } from 'components/builds/builds/buildAddText';
+import { ShipAutocomplete } from 'components/builds/shipAutocomplete';
+import { BuildCheckBox } from 'components/builds/builds/buildCheckBox';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
-import { useUrlQuery } from 'hooks/useURLQuery';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { useSnackbar } from 'notistack';
+import { useRouter } from 'next/router';
+import NextLink from 'next/link';
+import qs from 'query-string';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
  * - Related Build
  * - Variant Build
  */
-export const BuildAdd = () => {
+const AddBuild = () => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const [jsonBuild, setJsonBuild] = useState('');
@@ -57,7 +58,7 @@ export const BuildAdd = () => {
     addRelated,
     addVariant,
   } = useShipBuilds();
-  const urlQuery = useUrlQuery();
+  const urlQuery = useRouter().asPath;
 
   useEffect(() => {
     setBuildInfo((buildInfo) => {
@@ -167,9 +168,14 @@ export const BuildAdd = () => {
           'Build Link is blank. Verify you have pasted the JSON from Coriolis.'
         );
       }
-      const addType = urlQuery.get('type');
+      const params = qs.parse(urlQuery.substring(urlQuery.indexOf('?')));
+      const addType = Array.isArray(params['type'])
+        ? params['type'][0]
+        : params['type'];
       console.log(addType);
-      const refID = urlQuery.get('refID');
+      const refID = Array.isArray(params['refID'])
+        ? params['refID'][0]
+        : params['refID'];
       try {
         switch (addType) {
           case 'variant':
@@ -285,13 +291,11 @@ export const BuildAdd = () => {
         Add Build Form
       </Typography>
       <Paper className={classes.root}>
-        <Button
-          to='/builds'
-          component={NavLink}
-          color='secondary'
-          variant='outlined'>
-          Return to builds
-        </Button>
+        <NextLink href='/builds' passHref>
+          <Button color='secondary' variant='outlined'>
+            Return to builds
+          </Button>
+        </NextLink>
         <Typography>
           Save your build in Coriolis and choose Export. Paste the exported JSON
           into the Exported JSON field.
@@ -361,3 +365,5 @@ const DEFAULTBUILD: IBuildInfoInsert = {
   description: '',
   jsonBuild: '',
 };
+
+export default AddBuild;

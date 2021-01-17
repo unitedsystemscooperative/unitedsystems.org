@@ -1,18 +1,17 @@
 import {
   Button,
   Divider,
-  Link,
   makeStyles,
   Paper,
   Typography,
 } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import { TagGroup } from './tagGroup';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { useLinks } from 'hooks/useLinks';
 import { EngIcons } from './engIcons';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -105,24 +104,30 @@ export const BuildDetailFull = (props: {
                   target='_blank'>
                   Ship Anatomy
                 </Button>
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  to={`/builds/add?type=variant&refID=${
-                    (foundBuild!._id as unknown) as string
-                  }`}
-                  component={NavLink}>
-                  Add Variant
-                </Button>
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  to={`/builds/add?type=related&refID=${
-                    (foundBuild!._id as unknown) as string
-                  }`}
-                  component={NavLink}>
-                  Add Related
-                </Button>
+                <Link
+                  href={{
+                    pathname: '/builds/add',
+                    query: {
+                      type: 'variant',
+                      refID: (foundBuild!._id as unknown) as string,
+                    },
+                  }}>
+                  <Button variant='contained' color='secondary' component='a'>
+                    Add Variant
+                  </Button>
+                </Link>
+                <Link
+                  href={{
+                    pathname: '/builds/add',
+                    query: {
+                      type: 'related',
+                      refID: (foundBuild!._id as unknown) as string,
+                    },
+                  }}>
+                  <Button variant='contained' color='secondary' component='a'>
+                    Add Related
+                  </Button>
+                </Link>
               </div>
             </div>
           )}

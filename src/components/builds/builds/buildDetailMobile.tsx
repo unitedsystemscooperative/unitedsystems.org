@@ -4,15 +4,14 @@ import {
   makeStyles,
   Paper,
   Typography,
-  Link,
 } from '@material-ui/core';
 import { useLinks } from 'hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import ReactMarkdown from 'react-markdown';
-import { NavLink } from 'react-router-dom';
 import gfm from 'remark-gfm';
 import { EngIcons } from './engIcons';
 import { TagGroup } from './tagGroup';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -106,24 +105,30 @@ export const BuildDetailMobile = (props: {
             </Button>
           </>
         )}
-        <Button
-          variant='contained'
-          color='secondary'
-          to={`/builds/add?type=variant&refID=${
-            (foundBuild!._id as unknown) as string
-          }`}
-          component={NavLink}>
-          Add Variant
-        </Button>
-        <Button
-          variant='contained'
-          color='secondary'
-          to={`/builds/add?type=related&refID=${
-            (foundBuild!._id as unknown) as string
-          }`}
-          component={NavLink}>
-          Add Related
-        </Button>
+        <Link
+          href={{
+            pathname: '/builds/add',
+            query: {
+              type: 'variant',
+              refID: (foundBuild!._id as unknown) as string,
+            },
+          }}>
+          <Button variant='contained' color='secondary'>
+            Add Variant
+          </Button>
+        </Link>
+        <Link
+          href={{
+            pathname: '/builds/add',
+            query: {
+              type: 'related',
+              refID: (foundBuild!._id as unknown) as string,
+            },
+          }}>
+          <Button variant='contained' color='secondary'>
+            Add Related
+          </Button>
+        </Link>
       </div>
     </Paper>
   );

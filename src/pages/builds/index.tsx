@@ -13,6 +13,7 @@ import { BuildList } from 'components/builds/builds/buildList';
 import { IQuery } from 'models/builds';
 import { Query } from 'components/builds/query/query';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { PrimaryLayout } from 'components/layouts/primary';
 
 const useStyles = makeStyles({
   root: {
@@ -46,7 +47,7 @@ const QueryandBuildList = () => {
   };
 
   return (
-    <Fade in={true}>
+    <PrimaryLayout>
       <Container maxWidth='xl' className={classes.root}>
         <Typography variant='h3' className={classes.header}>
           Ship Build Archive
@@ -63,7 +64,7 @@ const QueryandBuildList = () => {
           </div>
         </Slide>
       </Container>
-    </Fade>
+    </PrimaryLayout>
   );
 };
 

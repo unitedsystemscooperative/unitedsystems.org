@@ -1,4 +1,4 @@
-import { Container, Fade, makeStyles, Typography } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 import { PrimaryLayout } from 'components/layouts/primary';
 import { infoGraphics } from 'data/information/infographicList';
 
