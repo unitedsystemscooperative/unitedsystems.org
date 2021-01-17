@@ -1,11 +1,11 @@
 import { cleanup, render, RenderResult } from '@testing-library/react';
-import { AboutRules } from 'components/about/aboutRules';
+import { USCRules } from 'components/about/rules';
 
 let componentBody: RenderResult;
 
 describe('About Rules', () => {
   beforeEach(() => {
-    componentBody = render(<AboutRules />);
+    componentBody = render(<USCRules />);
   });
 
   afterEach(cleanup);
