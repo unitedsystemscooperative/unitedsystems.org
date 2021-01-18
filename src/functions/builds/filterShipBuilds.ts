@@ -31,7 +31,6 @@ export const filterShipBuilds = (
     }
     // Specializations
     if (query.specialties.length > 0) {
-      console.log(query.specialties);
       let tempList: IBuildInfov2[] = [];
       for (const specialty of query.specialties) {
         if (tempList.length > 0) {
