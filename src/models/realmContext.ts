@@ -1,8 +1,6 @@
 export interface IRealmContext {
-  currentUser: Realm.User<
-    globalThis.Realm.DefaultFunctionsFactory,
-    never
-  > | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  currentUser: Realm.User<globalThis.Realm.DefaultFunctionsFactory, any> | null;
   logInAnon: () => Promise<void>;
   logInEmail: (email: string, password: string) => Promise<void>;
   logOut: () => Promise<void>;

@@ -1,10 +1,9 @@
 import { makeStyles, Tooltip } from '@material-ui/core';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
-
 import { OtherFilters } from 'models/builds/otherFilters';
 import BlockIcon from '@material-ui/icons/Block';
 import CheckIcon from '@material-ui/icons/Check';
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { MouseEvent } from 'react';
 import { useSharedStyles } from './sharedStyles';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const QueryOther = (props: {
   other: OtherFilters;
-  setOther: Dispatch<SetStateAction<OtherFilters>>;
+  setOther: (value: OtherFilters) => void;
 }) => {
   const { other, setOther } = props;
   const sharedClasses = useSharedStyles();
@@ -47,51 +46,53 @@ export const QueryOther = (props: {
     _: MouseEvent<HTMLElement>,
     newValue: number
   ) => {
-    setOther((prevState) => ({ ...prevState, guardian: newValue }));
+    setOther({ ...other, guardian: newValue });
   };
   const handlePowerPlayChange = (
     _: MouseEvent<HTMLElement>,
     newValue: number
   ) => {
-    setOther((prevState) => ({ ...prevState, powerplay: newValue }));
+    setOther({ ...other, powerplay: newValue });
   };
   const handleBeginnerChange = (
     _: MouseEvent<HTMLElement>,
     newValue: number
   ) => {
-    setOther((prevState) => ({ ...prevState, beginner: newValue }));
+    setOther({ ...other, beginner: newValue });
   };
   const handleShowVariantsChange = (
     _: MouseEvent<HTMLElement>,
     checked: boolean
   ) => {
-    setOther((prevState) => ({ ...prevState, showVariants: checked }));
+    setOther({ ...other, showVariants: checked });
   };
 
   return (
     <div className={sharedClasses.querySection}>
       <h3 className={sharedClasses.querySectionheader}>Other Filters</h3>
       <div className={classes.queryOtherButtons}>
-        <Tooltip title='Show all builds, including variants' arrow>
+        <Tooltip title="Show all builds, including variants" arrow>
           <div className={classes.queryOtherButtonGrids}>
             <label>Show Variants</label>
             <ToggleButtonGroup
               value={other.showVariants}
               exclusive
-              onChange={handleShowVariantsChange}>
+              onChange={handleShowVariantsChange}
+            >
               <ToggleButton value={true}>
                 <CheckIcon />
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
         </Tooltip>
-        <Tooltip title='Should the build have Guardian components?' arrow>
+        <Tooltip title="Should the build have Guardian components?" arrow>
           <div className={classes.queryOtherButtonGrids}>
             <label>Guardian</label>
             <ToggleButtonGroup
               value={other.guardian}
               exclusive
-              onChange={handleGuardianChange}>
+              onChange={handleGuardianChange}
+            >
               <ToggleButton value={1}>
                 <CheckIcon />
               </ToggleButton>
@@ -101,13 +102,14 @@ export const QueryOther = (props: {
             </ToggleButtonGroup>
           </div>
         </Tooltip>
-        <Tooltip title='Does the build have Power Play modules?' arrow>
+        <Tooltip title="Does the build have Power Play modules?" arrow>
           <div className={classes.queryOtherButtonGrids}>
             <label>Power Play</label>
             <ToggleButtonGroup
               value={other.powerplay}
               exclusive
-              onChange={handlePowerPlayChange}>
+              onChange={handlePowerPlayChange}
+            >
               <ToggleButton value={1}>
                 <CheckIcon />
               </ToggleButton>
@@ -117,14 +119,16 @@ export const QueryOther = (props: {
             </ToggleButtonGroup>
           </div>
         </Tooltip>
-        <Tooltip title='Is this build easy to achieve early-game?' arrow>
+        <Tooltip title="Is this build easy to achieve early-game?" arrow>
           <div
-            className={`${classes.queryOtherButtonGrids} ${classes.QueryOtherBeginnerButtons}`}>
+            className={`${classes.queryOtherButtonGrids} ${classes.QueryOtherBeginnerButtons}`}
+          >
             <label>Beginner</label>
             <ToggleButtonGroup
               value={other.beginner}
               exclusive
-              onChange={handleBeginnerChange}>
+              onChange={handleBeginnerChange}
+            >
               <ToggleButton value={1}>
                 <CheckIcon />
               </ToggleButton>

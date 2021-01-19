@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import { IQuery, OtherFilters } from 'models/builds';
 
 import { makeStyles, Paper } from '@material-ui/core';
@@ -34,126 +34,196 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
-  const [shipType, setShipType] = useState<string | null>(null);
-  const [shipSize, setShipSize] = useState<number | null>(null);
-  const [engLevel, setEngLevel] = useState<number | null>(null);
-  const [selectedSpecialties, setSpecialties] = useState<string[]>([]);
-  const [other, setOther] = useState<OtherFilters>({
+  const router = useRouter();
+  const queryParams = router.asPath.substring(router.asPath.indexOf('?'));
+  const { updateQuery } = props;
+  const classes = useStyles();
+
+  type action = {
+    type:
+      | 'ship'
+      | 'size'
+      | 'specialties'
+      | 'engLevel'
+      | 'other'
+      | 'guardian'
+      | 'powerplay'
+      | 'beginner'
+      | 'showVariants'
+      | 'query'
+      | 'reset';
+    value: IQuery | OtherFilters | string | string[] | boolean | number | null;
+  };
+  const queryReducer = (prevState: IQuery, action: action): IQuery => {
+    let newQuery: IQuery;
+    switch (action.type) {
+      case 'ship':
+        const ship = typeof action.value === 'string' ? action.value : null;
+        newQuery = { ...prevState, ship };
+        break;
+      case 'size':
+        const size = typeof action.value === 'number' ? action.value : null;
+        newQuery = { ...prevState, size };
+        break;
+      case 'specialties':
+        const specialties = Array.isArray(action.value) ? action.value : [];
+        newQuery = { ...prevState, specialties };
+        break;
+      case 'other':
+        console.log(action.value);
+
+        const other: OtherFilters =
+          typeof action.value === 'object' && !Array.isArray(action.value)
+            ? action.value
+            : null;
+        console.log({ other });
+        newQuery = other ? { ...prevState, ...other } : prevState;
+        break;
+      case 'engLevel':
+        const engLevel = typeof action.value === 'number' ? action.value : null;
+        newQuery = { ...prevState, engLevel };
+        break;
+      case 'guardian':
+        const guardian = typeof action.value === 'number' ? action.value : null;
+        newQuery = { ...prevState, guardian };
+        break;
+      case 'powerplay':
+        const powerplay =
+          typeof action.value === 'number' ? action.value : null;
+        newQuery = { ...prevState, powerplay };
+        break;
+      case 'beginner':
+        const beginner = typeof action.value === 'number' ? action.value : null;
+        newQuery = { ...prevState, beginner };
+        break;
+      case 'showVariants':
+        const showVariants =
+          typeof action.value === 'boolean' ? action.value : null;
+        newQuery = { ...prevState, showVariants };
+        break;
+      case 'query':
+        newQuery =
+          typeof action.value === 'object' && !Array.isArray(action.value)
+            ? (action.value as IQuery)
+            : prevState;
+        break;
+      case 'reset':
+        newQuery = {
+          ship: null,
+          size: null,
+          specialties: [],
+          engLevel: null,
+          guardian: null,
+          powerplay: null,
+          beginner: null,
+          showVariants: null,
+        };
+        break;
+      default:
+        newQuery = prevState;
+    }
+
+    console.log({ newQuery });
+    const queryString = qs.stringify(newQuery);
+    console.log({ queryString });
+    router.push({ pathname: '/builds', query: queryString }, undefined, {
+      shallow: true,
+    });
+
+    updateQuery(newQuery);
+
+    return newQuery;
+  };
+
+  const [query, dispatch] = useReducer(queryReducer, {
+    ship: null,
+    size: null,
+    specialties: [],
+    engLevel: null,
     guardian: null,
     powerplay: null,
     beginner: null,
     showVariants: null,
   });
-  const router = useRouter();
-  const { updateQuery } = props;
-  const classes = useStyles();
 
   useEffect(() => {
-    const queryParams = router.asPath.substring(router.asPath.indexOf('?'));
     const params = qs.parse(queryParams);
-    console.log({ router });
-    console.log(params);
     const shipParam = params['ship'];
-    if (shipParam && !Array.isArray(shipParam)) {
-      setShipType(shipParam);
-    }
+    const ship = shipParam && !Array.isArray(shipParam) ? shipParam : null;
 
     const sizeParam = params['size'];
-    if (sizeParam && !Array.isArray(sizeParam)) {
-      try {
-        const sizeNumber = parseInt(sizeParam);
-        setShipSize(sizeNumber);
-      } catch (e) {
-        // do nothing
-      }
-    }
+    const size =
+      sizeParam && !Array.isArray(sizeParam) ? parseInt(sizeParam) : null;
 
     const engParam = params['engLevel'];
-    if (engParam && !Array.isArray(engParam)) {
-      try {
-        const engNumber = parseInt(engParam);
-        setEngLevel(engNumber);
-      } catch (e) {
-        // do nothing
-      }
-    }
+    const engLevel =
+      engParam && !Array.isArray(engParam) ? parseInt(engParam) : null;
 
     const specialtiesParam = params['specialties'];
-    if (
+    const specialties =
       specialtiesParam &&
       Array.isArray(specialtiesParam) &&
       specialtiesParam.length > 0
-    ) {
-      setSpecialties(specialtiesParam);
-    }
+        ? specialtiesParam
+        : [];
 
     const guardianParam = params['guardian'];
-    const guardianValue =
+    const guardian =
       guardianParam === '1' ? 1 : guardianParam === '0' ? 0 : null;
-    setOther((other) => ({ ...other, guardian: guardianValue }));
 
     const powerplayParam = params['powerplay'];
-    const powerplayValue =
+    const powerplay =
       powerplayParam === '1' ? 1 : powerplayParam === '0' ? 0 : null;
-    setOther((other) => ({ ...other, powerplay: powerplayValue }));
 
     const beginnerParam = params['beginner'];
-    if (beginnerParam === 'true' || beginnerParam === '1') {
-      setOther((other) => ({ ...other, beginner: 1 }));
-    } else if (beginnerParam === '0') {
-      setOther((other) => ({ ...other, beginner: 0 }));
-    }
+    const beginner =
+      beginnerParam === '1' ? 1 : beginnerParam === '0' ? 0 : null;
 
     const variantsParam = params['showVariants'];
-    const variantValue = variantsParam === 'true' ? true : false;
-    setOther((other) => ({ ...other, showVariants: variantValue }));
+    const showVariants = variantsParam === 'true' ? true : false;
+
+    const query: IQuery = {
+      ship,
+      size,
+      engLevel,
+      specialties,
+      guardian,
+      powerplay,
+      beginner,
+      showVariants,
+    };
+    dispatch({ type: 'query', value: query });
+
+    // Disable as I only want this on initial load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const query: IQuery = {
-      ship: shipType,
-      size: shipSize,
-      engLevel,
-      specialties: selectedSpecialties,
-      ...other,
-    };
-    const queryString = qs.stringify(query);
-    router.push({ pathname: '/builds', query: queryString }, undefined, {
-      shallow: true,
-    });
-    // router.push(`/builds?${queryString}`, `/builds?${queryString}`, {
-    //   shallow: true,
-    // });
-    updateQuery(query);
-  }, [shipType, shipSize, engLevel, selectedSpecialties, other, updateQuery]);
-
   const resetQueries = () => {
-    setShipType(null);
-    setShipSize(null);
-    setEngLevel(null);
-    setSpecialties([]);
-    setOther({
-      guardian: null,
-      powerplay: null,
-      beginner: null,
-      showVariants: null,
-    });
+    dispatch({ type: 'reset', value: null });
   };
 
   return (
     <Paper className={classes.root}>
       <QuerySpecialization
-        selectedSpecialties={selectedSpecialties}
-        setSpecialties={setSpecialties}
+        selectedSpecialties={query.specialties}
+        setSpecialties={(value: string[]) =>
+          dispatch({ type: 'specialties', value })
+        }
       />
       <QueryShip
-        shipType={shipType}
-        setShipType={setShipType}
-        shipSize={shipSize}
-        setShipSize={setShipSize}
+        shipType={query.ship}
+        setShipType={(value: string) => dispatch({ type: 'ship', value })}
+        shipSize={query.size}
+        setShipSize={(value: number) => dispatch({ type: 'size', value })}
       />
-      <QueryEngineering engLevel={engLevel} setEngLevel={setEngLevel} />
-      <QueryOther other={other} setOther={setOther} />
+      <QueryEngineering
+        engLevel={query.engLevel}
+        setEngLevel={(value: number) => dispatch({ type: 'engLevel', value })}
+      />
+      <QueryOther
+        other={{ ...query }}
+        setOther={(value: OtherFilters) => dispatch({ type: 'other', value })}
+      />
       <QueryActions resetQueries={resetQueries} />
     </Paper>
   );

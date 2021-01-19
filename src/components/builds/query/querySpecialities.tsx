@@ -1,7 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { ToggleButton } from '@material-ui/lab';
 import { ShipSpecialty } from 'models/builds/shipSpecialty';
-import { Dispatch, SetStateAction } from 'react';
 import { useSharedStyles } from './sharedStyles';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const QuerySpecialization = (props: {
   selectedSpecialties: string[];
-  setSpecialties: Dispatch<SetStateAction<string[]>>;
+  setSpecialties: (value: string[]) => void;
 }) => {
   const { selectedSpecialties, setSpecialties } = props;
   const sharedClasses = useSharedStyles();
@@ -50,7 +49,8 @@ export const QuerySpecialization = (props: {
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
-            onChange={() => handleSpecialties(special)}>
+            onChange={() => handleSpecialties(special)}
+          >
             {special}
           </ToggleButton>
         ))}

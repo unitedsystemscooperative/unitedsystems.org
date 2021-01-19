@@ -332,7 +332,7 @@ const AddBuild = () => {
           />
           <QuerySpecialization
             selectedSpecialties={buildInfo.specializations}
-            setSpecialties={setSpecialties}
+            setSpecialties={(value) => setSpecialties(value)}
           />
           <div className={classes.center}>
             <EngToggleGroup
