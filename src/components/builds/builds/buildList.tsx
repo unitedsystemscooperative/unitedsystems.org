@@ -23,7 +23,7 @@ export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
   const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
 
-  let filterBuilds = useCallback(() => {
+  const filterBuilds = useCallback(() => {
     if (loading || error) {
       return;
     }

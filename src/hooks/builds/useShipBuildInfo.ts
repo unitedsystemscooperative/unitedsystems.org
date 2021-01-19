@@ -10,7 +10,7 @@ import { useShipBuilds } from './useShipBuilds';
 export const useShipBuildInfo = (id?: string) => {
   const { loading, shipBuilds } = useShipBuilds();
 
-  let foundBuild = useMemo(() => {
+  const foundBuild = useMemo(() => {
     if (id === undefined) {
       return undefined;
     }
@@ -18,7 +18,7 @@ export const useShipBuildInfo = (id?: string) => {
       return undefined;
     }
 
-    let build = shipBuilds.find(
+    const build = shipBuilds.find(
       (x) => x._id && ((x._id as unknown) as string) === id
     );
     if (build) {
@@ -28,7 +28,7 @@ export const useShipBuildInfo = (id?: string) => {
     }
   }, [id, loading, shipBuilds]);
 
-  let shipInfo = useMemo(() => {
+  const shipInfo = useMemo(() => {
     if (foundBuild) {
       return getShipInfofromID(foundBuild.shipId);
     } else {

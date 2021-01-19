@@ -1,11 +1,5 @@
 import { createMuiTheme } from '@material-ui/core';
 
-const euroStile = {
-  fontFamily: 'Eurostile',
-  fontStyle: 'normal',
-  src: `url(/fonts/Eurostile-Roman.woff2) format('woff2')`,
-};
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,22 +9,6 @@ const theme = createMuiTheme({
       main: '#00B3F7',
     },
     type: 'dark',
-  },
-  typography: {
-    fontFamily: [
-      'Eurostile',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    fontSize: 16,
   },
 });
 
@@ -44,7 +22,6 @@ theme.overrides = {
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
       },
-      '@font-face': [euroStile],
     },
   },
   MuiLink: {

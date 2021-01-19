@@ -1,5 +1,8 @@
 export interface IRealmContext {
-  currentUser: Realm.User<globalThis.Realm.DefaultFunctionsFactory, any> | null;
+  currentUser: Realm.User<
+    globalThis.Realm.DefaultFunctionsFactory,
+    never
+  > | null;
   logInAnon: () => Promise<void>;
   logInEmail: (email: string, password: string) => Promise<void>;
   logOut: () => Promise<void>;

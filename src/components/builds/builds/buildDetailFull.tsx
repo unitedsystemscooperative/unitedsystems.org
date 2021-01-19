@@ -85,7 +85,7 @@ export const BuildDetailFull = (props: {
               <Button
                 variant="contained"
                 color="primary"
-                href={foundBuild!.buildLink}
+                href={foundBuild.buildLink}
                 target="_blank"
               >
                 Show Build
@@ -112,7 +112,7 @@ export const BuildDetailFull = (props: {
                     pathname: '/builds/add',
                     query: {
                       type: 'variant',
-                      refID: (foundBuild!._id as unknown) as string,
+                      refID: (foundBuild._id as unknown) as string,
                     },
                   }}
                   passHref
@@ -126,7 +126,7 @@ export const BuildDetailFull = (props: {
                     pathname: '/builds/add',
                     query: {
                       type: 'related',
-                      refID: (foundBuild!._id as unknown) as string,
+                      refID: (foundBuild._id as unknown) as string,
                     },
                   }}
                   passHref
@@ -142,11 +142,11 @@ export const BuildDetailFull = (props: {
           <div
             className={`${classes.flexDown} ${classes.spacer} ${classes.margin}`}
           >
-            <Typography variant="h5">{foundBuild?.title}</Typography>
-            <Typography>Author: {foundBuild?.author}</Typography>
-            <EngIcons engLevel={foundBuild!.engLevel} />
-            <TagGroup build={foundBuild!} />
-            {foundBuild?.description && (
+            <Typography variant="h5">{foundBuild.title}</Typography>
+            <Typography>Author: {foundBuild.author}</Typography>
+            <EngIcons engLevel={foundBuild.engLevel} />
+            <TagGroup build={foundBuild} />
+            {foundBuild.description && (
               <ReactMarkdown
                 plugins={[gfm]}
                 renderers={{ paragraph: Typography, link: Link }}

@@ -34,7 +34,7 @@ export const useJoinInfo = () => {
 
 export const useAllJoinInfo = () => {
   const realm = useContext(RealmAppContext);
-  const { data, error } = useSWR('/api/joiners', (query) =>
+  const { data, error } = useSWR('/api/joiners', () =>
     gqlFetcher(QueryAllJoiners, undefined, realm)
   );
   const allJoiners = data?.joiners ?? [];

@@ -1,7 +1,6 @@
 import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
 import { sortItems } from 'functions/sort';
-import { ChangeEvent } from 'react';
 import { IShipInfo } from 'models/builds';
 import { useShipMap } from 'hooks/builds/useShipMap';
 
@@ -15,7 +14,7 @@ const findShipName = (ships: IShipInfo[], shipID: string | null) => {
 
 interface IShipAutocompleteProps {
   shipType: string | null;
-  handleShipChange: (event: ChangeEvent<{}>, value: IShipInfo | null) => void;
+  handleShipChange: (_, value: IShipInfo | null) => void;
 }
 
 export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
@@ -24,7 +23,7 @@ export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
 
   return (
     <Autocomplete
-      id='shipType'
+      id="shipType"
       options={sortItems(ships, 'name')}
       autoHighlight
       getOptionLabel={(option) => option.name}
@@ -36,8 +35,8 @@ export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label='Ship Type'
-          variant='outlined'
+          label="Ship Type"
+          variant="outlined"
           inputProps={{
             ...params.inputProps,
             autocomplete: 'new-password',

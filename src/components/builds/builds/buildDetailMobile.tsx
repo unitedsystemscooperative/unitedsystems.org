@@ -50,13 +50,13 @@ export const BuildDetailMobile = (props: {
       <div className={classes.flexrow}>
         {shipInfo && (
           <img
-            src={shipInfo!.shipImg}
-            alt={shipInfo!.name}
+            src={shipInfo.shipImg}
+            alt={shipInfo.name}
             className={classes.img}
           />
         )}
         <div>
-          <Typography variant='h5'>{foundBuild.title}</Typography>
+          <Typography variant="h5">{foundBuild.title}</Typography>
           <Typography>Author: {foundBuild.author}</Typography>
           <div className={classes.flexrow}>
             {shipInfo && (
@@ -70,37 +70,41 @@ export const BuildDetailMobile = (props: {
         </div>
       </div>
       <Button
-        variant='contained'
-        color='primary'
+        variant="contained"
+        color="primary"
         href={foundBuild.buildLink}
-        target='_blank'>
+        target="_blank"
+      >
         Show Build
       </Button>
       <Divider style={{ marginTop: '10px' }} />
-      <TagGroup build={foundBuild!} />
-      <EngIcons engLevel={foundBuild!.engLevel} />
+      <TagGroup build={foundBuild} />
+      <EngIcons engLevel={foundBuild.engLevel} />
       {foundBuild.description && (
         <ReactMarkdown
           plugins={[gfm]}
           renderers={{ paragraph: Typography, link: Link }}
-          children={foundBuild.description}
-        />
+        >
+          {foundBuild.description}
+        </ReactMarkdown>
       )}
       <div className={classes.buttonGrid}>
         {shipInfo && (
           <>
             <Button
-              variant='contained'
-              color='secondary'
+              variant="contained"
+              color="secondary"
               href={shipInfo.shipReview}
-              target='_blank'>
+              target="_blank"
+            >
               Pilot's Review
             </Button>
             <Button
-              variant='contained'
-              color='secondary'
+              variant="contained"
+              color="secondary"
               href={`${blueprints}?s=${shipInfo.blueprint}`}
-              target='_blank'>
+              target="_blank"
+            >
               Ship Anatomy
             </Button>
           </>
@@ -110,10 +114,11 @@ export const BuildDetailMobile = (props: {
             pathname: '/builds/add',
             query: {
               type: 'variant',
-              refID: (foundBuild!._id as unknown) as string,
+              refID: (foundBuild._id as unknown) as string,
             },
-          }}>
-          <Button variant='contained' color='secondary'>
+          }}
+        >
+          <Button variant="contained" color="secondary">
             Add Variant
           </Button>
         </Link>
@@ -122,10 +127,11 @@ export const BuildDetailMobile = (props: {
             pathname: '/builds/add',
             query: {
               type: 'related',
-              refID: (foundBuild!._id as unknown) as string,
+              refID: (foundBuild._id as unknown) as string,
             },
-          }}>
-          <Button variant='contained' color='secondary'>
+          }}
+        >
+          <Button variant="contained" color="secondary">
             Add Related
           </Button>
         </Link>

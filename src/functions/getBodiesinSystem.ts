@@ -7,7 +7,7 @@ const apiURL = 'https://www.edsm.net/api-system-v1/bodies';
  * Gets celestial bodies within a system
  * @param systemName default Arugbal
  */
-const getBodiesinSystem = async (systemName: string = 'Arugbal') => {
+const getBodiesinSystem = async (systemName = 'Arugbal') => {
   try {
     const response = await axios.get<ISystemBodies>(apiURL, {
       params: {

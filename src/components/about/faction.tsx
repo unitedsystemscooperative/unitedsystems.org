@@ -15,7 +15,7 @@ import { useFactionSystems } from 'hooks/about/useFactionSystems';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   textCenter: {
     textAlign: 'center',
   },

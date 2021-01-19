@@ -50,12 +50,11 @@ interface ISectionProps {
  */
 export const InfoSection = (props: ISectionProps) => {
   const classes = useStyles();
-  const url = '/information';
   const { id, header, buttons } = props;
 
   return (
     <Paper id={id} className={classes.paper}>
-      <Typography variant='h4'>{header}</Typography>
+      <Typography variant="h4">{header}</Typography>
       <div className={classes.grid}>
         <div className={classes.buttonList}>
           {buttons
@@ -65,48 +64,67 @@ export const InfoSection = (props: ISectionProps) => {
                 <Link
                   href={`/information/${guide.link}`}
                   key={guide.title}
-                  passHref>
+                  passHref
+                >
                   <Button
-                    variant='outlined'
-                    color={guide.beginner ? 'secondary' : 'primary'}>
+                    variant="outlined"
+                    color={guide.beginner ? 'secondary' : 'primary'}
+                  >
                     <div className={classes.specialButton}>
                       <Typography>{guide.title}</Typography>
-                      <Typography variant='caption'>{guide.caption}</Typography>
+                      <Typography variant="caption">{guide.caption}</Typography>
                     </div>
                   </Button>
                 </Link>
               ) : (
-                <Link href={`${guide.link}`} key={guide.title} passHref>
-                  <Button
-                    variant='outlined'
-                    color={guide.beginner ? 'secondary' : 'primary'}>
-                    <div className={classes.specialButton}>
-                      <Typography>{guide.title}</Typography>
-                      <Typography variant='caption'>{guide.caption}</Typography>
-                    </div>
-                  </Button>
-                </Link>
+                <Button
+                  variant="outlined"
+                  color={guide.beginner ? 'secondary' : 'primary'}
+                  href={`${guide.link}`}
+                  key={guide.title}
+                >
+                  <div className={classes.specialButton}>
+                    <Typography>{guide.title}</Typography>
+                    <Typography variant="caption">{guide.caption}</Typography>
+                  </div>
+                </Button>
               );
             })}
         </div>
         <div className={classes.buttonList}>
           {buttons
             .filter((x) => x.beginner === false)
-            .map((guide) => (
-              <Link
-                href={`/information/${guide.link}`}
-                key={guide.title}
-                passHref>
+            .map((guide) => {
+              return guide.local ? (
+                <Link
+                  href={`/information/${guide.link}`}
+                  key={guide.title}
+                  passHref
+                >
+                  <Button
+                    variant="outlined"
+                    color={guide.beginner ? 'secondary' : 'primary'}
+                  >
+                    <div className={classes.specialButton}>
+                      <Typography>{guide.title}</Typography>
+                      <Typography variant="caption">{guide.caption}</Typography>
+                    </div>
+                  </Button>
+                </Link>
+              ) : (
                 <Button
-                  variant='outlined'
-                  color={guide.beginner ? 'secondary' : 'primary'}>
+                  variant="outlined"
+                  color={guide.beginner ? 'secondary' : 'primary'}
+                  href={`${guide.link}`}
+                  key={guide.title}
+                >
                   <div className={classes.specialButton}>
                     <Typography>{guide.title}</Typography>
-                    <Typography variant='caption'>{guide.caption}</Typography>
+                    <Typography variant="caption">{guide.caption}</Typography>
                   </div>
                 </Button>
-              </Link>
-            ))}
+              );
+            })}
         </div>
       </div>
     </Paper>

@@ -57,7 +57,7 @@ export const AboutLinks = (props: ISectionProps) => {
   const { id, buttons } = props;
 
   return (
-    <Container maxWidth='sm'>
+    <Container maxWidth="sm">
       <Paper id={id} className={classes.paper}>
         <div className={classes.grid}>
           <div className={classes.flex}>
@@ -68,11 +68,12 @@ export const AboutLinks = (props: ISectionProps) => {
                   return (
                     <NavLink href={guide.link} key={guide.title} passHref>
                       <Button
-                        variant='outlined'
-                        color={guide.beginner ? 'secondary' : 'primary'}>
+                        variant="outlined"
+                        color={guide.beginner ? 'secondary' : 'primary'}
+                      >
                         <div className={classes.specialButton}>
                           <Typography>{guide.title}</Typography>
-                          <Typography variant='caption'>
+                          <Typography variant="caption">
                             {guide.caption}
                           </Typography>
                         </div>
@@ -82,14 +83,15 @@ export const AboutLinks = (props: ISectionProps) => {
                 } else {
                   return (
                     <Button
-                      variant='outlined'
+                      variant="outlined"
                       color={guide.beginner ? 'secondary' : 'primary'}
                       href={guide.link}
-                      target='_blank'
-                      key={guide.title}>
+                      target="_blank"
+                      key={guide.title}
+                    >
                       <div className={classes.specialButton}>
                         <Typography>{guide.title}</Typography>
-                        <Typography variant='caption'>
+                        <Typography variant="caption">
                           {guide.caption}
                         </Typography>
                       </div>
@@ -106,11 +108,12 @@ export const AboutLinks = (props: ISectionProps) => {
                   return (
                     <NavLink key={guide.title} href={guide.link} passHref>
                       <Button
-                        variant='outlined'
-                        color={guide.beginner ? 'secondary' : 'primary'}>
+                        variant="outlined"
+                        color={guide.beginner ? 'secondary' : 'primary'}
+                      >
                         <div className={classes.specialButton}>
                           <Typography>{guide.title}</Typography>
-                          <Typography variant='caption'>
+                          <Typography variant="caption">
                             {guide.caption}
                           </Typography>
                         </div>
@@ -120,14 +123,15 @@ export const AboutLinks = (props: ISectionProps) => {
                 } else {
                   return (
                     <Button
-                      variant='outlined'
+                      variant="outlined"
                       color={guide.beginner ? 'secondary' : 'primary'}
                       href={guide.link}
-                      target='_blank'
-                      key={guide.title}>
+                      target="_blank"
+                      key={guide.title}
+                    >
                       <div className={classes.specialButton}>
                         <Typography>{guide.title}</Typography>
-                        <Typography variant='caption'>
+                        <Typography variant="caption">
                           {guide.caption}
                         </Typography>
                       </div>

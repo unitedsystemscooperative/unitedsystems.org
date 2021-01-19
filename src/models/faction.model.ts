@@ -22,8 +22,8 @@ export interface Faction {
   influence: number;
   state: string;
   activeStates: string[];
-  recoveringStates: any[];
-  pendingStates: any[];
+  recoveringStates: unknown[];
+  pendingStates: unknown[];
   happiness: string;
   isPlayer: boolean;
   lastUpdate: number;

@@ -126,11 +126,13 @@ const AddBuild = () => {
         break;
     }
   };
-  const handleShipChange = (_: ChangeEvent<{}>, value: IShipInfo | null) => {
-    const ship = value!.shipId;
-    setBuildInfo((buildInfo) => {
-      return { ...buildInfo, shipId: ship };
-    });
+  const handleShipChange = (_, value: IShipInfo | null) => {
+    if (value) {
+      const ship = value.shipId;
+      setBuildInfo((buildInfo) => {
+        return { ...buildInfo, shipId: ship };
+      });
+    }
   };
   const handleEngLevelChange = (
     _: MouseEvent<HTMLElement>,
@@ -290,15 +292,15 @@ const AddBuild = () => {
     <>
       <Head>
         <title>USC Add Build</title>
-        <meta name='description' content='Add Builld Form' />
+        <meta name="description" content="Add Builld Form" />
       </Head>
-      <Container maxWidth='lg'>
-        <Typography variant='h3' className={classes.center}>
+      <Container maxWidth="lg">
+        <Typography variant="h3" className={classes.center}>
           Add Build Form
         </Typography>
         <Paper className={classes.root}>
-          <NextLink href='/builds' passHref>
-            <Button color='secondary' variant='outlined'>
+          <NextLink href="/builds" passHref>
+            <Button color="secondary" variant="outlined">
               Return to builds
             </Button>
           </NextLink>
@@ -315,9 +317,10 @@ const AddBuild = () => {
               <BuildAddText {...field} />
               {field.id === 'description' && (
                 <Button
-                  href='https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
-                  target='_blank'
-                  color='primary'>
+                  href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
+                  target="_blank"
+                  color="primary"
+                >
                   Markdown Cheatsheet - Opens a new tab
                 </Button>
               )}
@@ -346,7 +349,7 @@ const AddBuild = () => {
               />
             ))}
           </FormGroup>
-          <Button onClick={handleSubmit} variant='outlined'>
+          <Button onClick={handleSubmit} variant="outlined">
             Submit Build
           </Button>
         </Paper>

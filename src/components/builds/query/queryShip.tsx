@@ -1,6 +1,6 @@
 import { makeStyles, Tooltip } from '@material-ui/core';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
-import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { IShipInfo } from 'models/builds';
 import { ShipAutocomplete } from '../shipAutocomplete';
 import { useSharedStyles } from './sharedStyles';
@@ -41,7 +41,7 @@ export const QueryShip = (props: {
     setShipSize(newValue);
   };
 
-  const handleShipChange = (_: ChangeEvent<{}>, value: IShipInfo | null) => {
+  const handleShipChange = (_, value: IShipInfo | null) => {
     const ship = value?.shipId;
     setShipType(ship ?? null);
     setShipSize(null);
@@ -60,11 +60,13 @@ export const QueryShip = (props: {
         <div className={classes.shipSizeQuery}>
           <Tooltip
             title="What's the size of the ship you're looking for?"
-            arrow>
+            arrow
+          >
             <ToggleButtonGroup
               value={shipSize}
               exclusive
-              onChange={handleShipSizeChange}>
+              onChange={handleShipSizeChange}
+            >
               <ToggleButton value={1}>Small</ToggleButton>
               <ToggleButton value={2}>Medium</ToggleButton>
               <ToggleButton value={3}>Large</ToggleButton>

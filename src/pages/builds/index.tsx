@@ -1,7 +1,6 @@
 import {
   Container,
   Fab,
-  Fade,
   makeStyles,
   Slide,
   Typography,
@@ -51,20 +50,20 @@ const QueryandBuildList = () => {
     <>
       <Head>
         <title>USC Build Archive</title>
-        <meta name='description' content='Builds of the USC' />
+        <meta name="description" content="Builds of the USC" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth='xl' className={classes.root}>
-          <Typography variant='h3' className={classes.header}>
+        <Container maxWidth="xl" className={classes.root}>
+          <Typography variant="h3" className={classes.header}>
             Ship Build Archive
           </Typography>
           <Query updateQuery={handleQuery} />
           <div ref={buildRef}>
             <BuildList buildQuery={query} />
           </div>
-          <Slide direction='left' in={isMobile} timeout={1000}>
+          <Slide direction="left" in={isMobile} timeout={1000}>
             <div className={classes.fab}>
-              <Fab color='primary' className='fab' onClick={handleFab}>
+              <Fab color="primary" className="fab" onClick={handleFab}>
                 <ArrowDownwardIcon />
               </Fab>
             </div>

@@ -14,7 +14,7 @@ export const useFleetCarriers = () => {
   if (error) {
     throw new Error(`Failed to fetch carriers: ${error.message}`);
   }
-  let fleetCarriers = data?.fleetCarriers;
+  const fleetCarriers = data?.fleetCarriers;
   return { fleetCarriers, isLoading: !error && !data };
 };
 

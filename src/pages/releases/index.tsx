@@ -12,7 +12,7 @@ import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';
 import Link from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   center: {
     textAlign: 'center',
   },
@@ -28,17 +28,17 @@ const ReleaseIndex = ({
     <>
       <Head>
         <title>USC Website Releases</title>
-        <meta name='description' content='USC Website Releases' />
+        <meta name="description" content="USC Website Releases" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth='md'>
-          <Typography variant='h4' className={classes.center}>
+        <Container maxWidth="md">
+          <Typography variant="h4" className={classes.center}>
             Releases
           </Typography>
           <List component={Paper}>
             {allReleases.map(({ id, date, title }) => (
               <Link key={id} href={`/releases/${id}`} passHref>
-                <ListItem button component='a'>
+                <ListItem button component="a">
                   <ListItemText>
                     {title} - {date}
                   </ListItemText>

@@ -9,8 +9,8 @@ const apiURL = 'https://www.edsm.net/api-v1/sphere-systems';
  * @param distance distance (in LY) from center. Default 50
  */
 const getSystemsinSphere = async (
-  systemName: string = 'Arugbal',
-  distance: number = 50
+  systemName = 'Arugbal',
+  distance = 50
 ) => {
   try {
     const response = await axios.get<ISphereSystem[]>(apiURL, {

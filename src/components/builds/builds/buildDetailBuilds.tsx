@@ -3,7 +3,7 @@ import { makeStyles, Typography } from '@material-ui/core';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { BuildCard } from './buildCard';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     marginBottom: 5,
     display: 'flex',

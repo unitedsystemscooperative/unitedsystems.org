@@ -26,7 +26,7 @@ export const EngIcons = (props: { engLevel: number }) => {
     for (let i = 1; i <= props.engLevel; i++) {
       icons = [
         ...icons,
-        <img src={engineerIcon} key={i} alt='Engineering Icon' />,
+        <img src={engineerIcon} key={i} alt="Engineering Icon" />,
       ];
     }
     return (

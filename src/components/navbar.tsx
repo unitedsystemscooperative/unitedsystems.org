@@ -6,12 +6,12 @@ import { NavbarMobile } from './navbar.mobile';
 import { NavbarFull } from './navbar.full';
 
 export const Navbar = () => {
-  let pathName = useRouter().pathname;
+  const pathName = useRouter().pathname;
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
   );
 
-  let title = useMemo(
+  const title = useMemo(
     () => navItems.find((x) => pathName.startsWith(x.to))?.text,
     [pathName]
   );

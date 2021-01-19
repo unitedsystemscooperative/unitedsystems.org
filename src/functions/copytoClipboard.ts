@@ -1,5 +1,5 @@
 export const copytoClipboard = (text: string) => {
-  let tempInput = document.createElement('input');
+  const tempInput = document.createElement('input');
   tempInput.value = text;
   document.body.appendChild(tempInput);
   tempInput.select();

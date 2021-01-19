@@ -1,7 +1,6 @@
 import {
   Button,
   Container,
-  Fade,
   makeStyles,
   Paper,
   Table,
@@ -30,11 +29,11 @@ const ShipReviews = () => {
     <>
       <Head>
         <title>USC Ship Reviews</title>
-        <meta name='description' content='Ship Reviews compiled by USC' />
+        <meta name="description" content="Ship Reviews compiled by USC" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth='sm' className={classes.table}>
-          <Typography variant='h3'>Ship Reviews</Typography>
+        <Container maxWidth="sm" className={classes.table}>
+          <Typography variant="h3">Ship Reviews</Typography>
           <TableContainer component={Paper}>
             <Table className={classes.table}>
               <TableHead>
@@ -52,9 +51,10 @@ const ShipReviews = () => {
                     <TableCell>
                       <Button
                         href={review.shipReview}
-                        target='_blank'
-                        variant='contained'
-                        color='secondary'>
+                        target="_blank"
+                        variant="contained"
+                        color="secondary"
+                      >
                         Pilot Review
                       </Button>
                     </TableCell>

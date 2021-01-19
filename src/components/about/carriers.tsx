@@ -18,17 +18,17 @@ const useStyles = makeStyles({
 export const Carriers = () => {
   const classes = useStyles();
   const { fleetCarriers, isLoading } = useFleetCarriers();
-  let personalCarriers = usePersonalCarriers(fleetCarriers);
-  let squadCarriers = useSquadCarriers(fleetCarriers);
+  const personalCarriers = usePersonalCarriers(fleetCarriers);
+  const squadCarriers = useSquadCarriers(fleetCarriers);
 
   return (
     <>
       <Fade in={isLoading}>{isLoading ? <EDSpinner /> : <div></div>}</Fade>
       <Fade in={!isLoading}>
-        <Container maxWidth='md' className={classes.table}>
-          <Typography variant='h4'>USC Fleet Carriers</Typography>
+        <Container maxWidth="md" className={classes.table}>
+          <Typography variant="h4">USC Fleet Carriers</Typography>
           <USCCarriers carriers={squadCarriers} />
-          <Typography variant='h4'>Personal Fleet Carriers of USC</Typography>
+          <Typography variant="h4">Personal Fleet Carriers of USC</Typography>
           <PersonalCarriers carriers={personalCarriers} />
         </Container>
       </Fade>

@@ -21,9 +21,9 @@ export const TagGroup = (props: { build: IBuildInfov2 }) => {
       {build.specializations.map((v) => (
         <Chip label={v} key={v} />
       ))}
-      {build.hasGuardian && <Chip label='Guardian' key='guardian' />}
-      {build.hasPowerplay && <Chip label='PowerPlay' key='powerplay' />}
-      {build.isBeginner && <Chip label='Beginner' key='beginner' />}
+      {build.hasGuardian && <Chip label="Guardian" key="guardian" />}
+      {build.hasPowerplay && <Chip label="PowerPlay" key="powerplay" />}
+      {build.isBeginner && <Chip label="Beginner" key="beginner" />}
     </div>
   );
 };
