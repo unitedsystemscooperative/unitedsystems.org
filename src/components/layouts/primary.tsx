@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { Footer } from 'components/footer';
 import { Navbar } from 'components/navbar';
-import { useLoginAnon } from 'hooks/useLoginAnon';
-import { useSnackbar } from 'notistack';
 import { ReactNode } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,13 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const PrimaryLayout = ({ children }: { children: ReactNode }) => {
   const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
-
-  try {
-    useLoginAnon();
-  } catch (e) {
-    enqueueSnackbar('Unable to login for database', { variant: 'error' });
-  }
 
   return (
     <div className={classes.root}>

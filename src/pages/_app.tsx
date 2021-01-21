@@ -1,4 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { LoginAnon } from 'components/loginAnon';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
@@ -36,6 +37,7 @@ function USCApp({ Component, pageProps }: AppProps) {
       </Head>
       <RealmAppProvider appId={realmID}>
         <SnackbarProvider maxSnack={3}>
+          <LoginAnon />
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Component {...pageProps} />

@@ -1,0 +1,220 @@
+diff --git a/node_modules/jest-runtime/build/index.js b/node_modules/jest-runtime/build/index.js
+index 1c13b1d..9a72d4f 100644
+--- a/node_modules/jest-runtime/build/index.js
++++ b/node_modules/jest-runtime/build/index.js
+@@ -179,7 +179,7 @@ var _helpers = require('./helpers');
+ var _Object$fromEntries;
+ 
+ function _interopRequireDefault(obj) {
+-  return obj && obj.__esModule ? obj : {default: obj};
++  return obj && obj.__esModule ? obj : { default: obj };
+ }
+ 
+ function _getRequireWildcardCache() {
+@@ -196,7 +196,7 @@ function _interopRequireWildcard(obj) {
+     return obj;
+   }
+   if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
+-    return {default: obj};
++    return { default: obj };
+   }
+   var cache = _getRequireWildcardCache();
+   if (cache && cache.has(obj)) {
+@@ -251,14 +251,14 @@ const OUTSIDE_JEST_VM_RESOLVE_OPTION = Symbol.for(
+ );
+ const fromEntries =
+   (_Object$fromEntries = Object.fromEntries) !== null &&
+-  _Object$fromEntries !== void 0
++    _Object$fromEntries !== void 0
+     ? _Object$fromEntries
+     : function fromEntries(iterable) {
+-        return [...iterable].reduce((obj, [key, val]) => {
+-          obj[key] = val;
+-          return obj;
+-        }, {});
+-      };
++      return [...iterable].reduce((obj, [key, val]) => {
++        obj[key] = val;
++        return obj;
++      }, {});
++    };
+ const testTimeoutSymbol = Symbol.for('TEST_TIMEOUT_SYMBOL');
+ const retryTimesSymbol = Symbol.for('RETRY_TIMES');
+ const NODE_MODULES = path().sep + 'node_modules' + path().sep;
+@@ -466,7 +466,7 @@ class Runtime {
+       ...config.modulePathIgnorePatterns,
+       ...(options && options.watch ? config.watchPathIgnorePatterns : []),
+       config.cacheDirectory.startsWith(config.rootDir + path().sep) &&
+-        config.cacheDirectory
++      config.cacheDirectory
+     ].filter(Boolean);
+     const ignorePattern =
+       ignorePatternParts.length > 0
+@@ -643,7 +643,7 @@ class Runtime {
+     let cjsExports = [];
+ 
+     if (transformedCode) {
+-      const {exports} = (0, _cjsModuleLexer().parse)(transformedCode.code);
++      const { exports } = (0, _cjsModuleLexer().parse)(transformedCode.code);
+       cjsExports = exports.filter(exportName => {
+         // we don't wanna respect any exports _names_ default as a named export
+         if (exportName === 'default') {
+@@ -715,13 +715,10 @@ class Runtime {
+     ) {
+       moduleRegistry = this._internalModuleRegistry;
+     } else {
+-      if (
+-        this._moduleRegistry.get(modulePath) ||
+-        !this._isolatedModuleRegistry
+-      ) {
+-        moduleRegistry = this._moduleRegistry;
+-      } else {
++      if (this._isolatedModuleRegistry) {
+         moduleRegistry = this._isolatedModuleRegistry;
++      } else {
++        moduleRegistry = this._moduleRegistry;
+       }
+     }
+ 
+@@ -902,7 +899,7 @@ class Runtime {
+   }
+ 
+   _getFullTransformationOptions(options = defaultTransformOptions) {
+-    return {...options, ...this._coverageOptions};
++    return { ...options, ...this._coverageOptions };
+   }
+ 
+   requireModuleOrMock(from, moduleName) {
+@@ -963,11 +960,11 @@ class Runtime {
+ 
+       // might be cleared within the callback
+       (_this$_isolatedModule = this._isolatedModuleRegistry) === null ||
+-      _this$_isolatedModule === void 0
++        _this$_isolatedModule === void 0
+         ? void 0
+         : _this$_isolatedModule.clear();
+       (_this$_isolatedMockRe = this._isolatedMockRegistry) === null ||
+-      _this$_isolatedMockRe === void 0
++        _this$_isolatedMockRe === void 0
+         ? void 0
+         : _this$_isolatedMockRe.clear();
+       this._isolatedModuleRegistry = null;
+@@ -979,11 +976,11 @@ class Runtime {
+     var _this$_isolatedModule2, _this$_isolatedMockRe2;
+ 
+     (_this$_isolatedModule2 = this._isolatedModuleRegistry) === null ||
+-    _this$_isolatedModule2 === void 0
++      _this$_isolatedModule2 === void 0
+       ? void 0
+       : _this$_isolatedModule2.clear();
+     (_this$_isolatedMockRe2 = this._isolatedMockRegistry) === null ||
+-    _this$_isolatedMockRe2 === void 0
++      _this$_isolatedMockRe2 === void 0
+       ? void 0
+       : _this$_isolatedMockRe2.clear();
+     this._isolatedModuleRegistry = null;
+@@ -1043,7 +1040,7 @@ class Runtime {
+ 
+     return this._v8CoverageResult
+       .filter(res => res.url.startsWith('file://'))
+-      .map(res => ({...res, url: (0, _url().fileURLToPath)(res.url)}))
++      .map(res => ({ ...res, url: (0, _url().fileURLToPath)(res.url) }))
+       .filter(
+         (
+           res // TODO: will this work on windows? It might be better if `shouldInstrument` deals with it anyways
+@@ -1152,7 +1149,7 @@ class Runtime {
+       );
+     }
+ 
+-    const {paths} = options;
++    const { paths } = options;
+ 
+     if (paths) {
+       for (const p of paths) {
+@@ -1433,7 +1430,7 @@ class Runtime {
+       });
+     }; // should we implement the class ourselves?
+ 
+-    class Module extends nativeModule().Module {}
++    class Module extends nativeModule().Module { }
+ 
+     Object.entries(nativeModule().Module).forEach(([key, value]) => {
+       // @ts-expect-error
+@@ -1449,10 +1446,9 @@ class Runtime {
+       Module.createRequireFromPath = function createRequireFromPath(filename) {
+         if (typeof filename !== 'string') {
+           const error = new TypeError(
+-            `The argument 'filename' must be string. Received '${filename}'.${
+-              filename instanceof _url().URL
+-                ? ' Use createRequire for URL filename.'
+-                : ''
++            `The argument 'filename' must be string. Received '${filename}'.${filename instanceof _url().URL
++              ? ' Use createRequire for URL filename.'
++              : ''
+             }`
+           ); // @ts-expect-error
+ 
+@@ -1465,7 +1461,7 @@ class Runtime {
+     }
+ 
+     if ('syncBuiltinESMExports' in nativeModule()) {
+-      Module.syncBuiltinESMExports = function syncBuiltinESMExports() {};
++      Module.syncBuiltinESMExports = function syncBuiltinESMExports() { };
+     }
+ 
+     this._moduleImplementation = Module;
+@@ -1502,7 +1498,7 @@ class Runtime {
+       if (mockMetadata == null) {
+         throw new Error(
+           `Failed to get mock metadata: ${modulePath}\n\n` +
+-            `See: https://jestjs.io/docs/manual-mocks.html#content`
++          `See: https://jestjs.io/docs/manual-mocks.html#content`
+         );
+       }
+ 
+@@ -1872,14 +1868,14 @@ class Runtime {
+       .split('\n') // Remove this file from the stack (jest-message-utils will keep one line)
+       .filter(line => line.indexOf(__filename) === -1)
+       .join('\n');
+-    const {message, stack} = (0, _jestMessageUtil().separateMessageFromStack)(
++    const { message, stack } = (0, _jestMessageUtil().separateMessageFromStack)(
+       originalStack
+     );
+     console.error(
+       `\n${message}\n` +
+-        (0, _jestMessageUtil().formatStackTrace)(stack, this._config, {
+-          noStackTrace: false
+-        })
++      (0, _jestMessageUtil().formatStackTrace)(stack, this._config, {
++        noStackTrace: false
++      })
+     );
+   }
+ 
+@@ -1930,7 +1926,7 @@ class Runtime {
+   getGlobalsForCjs(from) {
+     const jest = this.jestObjectCaches.get(from);
+     invariant(jest, 'There should always be a Jest object already');
+-    return {...this.getGlobalsFromEnvironment(), jest};
++    return { ...this.getGlobalsFromEnvironment(), jest };
+   }
+ 
+   getGlobalsForEsm(from, context) {
+@@ -1941,7 +1937,7 @@ class Runtime {
+       this.jestObjectCaches.set(from, jest);
+     }
+ 
+-    const globals = {...this.getGlobalsFromEnvironment(), jest};
++    const globals = { ...this.getGlobalsFromEnvironment(), jest };
+     const module = new (_vm().SyntheticModule)(
+       Object.keys(globals),
+       function () {
+@@ -1960,7 +1956,7 @@ class Runtime {
+ 
+   getGlobalsFromEnvironment() {
+     if (this.jestGlobals) {
+-      return {...this.jestGlobals};
++      return { ...this.jestGlobals };
+     }
+ 
+     return {
