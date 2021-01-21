@@ -60,9 +60,10 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
               <Link href={x.to}>
                 <Button
                   href={x.to}
-                  color='secondary'
+                  color="secondary"
                   className={classes.navLinkJoin}
-                  variant='contained'>
+                  variant="contained"
+                >
                   {x.text}
                 </Button>
               </Link>
