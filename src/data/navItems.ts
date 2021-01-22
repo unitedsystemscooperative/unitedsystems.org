@@ -5,6 +5,6 @@ export const navItems: INavItem[] = [
   { to: '/about', text: 'About' },
   { to: '/information', text: 'Information' },
   { to: '/builds', text: 'USC Builds' },
-  // { to: '/massacres', text: 'Massacre Mission Tracker' },
+  { to: '/massacres', text: 'Massacre Mission Tracker' },
   { to: '/join', text: 'Join' },
 ];
