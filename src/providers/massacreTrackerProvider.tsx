@@ -104,10 +104,10 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
       if (selectedTrack) {
         return selectedTrack.hazRezSystem;
       } else {
-        return '+';
+        return 'Bibaridji';
       }
     } else {
-      return '+';
+      return 'Bibaridji';
     }
   });
 
