@@ -143,7 +143,7 @@ const FactionRow = (props: {
   };
 
   const removeFaction = () => {
-    const emptyMissions: IFactionMission[] = faction.missions.map((mission) => {
+    const emptyMissions: IFactionMission[] = faction.missions.map(() => {
       return { timeStamp: new Date(), killsforMission: 0, killsCompleted: 0 };
     });
     setMissionKills(emptyMissions);

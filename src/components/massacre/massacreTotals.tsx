@@ -24,7 +24,7 @@ const calcTotalKillsNeeded = (tracker: IMassacreTrack) => {
           },
           0
         );
-        return acc + missionKillsNeeded;
+        return acc < missionKillsNeeded ? missionKillsNeeded : acc;
       }
       return acc;
     },
