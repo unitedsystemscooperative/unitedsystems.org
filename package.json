@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "patch-package",
     "dev": "next dev",
+    "dev:debug": "node --inspect ./node_modules/next/dist/bin/next dev",
     "build": "next build",
     "start": "next start",
     "test": "jest",

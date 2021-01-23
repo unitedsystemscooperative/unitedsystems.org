@@ -28,7 +28,8 @@ function USCApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <link rel="icon" href="uscLogo.png" />
+        <meta name="image" content="https://unitedsystems.org/uscLogo.png" />
+        <link rel="icon" href="/uscLogo.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"

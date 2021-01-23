@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     // width: theme.spacing(15),
     marginRight: theme.spacing(1),
-    fontSize: 18,
+    fontSize: 16,
     '&.active': {
       backgroundColor: theme.palette.primary.main,
       color: 'white',
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
     border: `${theme.palette.secondary.main} 0.1em solid`,
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,
     },

@@ -1,21 +1,13 @@
 import { sortItems } from 'functions/sort';
 import { IFleetCarrier } from 'models/information/fleetCarrier';
-import { useContext, useMemo } from 'react';
-import { QueryAllFleetCarriers } from 'gql/queries/fleetCarriers';
+import { useMemo } from 'react';
 import useSWR from 'swr';
-import { gqlFetcher } from 'gql/fetcher';
-import { RealmAppContext } from 'providers';
+import axios from 'axios';
 
 export const useFleetCarriers = () => {
-  const realm = useContext(RealmAppContext);
-  const { data, error } = useSWR(QueryAllFleetCarriers, (query) =>
-    gqlFetcher(query, undefined, realm)
-  );
-  if (error) {
-    throw new Error(`Failed to fetch carriers: ${error.message}`);
-  }
-  const fleetCarriers = data?.fleetCarriers;
-  return { fleetCarriers, isLoading: !error && !data };
+  const { data, error } = useSWR('/api/fc', (url: string) => axios.get(url));
+  const fleetCarriers = data?.data ?? [];
+  return { fleetCarriers, isLoading: !error && !data, error };
 };
 
 export const usePersonalCarriers = (

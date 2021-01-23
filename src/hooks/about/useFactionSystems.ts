@@ -1,15 +1,11 @@
-import { gqlFetcher } from 'gql/fetcher';
-import { AllFactionSystems } from 'gql/queries/factionSystems';
-import { RealmAppContext } from 'providers';
-import { useContext } from 'react';
+import axios from 'axios';
 import useSWR from 'swr';
 
 export const useFactionSystems = () => {
-  const realm = useContext(RealmAppContext);
-  const { data, error } = useSWR(AllFactionSystems, (query) =>
-    gqlFetcher(query, undefined, realm)
+  const { data, error } = useSWR('/api/factionSystems', (url: string) =>
+    axios.get(url)
   );
-  const factionSystems = data?.factionSystems ?? [];
+  const factionSystems = data?.data ?? [];
 
   return { factionSystems, loading: !error && !data, error };
 };

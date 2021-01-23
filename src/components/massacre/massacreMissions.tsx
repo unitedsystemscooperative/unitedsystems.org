@@ -1,5 +1,6 @@
 import {
   Container,
+  createStyles,
   IconButton,
   Paper,
   Table,
@@ -9,6 +10,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  withStyles,
 } from '@material-ui/core';
 import {
   IFactionMission,
@@ -63,6 +65,16 @@ export const MassacreMissions = (props: {
     </Container>
   );
 };
+
+const StyledTableRow = withStyles((theme) =>
+  createStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  })
+)(TableRow);
 
 const FactionRow = (props: {
   faction: IFactionwMissions;
@@ -158,7 +170,7 @@ const FactionRow = (props: {
   };
 
   return (
-    <TableRow>
+    <StyledTableRow>
       <TableCell>{totalKills}</TableCell>
       <TableCell>
         {faction.name}{' '}
@@ -176,6 +188,6 @@ const FactionRow = (props: {
           />
         </TableCell>
       ))}
-    </TableRow>
+    </StyledTableRow>
   );
 };

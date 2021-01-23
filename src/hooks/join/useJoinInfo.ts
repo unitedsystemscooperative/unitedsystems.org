@@ -1,10 +1,7 @@
 import { IJoinInfo } from 'models/join/joinInfo';
-import { useContext, useMemo } from 'react';
-import { QueryAllJoiners } from 'gql/queries/joiners';
-import { InsertJoiner } from 'gql/mutations/joiner.insert';
-import { RealmAppContext } from 'providers';
+import { useMemo } from 'react';
 import useSWR from 'swr';
-import { gqlFetcher } from 'gql/fetcher';
+import axios from 'axios';
 
 export const useJoinInfo = () => {
   const { allJoiners, loading, error } = useAllJoinInfo();
@@ -33,29 +30,18 @@ export const useJoinInfo = () => {
 };
 
 export const useAllJoinInfo = () => {
-  const realm = useContext(RealmAppContext);
-  const { data, error } = useSWR('/api/joiners', () =>
-    gqlFetcher(QueryAllJoiners, undefined, realm)
+  const { data, error } = useSWR('/api/joiners', (url: string) =>
+    axios.get(url)
   );
-  const allJoiners = data?.joiners ?? [];
+  const allJoiners = data?.data ?? [];
 
   return { allJoiners, loading: !error && !data, error };
 };
 
 export const useAddJoinInfo = () => {
-  const realm = useContext(RealmAppContext);
   const addJoiner = async (joiner: IJoinInfo) => {
     try {
-      const addedJoiner = await gqlFetcher(
-        InsertJoiner,
-        {
-          joiner: {
-            ...joiner,
-          },
-        },
-        realm
-      );
-      return addedJoiner;
+      await axios.post('/api/joiners', joiner);
     } catch (e) {
       throw new Error(`Unable to add. ${e.message}`);
     }
