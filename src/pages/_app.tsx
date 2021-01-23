@@ -1,13 +1,9 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import { LoginAnon } from 'components/loginAnon';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
-import { RealmAppProvider } from 'providers';
 import React, { useEffect } from 'react';
 import { theme } from 'theme';
-
-const realmID: string | undefined = process.env.NEXT_PUBLIC_REALM_ID;
 
 function USCApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -36,15 +32,12 @@ function USCApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <RealmAppProvider appId={realmID}>
-        <SnackbarProvider maxSnack={3}>
-          <LoginAnon />
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </SnackbarProvider>
-      </RealmAppProvider>
+      <SnackbarProvider maxSnack={3}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SnackbarProvider>
     </>
   );
 }
