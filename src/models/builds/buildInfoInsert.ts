@@ -1,7 +1,4 @@
-import { ObjectId } from 'bson';
-
 export interface IBuildInfoInsert {
-  _id: ObjectId;
   shipId: string;
   title: string;
   specializations: string[];

@@ -35,9 +35,7 @@ const useAddRelatedBuild = () => {
     shipBuilds: IBuildInfov2[],
     buildtoInsert: IBuildInfoInsert
   ) => {
-    const currentBuild = shipBuilds.find(
-      (x) => ((x._id as unknown) as string) === currentID
-    );
+    const currentBuild = shipBuilds.find((x) => x._id === currentID);
     if (currentBuild) {
       const relatedBuilds = currentBuild.related;
 
@@ -49,18 +47,16 @@ const useAddRelatedBuild = () => {
       )[0];
       console.log(addedBuild);
       if (addedBuild) {
-        const buildID = (addedBuild._id as unknown) as string;
+        const buildID = addedBuild._id;
         if (buildID) {
           await updateBuild(currentID, {
             related: [...relatedBuilds, buildID],
           });
           for (const id of relatedBuilds) {
-            const build = shipBuilds.find(
-              (x) => ((x._id as unknown) as string) === id
-            );
+            const build = shipBuilds.find((x) => x._id === id);
             if (build) {
               const newRelated = [...build.related, buildID];
-              await updateBuild((build._id as unknown) as string, {
+              await updateBuild(build._id, {
                 related: newRelated,
               });
             }
@@ -84,9 +80,7 @@ const useAddVariantBuild = () => {
     shipBuilds: IBuildInfov2[],
     buildtoInsert: IBuildInfoInsert
   ) => {
-    const parentBuild = shipBuilds.find(
-      (x) => ((x._id as unknown) as string) === parentID
-    );
+    const parentBuild = shipBuilds.find((x) => x._id === parentID);
     if (parentBuild) {
       const variantBuilds = parentBuild.variants;
 
@@ -98,7 +92,7 @@ const useAddVariantBuild = () => {
       )[0];
       console.log(addedBuild);
       if (addedBuild) {
-        const buildID = (addedBuild._id as unknown) as string;
+        const buildID = addedBuild._id;
         if (buildID) {
           console.log(buildID);
           await updateBuild(parentID, {
@@ -107,12 +101,10 @@ const useAddVariantBuild = () => {
 
           for (const id of variantBuilds) {
             console.log(id);
-            const build = shipBuilds.find(
-              (x) => ((x._id as unknown) as string) === id
-            );
+            const build = shipBuilds.find((x) => x._id === id);
             if (build) {
               const newRelated = [...build.related, buildID];
-              await updateBuild((build._id as unknown) as string, {
+              await updateBuild(build._id, {
                 related: newRelated,
               });
             }

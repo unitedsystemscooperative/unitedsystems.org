@@ -1,3 +1,4 @@
+import { ObjectID } from 'bson';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from 'utils/mongo';
 
@@ -14,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'PUT':
         console.log(req.body);
-        const idToUpdate = req.body.id;
+        const idToUpdate = new ObjectID(req.body.id);
         const updateDoc = { $set: req.body.updateDoc };
         const options = { upsert: false };
 
@@ -22,7 +23,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           .collection('shipBuildsv2')
           .updateOne({ _id: idToUpdate }, updateDoc, options);
 
-        res.status(200).json(updateResult.result);
+        if (updateResult.result.nModified > 0) {
+          res.status(200).json(updateResult.result);
+        } else {
+          res.status(500).send(`Failed to update id: ${req.body.id}`);
+        }
+
         break;
       case 'GET':
       default:

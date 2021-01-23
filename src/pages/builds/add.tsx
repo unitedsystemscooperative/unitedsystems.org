@@ -6,7 +6,6 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import { ObjectId } from 'bson';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useState } from 'react';
 import { processJSONBuild } from 'functions/builds';
 import { IShipInfo, IBuildInfoInsert } from 'models/builds';
@@ -78,9 +77,7 @@ const AddBuild = () => {
       url,
     } = processJSONBuild(event.target.value);
     const engLevel = engineering ? 1 : 0;
-    const _id = buildInfo._id;
     const info: IBuildInfoInsert = {
-      _id,
       title: buildName,
       hasGuardian,
       hasPowerplay,
@@ -202,7 +199,7 @@ const AddBuild = () => {
         enqueueSnackbar('Build Successfully Submitted', {
           variant: 'success',
         });
-        setBuildInfo({ ...DEFAULTBUILD, _id: new ObjectId() });
+        setBuildInfo({ ...DEFAULTBUILD });
         setSpecialties([]);
         setJsonBuild('');
       } catch (e) {
@@ -359,7 +356,6 @@ const AddBuild = () => {
 };
 
 const DEFAULTBUILD: IBuildInfoInsert = {
-  _id: new ObjectId(),
   shipId: 'adder',
   title: '',
   specializations: [],

@@ -1,7 +1,7 @@
 import { IBuildInfov2 } from 'models/builds';
 
 export const testBuildNoExtra: IBuildInfov2 = {
-  _id: { $oid: '1234' },
+  _id: '1234',
   shipId: 'imperial_clipper',
   title: 'clipper',
   specializations: [],
@@ -18,7 +18,7 @@ export const testBuildNoExtra: IBuildInfov2 = {
   jsonBuild: '',
 };
 export const testBuildExtraBuilds: IBuildInfov2 = {
-  _id: { $oid: '1234' },
+  _id: '1234',
   shipId: 'imperial_clipper',
   title: 'clipper',
   specializations: [],

@@ -1,5 +1,3 @@
-import { ObjectId } from 'bson';
-
 // export interface IBuildInfo {
 //   _id: ObjectId;
 //   ship?: number;
@@ -16,7 +14,7 @@ import { ObjectId } from 'bson';
 // }
 
 export interface IBuildInfov2 {
-  _id: ObjectId | { $oid: string };
+  _id: string;
   shipId: string;
   title: string;
   specializations: string[];
