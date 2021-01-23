@@ -7,13 +7,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { db } = await connectToDatabase();
     if (req.method === 'POST') {
       const response = await db
-        .collection<IJoinInfo>('testJoin')
+        .collection<IJoinInfo>('joiners')
         .insertOne(req.body);
 
       res.json(response.ops);
     } else {
       const factionSystems = await db
-        .collection('testJoin')
+        .collection('joiners')
         .find({})
         .sort({ timeStamp: -1 })
         .toArray();
