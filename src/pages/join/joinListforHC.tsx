@@ -23,6 +23,8 @@ import { EDSpinner } from '@admiralfeb/react-components';
 import { useSnackbar } from 'notistack';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
+import { useSession } from 'next-auth/client';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,10 +37,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
   },
+  paper: {
+    marginTop: theme.spacing(8),
+    padding: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
 }));
 
 export const JoinList = () => {
   const joinInfo = useJoinInfo();
+  const [session] = useSession();
 
   const classes = useStyles();
   const [select, setSelect] = useState<number | null>(null);
@@ -53,10 +64,12 @@ export const JoinList = () => {
       });
       return;
     }
-    if (joinInfo.joiners && joinInfo.joiners.length > 0) {
-      enqueueSnackbar('Successfully retrieved list.', { variant: 'success' });
+    if (session) {
+      if (joinInfo.joiners && joinInfo.joiners.length > 0) {
+        enqueueSnackbar('Successfully retrieved list.', { variant: 'success' });
+      }
     }
-  }, [joinInfo.joiners, joinInfo.error, enqueueSnackbar]);
+  }, [joinInfo.joiners, joinInfo.error, enqueueSnackbar, session]);
 
   const buildPlatforms = (platforms: {
     pc: boolean;
@@ -86,6 +99,25 @@ export const JoinList = () => {
 
   if (joinInfo.loading) {
     return <EDSpinner />;
+  }
+
+  if (session === undefined || session === null) {
+    return (
+      <PrimaryLayout>
+        <Container maxWidth="xs">
+          <Paper className={classes.paper}>
+            <Typography component="h1" variant="h5">
+              Please Sign-In to view
+            </Typography>
+            <Link href="/auth/signIn" passHref>
+              <Button variant="contained" color="primary">
+                Go to Sign-In Page
+              </Button>
+            </Link>
+          </Paper>
+        </Container>
+      </PrimaryLayout>
+    );
   }
 
   return (

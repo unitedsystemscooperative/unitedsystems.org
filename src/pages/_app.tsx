@@ -1,4 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
@@ -24,7 +25,7 @@ function USCApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <meta name="image" content="https://unitedsystems.org/uscLogo.png" />
+        <meta name="og:image" content="https://unitedsystems.org/uscLogo.png" />
         <link rel="icon" href="/uscLogo.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -32,12 +33,14 @@ function USCApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <SnackbarProvider maxSnack={3}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </SnackbarProvider>
+      <Provider session={pageProps.session}>
+        <SnackbarProvider maxSnack={3}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </SnackbarProvider>
+      </Provider>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { Button, makeStyles } from '@material-ui/core';
 import { INavItem } from 'models/navItem';
+import { signout, useSession } from 'next-auth/client';
 import { Fragment } from 'react';
 import Link from './navLink';
 
@@ -48,27 +49,44 @@ const useStyles = makeStyles((theme) => ({
 
 export const NavbarFull = (props: { navItems: INavItem[] }) => {
   const classes = useStyles();
+  const [session] = useSession();
   const { navItems } = props;
 
   return (
     <nav className={classes.root}>
       {navItems.map((x) => {
         if (x.to.includes('join')) {
-          return (
-            <Fragment key={x.to}>
-              <div className={classes.filler} />
-              <Link href={x.to}>
+          if (session) {
+            return (
+              <Fragment key={x.to}>
+                <div className={classes.filler} />
                 <Button
-                  href={x.to}
+                  onClick={() => signout()}
                   color="secondary"
                   className={classes.navLinkJoin}
                   variant="contained"
                 >
-                  {x.text}
+                  Sign Out
                 </Button>
-              </Link>
-            </Fragment>
-          );
+              </Fragment>
+            );
+          } else {
+            return (
+              <Fragment key={x.to}>
+                <div className={classes.filler} />
+                <Link href={x.to}>
+                  <Button
+                    href={x.to}
+                    color="secondary"
+                    className={classes.navLinkJoin}
+                    variant="contained"
+                  >
+                    {x.text}
+                  </Button>
+                </Link>
+              </Fragment>
+            );
+          }
         } else {
           return (
             <Link key={x.to} href={x.to}>
