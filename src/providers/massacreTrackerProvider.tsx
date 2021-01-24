@@ -81,7 +81,7 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
       const store: IMassacreTrack[] | null = JSON.parse(
         window.localStorage.getItem('massacreTrackerStore')
       );
-      if (store.length > 0) {
+      if (store && store.length > 0) {
         dispatch({ type: 'set', trackers: store });
       } else {
         const defaultTrackers: IMassacreTrack[] = massacreDefaults;
