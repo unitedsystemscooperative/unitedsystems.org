@@ -16,7 +16,7 @@ import Link from './navLink';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -58,7 +58,7 @@ export const NavbarMobile = (props: {
       <List>
         {navItems.map((x) => (
           <Link key={x.to} href={x.to}>
-            <ListItem button component='a'>
+            <ListItem button component="a">
               <ListItemText primary={x.text} />
             </ListItem>
           </Link>
@@ -69,20 +69,21 @@ export const NavbarMobile = (props: {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='inherit'>
+      <AppBar position="static" color="inherit">
         <Toolbar>
           <IconButton
-            edge='start'
+            edge="start"
             className={classes.menuButton}
-            color='inherit'
-            onClick={toggleDrawer(true)}>
+            color="inherit"
+            onClick={toggleDrawer(true)}
+          >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
         </Toolbar>
-        <Drawer anchor='left' open={openDrawer} onClose={toggleDrawer(false)}>
+        <Drawer anchor="left" open={openDrawer} onClose={toggleDrawer(false)}>
           {navList()}
         </Drawer>
       </AppBar>
