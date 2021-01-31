@@ -9,13 +9,13 @@ export const guidesList: IInfoButton[] = [
       'https://www.pixelbandits.org/2020/04/elite-dangerous-beginners-guide/',
     beginner: true,
   },
-  // {
-  //   title: 'USC Ship Builds List',
-  //   caption: 'Compiled by Admiralfeb',
-  //   local: true,
-  //   link: '/builds',
-  //   beginner: true,
-  // },
+  {
+    title: 'Background Simulation',
+    caption: 'BGS',
+    local: true,
+    link: 'bgs',
+    beginner: true,
+  },
   {
     title: 'How to Explore',
     caption: "Commander's Toolbox",
