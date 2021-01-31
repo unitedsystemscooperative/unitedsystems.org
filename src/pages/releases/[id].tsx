@@ -14,7 +14,7 @@ import {
 import NextLink from 'next/link';
 import Head from 'next/head';
 import React from 'react';
-import { USCMarkdown } from 'components/markdown';
+import { USCMarkdown } from 'components/uscmarkdown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
