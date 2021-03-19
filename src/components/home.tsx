@@ -5,13 +5,13 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import { useDownloadLink } from 'hooks/useDownloadLink';
+// import { useDownloadLink } from 'hooks/useDownloadLink';
 import {
   lore,
   latin,
   latinTranslation,
-  videoID,
-  videoPosterID,
+  // videoID,
+  // videoPosterID,
 } from 'data/home';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Home = () => {
   const classes = useStyles();
-  const { getDownloadLink } = useDownloadLink();
+  // const { getDownloadLink } = useDownloadLink();
   return (
     <Fade in={true}>
       <Container maxWidth="lg">
