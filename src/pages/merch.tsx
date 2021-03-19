@@ -7,7 +7,7 @@ export default function MerchLandingPage() {
     <>
       <Head>
         <title>USC Merch</title>
-        <meta name="description" content="USC Merch Site coming soon!" />
+        <meta name="description" content="USC Merch Store" />
       </Head>
       <PrimaryLayout>
         <Merch />
