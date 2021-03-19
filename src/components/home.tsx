@@ -5,13 +5,13 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import { useDownloadLink } from 'hooks/useDownloadLink';
+// import { useDownloadLink } from 'hooks/useDownloadLink';
 import {
   lore,
   latin,
   latinTranslation,
-  videoID,
-  videoPosterID,
+  // videoID,
+  // videoPosterID,
 } from 'data/home';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
   video: {
     width: '100%',
     padding: 0,
+    objectFit: 'scale-down',
+    maxHeight: 700,
   },
   lore: {
     marginBottom: theme.spacing(1),
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Home = () => {
   const classes = useStyles();
-  const { getDownloadLink } = useDownloadLink();
+  // const { getDownloadLink } = useDownloadLink();
   return (
     <Fade in={true}>
       <Container maxWidth="lg">
@@ -74,7 +76,7 @@ export const Home = () => {
               {latinTranslation}
             </Typography>
           </div>
-          <video
+          {/* <video
             controls
             className={classes.video}
             poster={getDownloadLink(videoPosterID)}
@@ -82,7 +84,8 @@ export const Home = () => {
           >
             <source src={getDownloadLink(videoID)} type="video/mp4" />
             "Your browser does not support this video"
-          </video>
+          </video> */}
+          <img className={classes.video} src="/uscLogo.png" />
         </Paper>
       </Container>
     </Fade>

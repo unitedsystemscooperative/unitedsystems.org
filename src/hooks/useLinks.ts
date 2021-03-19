@@ -4,6 +4,7 @@ import {
   PatreonLink,
   InaraCommodityLink,
   InaraSquadLink,
+  MerchStore,
 } from 'data/links';
 
 export const useLinks = () => {
@@ -20,4 +21,5 @@ const links = {
   patreonLink: PatreonLink,
   blueprints: BlueprintLink,
   inaraCommodity: InaraCommodityLink,
+  merch: MerchStore,
 };
