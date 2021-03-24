@@ -3,14 +3,20 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:mdx/recommended"
   ],
   "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier"],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
     "prefer-const": "warn",
     "react/react-in-jsx-scope": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "mdx/no-unescaped-entities": "off"
   },
   "globals": {
     "React": "writable"

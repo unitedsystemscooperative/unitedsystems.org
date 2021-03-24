@@ -5,6 +5,8 @@ import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { theme } from 'theme';
+import { MDXProvider } from '@mdx-js/react';
+import { mdComponents } from 'components/markdown/markdownComponents';
 
 function USCApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -37,7 +39,9 @@ function USCApp({ Component, pageProps }: AppProps) {
         <SnackbarProvider maxSnack={3}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Component {...pageProps} />
+            <MDXProvider components={mdComponents}>
+              <Component {...pageProps} />
+            </MDXProvider>
           </ThemeProvider>
         </SnackbarProvider>
       </Provider>

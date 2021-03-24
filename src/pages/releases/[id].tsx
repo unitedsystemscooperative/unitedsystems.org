@@ -2,7 +2,6 @@ import {
   Button,
   Container,
   Divider,
-  Link,
   makeStyles,
   Paper,
   Typography,
@@ -12,10 +11,10 @@ import {
   getAllReleaseIDs,
   getReleaseData,
 } from 'functions/releases/getReleases';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
 import NextLink from 'next/link';
 import Head from 'next/head';
+import React from 'react';
+import { USCMarkdown } from 'components/uscmarkdown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,12 +49,7 @@ const Release = ({
             <Typography variant="h4">{releaseData.title}</Typography>
             <Typography variant="subtitle1">{releaseData.date}</Typography>
             <Divider />
-            <ReactMarkdown
-              plugins={[gfm]}
-              renderers={{ paragraph: Typography, link: Link }}
-            >
-              {releaseData.content}
-            </ReactMarkdown>
+            <USCMarkdown>{releaseData.content}</USCMarkdown>
           </Paper>
         </Container>
       </PrimaryLayout>
