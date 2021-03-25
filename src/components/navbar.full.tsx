@@ -1,7 +1,7 @@
 import { Button, makeStyles } from '@material-ui/core';
+import { useUser } from 'hooks/useUser';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
-import { Fragment } from 'react';
 import Link from './navLink';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,53 +50,49 @@ const useStyles = makeStyles((theme) => ({
 export const NavbarFull = (props: { navItems: INavItem[] }) => {
   const classes = useStyles();
   const [session] = useSession();
+  const { user } = useUser();
   const { navItems } = props;
 
   return (
     <nav className={classes.root}>
       {navItems.map((x) => {
-        if (x.to.includes('join')) {
-          if (session) {
-            return (
-              <Fragment key={x.to}>
-                <div className={classes.filler} />
-                <Button
-                  onClick={() => signout()}
-                  color="secondary"
-                  className={classes.navLinkJoin}
-                  variant="contained"
-                >
-                  Sign Out
-                </Button>
-              </Fragment>
-            );
-          } else {
-            return (
-              <Fragment key={x.to}>
-                <div className={classes.filler} />
-                <Link href={x.to}>
-                  <Button
-                    href={x.to}
-                    color="secondary"
-                    className={classes.navLinkJoin}
-                    variant="contained"
-                  >
-                    {x.text}
-                  </Button>
-                </Link>
-              </Fragment>
-            );
-          }
-        } else {
-          return (
-            <Link key={x.to} href={x.to}>
-              <Button key={x.to} href={x.to} className={classes.navLink}>
-                {x.text}
-              </Button>
-            </Link>
-          );
-        }
+        return (
+          <Link key={x.to} href={x.to}>
+            <Button key={x.to} href={x.to} className={classes.navLink}>
+              {x.text}
+            </Button>
+          </Link>
+        );
       })}
+      <div className={classes.filler} />
+      {user?.role === 'high command' && (
+        <Link href="/admin">
+          <Button href="/admin" className={classes.navLink}>
+            Admin
+          </Button>
+        </Link>
+      )}
+      {session ? (
+        <Button
+          onClick={() => signout()}
+          color="secondary"
+          className={classes.navLinkJoin}
+          variant="contained"
+        >
+          Sign Out
+        </Button>
+      ) : (
+        <Link href="/join">
+          <Button
+            href="/join"
+            color="secondary"
+            className={classes.navLinkJoin}
+            variant="contained"
+          >
+            Join
+          </Button>
+        </Link>
+      )}
     </nav>
   );
 };
