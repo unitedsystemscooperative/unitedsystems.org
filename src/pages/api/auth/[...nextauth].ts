@@ -77,7 +77,7 @@ const options = {
     // A secret to use for key generation (you should set this explicitly)
     // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
     // Set to true to use encryption (default: false)
-    encryption: true,
+    encryption: false,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
     // encode: async ({ secret, token, maxAge }) => {},
@@ -101,8 +101,8 @@ const options = {
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
     signIn: signIn,
-    // redirect: async (url, baseUrl) => { return Promise.resolve(baseUrl) },
-    // session: async (session, user) => { return Promise.resolve(session) },
+    // redirect: redirect,
+    // session: session,
     jwt: jwt,
   },
 

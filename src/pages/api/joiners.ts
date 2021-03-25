@@ -1,6 +1,7 @@
 import { IJoinInfo } from 'models/join/joinInfo';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
+import { getToken } from 'utils/get-token';
 import { connectToDatabase } from 'utils/mongo';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -15,17 +16,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       const session = await getSession({ req });
       if (session) {
-        const factionSystems = await db
-          .collection('joiners')
-          .find({})
-          .sort({ timeStamp: -1 })
-          .toArray();
+        const token = await getToken(req);
+        if (token.role === 'high command') {
+          const factionSystems = await db
+            .collection('joiners')
+            .find({})
+            .sort({ timeStamp: -1 })
+            .toArray();
 
-        res.status(200).json(factionSystems);
+          res.status(200).json(factionSystems);
+        } else {
+          res.statusMessage = 'You are not authorized for this information.';
+          res.status(401).end();
+        }
       } else {
-        res
-          .status(401)
-          .send({ error: 'You must be signed in to view the joiners' });
+        res.statusMessage = 'You are not signed in.';
+        res.status(401).end();
       }
     }
   } catch (e) {

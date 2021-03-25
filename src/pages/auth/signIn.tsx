@@ -5,12 +5,15 @@ import {
   makeStyles,
   Paper,
   TextField,
-  Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import { PrimaryLayout } from 'components/layouts';
 import { signIn, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import qs from 'query-string';
+import { redirects } from 'data/redirects';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +40,19 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
   const [session] = useSession();
+  const router = useRouter();
   const { register, handleSubmit } = useForm<{ email: string }>();
+
+  useEffect(() => {
+    if (session) {
+      const params = qs.parseUrl(router.asPath);
+      const redirectKey = params.query.redirect as string;
+      const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
+      if (redirectPath) {
+        router.push(redirectPath);
+      }
+    }
+  }, [router, session]);
 
   const onSubmit = async (data: { email: string }) => {
     const { email } = data;
@@ -53,14 +68,7 @@ const SignIn = () => {
             <LockOutlined />
           </Avatar>
           {session ? (
-            <>
-              <Typography component="h1" variant="h5">
-                Successful Sign In
-              </Typography>
-              <Typography className={classes.form}>
-                You are logged in with the email: {session.user.email}
-              </Typography>
-            </>
+            <></>
           ) : (
             <>
               <form
