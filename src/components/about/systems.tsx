@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   paper: {
+    textAlign: 'center',
     margin: 'auto',
     width: 450,
   },
