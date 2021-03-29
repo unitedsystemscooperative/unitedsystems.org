@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const cursor = await db
+        const cursor = db
           .collection('shipBuildsv2')
           .find({})
           .sort({ shipId: 1 });

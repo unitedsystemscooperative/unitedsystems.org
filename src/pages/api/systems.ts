@@ -9,10 +9,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();
     const session = await getSession({ req });
-    const user = await db
-      .collection('members')
-      .findOne<IMember>({ email: session.user.email });
-    const isHC = user && user.role === 'high command' ? true : false;
+    let isHC = false;
+    if (session) {
+      const user = await db
+        .collection('members')
+        .findOne<IMember>({ email: session.user.email });
+      isHC = user && user.role === 'high command' ? true : false;
+    }
 
     const system: System = req.body;
     // console.log(req.body);
