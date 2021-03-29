@@ -1,17 +1,15 @@
 import {
   Button,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormControlLabel,
   makeStyles,
   TextField,
 } from '@material-ui/core';
-import { System } from 'models/about/system';
-import React, { useEffect } from 'react';
+import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,27 +22,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface SystemDialogProps {
+export interface CarrierDialogProps {
   open: boolean;
-  values?: System;
-  onClose: (value?: System) => void;
+  values?: IFleetCarrier;
+  onClose: (value?: IFleetCarrier) => void;
 }
 
-export const SystemDialog = (props: SystemDialogProps) => {
+export const CarrierDialog = (props: CarrierDialogProps) => {
   const classes = useStyles();
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset } = useForm<System>();
+  const { register, handleSubmit, reset } = useForm<IFleetCarrier>();
 
   useEffect(() => {
     if (values) {
       reset(values);
     } else {
-      console.log('no values given');
       reset({
         _id: undefined,
         name: undefined,
         inaraLink: undefined,
-        isControlled: false,
+        owner: undefined,
+        purpose: undefined,
+        id: undefined,
       });
     }
   }, [values, reset]);
@@ -53,24 +52,27 @@ export const SystemDialog = (props: SystemDialogProps) => {
     onClose();
   };
 
-  const onSubmit: SubmitHandler<System> = (data: System) => {
+  const onSubmit: SubmitHandler<IFleetCarrier> = (data: IFleetCarrier) => {
     const _id = values?._id ? values._id : undefined;
+    const purpose = data.purpose ? data.purpose : '';
     onClose({
       _id,
       name: data.name,
       inaraLink: data.inaraLink,
-      isControlled: data.isControlled,
+      purpose,
+      id: data.id,
+      owner: data.owner,
     });
   };
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>{values ? 'Edit' : 'Add'} System</DialogTitle>
+      <DialogTitle>{values ? 'Edit' : 'Add'} Carrier</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>
-            Please enter the System Name, Inara Link, and whether we control the
-            system.
+            Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and
+            the Purpose (if Personal, just leave it blank).
           </DialogContentText>
           <TextField
             name="_id"
@@ -82,7 +84,21 @@ export const SystemDialog = (props: SystemDialogProps) => {
             name="name"
             inputRef={register({ required: true })}
             fullWidth
-            placeholder="System Name"
+            placeholder="Carrier Name"
+            className={classes.textField}
+          />
+          <TextField
+            name="id"
+            inputRef={register({ required: true })}
+            fullWidth
+            placeholder="Carrier ID"
+            className={classes.textField}
+          />
+          <TextField
+            name="owner"
+            inputRef={register({ required: true })}
+            fullWidth
+            placeholder="Owner"
             className={classes.textField}
           />
           <TextField
@@ -92,10 +108,12 @@ export const SystemDialog = (props: SystemDialogProps) => {
             placeholder="Inara Link"
             className={classes.textField}
           />
-          <FormControlLabel
-            control={<Checkbox inputRef={register} name="isControlled" />}
-            label="Controlled"
-            labelPlacement="start"
+          <TextField
+            name="purpose"
+            inputRef={register({ required: false })}
+            fullWidth
+            placeholder="Purpose - Leave blank if Personal"
+            className={classes.textField}
           />
         </DialogContent>
         <DialogActions>

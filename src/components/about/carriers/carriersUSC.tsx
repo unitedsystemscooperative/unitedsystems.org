@@ -7,9 +7,10 @@ import {
   TableRow,
   TableBody,
   makeStyles,
-  Link,
 } from '@material-ui/core';
-import { IFleetCarrier } from 'models/information/fleetCarrier';
+import { IFleetCarrier } from 'models/about/fleetCarrier';
+import React from 'react';
+import { CarrierTableRow } from './carrierTableRow';
 
 const useStyles = makeStyles({
   table: {
@@ -44,16 +45,7 @@ export const USCCarriers = (props: {
           {carriers?.map((carrier) => (
             <TableRow key={carrier.id}>
               <TableCell>{carrier.purpose}</TableCell>
-              <TableCell>{carrier.name}</TableCell>
-              <TableCell>
-                <Link
-                  href={`https://inara.cz/galaxy-station/?search=${carrier.id}`}
-                  target="_blank"
-                >
-                  {carrier.id}
-                </Link>
-              </TableCell>
-              <TableCell>{carrier.owner}</TableCell>
+              <CarrierTableRow carrier={carrier} />
             </TableRow>
           ))}
         </TableBody>
