@@ -58,16 +58,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
         const idtoDelete = req.query['id'] as string;
-        db.collection('systems').deleteOne({ _id: new ObjectId(idtoDelete) });
+        await db
+          .collection('systems')
+          .deleteOne({ _id: new ObjectId(idtoDelete) });
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const systems = await db
-          .collection('systems')
-          .find({})
-          .sort({ name: 1 })
-          .toArray();
+        const cursor = db.collection('systems').find({}).sort({ name: 1 });
+        const systems = await cursor.toArray();
+        cursor.close();
 
         res.status(200).json(systems);
         break;

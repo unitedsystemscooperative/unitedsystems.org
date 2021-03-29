@@ -32,11 +32,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const builds = await db
+        const cursor = await db
           .collection('shipBuildsv2')
           .find({})
-          .sort({ shipId: 1 })
-          .toArray();
+          .sort({ shipId: 1 });
+        const builds = await cursor.toArray();
+        await cursor.close();
 
         res.status(200).json(builds);
         break;

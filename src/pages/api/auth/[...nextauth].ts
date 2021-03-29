@@ -8,7 +8,9 @@ const signIn = async (user) => {
   const { db } = await connectToDatabase();
   const email: string = user.email;
 
-  const members = await db.collection<IMember>('members').find({}).toArray();
+  const cursor = db.collection<IMember>('members').find({});
+  const members = await cursor.toArray();
+  cursor.close();
   const authUser = members.find((x) => x.email.toLowerCase() === email);
 
   return authUser ? true : false;
@@ -18,7 +20,9 @@ const jwt = async (token, user) => {
   if (user) {
     const email: string = user.email;
     const { db } = await connectToDatabase();
-    const members = await db.collection<IMember>('members').find({}).toArray();
+    const cursor = db.collection<IMember>('members').find({});
+    const members = await cursor.toArray();
+    cursor.close();
     const authUser = members.find((x) => x.email.toLowerCase() === email);
     token = { ...token, ...authUser };
   }

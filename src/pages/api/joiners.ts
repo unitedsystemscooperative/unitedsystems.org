@@ -18,11 +18,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       if (session) {
         const token = await getToken(req);
         if (token.role === 'high command') {
-          const factionSystems = await db
+          const cursor = db
             .collection('joiners')
             .find({})
-            .sort({ timeStamp: -1 })
-            .toArray();
+            .sort({ timeStamp: -1 });
+          const factionSystems = await cursor.toArray();
+          cursor.close();
 
           res.status(200).json(factionSystems);
         } else {
