@@ -1,4 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
@@ -34,14 +35,16 @@ function USCApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <SnackbarProvider maxSnack={3}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <MDXProvider components={mdComponents}>
-            <Component {...pageProps} />
-          </MDXProvider>
-        </ThemeProvider>
-      </SnackbarProvider>
+      <Provider session={pageProps.session}>
+        <SnackbarProvider maxSnack={3}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <MDXProvider components={mdComponents}>
+              <Component {...pageProps} />
+            </MDXProvider>
+          </ThemeProvider>
+        </SnackbarProvider>
+      </Provider>
     </>
   );
 }

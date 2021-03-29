@@ -10,7 +10,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useUser } from 'hooks/useUser';
 import { INavItem } from 'models/navItem';
+import { signout, useSession } from 'next-auth/client';
 import { KeyboardEvent, MouseEvent, useState } from 'react';
 import Link from './navLink';
 
@@ -39,6 +41,8 @@ export const NavbarMobile = (props: {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const { title, navItems } = props;
+  const [session] = useSession();
+  const { user } = useUser();
 
   const toggleDrawer = (open: boolean) => (
     event: KeyboardEvent | MouseEvent
@@ -63,6 +67,24 @@ export const NavbarMobile = (props: {
             </ListItem>
           </Link>
         ))}
+        {user?.role === 'high command' && (
+          <Link href="/admin">
+            <ListItem button component="a">
+              <ListItemText primary="Admin" />
+            </ListItem>
+          </Link>
+        )}
+        {session ? (
+          <ListItem button component="button" onClick={() => signout()}>
+            <ListItemText primary="Sign Out" />
+          </ListItem>
+        ) : (
+          <Link href="/join">
+            <ListItem button component="a">
+              <ListItemText primary="Admin" />
+            </ListItem>
+          </Link>
+        )}
       </List>
     </div>
   );

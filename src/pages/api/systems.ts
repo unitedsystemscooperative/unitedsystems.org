@@ -1,5 +1,5 @@
-import { ObjectID, ObjectId } from 'bson';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { ObjectId, ObjectID } from 'bson';
+import { System } from 'models/about/system';
 import { IMember } from 'models/auth/member';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
@@ -17,7 +17,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       isHC = user && user.role === 'high command' ? true : false;
     }
 
-    const carrier: IFleetCarrier = req.body;
+    const system: System = req.body;
+    // console.log(req.body);
 
     switch (req.method) {
       case 'POST':
@@ -25,9 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const response = await db
-          .collection('fleetCarriers')
-          .insertOne(carrier);
+        const response = await db.collection('systems').insertOne(system);
 
         res.json(response.ops);
         break;
@@ -36,20 +35,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const id = new ObjectID(carrier._id);
+        const id = new ObjectID(system._id);
         const updateDoc = {
           $set: {
-            name: carrier.name,
-            inaraLink: carrier.inaraLink,
-            id: carrier.id,
-            owner: carrier.owner,
-            purpose: carrier.purpose,
+            name: system.name,
+            inaraLink: system.inaraLink,
+            isControlled: system.isControlled,
           },
         };
         const options = { upsert: false };
 
         const updateResponse = await db
-          .collection('fleetCarriers')
+          .collection('systems')
           .updateOne({ _id: id }, updateDoc, options);
 
         if (updateResponse.result.nModified > 0) {
@@ -65,20 +62,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         const idtoDelete = req.query['id'] as string;
         await db
-          .collection('fleetCarriers')
+          .collection('systems')
           .deleteOne({ _id: new ObjectId(idtoDelete) });
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const cursor = db
-          .collection('fleetCarriers')
-          .find({})
-          .sort({ name: 1 });
-        const carriers = await cursor.toArray();
-        await cursor.close();
+        const cursor = db.collection('systems').find({}).sort({ name: 1 });
+        const systems = await cursor.toArray();
+        cursor.close();
 
-        res.status(200).json(carriers);
+        res.status(200).json(systems);
+        break;
     }
   } catch (e) {
     res.status(500).send(e.message);
