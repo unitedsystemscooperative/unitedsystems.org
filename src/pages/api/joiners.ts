@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { IMember } from 'models/auth/member';
 import { IJoinInfo } from 'models/join/joinInfo';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -14,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .insertOne(req.body);
 
       res.json(response.ops);
+      postToDiscord(req.body);
     } else {
       const session = await getSession({ req });
       if (session) {
@@ -43,4 +45,34 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (e) {
     res.status(500).send(e.message);
   }
+};
+
+const postToDiscord = (joiner: IJoinInfo) => {
+  const { cmdr, discord, type, timeStamp } = joiner;
+  let joinType = '';
+  switch (type) {
+    case 'join':
+      joinType = 'a member';
+      break;
+    case 'guest':
+      joinType = 'a guest';
+      break;
+    case 'ambassador':
+      joinType = 'an ambassador';
+      break;
+    default:
+      joinType = 'ERROR';
+      break;
+  }
+
+  const discordHook = process.env.DISCORD_JOIN_HOOK;
+  axios.post(discordHook, {
+    embeds: [
+      {
+        title: '__**New Application Received**__',
+        description: `**${discord}** has requested to join USC as **${joinType}** with the CMDR Name: **${cmdr}**`,
+        footer: { text: timeStamp },
+      },
+    ],
+  });
 };
