@@ -1,3 +1,4 @@
+import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Container,
   Fade,
@@ -8,7 +9,7 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import { allies } from 'data/about';
+import { useAllies } from 'hooks/about/useAllies';
 
 const useStyles = makeStyles({
   header: {
@@ -23,21 +24,26 @@ const useStyles = makeStyles({
 /** Displays Allies */
 export const AboutAllies = () => {
   const classes = useStyles();
+  const { allies, loading } = useAllies();
   return (
     <Fade in={true}>
       <Container maxWidth="sm">
         <Typography variant="h4" className={classes.header}>
           Allies
         </Typography>
-        <Paper className={classes.allies}>
-          <List>
-            {allies.map((rule: string, i: number) => (
-              <ListItem key={i}>
-                <ListItemText primary={`${rule}`} />
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
+        {loading ? (
+          <EDSpinner />
+        ) : (
+          <Paper className={classes.allies}>
+            <List>
+              {allies.map((ally: { name: string }, i: number) => (
+                <ListItem key={i}>
+                  <ListItemText primary={`${ally.name}`} />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        )}
       </Container>
     </Fade>
   );
