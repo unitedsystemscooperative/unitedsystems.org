@@ -7,6 +7,8 @@ import {
   Paper,
   Fade,
   Container,
+  Tooltip,
+  Link,
 } from '@material-ui/core';
 import { discordRules, memberRules } from 'data/about';
 
@@ -43,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     margin: `0 ${theme.spacing(2)} 0 ${theme.spacing(1)}`,
   },
+  tooltipMarking: {
+    color: theme.palette.secondary.main,
+  },
 }));
 
 /** Displays the rules */
@@ -66,9 +71,22 @@ export const USCRules = () => {
           <div className={classes.rules}>
             <Typography variant="h5">Members of USC</Typography>
             <List>
+              <ListItem className={classes.listItem}>
+                <ListItemText>
+                  1) Will not{' '}
+                  <Tooltip title="Intentionally and Improperly closing the game/session to avoid dying in combat">
+                    <Link
+                      href="https://elite-dangerous.fandom.com/wiki/Combat_Logging"
+                      target="_blank"
+                    >
+                      Combat Log
+                    </Link>
+                  </Tooltip>
+                </ListItemText>
+              </ListItem>
               {memberRules.map((rule: string, index: number) => (
                 <ListItem key={index} className={classes.listItem}>
-                  <ListItemText primary={`${index + 1}) ${rule}`} />
+                  <ListItemText primary={`${index + 2}) ${rule}`} />
                 </ListItem>
               ))}
             </List>

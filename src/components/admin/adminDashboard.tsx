@@ -60,6 +60,15 @@ export const AdminDashboard = () => {
         <Typography variant="h4" className={classes.header}>
           Website Management
         </Typography>
+        <Link href="/admin/allies" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.linkButton}
+          >
+            Allies List
+          </Button>
+        </Link>
         <Link href="/admin/fc" passHref>
           <Button
             variant="contained"
