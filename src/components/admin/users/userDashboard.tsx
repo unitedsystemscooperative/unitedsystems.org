@@ -96,7 +96,6 @@ export const UserDashboard = () => {
         User Management
       </Typography>
       <Paper className={classes.paper}>
-        <Typography variant="h4">Users</Typography>
         <Button
           variant="contained"
           color="primary"
