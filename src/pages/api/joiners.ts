@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { IMember } from 'models/auth/member';
 import { IJoinInfo } from 'models/join/joinInfo';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/client';
+import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -19,10 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       const session = await getSession({ req });
       if (session) {
-        const user = await db
-          .collection('members')
-          .findOne<IMember>({ email: session.user.email });
-        const isHC = user && user.role === 'high command' ? true : false;
+        const isHC = await getIsHC(req, db);
 
         if (isHC) {
           const cursor = db
