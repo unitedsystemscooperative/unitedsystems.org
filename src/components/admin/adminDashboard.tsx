@@ -55,6 +55,15 @@ export const AdminDashboard = () => {
             Join List
           </Button>
         </Link>
+        <Link href="/admin/users" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.linkButton}
+          >
+            Users
+          </Button>
+        </Link>
       </Paper>
       <Paper className={classes.paper}>
         <Typography variant="h4" className={classes.header}>

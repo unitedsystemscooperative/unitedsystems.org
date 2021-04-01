@@ -1,21 +1,13 @@
 import { ObjectId, ObjectID } from 'bson';
 import { IAlly } from 'models/about/ally';
-import { IMember } from 'models/auth/member';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/client';
+import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();
-    const session = await getSession({ req });
-    let isHC = false;
-    if (session) {
-      const user = await db
-        .collection('members')
-        .findOne<IMember>({ email: session.user.email });
-      isHC = user && user.role === 'high command' ? true : false;
-    }
+    const isHC = await getIsHC(req, db);
 
     const ally: IAlly = req.body;
     // console.log(req.body);

@@ -1,4 +1,4 @@
-import { IMember } from 'models/auth/member';
+import { IUser } from 'models/auth/user';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import { NextApiRequest, NextApiResponse } from 'next-auth/_utils';
@@ -8,7 +8,7 @@ const signIn = async (user) => {
   const { db } = await connectToDatabase();
   const email: string = user.email;
 
-  const cursor = db.collection<IMember>('members').find({});
+  const cursor = db.collection<IUser>('members').find({});
   const members = await cursor.toArray();
   cursor.close();
   const authUser = members.find((x) => x.email.toLowerCase() === email);
@@ -20,7 +20,7 @@ const jwt = async (token, user) => {
   if (user) {
     const email: string = user.email;
     const { db } = await connectToDatabase();
-    const cursor = db.collection<IMember>('members').find({});
+    const cursor = db.collection<IUser>('members').find({});
     const members = await cursor.toArray();
     cursor.close();
     const authUser = members.find((x) => x.email.toLowerCase() === email);

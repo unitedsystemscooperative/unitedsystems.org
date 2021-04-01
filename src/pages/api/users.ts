@@ -1,5 +1,5 @@
 import { ObjectId, ObjectID } from 'bson';
-import { System } from 'models/about/system';
+import { IUser } from 'models/auth/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { db } = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
-    const system: System = req.body;
+    const user: IUser = req.body;
     // console.log(req.body);
 
     switch (req.method) {
@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const response = await db.collection('systems').insertOne(system);
+        const response = await db.collection('members').insertOne(user);
 
         res.json(response.ops);
         break;
@@ -27,18 +27,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const id = new ObjectID(system._id);
+        const id = new ObjectID(user._id);
         const updateDoc = {
           $set: {
-            name: system.name,
-            inaraLink: system.inaraLink,
-            isControlled: system.isControlled,
+            cmdr: user.cmdr,
+            email: user.email,
+            role: user.role,
           },
         };
         const options = { upsert: false };
 
         const updateResponse = await db
-          .collection('systems')
+          .collection('members')
           .updateOne({ _id: id }, updateDoc, options);
 
         if (updateResponse.result.nModified > 0) {
@@ -54,13 +54,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         const idtoDelete = req.query['id'] as string;
         await db
-          .collection('systems')
+          .collection('members')
           .deleteOne({ _id: new ObjectId(idtoDelete) });
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const cursor = db.collection('systems').find({}).sort({ name: 1 });
+        const cursor = db.collection('members').find({}).sort({ cmdr: 1 });
         const systems = await cursor.toArray();
         cursor.close();
 
