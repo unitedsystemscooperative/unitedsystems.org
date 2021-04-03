@@ -115,7 +115,9 @@ export const JoinDashboard = () => {
         <DashBoardTitleBar joinView={joinView} setJoinView={setJoinView} />
         {isMobile && (
           <Paper className={classes.root}>
-            <Typography>Tables scroll on small screens</Typography>
+            <Typography>
+              Table and pagination scroll on small screens
+            </Typography>
           </Paper>
         )}
       </Paper>
