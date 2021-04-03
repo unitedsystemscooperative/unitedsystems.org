@@ -31,7 +31,7 @@ export const useJoinInfo = () => {
 
 export const useAllJoinInfo = () => {
   const { data, error } = useSWR('/api/joiners', (url: string) =>
-    axios.get(url)
+    axios.get<IJoinInfo[]>(url)
   );
   const allJoiners = data?.data ?? [];
 
