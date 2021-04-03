@@ -120,16 +120,16 @@ export const JoinDashboard = () => {
             </Typography>
           </Paper>
         )}
+        <Collapse in={joinView === JoinViews.Members}>
+          <MembersTable members={joinInfo.joiners} />
+        </Collapse>
+        <Collapse in={joinView === JoinViews.Guests}>
+          <GuestsTable guests={joinInfo.guests} />
+        </Collapse>
+        <Collapse in={joinView === JoinViews.Ambassadors}>
+          <AmbassadorsTable ambassadors={joinInfo.ambassadors} />
+        </Collapse>
       </Paper>
-      <Collapse in={joinView === JoinViews.Members}>
-        <MembersTable members={joinInfo.joiners} />
-      </Collapse>
-      <Collapse in={joinView === JoinViews.Guests}>
-        <GuestsTable guests={joinInfo.guests} />
-      </Collapse>
-      <Collapse in={joinView === JoinViews.Ambassadors}>
-        <AmbassadorsTable ambassadors={joinInfo.ambassadors} />
-      </Collapse>
     </Container>
   );
 };

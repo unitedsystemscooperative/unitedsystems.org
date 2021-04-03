@@ -9,14 +9,54 @@ import {
   ListItemText,
   makeStyles,
   Paper,
+  Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Delete, Edit } from '@material-ui/icons';
+import { Add, Delete, Edit } from '@material-ui/icons';
 import { useAllies } from 'hooks/about/useAllies';
 import { IAlly } from 'models/about/ally';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { AllyDialog } from './allyDialog';
+
+const useTitleBarStyles = makeStyles((theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    '& button': {
+      margin: theme.spacing(1),
+    },
+  },
+  title: {
+    flex: '2 1 100%',
+    textAlign: 'left',
+  },
+  buttonGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-end',
+      flexWrap: 'wrap',
+    },
+  },
+}));
+
+const DashboardTitleBar = ({ addAlly }: { addAlly: () => void }) => {
+  const classes = useTitleBarStyles();
+  return (
+    <Toolbar className={classes.root}>
+      <Typography variant="h4" component="div" className={classes.title}>
+        Ally Management
+      </Typography>
+      <Tooltip title="Add an ally" arrow>
+        <Button variant="contained" color="primary" onClick={addAlly}>
+          <Add />
+        </Button>
+      </Tooltip>
+    </Toolbar>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -25,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     textAlign: 'center',
     padding: theme.spacing(1),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
   iconButton: {
@@ -97,17 +138,8 @@ export const AllyDashboard = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h3" className={classes.header}>
-        Ally Management
-      </Typography>
       <Paper className={classes.paper}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => handleOpenDialog()}
-        >
-          Add Ally
-        </Button>
+        <DashboardTitleBar addAlly={handleOpenDialog} />
         <List>
           {allies.map((ally: { name: string }, i: number) => (
             <ListItem key={i}>
