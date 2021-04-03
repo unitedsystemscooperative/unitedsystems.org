@@ -12,8 +12,39 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useSystems } from 'hooks/about/useSystems';
+import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
+
+const SystemList = ({
+  title,
+  systems,
+}: {
+  title: string;
+  systems: System[];
+}) => {
+  return (
+    <List
+      subheader={
+        <ListSubheader>
+          {title} - {systems.length}
+        </ListSubheader>
+      }
+    >
+      {systems.map((system) => (
+        <ListItem
+          button
+          key={system.name}
+          component={Link}
+          href={system.inaraLink}
+          target="_blank"
+        >
+          <ListItemText primary={system.name} />
+        </ListItem>
+      ))}
+    </List>
+  );
+};
 
 const useStyles = makeStyles(() => ({
   textCenter: {
@@ -25,7 +56,6 @@ const useStyles = makeStyles(() => ({
     width: 450,
   },
 }));
-
 export const AboutSystems = () => {
   const classes = useStyles();
   const { loading, factionSystems, error } = useSystems();
@@ -59,38 +89,22 @@ export const AboutSystems = () => {
             >
               <ListItemText primary="United Systems Cooperative - Minor Faction" />
             </ListItem>
-            <List subheader={<ListSubheader>Controlled Systems</ListSubheader>}>
-              {factionSystems &&
-                factionSystems
-                  .filter((system) => system.isControlled === true)
-                  .map((system) => (
-                    <ListItem
-                      button
-                      key={system.name}
-                      component={Link}
-                      href={system.inaraLink}
-                      target="_blank"
-                    >
-                      <ListItemText primary={system.name} />
-                    </ListItem>
-                  ))}
-            </List>
-            <List subheader={<ListSubheader>Present In Systems</ListSubheader>}>
-              {factionSystems &&
-                factionSystems
-                  .filter((system) => system.isControlled === false)
-                  .map((system) => (
-                    <ListItem
-                      button
-                      key={system.name}
-                      component={Link}
-                      href={system.inaraLink}
-                      target="_blank"
-                    >
-                      <ListItemText primary={system.name} />
-                    </ListItem>
-                  ))}
-            </List>
+            {factionSystems && (
+              <>
+                <SystemList
+                  title="Controlled Systems"
+                  systems={factionSystems.filter(
+                    (x) => x.isControlled === true
+                  )}
+                />
+                <SystemList
+                  title="Present in Systems"
+                  systems={factionSystems.filter(
+                    (x) => x.isControlled === false
+                  )}
+                />
+              </>
+            )}
           </List>
         </Paper>
       </Container>

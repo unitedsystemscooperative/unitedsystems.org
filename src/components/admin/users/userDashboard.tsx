@@ -11,14 +11,54 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Delete, Edit } from '@material-ui/icons';
+import { Add, Delete, Edit } from '@material-ui/icons';
 import { useUsers } from 'hooks/useUsers';
 import { IUser } from 'models/auth/user';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { SystemDialog } from './userDialog';
+
+const useTitleBarStyles = makeStyles((theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    '& button': {
+      margin: theme.spacing(1),
+    },
+  },
+  title: {
+    flex: '2 1 100%',
+    textAlign: 'left',
+  },
+  buttonGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-end',
+      flexWrap: 'wrap',
+    },
+  },
+}));
+
+const DashboardTitleBar = ({ addUser }: { addUser: () => void }) => {
+  const classes = useTitleBarStyles();
+  return (
+    <Toolbar className={classes.root}>
+      <Typography variant="h4" component="div" className={classes.title}>
+        User Management
+      </Typography>
+      <Tooltip title="Add a user" arrow>
+        <Button variant="contained" color="primary" onClick={addUser}>
+          <Add />
+        </Button>
+      </Tooltip>
+    </Toolbar>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -28,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
   },
   iconButton: {
     marginLeft: theme.spacing(1),
@@ -92,17 +133,8 @@ export const UserDashboard = () => {
 
   return (
     <Container maxWidth="md">
-      <Typography variant="h3" className={classes.header}>
-        User Management
-      </Typography>
       <Paper className={classes.paper}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => handleOpenDialog()}
-        >
-          Add User
-        </Button>
+        <DashboardTitleBar addUser={handleOpenDialog} />
         <TableContainer component={Paper}>
           <Table>
             <TableHead>

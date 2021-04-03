@@ -11,14 +11,111 @@ import {
   ListSubheader,
   makeStyles,
   Paper,
+  Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Delete, Edit } from '@material-ui/icons';
+import { Add, Delete, Edit } from '@material-ui/icons';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
+
+const useTitleBarStyles = makeStyles((theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    '& button': {
+      margin: theme.spacing(1),
+    },
+  },
+  title: {
+    flex: '2 1 100%',
+    textAlign: 'left',
+  },
+  buttonGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-end',
+      flexWrap: 'wrap',
+    },
+  },
+}));
+
+const DashboardTitleBar = ({ addSystem }: { addSystem: () => void }) => {
+  const classes = useTitleBarStyles();
+  return (
+    <Toolbar className={classes.root}>
+      <Typography variant="h4" component="div" className={classes.title}>
+        System Management
+      </Typography>
+      <Tooltip title="Add a System" arrow>
+        <Button variant="contained" color="primary" onClick={addSystem}>
+          <Add />
+        </Button>
+      </Tooltip>
+    </Toolbar>
+  );
+};
+
+const useSystemListStyles = makeStyles((theme) => ({
+  iconButton: {
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const SystemList = ({
+  title,
+  systems,
+  editSystem,
+  deleteSystem,
+}: {
+  title: string;
+  systems: System[];
+  editSystem: (system: System) => void;
+  deleteSystem: (system: System) => void;
+}) => {
+  const classes = useSystemListStyles();
+  return (
+    <List
+      subheader={
+        <ListSubheader>
+          {title} - {systems.length}
+        </ListSubheader>
+      }
+    >
+      {systems.map((system) => (
+        <ListItem
+          button
+          key={system.name}
+          component={Link}
+          href={system.inaraLink}
+          target="_blank"
+        >
+          <ListItemText primary={system.name} />
+          <ListItemSecondaryAction>
+            <IconButton
+              edge="end"
+              className={classes.iconButton}
+              onClick={() => editSystem(system)}
+            >
+              <Edit />
+            </IconButton>
+            <IconButton
+              edge="end"
+              className={classes.iconButton}
+              onClick={() => deleteSystem(system)}
+            >
+              <Delete />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+    </List>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -27,10 +124,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     textAlign: 'center',
     padding: theme.spacing(1),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-  },
-  iconButton: {
-    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -100,18 +195,8 @@ export const SystemDashboard = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h3" className={classes.header}>
-        System Management
-      </Typography>
       <Paper className={classes.paper}>
-        <Typography variant="h4">Faction Systems</Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => handleOpenDialog()}
-        >
-          Add System
-        </Button>
+        <DashboardTitleBar addSystem={handleOpenDialog} />
         <List>
           <ListItem
             button
@@ -121,70 +206,26 @@ export const SystemDashboard = () => {
           >
             <ListItemText primary="United Systems Cooperative - Minor Faction" />
           </ListItem>
-          <List subheader={<ListSubheader>Controlled Systems</ListSubheader>}>
-            {factionSystems &&
-              factionSystems
-                .filter((system) => system.isControlled === true)
-                .map((system) => (
-                  <ListItem
-                    button
-                    key={system.name}
-                    component={Link}
-                    href={system.inaraLink}
-                    target="_blank"
-                  >
-                    <ListItemText primary={system.name} />
-                    <ListItemSecondaryAction>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleOpenDialog(system)}
-                      >
-                        <Edit />
-                      </IconButton>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleDelete(system)}
-                      >
-                        <Delete />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
-          </List>
-          <List subheader={<ListSubheader>Present In Systems</ListSubheader>}>
-            {factionSystems &&
-              factionSystems
-                .filter((system) => system.isControlled === false)
-                .map((system) => (
-                  <ListItem
-                    button
-                    key={system.name}
-                    component={Link}
-                    href={system.inaraLink}
-                    target="_blank"
-                  >
-                    <ListItemText primary={system.name} />
-                    <ListItemSecondaryAction>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleOpenDialog(system)}
-                      >
-                        <Edit />
-                      </IconButton>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleDelete(system)}
-                      >
-                        <Delete />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
-          </List>
+          {factionSystems && (
+            <>
+              <SystemList
+                title="Controlled Systems"
+                systems={factionSystems.filter(
+                  (system) => system.isControlled === true
+                )}
+                editSystem={handleOpenDialog}
+                deleteSystem={handleDelete}
+              />
+              <SystemList
+                title="Present In Systems"
+                systems={factionSystems.filter(
+                  (system) => system.isControlled === false
+                )}
+                editSystem={handleOpenDialog}
+                deleteSystem={handleDelete}
+              />
+            </>
+          )}
         </List>
       </Paper>
       <SystemDialog

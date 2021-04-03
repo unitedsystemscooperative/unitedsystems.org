@@ -27,8 +27,6 @@ describe('Carriers', () => {
     });
     const { getByText } = render(<Carriers />);
 
-    expect(getByText('USC Fleet Carriers')).toBeDefined();
-    expect(getByText('Personal Fleet Carriers of USC')).toBeDefined();
     expect(getByText('Almagest')).toBeDefined();
     expect(getByText('Zocalo')).toBeDefined();
     expect(getByText('UltraNeros')).toBeDefined();
