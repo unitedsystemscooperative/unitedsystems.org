@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -10,3 +11,12 @@ export default function Index() {
 
   return <></>;
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: '/admin/joinRequests',
+    },
+  };
+};

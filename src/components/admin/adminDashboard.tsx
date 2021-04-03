@@ -46,13 +46,13 @@ export const AdminDashboard = () => {
         >
           CMDR Spreadsheet
         </Button>
-        <Link href="/admin/joinList" passHref>
+        <Link href="/admin/joinRequests" passHref>
           <Button
             variant="contained"
             color="primary"
             className={classes.linkButton}
           >
-            Join List
+            Join Requests
           </Button>
         </Link>
         <Link href="/admin/users" passHref>

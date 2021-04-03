@@ -73,8 +73,7 @@ export const SystemDialog = (props: UserDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>
-            Please enter the System Name, Inara Link, and whether we control the
-            system.
+            Please enter the CMDR Name, email, and whether they are part of HC.
           </DialogContentText>
           <TextField
             name="_id"
