@@ -22,6 +22,12 @@ import { copytoClipboard } from 'functions/copytoClipboard';
 import { useJoinInfo } from 'hooks/join/useJoinInfo';
 import React, { useState } from 'react';
 
+enum JoinViews {
+  'Members',
+  'Guests',
+  'Ambassadors',
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
@@ -46,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export const JoinDashboard = () => {
   const classes = useStyles();
   const joinInfo = useJoinInfo();
-  const [select, setSelect] = useState<number | null>(null);
+  const [joinView, setJoinView] = useState<JoinViews>(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -90,23 +96,23 @@ export const JoinDashboard = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setSelect(0)}
+          onClick={() => setJoinView(0)}
         >
-          Members
+          {JoinViews.Members}
         </Button>
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setSelect(1)}
+          onClick={() => setJoinView(1)}
         >
-          Guests
+          {JoinViews.Guests}
         </Button>
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setSelect(2)}
+          onClick={() => setJoinView(2)}
         >
-          Ambassadors
+          {JoinViews.Ambassadors}
         </Button>
       </div>
       {isMobile && (
@@ -114,7 +120,7 @@ export const JoinDashboard = () => {
           <Typography>Tables scroll on small screens</Typography>
         </Paper>
       )}
-      <Collapse in={select === 0}>
+      <Collapse in={joinView === 0}>
         <div>
           <Typography variant="h4">Members</Typography>
           <TableContainer component={Paper}>
@@ -171,7 +177,7 @@ export const JoinDashboard = () => {
           </TableContainer>
         </div>
       </Collapse>
-      <Collapse in={select === 1}>
+      <Collapse in={joinView === 1}>
         <div>
           <Typography variant="h4">Guests</Typography>
           <TableContainer component={Paper}>
@@ -226,7 +232,7 @@ export const JoinDashboard = () => {
           </TableContainer>
         </div>
       </Collapse>
-      <Collapse in={select === 2}>
+      <Collapse in={joinView === 2}>
         <div>
           <Typography variant="h4">Ambassadors</Typography>
           <TableContainer component={Paper}>
