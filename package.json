@@ -24,6 +24,7 @@
     "@rehooks/local-storage": "^2.4.0",
     "axios": "^0.21.1",
     "bson": "^4.2.2",
+    "clsx": "^1.1.1",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",

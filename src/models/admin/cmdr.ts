@@ -3,22 +3,41 @@ import { Rank } from './ranks';
 import { Referral } from './referrals';
 import { Region } from './regions';
 
+export enum CMDRType {
+  Member,
+  Guest,
+  Ambassador,
+}
+
 export interface ICMDR {
-  _id: string;
+  _id?: string;
   cmdrName: string;
   discordName: string;
-  joinDate: Date;
   discordJoinDate: Date;
   platform: Platform;
   rank: Rank;
-  promotion?: Rank;
-  isInInaraSquad: boolean;
   inaraLink?: string;
   region: Region;
-  ref1: Referral;
-  ref2?: string;
   notes?: string;
-  entersVoice: boolean;
   email?: string;
   isDeleted?: boolean;
+}
+
+export interface IMember extends ICMDR {
+  joinDate: Date;
+  promotion?: Rank;
+  isInInaraSquad: boolean;
+  ref1: Referral;
+  ref2?: string;
+  entersVoice: boolean;
+}
+
+export interface IGuest extends ICMDR {
+  ref1: Referral;
+  ref2?: string;
+}
+
+export interface IAmbassador extends ICMDR {
+  groupRepresented: string;
+  isCoalition: boolean;
 }

@@ -1,4 +1,5 @@
-import { IUser } from 'models/auth/user';
+import { IMember } from 'models/admin/cmdr';
+import { Rank } from 'models/admin/ranks';
 import { Db } from 'mongodb';
 import { getSession } from 'next-auth/client';
 
@@ -7,9 +8,9 @@ export async function getIsHC(req, db: Db) {
   let isHC = false;
   if (session) {
     const user = await db
-      .collection('members')
-      .findOne<IUser>({ email: session.user.email });
-    isHC = user && user.role === 'high command' ? true : false;
+      .collection('cmdrs')
+      .findOne<IMember>({ email: session.user.email });
+    isHC = user && user.rank.valueOf() <= Rank.Captain.valueOf() ? true : false;
   }
   return isHC;
 }

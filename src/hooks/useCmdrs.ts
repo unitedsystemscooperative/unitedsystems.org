@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { ICMDR } from 'models/admin/cmdr';
+import {
+  CMDRType,
+  IAmbassador,
+  ICMDR,
+  IGuest,
+  IMember,
+} from 'models/admin/cmdr';
 import useSWR, { mutate } from 'swr';
 
 const addCMDR = async (cmdr: ICMDR) => {
   try {
-    await axios.post<ICMDR>('/api/cmdrs', cmdr);
+    await axios.post<ICMDR>('/api/cmdrs', { type: CMDRType.Member, cmdr });
     mutate('/api/cmdrs');
   } catch (error) {
     throw new Error(error.response.statusText);
@@ -13,16 +19,18 @@ const addCMDR = async (cmdr: ICMDR) => {
 
 const updateCMDR = async (cmdr: ICMDR) => {
   try {
-    await axios.put('/api/cmdrs', cmdr);
+    await axios.put('/api/cmdrs', { type: CMDRType.Member, cmdr });
     mutate('/api/cmdrs');
   } catch (error) {
     throw new Error(error.response.statusText);
   }
 };
 
-const deleteCMDR = async (cmdr: ICMDR) => {
+const deleteCMDR = async (cmdrs: string[]) => {
   try {
-    await axios.delete(`/api/cmdrs?id=${cmdr._id}`);
+    for (const cmdr of cmdrs) {
+      await axios.delete(`/api/cmdrs?id=${cmdr}`);
+    }
     mutate('/api/cmdrs');
   } catch (error) {
     throw new Error(error.response.statusText);
@@ -31,9 +39,14 @@ const deleteCMDR = async (cmdr: ICMDR) => {
 
 export const useCMDRs = () => {
   const { data, error } = useSWR('/api/cmdrs', (url: string) =>
-    axios.get<ICMDR[]>(url)
+    axios.get<{
+      members: IMember[];
+      guests: IGuest[];
+      ambassadors: IAmbassador[];
+    }>(url)
   );
-  const cmdrs = data?.data ?? [];
+
+  const cmdrs = data?.data ?? { members: [], guests: [], ambassadors: [] };
 
   return {
     cmdrs,
