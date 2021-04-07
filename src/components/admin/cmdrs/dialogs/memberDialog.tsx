@@ -12,6 +12,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
+import { DatePicker } from '@material-ui/lab';
 import { IMember } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
 import React, { useEffect } from 'react';
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export interface MemberDialogProps {
   open: boolean;
   values?: IMember[];
-  onClose: (value?: IMember) => void;
+  onClose: (value?: IMember, membersToEdit?: IMember[]) => void;
 }
 
 export const MemberDialog = (props: MemberDialogProps) => {
@@ -40,7 +41,8 @@ export const MemberDialog = (props: MemberDialogProps) => {
 
   useEffect(() => {
     if (values) {
-      if (values.length > 1) {
+      if (values.length === 1) {
+        reset(values[0]);
       } else {
         reset({
           _id: undefined,
@@ -107,9 +109,10 @@ export const MemberDialog = (props: MemberDialogProps) => {
         inaraLink: undefined,
         email: undefined,
       };
-      onClose(multiCmdrUpdate);
+      onClose(multiCmdrUpdate, values);
     } else {
       const singleCmdrUpdate: IMember = {
+        _id: values[0]._id,
         cmdrName: data.cmdrName,
         discordName: data.discordName,
         joinDate: data.joinDate,
@@ -131,7 +134,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} scroll="paper">
       <DialogTitle>{values ? 'Edit' : 'Add'} System</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
@@ -145,11 +148,32 @@ export const MemberDialog = (props: MemberDialogProps) => {
             className={classes.hide}
           />
           <TextField
-            name="cmdr"
+            name="cmdrName"
             inputRef={register({ required: true })}
             fullWidth
             label="CMDR Name"
             className={classes.textField}
+            disabled={values.length > 1}
+          />
+          <TextField
+            name="discordName"
+            inputRef={register({ required: true })}
+            fullWidth
+            label="Discord Handle - Format [name]#0000"
+            className={classes.textField}
+            disabled={values.length > 1}
+          />
+          <Controller
+            name="joinDate"
+            control={control}
+            render={({ field: { ref, ...rest } }) => (
+              <DatePicker
+                label="Date picker dialog"
+                inputFormat="yyyy-MM-dd"
+                {...rest}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            )}
           />
           <TextField
             name="email"
@@ -157,6 +181,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             fullWidth
             label="email"
             className={classes.textField}
+            disabled={values.length > 1}
           />
           <Typography>Is the user a member or part of High Command?</Typography>
           <Controller

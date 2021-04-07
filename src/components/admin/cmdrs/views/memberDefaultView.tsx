@@ -1,14 +1,12 @@
 import {
   Button,
   Checkbox,
-  Divider,
   makeStyles,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
@@ -21,7 +19,6 @@ import React, {
   Dispatch,
   MouseEvent,
   SetStateAction,
-  useState,
 } from 'react';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -173,6 +170,13 @@ const MemberTableHead = (props: TableHeadProps) => {
   );
 };
 
+const handleDate = (date) => {
+  const newDate = new Date(date);
+  return newDate > new Date('2019-01-01')
+    ? newDate.toLocaleDateString('en-CA')
+    : '';
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
@@ -193,76 +197,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface MemberTableProps {
+interface MemberDefaultViewProps {
   cmdrs: IMember[];
-  deletedCmdrs: IMember[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
-}
-const handleDate = (date) => {
-  const newDate = new Date(date);
-  return newDate > new Date('2019-01-01')
-    ? newDate.toLocaleDateString('en-CA')
-    : '';
-};
-
-export const MemberView = (props: MemberTableProps) => {
-  const { cmdrs, selected, setSelected } = props;
-
-  const classes = useStyles();
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleRequestSort = (
+  page: number;
+  rowsPerPage: number;
+  order: Order;
+  orderBy: keyof IMember;
+  handleSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleRequestSort: (
     _: React.MouseEvent<unknown>,
     property: keyof IMember
-  ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+  ) => void;
+  handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
+}
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = cmdrs.map((n) => n._id);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
+export const MemberDefaultView = (props: MemberDefaultViewProps) => {
+  const {
+    cmdrs,
+    selected,
+    page,
+    rowsPerPage,
+    order,
+    orderBy,
+    handleSelectAllClick,
+    handleRequestSort,
+    handleClick,
+  } = props;
 
-  const handleClick = (_: React.MouseEvent<unknown>, id: string) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected: string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  const classes = useStyles();
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
@@ -271,16 +235,6 @@ export const MemberView = (props: MemberTableProps) => {
 
   return (
     <>
-      <Divider />
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-        component="div"
-        count={cmdrs.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
       <TableContainer>
         <Table size="small">
           <MemberTableHead
@@ -353,15 +307,6 @@ export const MemberView = (props: MemberTableProps) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-        component="div"
-        count={cmdrs.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
     </>
   );
 };

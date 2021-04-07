@@ -13,9 +13,11 @@ import {
 } from '@material-ui/core';
 import { Add, Delete, Edit, FilterList } from '@material-ui/icons';
 import { useCMDRs } from 'hooks/useCmdrs';
-import { ICMDR } from 'models/admin/cmdr';
+import { CMDRType, IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
+import { useSnackbar } from 'notistack';
 import React, { MouseEvent, useEffect, useState } from 'react';
-import { MemberView } from './views/memberView';
+import { MemberDialog } from './dialogs/memberDialog';
+import { MemberDashboard } from './memberDashboard';
 
 const useTitleBarStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +89,12 @@ const DashboardTitleBar = (props: TitleBarProps) => {
         CMDR Management - {titleText}
       </Typography>
       <Tooltip title="Add a cmdr" arrow>
-        <Button variant="contained" color="primary" onClick={() => addCMDR()}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => addCMDR()}
+          disabled={selectedCount !== 0}
+        >
           <Add />
         </Button>
       </Tooltip>
@@ -155,11 +162,93 @@ const useStyles = makeStyles((theme) => ({
 
 export const CMDRDashboard = () => {
   const classes = useStyles();
-  const { cmdrs, loading, addCMDR, updateCMDR, deleteCMDR } = useCMDRs();
+  const {
+    cmdrs,
+    loading,
+    addCMDR,
+    updateCMDR,
+    updateCMDRs,
+    deleteCMDR,
+  } = useCMDRs();
+  const { enqueueSnackbar } = useSnackbar();
   const { members, guests, ambassadors } = cmdrs;
 
   const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Member);
   const [selectedCmdrs, setSelectedCmdrs] = useState<string[]>([]);
+  const [showDialog, setShowDialog] = useState<CmdrView | undefined>(undefined);
+  const [ambassadorDialogValues, setAmbassadorDialogValues] = useState<
+    IAmbassador[] | undefined
+  >(undefined);
+  const [guestDialogValues, setGuestDialogValues] = useState<
+    IGuest[] | undefined
+  >(undefined);
+  const [memberDialogValues, setMemberDialogValues] = useState<
+    IMember[] | undefined
+  >(undefined);
+
+  const handleShowDialog = () => {
+    switch (cmdrView) {
+      case CmdrView.Ambassador:
+        const ambassadorsToEdit = ambassadors.filter((x) =>
+          selectedCmdrs.includes(x._id)
+        );
+        setAmbassadorDialogValues(ambassadorsToEdit);
+        setShowDialog(CmdrView.Ambassador);
+        break;
+      case CmdrView.Guest:
+        const guestsToEdit = guests.filter((x) =>
+          selectedCmdrs.includes(x._id)
+        );
+        setGuestDialogValues(guestsToEdit);
+        setShowDialog(CmdrView.Guest);
+        break;
+      case CmdrView.Member:
+        const membersToEdit = members.filter((x) =>
+          selectedCmdrs.includes(x._id)
+        );
+        setMemberDialogValues(membersToEdit);
+        setShowDialog(CmdrView.Member);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleCloseDialog = async (
+    returnedCmdr?: IMember,
+    returnedCmdrs?: IMember[]
+  ) => {
+    setShowDialog(undefined);
+
+    if (returnedCmdrs && returnedCmdrs.length > 1) {
+      for (const cmdr of returnedCmdrs) {
+        try {
+          if (cmdr._id) {
+            await updateCMDRs(returnedCmdrs, returnedCmdr, CMDRType.Member);
+          } else {
+            await addCMDR(cmdr, CMDRType.Member);
+          }
+        } catch (e) {
+          enqueueSnackbar(
+            `Failed to add or update CMDR. Reason: ${e.message}`,
+            { variant: 'error' }
+          );
+        }
+      }
+    } else if (returnedCmdrs && returnedCmdrs.length === 1) {
+      try {
+        if (returnedCmdrs[0]._id) {
+          await updateCMDR(returnedCmdrs[0], CMDRType.Member);
+        } else {
+          await addCMDR(returnedCmdrs[0], CMDRType.Member);
+        }
+      } catch (e) {
+        enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
+          variant: 'error',
+        });
+      }
+    }
+  };
 
   const handleDelete = async () => {
     await deleteCMDR(selectedCmdrs);
@@ -176,16 +265,21 @@ export const CMDRDashboard = () => {
         view={cmdrView}
         setView={setCmdrView}
         selectedCount={selectedCmdrs.length}
-        addCMDR={() => null}
-        editCMDR={() => null}
+        addCMDR={() => handleShowDialog()}
+        editCMDR={() => handleShowDialog()}
         deleteCMDR={handleDelete}
       />
       <Collapse in={cmdrView === CmdrView.Member} mountOnEnter unmountOnExit>
-        <MemberView
+        <MemberDashboard
           cmdrs={members.filter((x) => !x.isDeleted)}
           deletedCmdrs={members.filter((x) => x.isDeleted)}
           selected={selectedCmdrs}
           setSelected={setSelectedCmdrs}
+        />
+        <MemberDialog
+          open={showDialog === CmdrView.Member}
+          values={memberDialogValues}
+          onClose={handleCloseDialog}
         />
       </Collapse>
       <Collapse
