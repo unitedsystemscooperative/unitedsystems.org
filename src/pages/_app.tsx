@@ -7,8 +7,8 @@ import React, { useEffect } from 'react';
 import { theme } from 'theme';
 import { MDXProvider } from '@mdx-js/react';
 import { mdComponents } from 'components/markdown/markdownComponents';
-import { LocalizationProvider } from '@material-ui/lab';
-import DateAdapter from '@material-ui/lab/AdapterMoment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateAdapter from '@date-io/moment';
 
 function USCApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -38,7 +38,7 @@ function USCApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Provider session={pageProps.session}>
-        <LocalizationProvider dateAdapter={DateAdapter}>
+        <MuiPickersUtilsProvider utils={DateAdapter}>
           <SnackbarProvider maxSnack={3}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
@@ -47,7 +47,7 @@ function USCApp({ Component, pageProps }: AppProps) {
               </MDXProvider>
             </ThemeProvider>
           </SnackbarProvider>
-        </LocalizationProvider>
+        </MuiPickersUtilsProvider>
       </Provider>
     </>
   );

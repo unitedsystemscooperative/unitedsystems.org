@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { System } from 'models/about/system';
 import React, { useEffect } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -33,27 +33,23 @@ export interface SystemDialogProps {
 export const SystemDialog = (props: SystemDialogProps) => {
   const classes = useStyles();
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset } = useForm<System>();
+  const { handleSubmit, reset, control, setValue } = useForm<System>();
 
   useEffect(() => {
     if (values) {
       reset(values);
     } else {
       console.log('no values given');
-      reset({
-        _id: undefined,
-        name: undefined,
-        inaraLink: undefined,
-        isControlled: false,
-      });
+      reset();
     }
-  }, [values, reset]);
+  }, [values, reset, setValue]);
 
   const handleClose = () => {
     onClose();
   };
 
   const onSubmit: SubmitHandler<System> = (data: System) => {
+    console.log(data);
     const _id = values?._id ? values._id : undefined;
     onClose({
       _id,
@@ -72,30 +68,45 @@ export const SystemDialog = (props: SystemDialogProps) => {
             Please enter the System Name, Inara Link, and whether we control the
             system.
           </DialogContentText>
-          <TextField
-            name="_id"
-            inputRef={register}
-            disabled
-            className={classes.hide}
-          />
-          <TextField
+          <Controller
             name="name"
-            inputRef={register({ required: true })}
-            fullWidth
-            placeholder="System Name"
-            className={classes.textField}
+            control={control}
+            render={(field) => (
+              <TextField
+                fullWidth
+                label="System Name"
+                className={classes.textField}
+                {...field}
+              />
+            )}
           />
-          <TextField
+          <Controller
             name="inaraLink"
-            inputRef={register({ required: true })}
-            fullWidth
-            placeholder="Inara Link"
-            className={classes.textField}
+            control={control}
+            render={(field) => (
+              <TextField
+                fullWidth
+                label="Inara Link"
+                className={classes.textField}
+                {...field}
+              />
+            )}
           />
-          <FormControlLabel
-            control={<Checkbox inputRef={register} name="isControlled" />}
-            label="Controlled"
-            labelPlacement="start"
+          <Controller
+            name="isControlled"
+            control={control}
+            render={(field) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={(e) => field.onChange(e.target.checked)}
+                    checked={field.value}
+                  />
+                }
+                label="Controlled"
+                labelPlacement="start"
+              />
+            )}
           />
         </DialogContent>
         <DialogActions>
