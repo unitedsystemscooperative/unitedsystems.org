@@ -16,18 +16,27 @@ const checkInstanceofGuest = (cmdr: ICMDR): cmdr is IGuest =>
 const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
   cmdr.rank >= Rank.FleetAdmiral && cmdr.rank <= Rank.Reserve;
 
-const addCMDR = async (cmdr: ICMDR, type: CMDRType) => {
+const addCMDR = async (
+  cmdr: IAmbassador | IGuest | IMember,
+  type: CMDRType
+) => {
   try {
-    await axios.post<ICMDR>('/api/cmdrs', { type, cmdr });
+    console.log('adding cmdr');
+    console.log(cmdr, type);
+    await axios.post('/api/cmdrs', cmdr);
     mutate('/api/cmdrs');
   } catch (error) {
     throw new Error(error.response.statusText);
   }
 };
 
-const updateCMDR = async (cmdr: ICMDR, type: CMDRType) => {
+const updateCMDR = async (
+  cmdr: IAmbassador | IGuest | IMember,
+  type: CMDRType
+) => {
   try {
-    await axios.put('/api/cmdrs', { type, cmdr });
+    console.log('updating single commander');
+    await axios.put('/api/cmdrs', cmdr);
     mutate('/api/cmdrs');
   } catch (error) {
     throw new Error(error.response.statusText);
@@ -39,40 +48,36 @@ const updateCMDRs = async (
   updateInfo: IAmbassador | IGuest | IMember,
   type: CMDRType
 ) => {
+  console.log('updating multiple CMDRs');
+  console.log({ updateInfo });
   let failedUpdates: ICMDR[] = [];
   for (const cmdr of cmdrs) {
-    if (updateInfo.discordJoinDate) {
-      cmdr.discordJoinDate = updateInfo.discordJoinDate;
-    }
     if (updateInfo.platform) {
       cmdr.platform = updateInfo.platform;
     }
     if (updateInfo.region) {
       cmdr.region = updateInfo.region;
     }
-    if (checkInstanceofMember(cmdr) && checkInstanceofMember(updateInfo)) {
-      if (updateInfo.joinDate) {
-        cmdr.joinDate = updateInfo.joinDate;
-      }
+    if (checkInstanceofMember(cmdr)) {
       if (updateInfo.rank) {
         cmdr.rank = updateInfo.rank;
       }
-      if (updateInfo.isInInaraSquad) {
-        cmdr.isInInaraSquad = updateInfo.isInInaraSquad;
+      if (updateInfo['isInInaraSquad']) {
+        cmdr.isInInaraSquad = updateInfo['isInInaraSquad'];
       }
       if (updateInfo.notes) {
         cmdr.notes = updateInfo.notes;
       }
-      if (updateInfo.promotion) {
-        cmdr.promotion = updateInfo.promotion;
+      if (updateInfo['promotion']) {
+        cmdr.promotion = updateInfo['promotion'];
       }
-      if (updateInfo.entersVoice) {
-        cmdr.entersVoice = updateInfo.entersVoice;
+      if (updateInfo['entersVoice']) {
+        cmdr.entersVoice = updateInfo['entersVoice'];
       }
     }
 
     try {
-      await axios.put('/api/cmdrs', { type, cmdr });
+      await axios.put('/api/cmdrs', cmdr);
     } catch (error) {
       failedUpdates = [...failedUpdates, cmdr];
     }

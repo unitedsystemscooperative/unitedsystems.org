@@ -42,7 +42,6 @@ const useTitleBarStyles = makeStyles((theme) => ({
 }));
 
 interface TitleBarProps {
-  view: CmdrView;
   setView: (CmdrView) => void;
   selectedCount: number;
   addCMDR: () => void;
@@ -54,26 +53,9 @@ const viewOptions = ['Ambassadors', 'Guests', 'Members'];
 
 const DashboardTitleBar = (props: TitleBarProps) => {
   const classes = useTitleBarStyles();
-  const { view, setView, selectedCount, addCMDR, editCMDR, deleteCMDR } = props;
+  const { setView, selectedCount, addCMDR, editCMDR, deleteCMDR } = props;
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [titleText, setTitleText] = useState('');
-  useEffect(() => {
-    switch (view) {
-      case CmdrView.Ambassador:
-        setTitleText('Ambassadors');
-        break;
-      case CmdrView.Guest:
-        setTitleText('Guests');
-        break;
-      case CmdrView.Member:
-        setTitleText('Members');
-        break;
-      default:
-        setTitleText('');
-        break;
-    }
-  }, [view]);
 
   const handleViewFilterClick = (event: MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
@@ -86,7 +68,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
   return (
     <Toolbar className={classes.root}>
       <Typography variant="h4" component="div" className={classes.title}>
-        CMDR Management - {titleText}
+        CMDR Management
       </Typography>
       <Tooltip title="Add a cmdr" arrow>
         <Button
@@ -221,19 +203,12 @@ export const CMDRDashboard = () => {
     setShowDialog(undefined);
 
     if (returnedCmdrs && returnedCmdrs.length > 1) {
-      for (const cmdr of returnedCmdrs) {
-        try {
-          if (cmdr._id) {
-            await updateCMDRs(returnedCmdrs, returnedCmdr, CMDRType.Member);
-          } else {
-            await addCMDR(cmdr, CMDRType.Member);
-          }
-        } catch (e) {
-          enqueueSnackbar(
-            `Failed to add or update CMDR. Reason: ${e.message}`,
-            { variant: 'error' }
-          );
-        }
+      try {
+        await updateCMDRs(returnedCmdrs, returnedCmdr, CMDRType.Member);
+      } catch (e) {
+        enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
+          variant: 'error',
+        });
       }
     } else if (returnedCmdrs && returnedCmdrs.length === 1) {
       try {
@@ -241,6 +216,18 @@ export const CMDRDashboard = () => {
           await updateCMDR(returnedCmdrs[0], CMDRType.Member);
         } else {
           await addCMDR(returnedCmdrs[0], CMDRType.Member);
+        }
+      } catch (e) {
+        enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
+          variant: 'error',
+        });
+      }
+    } else if (returnedCmdr) {
+      try {
+        if (returnedCmdr._id) {
+          await updateCMDR(returnedCmdr, CMDRType.Member);
+        } else {
+          await addCMDR(returnedCmdr, CMDRType.Member);
         }
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
@@ -262,7 +249,6 @@ export const CMDRDashboard = () => {
   return (
     <Container maxWidth="xl" component={Paper} className={classes.root}>
       <DashboardTitleBar
-        view={cmdrView}
         setView={setCmdrView}
         selectedCount={selectedCmdrs.length}
         addCMDR={() => handleShowDialog()}

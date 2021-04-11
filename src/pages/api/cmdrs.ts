@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { db } = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
-    const cmdr = req.body as ICMDR;
+    const cmdr = req.body;
     // console.log(req.body);
 
     switch (req.method) {
@@ -27,6 +27,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
+        console.log(cmdr);
         const response = await db.collection('cmdrs').insertOne(cmdr);
 
         res.json(response.ops);
@@ -38,16 +39,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         const { _id, ...updateCmdr } = cmdr;
         const id = new ObjectID(_id);
-        const updateDoc: UpdateQuery<ICMDR> = {
+        const updateDoc = {
           $set: {
             ...updateCmdr,
           },
         };
         const options: UpdateOneOptions = { upsert: false };
 
+        console.log({ id });
+        console.log(updateDoc);
+
         const updateResponse = await db
           .collection('cmdrs')
           .updateOne({ _id: id }, updateDoc, options);
+
+        console.log({ updateResponse });
 
         if (updateResponse.result.nModified > 0) {
           res.status(200).json(updateResponse.result);
@@ -69,10 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const cursor = db
-          .collection<ICMDR>('cmdrs')
-          .find({})
-          .sort({ cmdrName: 1 });
+        const cursor = db.collection('cmdrs').find({}).sort({ cmdrName: 1 });
         const cmdrs = await cursor.toArray();
         cursor.close();
 

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export interface MemberDialogProps {
   open: boolean;
-  values?: IMember[];
+  values: IMember[];
   onClose: (value?: IMember, membersToEdit?: IMember[]) => void;
 }
 
@@ -47,14 +47,32 @@ export const MemberDialog = (props: MemberDialogProps) => {
   useEffect(() => {
     if (values) {
       if (values.length === 1) {
-        reset(values[0]);
+        console.log({ values });
+        const value = values[0];
+        reset({
+          cmdrName: value.cmdrName,
+          discordName: value.discordName,
+          joinDate: value.joinDate ? value.joinDate : null,
+          discordJoinDate: value.discordJoinDate ? value.discordJoinDate : null,
+          platform: value.platform,
+          rank: value.rank,
+          isInInaraSquad: value.isInInaraSquad,
+          region: value.region,
+          ref1: value.ref1,
+          ref2: value.ref2,
+          notes: value.notes,
+          promotion: value.promotion ?? -2,
+          entersVoice: value.entersVoice,
+          inaraLink: value.inaraLink,
+          email: value.email,
+        });
       } else {
         reset({
           _id: undefined,
           cmdrName: undefined,
           discordName: undefined,
-          joinDate: undefined,
-          discordJoinDate: undefined,
+          joinDate: null,
+          discordJoinDate: null,
           platform: undefined,
           rank: undefined,
           isInInaraSquad: false,
@@ -62,7 +80,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
           ref1: undefined,
           ref2: undefined,
           notes: '',
-          promotion: -1,
+          promotion: undefined,
           entersVoice: false,
           inaraLink: undefined,
           email: undefined,
@@ -98,7 +116,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
         inaraLink: undefined,
         email: undefined,
       };
-      // onClose(multiCmdrUpdate, values);
+      onClose(multiCmdrUpdate, values);
     } else {
       const _id = values[0]?._id ? values[0]._id : undefined;
       const singleCmdrUpdate: IMember = {
@@ -119,81 +137,90 @@ export const MemberDialog = (props: MemberDialogProps) => {
         inaraLink: data.inaraLink,
         email: data.email,
       };
-      // onClose(singleCmdrUpdate);
+      onClose(singleCmdrUpdate);
     }
   };
 
   return (
     <Dialog onClose={handleClose} open={open}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DialogTitle>{values ? 'Edit' : 'Add'} CMDR</DialogTitle>
+        <DialogTitle>{values?.length > 0 ? 'Edit' : 'Add'} CMDR</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please enter the CMDR information.
           </DialogContentText>
-          <TextField
-            name="cmdrName"
-            inputRef={register({ required: true })}
-            fullWidth
-            label="CMDR Name"
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
-          <TextField
-            name="discordName"
-            inputRef={register({ required: true })}
-            fullWidth
-            label="Discord Handle - Format [name]#0000"
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
-          <Controller
-            name="joinDate"
-            control={control}
-            render={(field) => (
-              <KeyboardDatePicker
-                label="Join Date"
-                autoOk
-                disableFuture
-                format="yyyy-MM-DD"
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            name="discordJoinDate"
-            control={control}
-            render={(field) => (
-              <KeyboardDatePicker
-                label="Discord Join Date"
-                autoOk
-                disableFuture
-                format="yyyy-MM-DD"
-                {...field}
-                clearable
-              />
-            )}
-          />
-          <Controller
-            name="platform"
-            control={control}
-            as={
-              <FormControl fullWidth>
-                <InputLabel>Platform</InputLabel>
+          {values?.length <= 1 && (
+            <TextField
+              name="cmdrName"
+              inputRef={register({ required: true })}
+              fullWidth
+              label="CMDR Name"
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="discordName"
+              inputRef={register({ required: true })}
+              fullWidth
+              label="Discord Handle - Format [name]#0000"
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <Controller
+              name="joinDate"
+              control={control}
+              defaultValue={new Date()}
+              render={(field) => (
+                <KeyboardDatePicker
+                  label="Join Date"
+                  autoOk
+                  disableFuture
+                  format="yyyy-MM-DD"
+                  {...field}
+                />
+              )}
+            />
+          )}
+          {values?.length <= 1 && (
+            <Controller
+              name="discordJoinDate"
+              control={control}
+              render={(field) => (
+                <KeyboardDatePicker
+                  label="Discord Join Date"
+                  autoOk
+                  disableFuture
+                  format="yyyy-MM-DD"
+                  {...field}
+                  clearable
+                />
+              )}
+            />
+          )}
+          <FormControl fullWidth>
+            <InputLabel>Platform</InputLabel>
+            <Controller
+              name="platform"
+              control={control}
+              as={
                 <Select label="Platform" fullWidth>
                   <MenuItem value={Platform.PC}>PC</MenuItem>
                   <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
                   <MenuItem value={Platform.PS}>PlayStation</MenuItem>
                 </Select>
-              </FormControl>
-            }
-          />
-          <Controller
-            name="rank"
-            control={control}
-            as={
-              <FormControl fullWidth>
-                <InputLabel>Rank</InputLabel>
+              }
+            />
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel>Rank</InputLabel>
+            <Controller
+              name="rank"
+              control={control}
+              as={
                 <Select fullWidth>
                   <MenuItem value={Rank.FleetAdmiral}>
                     {RankString[Rank.FleetAdmiral]}
@@ -223,16 +250,17 @@ export const MemberDialog = (props: MemberDialogProps) => {
                     {RankString[Rank.Reserve]}
                   </MenuItem>
                 </Select>
-              </FormControl>
-            }
-          />
-          <Controller
-            name="promotion"
-            control={control}
-            as={
-              <FormControl fullWidth>
-                <InputLabel>Promotion</InputLabel>
+              }
+            />
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel>Promotion</InputLabel>
+            <Controller
+              name="promotion"
+              control={control}
+              as={
                 <Select fullWidth>
+                  <MenuItem value={-2}></MenuItem>
                   <MenuItem value={-1}>None</MenuItem>
                   <MenuItem value={Rank.FleetAdmiral}>
                     {RankString[Rank.FleetAdmiral]}
@@ -262,9 +290,9 @@ export const MemberDialog = (props: MemberDialogProps) => {
                     {RankString[Rank.Reserve]}
                   </MenuItem>
                 </Select>
-              </FormControl>
-            }
-          />
+              }
+            />
+          </FormControl>
           <Controller
             name="isInInaraSquad"
             control={control}
@@ -297,12 +325,12 @@ export const MemberDialog = (props: MemberDialogProps) => {
               />
             )}
           />
-          <Controller
-            name="region"
-            control={control}
-            as={
-              <FormControl fullWidth>
-                <InputLabel>Region</InputLabel>
+          <FormControl fullWidth>
+            <InputLabel>Region</InputLabel>
+            <Controller
+              name="region"
+              control={control}
+              as={
                 <Select fullWidth>
                   <MenuItem value={Region.N_CAmerica}>
                     {RegionString[Region.N_CAmerica]}
@@ -320,81 +348,90 @@ export const MemberDialog = (props: MemberDialogProps) => {
                     {RegionString[Region.Asia_Pacific]}
                   </MenuItem>
                 </Select>
-              </FormControl>
-            }
-          />
-          <Controller
-            name="ref1"
-            control={control}
-            as={
-              <FormControl fullWidth>
-                <InputLabel>Reference</InputLabel>
-                <Select fullWidth>
-                  <MenuItem value={Referral.Discord}>
-                    {ReferralString[Referral.Discord]}
-                  </MenuItem>
-                  <MenuItem value={Referral.FB}>
-                    {ReferralString[Referral.FB]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Forums}>
-                    {ReferralString[Referral.Forums]}
-                  </MenuItem>
-                  <MenuItem value={Referral.InGame}>
-                    {ReferralString[Referral.InGame]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Inara}>
-                    {ReferralString[Referral.Inara]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Player}>
-                    {ReferralString[Referral.Player]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Reddit}>
-                    {ReferralString[Referral.Reddit]}
-                  </MenuItem>
-                  <MenuItem value={Referral.USI}>
-                    {ReferralString[Referral.USI]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Website}>
-                    {ReferralString[Referral.Website]}
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            }
-          />
-          <TextField
-            name="ref2"
-            inputRef={register({ required: false })}
-            fullWidth
-            label="Referral Explanation"
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
-          <TextField
-            name="notes"
-            inputRef={register({ required: false })}
-            fullWidth
-            label="notes"
-            multiline
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
-
-          <TextField
-            name="inaraLink"
-            inputRef={register({ required: false })}
-            fullWidth
-            label="Inara Link"
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
-          <TextField
-            name="email"
-            inputRef={register({ required: false })}
-            fullWidth
-            label="Email"
-            className={classes.textField}
-            disabled={values?.length > 1}
-          />
+              }
+            />
+          </FormControl>
+          {values?.length <= 1 && (
+            <FormControl fullWidth>
+              <InputLabel>Reference</InputLabel>
+              <Controller
+                name="ref1"
+                control={control}
+                as={
+                  <Select fullWidth>
+                    <MenuItem value={Referral.Discord}>
+                      {ReferralString[Referral.Discord]}
+                    </MenuItem>
+                    <MenuItem value={Referral.FB}>
+                      {ReferralString[Referral.FB]}
+                    </MenuItem>
+                    <MenuItem value={Referral.Forums}>
+                      {ReferralString[Referral.Forums]}
+                    </MenuItem>
+                    <MenuItem value={Referral.InGame}>
+                      {ReferralString[Referral.InGame]}
+                    </MenuItem>
+                    <MenuItem value={Referral.Inara}>
+                      {ReferralString[Referral.Inara]}
+                    </MenuItem>
+                    <MenuItem value={Referral.Player}>
+                      {ReferralString[Referral.Player]}
+                    </MenuItem>
+                    <MenuItem value={Referral.Reddit}>
+                      {ReferralString[Referral.Reddit]}
+                    </MenuItem>
+                    <MenuItem value={Referral.USI}>
+                      {ReferralString[Referral.USI]}
+                    </MenuItem>
+                    <MenuItem value={Referral.Website}>
+                      {ReferralString[Referral.Website]}
+                    </MenuItem>
+                  </Select>
+                }
+              />
+            </FormControl>
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="ref2"
+              inputRef={register({ required: false })}
+              fullWidth
+              label="Referral Explanation"
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="notes"
+              inputRef={register({ required: false })}
+              fullWidth
+              label="Notes"
+              multiline
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="inaraLink"
+              inputRef={register({ required: false })}
+              fullWidth
+              label="Inara Link"
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="email"
+              inputRef={register({ required: false })}
+              fullWidth
+              label="Email"
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
         </DialogContent>
         <DialogActions>
           <Button variant="contained" color="primary" type="submit">
