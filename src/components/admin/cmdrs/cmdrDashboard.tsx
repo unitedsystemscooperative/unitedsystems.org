@@ -13,9 +13,11 @@ import {
 } from '@material-ui/core';
 import { Add, Delete, Edit, FilterList } from '@material-ui/icons';
 import { useCMDRs } from 'hooks/useCmdrs';
-import { CMDRType, IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
+import { IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
 import { useSnackbar } from 'notistack';
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
+import { AmbassadorDashboard } from './ambassadorDashboard';
+import { AmbassadorDialog } from './dialogs/ambassadorDialog';
 import { MemberDialog } from './dialogs/memberDialog';
 import { MemberDashboard } from './memberDashboard';
 
@@ -197,14 +199,14 @@ export const CMDRDashboard = () => {
   };
 
   const handleCloseDialog = async (
-    returnedCmdr?: IMember,
-    returnedCmdrs?: IMember[]
+    returnedCmdr?: IMember | IGuest | IAmbassador,
+    returnedCmdrs?: IMember[] | IGuest[] | IAmbassador[]
   ) => {
     setShowDialog(undefined);
 
     if (returnedCmdrs && returnedCmdrs.length > 1) {
       try {
-        await updateCMDRs(returnedCmdrs, returnedCmdr, CMDRType.Member);
+        await updateCMDRs(returnedCmdrs, returnedCmdr);
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
           variant: 'error',
@@ -213,9 +215,9 @@ export const CMDRDashboard = () => {
     } else if (returnedCmdrs && returnedCmdrs.length === 1) {
       try {
         if (returnedCmdrs[0]._id) {
-          await updateCMDR(returnedCmdrs[0], CMDRType.Member);
+          await updateCMDR(returnedCmdrs[0]);
         } else {
-          await addCMDR(returnedCmdrs[0], CMDRType.Member);
+          await addCMDR(returnedCmdrs[0]);
         }
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
@@ -225,9 +227,9 @@ export const CMDRDashboard = () => {
     } else if (returnedCmdr) {
       try {
         if (returnedCmdr._id) {
-          await updateCMDR(returnedCmdr, CMDRType.Member);
+          await updateCMDR(returnedCmdr);
         } else {
-          await addCMDR(returnedCmdr, CMDRType.Member);
+          await addCMDR(returnedCmdr);
         }
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
@@ -236,6 +238,8 @@ export const CMDRDashboard = () => {
       }
     }
   };
+
+  const handleRestore = async () => {};
 
   const handleDelete = async () => {
     await deleteCMDR(selectedCmdrs);
@@ -273,7 +277,17 @@ export const CMDRDashboard = () => {
         mountOnEnter
         unmountOnExit
       >
-        <UnderConstruction title="Ambassadors" />
+        <AmbassadorDashboard
+          cmdrs={ambassadors.filter((x) => !x.isDeleted)}
+          deletedCmdrs={ambassadors.filter((x) => x.isDeleted)}
+          selected={selectedCmdrs}
+          setSelected={setSelectedCmdrs}
+        />
+        <AmbassadorDialog
+          open={showDialog === CmdrView.Ambassador}
+          values={ambassadorDialogValues}
+          onClose={handleCloseDialog}
+        />
       </Collapse>
       <Collapse in={cmdrView === CmdrView.Guest} mountOnEnter unmountOnExit>
         <UnderConstruction title="Guests" />

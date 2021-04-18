@@ -1,6 +1,6 @@
 import { Divider, TablePagination } from '@material-ui/core';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
-import { IMember } from 'models/admin/cmdr';
+import { IAmbassador } from 'models/admin/cmdr';
 import React, {
   ChangeEvent,
   Dispatch,
@@ -9,26 +9,23 @@ import React, {
   useState,
 } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
-import { MemberDefaultView } from './views/memberDefaultView';
-import { MemberDeletedView } from './views/memberDeletedView';
-import { MemberNoteView } from './views/memberNoteView';
-import { MemberRefView } from './views/memberRefView';
+import { AmbassadorDefaultView } from './views/ambassadorDefaultView';
 
 type Order = 'asc' | 'desc';
-const memberViews = ['Default', 'Notes', 'Reference', 'Deleted'];
+const memberViews = ['Default', 'Deleted'];
 
-interface MemberDashboardProps {
-  cmdrs: IMember[];
-  deletedCmdrs: IMember[];
+interface AmbassadorDashboardProps {
+  cmdrs: IAmbassador[];
+  deletedCmdrs: IAmbassador[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
 }
 
-export const MemberDashboard = (props: MemberDashboardProps) => {
+export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
   const { cmdrs, selected, setSelected, deletedCmdrs } = props;
 
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
+  const [orderBy, setOrderBy] = useState<keyof IAmbassador>('cmdrName');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [memberView, setMemberView] = useState(0);
@@ -45,7 +42,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
 
   const handleRequestSort = (
     _: React.MouseEvent<unknown>,
-    property: keyof IMember
+    property: keyof IAmbassador
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -92,11 +89,11 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
     setPage(0);
   };
 
-  if (memberView === 3) {
+  if (memberView === 1) {
     return (
       <>
         <DashboardToolbar
-          title="Members"
+          title="Ambassadors"
           viewOptions={memberViews}
           view={memberView}
           setView={setMemberView}
@@ -113,7 +110,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-        <MemberDeletedView
+        {/* <MemberDeletedView
           cmdrs={filteredDeletedCmdrs}
           selected={selected}
           setSelected={setSelected}
@@ -124,7 +121,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           handleSelectAllClick={handleSelectAllClick}
           handleRequestSort={handleRequestSort}
           handleClick={handleClick}
-        />
+        /> */}
         <TablePagination
           rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
           component="div"
@@ -141,7 +138,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
   return (
     <>
       <DashboardToolbar
-        title="Members"
+        title="Ambassadors"
         viewOptions={memberViews}
         view={memberView}
         setView={setMemberView}
@@ -159,35 +156,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
       {memberView === 0 && (
-        <MemberDefaultView
-          cmdrs={filteredCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-        />
-      )}
-      {memberView === 1 && (
-        <MemberNoteView
-          cmdrs={filteredCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-        />
-      )}
-      {memberView === 2 && (
-        <MemberRefView
+        <AmbassadorDefaultView
           cmdrs={filteredCmdrs}
           selected={selected}
           setSelected={setSelected}

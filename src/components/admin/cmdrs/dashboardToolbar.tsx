@@ -1,21 +1,17 @@
 import {
-  Button,
   FormControl,
-  FormControlLabel,
   IconButton,
   InputBase,
   InputLabel,
   makeStyles,
-  Menu,
   MenuItem,
   Paper,
   Select,
   Toolbar,
-  Tooltip,
   Typography,
 } from '@material-ui/core';
-import { FilterList, Search } from '@material-ui/icons';
-import React, { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
+import { Clear, Search } from '@material-ui/icons';
+import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 const useTitleBarStyles = makeStyles((theme) => ({
   root: {
@@ -67,30 +63,30 @@ export const DashboardToolbar = (props: ToolbarProps) => {
     setSearchValue,
   } = props;
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleViewFilterClick = (event: MouseEvent<HTMLButtonElement>) =>
-    setAnchorEl(event.currentTarget);
   const handleViewMenuClick = (_: MouseEvent<HTMLElement>, index: number) => {
     setView(index);
-    setAnchorEl(null);
   };
-  const handleViewFilterClose = () => setAnchorEl(null);
 
   return (
     <Toolbar className={classes.root}>
       <Typography variant="h4" component="div" className={classes.title}>
         {title}
       </Typography>
-      <Paper className={classes.searchBar}>
+      <Paper className={classes.searchBar} variant="outlined">
+        <div className={classes.iconButton}>
+          <Search />
+        </div>
         <InputBase
           className={classes.searchInput}
           placeholder="Search"
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />
-        <IconButton className={classes.iconButton}>
-          <Search />
+        <IconButton
+          className={classes.iconButton}
+          onClick={() => setSearchValue('')}
+        >
+          <Clear />
         </IconButton>
       </Paper>
       <FormControl className={classes.formControl}>

@@ -16,13 +16,9 @@ const checkInstanceofGuest = (cmdr: ICMDR): cmdr is IGuest =>
 const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
   cmdr.rank >= Rank.FleetAdmiral && cmdr.rank <= Rank.Reserve;
 
-const addCMDR = async (
-  cmdr: IAmbassador | IGuest | IMember,
-  type: CMDRType
-) => {
+const addCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
   try {
     console.log('adding cmdr');
-    console.log(cmdr, type);
     await axios.post('/api/cmdrs', cmdr);
     mutate('/api/cmdrs');
   } catch (error) {
@@ -30,10 +26,7 @@ const addCMDR = async (
   }
 };
 
-const updateCMDR = async (
-  cmdr: IAmbassador | IGuest | IMember,
-  type: CMDRType
-) => {
+const updateCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
   try {
     console.log('updating single commander');
     await axios.put('/api/cmdrs', cmdr);
@@ -45,8 +38,7 @@ const updateCMDR = async (
 
 const updateCMDRs = async (
   cmdrs: IAmbassador[] | IGuest[] | IMember[],
-  updateInfo: IAmbassador | IGuest | IMember,
-  type: CMDRType
+  updateInfo: IAmbassador | IGuest | IMember
 ) => {
   console.log('updating multiple CMDRs');
   console.log({ updateInfo });
