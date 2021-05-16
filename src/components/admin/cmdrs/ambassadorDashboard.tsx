@@ -1,4 +1,5 @@
 import { Divider, TablePagination } from '@material-ui/core';
+import { Order } from 'functions/sort';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
 import { IAmbassador } from 'models/admin/cmdr';
 import React, {
@@ -11,7 +12,6 @@ import React, {
 import { DashboardToolbar } from './dashboardToolbar';
 import { AmbassadorDefaultView } from './views/ambassadorDefaultView';
 
-type Order = 'asc' | 'desc';
 const memberViews = ['Default', 'Deleted'];
 
 interface AmbassadorDashboardProps {

@@ -1,4 +1,5 @@
 import { Divider, TablePagination } from '@material-ui/core';
+import { Order } from 'functions/sort';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
 import { IMember } from 'models/admin/cmdr';
 import React, {
@@ -14,7 +15,6 @@ import { MemberDeletedView } from './views/memberDeletedView';
 import { MemberNoteView } from './views/memberNoteView';
 import { MemberRefView } from './views/memberRefView';
 
-type Order = 'asc' | 'desc';
 const memberViews = ['Default', 'Notes', 'Reference', 'Deleted'];
 
 interface MemberDashboardProps {

@@ -10,9 +10,9 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
+import { descendingComparator, Order, stableSort } from 'functions/sort';
 import { IAmbassador } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
-import { RankString } from 'models/admin/ranks';
 import { RegionString } from 'models/admin/regions';
 import React, {
   ChangeEvent,
@@ -21,18 +21,6 @@ import React, {
   SetStateAction,
 } from 'react';
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-type Order = 'asc' | 'desc';
-
 function getComparator<Key extends keyof IAmbassador>(
   order: Order,
   orderBy: Key
@@ -40,16 +28,6 @@ function getComparator<Key extends keyof IAmbassador>(
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
 }
 
 interface HeadCell {
