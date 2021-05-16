@@ -1,3 +1,6 @@
+import { Referral } from 'models/admin/referrals';
+import { Region } from 'models/admin/regions';
+
 export interface IJoinInfo {
   //   type: 'join' | 'guest' | 'ambassador';
   timeStamp?: string;
@@ -15,10 +18,11 @@ export interface IJoinInfo {
   //     | 'morethan6Month'
   //     | 'morethanYear';
   playingLength?: string;
-  reference?: string;
+  reference?: Referral;
   reference2?: string;
   rules: boolean;
-  timezone: string;
+  timezone?: string;
+  region?: Region;
   needPrivate?: boolean;
   group?: string;
 }

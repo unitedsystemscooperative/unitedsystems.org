@@ -9,8 +9,13 @@ import {
   TablePagination,
   TableRow,
 } from '@material-ui/core';
-import { FileCopy } from '@material-ui/icons';
+import { Add, FileCopy } from '@material-ui/icons';
 import { copytoClipboard } from 'functions/copytoClipboard';
+import { IMember } from 'models/admin/cmdr';
+import { Platform } from 'models/admin/platforms';
+import { Rank } from 'models/admin/ranks';
+import { Referral } from 'models/admin/referrals';
+import { Region, RegionString } from 'models/admin/regions';
 import { IJoinInfo } from 'models/join/joinInfo';
 import React from 'react';
 import { buildPlatforms } from './buildPlatforms';
@@ -30,6 +35,39 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
     setPage(0);
   };
 
+  const processPlatform = (platforms: {
+    pc: boolean;
+    xbox: boolean;
+    ps: boolean;
+  }): Platform => {
+    if (platforms.pc) {
+      return Platform.PC;
+    }
+    if (platforms.xbox) {
+      return Platform.Xbox;
+    }
+    if (platforms.ps) {
+      return Platform.PS;
+    }
+    return Platform.PC;
+  };
+
+  const handleAddMember = (joinInfo: IJoinInfo) => {
+    const newMember: IMember = {
+      cmdrName: joinInfo.cmdr.toUpperCase(),
+      discordName: joinInfo.discord,
+      discordJoinDate: null,
+      joinDate: null,
+      platform: processPlatform(joinInfo.platforms),
+      rank: Rank.Cadet,
+      region: joinInfo.region ?? Region.N_CAmerica,
+      ref1: joinInfo.reference,
+      ref2: joinInfo.reference2,
+      entersVoice: false,
+      isInInaraSquad: false,
+    };
+  };
+
   const processLength = (length: string) => {
     switch (length) {
       case 'lessthanMonth':
@@ -44,6 +82,7 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
         return '';
     }
   };
+
   return (
     <Paper>
       <TableContainer>
@@ -57,7 +96,8 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
               <TableCell>Playing Length</TableCell>
               <TableCell>Reference</TableCell>
               <TableCell>Reference2</TableCell>
-              <TableCell>Timezone</TableCell>
+              <TableCell>Region</TableCell>
+              {/* <TableCell>Add to Dashboard</TableCell> */}
             </TableRow>
           </TableHead>
           {members && (
@@ -66,10 +106,12 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((map) => (
                   <TableRow key={`${map.discord} ${map.timeStamp}`}>
-                    <TableCell>{map.timeStamp}</TableCell>
+                    <TableCell>
+                      {new Date(map.timeStamp).toUTCString()}
+                    </TableCell>
                     <TableCell>
                       <div>
-                        {map.cmdr}{' '}
+                        {map.cmdr}
                         <IconButton
                           size="small"
                           color="secondary"
@@ -83,7 +125,7 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
                     </TableCell>
                     <TableCell>
                       <div>
-                        {map.discord}{' '}
+                        {map.discord}
                         <IconButton
                           size="small"
                           color="secondary"
@@ -97,7 +139,15 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
                     <TableCell>{processLength(map.playingLength)}</TableCell>
                     <TableCell>{map.reference}</TableCell>
                     <TableCell>{map.reference2}</TableCell>
-                    <TableCell>{map.timezone}</TableCell>
+                    <TableCell>{map.region}</TableCell>
+                    {/* <TableCell>
+                      <IconButton
+                        color="primary"
+                        onClick={() => handleAddMember(map)}
+                      >
+                        <Add />
+                      </IconButton>
+                    </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

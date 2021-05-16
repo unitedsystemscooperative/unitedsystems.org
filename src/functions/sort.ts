@@ -48,7 +48,11 @@ const comparerReverse = <T, P extends keyof T>(prop: P) => {
   };
 };
 
-export function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+export function descendingComparator<T>(
+  a: T,
+  b: T,
+  orderBy: keyof T
+): 0 | -1 | 1 {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -60,7 +64,10 @@ export function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
 export type Order = 'asc' | 'desc';
 
-export function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
+export function stableSort<T>(
+  array: T[],
+  comparator: (a: T, b: T) => number
+): T[] {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
