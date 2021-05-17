@@ -239,7 +239,7 @@ export const CMDRDashboard = () => {
     }
   };
 
-  const handleRestore = async () => {};
+  // const handleRestore = async () => {};
 
   const handleDelete = async () => {
     await deleteCMDR(selectedCmdrs);

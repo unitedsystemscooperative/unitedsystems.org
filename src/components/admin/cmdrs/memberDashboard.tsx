@@ -41,7 +41,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
 
   useEffect(() => {
     setPage(0);
-  }, [filteredCmdrs]);
+  }, [filteredCmdrs.length]);
 
   const handleRequestSort = (
     _: React.MouseEvent<unknown>,
