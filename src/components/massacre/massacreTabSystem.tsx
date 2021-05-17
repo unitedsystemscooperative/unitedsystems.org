@@ -7,6 +7,7 @@ import { MassacreTabPanel } from './massacreTabPanel';
 export const MassacreTabSystem = () => {
   const context = useContext(MassacreContext);
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleTabChange = (_: ChangeEvent<{}>, newValue: string) => {
     context?.setSelectedTab(newValue);
   };
@@ -25,7 +26,7 @@ export const MassacreTabSystem = () => {
                 value={tracker.hazRezSystem}
               />
             ))}
-            {/* <Tab label="+" value="+" /> */}
+            <Tab label="+" value="+" />
           </Tabs>
         </AppBar>
         {context.trackers.map((tracker) => (
