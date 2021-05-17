@@ -81,7 +81,7 @@ export const NavbarMobile = (props: {
         ) : (
           <Link href="/join">
             <ListItem button component="a">
-              <ListItemText primary="Admin" />
+              <ListItemText primary="Join" />
             </ListItem>
           </Link>
         )}

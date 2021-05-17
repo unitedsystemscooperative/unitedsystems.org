@@ -46,6 +46,15 @@ export const AdminDashboard = () => {
         >
           CMDR Spreadsheet
         </Button>
+        <Link href="/admin/cmdrs" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.linkButton}
+          >
+            CMDR Dashboard
+          </Button>
+        </Link>
         <Link href="/admin/joinRequests" passHref>
           <Button
             variant="contained"
