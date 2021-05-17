@@ -125,7 +125,16 @@ const processHazRezSystem = async (system: string) => {
           const removed = false;
           return { name, id, influence, removed };
         })
-        .filter((faction) => faction.influence > 0);
+        .filter((faction) => faction.influence > 0)
+        .sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 0;
+        });
 
       const stationsinSystem = await getStationsinSystem(x.name);
       const stations = stationsinSystem.stations

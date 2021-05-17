@@ -78,6 +78,17 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   useEffect(() => {
     if (window) {
+      const setTab = window.localStorage.getItem('massacreTrackerTab');
+      if (setTab) {
+        setSelectedTab(setTab);
+      } else {
+        setSelectedTab('+');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (window) {
       const store: IMassacreTrack[] | null = JSON.parse(
         window.localStorage.getItem('massacreTrackerStore')
       );
@@ -100,16 +111,22 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   const [selectedTab, setSelectedTab] = useState<string>(() => {
     if (trackers && trackers.length > 0) {
+      console.log({ trackers });
       const selectedTrack = trackers.find((x) => x.current === true);
       if (selectedTrack) {
         return selectedTrack.hazRezSystem;
       } else {
-        return 'Bibaridji';
+        return '+';
       }
     } else {
-      return 'Bibaridji';
+      console.log('no trackers. Setting to add');
+      return '+';
     }
   });
+
+  useEffect(() => {
+    window.localStorage.setItem('massacreTrackerTab', selectedTab);
+  }, [selectedTab]);
 
   const addTracker = (newTracker: IMassacreTrack) => {
     let response = '';

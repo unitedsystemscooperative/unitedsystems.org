@@ -1,5 +1,12 @@
 import { Button, Container, makeStyles, Typography } from '@material-ui/core';
-import { IMassacreTrack } from 'models/massacreTrack';
+import {
+  getFactionsinSystem,
+  getStationsinSystem,
+  getSystemsinSphere,
+} from 'functions';
+import { sortItems } from 'functions/sort';
+import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
+import { ReputationLevels } from 'models/reputationLevels';
 import { MassacreContext } from 'providers/massacreTrackerProvider';
 import { useContext, useMemo } from 'react';
 import { MassacreMissions } from './massacreMissions';
@@ -89,13 +96,42 @@ export const MassacreTabPanel = (props: { system: string }) => {
       };
       context.updateTracker(tracker.hazRezSystem, newTracker);
     };
+    const refreshFactions = async () => {
+      const result = await processHazRezSystem(tracker.hazRezSystem);
+      let factions: IFactionwMissions[] = [];
+
+      result.forEach((r) => {
+        r.factions.forEach((f) => {
+          if (factions.find((x) => x.id === f.id)) {
+            // do nothing
+          } else {
+            const newFaction: IFactionwMissions = {
+              name: f.name,
+              id: f.id,
+              removed: false,
+              reputation: ReputationLevels.allied,
+              missions: [null, null, null, null, null],
+            };
+            factions = [...factions, newFaction];
+          }
+        });
+      });
+      const final: IMassacreTrack = {
+        hazRezSystem: system,
+        systemsin10LY: result,
+        factions,
+        current: true,
+      };
+
+      context.updateTracker(tracker.hazRezSystem, final);
+    };
 
     return (
       <Container maxWidth="xl">
         <div className={classes.buttons}>
-          {/* <Button onClick={deleteTracker} color="secondary" variant="contained">
+          <Button onClick={deleteTracker} color="secondary" variant="contained">
             Delete Tracker
-          </Button> */}
+          </Button>
           <Button
             onClick={addMissionColumn}
             color="secondary"
@@ -119,6 +155,13 @@ export const MassacreTabPanel = (props: { system: string }) => {
           </Button>
           <Button onClick={resetCounts} color="secondary" variant="contained">
             Reset Counts
+          </Button>
+          <Button
+            onClick={refreshFactions}
+            color="secondary"
+            variant="contained"
+          >
+            Reset and Refresh Factions
           </Button>
         </div>
         <div>
@@ -150,4 +193,49 @@ export const MassacreTabPanel = (props: { system: string }) => {
   } else {
     return <Typography>Tracker not found</Typography>;
   }
+};
+
+const processHazRezSystem = async (system: string) => {
+  const systemsInSphere = await getSystemsinSphere(system, 10);
+  const populatedSystems = systemsInSphere.filter(
+    (x) => Object.keys(x.information).length > 0
+  );
+  const systems = await Promise.all(
+    populatedSystems.map(async (x) => {
+      const factionsinSystem = await getFactionsinSystem(x.name);
+      const factions = factionsinSystem.factions
+        .map((faction) => {
+          const name = faction.name;
+          const id = faction.id;
+          const influence = faction.influence;
+          const removed = false;
+          return { name, id, influence, removed };
+        })
+        .filter((faction) => faction.influence > 0)
+        .sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 0;
+        });
+
+      const stationsinSystem = await getStationsinSystem(x.name);
+      const stations = stationsinSystem.stations
+        .map((station) => {
+          const type = station.type;
+          const name = station.name;
+          const distance = station.distanceToArrival;
+          return { type, name, distance };
+        })
+        .filter((station) => station.type !== 'Fleet Carrier');
+
+      const sortedStations = sortItems(stations, 'distance');
+
+      return { name: x.name, factions, stations: sortedStations };
+    })
+  );
+  return systems;
 };
