@@ -80,6 +80,16 @@ const updateCMDRs = async (
   }
 };
 
+const restoreCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
+  cmdr.isDeleted = false;
+  try {
+    await axios.put('/api/cmdrs', cmdr);
+    mutate('/api/cmdrs');
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const deleteCMDR = async (cmdrs: string[]) => {
   try {
     for (const cmdr of cmdrs) {
@@ -110,5 +120,6 @@ export const useCMDRs = () => {
     updateCMDR,
     updateCMDRs,
     deleteCMDR,
+    restoreCMDR,
   };
 };

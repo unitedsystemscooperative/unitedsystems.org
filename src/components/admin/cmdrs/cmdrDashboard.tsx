@@ -153,6 +153,7 @@ export const CMDRDashboard = () => {
     updateCMDR,
     updateCMDRs,
     deleteCMDR,
+    restoreCMDR,
   } = useCMDRs();
   const { enqueueSnackbar } = useSnackbar();
   const { members, guests, ambassadors } = cmdrs;
@@ -239,7 +240,10 @@ export const CMDRDashboard = () => {
     }
   };
 
-  // const handleRestore = async () => {};
+  const handleRestore = async (cmdr: IAmbassador | IGuest | IMember) => {
+    await restoreCMDR(cmdr);
+    setSelectedCmdrs([]);
+  };
 
   const handleDelete = async () => {
     await deleteCMDR(selectedCmdrs);
@@ -265,6 +269,7 @@ export const CMDRDashboard = () => {
           deletedCmdrs={members.filter((x) => x.isDeleted)}
           selected={selectedCmdrs}
           setSelected={setSelectedCmdrs}
+          restoreCMDR={handleRestore}
         />
         <MemberDialog
           open={showDialog === CmdrView.Member}
