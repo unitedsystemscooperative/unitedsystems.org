@@ -22,10 +22,11 @@ interface MemberDashboardProps {
   deletedCmdrs: IMember[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
+  restoreCMDR: (cmdr: IMember) => Promise<void>;
 }
 
 export const MemberDashboard = (props: MemberDashboardProps) => {
-  const { cmdrs, selected, setSelected, deletedCmdrs } = props;
+  const { cmdrs, selected, setSelected, deletedCmdrs, restoreCMDR } = props;
 
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
@@ -124,6 +125,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           handleSelectAllClick={handleSelectAllClick}
           handleRequestSort={handleRequestSort}
           handleClick={handleClick}
+          handleRestore={restoreCMDR}
         />
         <TablePagination
           rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}

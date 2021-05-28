@@ -156,6 +156,7 @@ interface MemberDefaultViewProps {
     property: keyof IMember
   ) => void;
   handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
+  handleRestore: (cmdr: IMember) => Promise<void>;
 }
 
 export const MemberDeletedView = (props: MemberDefaultViewProps) => {
@@ -168,6 +169,7 @@ export const MemberDeletedView = (props: MemberDefaultViewProps) => {
     orderBy,
     handleRequestSort,
     handleClick,
+    handleRestore,
   } = props;
 
   const classes = useStyles();
@@ -223,7 +225,11 @@ export const MemberDeletedView = (props: MemberDefaultViewProps) => {
                       )}
                     </TableCell>
                     <TableCell>
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleRestore(cmdr)}
+                      >
                         <RestoreFromTrash />
                       </Button>
                     </TableCell>
