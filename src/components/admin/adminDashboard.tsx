@@ -73,6 +73,15 @@ export const AdminDashboard = () => {
             Users
           </Button>
         </Link>
+        <Link href="/admin/vote" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.linkButton}
+          >
+            Vote Assistant
+          </Button>
+        </Link>
       </Paper>
       <Paper className={classes.paper}>
         <Typography variant="h4" className={classes.header}>
