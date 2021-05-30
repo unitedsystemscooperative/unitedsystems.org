@@ -160,12 +160,14 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
       engParam && !Array.isArray(engParam) ? parseInt(engParam) : null;
 
     const specialtiesParam = params['specialties'];
-    const specialties =
-      specialtiesParam &&
-      Array.isArray(specialtiesParam) &&
-      specialtiesParam.length > 0
-        ? specialtiesParam
-        : [];
+    let specialties: string[] = [];
+    if (specialtiesParam) {
+      if (Array.isArray(specialtiesParam) && specialtiesParam.length > 0) {
+        specialties = specialtiesParam;
+      } else if (!Array.isArray(specialtiesParam)) {
+        specialties = [specialtiesParam];
+      }
+    }
 
     const guardianParam = params['guardian'];
     const guardian =
