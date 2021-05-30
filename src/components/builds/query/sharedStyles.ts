@@ -12,6 +12,10 @@ export const useSharedStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     [theme.breakpoints.up('lg')]: {
       width: '98%',
     },

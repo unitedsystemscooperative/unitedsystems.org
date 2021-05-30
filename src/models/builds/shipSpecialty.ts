@@ -7,6 +7,8 @@ export enum ShipSpecialty {
   pve = 'Combat - PvE',
   pvp = 'Combat - PvP',
   ax = 'Combat - Anti-Xeno',
+  s2g = 'Combat - Ship to Ground',
+  ody = 'Odyssey Lander / Support',
   racing = 'Racing',
   multi = 'Multi-Purpose',
 }

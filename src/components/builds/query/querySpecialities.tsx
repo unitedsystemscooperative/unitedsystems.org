@@ -6,13 +6,13 @@ import { useSharedStyles } from './sharedStyles';
 const useStyles = makeStyles((theme) => ({
   querySpecialtyButtons: {
     display: 'grid',
-    gridTemplate: 'repeat(5, 1fr) / repeat(2, 1fr)',
+    gridTemplate: 'repeat(4, 1fr) / repeat(3, 1fr)',
     '& button': {
       marginRight: theme.spacing(1),
       marginTop: theme.spacing(1),
     },
     [theme.breakpoints.up('lg')]: {
-      gridTemplate: 'repeat(2, 1fr) / repeat(5, 1fr)',
+      gridTemplate: 'repeat(3, 1fr) / repeat(4, 1fr)',
     },
   },
 }));

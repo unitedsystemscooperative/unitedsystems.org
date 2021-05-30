@@ -31,6 +31,7 @@ export const QueryEngineering = (props: {
       <h3 className={sharedClasses.querySectionheader}>
         Ship Engineering Level
       </h3>
+
       <Typography className={sharedClasses.queryExplanationText}>
         Select Engineering level ranging from None to Max Engineering.
       </Typography>
