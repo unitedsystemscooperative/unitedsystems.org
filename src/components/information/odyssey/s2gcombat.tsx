@@ -1,4 +1,11 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import {
+  Container,
+  Link,
+  makeStyles,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import NextLink from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -78,7 +85,16 @@ export const OdysseyS2GCombat = () => {
           <Typography variant="h5">Builds</Typography>
           <div className={classes.indent}>
             <Typography>
-              <em>Builds in progress.</em>
+              <ul>
+                <li>
+                  <NextLink
+                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Racing"
+                    passHref
+                  >
+                    <Link>Ship to Ground Combat Builds</Link>
+                  </NextLink>
+                </li>
+              </ul>
             </Typography>
           </div>
         </section>
