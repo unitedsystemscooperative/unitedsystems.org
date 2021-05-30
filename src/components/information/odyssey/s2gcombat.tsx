@@ -83,28 +83,26 @@ export const OdysseyS2GCombat = () => {
 
         <section>
           <Typography variant="h5">Builds</Typography>
-          <div className={classes.indent}>
-            <Typography>
-              <ul>
-                <li>
-                  <NextLink
-                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Combat%20-%20Ship%20to%20Ground"
-                    passHref
-                  >
-                    <Link>Ship to Ground Combat Builds</Link>
-                  </NextLink>
-                </li>
-                <li>
-                  <NextLink
-                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Odyssey%20Lander%20%2F%20Support"
-                    passHref
-                  >
-                    <Link>Odyssey Lander/Support Builds</Link>
-                  </NextLink>
-                </li>
-              </ul>
-            </Typography>
-          </div>
+          <Typography>
+            <ul>
+              <li>
+                <NextLink
+                  href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Combat%20-%20Ship%20to%20Ground"
+                  passHref
+                >
+                  <Link>Ship to Ground Combat Builds</Link>
+                </NextLink>
+              </li>
+              <li>
+                <NextLink
+                  href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Odyssey%20Lander%20%2F%20Support"
+                  passHref
+                >
+                  <Link>Odyssey Lander/Support Builds</Link>
+                </NextLink>
+              </li>
+            </ul>
+          </Typography>
         </section>
       </Paper>
     </Container>
