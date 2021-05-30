@@ -88,10 +88,18 @@ export const OdysseyS2GCombat = () => {
               <ul>
                 <li>
                   <NextLink
-                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Racing"
+                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Combat%20-%20Ship%20to%20Ground"
                     passHref
                   >
                     <Link>Ship to Ground Combat Builds</Link>
+                  </NextLink>
+                </li>
+                <li>
+                  <NextLink
+                    href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Odyssey%20Lander%20%2F%20Support"
+                    passHref
+                  >
+                    <Link>Odyssey Lander/Support Builds</Link>
                   </NextLink>
                 </li>
               </ul>
