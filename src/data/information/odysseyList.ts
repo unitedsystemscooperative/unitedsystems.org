@@ -9,6 +9,14 @@ export const odysseyList: IInfoButton[] = [
     beginner: true,
   },
   {
+    title: 'Guide to Planetary Exobiology',
+    caption: 'via Reddit',
+    local: false,
+    link:
+      'https://www.reddit.com/r/EliteDangerous/comments/nohsyt/a_brief_guide_to_planetary_exobiology/',
+    beginner: true,
+  },
+  {
     title: 'Death',
     caption: 'What happens?',
     local: true,
