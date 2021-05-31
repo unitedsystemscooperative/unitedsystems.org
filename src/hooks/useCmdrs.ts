@@ -61,7 +61,11 @@ const updateCMDRs = async (
         cmdr.notes = updateInfo.notes;
       }
       if (updateInfo['promotion']) {
-        cmdr.promotion = updateInfo['promotion'];
+        if (updateInfo['promotion'] === -2 || updateInfo['promotion'] === -1) {
+          cmdr.promotion = null;
+        } else {
+          cmdr.promotion = updateInfo['promotion'];
+        }
       }
       if (updateInfo['entersVoice']) {
         cmdr.entersVoice = updateInfo['entersVoice'];

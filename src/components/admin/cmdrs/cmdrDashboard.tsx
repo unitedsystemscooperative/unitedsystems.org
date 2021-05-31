@@ -208,6 +208,7 @@ export const CMDRDashboard = () => {
     if (returnedCmdrs && returnedCmdrs.length > 1) {
       try {
         await updateCMDRs(returnedCmdrs, returnedCmdr);
+        setSelectedCmdrs([]);
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
           variant: 'error',
@@ -220,6 +221,7 @@ export const CMDRDashboard = () => {
         } else {
           await addCMDR(returnedCmdrs[0]);
         }
+        setSelectedCmdrs([]);
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
           variant: 'error',
@@ -232,6 +234,7 @@ export const CMDRDashboard = () => {
         } else {
           await addCMDR(returnedCmdr);
         }
+        setSelectedCmdrs([]);
       } catch (e) {
         enqueueSnackbar(`Failed to add or update CMDR. Reason: ${e.message}`, {
           variant: 'error',
@@ -267,6 +270,7 @@ export const CMDRDashboard = () => {
         <MemberDashboard
           cmdrs={members.filter((x) => !x.isDeleted)}
           deletedCmdrs={members.filter((x) => x.isDeleted)}
+          promoCmdrs={members.filter((x) => !x.isDeleted && x.promotion)}
           selected={selectedCmdrs}
           setSelected={setSelectedCmdrs}
           restoreCMDR={handleRestore}
