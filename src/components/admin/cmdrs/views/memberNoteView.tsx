@@ -1,6 +1,6 @@
 import {
-  Button,
   Checkbox,
+  IconButton,
   makeStyles,
   Table,
   TableBody,
@@ -10,6 +10,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
+import { Link } from '@material-ui/icons';
 import { Order, descendingComparator, stableSort } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
@@ -239,14 +240,14 @@ export const MemberNoteView = (props: MemberDefaultViewProps) => {
                     <TableCell>{cmdr.notes}</TableCell>
                     <TableCell>
                       {cmdr.inaraLink && (
-                        <Button
+                        <IconButton
                           href={cmdr.inaraLink}
-                          variant="contained"
                           color="primary"
+                          size="small"
                           target="_blank"
                         >
-                          Link
-                        </Button>
+                          <Link />
+                        </IconButton>
                       )}
                     </TableCell>
                   </TableRow>

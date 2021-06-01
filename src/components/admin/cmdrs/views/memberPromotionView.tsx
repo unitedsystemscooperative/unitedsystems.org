@@ -1,5 +1,4 @@
 import {
-  Button,
   makeStyles,
   Table,
   TableBody,
@@ -9,7 +8,6 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { RestoreFromTrash } from '@material-ui/icons';
 import { Order, descendingComparator, stableSort } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
