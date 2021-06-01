@@ -1,6 +1,6 @@
 import {
-  Button,
   Checkbox,
+  IconButton,
   makeStyles,
   Table,
   TableBody,
@@ -10,10 +10,10 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
+import { Link } from '@material-ui/icons';
 import { descendingComparator, Order, stableSort } from 'functions/sort';
 import { IAmbassador } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
-import { RegionString } from 'models/admin/regions';
 import React, {
   ChangeEvent,
   Dispatch,
@@ -62,14 +62,13 @@ const headCells: HeadCell[] = [
     disablePadding: true,
     label: 'Group Represented',
   },
-  { id: 'region', numeric: false, disablePadding: true, label: 'Region' },
-  { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
   {
     id: 'inaraLink',
     numeric: false,
     disablePadding: true,
-    label: 'Inara Link',
+    label: 'Group Link',
   },
+  { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
 ];
 
 interface TableHeadProps {
@@ -239,20 +238,19 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
                     <TableCell>{handleDate(cmdr.discordJoinDate)}</TableCell>
                     <TableCell>{PlatformString[cmdr.platform]}</TableCell>
                     <TableCell>{cmdr.groupRepresented}</TableCell>
-                    <TableCell>{RegionString[cmdr.region]}</TableCell>
-                    <TableCell>{cmdr.notes}</TableCell>
                     <TableCell>
                       {cmdr.inaraLink && (
-                        <Button
+                        <IconButton
                           href={cmdr.inaraLink}
-                          variant="contained"
                           color="primary"
+                          size="small"
                           target="_blank"
                         >
-                          Link
-                        </Button>
+                          <Link />
+                        </IconButton>
                       )}
                     </TableCell>
+                    <TableCell>{cmdr.notes}</TableCell>
                   </TableRow>
                 );
               })}
