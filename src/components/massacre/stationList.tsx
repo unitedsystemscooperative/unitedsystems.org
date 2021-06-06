@@ -1,5 +1,5 @@
 import { Divider, makeStyles, Paper, Typography } from '@material-ui/core';
-import { getStationSize } from 'functions/getStationSize';
+import { getStationSize } from 'functions/edsmQueries/getStationSize';
 
 const useStyles = makeStyles((theme) => ({
   root: {
