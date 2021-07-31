@@ -14,8 +14,8 @@
 
 # production
 /build
-/public/sw.js
-/public/workbox-ea903bce.js
+/public/sw.js*
+/public/workbox-*.js*
 
 # misc
 .DS_Store

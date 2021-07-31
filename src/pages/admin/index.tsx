@@ -4,7 +4,8 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 import React from 'react';
-import { getToken } from 'utils/get-token';
+import { getIsHC } from 'utils/get-isHC';
+import { connectToDatabase } from 'utils/mongo';
 
 const AdminPage = () => {
   return (
@@ -26,8 +27,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
   if (session) {
-    const token = await getToken(context.req);
-    if (token.role === 'high command') {
+    const { db } = await connectToDatabase();
+    const isHC = await getIsHC(context.req, db);
+    if (isHC) {
       return {
         props: {},
       };
