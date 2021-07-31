@@ -3,7 +3,7 @@
     "short_name": "USC",
     "theme_color": "#f07b05",
     "background_color": "#424242",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
