@@ -25,7 +25,7 @@ const updateCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
     console.log('updating single commander');
     if (checkInstanceofMember(cmdr)) {
       if (cmdr['promotion']) {
-        if (cmdr['promotion'] === -2 || cmdr['promotion'] === -1) {
+        if (cmdr['promotion'] < 0) {
           cmdr.promotion = null;
         } else {
           cmdr.promotion = cmdr['promotion'];
