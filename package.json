@@ -1,6 +1,6 @@
 {
   "name": "usc-website-next",
-  "version": "2021.3.0",
+  "version": "2021.8.0",
   "private": true,
   "scripts": {
     "postinstall": "patch-package",
