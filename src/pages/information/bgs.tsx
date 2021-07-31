@@ -1,19 +1,8 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
 import { PrimaryLayout } from 'components/layouts';
-import BgsMarkdown from 'components/information/bgs.mdx';
 import Head from 'next/head';
+import { BGSInfo } from 'components/information/bgs';
 
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-}));
-
-const BGSInfo = () => {
-  const classes = useStyles();
+const BGSPage = () => {
   return (
     <>
       <Head>
@@ -24,17 +13,10 @@ const BGSInfo = () => {
         />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth="lg">
-          <Typography variant="h4" className={classes.center}>
-            Background Simulation (BGS) General Information
-          </Typography>
-          <Paper className={classes.paper}>
-            <BgsMarkdown />
-          </Paper>
-        </Container>
+        <BGSInfo />
       </PrimaryLayout>
     </>
   );
 };
 
-export default BGSInfo;
+export default BGSPage;
