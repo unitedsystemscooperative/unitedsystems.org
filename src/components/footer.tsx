@@ -1,10 +1,4 @@
-import {
-  Container,
-  Divider,
-  Link,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Container, Link, makeStyles, Typography } from '@material-ui/core';
 import NextLink from 'next/link';
 
 function ImgCopyright() {
