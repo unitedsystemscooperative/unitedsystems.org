@@ -1,11 +1,5 @@
 import axios from 'axios';
-import {
-  CMDRType,
-  IAmbassador,
-  ICMDR,
-  IGuest,
-  IMember,
-} from 'models/admin/cmdr';
+import { IAmbassador, ICMDR, IGuest, IMember } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
 import useSWR, { mutate } from 'swr';
 
@@ -29,6 +23,15 @@ const addCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
 const updateCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
   try {
     console.log('updating single commander');
+    if (checkInstanceofMember(cmdr)) {
+      if (cmdr['promotion']) {
+        if (cmdr['promotion'] === -2 || cmdr['promotion'] === -1) {
+          cmdr.promotion = null;
+        } else {
+          cmdr.promotion = cmdr['promotion'];
+        }
+      }
+    }
     await axios.put('/api/cmdrs', cmdr);
     mutate('/api/cmdrs');
   } catch (error) {
@@ -61,10 +64,19 @@ const updateCMDRs = async (
         cmdr.notes = updateInfo.notes;
       }
       if (updateInfo['promotion']) {
-        cmdr.promotion = updateInfo['promotion'];
+        if (updateInfo['promotion'] === -2 || updateInfo['promotion'] === -1) {
+          cmdr.promotion = null;
+        } else {
+          cmdr.promotion = updateInfo['promotion'];
+        }
       }
       if (updateInfo['entersVoice']) {
         cmdr.entersVoice = updateInfo['entersVoice'];
+      }
+    }
+    if (checkInstanceofAmbassador(cmdr)) {
+      if (updateInfo['groupRepresented']) {
+        cmdr.groupRepresented = updateInfo['groupRepresented'];
       }
     }
 

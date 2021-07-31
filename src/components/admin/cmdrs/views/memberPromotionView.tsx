@@ -1,6 +1,4 @@
 import {
-  Checkbox,
-  IconButton,
   makeStyles,
   Table,
   TableBody,
@@ -10,7 +8,6 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Link } from '@material-ui/icons';
 import { Order, descendingComparator, stableSort } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
@@ -44,6 +41,12 @@ const headCells: HeadCell[] = [
     disablePadding: false,
     label: 'CMDR Name',
   },
+  {
+    id: 'discordName',
+    numeric: false,
+    disablePadding: false,
+    label: 'Discord Handle',
+  },
   { id: 'joinDate', numeric: false, disablePadding: true, label: 'Join Date' },
   {
     id: 'discordJoinDate',
@@ -52,6 +55,7 @@ const headCells: HeadCell[] = [
     label: 'Discord Join Date',
   },
   { id: 'platform', numeric: false, disablePadding: true, label: 'Platform' },
+  { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
   { id: 'rank', numeric: false, disablePadding: true, label: 'Rank' },
   {
     id: 'promotion',
@@ -59,35 +63,17 @@ const headCells: HeadCell[] = [
     disablePadding: true,
     label: 'Rank Promotion',
   },
-  { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
-  {
-    id: 'inaraLink',
-    numeric: false,
-    disablePadding: true,
-    label: 'Inara Link',
-  },
 ];
 
 interface TableHeadProps {
   classes: ReturnType<typeof useStyles>;
-  numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof IMember) => void;
-  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
-  rowCount: number;
 }
 
 const MemberTableHead = (props: TableHeadProps) => {
-  const {
-    classes,
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof IMember) => (
     event: MouseEvent<unknown>
   ) => {
@@ -97,14 +83,6 @@ const MemberTableHead = (props: TableHeadProps) => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all commanders' }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -174,7 +152,7 @@ interface MemberDefaultViewProps {
   handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
 }
 
-export const MemberNoteView = (props: MemberDefaultViewProps) => {
+export const MemberPromotionView = (props: MemberDefaultViewProps) => {
   const {
     cmdrs,
     selected,
@@ -182,7 +160,6 @@ export const MemberNoteView = (props: MemberDefaultViewProps) => {
     rowsPerPage,
     order,
     orderBy,
-    handleSelectAllClick,
     handleRequestSort,
     handleClick,
   } = props;
@@ -200,12 +177,9 @@ export const MemberNoteView = (props: MemberDefaultViewProps) => {
         <Table size="small">
           <MemberTableHead
             classes={classes}
-            numSelected={selected.length}
             order={order}
             orderBy={orderBy}
-            onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
-            rowCount={cmdrs.length}
           />
           <TableBody>
             {stableSort(cmdrs, getComparator(order, orderBy))
@@ -222,33 +196,19 @@ export const MemberNoteView = (props: MemberDefaultViewProps) => {
                     tabIndex={-1}
                     selected={isItemSelected}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isItemSelected} />
-                    </TableCell>
                     <TableCell component="th" scope="row" padding="none">
                       {cmdr.cmdrName.toUpperCase()}
                     </TableCell>
+                    <TableCell>{cmdr.discordName}</TableCell>
                     <TableCell>{handleDate(cmdr.joinDate)}</TableCell>
                     <TableCell>{handleDate(cmdr.discordJoinDate)}</TableCell>
                     <TableCell>{PlatformString[cmdr.platform]}</TableCell>
+                    <TableCell>{cmdr.notes}</TableCell>
                     <TableCell>{RankString[cmdr.rank]}</TableCell>
                     <TableCell title="Promotion">
                       {!isNaN(cmdr.promotion) && cmdr.promotion > -1
                         ? RankString[cmdr.promotion]
                         : ''}
-                    </TableCell>
-                    <TableCell>{cmdr.notes}</TableCell>
-                    <TableCell>
-                      {cmdr.inaraLink && (
-                        <IconButton
-                          href={cmdr.inaraLink}
-                          color="primary"
-                          size="small"
-                          target="_blank"
-                        >
-                          <Link />
-                        </IconButton>
-                      )}
                     </TableCell>
                   </TableRow>
                 );

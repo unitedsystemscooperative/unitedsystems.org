@@ -13,20 +13,29 @@ import { DashboardToolbar } from './dashboardToolbar';
 import { MemberDefaultView } from './views/memberDefaultView';
 import { MemberDeletedView } from './views/memberDeletedView';
 import { MemberNoteView } from './views/memberNoteView';
+import { MemberPromotionView } from './views/memberPromotionView';
 import { MemberRefView } from './views/memberRefView';
 
-const memberViews = ['Default', 'Notes', 'Reference', 'Deleted'];
+const memberViews = ['Default', 'Notes', 'Reference', 'Promotions', 'Deleted'];
 
 interface MemberDashboardProps {
   cmdrs: IMember[];
   deletedCmdrs: IMember[];
+  promoCmdrs: IMember[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
   restoreCMDR: (cmdr: IMember) => Promise<void>;
 }
 
 export const MemberDashboard = (props: MemberDashboardProps) => {
-  const { cmdrs, selected, setSelected, deletedCmdrs, restoreCMDR } = props;
+  const {
+    cmdrs,
+    selected,
+    setSelected,
+    deletedCmdrs,
+    promoCmdrs,
+    restoreCMDR,
+  } = props;
 
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
@@ -38,6 +47,10 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
   const { filteredData: filteredDeletedCmdrs } = useCmdrSearch({
     searchValue,
     cmdrs: deletedCmdrs,
+  });
+  const { filteredData: filteredPromotionCmdrs } = useCmdrSearch({
+    searchValue,
+    cmdrs: promoCmdrs,
   });
 
   useEffect(() => {
@@ -94,6 +107,51 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
   };
 
   if (memberView === 3) {
+    return (
+      <>
+        <DashboardToolbar
+          title="Members"
+          viewOptions={memberViews}
+          view={memberView}
+          setView={setMemberView}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+        <Divider />
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+          component="div"
+          count={filteredPromotionCmdrs.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+        <MemberPromotionView
+          cmdrs={filteredPromotionCmdrs}
+          selected={selected}
+          setSelected={setSelected}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          order={order}
+          orderBy={orderBy}
+          handleSelectAllClick={handleSelectAllClick}
+          handleRequestSort={handleRequestSort}
+          handleClick={handleClick}
+        />
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+          component="div"
+          count={filteredPromotionCmdrs.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </>
+    );
+  }
+  if (memberView === 4) {
     return (
       <>
         <DashboardToolbar

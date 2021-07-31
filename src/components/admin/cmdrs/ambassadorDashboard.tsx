@@ -38,7 +38,7 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
 
   useEffect(() => {
     setPage(0);
-  }, [filteredCmdrs]);
+  }, [filteredCmdrs.length]);
 
   const handleRequestSort = (
     _: React.MouseEvent<unknown>,
