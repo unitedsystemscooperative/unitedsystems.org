@@ -1,4 +1,4 @@
-import { IUser } from 'models/auth/user';
+import { ICMDR } from 'models/admin/cmdr';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import { NextApiRequest, NextApiResponse } from 'next-auth/_utils';
@@ -8,10 +8,12 @@ const signIn = async (user) => {
   const { db } = await connectToDatabase();
   const email: string = user.email;
 
-  const cursor = db.collection<IUser>('members').find({});
+  const cursor = db.collection<ICMDR>('cmdrs').find({});
   const members = await cursor.toArray();
   cursor.close();
-  const authUser = members.find((x) => x.email.toLowerCase() === email);
+  const authUser = members.find(
+    (x) => x.email.toLowerCase() === email.toLowerCase()
+  );
 
   return authUser ? true : false;
 };
@@ -20,7 +22,7 @@ const jwt = async (token, user) => {
   if (user) {
     const email: string = user.email;
     const { db } = await connectToDatabase();
-    const cursor = db.collection<IUser>('members').find({});
+    const cursor = db.collection<ICMDR>('cmdrs').find({});
     const members = await cursor.toArray();
     cursor.close();
     const authUser = members.find((x) => x.email.toLowerCase() === email);
