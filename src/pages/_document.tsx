@@ -6,10 +6,12 @@ import { theme } from 'theme';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name='theme-color' content={theme.palette.primary.main} />
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/uscLogo.png" />
         </Head>
         <body>
           <Main />

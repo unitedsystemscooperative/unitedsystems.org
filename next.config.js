@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-});
+const withPWA = require('next-pwa');
 
-module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+module.exports = withPWA({
+  pwa: {
+    dest: 'public'
+  }
 });

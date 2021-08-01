@@ -1,13 +1,11 @@
 import {
   Button,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   FormControl,
-  FormControlLabel,
   InputLabel,
   makeStyles,
   MenuItem,
@@ -17,8 +15,7 @@ import {
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
-import { Rank, RankString } from 'models/admin/ranks';
-import { Referral, ReferralString } from 'models/admin/referrals';
+import { Rank } from 'models/admin/ranks';
 import { Region, RegionString } from 'models/admin/regions';
 import React, { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -59,6 +56,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           notes: value.notes,
           inaraLink: value.inaraLink,
           email: value.email,
+          groupRepresented: value.groupRepresented,
         });
       } else {
         reset({
@@ -72,6 +70,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           notes: '',
           inaraLink: undefined,
           email: undefined,
+          groupRepresented: undefined,
         });
       }
     } else {

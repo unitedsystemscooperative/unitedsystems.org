@@ -1,22 +1,20 @@
+import { DevComponent } from 'components/dev';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
-import { BGSInfo } from 'components/information/bgs';
 
-const BGSPage = () => {
+export default function DevPage() {
   return (
     <>
       <Head>
-        <title>BGS General Info</title>
+        <title>USC | Dev Info</title>
         <meta
           name="description"
-          content="Background Information (BGS) General Information"
+          content="Developer information of UnitedSystems.org"
         />
       </Head>
       <PrimaryLayout>
-        <BGSInfo />
+        <DevComponent />
       </PrimaryLayout>
     </>
   );
-};
-
-export default BGSPage;
+}
