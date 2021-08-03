@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   allies: {
     margin: 'auto',
-    width: 450,
+    maxWidth: 450,
   },
 });
 
