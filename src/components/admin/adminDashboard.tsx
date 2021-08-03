@@ -64,15 +64,6 @@ export const AdminDashboard = () => {
             Join Requests
           </Button>
         </Link>
-        <Link href="/admin/users" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
-            Users
-          </Button>
-        </Link>
         <Link href="/admin/vote" passHref>
           <Button
             variant="contained"

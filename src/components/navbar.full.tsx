@@ -1,5 +1,5 @@
 import { Button, makeStyles } from '@material-ui/core';
-import { useUser } from 'hooks/useUser';
+import { useAdmin } from 'hooks/useAdmin';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
 import Link from './navLink';
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 export const NavbarFull = (props: { navItems: INavItem[] }) => {
   const classes = useStyles();
   const [session] = useSession();
-  const { user } = useUser();
+  const isCommand = useAdmin();
   const { navItems } = props;
 
   return (
@@ -65,7 +65,7 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
         );
       })}
       <div className={classes.filler} />
-      {user?.role === 'high command' && (
+      {isCommand && (
         <Link href="/admin">
           <Button href="/admin" className={classes.navLink}>
             Admin

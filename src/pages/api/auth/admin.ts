@@ -1,22 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/client';
-import { getToken } from 'utils/get-token';
+import { getIsHC } from 'utils/get-isHC';
+import { connectToDatabase } from 'utils/mongo';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const session = await getSession({ req });
-    if (session) {
-      const token = await getToken(req);
-      if (token.role === 'high command') {
-        res.status(200).send(true);
-      } else {
-        res.statusMessage = 'You are not an admin member';
-        res.status(401).end();
-      }
-    } else {
-      res.statusMessage = 'You are not signed in.';
-      res.status(401).end();
-    }
+    const { db } = await connectToDatabase();
+    const isHC = await getIsHC(req, db);
+    res.status(200).send(isHC);
   } catch (e) {
     res.statusMessage = e.message;
     res.status(500).end();
