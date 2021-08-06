@@ -25,3 +25,10 @@ jobs:
       - run: npm run build --if-present
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+          EMAIL_SERVER: ${{ secrets.EMAIL_SERVER }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          DISCORD_JOIN_HOOK: ${{ secrets.DISCORD_JOIN_HOOK }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
