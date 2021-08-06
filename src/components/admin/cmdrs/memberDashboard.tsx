@@ -124,8 +124,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           count={filteredPromotionCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
         <MemberPromotionView
           cmdrs={filteredPromotionCmdrs}
@@ -145,8 +145,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           count={filteredPromotionCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </>
     );
@@ -169,8 +169,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           count={filteredDeletedCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
         <MemberDeletedView
           cmdrs={filteredDeletedCmdrs}
@@ -191,8 +191,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           count={filteredDeletedCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </>
     );
@@ -215,8 +215,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
         count={filteredCmdrs.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
       {memberView === 0 && (
         <MemberDefaultView
@@ -266,8 +266,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
         count={filteredCmdrs.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </>
   );
