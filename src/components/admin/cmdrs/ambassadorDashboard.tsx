@@ -107,8 +107,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
           count={filteredDeletedCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
         {/* <MemberDeletedView
           cmdrs={filteredDeletedCmdrs}
@@ -128,8 +128,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
           count={filteredDeletedCmdrs.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </>
     );
@@ -152,8 +152,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
         count={filteredCmdrs.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
       {memberView === 0 && (
         <AmbassadorDefaultView
@@ -175,8 +175,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
         count={filteredCmdrs.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </>
   );
