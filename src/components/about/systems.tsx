@@ -53,7 +53,7 @@ const useStyles = makeStyles(() => ({
   paper: {
     textAlign: 'center',
     margin: 'auto',
-    width: 450,
+    maxWidth: 450,
   },
 }));
 export const AboutSystems = () => {

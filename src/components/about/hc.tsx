@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
   rank: {
     margin: 'auto',
-    width: 450,
+    maxWidth: 450,
   },
 });
 
