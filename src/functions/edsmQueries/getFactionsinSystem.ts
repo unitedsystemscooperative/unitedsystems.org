@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ISystemFactionInfo } from '../models';
+import { ISystemFactionInfo } from '../../models';
 
 const apiURL = 'https://www.edsm.net/api-system-v1/factions';
 

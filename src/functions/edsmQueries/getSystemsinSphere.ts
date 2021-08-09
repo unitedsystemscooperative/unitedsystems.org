@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ISphereSystem } from '../models';
+import { ISphereSystem } from '../../models';
 
 const apiURL = 'https://www.edsm.net/api-v1/sphere-systems';
 
@@ -8,10 +8,7 @@ const apiURL = 'https://www.edsm.net/api-v1/sphere-systems';
  * @param systemName default Arugbal
  * @param distance distance (in LY) from center. Default 50
  */
-const getSystemsinSphere = async (
-  systemName = 'Arugbal',
-  distance = 50
-) => {
+const getSystemsinSphere = async (systemName = 'Arugbal', distance = 50) => {
   try {
     const response = await axios.get<ISphereSystem[]>(apiURL, {
       params: {

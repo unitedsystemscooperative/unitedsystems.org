@@ -3,7 +3,7 @@ import {
   getFactionsinSystem,
   getStationsinSystem,
   getSystemsinSphere,
-} from 'functions';
+} from 'functions/edsmQueries';
 import { sortItems } from 'functions/sort';
 import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
 import { ReputationLevels } from 'models/reputationLevels';

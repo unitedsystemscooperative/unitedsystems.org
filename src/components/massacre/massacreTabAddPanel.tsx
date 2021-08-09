@@ -9,13 +9,13 @@ import {
   getFactionsinSystem,
   getStationsinSystem,
   getSystemsinSphere,
-} from 'functions';
+} from 'functions/edsmQueries';
 import { sortItems } from 'functions/sort';
 import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
 import { ReputationLevels } from 'models/reputationLevels';
 import { useSnackbar } from 'notistack';
 import { MassacreContext } from 'providers/massacreTrackerProvider';
-import React, { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
