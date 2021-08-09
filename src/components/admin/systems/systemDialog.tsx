@@ -55,7 +55,7 @@ export const SystemDialog = (props: SystemDialogProps) => {
       _id,
       name: data.name,
       inaraLink: data.inaraLink,
-      isControlled: data.isControlled,
+      isControlled: data.isControlled ?? false,
     });
   };
 
