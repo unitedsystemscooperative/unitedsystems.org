@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   rank: {
     margin: theme.spacing(1),
-    padding: theme.spacing(1),
+    flexGrow: 1,
+    // padding: theme.spacing(1),
   },
   avatar: {
     margin: theme.spacing(1),
@@ -53,7 +54,7 @@ export const Ranks = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Typography variant="h4" className={classes.center}>
         Pilots Federation Ranks
       </Typography>
@@ -62,6 +63,8 @@ export const Ranks = () => {
         {generatePilotsRankList('cqc')}
         {generatePilotsRankList('trade')}
         {generatePilotsRankList('exploration')}
+        {generatePilotsRankList('mercenary')}
+        {generatePilotsRankList('exobiologist')}
       </Paper>
     </Container>
   );

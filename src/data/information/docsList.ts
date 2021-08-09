@@ -43,53 +43,54 @@ export const docsList: IInfoButton[] = [
     link: 'infographic/error-codes',
     beginner: true,
   },
+  {
+    title: 'Ranks',
+    caption: "Pilot's Federation Ranks",
+    local: true,
+    link: 'ranks',
+    beginner: true,
+  },
 
   {
     title: 'Anti-Thargoid Flight Manual',
     caption: 'Created by Aterius',
     local: false,
-    link:
-      'https://docs.google.com/document/d/1loy4TRNhM07Azf_ib01OIurujTcNX-L1Y1NYFy59i4M/edit?usp=sharing',
+    link: 'https://docs.google.com/document/d/1loy4TRNhM07Azf_ib01OIurujTcNX-L1Y1NYFy59i4M/edit?usp=sharing',
     beginner: false,
   },
   {
     title: 'Supercruise Ship Handling',
     caption: 'Created by CMDR marx',
     local: false,
-    link:
-      'https://docs.google.com/spreadsheets/d/1cWCUSxvliZ3ly-RRulUeYqZ3hqOyCSRLze0KS1QBiBY/edit?usp=sharing',
+    link: 'https://docs.google.com/spreadsheets/d/1cWCUSxvliZ3ly-RRulUeYqZ3hqOyCSRLze0KS1QBiBY/edit?usp=sharing',
     beginner: false,
   },
   {
     title: 'Engineering Database',
     caption: 'Created by Qohen Leth',
     local: false,
-    link:
-      'https://docs.google.com/spreadsheets/d/1wTmKrzLCXRIdHwKHaN-gXHq6YkS_JAnJKsyQp8P-j0Y/edit?usp=sharing',
+    link: 'https://docs.google.com/spreadsheets/d/1wTmKrzLCXRIdHwKHaN-gXHq6YkS_JAnJKsyQp8P-j0Y/edit?usp=sharing',
     beginner: false,
   },
   {
     title: 'Engineering Material Locator',
     caption: 'Created by DTEA',
     local: false,
-    link:
-      'https://docs.google.com/spreadsheets/d/1Mp7l0bSnMp_G7xWUm75M-XuihDfTdi27rm-vB9K8AX0/edit?usp=sharing',
+    link: 'https://docs.google.com/spreadsheets/d/1Mp7l0bSnMp_G7xWUm75M-XuihDfTdi27rm-vB9K8AX0/edit?usp=sharing',
     beginner: false,
   },
   {
     title: 'BGS Influence Caps',
     caption: 'Created by Jane Turner',
     local: false,
-    link:
-      'https://forums.frontier.co.uk/threads/influence-caps-gains-and-the-wine-analogy.423837/',
+    link: 'https://forums.frontier.co.uk/threads/influence-caps-gains-and-the-wine-analogy.423837/',
     beginner: false,
   },
   {
     title: 'Resistance Stacking Explained',
     caption: 'Created by Fett_Li',
     local: false,
-    link:
-      'https://forums.frontier.co.uk/threads/this-is-how-resistance-stacking-works.439830/',
+    link: 'https://forums.frontier.co.uk/threads/this-is-how-resistance-stacking-works.439830/',
     beginner: false,
   },
 ];
