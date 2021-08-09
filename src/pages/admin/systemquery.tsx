@@ -1,4 +1,4 @@
-import { SystemQueryDash } from 'components/admin/systemquery/systemQueryDash';
+import { SystemDashboard } from 'components/admin/systems/systemDashboard';
 import { PrimaryLayout } from 'components/layouts';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
@@ -13,7 +13,7 @@ const SystemQueryPage = () => {
         <title>USC | System Query ... System</title>
       </Head>
       <PrimaryLayout>
-        <SystemQueryDash />
+        <SystemDashboard />
       </PrimaryLayout>
     </>
   );
