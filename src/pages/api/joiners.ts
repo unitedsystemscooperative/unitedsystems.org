@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .insertOne(req.body);
 
       res.json(response.ops);
-      postToDiscord(req.body);
+      // postToDiscord(req.body);
     } else {
       const session = await getSession({ req });
       if (session) {
