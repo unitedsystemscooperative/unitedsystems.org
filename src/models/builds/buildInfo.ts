@@ -14,7 +14,7 @@
 // }
 
 export interface IBuildInfov2 {
-  _id: string;
+  _id?: string;
   shipId: string;
   title: string;
   specializations: string[];

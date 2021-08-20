@@ -1,5 +1,4 @@
 import { mutate } from 'swr';
-import { IBuildInfoInsert } from 'models/builds/buildInfoInsert';
 import axios from 'axios';
 import { IBuildInfov2 } from 'models/builds';
 
@@ -11,7 +10,7 @@ export const useShipBuildMutations = () => {
 };
 
 const useAddBuild = () => {
-  const addShipBuild = async (build: IBuildInfoInsert) => {
+  const addShipBuild = async (build: IBuildInfov2) => {
     console.log(build);
     const data = await axios.post<IBuildInfov2[]>('/api/builds', build);
     console.log(data.data[0]);

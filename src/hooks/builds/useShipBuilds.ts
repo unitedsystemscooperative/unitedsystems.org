@@ -1,6 +1,5 @@
 import { IBuildInfov2 } from 'models/builds';
 import { useShipBuildMutations } from './useShipBuildMutations';
-import { IBuildInfoInsert } from 'models/builds/buildInfoInsert';
 import useSWR, { mutate } from 'swr';
 import axios from 'axios';
 
@@ -33,7 +32,7 @@ const useAddRelatedBuild = () => {
   const addRelatedBuild = async (
     currentID: string,
     shipBuilds: IBuildInfov2[],
-    buildtoInsert: IBuildInfoInsert
+    buildtoInsert: IBuildInfov2
   ) => {
     const currentBuild = shipBuilds.find((x) => x._id === currentID);
     if (currentBuild) {
@@ -78,7 +77,7 @@ const useAddVariantBuild = () => {
   const addVariantBuild = async (
     parentID: string,
     shipBuilds: IBuildInfov2[],
-    buildtoInsert: IBuildInfoInsert
+    buildtoInsert: IBuildInfov2
   ) => {
     const parentBuild = shipBuilds.find((x) => x._id === parentID);
     if (parentBuild) {

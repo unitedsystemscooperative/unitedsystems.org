@@ -9,7 +9,7 @@ export const processJSONBuild = (
   json: string
 ): {
   buildName: string;
-  shipID: string;
+  shipId: string;
   hasGuardian: boolean;
   hasPowerplay: boolean;
   engineering: boolean;
@@ -18,7 +18,7 @@ export const processJSONBuild = (
   const build: ICoriolisLoadout = JSON.parse(json);
 
   const buildName = build.name;
-  const shipID = build.references[0].shipId ?? '';
+  const shipId = build.references[0].shipId ?? '';
   const url = build.references[0].url ?? '';
 
   const components = build.components;
@@ -37,7 +37,7 @@ export const processJSONBuild = (
 
   return {
     buildName,
-    shipID,
+    shipId,
     hasGuardian: guardian,
     hasPowerplay: powerplay,
     engineering,
