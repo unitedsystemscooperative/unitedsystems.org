@@ -1,14 +1,13 @@
-import { useEffect, useReducer } from 'react';
-import { IQuery, OtherFilters } from 'models/builds';
-
 import { makeStyles, Paper } from '@material-ui/core';
-import { QuerySpecialization } from './querySpecialities';
-import { QueryShip } from './queryShip';
+import { IQuery, OtherFilters } from 'models/builds';
+import { useRouter } from 'next/router';
+import qs from 'query-string';
+import { useEffect, useReducer } from 'react';
+import { QueryActions } from './queryActions';
 import { QueryEngineering } from './queryEngineering';
 import { QueryOther } from './queryOther';
-import { QueryActions } from './queryActions';
-import qs from 'query-string';
-import { useRouter } from 'next/router';
+import { QueryShip } from './queryShip';
+import { QuerySpecialties } from './querySpecialities';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,11 +32,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
+interface QueryProps {
+  updateQuery: (query: IQuery) => void;
+  addBuild: () => void;
+}
+
+export const Query = (props: QueryProps) => {
   const router = useRouter();
   const queryParams = router.asPath.substring(router.asPath.indexOf('?'));
-  const { updateQuery } = props;
   const classes = useStyles();
+  const { updateQuery, addBuild } = props;
 
   type action = {
     type:
@@ -204,9 +208,15 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
     dispatch({ type: 'reset', value: null });
   };
 
+  const handleAdd = () => {
+    console.log('Query: Add Build clicked.');
+    console.log(addBuild);
+    addBuild();
+  };
+
   return (
     <Paper className={classes.root}>
-      <QuerySpecialization
+      <QuerySpecialties
         selectedSpecialties={query.specialties}
         setSpecialties={(value: string[]) =>
           dispatch({ type: 'specialties', value })
@@ -226,7 +236,7 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
         other={{ ...query }}
         setOther={(value: OtherFilters) => dispatch({ type: 'other', value })}
       />
-      <QueryActions resetQueries={resetQueries} />
+      <QueryActions resetQueries={resetQueries} addBuild={handleAdd} />
     </Paper>
   );
 };

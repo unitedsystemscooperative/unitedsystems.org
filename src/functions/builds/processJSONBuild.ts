@@ -27,10 +27,10 @@ export const processJSONBuild = (
   const internals = components.internal;
 
   // Check for Guardian
-  const guardian = checkGuardian(core, hardpoints, internals);
+  const hasGuardian = checkGuardian(core, hardpoints, internals);
 
   // Check for PowerPlay
-  const powerplay = checkPowerplay(internals, hardpoints);
+  const hasPowerplay = checkPowerplay(internals, hardpoints);
 
   // Check for engineering
   const engineering = checkEngineering(hardpoints, internals, core);
@@ -38,8 +38,8 @@ export const processJSONBuild = (
   return {
     buildName,
     shipId,
-    hasGuardian: guardian,
-    hasPowerplay: powerplay,
+    hasGuardian,
+    hasPowerplay,
     engineering,
     url,
   };

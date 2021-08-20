@@ -1,8 +1,8 @@
 import { makeStyles, Tooltip } from '@material-ui/core';
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
-import { OtherFilters } from 'models/builds/otherFilters';
 import BlockIcon from '@material-ui/icons/Block';
 import CheckIcon from '@material-ui/icons/Check';
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import { OtherFilters } from 'models/builds/otherFilters';
 import { MouseEvent } from 'react';
 import { useSharedStyles } from './sharedStyles';
 

@@ -1,8 +1,8 @@
-import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 import { sortItems } from 'functions/sort';
-import { IShipInfo } from 'models/builds';
 import { useShipMap } from 'hooks/builds/useShipMap';
+import { IShipInfo } from 'models/builds';
 
 const findShipName = (ships: IShipInfo[], shipID: string | null) => {
   if (shipID === null) {
