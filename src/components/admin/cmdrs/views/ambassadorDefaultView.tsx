@@ -11,7 +11,7 @@ import {
   TableSortLabel,
 } from '@material-ui/core';
 import { Link } from '@material-ui/icons';
-import { descendingComparator, Order, stableSort } from 'functions/sort';
+import { getComparator, Order, stableSort } from 'functions/sort';
 import { IAmbassador } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import React, {
@@ -20,15 +20,6 @@ import React, {
   MouseEvent,
   SetStateAction,
 } from 'react';
-
-function getComparator<Key extends keyof IAmbassador>(
-  order: Order,
-  orderBy: Key
-): (a: IAmbassador, b: IAmbassador) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 interface HeadCell {
   disablePadding: boolean;

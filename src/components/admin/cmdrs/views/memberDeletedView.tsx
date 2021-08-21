@@ -10,7 +10,7 @@ import {
   TableSortLabel,
 } from '@material-ui/core';
 import { Link, RestoreFromTrash } from '@material-ui/icons';
-import { Order, descendingComparator, stableSort } from 'functions/sort';
+import { getComparator, Order, stableSort } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import React, {
@@ -19,15 +19,6 @@ import React, {
   MouseEvent,
   SetStateAction,
 } from 'react';
-
-function getComparator<Key extends keyof IMember>(
-  order: Order,
-  orderBy: Key
-): (a: IMember, b: IMember) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 interface HeadCell {
   disablePadding: boolean;
