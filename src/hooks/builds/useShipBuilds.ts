@@ -1,13 +1,13 @@
-import { IBuildInfov2 } from 'models/builds';
-import { useShipBuildMutations } from './useShipBuildMutations';
-import useSWR, { mutate } from 'swr';
 import axios from 'axios';
+import { IBuildInfov2 } from 'models/builds';
+import useSWR, { mutate } from 'swr';
+import { useShipBuildMutations } from './useShipBuildMutations';
 
 export const useShipBuilds = () => {
   const addRelated = useAddRelatedBuild();
   const addVariant = useAddVariantBuild();
   const { shipBuilds, loading, error } = useAllShipBuilds();
-  const { addBuild } = useShipBuildMutations();
+  const { addBuild, updateBuild, deleteBuild } = useShipBuildMutations();
   return {
     loading,
     shipBuilds,
@@ -15,6 +15,8 @@ export const useShipBuilds = () => {
     addBuild,
     addRelated,
     addVariant,
+    updateBuild,
+    deleteBuild,
   };
 };
 

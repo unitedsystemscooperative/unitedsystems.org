@@ -19,11 +19,11 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { BuildAddText } from './buildAddText';
-import { BuildCheckBox } from './buildCheckBox';
 import { EngToggleGroup } from '../engToggleGroup';
 import { QuerySpecialties } from '../query/querySpecialities';
 import { ShipAutocomplete } from '../shipAutocomplete';
+import { BuildAddText } from './buildAddText';
+import { BuildCheckBox } from './buildCheckBox';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -160,7 +160,13 @@ export const BuildDialog = ({
 }: BuildDialogProps) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
-  const { shipBuilds, addBuild, addRelated, addVariant } = useShipBuilds();
+  const {
+    shipBuilds,
+    addBuild,
+    addRelated,
+    addVariant,
+    updateBuild,
+  } = useShipBuilds();
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
 
   useEffect(() => {
@@ -232,7 +238,7 @@ export const BuildDialog = ({
 
       try {
         if (newBuild._id) {
-          // Edit build
+          await updateBuild(newBuild._id, { ...newBuild });
         } else {
           switch (addType) {
             case 'variant':

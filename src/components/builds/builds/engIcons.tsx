@@ -13,13 +13,13 @@ const useStyles = makeStyles({
   },
 });
 
-export const EngIcons = (props: { engLevel: number }) => {
+export const EngIcons = (props: { engLevel: number; ditchText?: boolean }) => {
   const classes = useStyles();
   let icons: JSX.Element[] = [];
   if (props.engLevel > 3 || props.engLevel < 1) {
     return (
       <div className={classes.engineering}>
-        <p>Engineering Level: None</p>
+        <p>{props.ditchText ? 'None' : 'Engineering Level: None'}</p>
       </div>
     );
   } else {
@@ -29,6 +29,12 @@ export const EngIcons = (props: { engLevel: number }) => {
         <img src={engineerIcon} key={i} alt="Engineering Icon" />,
       ];
     }
+    if (props.ditchText)
+      return (
+        <div className={classes.engineering}>
+          <p>{icons.map((icon) => icon)}</p>
+        </div>
+      );
     return (
       <div className={classes.engineering}>
         <p>

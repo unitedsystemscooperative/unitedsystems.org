@@ -24,6 +24,7 @@ export interface IBuildInfov2 {
   hasPowerplay: boolean;
   isBeginner: boolean;
   author: string;
+  authorId?: string;
   isVariant: boolean;
   variants: string[];
   related: string[];
