@@ -12,7 +12,6 @@ const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
 
 const addCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
   try {
-    console.log('adding cmdr');
     await axios.post('/api/cmdrs', cmdr);
     mutate('/api/cmdrs');
   } catch (error) {
@@ -22,7 +21,6 @@ const addCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
 
 const updateCMDR = async (cmdr: IAmbassador | IGuest | IMember) => {
   try {
-    console.log('updating single commander');
     if (checkInstanceofMember(cmdr)) {
       if (cmdr['promotion']) {
         if (cmdr['promotion'] < 0) {
@@ -43,8 +41,6 @@ const updateCMDRs = async (
   cmdrs: IAmbassador[] | IGuest[] | IMember[],
   updateInfo: IAmbassador | IGuest | IMember
 ) => {
-  console.log('updating multiple CMDRs');
-  console.log({ updateInfo });
   let failedUpdates: ICMDR[] = [];
   for (const cmdr of cmdrs) {
     if (updateInfo.platform) {

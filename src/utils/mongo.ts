@@ -77,19 +77,15 @@ export const updateItem = async <T extends IDbItem>(
   itemToUpdate: T,
   db: Db
 ) => {
-  console.log(itemToUpdate);
   let { _id } = itemToUpdate;
   if (typeof _id === 'string') _id = new ObjectId(_id);
   delete itemToUpdate._id;
   const updateDoc: UpdateFilter<T> = { $set: { ...itemToUpdate } };
   const options: UpdateOptions = { upsert: false };
-  console.log(_id);
-  console.log({ updateDoc });
   const updateResult = await db
     .collection<T>(collectionName)
     .updateOne({ _id }, updateDoc, options);
 
-  console.log(updateResult);
   if (updateResult.modifiedCount > 0) return true;
   else return false;
 };
@@ -115,7 +111,6 @@ export const getItems = async <T>(
     .sort({ [sortField]: order });
   const results = await cursor.toArray();
   cursor.close();
-  console.log(results);
 
   return results;
 };

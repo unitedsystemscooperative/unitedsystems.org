@@ -6,7 +6,6 @@ const postsDirectory = path.join(process.cwd(), 'src', 'data', 'releases');
 
 export function getReleases() {
   // Get file names under /posts
-  console.log(postsDirectory);
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id

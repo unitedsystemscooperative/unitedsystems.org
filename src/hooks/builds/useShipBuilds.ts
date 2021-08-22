@@ -45,7 +45,6 @@ const useAddRelatedBuild = () => {
       const addedBuild: IBuildInfov2 | undefined | null = (
         await addBuild(tempBuild)
       )[0];
-      console.log(addedBuild);
       if (addedBuild) {
         const buildID = addedBuild._id;
         if (buildID) {
@@ -89,18 +88,15 @@ const useAddVariantBuild = () => {
       const addedBuild: IBuildInfov2 | undefined | null = (
         await addBuild(tempBuild)
       )[0];
-      console.log(addedBuild);
       if (addedBuild) {
         const buildID = addedBuild._id;
         if (buildID) {
-          console.log(buildID);
           await updateBuild({
             _id: parentID,
             variants: [...variantBuilds, buildID.toString()],
           });
 
           for (const id of variantBuilds) {
-            console.log(id);
             const build = shipBuilds.find((x) => x._id === id);
             if (build) {
               const newRelated = [...build.related, buildID.toString()];

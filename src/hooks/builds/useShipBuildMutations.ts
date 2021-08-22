@@ -12,9 +12,7 @@ export const useShipBuildMutations = () => {
 
 const useAddBuild = () => {
   const addShipBuild = async (build: IBuildInfoInsert) => {
-    console.log(build);
     const data = await axios.post<IBuildInfov2[]>('/api/builds', build);
-    console.log(data.data[0]);
     mutate('/api/builds');
     return data.data;
   };

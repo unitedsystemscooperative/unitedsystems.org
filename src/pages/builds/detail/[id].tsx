@@ -24,7 +24,6 @@ export const BuildDetail = () => {
   const id = useRouter().asPath.substring(
     useRouter().asPath.lastIndexOf('/') + 1
   );
-  console.log(id);
   const { loading, shipInfo, foundBuild } = useShipBuildInfo(id);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -38,11 +37,11 @@ export const BuildDetail = () => {
     <>
       <Head>
         <title>USC Build</title>
-        <meta name='description' content='USC Build Detail' />
+        <meta name="description" content="USC Build Detail" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth='lg'>
-          <Typography variant='h3' className={classes.textCenter}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" className={classes.textCenter}>
             Build Detail
           </Typography>
           {foundBuild ? (
@@ -56,13 +55,13 @@ export const BuildDetail = () => {
           )}
           {foundBuild && foundBuild.variants.length > 0 ? (
             <BuildDetailBuilds
-              title='Build Variants'
+              title="Build Variants"
               buildIDs={foundBuild.variants}
             />
           ) : null}
           {foundBuild && foundBuild.related.length > 0 ? (
             <BuildDetailBuilds
-              title='Related Builds'
+              title="Related Builds"
               buildIDs={foundBuild.related}
             />
           ) : null}

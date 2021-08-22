@@ -26,7 +26,6 @@ const runMassacreQuery = async (systemName = 'Bibaridji', range = 50) => {
 
   const possibilities = await finalizePossibilities(systemList);
 
-  console.log({ possibilities });
   massacreQueryProgress.next(
     `Process complete: ${possibilities.length} Possible Massacre Systems.`
   );

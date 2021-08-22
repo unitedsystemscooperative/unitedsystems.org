@@ -70,13 +70,10 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
         newQuery = { ...prevState, specialties };
         break;
       case 'other':
-        console.log(action.value);
-
         const other: OtherFilters =
           typeof action.value === 'object' && !Array.isArray(action.value)
             ? action.value
             : null;
-        console.log({ other });
         newQuery = other ? { ...prevState, ...other } : prevState;
         break;
       case 'engLevel':
@@ -123,9 +120,7 @@ export const Query = (props: { updateQuery: (query: IQuery) => void }) => {
         newQuery = prevState;
     }
 
-    console.log({ newQuery });
     const queryString = qs.stringify(newQuery);
-    console.log({ queryString });
     router.push({ pathname: '/builds', query: queryString }, undefined, {
       shallow: true,
     });

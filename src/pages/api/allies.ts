@@ -17,7 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const isHC = await getIsHC(req, db);
 
     const ally: IAlly = req.body;
-    // console.log(req.body);
 
     switch (req.method) {
       case 'POST':

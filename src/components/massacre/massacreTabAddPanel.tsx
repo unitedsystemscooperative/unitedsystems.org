@@ -52,7 +52,6 @@ export const MassacreTabAddPanel = () => {
     }
 
     const result = await processHazRezSystem(system);
-    console.log(result);
 
     let factions: IFactionwMissions[] = [];
 

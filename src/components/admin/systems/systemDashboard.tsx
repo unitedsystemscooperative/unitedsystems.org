@@ -145,9 +145,7 @@ export const SystemDashboard = () => {
   } = useSystems();
   const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => {
-    console.log(factionSystems);
-  }, [factionSystems]);
+  useEffect(() => {}, [factionSystems]);
 
   useEffect(() => {
     if (error) {
@@ -165,8 +163,6 @@ export const SystemDashboard = () => {
   const handleDialogClose = async (system?: System) => {
     setOpenDialog(false);
     if (system) {
-      console.log(system);
-
       try {
         // If _id exists, then it is an update to the existing system.
         if (system._id) {

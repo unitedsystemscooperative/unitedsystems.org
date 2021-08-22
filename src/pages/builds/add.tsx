@@ -172,7 +172,6 @@ const AddBuild = () => {
       const addType = Array.isArray(params['type'])
         ? params['type'][0]
         : params['type'];
-      console.log(addType);
       const refID = Array.isArray(params['refID'])
         ? params['refID'][0]
         : params['refID'];

@@ -64,7 +64,6 @@ export const JoinFormMember = (props: {
   const handlePlatformChange = (event: ChangeEvent<HTMLInputElement>) => {
     const targetName = event.target.name;
     const checked = event.target.checked;
-    console.log(targetName);
     if (targetName === 'pc' || targetName === 'xbox' || targetName === 'ps') {
       setPlatforms((state) => {
         state[targetName] = checked;
@@ -76,7 +75,6 @@ export const JoinFormMember = (props: {
   };
 
   const handleRefChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target);
     setRef(event.target.value);
     setValue('reference', event.target.value);
     switch (event.target.value) {

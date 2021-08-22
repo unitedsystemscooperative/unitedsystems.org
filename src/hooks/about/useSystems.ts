@@ -13,7 +13,6 @@ const addSystem = async (system: System) => {
 
 const updateSystem = async (system: System) => {
   try {
-    console.log(system);
     await axios.put('/api/systems', system);
     mutate('/api/systems');
   } catch (error) {
@@ -35,7 +34,6 @@ export const useSystems = () => {
     axios.get<System[]>(url)
   );
   const factionSystems = data?.data ?? [];
-  console.log(factionSystems);
   return {
     factionSystems,
     loading: !error && !data,
