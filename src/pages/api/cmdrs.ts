@@ -1,10 +1,13 @@
-import { ObjectID } from 'bson';
 import { IAmbassador, ICMDR, IGuest, IMember } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
-import { UpdateOneOptions, UpdateQuery } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase } from 'utils/mongo';
+import {
+  connectToDatabase,
+  getItems,
+  insertItem,
+  updateItem,
+} from 'utils/mongo';
 
 const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
   cmdr.rank === Rank.Ambassador;
@@ -13,13 +16,13 @@ const determineCMDRisGuest = (cmdr: ICMDR): cmdr is IGuest =>
 const determineCMDRisMember = (cmdr: ICMDR): cmdr is IMember =>
   cmdr.rank >= Rank.FleetAdmiral && cmdr.rank <= Rank.Reserve;
 
+const COLLECTION = 'cmdrs';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
-    const cmdr = req.body;
-    // console.log(req.body);
+    const cmdr: IAmbassador | IGuest | IMember = req.body;
 
     switch (req.method) {
       case 'POST':
@@ -27,65 +30,60 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        console.log(cmdr);
-        const response = await db.collection('cmdrs').insertOne(cmdr);
 
-        res.json(response.ops);
+        await insertItem(COLLECTION, cmdr, db);
+
+        res.status(200).end();
+
         break;
       case 'PUT':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const { _id, ...updateCmdr } = cmdr;
-        const id = new ObjectID(_id);
-        const updateDoc = {
-          $set: {
-            ...updateCmdr,
-          },
-        };
-        const options: UpdateOneOptions = { upsert: false };
 
-        console.log({ id });
-        console.log(updateDoc);
+        const updateResult = await updateItem(COLLECTION, cmdr, db);
+        if (updateResult) res.status(200).end();
+        else res.status(500).send(`Failed to update id: ${req.body._id}`);
 
-        const updateResponse = await db
-          .collection('cmdrs')
-          .updateOne({ _id: id }, updateDoc, options);
-
-        console.log({ updateResponse });
-
-        if (updateResponse.result.nModified > 0) {
-          res.status(200).json(updateResponse.result);
-        } else {
-          res.status(500).send(`Failed to update id: ${req.body._id}`);
-        }
         break;
       case 'DELETE':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const idtoDelete = new ObjectID(req.query['id'] as string);
-        await db
-          .collection('cmdrs')
-          .updateOne({ _id: idtoDelete }, { $set: { isDeleted: true } });
 
-        res.status(200).end();
+        const idtoDelete = req.query['id'] as string;
+        const partialCmdr: Partial<IAmbassador | IGuest | IMember> = {
+          _id: idtoDelete,
+          isDeleted: true,
+        };
+
+        const deleteResult = await updateItem(COLLECTION, partialCmdr, db);
+
+        if (deleteResult) res.status(200).end();
+        else res.status(500).send(`Failed to update id: ${req.body._id}`);
         break;
       case 'GET':
       default:
-        const cursor = db.collection('cmdrs').find({}).sort({ cmdrName: 1 });
-        const cmdrs = await cursor.toArray();
-        cursor.close();
+        if (!isHC) {
+          res.status(401).send('unauthorized');
+          return;
+        }
+        const result = await getItems<IAmbassador | IGuest | IMember>(
+          COLLECTION,
+          db,
+          'cmdrName',
+          1
+        );
 
-        const members: IMember[] = cmdrs.filter((x) =>
+        const members: IMember[] = result.filter((x) =>
           determineCMDRisMember(x)
         ) as IMember[];
-        const guests: IGuest[] = cmdrs.filter((x) =>
+        const guests: IGuest[] = result.filter((x) =>
           determineCMDRisGuest(x)
         ) as IGuest[];
-        const ambassadors: IAmbassador[] = cmdrs.filter((x) =>
+        const ambassadors: IAmbassador[] = result.filter((x) =>
           determineCMDRisAmbassador(x)
         ) as IAmbassador[];
 

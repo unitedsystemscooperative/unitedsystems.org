@@ -10,7 +10,7 @@ export async function getUserId(req, db: Db): Promise<string> {
       .collection('cmdrs')
       .findOne<IMember>({ email: session.user.email });
     if (user) {
-      id = user._id;
+      id = user._id.toString();
     }
   }
   return id;

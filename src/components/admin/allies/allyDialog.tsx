@@ -37,7 +37,6 @@ export const AllyDialog = (props: AllyDialogProps) => {
     if (values) {
       reset(values);
     } else {
-      console.log('no values given');
       reset({
         _id: undefined,
         name: undefined,

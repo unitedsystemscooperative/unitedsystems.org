@@ -39,7 +39,6 @@ export const SystemDialog = (props: SystemDialogProps) => {
     if (values) {
       reset(values);
     } else {
-      console.log('no values given');
       reset();
     }
   }, [values, reset, setValue]);
@@ -49,7 +48,6 @@ export const SystemDialog = (props: SystemDialogProps) => {
   };
 
   const onSubmit: SubmitHandler<System> = (data: System) => {
-    console.log(data);
     const _id = values?._id ? values._id : undefined;
     onClose({
       _id,

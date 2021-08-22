@@ -68,7 +68,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
 
   const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = filteredCmdrs.map((n) => n._id);
+      const newSelecteds = filteredCmdrs.map((n) => n._id.toString());
       setSelected(newSelecteds);
       return;
     }

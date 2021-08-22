@@ -182,12 +182,12 @@ export const MemberDeletedView = (props: MemberDefaultViewProps) => {
             {stableSort(cmdrs, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((cmdr) => {
-                const isItemSelected = isSelected(cmdr._id);
+                const isItemSelected = isSelected(cmdr._id.toString());
                 return (
                   <TableRow
-                    key={cmdr._id}
+                    key={cmdr._id.toString()}
                     hover
-                    onClick={(event) => handleClick(event, cmdr._id)}
+                    onClick={(event) => handleClick(event, cmdr._id.toString())}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}

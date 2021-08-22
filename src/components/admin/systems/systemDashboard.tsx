@@ -145,6 +145,8 @@ export const SystemDashboard = () => {
   } = useSystems();
   const { enqueueSnackbar } = useSnackbar();
 
+  useEffect(() => {}, [factionSystems]);
+
   useEffect(() => {
     if (error) {
       enqueueSnackbar('Failed to retrieve faction Systems. ' + error.message, {
@@ -161,8 +163,6 @@ export const SystemDashboard = () => {
   const handleDialogClose = async (system?: System) => {
     setOpenDialog(false);
     if (system) {
-      console.log(system);
-
       try {
         // If _id exists, then it is an update to the existing system.
         if (system._id) {

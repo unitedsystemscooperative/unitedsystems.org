@@ -13,8 +13,9 @@
 //   moreInfo?: string;
 // }
 
-export interface IBuildInfov2 {
-  _id?: string;
+import { IDbItem } from 'models/dbItem';
+
+export interface IBuildInfov2 extends IDbItem {
   shipId: string;
   title: string;
   specializations: string[];

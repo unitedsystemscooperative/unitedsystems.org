@@ -1,75 +1,30 @@
-import axios from 'axios';
 import { IJoinInfo } from 'models/join/joinInfo';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/client';
 import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase } from 'utils/mongo';
+import { connectToDatabase, getItems, insertItem } from 'utils/mongo';
 
+const COLLECTION = 'joiners';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();
+    const isHC = await getIsHC(req, db);
+
+    const joinInfo: IJoinInfo = req.body;
 
     if (req.method === 'POST') {
-      const response = await db
-        .collection<IJoinInfo>('joiners')
-        .insertOne(req.body);
+      await insertItem(COLLECTION, joinInfo, db);
 
-      res.json(response.ops);
-      // postToDiscord(req.body);
+      res.status(200).end();
     } else {
-      const session = await getSession({ req });
-      if (session) {
-        const isHC = await getIsHC(req, db);
-
-        if (isHC) {
-          const cursor = db
-            .collection('joiners')
-            .find({})
-            .sort({ timeStamp: -1 });
-          const factionSystems = await cursor.toArray();
-          cursor.close();
-
-          res.status(200).json(factionSystems);
-        } else {
-          res.statusMessage = 'You are not authorized for this information.';
-          res.status(401).end();
-        }
-      } else {
-        res.statusMessage = 'You are not signed in.';
-        res.status(401).end();
+      if (!isHC) {
+        res.status(401).send('unauthorized');
+        return;
       }
+
+      const result = await getItems<IJoinInfo>(COLLECTION, db, 'timeStamp', -1);
+      res.status(200).send(result);
     }
   } catch (e) {
     res.status(500).send(e.message);
   }
-};
-
-const postToDiscord = (joiner: IJoinInfo) => {
-  const { cmdr, discord, type, timeStamp } = joiner;
-  let joinType = '';
-  switch (type) {
-    case 'join':
-      joinType = 'a member';
-      break;
-    case 'guest':
-      joinType = 'a guest';
-      break;
-    case 'ambassador':
-      joinType = 'an ambassador';
-      break;
-    default:
-      joinType = 'ERROR';
-      break;
-  }
-
-  const discordHook = process.env.DISCORD_JOIN_HOOK;
-  axios.post(discordHook, {
-    embeds: [
-      {
-        title: '__**New Application Received**__',
-        description: `**${discord}** has requested to join USC as **${joinType}** with the CMDR Name: **${cmdr}**`,
-        footer: { text: timeStamp },
-      },
-    ],
-  });
 };

@@ -34,7 +34,6 @@ export const useSystems = () => {
     axios.get<System[]>(url)
   );
   const factionSystems = data?.data ?? [];
-
   return {
     factionSystems,
     loading: !error && !data,
