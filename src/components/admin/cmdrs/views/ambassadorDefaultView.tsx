@@ -11,7 +11,7 @@ import {
   TableSortLabel,
 } from '@material-ui/core';
 import { Link } from '@material-ui/icons';
-import { getComparator, Order, stableSort } from 'functions/sort';
+import { genericSortArray, Order } from 'functions/sort';
 import { IAmbassador } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import React, {
@@ -205,7 +205,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
             rowCount={cmdrs.length}
           />
           <TableBody>
-            {stableSort(cmdrs, getComparator(order, orderBy))
+            {genericSortArray(cmdrs, { order, orderBy })
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((cmdr) => {
                 const isItemSelected = isSelected(cmdr._id.toString());

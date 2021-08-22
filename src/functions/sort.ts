@@ -1,87 +1,39 @@
-/**
- * Sorts provided items and returns a new array
- * @param items array of items to sort
- * @param prop property to sort the items by
- */
-export const sortItems = <T, P extends keyof T>(items: T[], prop: P): T[] => {
-  try {
-    return items.sort(comparer(prop));
-  } catch {
-    return items;
-  }
+const isString = (value): value is string => {
+  return typeof value === 'string';
 };
 
-/**
- * Sorts provided items and returns a new array
- * @param items array of items to sort
- * @param prop property to sort the items by
- */
-export const sortItemsReverse = <T, P extends keyof T>(
-  items: T[],
-  prop: P
-): T[] => {
-  try {
-    return items.sort(comparerReverse(prop));
-  } catch {
-    return items;
-  }
+type ISorter<T> = {
+  orderBy: keyof T;
+  order: Order;
 };
 
-const comparer = <T, P extends keyof T>(prop: P) => {
-  return (a: T, b: T): number => {
-    if (a[prop] > b[prop]) {
-      return 1;
-    } else if (a[prop] < b[prop]) {
-      return -1;
+export const genericSortArray = <T>(array: T[], sorter: ISorter<T>) => {
+  return array.sort((a, b) => genericSort(a, b, sorter));
+};
+
+export const genericSort = <T>(a: T, b: T, sorter: ISorter<T>) => {
+  const result = () => {
+    let x: string;
+    let y: string;
+    if (isString(a[sorter.orderBy])) {
+      x = (a[sorter.orderBy] as unknown) as string;
+      x = x.toLowerCase();
     }
+    if (isString(b[sorter.orderBy])) {
+      y = (b[sorter.orderBy] as unknown) as string;
+      y = y.toLowerCase();
+    }
+    if (x && y) {
+      if (x > y) return 1;
+      if (x < y) return -1;
+      return 0;
+    }
+    if (a[sorter.orderBy] > b[sorter.orderBy]) return 1;
+    if (a[sorter.orderBy] < b[sorter.orderBy]) return -1;
     return 0;
   };
-};
-const comparerReverse = <T, P extends keyof T>(prop: P) => {
-  return (a: T, b: T): number => {
-    if (a[prop] < b[prop]) {
-      return 1;
-    } else if (a[prop] > b[prop]) {
-      return -1;
-    }
-    return 0;
-  };
-};
 
-export function descendingComparator<T>(
-  a: T,
-  b: T,
-  orderBy: keyof T
-): 0 | -1 | 1 {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
+  return sorter.order === 'desc' ? result() * -1 : result();
+};
 
 export type Order = 'asc' | 'desc';
-
-export function stableSort<T>(
-  array: T[],
-  comparator: (a: T, b: T) => number
-): T[] {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
-export function getComparator<T, Key extends keyof T>(
-  order: Order,
-  orderBy: Key
-): (a: T, b: T) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}

@@ -22,7 +22,7 @@ import { EngIcons } from 'components/builds/builds/engIcons';
 import { TagGroup } from 'components/builds/builds/tagGroup';
 import { BuildDialog } from 'components/builds/dialog/buildDialog';
 import { ConfirmDialog } from 'components/confirmDialog';
-import { getComparator, Order, stableSort } from 'functions/sort';
+import { genericSortArray, Order } from 'functions/sort';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useShipMap } from 'hooks/builds/useShipMap';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
@@ -186,7 +186,7 @@ const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
           onRequestSort={handleRequestSort}
         />
         <TableBody>
-          {stableSort(builds, getComparator(order, orderBy)).map(
+          {genericSortArray(builds, { order, orderBy }).map(
             (build: IBuildInfov2) =>
               build._id && (
                 <TableRow key={build._id.toString()}>

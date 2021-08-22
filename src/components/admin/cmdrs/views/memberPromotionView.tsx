@@ -8,7 +8,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { getComparator, Order, stableSort } from 'functions/sort';
+import { genericSortArray, Order } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import { RankString } from 'models/admin/ranks';
@@ -173,7 +173,7 @@ export const MemberPromotionView = (props: MemberDefaultViewProps) => {
             onRequestSort={handleRequestSort}
           />
           <TableBody>
-            {stableSort(cmdrs, getComparator(order, orderBy))
+            {genericSortArray(cmdrs, { order, orderBy })
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((cmdr) => {
                 const isItemSelected = isSelected(cmdr._id.toString());
