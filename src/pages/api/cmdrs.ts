@@ -53,8 +53,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
 
+        const idtoDelete = req.query['id'] as string;
         const partialCmdr: Partial<IAmbassador | IGuest | IMember> = {
-          _id: cmdr._id,
+          _id: idtoDelete,
           isDeleted: true,
         };
 
