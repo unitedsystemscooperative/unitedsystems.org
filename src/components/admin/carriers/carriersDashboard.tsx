@@ -97,8 +97,6 @@ export const CarriersDashboard = () => {
   const handleDialogClose = async (carrier?: IFleetCarrier) => {
     setOpenDialog(false);
     if (carrier) {
-      console.log(carrier);
-
       try {
         // If _id exists, then it is an update to the existing system.
         if (carrier._id) {

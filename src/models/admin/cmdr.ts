@@ -1,3 +1,4 @@
+import { IDbItem } from 'models/dbItem';
 import { Platform } from './platforms';
 import { Rank } from './ranks';
 import { Referral } from './referrals';
@@ -9,8 +10,7 @@ export enum CMDRType {
   Ambassador,
 }
 
-export interface ICMDR {
-  _id?: string;
+export interface ICMDR extends IDbItem {
   cmdrName: string;
   discordName: string;
   discordJoinDate: Date;

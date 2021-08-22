@@ -105,8 +105,6 @@ export const AllyDashboard = () => {
   const handleDialogClose = async (ally?: IAlly) => {
     setOpenDialog(false);
     if (ally) {
-      console.log(ally);
-
       try {
         // If _id exists, then it is an update to the existing system.
         if (ally._id) {

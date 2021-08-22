@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const QuerySpecialization = (props: {
+export const QuerySpecialties = (props: {
   selectedSpecialties: string[];
   setSpecialties: (value: string[]) => void;
 }) => {

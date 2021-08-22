@@ -51,7 +51,6 @@ export const JoinFormAmbassador = (props: {
   const handlePlatformChange = (event: ChangeEvent<HTMLInputElement>) => {
     const targetName = event.target.name;
     const checked = event.target.checked;
-    console.log(targetName);
     if (targetName === 'pc' || targetName === 'xbox' || targetName === 'ps') {
       setPlatforms((state) => {
         state[targetName] = checked;

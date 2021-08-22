@@ -1,7 +1,7 @@
 import { ICMDR } from 'models/admin/cmdr';
+import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { NextApiRequest, NextApiResponse } from 'next-auth/_utils';
 import { connectToDatabase } from 'utils/mongo';
 
 const signIn = async (user) => {

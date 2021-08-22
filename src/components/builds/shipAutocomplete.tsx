@@ -1,8 +1,8 @@
-import { Autocomplete } from '@material-ui/lab';
 import { TextField } from '@material-ui/core';
-import { sortItems } from 'functions/sort';
-import { IShipInfo } from 'models/builds';
+import { Autocomplete } from '@material-ui/lab';
+import { genericSortArray } from 'functions/sort';
 import { useShipMap } from 'hooks/builds/useShipMap';
+import { IShipInfo } from 'models/builds';
 
 const findShipName = (ships: IShipInfo[], shipID: string | null) => {
   if (shipID === null) {
@@ -24,7 +24,7 @@ export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
   return (
     <Autocomplete
       id="shipType"
-      options={sortItems(ships, 'name')}
+      options={genericSortArray(ships, { orderBy: 'name', order: 'asc' })}
       autoHighlight
       getOptionLabel={(option) => option.name}
       renderOption={(option) => (
