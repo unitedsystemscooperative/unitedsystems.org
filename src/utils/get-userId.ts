@@ -1,5 +1,5 @@
 import { IMember } from 'models/admin/cmdr';
-import { Db } from 'mongodb';
+import { Db } from 'mongodb4';
 import { getSession } from 'next-auth/client';
 
 export async function getUserId(req, db: Db): Promise<string> {

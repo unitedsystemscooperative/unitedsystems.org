@@ -7,7 +7,7 @@ import {
   OptionalId,
   UpdateFilter,
   UpdateOptions,
-} from 'mongodb';
+} from 'mongodb4';
 
 const { MONGODB_URI, MONGODB_DB } = process.env;
 

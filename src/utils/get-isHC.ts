@@ -1,6 +1,6 @@
 import { IMember } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
-import { Db } from 'mongodb';
+import { Db } from 'mongodb4';
 import { getSession } from 'next-auth/client';
 
 export async function getIsHC(req, db: Db) {
