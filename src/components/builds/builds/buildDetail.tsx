@@ -161,14 +161,14 @@ const BuildDetailFull = (props: {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => addBuild('variant', foundBuild._id)}
+                onClick={() => addBuild('variant', foundBuild._id.toString())}
               >
                 Add Variant
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => addBuild('related', foundBuild._id)}
+                onClick={() => addBuild('related', foundBuild._id.toString())}
               >
                 Add Related
               </Button>
@@ -297,14 +297,14 @@ const BuildDetailMobile = (props: {
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => addBuild('variant', foundBuild._id)}
+          onClick={() => addBuild('variant', foundBuild._id.toString())}
         >
           Add Variant
         </Button>
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => addBuild('related', foundBuild._id)}
+          onClick={() => addBuild('related', foundBuild._id.toString())}
         >
           Add Related
         </Button>

@@ -189,7 +189,7 @@ const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
           {stableSort(builds, getComparator(order, orderBy)).map(
             (build: IBuildInfov2) =>
               build._id && (
-                <TableRow key={build._id}>
+                <TableRow key={build._id.toString()}>
                   <TableCell component="th" scope="row" padding="normal">
                     {build.title}
                   </TableCell>
@@ -282,7 +282,7 @@ export const BuildDashboard = () => {
       case 'confirm':
         if (prevState.type === 'delete') {
           console.log('delete confirmed for', prevState.value);
-          deleteBuild(prevState.value._id);
+          deleteBuild(prevState.value._id.toString());
         }
         return { type: 'cancel' };
       case 'delete':
