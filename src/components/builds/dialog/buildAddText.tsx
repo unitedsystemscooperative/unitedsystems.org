@@ -21,7 +21,7 @@ export const BuildAddText = (props: IBuildAddText) => {
       id={id}
       label={label}
       multiline={isMultiline}
-      rowsMax={10}
+      maxRows={10}
       value={value}
       onChange={onChange}
       disabled={disabled}

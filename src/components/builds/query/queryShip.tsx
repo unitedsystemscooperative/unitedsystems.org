@@ -1,7 +1,7 @@
 import { makeStyles, Tooltip } from '@material-ui/core';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { IShipInfo } from 'models/builds';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { ShipAutocomplete } from '../shipAutocomplete';
 import { useSharedStyles } from './sharedStyles';
 

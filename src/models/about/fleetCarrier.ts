@@ -1,5 +1,6 @@
-export interface IFleetCarrier {
-  _id: string | undefined;
+import { IDbItem } from 'models/dbItem';
+
+export interface IFleetCarrier extends IDbItem {
   owner: string;
   name: string;
   id: string;

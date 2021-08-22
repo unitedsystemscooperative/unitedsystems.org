@@ -146,7 +146,6 @@ const FactionRow = (props: {
       return;
     }
     const killIndex = parseInt(stringTitle);
-    console.log({ killIndex, numberValue });
     setMissionKills((previous) => {
       previous[killIndex] = {
         ...previous[killIndex],

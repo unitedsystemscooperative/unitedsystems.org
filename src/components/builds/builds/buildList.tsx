@@ -27,7 +27,6 @@ export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
     if (loading || error) {
       return;
     }
-    console.log(shipBuilds);
     const filtered = filterShipBuilds(shipBuilds, buildQuery);
     setQueriedBuilds(filtered);
   }, [loading, shipBuilds, buildQuery, error]);

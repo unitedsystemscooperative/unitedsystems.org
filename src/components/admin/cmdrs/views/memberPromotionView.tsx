@@ -8,7 +8,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Order, descendingComparator, stableSort } from 'functions/sort';
+import { getComparator, Order, stableSort } from 'functions/sort';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import { RankString } from 'models/admin/ranks';
@@ -18,15 +18,6 @@ import React, {
   MouseEvent,
   SetStateAction,
 } from 'react';
-
-function getComparator<Key extends keyof IMember>(
-  order: Order,
-  orderBy: Key
-): (a: IMember, b: IMember) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 interface HeadCell {
   disablePadding: boolean;
@@ -185,12 +176,12 @@ export const MemberPromotionView = (props: MemberDefaultViewProps) => {
             {stableSort(cmdrs, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((cmdr) => {
-                const isItemSelected = isSelected(cmdr._id);
+                const isItemSelected = isSelected(cmdr._id.toString());
                 return (
                   <TableRow
-                    key={cmdr._id}
+                    key={cmdr._id.toString()}
                     hover
-                    onClick={(event) => handleClick(event, cmdr._id)}
+                    onClick={(event) => handleClick(event, cmdr._id.toString())}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}

@@ -50,7 +50,6 @@ export const JoinNew = () => {
     const time = new Date().getTime();
     newData.timeStamp = new Date(time).toISOString();
     newData.type = type;
-    console.log(newData);
     try {
       addJoiner(newData);
       enqueueSnackbar('Successfully submitted form', { variant: 'success' });
@@ -64,13 +63,13 @@ export const JoinNew = () => {
     <>
       <Head>
         <title>Join USC!</title>
-        <meta name='description' content='Join the USC! We have cookies!' />
+        <meta name="description" content="Join the USC! We have cookies!" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth='sm'>
+        <Container maxWidth="sm">
           <Fade in={true}>
-            <Container maxWidth='sm'>
-              <Typography variant='h3' className={classes.textCenter}>
+            <Container maxWidth="sm">
+              <Typography variant="h3" className={classes.textCenter}>
                 Join Us
               </Typography>
               <Paper className={classes.paper}>
@@ -79,21 +78,24 @@ export const JoinNew = () => {
                 </Typography>
                 <div className={classes.joinTypes}>
                   <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => setForm(0)}>
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setForm(0)}
+                  >
                     As a member
                   </Button>
                   <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => setForm(1)}>
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setForm(1)}
+                  >
                     As a guest
                   </Button>
                   <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => setForm(2)}>
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setForm(2)}
+                  >
                     As an ambassador
                   </Button>
                 </div>

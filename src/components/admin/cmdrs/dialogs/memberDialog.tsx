@@ -47,7 +47,6 @@ export const MemberDialog = (props: MemberDialogProps) => {
   useEffect(() => {
     if (values) {
       if (values.length === 1) {
-        console.log({ values });
         const value = values[0];
         reset({
           cmdrName: value.cmdrName,
@@ -87,7 +86,6 @@ export const MemberDialog = (props: MemberDialogProps) => {
         });
       }
     } else {
-      console.log('no values given');
       reset();
     }
   }, [values, reset]);
@@ -97,7 +95,6 @@ export const MemberDialog = (props: MemberDialogProps) => {
   };
 
   const onSubmit: SubmitHandler<IMember> = (data) => {
-    console.log(data);
     if (values.length > 1) {
       const multiCmdrUpdate: IMember = {
         cmdrName: undefined,

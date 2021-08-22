@@ -1,8 +1,15 @@
-import { ObjectId, ObjectID } from 'bson';
 import { System } from 'models/about/system';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase } from 'utils/mongo';
+import {
+  connectToDatabase,
+  deleteItem,
+  getItems,
+  insertItem,
+  updateItem,
+} from 'utils/mongo';
+
+const COLLECTION = 'systems';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -10,7 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const isHC = await getIsHC(req, db);
 
     const system: System = req.body;
-    // console.log(req.body);
 
     switch (req.method) {
       case 'POST':
@@ -18,56 +24,40 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const response = await db.collection('systems').insertOne(system);
+        await insertItem(COLLECTION, system, db);
 
-        res.json(response.ops);
+        res.status(200).end();
         break;
       case 'PUT':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const id = new ObjectID(system._id);
-        const updateDoc = {
-          $set: {
-            name: system.name,
-            inaraLink: system.inaraLink,
-            isControlled: system.isControlled,
-          },
-        };
-        const options = { upsert: false };
 
-        const updateResponse = await db
-          .collection('systems')
-          .updateOne({ _id: id }, updateDoc, options);
+        const updateResult = await updateItem(COLLECTION, system, db);
+        if (updateResult) res.status(200).end();
+        else res.status(500).send(`Failed to update id: ${req.body._id}`);
 
-        if (updateResponse.result.nModified > 0) {
-          res.status(200).json(updateResponse.result);
-        } else {
-          res.status(500).send(`Failed to update id: ${req.body._id}`);
-        }
         break;
       case 'DELETE':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const idtoDelete = req.query['id'] as string;
-        await db
-          .collection('systems')
-          .deleteOne({ _id: new ObjectId(idtoDelete) });
+
+        await deleteItem(COLLECTION, req.query['id'] as string, db);
+
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const cursor = db.collection('systems').find({}).sort({ name: 1 });
-        const systems = await cursor.toArray();
-        cursor.close();
+        const result = await getItems<System>(COLLECTION, db, 'name', 1);
 
-        res.status(200).json(systems);
+        res.status(200).send(result);
         break;
     }
   } catch (e) {
+    console.error(e);
     res.status(500).send(e.message);
   }
 };

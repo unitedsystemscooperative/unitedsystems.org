@@ -1,14 +1,13 @@
-import { IBuildInfov2 } from 'models/builds';
-import { useShipBuildMutations } from './useShipBuildMutations';
-import { IBuildInfoInsert } from 'models/builds/buildInfoInsert';
-import useSWR, { mutate } from 'swr';
 import axios from 'axios';
+import { IBuildInfov2 } from 'models/builds';
+import useSWR, { mutate } from 'swr';
+import { useShipBuildMutations } from './useShipBuildMutations';
 
 export const useShipBuilds = () => {
   const addRelated = useAddRelatedBuild();
   const addVariant = useAddVariantBuild();
   const { shipBuilds, loading, error } = useAllShipBuilds();
-  const { addBuild } = useShipBuildMutations();
+  const { addBuild, updateBuild, deleteBuild } = useShipBuildMutations();
   return {
     loading,
     shipBuilds,
@@ -16,6 +15,8 @@ export const useShipBuilds = () => {
     addBuild,
     addRelated,
     addVariant,
+    updateBuild,
+    deleteBuild,
   };
 };
 
@@ -33,7 +34,7 @@ const useAddRelatedBuild = () => {
   const addRelatedBuild = async (
     currentID: string,
     shipBuilds: IBuildInfov2[],
-    buildtoInsert: IBuildInfoInsert
+    buildtoInsert: IBuildInfov2
   ) => {
     const currentBuild = shipBuilds.find((x) => x._id === currentID);
     if (currentBuild) {
@@ -45,20 +46,18 @@ const useAddRelatedBuild = () => {
       const addedBuild: IBuildInfov2 | undefined | null = (
         await addBuild(tempBuild)
       )[0];
-      console.log(addedBuild);
       if (addedBuild) {
         const buildID = addedBuild._id;
         if (buildID) {
-          await updateBuild(currentID, {
-            related: [...relatedBuilds, buildID],
+          await updateBuild({
+            _id: currentID,
+            related: [...relatedBuilds, buildID.toString()],
           });
           for (const id of relatedBuilds) {
             const build = shipBuilds.find((x) => x._id === id);
             if (build) {
-              const newRelated = [...build.related, buildID];
-              await updateBuild(build._id, {
-                related: newRelated,
-              });
+              const newRelated = [...build.related, buildID.toString()];
+              await updateBuild({ _id: build._id, related: newRelated });
             }
           }
           mutate('/api/shipBuilds');
@@ -78,7 +77,7 @@ const useAddVariantBuild = () => {
   const addVariantBuild = async (
     parentID: string,
     shipBuilds: IBuildInfov2[],
-    buildtoInsert: IBuildInfoInsert
+    buildtoInsert: IBuildInfov2
   ) => {
     const parentBuild = shipBuilds.find((x) => x._id === parentID);
     if (parentBuild) {
@@ -90,23 +89,19 @@ const useAddVariantBuild = () => {
       const addedBuild: IBuildInfov2 | undefined | null = (
         await addBuild(tempBuild)
       )[0];
-      console.log(addedBuild);
       if (addedBuild) {
         const buildID = addedBuild._id;
         if (buildID) {
-          console.log(buildID);
-          await updateBuild(parentID, {
-            variants: [...variantBuilds, buildID],
+          await updateBuild({
+            _id: parentID,
+            variants: [...variantBuilds, buildID.toString()],
           });
 
           for (const id of variantBuilds) {
-            console.log(id);
             const build = shipBuilds.find((x) => x._id === id);
             if (build) {
-              const newRelated = [...build.related, buildID];
-              await updateBuild(build._id, {
-                related: newRelated,
-              });
+              const newRelated = [...build.related, buildID.toString()];
+              await updateBuild({ _id: build._id, related: newRelated });
             }
           }
           mutate('/api/shipBuilds');

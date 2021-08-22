@@ -106,12 +106,10 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
       'massacreTrackerStore',
       JSON.stringify(trackers)
     );
-    console.log('wrote to storage');
   }, [trackers]);
 
   const [selectedTab, setSelectedTab] = useState<string>(() => {
     if (trackers && trackers.length > 0) {
-      console.log({ trackers });
       const selectedTrack = trackers.find((x) => x.current === true);
       if (selectedTrack) {
         return selectedTrack.hazRezSystem;
@@ -119,7 +117,6 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
         return '+';
       }
     } else {
-      console.log('no trackers. Setting to add');
       return '+';
     }
   });
@@ -139,8 +136,6 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
   };
 
   const updateTracker = (hazRezSystem: string, newTracker: IMassacreTrack) => {
-    console.log('Update Tracker');
-
     dispatch({ type: 'update', hazRezSystem, tracker: newTracker });
   };
 

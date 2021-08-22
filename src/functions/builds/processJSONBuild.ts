@@ -9,7 +9,7 @@ export const processJSONBuild = (
   json: string
 ): {
   buildName: string;
-  shipID: string;
+  shipId: string;
   hasGuardian: boolean;
   hasPowerplay: boolean;
   engineering: boolean;
@@ -18,7 +18,7 @@ export const processJSONBuild = (
   const build: ICoriolisLoadout = JSON.parse(json);
 
   const buildName = build.name;
-  const shipID = build.references[0].shipId ?? '';
+  const shipId = build.references[0].shipId ?? '';
   const url = build.references[0].url ?? '';
 
   const components = build.components;
@@ -27,19 +27,19 @@ export const processJSONBuild = (
   const internals = components.internal;
 
   // Check for Guardian
-  const guardian = checkGuardian(core, hardpoints, internals);
+  const hasGuardian = checkGuardian(core, hardpoints, internals);
 
   // Check for PowerPlay
-  const powerplay = checkPowerplay(internals, hardpoints);
+  const hasPowerplay = checkPowerplay(internals, hardpoints);
 
   // Check for engineering
   const engineering = checkEngineering(hardpoints, internals, core);
 
   return {
     buildName,
-    shipID,
-    hasGuardian: guardian,
-    hasPowerplay: powerplay,
+    shipId,
+    hasGuardian,
+    hasPowerplay,
     engineering,
     url,
   };

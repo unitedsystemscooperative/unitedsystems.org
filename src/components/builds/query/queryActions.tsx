@@ -1,5 +1,4 @@
 import { Button, makeStyles } from '@material-ui/core';
-import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,23 +10,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const QueryActions = (props: { resetQueries: () => void }) => {
+export interface QueryActionsProps {
+  resetQueries: () => void;
+  addBuild: () => void;
+}
+
+export const QueryActions = ({ resetQueries, addBuild }: QueryActionsProps) => {
   const classes = useStyles();
-  const { resetQueries } = props;
+
+  const handleAdd = () => {
+    console.log('QueryActions: Add build clicked');
+    addBuild();
+  };
   return (
     <div className={classes.root}>
       <Button
         onClick={resetQueries}
-        color='primary'
-        variant='outlined'
-        className='resetButton'>
+        color="primary"
+        variant="outlined"
+        className="resetButton"
+      >
         Reset Selections
       </Button>
-      <Link href='/builds/add' passHref>
-        <Button variant='outlined' color='secondary'>
-          Add Build
-        </Button>
-      </Link>
+      <Button onClick={handleAdd} variant="outlined" color="secondary">
+        Add Build
+      </Button>
     </div>
   );
 };

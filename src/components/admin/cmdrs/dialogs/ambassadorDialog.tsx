@@ -44,7 +44,6 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
   useEffect(() => {
     if (values) {
       if (values.length === 1) {
-        console.log({ values });
         const value = values[0];
         reset({
           cmdrName: value.cmdrName,
@@ -74,7 +73,6 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
         });
       }
     } else {
-      console.log('no values given');
       reset();
     }
   }, [values, reset]);
@@ -84,7 +82,6 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
   };
 
   const onSubmit: SubmitHandler<IAmbassador> = (data) => {
-    console.log(data);
     if (values.length > 1) {
       const multiCmdrUpdate: IAmbassador = {
         cmdrName: undefined,

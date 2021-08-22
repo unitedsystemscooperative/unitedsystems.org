@@ -5,7 +5,6 @@ import axios from 'axios';
 
 export const useJoinInfo = () => {
   const { allJoiners, loading, error } = useAllJoinInfo();
-  console.log(allJoiners);
 
   const joiners = useMemo(() => {
     if (loading || error) {

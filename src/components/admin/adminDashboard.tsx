@@ -37,15 +37,6 @@ export const AdminDashboard = () => {
         <Typography variant="h4" className={classes.header}>
           User Management
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          href="https://docs.google.com/spreadsheets/d/1mvj2tCVpx5JSLca04QQqJxlaNJJJPAIBFgSAW4PD7_Y/edit#gid=0"
-          target="_blank"
-          className={classes.linkButton}
-        >
-          CMDR Spreadsheet
-        </Button>
         <Link href="/admin/cmdrs" passHref>
           <Button
             variant="contained"
@@ -103,6 +94,15 @@ export const AdminDashboard = () => {
             className={classes.linkButton}
           >
             System List
+          </Button>
+        </Link>
+        <Link href="/admin/builds" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.linkButton}
+          >
+            Build Management
           </Button>
         </Link>
       </Paper>
