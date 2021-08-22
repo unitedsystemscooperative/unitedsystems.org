@@ -238,7 +238,7 @@ export const BuildDialog = ({
 
       try {
         if (newBuild._id) {
-          await updateBuild(newBuild._id, { ...newBuild });
+          await updateBuild(newBuild);
         } else {
           switch (addType) {
             case 'variant':
