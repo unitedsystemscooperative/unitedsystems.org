@@ -146,6 +146,10 @@ export const SystemDashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
+    console.log(factionSystems);
+  }, [factionSystems]);
+
+  useEffect(() => {
     if (error) {
       enqueueSnackbar('Failed to retrieve faction Systems. ' + error.message, {
         variant: 'error',

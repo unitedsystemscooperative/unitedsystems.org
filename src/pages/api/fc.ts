@@ -1,9 +1,15 @@
-import { ObjectID, ObjectId } from 'bson';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase } from 'utils/mongo';
+import {
+  connectToDatabase,
+  deleteItem,
+  getItems,
+  insertItem,
+  updateItem,
+} from 'utils/mongo';
 
+const COLLECTION = 'fleetCarriers';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();
@@ -17,60 +23,40 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const response = await db
-          .collection('fleetCarriers')
-          .insertOne(carrier);
 
-        res.json(response.ops);
+        await insertItem(COLLECTION, carrier, db);
+
+        res.status(200).end();
         break;
       case 'PUT':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const id = new ObjectID(carrier._id);
-        const updateDoc = {
-          $set: {
-            name: carrier.name,
-            inaraLink: carrier.inaraLink,
-            id: carrier.id,
-            owner: carrier.owner,
-            purpose: carrier.purpose,
-          },
-        };
-        const options = { upsert: false };
 
-        const updateResponse = await db
-          .collection('fleetCarriers')
-          .updateOne({ _id: id }, updateDoc, options);
+        const updateResult = await updateItem(COLLECTION, carrier, db);
 
-        if (updateResponse.result.nModified > 0) {
-          res.status(200).json(updateResponse.result);
-        } else {
-          res.status(500).send(`Failed to update id: ${req.body._id}`);
-        }
+        if (updateResult) res.status(200).end();
+        else res.status(500).send(`Failed to update id: ${req.body._id}`);
         break;
       case 'DELETE':
         if (!isHC) {
           res.status(401).send('unauthorized');
           return;
         }
-        const idtoDelete = req.query['id'] as string;
-        await db
-          .collection('fleetCarriers')
-          .deleteOne({ _id: new ObjectId(idtoDelete) });
+        await deleteItem(COLLECTION, req.query['id'] as string, db);
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const cursor = db
-          .collection('fleetCarriers')
-          .find({})
-          .sort({ name: 1 });
-        const carriers = await cursor.toArray();
-        await cursor.close();
+        const results = await getItems<IFleetCarrier>(
+          COLLECTION,
+          db,
+          'name',
+          1
+        );
 
-        res.status(200).json(carriers);
+        res.status(200).send(results);
     }
   } catch (e) {
     res.status(500).send(e.message);

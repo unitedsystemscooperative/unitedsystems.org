@@ -175,21 +175,21 @@ export const CMDRDashboard = () => {
     switch (cmdrView) {
       case CmdrView.Ambassador:
         const ambassadorsToEdit = ambassadors.filter((x) =>
-          selectedCmdrs.includes(x._id)
+          selectedCmdrs.includes(x._id.toString())
         );
         setAmbassadorDialogValues(ambassadorsToEdit);
         setShowDialog(CmdrView.Ambassador);
         break;
       case CmdrView.Guest:
         const guestsToEdit = guests.filter((x) =>
-          selectedCmdrs.includes(x._id)
+          selectedCmdrs.includes(x._id.toString())
         );
         setGuestDialogValues(guestsToEdit);
         setShowDialog(CmdrView.Guest);
         break;
       case CmdrView.Member:
         const membersToEdit = members.filter((x) =>
-          selectedCmdrs.includes(x._id)
+          selectedCmdrs.includes(x._id.toString())
         );
         setMemberDialogValues(membersToEdit);
         setShowDialog(CmdrView.Member);

@@ -22,9 +22,8 @@ const useAddBuild = () => {
 };
 
 const useUpdateBuild = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updateBuild = async (id: string, updateDoc: any) => {
-    await axios.put('/api/builds', { id, updateDoc });
+  const updateBuild = async (build: Partial<IBuildInfov2>) => {
+    await axios.put('/api/builds', build);
     mutate('/api/builds');
   };
   return updateBuild;

@@ -49,16 +49,15 @@ const useAddRelatedBuild = () => {
       if (addedBuild) {
         const buildID = addedBuild._id;
         if (buildID) {
-          await updateBuild(currentID, {
-            related: [...relatedBuilds, buildID],
+          await updateBuild({
+            _id: currentID,
+            related: [...relatedBuilds, buildID.toString()],
           });
           for (const id of relatedBuilds) {
             const build = shipBuilds.find((x) => x._id === id);
             if (build) {
-              const newRelated = [...build.related, buildID];
-              await updateBuild(build._id, {
-                related: newRelated,
-              });
+              const newRelated = [...build.related, buildID.toString()];
+              await updateBuild({ _id: build._id, related: newRelated });
             }
           }
           mutate('/api/shipBuilds');
@@ -95,18 +94,17 @@ const useAddVariantBuild = () => {
         const buildID = addedBuild._id;
         if (buildID) {
           console.log(buildID);
-          await updateBuild(parentID, {
-            variants: [...variantBuilds, buildID],
+          await updateBuild({
+            _id: parentID,
+            variants: [...variantBuilds, buildID.toString()],
           });
 
           for (const id of variantBuilds) {
             console.log(id);
             const build = shipBuilds.find((x) => x._id === id);
             if (build) {
-              const newRelated = [...build.related, buildID];
-              await updateBuild(build._id, {
-                related: newRelated,
-              });
+              const newRelated = [...build.related, buildID.toString()];
+              await updateBuild({ _id: build._id, related: newRelated });
             }
           }
           mutate('/api/shipBuilds');

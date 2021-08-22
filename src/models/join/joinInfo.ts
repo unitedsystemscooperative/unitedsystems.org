@@ -1,7 +1,8 @@
 import { Referral } from 'models/admin/referrals';
 import { Region } from 'models/admin/regions';
+import { IDbItem } from 'models/dbItem';
 
-export interface IJoinInfo {
+export interface IJoinInfo extends IDbItem {
   //   type: 'join' | 'guest' | 'ambassador';
   timeStamp?: string;
   type: string;
