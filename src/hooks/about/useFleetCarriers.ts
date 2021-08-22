@@ -1,8 +1,8 @@
-import { sortItems } from 'functions/sort';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useMemo } from 'react';
 import useSWR, { mutate } from 'swr';
 import axios from 'axios';
+import { genericSortArray } from 'functions/sort';
 
 const addCarrier = async (carrier: IFleetCarrier) => {
   try {
@@ -50,7 +50,10 @@ export const usePersonalCarriers = (
   return useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => !x.purpose);
-      return sortItems(personalCarriers, 'name');
+      return genericSortArray(personalCarriers, {
+        orderBy: 'name',
+        order: 'asc',
+      });
     } else {
       return undefined;
     }
@@ -63,7 +66,10 @@ export const useSquadCarriers = (
   return useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => x.purpose);
-      return sortItems(personalCarriers, 'name');
+      return genericSortArray(personalCarriers, {
+        orderBy: 'name',
+        order: 'asc',
+      });
     } else {
       return undefined;
     }

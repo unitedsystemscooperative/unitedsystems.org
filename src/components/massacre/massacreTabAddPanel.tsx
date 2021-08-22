@@ -10,7 +10,7 @@ import {
   getStationsinSystem,
   getSystemsinSphere,
 } from 'functions/edsmQueries';
-import { sortItems } from 'functions/sort';
+import { genericSortArray } from 'functions/sort';
 import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
 import { ReputationLevels } from 'models/reputationLevels';
 import { useSnackbar } from 'notistack';
@@ -145,7 +145,10 @@ const processHazRezSystem = async (system: string) => {
         })
         .filter((station) => station.type !== 'Fleet Carrier');
 
-      const sortedStations = sortItems(stations, 'distance');
+      const sortedStations = genericSortArray(stations, {
+        orderBy: 'distance',
+        order: 'asc',
+      });
 
       return { name: x.name, factions, stations: sortedStations };
     })

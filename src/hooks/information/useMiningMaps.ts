@@ -1,8 +1,8 @@
 import { IMiningMap } from 'models/information/miningMap';
 import maps from 'data/information/miningMaps.json';
-import { sortItems } from 'functions/sort';
+import { genericSortArray } from 'functions/sort';
 
 export const useMiningMaps = () => {
   const miningMaps: IMiningMap[] = maps;
-  return sortItems(miningMaps, 'system');
+  return genericSortArray(miningMaps, { orderBy: 'system', order: 'asc' });
 };

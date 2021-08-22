@@ -1,5 +1,5 @@
 import reviews from 'data/builds/shipMap.json';
-import { sortItems } from 'functions/sort';
+import { genericSortArray } from 'functions/sort';
 import { IShipReview } from 'models/information/shipReview';
 
 export const useShipReviews = (): IShipReview[] => {
@@ -10,5 +10,5 @@ export const useShipReviews = (): IShipReview[] => {
     const shipReview = review.shipReview;
     return { shipId, name, manufacturer, shipReview };
   });
-  return sortItems(reviewList, 'name');
+  return genericSortArray(reviewList, { orderBy: 'name', order: 'asc' });
 };
