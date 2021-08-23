@@ -20,8 +20,15 @@ export const genericSearch = <T>(
 
   return properties.some((property) => {
     const value = object[property] ?? '';
-    if (typeof value === 'string' || typeof value === 'number')
+    if (
+      typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'boolean'
+    )
       return value.toString().toLowerCase().includes(query.toLowerCase());
+    if (value instanceof Date) {
+      return value.toISOString().toLowerCase().includes(query.toLowerCase());
+    }
     return false;
   });
 };
