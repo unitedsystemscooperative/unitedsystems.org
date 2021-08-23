@@ -10,6 +10,7 @@ export interface ICMDR extends IDbItem {
   discordJoinDate: Date;
   platform: Platform;
   rank: Rank;
+  rankString?: string;
   inaraLink?: string;
   region: Region;
   notes?: string;
