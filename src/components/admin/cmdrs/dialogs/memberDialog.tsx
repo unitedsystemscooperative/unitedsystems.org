@@ -48,23 +48,26 @@ export const MemberDialog = (props: MemberDialogProps) => {
     if (values) {
       if (values.length === 1) {
         const value = values[0];
-        reset({
-          cmdrName: value.cmdrName,
-          discordName: value.discordName,
-          joinDate: value.joinDate ? value.joinDate : null,
-          discordJoinDate: value.discordJoinDate ? value.discordJoinDate : null,
-          platform: value.platform,
-          rank: value.rank,
-          isInInaraSquad: value.isInInaraSquad,
-          region: value.region,
-          ref1: value.ref1,
-          ref2: value.ref2,
-          notes: value.notes,
-          promotion: value.promotion ?? -2,
-          entersVoice: value.entersVoice,
-          inaraLink: value.inaraLink,
-          email: value.email,
-        });
+        if (value)
+          reset({
+            cmdrName: value.cmdrName,
+            discordName: value.discordName,
+            joinDate: value.joinDate ? value.joinDate : null,
+            discordJoinDate: value.discordJoinDate
+              ? value.discordJoinDate
+              : null,
+            platform: value.platform,
+            rank: value.rank,
+            isInInaraSquad: value.isInInaraSquad,
+            region: value.region,
+            ref1: value.ref1,
+            ref2: value.ref2,
+            notes: value.notes,
+            promotion: value.promotion ?? -2,
+            entersVoice: value.entersVoice,
+            inaraLink: value.inaraLink,
+            email: value.email,
+          });
       } else {
         reset({
           _id: undefined,
