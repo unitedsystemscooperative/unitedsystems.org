@@ -1,33 +1,27 @@
 import {
   Checkbox,
   IconButton,
-  makeStyles,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
-  TableSortLabel,
 } from '@material-ui/core';
 import { Link } from '@material-ui/icons';
-import { genericSortArray, Order } from 'functions/sort';
+import { genericSortArray } from 'functions/sort';
 import { IAmbassador } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
-import React, {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-} from 'react';
+import React from 'react';
+import {
+  CmdrDefaultViewProps,
+  CmdrTableHead,
+  CmdrTableRow,
+  handleDate,
+  HeadCell,
+  useCmdrTableStyles,
+} from './commonView';
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof IAmbassador;
-  label: string;
-  numeric: boolean;
-}
-const headCells: HeadCell[] = [
+const headCells: HeadCell<IAmbassador>[] = [
   {
     id: 'cmdrName',
     numeric: false,
@@ -61,117 +55,9 @@ const headCells: HeadCell[] = [
   },
   { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
 ];
-
-interface TableHeadProps {
-  classes: ReturnType<typeof useStyles>;
-  numSelected: number;
-  onRequestSort: (
-    event: MouseEvent<unknown>,
-    property: keyof IAmbassador
-  ) => void;
-  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
-}
-
-const MemberTableHead = (props: TableHeadProps) => {
-  const {
-    classes,
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
-  const createSortHandler = (property: keyof IAmbassador) => (
-    event: MouseEvent<unknown>
-  ) => {
-    onRequestSort(event, property);
-  };
-
-  return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all commanders' }}
-          />
-        </TableCell>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-};
-
-const handleDate = (date) => {
-  const newDate = new Date(date);
-  return newDate > new Date('2019-01-01')
-    ? newDate.toLocaleDateString('en-CA')
-    : '';
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
-}));
-
-interface MemberDefaultViewProps {
-  cmdrs: IAmbassador[];
-  selected: string[];
-  setSelected: Dispatch<SetStateAction<string[]>>;
-  page: number;
-  rowsPerPage: number;
-  order: Order;
-  orderBy: keyof IAmbassador;
-  handleSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleRequestSort: (
-    _: React.MouseEvent<unknown>,
-    property: keyof IAmbassador
-  ) => void;
-  handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
-}
-
-export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
+export const AmbassadorDefaultView = (
+  props: CmdrDefaultViewProps<IAmbassador>
+) => {
   const {
     cmdrs,
     selected,
@@ -184,7 +70,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
     handleClick,
   } = props;
 
-  const classes = useStyles();
+  const classes = useCmdrTableStyles();
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
@@ -195,7 +81,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
     <>
       <TableContainer>
         <Table size="small">
-          <MemberTableHead
+          <CmdrTableHead
             classes={classes}
             numSelected={selected.length}
             order={order}
@@ -203,6 +89,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
             rowCount={cmdrs.length}
+            headCells={headCells}
           />
           <TableBody>
             {genericSortArray(cmdrs, { order, orderBy })
@@ -210,14 +97,11 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
               .map((cmdr) => {
                 const isItemSelected = isSelected(cmdr._id.toString());
                 return (
-                  <TableRow
+                  <CmdrTableRow
                     key={cmdr._id.toString()}
-                    hover
-                    onClick={(event) => handleClick(event, cmdr._id.toString())}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    selected={isItemSelected}
+                    cmdr={cmdr}
+                    isItemSelected={isItemSelected}
+                    handleClick={handleClick}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox checked={isItemSelected} />
@@ -242,7 +126,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
                       )}
                     </TableCell>
                     <TableCell>{cmdr.notes}</TableCell>
-                  </TableRow>
+                  </CmdrTableRow>
                 );
               })}
             {emptyRows > 0 && (

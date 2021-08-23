@@ -10,7 +10,11 @@ import React, {
   useState,
 } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
-import { MemberDefaultView } from './views/memberDefaultView';
+import { CmdrDefaultView } from './views/commonView';
+import {
+  MemberDefaultHeadCells,
+  MemberDefaultRow,
+} from './views/memberDefaultView';
 import { MemberDeletedView } from './views/memberDeletedView';
 import { MemberNoteView } from './views/memberNoteView';
 import { MemberPromotionView } from './views/memberPromotionView';
@@ -220,7 +224,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
       {memberView === 0 && (
-        <MemberDefaultView
+        <CmdrDefaultView
           cmdrs={filteredCmdrs}
           selected={selected}
           setSelected={setSelected}
@@ -231,6 +235,8 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
           handleSelectAllClick={handleSelectAllClick}
           handleRequestSort={handleRequestSort}
           handleClick={handleClick}
+          headCells={MemberDefaultHeadCells}
+          row={MemberDefaultRow}
         />
       )}
       {memberView === 1 && (
