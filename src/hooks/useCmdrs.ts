@@ -119,6 +119,19 @@ export const useCMDRs = () => {
   );
 
   const cmdrs = data?.data ?? { members: [], guests: [], ambassadors: [] };
+  cmdrs.members = cmdrs.members.map((cmdr) => {
+    cmdr.joinDate = new Date(cmdr.joinDate);
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    return cmdr;
+  });
+  cmdrs.ambassadors = cmdrs.ambassadors.map((cmdr) => {
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    return cmdr;
+  });
+  cmdrs.guests = cmdrs.guests.map((cmdr) => {
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    return cmdr;
+  });
 
   return {
     cmdrs,
