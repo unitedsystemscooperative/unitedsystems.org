@@ -1,4 +1,4 @@
-import { EDSpinner, UnderConstruction } from '@admiralfeb/react-components';
+import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Button,
   Collapse,
@@ -18,7 +18,9 @@ import { useSnackbar } from 'notistack';
 import React, { MouseEvent, useState } from 'react';
 import { AmbassadorDashboard } from './ambassadorDashboard';
 import { AmbassadorDialog } from './dialogs/ambassadorDialog';
+import { GuestDialog } from './dialogs/guestDialog';
 import { MemberDialog } from './dialogs/memberDialog';
+import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
 
 const useTitleBarStyles = makeStyles((theme) => ({
@@ -51,8 +53,6 @@ interface TitleBarProps {
   deleteCMDR: () => void;
 }
 
-const viewOptions = ['Ambassadors', 'Guests', 'Members'];
-
 const DashboardTitleBar = (props: TitleBarProps) => {
   const classes = useTitleBarStyles();
   const { setView, selectedCount, addCMDR, editCMDR, deleteCMDR } = props;
@@ -61,8 +61,8 @@ const DashboardTitleBar = (props: TitleBarProps) => {
 
   const handleViewFilterClick = (event: MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
-  const handleViewMenuClick = (_: MouseEvent<HTMLElement>, index: number) => {
-    setView(index);
+  const handleViewMenuClick = (_: MouseEvent<HTMLElement>, option: string) => {
+    setView(option);
     setAnchorEl(null);
   };
   const handleViewFilterClose = () => setAnchorEl(null);
@@ -116,11 +116,17 @@ const DashboardTitleBar = (props: TitleBarProps) => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleViewFilterClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        getContentAnchorEl={null}
       >
-        {viewOptions.map((option, index) => (
+        {Object.keys(CmdrView).map((option) => (
           <MenuItem
             key={option}
-            onClick={(event) => handleViewMenuClick(event, index)}
+            onClick={(event) => handleViewMenuClick(event, option)}
           >
             {option}
           </MenuItem>
@@ -131,9 +137,9 @@ const DashboardTitleBar = (props: TitleBarProps) => {
 };
 
 enum CmdrView {
-  Ambassador,
-  Guest,
-  Member,
+  Ambassadors = 'Ambassadors',
+  Guests = 'Guests',
+  Members = 'Members',
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -158,7 +164,7 @@ export const CMDRDashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { members, guests, ambassadors } = cmdrs;
 
-  const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Member);
+  const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Members);
   const [selectedCmdrs, setSelectedCmdrs] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState<CmdrView | undefined>(undefined);
   const [ambassadorDialogValues, setAmbassadorDialogValues] = useState<
@@ -173,26 +179,26 @@ export const CMDRDashboard = () => {
 
   const handleShowDialog = () => {
     switch (cmdrView) {
-      case CmdrView.Ambassador:
+      case CmdrView.Ambassadors:
         const ambassadorsToEdit = ambassadors.filter((x) =>
           selectedCmdrs.includes(x._id.toString())
         );
         setAmbassadorDialogValues(ambassadorsToEdit);
-        setShowDialog(CmdrView.Ambassador);
+        setShowDialog(CmdrView.Ambassadors);
         break;
-      case CmdrView.Guest:
+      case CmdrView.Guests:
         const guestsToEdit = guests.filter((x) =>
           selectedCmdrs.includes(x._id.toString())
         );
         setGuestDialogValues(guestsToEdit);
-        setShowDialog(CmdrView.Guest);
+        setShowDialog(CmdrView.Guests);
         break;
-      case CmdrView.Member:
+      case CmdrView.Members:
         const membersToEdit = members.filter((x) =>
           selectedCmdrs.includes(x._id.toString())
         );
         setMemberDialogValues(membersToEdit);
-        setShowDialog(CmdrView.Member);
+        setShowDialog(CmdrView.Members);
         break;
       default:
         break;
@@ -266,7 +272,7 @@ export const CMDRDashboard = () => {
         editCMDR={() => handleShowDialog()}
         deleteCMDR={handleDelete}
       />
-      <Collapse in={cmdrView === CmdrView.Member} mountOnEnter unmountOnExit>
+      <Collapse in={cmdrView === CmdrView.Members} mountOnEnter unmountOnExit>
         <MemberDashboard
           cmdrs={members.filter((x) => !x.isDeleted)}
           deletedCmdrs={members.filter((x) => x.isDeleted)}
@@ -276,13 +282,13 @@ export const CMDRDashboard = () => {
           restoreCMDR={handleRestore}
         />
         <MemberDialog
-          open={showDialog === CmdrView.Member}
+          open={showDialog === CmdrView.Members}
           values={memberDialogValues}
           onClose={handleCloseDialog}
         />
       </Collapse>
       <Collapse
-        in={cmdrView === CmdrView.Ambassador}
+        in={cmdrView === CmdrView.Ambassadors}
         mountOnEnter
         unmountOnExit
       >
@@ -291,15 +297,27 @@ export const CMDRDashboard = () => {
           deletedCmdrs={ambassadors.filter((x) => x.isDeleted)}
           selected={selectedCmdrs}
           setSelected={setSelectedCmdrs}
+          restoreCMDR={restoreCMDR}
         />
         <AmbassadorDialog
-          open={showDialog === CmdrView.Ambassador}
+          open={showDialog === CmdrView.Ambassadors}
           values={ambassadorDialogValues}
           onClose={handleCloseDialog}
         />
       </Collapse>
-      <Collapse in={cmdrView === CmdrView.Guest} mountOnEnter unmountOnExit>
-        <UnderConstruction title="Guests" />
+      <Collapse in={cmdrView === CmdrView.Guests} mountOnEnter unmountOnExit>
+        <GuestDashboard
+          cmdrs={guests.filter((x) => !x.isDeleted)}
+          deletedCmdrs={guests.filter((x) => x.isDeleted)}
+          selected={selectedCmdrs}
+          setSelected={setSelectedCmdrs}
+          restoreCMDR={restoreCMDR}
+        />
+        <GuestDialog
+          open={showDialog === CmdrView.Guests}
+          values={guestDialogValues}
+          onClose={handleCloseDialog}
+        />
       </Collapse>
     </Container>
   );

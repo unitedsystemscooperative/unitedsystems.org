@@ -10,17 +10,30 @@ import React, {
   useState,
 } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
-import { CmdrDefaultView } from './views/commonView';
+import { CmdrDefaultView, HeadCell, ViewData } from './views/commonView';
 import {
-  MemberDefaultHeadCells,
-  MemberDefaultRow,
-} from './views/memberDefaultView';
-import { MemberDeletedView } from './views/memberDeletedView';
-import { MemberNoteView } from './views/memberNoteView';
-import { MemberPromotionView } from './views/memberPromotionView';
-import { MemberRefView } from './views/memberRefView';
+  memberDefaultData,
+  memberDefaultHeadCells,
+  memberDeletedData,
+  memberDeletedHeadCells,
+  memberNoteData,
+  memberNoteHeadCells,
+  memberPromotionData,
+  memberPromotionHeadCells,
+  memberRefData,
+  memberRefHeadCells,
+} from './views/memberViews';
 
-const memberViews = ['Default', 'Notes', 'Reference', 'Promotions', 'Deleted'];
+enum MemberViews {
+  Default = 'Default',
+  Notes = 'Notes',
+  Reference = 'Reference',
+  Promotions = 'Promotions',
+  Deleted = 'Deleted',
+}
+
+const memberViews = Object.keys(MemberViews);
+// const memberViews = ['Default', 'Notes', 'Reference', 'Promotions', 'Deleted'];
 
 interface MemberDashboardProps {
   cmdrs: IMember[];
@@ -45,7 +58,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
   const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [memberView, setMemberView] = useState(0);
+  const [memberView, setMemberView] = useState(MemberViews.Default);
   const [searchValue, setSearchValue] = useState('');
 
   const filteredCmdrs = useCmdrSearch({ searchValue, cmdrs });
@@ -111,97 +124,139 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
     setPage(0);
   };
 
-  if (memberView === 3) {
-    return (
-      <>
-        <DashboardToolbar
-          title="Members"
-          viewOptions={memberViews}
-          view={memberView}
-          setView={setMemberView}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-        <Divider />
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-          component="div"
-          count={filteredPromotionCmdrs.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-        <MemberPromotionView
-          cmdrs={filteredPromotionCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-        />
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-          component="div"
-          count={filteredPromotionCmdrs.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </>
-    );
-  }
-  if (memberView === 4) {
-    return (
-      <>
-        <DashboardToolbar
-          title="Members"
-          viewOptions={memberViews}
-          view={memberView}
-          setView={setMemberView}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-        <Divider />
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-          component="div"
-          count={filteredDeletedCmdrs.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-        <MemberDeletedView
-          cmdrs={filteredDeletedCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-          handleRestore={restoreCMDR}
-        />
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-          component="div"
-          count={filteredDeletedCmdrs.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </>
-    );
-  }
+  const processView = (view: MemberViews) => {
+    let headCells: HeadCell<IMember>[];
+    let data: (cmdr: IMember) => ViewData[];
+    switch (view) {
+      case MemberViews.Notes:
+        headCells = memberNoteHeadCells;
+        data = memberNoteData;
+        break;
+      case MemberViews.Reference:
+        headCells = memberRefHeadCells;
+        data = memberRefData;
+        break;
+      default:
+        headCells = memberDefaultHeadCells;
+        data = memberDefaultData;
+        break;
+    }
+    switch (view) {
+      case MemberViews.Deleted:
+        return (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredDeletedCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <CmdrDefaultView
+              cmdrs={filteredDeletedCmdrs}
+              selected={selected}
+              setSelected={setSelected}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              order={order}
+              orderBy={orderBy}
+              handleSelectAllClick={handleSelectAllClick}
+              handleRequestSort={handleRequestSort}
+              handleClick={handleClick}
+              headCells={memberDeletedHeadCells}
+              data={memberDeletedData}
+              restoreCmdr={restoreCMDR}
+            />
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredDeletedCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </>
+        );
+      case MemberViews.Promotions:
+        return (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredPromotionCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <CmdrDefaultView
+              cmdrs={filteredPromotionCmdrs}
+              selected={selected}
+              setSelected={setSelected}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              order={order}
+              orderBy={orderBy}
+              handleSelectAllClick={handleSelectAllClick}
+              handleRequestSort={handleRequestSort}
+              handleClick={handleClick}
+              headCells={memberPromotionHeadCells}
+              data={memberPromotionData}
+            />
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredPromotionCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </>
+        );
+      default:
+        return (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+            <CmdrDefaultView
+              cmdrs={filteredCmdrs}
+              selected={selected}
+              setSelected={setSelected}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              order={order}
+              orderBy={orderBy}
+              handleSelectAllClick={handleSelectAllClick}
+              handleRequestSort={handleRequestSort}
+              handleClick={handleClick}
+              headCells={headCells}
+              data={data}
+            />
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
+              component="div"
+              count={filteredCmdrs.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </>
+        );
+        break;
+    }
+  };
 
   return (
     <>
@@ -214,68 +269,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
         setSearchValue={setSearchValue}
       />
       <Divider />
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-        component="div"
-        count={filteredCmdrs.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      {memberView === 0 && (
-        <CmdrDefaultView
-          cmdrs={filteredCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-          headCells={MemberDefaultHeadCells}
-          row={MemberDefaultRow}
-        />
-      )}
-      {memberView === 1 && (
-        <MemberNoteView
-          cmdrs={filteredCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-        />
-      )}
-      {memberView === 2 && (
-        <MemberRefView
-          cmdrs={filteredCmdrs}
-          selected={selected}
-          setSelected={setSelected}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          order={order}
-          orderBy={orderBy}
-          handleSelectAllClick={handleSelectAllClick}
-          handleRequestSort={handleRequestSort}
-          handleClick={handleClick}
-        />
-      )}
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'All' }]}
-        component="div"
-        count={filteredCmdrs.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      {processView(memberView)}
     </>
   );
 };

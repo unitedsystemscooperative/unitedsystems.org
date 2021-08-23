@@ -1,5 +1,6 @@
 import {
   Checkbox,
+  IconButton,
   makeStyles,
   Table,
   TableBody,
@@ -9,6 +10,8 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
+import { RestoreFromTrash } from '@material-ui/icons';
+import Link from '@material-ui/icons/Link';
 import { genericSortArray, Order } from 'functions/sort';
 import { ICMDR } from 'models/admin/cmdr';
 import React, {
@@ -120,7 +123,7 @@ interface CmdrTableRowProps<T extends ICMDR> {
   cmdr: T;
   handleClick: (event: MouseEvent<HTMLTableRowElement>, id: string) => void;
   isItemSelected: boolean;
-  children: (props: CmdrCells<T>) => JSX.Element;
+  children: ReactNode;
 }
 export const CmdrTableRow = <T extends ICMDR>({
   cmdr,
@@ -143,10 +146,43 @@ export const CmdrTableRow = <T extends ICMDR>({
   );
 };
 
-export interface CmdrCells<T extends ICMDR> {
-  cmdr: T;
-  isItemSelected: boolean;
-}
+export type ViewData =
+  | { type: 'string'; data: string }
+  | { type: 'boolean'; data: boolean }
+  | { type: 'link'; data?: string };
+
+export const renderData = (data: ViewData[]) => {
+  return data.map((item) => {
+    switch (item.type) {
+      case 'string':
+        return <TableCell>{item.data}</TableCell>;
+      case 'boolean':
+        return (
+          <TableCell>
+            <Checkbox checked={item.data} disabled />
+          </TableCell>
+        );
+      case 'link':
+        return (
+          <TableCell>
+            {item.data && (
+              <IconButton
+                href={item.data}
+                color="primary"
+                size="small"
+                target="_blank"
+              >
+                <Link />
+              </IconButton>
+            )}
+          </TableCell>
+        );
+
+      default:
+        break;
+    }
+  });
+};
 
 export interface CmdrDefaultViewProps<T extends ICMDR> {
   cmdrs: T[];
@@ -160,7 +196,8 @@ export interface CmdrDefaultViewProps<T extends ICMDR> {
   handleRequestSort: (_: React.MouseEvent<unknown>, property: keyof T) => void;
   handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
   headCells: HeadCell<T>[];
-  row: (props: CmdrCells<T>) => JSX.Element;
+  data: (cmdr: T) => ViewData[];
+  restoreCmdr?: (cmdr: T) => Promise<void>;
 }
 export const CmdrDefaultView = <T extends ICMDR>(
   props: CmdrDefaultViewProps<T>
@@ -176,7 +213,8 @@ export const CmdrDefaultView = <T extends ICMDR>(
     handleRequestSort,
     handleClick,
     headCells,
-    row,
+    data,
+    restoreCmdr,
   } = props;
 
   const classes = useCmdrTableStyles();
@@ -212,7 +250,17 @@ export const CmdrDefaultView = <T extends ICMDR>(
                     isItemSelected={isItemSelected}
                     handleClick={handleClick}
                   >
-                    {row({ cmdr, isItemSelected })}
+                    <TableCell padding="checkbox">
+                      <Checkbox checked={isItemSelected} />
+                    </TableCell>
+                    {renderData(data(cmdr))}
+                    {restoreCmdr && (
+                      <TableCell>
+                        <IconButton onClick={() => restoreCmdr(cmdr)}>
+                          <RestoreFromTrash />
+                        </IconButton>
+                      </TableCell>
+                    )}
                   </CmdrTableRow>
                 );
               })}
