@@ -30,8 +30,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [memberView, setMemberView] = useState(0);
   const [searchValue, setSearchValue] = useState('');
-  const { filteredData: filteredCmdrs } = useCmdrSearch({ searchValue, cmdrs });
-  const { filteredData: filteredDeletedCmdrs } = useCmdrSearch({
+  const filteredCmdrs = useCmdrSearch({ searchValue, cmdrs });
+  const filteredDeletedCmdrs = useCmdrSearch({
     searchValue,
     cmdrs: deletedCmdrs,
   });
