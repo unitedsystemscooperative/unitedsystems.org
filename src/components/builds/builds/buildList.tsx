@@ -10,7 +10,7 @@ import { BuildCard } from './buildCard';
 
 export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
   const [queriedBuilds, setQueriedBuilds] = useState<IBuildInfov2[]>();
-  const { buildQuery } = props;
+  const { buildQuery, buildDialog, setBuildDialog } = props;
   const { loading, shipBuilds, error } = useShipBuilds();
   const { enqueueSnackbar } = useSnackbar();
 

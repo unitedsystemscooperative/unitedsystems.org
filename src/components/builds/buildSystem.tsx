@@ -14,7 +14,6 @@ import { CenteredTypography } from 'components/_common/typography';
 import { IQuery } from 'models/builds';
 import { useCallback, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
-import { BuildDialog } from './dialog/buildDialog';
 import { Query } from './query/query';
 
 export const BuildSystem = () => {
@@ -33,7 +32,6 @@ export const BuildSystem = () => {
     console.log('BuildSystem: Add clicked');
     setOpenDialog(true);
   };
-  const handleAddClose = () => setOpenDialog(false);
 
   const handleFab = () => {
     if (buildRef.current) {
@@ -48,7 +46,11 @@ export const BuildSystem = () => {
       </Typography>
       <Query updateQuery={handleQuery} addBuild={handleAddBuild} />
       <div ref={buildRef}>
-        <BuildList buildQuery={query} />
+        <BuildList
+          buildQuery={query}
+          buildDialog={openDialog}
+          setBuildDialog={setOpenDialog}
+        />
       </div>
       <PaperP2>
         <CenteredTypography variant="subtitle2">
@@ -67,7 +69,6 @@ export const BuildSystem = () => {
           </Fab>
         </Box>
       </Slide>
-      <BuildDialog open={openDialog} onClose={handleAddClose} />
     </Container>
   );
 };

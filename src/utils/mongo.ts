@@ -1,6 +1,7 @@
 import { IDbItem } from 'models/dbItem';
 import {
   Db,
+  Filter,
   MongoClient,
   MongoClientOptions,
   ObjectId,
@@ -67,9 +68,10 @@ export const insertItem = async <T extends IDbItem>(
 ) => {
   if (typeof itemToInsert._id === 'string')
     itemToInsert._id = new ObjectId(itemToInsert._id);
-  await db
+  const result = await db
     .collection<T>(collectionName)
     .insertOne(itemToInsert as OptionalId<T>);
+  return result.insertedId;
 };
 
 export const updateItem = async <T extends IDbItem>(
@@ -108,6 +110,23 @@ export const getItems = async <T>(
   const cursor = db
     .collection<T>(collectionName)
     .find({})
+    .sort({ [sortField]: order });
+  const results = await cursor.toArray();
+  cursor.close();
+
+  return results;
+};
+
+export const getItemsByQuery = async <T>(
+  collectionName: string,
+  db: Db,
+  query: Filter<T>,
+  sortField?: keyof T,
+  order?: 1 | -1
+) => {
+  const cursor = db
+    .collection<T>(collectionName)
+    .find(query)
     .sort({ [sortField]: order });
   const results = await cursor.toArray();
   cursor.close();

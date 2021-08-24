@@ -27,6 +27,7 @@ export interface IBuildInfov2 extends IDbItem {
   author: string;
   authorId?: string;
   isVariant: boolean;
+  variantOf: string;
   variants: string[];
   related: string[];
   description: string;

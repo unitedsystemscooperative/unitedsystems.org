@@ -22,9 +22,13 @@ export const useShipBuilds = () => {
 
 export const useAllShipBuilds = () => {
   const { data, error } = useSWR('/api/builds', (url: string) =>
-    axios.get(url)
+    axios.get<IBuildInfov2[]>(url)
   );
-  const shipBuilds = data?.data ?? [];
+  const shipBuilds =
+    data?.data.map((x) => {
+      x.variantOf = x.variantOf ?? '';
+      return x;
+    }) ?? [];
 
   return { shipBuilds, loading: !error && !data, error };
 };

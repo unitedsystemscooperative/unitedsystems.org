@@ -27,6 +27,7 @@ import { BuildCheckBox } from './buildCheckBox';
 export interface BuildDialogProps {
   open: boolean;
   build?: IBuildInfov2;
+  builds: IBuildInfov2[];
   addType?: 'variant' | 'related';
   refId?: string;
   onClose: () => void;
@@ -43,6 +44,7 @@ const DEFAULTBUILD: IBuildInfov2 = {
   isBeginner: false,
   author: '',
   isVariant: false,
+  variantOf: '',
   variants: [],
   related: [],
   description: '',
@@ -61,6 +63,29 @@ const parseDialogTitle = (
   return <DialogTitle>Add Build</DialogTitle>;
 };
 
+function findBuildTitle(
+  builds: IBuildInfov2[],
+  ids: string | IBuildInfov2
+): IBuildInfov2;
+function findBuildTitle(
+  builds: IBuildInfov2[],
+  ids: (string | IBuildInfov2)[]
+): IBuildInfov2[];
+function findBuildTitle(
+  builds: IBuildInfov2[],
+  ids: string | IBuildInfov2 | (string | IBuildInfov2)[]
+) {
+  if (Array.isArray(ids)) {
+    if (ids.length < 1) return [];
+    const results = ids.map((x) => builds.find((y) => y._id.toString() === x));
+    return results;
+  }
+  if (ids) {
+    const result = builds.find((x) => x._id.toString() === ids);
+    return result;
+  }
+}
+
 type action =
   | { type: 'default' }
   | { type: 'build'; value: IBuildInfov2 }
@@ -69,7 +94,10 @@ type action =
   | { type: 'ship'; value: string }
   | { type: 'engLevel'; value: number }
   | { type: 'hasGuardian' | 'hasPowerplay' | 'isBeginner'; value: boolean }
-  | { type: 'specialties'; value: string[] };
+  | { type: 'specialties'; value: string[] }
+  | { type: 'variantOf'; value: string | IBuildInfov2 }
+  | { type: 'relateds'; value: (string | IBuildInfov2)[] }
+  | { type: 'variants'; value: (string | IBuildInfov2)[] };
 const buildReducer = (
   prevState: IBuildInfov2,
   action: action
@@ -125,6 +153,29 @@ const buildReducer = (
     case 'specialties':
       newState = { ...newState, specializations: action.value };
       break;
+    case 'variantOf':
+      console.log(action.value);
+      break;
+    case 'relateds':
+      console.log(action.value);
+      newState = {
+        ...newState,
+        related: action.value.map((x) => {
+          if (typeof x === 'string') return x;
+          else return x._id.toString();
+        }),
+      };
+      break;
+    case 'variants':
+      console.log(action.value);
+      newState = {
+        ...newState,
+        variants: action.value.map((x) => {
+          if (typeof x === 'string') return x;
+          else return x._id.toString();
+        }),
+      };
+      break;
   }
 
   return newState;
@@ -138,6 +189,7 @@ const buildReducer = (
 export const BuildDialog = ({
   open,
   build,
+  builds,
   addType,
   refId,
   onClose,
@@ -358,6 +410,45 @@ export const BuildDialog = ({
             <BuildCheckBox key={check.id} {...check} onChange={handleChange} />
           ))}
         </FormGroup>
+        <Autocomplete
+          id="variantOfBuild"
+          options={builds}
+          getOptionLabel={(b) => b.title}
+          filterSelectedOptions
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              label="Variant of Build"
+            />
+          )}
+          value={findBuildTitle(shipBuilds, newBuild.variantOf)}
+          onChange={(_, value) => dispatch({ type: 'variantOf', value: value })}
+        />
+        <Autocomplete
+          multiple
+          id="relatedBuilds"
+          options={builds}
+          getOptionLabel={(b) => b.title}
+          filterSelectedOptions
+          renderInput={(params) => (
+            <TextField {...params} variant="standard" label="Related Builds" />
+          )}
+          value={findBuildTitle(shipBuilds, newBuild.related)}
+          onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
+        />
+        <Autocomplete
+          multiple
+          id="variantBuilds"
+          options={builds}
+          getOptionLabel={(b) => b.title}
+          filterSelectedOptions
+          renderInput={(params) => (
+            <TextField {...params} variant="standard" label="Variant Builds" />
+          )}
+          value={findBuildTitle(shipBuilds, newBuild.variants)}
+          onChange={(_, value) => dispatch({ type: 'variants', value: value })}
+        />
       </DialogContent>
 
       <DialogActions>
