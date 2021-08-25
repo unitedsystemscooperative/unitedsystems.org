@@ -144,76 +144,10 @@ const processOtherBuilds = async (
   const builds = await getItems<IBuildInfov2>(COLLECTION, db);
   let newRelated: string[] = [];
 
-  // set variant if variantOf
   if (newBuild.variantOf) {
-    const parent = builds.find((x) => x._id.toString() === newBuild.variantOf);
-    if (parent) {
-      const variants = parent.variants;
-      // add variant to parent and relate to other variants
-      await updateItem(
-        COLLECTION,
-        { ...parent, variants: [...variants, newBuild._id.toString()] },
-        db
-      );
-      for (const v of variants) {
-        const b = builds.find(
-          (x) =>
-            x._id.toString() === v &&
-            x.related.includes(newBuild._id.toString())
-        );
-        if (b) {
-          await updateItem(
-            COLLECTION,
-            { ...b, related: [...b.related, newBuild._id.toString()] },
-            db
-          );
-          if (!newBuild.related?.includes(v)) {
-            newRelated = [...newRelated, v];
-          }
-        }
-      }
-    }
-  } else if (newBuild.variantOf !== '' && oldBuild.variantOf === '') {
-    // Remove if variantOf was blanked
-    const parent = builds.find((x) => x._id.toString() === newBuild.variantOf);
-    if (parent) {
-      const variants = parent.variants;
-      await updateItem(
-        COLLECTION,
-        {
-          ...parent,
-          variants: [
-            ...variants.slice(0, variants.indexOf(newBuild._id.toString())),
-            ...variants.slice(variants.indexOf(newBuild._id.toString()) + 1),
-          ],
-        },
-        db
-      );
-      for (const v of variants) {
-        const b = builds.find(
-          (x) =>
-            x._id.toString() === v &&
-            x.related.includes(newBuild._id.toString())
-        );
-        if (b)
-          await updateItem(
-            COLLECTION,
-            {
-              ...b,
-              related: [
-                ...b.related.slice(
-                  0,
-                  b.related.indexOf(newBuild._id.toString())
-                ),
-                ...b.related.slice(
-                  b.related.indexOf(newBuild._id.toString() + 1)
-                ),
-              ],
-            },
-            db
-          );
-      }
-    }
+    newRelated = await setNewVariant(builds, newBuild, db, newRelated);
+  } else if (newBuild.variantOf === '' && oldBuild.variantOf !== '') {
+    await removeVariant(builds, newBuild, db);
   }
 
   if (newBuild.variants !== oldBuild?.variants) {
@@ -245,3 +179,79 @@ const processOtherBuilds = async (
     }
   }
 };
+async function removeVariant(
+  builds: IBuildInfov2[],
+  newBuild: IBuildInfov2 | Partial<IBuildInfov2>,
+  db: Db
+) {
+  const parent = builds.find((x) => x._id.toString() === newBuild.variantOf);
+  if (parent) {
+    const variants = parent.variants;
+    await updateItem(
+      COLLECTION,
+      {
+        ...parent,
+        variants: [
+          ...variants.slice(0, variants.indexOf(newBuild._id.toString())),
+          ...variants.slice(variants.indexOf(newBuild._id.toString()) + 1),
+        ],
+      },
+      db
+    );
+    for (const v of variants) {
+      const b = builds.find(
+        (x) =>
+          x._id.toString() === v && x.related.includes(newBuild._id.toString())
+      );
+      if (b)
+        await updateItem(
+          COLLECTION,
+          {
+            ...b,
+            related: [
+              ...b.related.slice(0, b.related.indexOf(newBuild._id.toString())),
+              ...b.related.slice(
+                b.related.indexOf(newBuild._id.toString() + 1)
+              ),
+            ],
+          },
+          db
+        );
+    }
+  }
+}
+
+async function setNewVariant(
+  builds: IBuildInfov2[],
+  newBuild: IBuildInfov2 | Partial<IBuildInfov2>,
+  db: Db,
+  newRelated: string[]
+) {
+  const parent = builds.find((x) => x._id.toString() === newBuild.variantOf);
+  if (parent) {
+    const variants = parent.variants;
+    // add variant to parent and relate to other variants
+    await updateItem(
+      COLLECTION,
+      { ...parent, variants: [...variants, newBuild._id.toString()] },
+      db
+    );
+    for (const v of variants) {
+      const b = builds.find(
+        (x) =>
+          x._id.toString() === v && x.related.includes(newBuild._id.toString())
+      );
+      if (b) {
+        await updateItem(
+          COLLECTION,
+          { ...b, related: [...b.related, newBuild._id.toString()] },
+          db
+        );
+        if (!newBuild.related?.includes(v)) {
+          newRelated = [...newRelated, v];
+        }
+      }
+    }
+  }
+  return newRelated;
+}
