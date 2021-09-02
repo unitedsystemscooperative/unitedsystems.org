@@ -10,72 +10,63 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Link } from '@material-ui/icons';
+import { RestoreFromTrash } from '@material-ui/icons';
+import Link from '@material-ui/icons/Link';
 import { genericSortArray, Order } from 'functions/sort';
-import { IAmbassador } from 'models/admin/cmdr';
-import { PlatformString } from 'models/admin/platforms';
+import { ICMDR } from 'models/admin/cmdr';
 import React, {
   ChangeEvent,
   Dispatch,
   MouseEvent,
+  ReactNode,
   SetStateAction,
 } from 'react';
-
-interface HeadCell {
+export interface HeadCell<T> {
   disablePadding: boolean;
-  id: keyof IAmbassador;
+  id: keyof T;
   label: string;
   numeric: boolean;
 }
-const headCells: HeadCell[] = [
-  {
-    id: 'cmdrName',
-    numeric: false,
-    disablePadding: false,
-    label: 'CMDR Name',
-  },
-  {
-    id: 'discordName',
-    numeric: false,
-    disablePadding: true,
-    label: 'Discord',
-  },
-  {
-    id: 'discordJoinDate',
-    numeric: false,
-    disablePadding: true,
-    label: 'Discord Join Date',
-  },
-  { id: 'platform', numeric: false, disablePadding: true, label: 'Platform' },
-  {
-    id: 'groupRepresented',
-    numeric: false,
-    disablePadding: true,
-    label: 'Group Represented',
-  },
-  {
-    id: 'inaraLink',
-    numeric: false,
-    disablePadding: true,
-    label: 'Group Link',
-  },
-  { id: 'notes', numeric: false, disablePadding: true, label: 'Note' },
-];
 
-interface TableHeadProps {
-  classes: ReturnType<typeof useStyles>;
+export const useCmdrTableStyles = makeStyles((theme) => ({
+  root: {
+    textAlign: 'center',
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
+  },
+  visuallyHidden: {
+    border: 0,
+    clip: 'rect(0 0 0 0)',
+    height: 1,
+    margin: -1,
+    overflow: 'hidden',
+    padding: 0,
+    position: 'absolute',
+    top: 20,
+    width: 1,
+  },
+}));
+
+export const handleDate = (date) => {
+  const newDate = new Date(date);
+  return newDate > new Date('2019-01-01')
+    ? newDate.toLocaleDateString('en-CA')
+    : '';
+};
+
+export interface CmdrTableHeadProps<T> {
+  classes: ReturnType<typeof useCmdrTableStyles>;
   numSelected: number;
-  onRequestSort: (
-    event: MouseEvent<unknown>,
-    property: keyof IAmbassador
-  ) => void;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof T) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: Order;
-  orderBy: string;
+  orderBy: keyof T;
   rowCount: number;
+  headCells: HeadCell<T>[];
 }
 
-const MemberTableHead = (props: TableHeadProps) => {
+export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
   const {
     classes,
     onSelectAllClick,
@@ -84,8 +75,9 @@ const MemberTableHead = (props: TableHeadProps) => {
     numSelected,
     rowCount,
     onRequestSort,
+    headCells,
   } = props;
-  const createSortHandler = (property: keyof IAmbassador) => (
+  const createSortHandler = (property: keyof T) => (
     event: MouseEvent<unknown>
   ) => {
     onRequestSort(event, property);
@@ -104,7 +96,7 @@ const MemberTableHead = (props: TableHeadProps) => {
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
-            key={headCell.id}
+            key={headCell.id.toString()}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -127,51 +119,89 @@ const MemberTableHead = (props: TableHeadProps) => {
     </TableHead>
   );
 };
-
-const handleDate = (date) => {
-  const newDate = new Date(date);
-  return newDate > new Date('2019-01-01')
-    ? newDate.toLocaleDateString('en-CA')
-    : '';
+interface CmdrTableRowProps<T extends ICMDR> {
+  cmdr: T;
+  handleClick: (event: MouseEvent<HTMLTableRowElement>, id: string) => void;
+  isItemSelected: boolean;
+  children: ReactNode;
+}
+export const CmdrTableRow = <T extends ICMDR>({
+  cmdr,
+  handleClick,
+  isItemSelected,
+  children,
+}: CmdrTableRowProps<T>) => {
+  return (
+    <TableRow
+      key={cmdr._id.toString()}
+      hover
+      onClick={(event) => handleClick(event, cmdr._id.toString())}
+      role="checkbox"
+      aria-checked={isItemSelected}
+      tabIndex={-1}
+      selected={isItemSelected}
+    >
+      {children}
+    </TableRow>
+  );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
-}));
+export type ViewData =
+  | { type: 'string'; data: string }
+  | { type: 'boolean'; data: boolean }
+  | { type: 'link'; data?: string };
 
-interface MemberDefaultViewProps {
-  cmdrs: IAmbassador[];
+export const renderData = (data: ViewData[]) => {
+  return data.map((item) => {
+    switch (item.type) {
+      case 'string':
+        return <TableCell>{item.data}</TableCell>;
+      case 'boolean':
+        return (
+          <TableCell>
+            <Checkbox checked={item.data} disabled />
+          </TableCell>
+        );
+      case 'link':
+        return (
+          <TableCell>
+            {item.data && (
+              <IconButton
+                href={item.data}
+                color="primary"
+                size="small"
+                target="_blank"
+              >
+                <Link />
+              </IconButton>
+            )}
+          </TableCell>
+        );
+
+      default:
+        break;
+    }
+  });
+};
+
+export interface CmdrDefaultViewProps<T extends ICMDR> {
+  cmdrs: T[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
   page: number;
   rowsPerPage: number;
   order: Order;
-  orderBy: keyof IAmbassador;
+  orderBy: keyof T;
   handleSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleRequestSort: (
-    _: React.MouseEvent<unknown>,
-    property: keyof IAmbassador
-  ) => void;
+  handleRequestSort: (_: React.MouseEvent<unknown>, property: keyof T) => void;
   handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
+  headCells: HeadCell<T>[];
+  data: (cmdr: T) => ViewData[];
+  restoreCmdr?: (cmdr: T) => Promise<void>;
 }
-
-export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
+export const CmdrDefaultView = <T extends ICMDR>(
+  props: CmdrDefaultViewProps<T>
+) => {
   const {
     cmdrs,
     selected,
@@ -182,9 +212,12 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
     handleSelectAllClick,
     handleRequestSort,
     handleClick,
+    headCells,
+    data,
+    restoreCmdr,
   } = props;
 
-  const classes = useStyles();
+  const classes = useCmdrTableStyles();
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
@@ -195,7 +228,7 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
     <>
       <TableContainer>
         <Table size="small">
-          <MemberTableHead
+          <CmdrTableHead
             classes={classes}
             numSelected={selected.length}
             order={order}
@@ -203,46 +236,32 @@ export const AmbassadorDefaultView = (props: MemberDefaultViewProps) => {
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
             rowCount={cmdrs.length}
+            headCells={headCells}
           />
           <TableBody>
-            {genericSortArray(cmdrs, { order, orderBy })
+            {genericSortArray(cmdrs, { orderBy, order })
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((cmdr) => {
                 const isItemSelected = isSelected(cmdr._id.toString());
                 return (
-                  <TableRow
+                  <CmdrTableRow
                     key={cmdr._id.toString()}
-                    hover
-                    onClick={(event) => handleClick(event, cmdr._id.toString())}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    selected={isItemSelected}
+                    cmdr={cmdr}
+                    isItemSelected={isItemSelected}
+                    handleClick={handleClick}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox checked={isItemSelected} />
                     </TableCell>
-                    <TableCell component="th" scope="row" padding="none">
-                      {cmdr.cmdrName.toUpperCase()}
-                    </TableCell>
-                    <TableCell>{cmdr.discordName}</TableCell>
-                    <TableCell>{handleDate(cmdr.discordJoinDate)}</TableCell>
-                    <TableCell>{PlatformString[cmdr.platform]}</TableCell>
-                    <TableCell>{cmdr.groupRepresented}</TableCell>
-                    <TableCell>
-                      {cmdr.inaraLink && (
-                        <IconButton
-                          href={cmdr.inaraLink}
-                          color="primary"
-                          size="small"
-                          target="_blank"
-                        >
-                          <Link />
+                    {renderData(data(cmdr))}
+                    {restoreCmdr && (
+                      <TableCell>
+                        <IconButton onClick={() => restoreCmdr(cmdr)}>
+                          <RestoreFromTrash />
                         </IconButton>
-                      )}
-                    </TableCell>
-                    <TableCell>{cmdr.notes}</TableCell>
-                  </TableRow>
+                      </TableCell>
+                    )}
+                  </CmdrTableRow>
                 );
               })}
             {emptyRows > 0 && (

@@ -1,13 +1,11 @@
 import {
   Button,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   FormControl,
-  FormControlLabel,
   InputLabel,
   makeStyles,
   MenuItem,
@@ -15,9 +13,9 @@ import {
   TextField,
 } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { IMember } from 'models/admin/cmdr';
+import { IGuest } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
-import { Rank, RankString } from 'models/admin/ranks';
+import { Rank } from 'models/admin/ranks';
 import { Referral, ReferralString } from 'models/admin/referrals';
 import { Region, RegionString } from 'models/admin/regions';
 import React, { useEffect } from 'react';
@@ -33,59 +31,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface MemberDialogProps {
+export interface GuestDialogProps {
   open: boolean;
-  values: IMember[];
-  onClose: (value?: IMember, membersToEdit?: IMember[]) => void;
+  values: IGuest[];
+  onClose: (value?: IGuest, membersToEdit?: IGuest[]) => void;
 }
 
-export const MemberDialog = (props: MemberDialogProps) => {
+export const GuestDialog = (props: GuestDialogProps) => {
   const classes = useStyles();
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<IMember>();
+  const { register, handleSubmit, reset, control } = useForm<IGuest>();
 
   useEffect(() => {
     if (values) {
       if (values.length === 1) {
         const value = values[0];
-        if (value)
-          reset({
-            cmdrName: value.cmdrName,
-            discordName: value.discordName,
-            joinDate: value.joinDate ? value.joinDate : null,
-            discordJoinDate: value.discordJoinDate
-              ? value.discordJoinDate
-              : null,
-            platform: value.platform,
-            rank: value.rank,
-            isInInaraSquad: value.isInInaraSquad,
-            region: value.region,
-            ref1: value.ref1,
-            ref2: value.ref2,
-            notes: value.notes,
-            promotion: value.promotion ?? -2,
-            entersVoice: value.entersVoice,
-            inaraLink: value.inaraLink,
-            email: value.email,
-          });
+        reset({
+          cmdrName: value.cmdrName,
+          discordName: value.discordName,
+          discordJoinDate: value.discordJoinDate ? value.discordJoinDate : null,
+          platform: value.platform,
+          rank: Rank.Guest,
+          region: value.region,
+          notes: value.notes,
+          inaraLink: value.inaraLink,
+          email: value.email,
+          ref1: value.ref1,
+          ref2: value.ref2,
+        });
       } else {
         reset({
           _id: undefined,
           cmdrName: undefined,
           discordName: undefined,
-          joinDate: null,
           discordJoinDate: null,
           platform: undefined,
-          rank: undefined,
-          isInInaraSquad: false,
+          rank: Rank.Guest,
           region: undefined,
-          ref1: undefined,
-          ref2: undefined,
           notes: '',
-          promotion: undefined,
-          entersVoice: false,
           inaraLink: undefined,
           email: undefined,
+          ref1: undefined,
+          ref2: undefined,
         });
       }
     } else {
@@ -97,45 +84,36 @@ export const MemberDialog = (props: MemberDialogProps) => {
     onClose();
   };
 
-  const onSubmit: SubmitHandler<IMember> = (data) => {
+  const onSubmit: SubmitHandler<IGuest> = (data) => {
     if (values.length > 1) {
-      const multiCmdrUpdate: IMember = {
+      const multiCmdrUpdate: IGuest = {
         cmdrName: undefined,
         discordName: undefined,
-        joinDate: data.joinDate,
         discordJoinDate: data.discordJoinDate,
         platform: data.platform,
-        rank: data.rank,
-        isInInaraSquad: data.isInInaraSquad,
+        rank: Rank.Guest,
         region: data.region,
-        ref1: undefined,
-        ref2: undefined,
         notes: '',
-        promotion: data.promotion,
-        entersVoice: data.entersVoice,
         inaraLink: undefined,
         email: undefined,
+        ref1: data.ref1,
       };
       onClose(multiCmdrUpdate, values);
     } else {
       const _id = values[0]?._id ? values[0]._id : undefined;
-      const singleCmdrUpdate: IMember = {
+      const singleCmdrUpdate: IGuest = {
         _id,
         cmdrName: data.cmdrName,
         discordName: data.discordName,
-        joinDate: data.joinDate,
         discordJoinDate: data.discordJoinDate,
         platform: data.platform,
-        rank: data.rank,
-        isInInaraSquad: data.isInInaraSquad,
+        rank: Rank.Guest,
         region: data.region,
-        ref1: data.ref1,
-        ref2: data.ref2,
         notes: data.notes,
-        promotion: data.promotion,
-        entersVoice: data.entersVoice,
         inaraLink: data.inaraLink,
         email: data.email,
+        ref1: data.ref1,
+        ref2: data.ref2,
       };
       onClose(singleCmdrUpdate);
     }
@@ -171,22 +149,6 @@ export const MemberDialog = (props: MemberDialogProps) => {
           )}
           {values?.length <= 1 && (
             <Controller
-              name="joinDate"
-              control={control}
-              defaultValue={new Date()}
-              render={(field) => (
-                <KeyboardDatePicker
-                  label="Join Date"
-                  autoOk
-                  disableFuture
-                  format="yyyy-MM-DD"
-                  {...field}
-                />
-              )}
-            />
-          )}
-          {values?.length <= 1 && (
-            <Controller
               name="discordJoinDate"
               control={control}
               render={(field) => (
@@ -215,116 +177,6 @@ export const MemberDialog = (props: MemberDialogProps) => {
               }
             />
           </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Rank</InputLabel>
-            <Controller
-              name="rank"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={Rank.FleetAdmiral}>
-                    {RankString[Rank.FleetAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.ViceAdmiral}>
-                    {RankString[Rank.ViceAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Commodore}>
-                    {RankString[Rank.Commodore]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Captain}>
-                    {RankString[Rank.Captain]}
-                  </MenuItem>
-                  <MenuItem value={Rank.LtCommander}>
-                    {RankString[Rank.LtCommander]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Lieutenant}>
-                    {RankString[Rank.Lieutenant]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Ensign}>
-                    {RankString[Rank.Ensign]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Cadet}>
-                    {RankString[Rank.Cadet]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Reserve}>
-                    {RankString[Rank.Reserve]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Promotion</InputLabel>
-            <Controller
-              name="promotion"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={-2}></MenuItem>
-                  <MenuItem value={-1}>None</MenuItem>
-                  <MenuItem value={Rank.FleetAdmiral}>
-                    {RankString[Rank.FleetAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.ViceAdmiral}>
-                    {RankString[Rank.ViceAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Commodore}>
-                    {RankString[Rank.Commodore]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Captain}>
-                    {RankString[Rank.Captain]}
-                  </MenuItem>
-                  <MenuItem value={Rank.LtCommander}>
-                    {RankString[Rank.LtCommander]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Lieutenant}>
-                    {RankString[Rank.Lieutenant]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Ensign}>
-                    {RankString[Rank.Ensign]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Cadet}>
-                    {RankString[Rank.Cadet]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Reserve}>
-                    {RankString[Rank.Reserve]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <Controller
-            name="isInInaraSquad"
-            control={control}
-            render={(field) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => field.onChange(e.target.checked)}
-                    checked={field.value}
-                  />
-                }
-                label="Is In Inara Squad?"
-                labelPlacement="start"
-              />
-            )}
-          />
-          <Controller
-            name="entersVoice"
-            control={control}
-            render={(field) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => field.onChange(e.target.checked)}
-                    checked={field.value}
-                  />
-                }
-                label="Do they enter voice?"
-                labelPlacement="start"
-              />
-            )}
-          />
           <FormControl fullWidth>
             <InputLabel>Region</InputLabel>
             <Controller
@@ -407,6 +259,17 @@ export const MemberDialog = (props: MemberDialogProps) => {
               inputRef={register({ required: false })}
               fullWidth
               label="Notes"
+              multiline
+              className={classes.textField}
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextField
+              name="groupRepresented"
+              inputRef={register({ required: false })}
+              fullWidth
+              label="Group Represented"
               multiline
               className={classes.textField}
               disabled={values?.length > 1}

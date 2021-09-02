@@ -1,7 +1,7 @@
 import { Divider, TablePagination } from '@material-ui/core';
 import { Order } from 'functions/sort';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
-import { IAmbassador } from 'models/admin/cmdr';
+import { IGuest } from 'models/admin/cmdr';
 import React, {
   ChangeEvent,
   Dispatch,
@@ -10,37 +10,37 @@ import React, {
   useState,
 } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
-import {
-  ambassadorDefaultData,
-  ambassadorDefaultHeadCells,
-  ambassadorDeletedData,
-  ambassadorDeletedHeadCells,
-} from './views/ambassadorViews';
 import { CmdrDefaultView, HeadCell, ViewData } from './views/commonView';
+import {
+  guestDefaultData,
+  guestDefaultHeadCells,
+  guestDeletedData,
+  guestDeletedHeadCells,
+} from './views/guestViews';
 
-enum AmbassadorViews {
+enum GuestViews {
   Default = 'Default',
   Deleted = 'Deleted',
 }
 
-const ambassadorViews = Object.keys(AmbassadorViews);
+const guestViews = Object.keys(GuestViews);
 
-interface AmbassadorDashboardProps {
-  cmdrs: IAmbassador[];
-  deletedCmdrs: IAmbassador[];
+interface GuestDashboardProps {
+  cmdrs: IGuest[];
+  deletedCmdrs: IGuest[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
-  restoreCMDR: (cmdr: IAmbassador) => Promise<void>;
+  restoreCMDR: (cmdr: IGuest) => Promise<void>;
 }
 
-export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
+export const GuestDashboard = (props: GuestDashboardProps) => {
   const { cmdrs, selected, setSelected, deletedCmdrs, restoreCMDR } = props;
 
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof IAmbassador>('cmdrName');
+  const [orderBy, setOrderBy] = useState<keyof IGuest>('cmdrName');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [ambassadorView, setMemberView] = useState(AmbassadorViews.Default);
+  const [ambassadorView, setMemberView] = useState(GuestViews.Default);
   const [searchValue, setSearchValue] = useState('');
   const filteredCmdrs = useCmdrSearch({ searchValue, cmdrs });
   const filteredDeletedCmdrs = useCmdrSearch({
@@ -54,7 +54,7 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
 
   const handleRequestSort = (
     _: React.MouseEvent<unknown>,
-    property: keyof IAmbassador
+    property: keyof IGuest
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -101,17 +101,17 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
     setPage(0);
   };
 
-  const processView = (view: AmbassadorViews) => {
-    let headCells: HeadCell<IAmbassador>[];
-    let data: (cmdr: IAmbassador) => ViewData[];
+  const processView = (view: GuestViews) => {
+    let headCells: HeadCell<IGuest>[];
+    let data: (cmdr: IGuest) => ViewData[];
     switch (view) {
       default:
-        headCells = ambassadorDefaultHeadCells;
-        data = ambassadorDefaultData;
+        headCells = guestDefaultHeadCells;
+        data = guestDefaultData;
         break;
     }
     switch (view) {
-      case AmbassadorViews.Deleted:
+      case GuestViews.Deleted:
         return (
           <>
             <TablePagination
@@ -134,8 +134,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
               handleSelectAllClick={handleSelectAllClick}
               handleRequestSort={handleRequestSort}
               handleClick={handleClick}
-              headCells={ambassadorDeletedHeadCells}
-              data={ambassadorDeletedData}
+              headCells={guestDeletedHeadCells}
+              data={guestDeletedData}
               restoreCmdr={restoreCMDR}
             />
             <TablePagination
@@ -193,8 +193,8 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
   return (
     <>
       <DashboardToolbar
-        title="Ambassadors"
-        viewOptions={ambassadorViews}
+        title="Guests"
+        viewOptions={guestViews}
         view={ambassadorView}
         setView={setMemberView}
         searchValue={searchValue}

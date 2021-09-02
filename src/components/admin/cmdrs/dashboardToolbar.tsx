@@ -46,8 +46,8 @@ const useTitleBarStyles = makeStyles((theme) => ({
 interface ToolbarProps {
   title: string;
   viewOptions: string[];
-  view: number;
-  setView: Dispatch<SetStateAction<number>>;
+  view: string;
+  setView: Dispatch<SetStateAction<string>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
 }
@@ -63,8 +63,8 @@ export const DashboardToolbar = (props: ToolbarProps) => {
     setSearchValue,
   } = props;
 
-  const handleViewMenuClick = (_: MouseEvent<HTMLElement>, index: number) => {
-    setView(index);
+  const handleViewMenuClick = (_: MouseEvent<HTMLElement>, option: string) => {
+    setView(option);
   };
 
   return (
@@ -91,12 +91,24 @@ export const DashboardToolbar = (props: ToolbarProps) => {
       </Paper>
       <FormControl className={classes.formControl}>
         <InputLabel>{title} View</InputLabel>
-        <Select label="Platform" fullWidth value={view}>
-          {viewOptions.map((option, index) => (
+        <Select
+          label="View"
+          fullWidth
+          value={view}
+          MenuProps={{
+            anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
+            transformOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            getContentAnchorEl: null,
+          }}
+        >
+          {viewOptions.map((option) => (
             <MenuItem
               key={option}
-              value={index}
-              onClick={(event) => handleViewMenuClick(event, index)}
+              value={option}
+              onClick={(event) => handleViewMenuClick(event, option)}
             >
               {option}
             </MenuItem>

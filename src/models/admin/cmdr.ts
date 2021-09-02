@@ -4,18 +4,13 @@ import { Rank } from './ranks';
 import { Referral } from './referrals';
 import { Region } from './regions';
 
-export enum CMDRType {
-  Member,
-  Guest,
-  Ambassador,
-}
-
 export interface ICMDR extends IDbItem {
   cmdrName: string;
   discordName: string;
   discordJoinDate: Date;
   platform: Platform;
   rank: Rank;
+  rankString?: string;
   inaraLink?: string;
   region: Region;
   notes?: string;

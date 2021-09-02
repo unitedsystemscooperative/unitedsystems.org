@@ -44,6 +44,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
+        if (determineCMDRisMember(cmdr))
+          cmdr.joinDate = new Date(cmdr.joinDate);
+        cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
 
         const updateResult = await updateItem(COLLECTION, cmdr, db);
         if (updateResult) res.status(200).end();
@@ -90,7 +93,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           determineCMDRisAmbassador(x)
         ) as IAmbassador[];
 
-        res.status(200).json({ members, guests, ambassadors });
+        res.status(200).send({ members, guests, ambassadors });
         break;
     }
   } catch (e) {

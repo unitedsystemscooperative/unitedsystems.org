@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { IAmbassador, ICMDR, IGuest, IMember } from 'models/admin/cmdr';
-import { Rank } from 'models/admin/ranks';
+import { Rank, RankString } from 'models/admin/ranks';
 import useSWR, { mutate } from 'swr';
 
 const checkInstanceofAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
@@ -75,6 +75,9 @@ const updateCMDRs = async (
         cmdr.groupRepresented = updateInfo['groupRepresented'];
       }
     }
+    if (checkInstanceofGuest(cmdr)) {
+      // do nothing
+    }
 
     try {
       await axios.put('/api/cmdrs', cmdr);
@@ -119,6 +122,20 @@ export const useCMDRs = () => {
   );
 
   const cmdrs = data?.data ?? { members: [], guests: [], ambassadors: [] };
+  cmdrs.members = cmdrs.members.map((cmdr) => {
+    cmdr.joinDate = new Date(cmdr.joinDate);
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    cmdr.rankString = RankString[cmdr.rank];
+    return cmdr;
+  });
+  cmdrs.ambassadors = cmdrs.ambassadors.map((cmdr) => {
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    return cmdr;
+  });
+  cmdrs.guests = cmdrs.guests.map((cmdr) => {
+    cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
+    return cmdr;
+  });
 
   return {
     cmdrs,
