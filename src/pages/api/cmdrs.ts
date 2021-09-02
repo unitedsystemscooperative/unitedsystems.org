@@ -31,6 +31,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
 
+        if (determineCMDRisMember(cmdr))
+          cmdr.joinDate = new Date(cmdr.joinDate);
+        cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
         await insertItem(COLLECTION, cmdr, db);
 
         res.status(200).end();
