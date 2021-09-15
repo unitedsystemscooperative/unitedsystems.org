@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { theme } from 'theme';
-import { MDXProvider } from '@mdx-js/react';
 import { mdComponents } from 'components/markdown/markdownComponents';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateAdapter from '@date-io/moment';
@@ -42,9 +41,7 @@ function USCApp({ Component, pageProps }: AppProps) {
           <SnackbarProvider maxSnack={3}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <MDXProvider components={mdComponents}>
-                <Component {...pageProps} />
-              </MDXProvider>
+              <Component {...pageProps} />
             </ThemeProvider>
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
