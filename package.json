@@ -24,7 +24,7 @@
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^10.0.6",
     "@rehooks/local-storage": "^2.4.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bson": "^4.2.2",
     "clsx": "^1.1.1",
     "graphql": "^15.4.0",
