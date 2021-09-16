@@ -1,12 +1,24 @@
 import { calculateExpansion } from 'functions/expansion';
+import { IEDDBFaction } from 'models/eddb/faction';
+import { IEDDBPopulatedSystem } from 'models/eddb/populatedSystem';
 import { useEffect } from 'react';
 
-export const ExpansionComponent = () => {
+export const ExpansionComponent = ({
+  systems,
+  factions,
+}: {
+  systems: IEDDBPopulatedSystem[];
+  factions: IEDDBFaction[];
+}) => {
   useEffect(() => {
     const fn = async () => {
       const expansionOptions = await calculateExpansion(
-        'Bibaridji',
-        'United Systems Cooperative'
+        {
+          sourceSystem: 'Bibaridji',
+          factionExpanding: 'United Systems Cooperative',
+        },
+        systems,
+        factions
       );
       console.log({ expansionOptions });
     };

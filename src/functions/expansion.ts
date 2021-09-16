@@ -1,27 +1,34 @@
-import { getSystemsinSphere } from './edsmQueries';
-import systemJSON from 'data/gameData/systems_populated.json';
-import factionJSON from 'data/gameData/factions.json';
-import { IEDDBPopulatedSystem } from 'models/eddb/populatedSystem';
+import axios from 'axios';
 import { IEDDBFaction } from 'models/eddb/faction';
+// import systemJSON from 'data/gameData/systems_populated.json';
+// import factionJSON from 'data/gameData/factions.json';
+import { IEDDBPopulatedSystem } from 'models/eddb/populatedSystem';
+import { getSystemsinSphere } from './edsmQueries';
 import { genericSortArray } from './sort';
 
-const EDDB_API = 'https://eddb.io/archive/v6/';
+const EDDB_API = 'https://eddb.io/archive/v6';
 
 export const calculateExpansion = async (
-  sourceSystem: string,
-  factionExpanding: string,
-  isInvestmentStatus: boolean = false
+  info: {
+    sourceSystem: string;
+    factionExpanding: string;
+    isInvestmentStatus?: boolean;
+  },
+  systems: IEDDBPopulatedSystem[],
+  factions: IEDDBFaction[]
 ) => {
   // Get the info from EDDB (System and Faction)
-  const { systems, factions } = await getEddbInformation();
+  // const { systems, factions } = await getEddbInformation();
   const sourceSystemInfo = systems.find(
-    (x) => x.name.toLowerCase().trim() === sourceSystem.toLowerCase().trim()
+    (x) =>
+      x.name.toLowerCase().trim() === info.sourceSystem.toLowerCase().trim()
   );
   if (sourceSystemInfo === undefined)
     throw new Error('Source system not found.');
 
   const factionInfo = factions.find(
-    (x) => x.name.toLowerCase().trim() === factionExpanding.toLowerCase().trim()
+    (x) =>
+      x.name.toLowerCase().trim() === info.factionExpanding.toLowerCase().trim()
   );
   if (factionInfo === undefined) throw new Error('Faction not found');
 
@@ -34,9 +41,9 @@ export const calculateExpansion = async (
     throw new Error('Faction not present in source system.');
 
   // Get systems within expansion range.
-  const expansionDistance = isInvestmentStatus ? 30 : 20;
+  const expansionDistance = info.isInvestmentStatus ? 30 : 20;
   const systemsinSphere = (
-    await getSystemsinSphere(sourceSystem, expansionDistance)
+    await getSystemsinSphere(info.sourceSystem, expansionDistance)
   )
     .filter((x) => Object.keys(x.information).length !== 0)
     .map((x) => {
@@ -91,8 +98,15 @@ const getEddbInformation = async (): Promise<{
   systems: IEDDBPopulatedSystem[];
   factions: IEDDBFaction[];
 }> => {
-  const sysData = systemJSON as IEDDBPopulatedSystem[];
-  const facData = factionJSON as IEDDBFaction[];
+  const sysData = (
+    await axios.get<IEDDBPopulatedSystem[]>(
+      `${EDDB_API}/systems_populated.json`
+    )
+  ).data;
+  const facData = (await axios.get<IEDDBFaction[]>(`${EDDB_API}/factions.json`))
+    .data;
+  // const sysData = systemJSON as IEDDBPopulatedSystem[];
+  // const facData = factionJSON as IEDDBFaction[];
 
   return { systems: sysData, factions: facData };
 };
