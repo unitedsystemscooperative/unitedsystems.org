@@ -1,10 +1,5 @@
-import {
-  Button,
-  Container,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Button, Container, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({

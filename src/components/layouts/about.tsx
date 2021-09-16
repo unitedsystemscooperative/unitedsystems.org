@@ -1,4 +1,5 @@
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { PrimaryLayout } from './primary';
 import { ReactNode } from 'react';
 import { uscLinksList } from 'data/about';

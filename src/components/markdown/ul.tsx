@@ -1,3 +1,3 @@
-import { List } from '@material-ui/core';
+import { List } from '@mui/material';
 
 export const Ul = (props) => <List {...props} />;

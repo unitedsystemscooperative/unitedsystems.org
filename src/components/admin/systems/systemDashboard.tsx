@@ -9,13 +9,13 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
-  makeStyles,
   Paper,
   Toolbar,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { Add, Delete, Edit } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Add, Delete, Edit } from '@mui/icons-material';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
@@ -37,7 +37,7 @@ const useTitleBarStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end',
       flexWrap: 'wrap',
     },
@@ -100,14 +100,14 @@ const SystemList = ({
               edge="end"
               className={classes.iconButton}
               onClick={() => editSystem(system)}
-            >
+              size="large">
               <Edit />
             </IconButton>
             <IconButton
               edge="end"
               className={classes.iconButton}
               onClick={() => deleteSystem(system)}
-            >
+              size="large">
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>

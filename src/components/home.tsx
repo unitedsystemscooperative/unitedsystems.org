@@ -1,10 +1,5 @@
-import {
-  Container,
-  Fade,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Container, Fade, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 // import { useDownloadLink } from 'hooks/useDownloadLink';
 import {
   lore,
@@ -32,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
     width: 350,
     margin: 'auto',
     marginBottom: 10,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
   latin: {
     fontFamily: 'Cinzel, serif',
     fontSize: 32,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: 24,
     },
   },

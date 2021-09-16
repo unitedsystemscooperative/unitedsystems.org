@@ -1,4 +1,5 @@
-import { Button, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { IInfoButton } from 'models/information/infoButtonModel';
 import Link from 'next/link';
 
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(1),
       marginBottom: theme.spacing(1),
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       display: 'grid',
       gridTemplateRows: 'auto',
       '& a': {

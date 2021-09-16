@@ -1,6 +1,7 @@
-import { makeStyles, Typography } from '@material-ui/core';
-import { Check, Clear, Remove } from '@material-ui/icons';
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Check, Clear, Remove } from '@mui/icons-material';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { IVoter } from 'models/admin/voter';
 import React, { useState, MouseEvent } from 'react';
 

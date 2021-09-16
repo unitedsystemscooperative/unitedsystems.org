@@ -6,13 +6,13 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
-  makeStyles,
   Paper,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useLinks } from 'hooks/useLinks';
 import React from 'react';
-import LinkIcon from '@material-ui/icons/Link';
+import LinkIcon from '@mui/icons-material/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +41,7 @@ export const JoinNextSteps = () => {
           <ListItem>
             <ListItemText primary={'Join our Discord'} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" href={discordLink} target="_blank">
+              <IconButton edge="end" href={discordLink} target="_blank" size="large">
                 <LinkIcon />
               </IconButton>
             </ListItemSecondaryAction>
@@ -61,7 +61,7 @@ export const JoinNextSteps = () => {
             <ListItem className={classes.nested}>
               <ListItemText primary={'Join our Inara Squadron'} />
               <ListItemSecondaryAction>
-                <IconButton edge="end" href={inaraSquadLink} target="_blank">
+                <IconButton edge="end" href={inaraSquadLink} target="_blank" size="large">
                   <LinkIcon />
                 </IconButton>
               </ListItemSecondaryAction>

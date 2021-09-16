@@ -1,3 +1,3 @@
-import { TableBody } from '@material-ui/core';
+import { TableBody } from '@mui/material';
 
 export const TBody = (props) => <TableBody {...props} />;

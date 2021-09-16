@@ -1,4 +1,5 @@
-import { Typography, makeStyles, Fade, Container } from '@material-ui/core';
+import { Typography, Fade, Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   useFleetCarriers,

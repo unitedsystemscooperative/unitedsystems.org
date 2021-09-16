@@ -1,4 +1,5 @@
-import { Divider, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Divider, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { getStationSize } from 'functions/edsmQueries/getStationSize';
 
 const useStyles = makeStyles((theme) => ({

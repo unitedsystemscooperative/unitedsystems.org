@@ -3,7 +3,6 @@ import {
   Container,
   IconButton,
   Link,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -12,9 +11,10 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useMiningMaps } from 'hooks/information/useMiningMaps';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { useLinks } from 'hooks/useLinks';
 import { PrimaryLayout } from 'components/layouts/primary';

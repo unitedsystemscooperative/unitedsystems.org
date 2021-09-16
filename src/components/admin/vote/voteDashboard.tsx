@@ -1,4 +1,5 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { Rank } from 'models/admin/ranks';
 import { IVoter } from 'models/admin/voter';

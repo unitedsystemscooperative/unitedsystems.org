@@ -1,13 +1,6 @@
-import {
-  Container,
-  Fab,
-  makeStyles,
-  Slide,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { Container, Fab, Slide, Typography, useMediaQuery, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { IQuery } from 'models/builds';
 import { useCallback, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
@@ -33,7 +26,7 @@ export const BuildSystem = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const buildRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const classes = useStyles();
 
   const handleQuery = useCallback((query: IQuery) => {

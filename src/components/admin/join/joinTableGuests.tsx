@@ -8,8 +8,8 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
-import { FileCopy } from '@material-ui/icons';
+} from '@mui/material';
+import { FileCopy } from '@mui/icons-material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { IJoinInfo } from 'models/join/joinInfo';
 import React from 'react';

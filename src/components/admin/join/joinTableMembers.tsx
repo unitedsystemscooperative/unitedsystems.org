@@ -8,8 +8,8 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
-import { Add, FileCopy } from '@material-ui/icons';
+} from '@mui/material';
+import { Add, FileCopy } from '@mui/icons-material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IMember } from 'models/admin/cmdr';
@@ -107,93 +107,88 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
     }
   };
 
-  return (
-    <>
-      <Paper>
-        <TableContainer>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>TimeStamp</TableCell>
-                <TableCell>CMDR</TableCell>
-                <TableCell>Discord</TableCell>
-                <TableCell>Platform</TableCell>
-                <TableCell>Playing Length</TableCell>
-                <TableCell>Reference</TableCell>
-                <TableCell>Reference2</TableCell>
-                <TableCell>Region</TableCell>
-                <TableCell>Add to Dashboard</TableCell>
-              </TableRow>
-            </TableHead>
-            {members && (
-              <TableBody>
-                {members
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((map) => (
-                    <TableRow key={`${map.discord} ${map.timeStamp}`}>
-                      <TableCell>
-                        {new Date(map.timeStamp).toUTCString()}
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          {map.cmdr}
-                          <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() =>
-                              copytoClipboard(map.cmdr.toUpperCase())
-                            }
-                          >
-                            <FileCopy />
-                          </IconButton>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          {map.discord}
-                          <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() => copytoClipboard(map.discord)}
-                          >
-                            <FileCopy />
-                          </IconButton>
-                        </div>
-                      </TableCell>
-                      <TableCell>{buildPlatforms(map.platforms)}</TableCell>
-                      <TableCell>{processLength(map.playingLength)}</TableCell>
-                      <TableCell>{map.reference}</TableCell>
-                      <TableCell>{map.reference2}</TableCell>
-                      <TableCell>{map.region}</TableCell>
-                      <TableCell>
+  return <>
+    <Paper>
+      <TableContainer>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>TimeStamp</TableCell>
+              <TableCell>CMDR</TableCell>
+              <TableCell>Discord</TableCell>
+              <TableCell>Platform</TableCell>
+              <TableCell>Playing Length</TableCell>
+              <TableCell>Reference</TableCell>
+              <TableCell>Reference2</TableCell>
+              <TableCell>Region</TableCell>
+              <TableCell>Add to Dashboard</TableCell>
+            </TableRow>
+          </TableHead>
+          {members && (
+            <TableBody>
+              {members
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((map) => (
+                  <TableRow key={`${map.discord} ${map.timeStamp}`}>
+                    <TableCell>
+                      {new Date(map.timeStamp).toUTCString()}
+                    </TableCell>
+                    <TableCell>
+                      <div>
+                        {map.cmdr}
                         <IconButton
-                          color="primary"
-                          onClick={() => handleAddMember(map)}
+                          size="small"
+                          color="secondary"
+                          onClick={() =>
+                            copytoClipboard(map.cmdr.toUpperCase())
+                          }
                         >
-                          <Add />
+                          <FileCopy />
                         </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            )}
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={members.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-      <MemberDialog
-        open={dialog}
-        values={[dialogVal]}
-        onClose={onDialogClose}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div>
+                        {map.discord}
+                        <IconButton
+                          size="small"
+                          color="secondary"
+                          onClick={() => copytoClipboard(map.discord)}
+                        >
+                          <FileCopy />
+                        </IconButton>
+                      </div>
+                    </TableCell>
+                    <TableCell>{buildPlatforms(map.platforms)}</TableCell>
+                    <TableCell>{processLength(map.playingLength)}</TableCell>
+                    <TableCell>{map.reference}</TableCell>
+                    <TableCell>{map.reference2}</TableCell>
+                    <TableCell>{map.region}</TableCell>
+                    <TableCell>
+                      <IconButton color="primary" onClick={() => handleAddMember(map)} size="large">
+                        <Add />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          )}
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={members.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </>
-  );
+    </Paper>
+    <MemberDialog
+      open={dialog}
+      values={[dialogVal]}
+      onClose={onDialogClose}
+    />
+  </>;
 };

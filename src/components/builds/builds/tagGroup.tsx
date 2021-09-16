@@ -1,4 +1,5 @@
-import { Chip, makeStyles } from '@material-ui/core';
+import { Chip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { IBuildInfov2 } from 'models/builds';
 
 const useStyles = makeStyles((theme) => ({

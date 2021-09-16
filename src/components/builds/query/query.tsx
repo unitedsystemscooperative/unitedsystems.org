@@ -1,4 +1,5 @@
-import { makeStyles, Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { IQuery, OtherFilters } from 'models/builds';
 import { useRouter } from 'next/router';
 import qs from 'query-string';

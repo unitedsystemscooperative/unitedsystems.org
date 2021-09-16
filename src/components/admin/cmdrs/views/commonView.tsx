@@ -1,7 +1,6 @@
 import {
   Checkbox,
   IconButton,
-  makeStyles,
   Table,
   TableBody,
   TableCell,
@@ -9,9 +8,10 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-} from '@material-ui/core';
-import { RestoreFromTrash } from '@material-ui/icons';
-import Link from '@material-ui/icons/Link';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { RestoreFromTrash } from '@mui/icons-material';
+import Link from '@mui/icons-material/Link';
 import { genericSortArray, Order } from 'functions/sort';
 import { ICMDR } from 'models/admin/cmdr';
 import React, {
@@ -224,54 +224,52 @@ export const CmdrDefaultView = <T extends ICMDR>(
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, cmdrs.length - page * rowsPerPage);
 
-  return (
-    <>
-      <TableContainer>
-        <Table size="small">
-          <CmdrTableHead
-            classes={classes}
-            numSelected={selected.length}
-            order={order}
-            orderBy={orderBy}
-            onSelectAllClick={handleSelectAllClick}
-            onRequestSort={handleRequestSort}
-            rowCount={cmdrs.length}
-            headCells={headCells}
-          />
-          <TableBody>
-            {genericSortArray(cmdrs, { orderBy, order })
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((cmdr) => {
-                const isItemSelected = isSelected(cmdr._id.toString());
-                return (
-                  <CmdrTableRow
-                    key={cmdr._id.toString()}
-                    cmdr={cmdr}
-                    isItemSelected={isItemSelected}
-                    handleClick={handleClick}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isItemSelected} />
+  return <>
+    <TableContainer>
+      <Table size="small">
+        <CmdrTableHead
+          classes={classes}
+          numSelected={selected.length}
+          order={order}
+          orderBy={orderBy}
+          onSelectAllClick={handleSelectAllClick}
+          onRequestSort={handleRequestSort}
+          rowCount={cmdrs.length}
+          headCells={headCells}
+        />
+        <TableBody>
+          {genericSortArray(cmdrs, { orderBy, order })
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((cmdr) => {
+              const isItemSelected = isSelected(cmdr._id.toString());
+              return (
+                <CmdrTableRow
+                  key={cmdr._id.toString()}
+                  cmdr={cmdr}
+                  isItemSelected={isItemSelected}
+                  handleClick={handleClick}
+                >
+                  <TableCell padding="checkbox">
+                    <Checkbox checked={isItemSelected} />
+                  </TableCell>
+                  {renderData(data(cmdr))}
+                  {restoreCmdr && (
+                    <TableCell>
+                      <IconButton onClick={() => restoreCmdr(cmdr)} size="large">
+                        <RestoreFromTrash />
+                      </IconButton>
                     </TableCell>
-                    {renderData(data(cmdr))}
-                    {restoreCmdr && (
-                      <TableCell>
-                        <IconButton onClick={() => restoreCmdr(cmdr)}>
-                          <RestoreFromTrash />
-                        </IconButton>
-                      </TableCell>
-                    )}
-                  </CmdrTableRow>
-                );
-              })}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 66 * emptyRows }}>
-                <TableCell colSpan={12} />{' '}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
-  );
+                  )}
+                </CmdrTableRow>
+              );
+            })}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 66 * emptyRows }}>
+              <TableCell colSpan={12} />{' '}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </>;
 };

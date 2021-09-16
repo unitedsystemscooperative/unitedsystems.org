@@ -1,4 +1,5 @@
-import { Container, Link, makeStyles, Typography } from '@material-ui/core';
+import { Container, Link, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import NextLink from 'next/link';
 
 function ImgCopyright() {
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
     backgroundColor:
-      theme.palette.type === 'light'
+      theme.palette.mode === 'light'
         ? theme.palette.grey[200]
         : theme.palette.grey[800],
   },

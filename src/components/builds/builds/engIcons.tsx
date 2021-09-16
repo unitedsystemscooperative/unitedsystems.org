@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';
 
 const useStyles = makeStyles({

@@ -1,4 +1,5 @@
-import { Button, makeStyles } from '@material-ui/core';
+import { Button } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useAdmin } from 'hooks/useAdmin';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';

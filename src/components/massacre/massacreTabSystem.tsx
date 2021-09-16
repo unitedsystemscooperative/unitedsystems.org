@@ -1,4 +1,4 @@
-import { AppBar, Tab, Tabs, Typography, Collapse } from '@material-ui/core';
+import { AppBar, Tab, Tabs, Typography, Collapse } from '@mui/material';
 import { MassacreContext } from 'providers/massacreTrackerProvider';
 import { ChangeEvent, useContext } from 'react';
 import { MassacreTabAddPanel } from './massacreTabAddPanel';

@@ -1,4 +1,4 @@
-import { Divider, TablePagination } from '@material-ui/core';
+import { Divider, TablePagination } from '@mui/material';
 import { Order } from 'functions/sort';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
 import { IMember } from 'models/admin/cmdr';

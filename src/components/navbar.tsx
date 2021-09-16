@@ -1,4 +1,4 @@
-import { Theme, useMediaQuery } from '@material-ui/core';
+import { Theme, useMediaQuery } from '@mui/material';
 import { navItems } from 'data/navItems';
 import { useRouter } from 'next/dist/client/router';
 import { useMemo } from 'react';
@@ -8,7 +8,7 @@ import { NavbarFull } from './navbar.full';
 export const Navbar = () => {
   const pathName = useRouter().pathname;
   const isMobile = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('md')
+    theme.breakpoints.down('lg')
   );
 
   const title = useMemo(

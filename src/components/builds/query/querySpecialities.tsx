@@ -1,5 +1,6 @@
-import { makeStyles, Typography } from '@material-ui/core';
-import { ToggleButton } from '@material-ui/lab';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { ToggleButton } from '@mui/material';
 import { ShipSpecialty } from 'models/builds/shipSpecialty';
 import { useSharedStyles } from './sharedStyles';
 

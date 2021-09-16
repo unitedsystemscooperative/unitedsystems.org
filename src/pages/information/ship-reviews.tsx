@@ -1,7 +1,6 @@
 import {
   Button,
   Container,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -10,7 +9,8 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useShipReviews } from 'hooks/information/useShipReviews';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';

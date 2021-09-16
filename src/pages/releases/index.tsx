@@ -1,12 +1,5 @@
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { PrimaryLayout } from 'components/layouts';
 import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';

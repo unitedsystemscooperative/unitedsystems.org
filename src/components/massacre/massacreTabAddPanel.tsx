@@ -1,10 +1,5 @@
-import {
-  Button,
-  makeStyles,
-  Paper,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import { Button, Paper, TextField, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   getFactionsinSystem,
   getStationsinSystem,

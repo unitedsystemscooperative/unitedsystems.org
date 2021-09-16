@@ -4,12 +4,12 @@ import {
   Container,
   Divider,
   Link,
-  makeStyles,
   Paper,
   Typography,
   useMediaQuery,
   useTheme,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useShipBuildInfo } from 'hooks/builds/useShipBuildInfo';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useLinks } from 'hooks/useLinks';
@@ -325,7 +325,7 @@ export const BuildDetail = () => {
   console.log(id);
   const { loading, shipInfo, foundBuild } = useShipBuildInfo(id);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const classes = useStyles();
 
   const handleAddBuild = (addType: 'variant' | 'related', refId: string) => {

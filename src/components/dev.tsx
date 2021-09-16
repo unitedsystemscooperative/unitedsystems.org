@@ -1,5 +1,7 @@
 import { UnderConstruction } from '@admiralfeb/react-components';
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   center: {

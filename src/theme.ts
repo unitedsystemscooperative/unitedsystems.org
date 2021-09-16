@@ -1,6 +1,6 @@
-import { createTheme } from '@material-ui/core';
+import { createTheme, adaptV4Theme } from '@mui/material';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   palette: {
     primary: {
       main: '#f07b05',
@@ -10,7 +10,7 @@ const theme = createTheme({
     },
     type: 'dark',
   },
-});
+}));
 
 theme.overrides = {
   MuiCssBaseline: {

@@ -1,11 +1,6 @@
-import {
-  Button,
-  Container,
-  makeStyles,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
-import { Typography, Paper } from '@material-ui/core';
+import { Button, Container, useMediaQuery, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Paper } from '@mui/material';
 import { InfoSection } from 'components/information/infoSection';
 import { useInfoButtons } from 'hooks/useInfoButtons';
 import { MutableRefObject, useRef } from 'react';
@@ -38,7 +33,7 @@ export const InformationMain = () => {
   const toolsRef = useRef<HTMLDivElement | null>(null);
   const docsRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   const handleScroll = (ref: MutableRefObject<HTMLDivElement | null>) => {
     if (ref.current) {

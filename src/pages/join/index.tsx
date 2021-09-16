@@ -1,12 +1,5 @@
-import {
-  Button,
-  Collapse,
-  Container,
-  Fade,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Button, Collapse, Container, Fade, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useAddJoinInfo } from 'hooks/join/useJoinInfo';
 import { IJoinInfo } from 'models/join/joinInfo';
 import { useSnackbar } from 'notistack';

@@ -7,9 +7,9 @@ import {
   DialogContentText,
   DialogTitle,
   FormControlLabel,
-  makeStyles,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { System } from 'models/about/system';
 import React, { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';

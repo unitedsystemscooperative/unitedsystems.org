@@ -5,11 +5,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  makeStyles,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useAdmin } from 'hooks/useAdmin';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
@@ -98,7 +98,7 @@ export const NavbarMobile = (props: {
             className={classes.menuButton}
             color="inherit"
             onClick={toggleDrawer(true)}
-          >
+            size="large">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>

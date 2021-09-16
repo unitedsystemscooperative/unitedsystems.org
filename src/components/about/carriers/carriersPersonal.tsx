@@ -1,13 +1,5 @@
-import {
-  Table,
-  TableContainer,
-  Paper,
-  TableHead,
-  TableCell,
-  TableRow,
-  TableBody,
-  makeStyles,
-} from '@material-ui/core';
+import { Table, TableContainer, Paper, TableHead, TableCell, TableRow, TableBody } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { CarrierTableRow } from './carrierTableRow';
 

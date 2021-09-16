@@ -1,4 +1,5 @@
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { SetStateAction, MouseEvent, Dispatch } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
 import { useSharedStyles } from './sharedStyles';

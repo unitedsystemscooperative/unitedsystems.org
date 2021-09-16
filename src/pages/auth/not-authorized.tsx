@@ -1,10 +1,5 @@
-import {
-  Container,
-  Link,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Container, Link, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 import NextLink from 'next/link';

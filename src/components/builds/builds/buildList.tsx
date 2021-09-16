@@ -4,7 +4,7 @@ import { filterShipBuilds } from 'functions/builds/filterShipBuilds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IQuery } from 'models/builds';
 import { BuildCard } from './buildCard';
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles({

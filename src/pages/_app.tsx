@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { CssBaseline, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
 import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -10,6 +10,13 @@ import { mdComponents } from 'components/markdown/markdownComponents';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateAdapter from '@date-io/moment';
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 function USCApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
@@ -17,40 +24,40 @@ function USCApp({ Component, pageProps }: AppProps) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-  return (
-    <>
-      <Head>
-        <title>United Systems Cooperative</title>
-        <meta
-          name="description"
-          content="Web site of the United Systems Cooperative"
-        />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-        <meta name="og:image" content="https://unitedsystems.org/uscLogo.png" />
-        <link rel="icon" href="/uscLogo.png" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <Provider session={pageProps.session}>
-        <MuiPickersUtilsProvider utils={DateAdapter}>
-          <SnackbarProvider maxSnack={3}>
+  return <>
+    <Head>
+      <title>United Systems Cooperative</title>
+      <meta
+        name="description"
+        content="Web site of the United Systems Cooperative"
+      />
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width"
+      />
+      <meta name="og:image" content="https://unitedsystems.org/uscLogo.png" />
+      <link rel="icon" href="/uscLogo.png" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
+    <Provider session={pageProps.session}>
+      <MuiPickersUtilsProvider utils={DateAdapter}>
+        <SnackbarProvider maxSnack={3}>
+          <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <MDXProvider components={mdComponents}>
                 <Component {...pageProps} />
               </MDXProvider>
             </ThemeProvider>
-          </SnackbarProvider>
-        </MuiPickersUtilsProvider>
-      </Provider>
-    </>
-  );
+          </StyledEngineProvider>
+        </SnackbarProvider>
+      </MuiPickersUtilsProvider>
+    </Provider>
+  </>;
 }
 
 export default USCApp;

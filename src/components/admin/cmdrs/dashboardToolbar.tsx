@@ -3,14 +3,14 @@ import {
   IconButton,
   InputBase,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import { Clear, Search } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Clear, Search } from '@mui/icons-material';
 import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 const useTitleBarStyles = makeStyles((theme) => ({
@@ -85,7 +85,7 @@ export const DashboardToolbar = (props: ToolbarProps) => {
         <IconButton
           className={classes.iconButton}
           onClick={() => setSearchValue('')}
-        >
+          size="large">
           <Clear />
         </IconButton>
       </Paper>

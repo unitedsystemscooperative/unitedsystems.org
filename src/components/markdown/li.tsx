@@ -1,4 +1,6 @@
-import { ListItemText, makeStyles } from '@material-ui/core';
+import { ListItemText } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   li: { marginBottom: theme.spacing(2) },

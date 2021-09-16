@@ -6,11 +6,11 @@ import {
   FormControlLabel,
   FormGroup,
   Link,
-  makeStyles,
   Paper,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IJoinInfo } from 'models/join/joinInfo';

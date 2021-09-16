@@ -3,15 +3,15 @@ import {
   Button,
   Collapse,
   Container,
-  makeStyles,
   Menu,
   MenuItem,
   Paper,
   Toolbar,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { Add, Delete, Edit, FilterList } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
 import { useSnackbar } from 'notistack';
@@ -38,7 +38,7 @@ const useTitleBarStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end',
       flexWrap: 'wrap',
     },

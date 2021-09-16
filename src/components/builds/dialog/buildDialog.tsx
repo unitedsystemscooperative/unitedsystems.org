@@ -5,9 +5,9 @@ import {
   DialogContent,
   DialogTitle,
   FormGroup,
-  makeStyles,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { processJSONBuild } from 'functions/builds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';

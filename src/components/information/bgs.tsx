@@ -1,7 +1,6 @@
 import {
   Container,
   Divider,
-  makeStyles,
   Paper,
   Table,
   TableHead,
@@ -9,7 +8,9 @@ import {
   TableRow,
   TableBody,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   center: {

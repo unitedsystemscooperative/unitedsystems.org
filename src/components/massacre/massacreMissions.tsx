@@ -1,6 +1,5 @@
 import {
   Container,
-  createStyles,
   IconButton,
   Paper,
   Table,
@@ -10,8 +9,9 @@ import {
   TableHead,
   TableRow,
   TextField,
-  withStyles,
-} from '@material-ui/core';
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import {
   IFactionMission,
   IFactionwMissions,
@@ -19,7 +19,7 @@ import {
 } from 'models/massacreTrack';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useEffect, useState } from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const MassacreMissions = (props: {
   tracker: IMassacreTrack;
@@ -183,7 +183,7 @@ const FactionRow = (props: {
       <TableCell>{totalKills}</TableCell>
       <TableCell>
         {faction.name}{' '}
-        <IconButton onClick={removeFaction}>
+        <IconButton onClick={removeFaction} size="large">
           <DeleteIcon />
         </IconButton>
       </TableCell>

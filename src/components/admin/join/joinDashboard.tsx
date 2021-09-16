@@ -3,13 +3,13 @@ import {
   Button,
   Collapse,
   Container,
-  makeStyles,
   Paper,
   Toolbar,
   Typography,
   useMediaQuery,
   useTheme,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useJoinInfo } from 'hooks/join/useJoinInfo';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
@@ -37,7 +37,7 @@ const useTitleBarStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end',
       flexWrap: 'wrap',
     },
@@ -87,7 +87,7 @@ const DashBoardTitleBar = ({
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(1),
     },
   },
@@ -102,7 +102,7 @@ export const JoinDashboard = () => {
   const joinInfo = useJoinInfo();
   const [joinView, setJoinView] = useState<JoinViews>(0);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   if (joinInfo.loading) {
     return <EDSpinner />;

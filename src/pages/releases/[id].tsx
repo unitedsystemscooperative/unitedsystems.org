@@ -1,11 +1,5 @@
-import {
-  Button,
-  Container,
-  Divider,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Button, Container, Divider, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { PrimaryLayout } from 'components/layouts';
 import {
   getAllReleaseIDs,

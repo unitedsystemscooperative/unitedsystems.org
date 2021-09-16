@@ -1,12 +1,6 @@
-import {
-  Avatar,
-  Button,
-  Container,
-  makeStyles,
-  Paper,
-  TextField,
-} from '@material-ui/core';
-import { LockOutlined } from '@material-ui/icons';
+import { Avatar, Button, Container, Paper, TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { LockOutlined } from '@mui/icons-material';
 import { PrimaryLayout } from 'components/layouts';
 import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';

@@ -1,6 +1,7 @@
-import { makeStyles, Tooltip } from '@material-ui/core';
-import BlockIcon from '@material-ui/icons/Block';
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import { Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import BlockIcon from '@mui/icons-material/Block';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { MouseEvent } from 'react';
 
 const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';

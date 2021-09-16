@@ -3,13 +3,13 @@ import {
   List,
   ListItem,
   ListItemText,
-  makeStyles,
   Paper,
   Fade,
   Container,
   Tooltip,
   Link,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { discordRules, memberRules } from 'data/about';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateRows: 'auto',
     width: '90%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       gridTemplateColumns: '1fr',
       gridTemplateRows: 'auto',
     },
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     margin: 5,
     padding: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       gridColumn: 1,
     },
   },

@@ -5,9 +5,9 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  makeStyles,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';

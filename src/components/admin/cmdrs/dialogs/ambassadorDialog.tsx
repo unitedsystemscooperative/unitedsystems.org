@@ -7,11 +7,11 @@ import {
   DialogTitle,
   FormControl,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';

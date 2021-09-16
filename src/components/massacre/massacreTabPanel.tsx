@@ -1,4 +1,5 @@
-import { Button, Container, makeStyles, Typography } from '@material-ui/core';
+import { Button, Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   getFactionsinSystem,
   getStationsinSystem,

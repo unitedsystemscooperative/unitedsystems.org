@@ -4,7 +4,6 @@ import {
   Checkbox,
   Container,
   IconButton,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -16,8 +15,9 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { Add, Delete, Edit } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Add, Delete, Edit } from '@mui/icons-material';
 import { EngIcons } from 'components/builds/builds/engIcons';
 import { TagGroup } from 'components/builds/builds/tagGroup';
 import { BuildDialog } from 'components/builds/dialog/buildDialog';
@@ -213,12 +213,12 @@ const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
                     <Checkbox checked={build.isBeginner} disabled />
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => onEdit(build)}>
+                    <IconButton onClick={() => onEdit(build)} size="large">
                       <Edit />
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => onDelete(build)}>
+                    <IconButton onClick={() => onDelete(build)} size="large">
                       <Delete />
                     </IconButton>
                   </TableCell>
@@ -245,7 +245,7 @@ const useTitleBarStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end',
       flexWrap: 'wrap',
     },

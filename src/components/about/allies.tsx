@@ -1,14 +1,6 @@
 import { EDSpinner } from '@admiralfeb/react-components';
-import {
-  Container,
-  Fade,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Container, Fade, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useAllies } from 'hooks/about/useAllies';
 
 const useStyles = makeStyles({
