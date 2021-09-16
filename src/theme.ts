@@ -1,6 +1,6 @@
-import { createTheme, adaptV4Theme } from '@mui/material';
+import { createTheme } from '@mui/material';
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#f07b05',
@@ -8,13 +8,13 @@ const theme = createTheme(adaptV4Theme({
     secondary: {
       main: '#00B3F7',
     },
-    type: 'dark',
+    mode: 'dark',
   },
-}));
+});
 
-theme.overrides = {
+theme.components = {
   MuiCssBaseline: {
-    '@global': {
+    styleOverrides: {
       body: {
         height: '100vh',
         backgroundImage: `url("/img/usc-raz-2021-01.png")`,
@@ -25,13 +25,17 @@ theme.overrides = {
     },
   },
   MuiLink: {
-    root: {
-      color: theme.palette.primary.main,
+    styleOverrides: {
+      root: {
+        color: theme.palette.primary.main,
+      },
     },
   },
   MuiButton: {
-    root: {
-      textTransform: 'initial',
+    styleOverrides: {
+      root: {
+        textTransform: 'initial',
+      },
     },
   },
 };
