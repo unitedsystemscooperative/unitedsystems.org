@@ -1,4 +1,5 @@
 import { Container, Fade, Paper, Typography } from '@mui/material';
+import { styled } from '@material-ui/core/styles';
 import makeStyles from '@mui/styles/makeStyles';
 // import { useDownloadLink } from 'hooks/useDownloadLink';
 import {
@@ -9,16 +10,36 @@ import {
   // videoPosterID,
 } from 'data/home';
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  header: {
+const PREFIX = 'Home';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  header: `${PREFIX}-header`,
+  paper: `${PREFIX}-paper`,
+  motto: `${PREFIX}-motto`,
+  latin: `${PREFIX}-latin`,
+  subtitle: `${PREFIX}-subtitle`,
+  video: `${PREFIX}-video`,
+  lore: `${PREFIX}-lore`
+};
+
+const StyledFade = styled(Fade)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {},
+
+  [`& .${classes.header}`]: {
     textAlign: 'center',
   },
-  paper: {
+
+  [`& .${classes.paper}`]: {
     textAlign: 'center',
     padding: theme.spacing(1),
   },
-  motto: {
+
+  [`& .${classes.motto}`]: {
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
@@ -31,32 +52,36 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  latin: {
+
+  [`& .${classes.latin}`]: {
     fontFamily: 'Cinzel, serif',
     fontSize: 32,
     [theme.breakpoints.down('md')]: {
       fontSize: 24,
     },
   },
-  subtitle: {
+
+  [`& .${classes.subtitle}`]: {
     flex: '0 0',
   },
-  video: {
+
+  [`& .${classes.video}`]: {
     width: '100%',
     padding: 0,
     objectFit: 'scale-down',
     maxHeight: 700,
   },
-  lore: {
+
+  [`& .${classes.lore}`]: {
     marginBottom: theme.spacing(1),
-  },
+  }
 }));
 
 export const Home = () => {
-  const classes = useStyles();
+
   // const { getDownloadLink } = useDownloadLink();
   return (
-    <Fade in={true}>
+    <StyledFade in={true}>
       <Container maxWidth="lg">
         <Typography component="h1" variant="h3" className={classes.header}>
           United Systems Cooperative
@@ -83,6 +108,6 @@ export const Home = () => {
           <img className={classes.video} src="/uscLogo.png" />
         </Paper>
       </Container>
-    </Fade>
+    </StyledFade>
   );
 };
