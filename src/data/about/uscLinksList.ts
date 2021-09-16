@@ -1,6 +1,6 @@
 import { IInfoButton } from 'models/information/infoButtonModel';
 import { getLinks } from 'hooks/useLinks';
-const { inaraSquadLink, discordLink, patreonLink } = getLinks();
+const { inaraSquadLink, discordLink, patreonLink, youtube } = getLinks();
 export const uscLinksList: IInfoButton[] = [
   {
     title: 'Rules',
@@ -63,6 +63,13 @@ export const uscLinksList: IInfoButton[] = [
     caption: '',
     local: false,
     link: patreonLink,
+    beginner: false,
+  },
+  {
+    title: 'YouTube',
+    caption: '',
+    local: false,
+    link: youtube,
     beginner: false,
   },
 ];
