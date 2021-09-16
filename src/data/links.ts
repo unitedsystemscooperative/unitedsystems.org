@@ -5,3 +5,6 @@ export const BlueprintLink = 'http://a.teall.info/edsa/';
 export const InaraCommodityLink = 'https://inara.cz/galaxy-commodity/';
 export const MerchStore =
   'https://www.redbubble.com/people/UnitedSystemsCo/explore?asc=u&page=1&sortOrder=recent';
+
+export const YouTubeLink =
+  'https://www.youtube.com/channel/UCw3fQfM8xSHEtEO41rnWeNw';
