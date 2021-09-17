@@ -1,86 +1,68 @@
-import { Container, Fade, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-// import { useDownloadLink } from 'hooks/useDownloadLink';
 import {
-  lore,
-  latin,
-  latinTranslation,
-  // videoID,
-  // videoPosterID,
-} from 'data/home';
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-  },
-  motto: {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    border: '1px solid white',
-    borderRadius: 10,
-    width: 350,
-    margin: 'auto',
-    marginBottom: 10,
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
-  },
-  latin: {
-    fontFamily: 'Cinzel, serif',
-    fontSize: 32,
-    [theme.breakpoints.down('md')]: {
-      fontSize: 24,
-    },
-  },
-  subtitle: {
-    flex: '0 0',
-  },
-  video: {
-    width: '100%',
-    padding: 0,
-    objectFit: 'scale-down',
-    maxHeight: 700,
-  },
-  lore: {
-    marginBottom: theme.spacing(1),
-  },
-}));
+  Box,
+  Container,
+  Fade,
+  Paper,
+  Typography,
+  useTheme,
+} from '@mui/material';
+// import { useDownloadLink } from 'hooks/useDownloadLink';
+import { latin, latinTranslation, lore } from 'data/home';
+import React from 'react';
 
 export const Home = () => {
-  const classes = useStyles();
+  const theme = useTheme();
   // const { getDownloadLink } = useDownloadLink();
   return (
     <Fade in={true}>
       <Container maxWidth="lg">
-        <Typography component="h1" variant="h3" className={classes.header}>
+        <Typography component="h1" variant="h3" sx={{ textAlign: 'center' }}>
           United Systems Cooperative
         </Typography>
-        <Paper className={classes.paper}>
-          <Typography className={classes.lore}>{lore}</Typography>
-          <div className={classes.motto}>
-            <Typography className={classes.latin} variant="h4">
+        <Paper sx={{ textAlign: 'center', padding: theme.spacing(1) }}>
+          <Typography sx={{ marginBottom: theme.spacing(1) }}>
+            {lore}
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: 'center',
+              border: '1px solid white',
+              borderRadius: 3,
+              width: 350,
+              margin: 'auto',
+              [theme.breakpoints.down('md')]: {
+                width: '100%',
+              },
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: 'Cinzel, serif',
+                fontSize: 32,
+                [theme.breakpoints.down('md')]: {
+                  fontSize: 24,
+                },
+              }}
+              variant="h4"
+            >
               {latin}
             </Typography>
-            <Typography variant="subtitle2" className={classes.subtitle}>
+            <Typography variant="subtitle2" sx={{ flex: '0 0' }}>
               {latinTranslation}
             </Typography>
-          </div>
-          {/* <video
-            controls
-            className={classes.video}
-            poster={getDownloadLink(videoPosterID)}
-            controlsList="nodownload"
-          >
-            <source src={getDownloadLink(videoID)} type="video/mp4" />
-            "Your browser does not support this video"
-          </video> */}
-          <img className={classes.video} src="/uscLogo.png" />
+          </Box>
+          <Box
+            component="img"
+            sx={{
+              width: '100%',
+              padding: 0,
+              objectFit: 'scale-down',
+              maxHeight: 700,
+            }}
+            src="/uscLogo.png"
+          />
         </Paper>
       </Container>
     </Fade>
