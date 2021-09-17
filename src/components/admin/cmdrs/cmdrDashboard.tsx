@@ -121,7 +121,6 @@ const DashboardTitleBar = (props: TitleBarProps) => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        getContentAnchorEl={null}
       >
         {Object.keys(CmdrView).map((option) => (
           <MenuItem

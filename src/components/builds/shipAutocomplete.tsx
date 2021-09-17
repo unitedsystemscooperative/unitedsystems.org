@@ -27,7 +27,7 @@ export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
       options={genericSortArray(ships, { orderBy: 'name', order: 'asc' })}
       autoHighlight
       getOptionLabel={(option) => option.name}
-      renderOption={(option) => (
+      renderOption={(_, option) => (
         <>
           <span>{option.name}</span>
         </>

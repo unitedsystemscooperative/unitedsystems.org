@@ -85,7 +85,8 @@ export const DashboardToolbar = (props: ToolbarProps) => {
         <IconButton
           className={classes.iconButton}
           onClick={() => setSearchValue('')}
-          size="large">
+          size="large"
+        >
           <Clear />
         </IconButton>
       </Paper>
@@ -101,7 +102,6 @@ export const DashboardToolbar = (props: ToolbarProps) => {
               vertical: 'top',
               horizontal: 'center',
             },
-            getContentAnchorEl: null,
           }}
         >
           {viewOptions.map((option) => (
