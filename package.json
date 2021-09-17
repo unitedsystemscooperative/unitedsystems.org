@@ -3,7 +3,6 @@
   "version": "2021.8.1",
   "private": true,
   "scripts": {
-    "postinstall": "patch-package",
     "dev": "next dev",
     "dev:debug": "node --inspect ./node_modules/next/dist/bin/next dev",
     "build": "next build",
@@ -84,7 +83,6 @@
     "jest-circus": "^26.6.3",
     "jest-watch-typeahead": "^0.6.1",
     "next-page-tester": "^0.17.0",
-    "patch-package": "^6.2.2",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "ts-node": "^9.1.1",
