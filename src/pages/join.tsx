@@ -1,9 +1,12 @@
-import { Button, Collapse, Container, Fade, Paper, Typography } from '@mui/material';
+import {
+  Button,
+  Collapse,
+  Container,
+  Fade,
+  Paper,
+  Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { useAddJoinInfo } from 'hooks/join/useJoinInfo';
-import { IJoinInfo } from 'models/join/joinInfo';
-import { useSnackbar } from 'notistack';
-import { useState } from 'react';
 import {
   JoinFormAmbassador,
   JoinFormGuest,
@@ -11,7 +14,11 @@ import {
   JoinNextSteps,
 } from 'components/join';
 import { PrimaryLayout } from 'components/layouts/primary';
+import { useAddJoinInfo } from 'hooks/join/useJoinInfo';
+import { IJoinInfo } from 'models/join/joinInfo';
 import Head from 'next/head';
+import { useSnackbar } from 'notistack';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -32,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const JoinNew = () => {
+export const JoinRequestPage = () => {
   const classes = useStyles();
   const [form, setForm] = useState<number | null>();
   const addJoiner = useAddJoinInfo();
@@ -121,4 +128,4 @@ export const JoinNew = () => {
   );
 };
 
-export default JoinNew;
+export default JoinRequestPage;
