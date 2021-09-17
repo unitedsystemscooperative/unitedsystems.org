@@ -1,36 +1,19 @@
-import { Avatar, Button, Container, Paper, TextField } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { LockOutlined } from '@mui/icons-material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Paper,
+  TextField,
+} from '@mui/material';
 import { PrimaryLayout } from 'components/layouts';
-import { useForm } from 'react-hook-form';
 import { redirects } from 'data/redirects';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    textAlign: 'center',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/client';
+import { useForm } from 'react-hook-form';
 
 const SignIn = () => {
-  const classes = useStyles();
   const { register, handleSubmit } = useForm<{ email: string }>();
 
   const onSubmit = async (data: { email: string }) => {
@@ -42,42 +25,50 @@ const SignIn = () => {
   return (
     <PrimaryLayout>
       <Container maxWidth="xs">
-        <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
+        <Paper
+          sx={{
+            marginTop: 8,
+            padding: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ margin: 1, backgroundColor: 'secondary.main' }}>
             <LockOutlined />
           </Avatar>
-          {session ? (
-            <></>
-          ) : (
-            <>
-              <form
-                className={classes.form}
-                noValidate
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  inputRef={register({ required: true })}
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Sign In
-                </Button>
-              </form>
-            </>
-          )}
+          <Box
+            component="form"
+            sx={{ marginTop: 1, textAlign: 'center' }}
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              inputRef={register({ required: true })}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{
+                marginTop: 3,
+                marginBottom: 2,
+                marginRight: 0,
+                marginLeft: 0,
+              }}
+            >
+              Sign In
+            </Button>
+          </Box>
         </Paper>
       </Container>
     </PrimaryLayout>
