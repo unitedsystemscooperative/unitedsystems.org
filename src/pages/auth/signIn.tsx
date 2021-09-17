@@ -2,11 +2,7 @@ import { Avatar, Button, Container, Paper, TextField } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { LockOutlined } from '@mui/icons-material';
 import { PrimaryLayout } from 'components/layouts';
-import { signIn, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import qs from 'query-string';
 import { redirects } from 'data/redirects';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,23 +26,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+import { GetServerSideProps } from 'next';
+import { getSession, signIn } from 'next-auth/client';
 
 const SignIn = () => {
   const classes = useStyles();
-  const [session] = useSession();
-  const router = useRouter();
   const { register, handleSubmit } = useForm<{ email: string }>();
-
-  useEffect(() => {
-    if (session) {
-      const params = qs.parseUrl(router.asPath);
-      const redirectKey = params.query.redirect as string;
-      const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
-      if (redirectPath) {
-        router.push(redirectPath);
-      }
-    }
-  }, [router, session]);
 
   const onSubmit = async (data: { email: string }) => {
     const { email } = data;
@@ -100,3 +85,21 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const redirectKey = context.query.redirect as string;
+  const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
+
+  if (redirectPath) {
+    return {
+      redirect: { destination: redirectPath, permanent: false },
+    };
+  }
+
+  const session = await getSession(context);
+  if (session) {
+    return { redirect: { destination: '/home', permanent: false } };
+  }
+
+  return { props: {} };
+};
