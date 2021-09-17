@@ -1,99 +1,86 @@
-import { Button } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { AppBar, Button, Toolbar, useTheme } from '@mui/material';
+import { Box, SxProps } from '@mui/system';
 import { useAdmin } from 'hooks/useAdmin';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
 import Link from './navLink';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    display: 'flex',
-    padding: theme.spacing(1),
-    backgroundColor: '#424242',
-    height: 'auto',
-    minHeight: 'auto',
-    justifyContent: 'initial',
-    zIndex: 1500,
-  },
-  navLink: {
+export const NavbarFull = (props: { navItems: INavItem[] }) => {
+  const [session] = useSession();
+  const isCommand = useAdmin();
+  const theme = useTheme();
+  const { navItems } = props;
+
+  const sxNavLink: SxProps = {
     backgroundColor: 'transparent',
     height: 'auto',
     color: '#f2f2f2',
     textAlign: 'center',
     textDecoration: 'none',
-    // width: theme.spacing(15),
     marginRight: theme.spacing(1),
     fontSize: 16,
     '&.active': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: 'primary.main',
       color: 'white',
     },
-  },
-  navLinkJoin: {
+  };
+
+  const sxJoinLink: SxProps = {
     backgroundColor: 'transparent',
-    border: `${theme.palette.secondary.main} 0.1em solid`,
+    borderColor: 'secondary.main',
+    borderWidth: 1,
+    borderStyle: 'solid',
     color: 'white',
     fontSize: 16,
     '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: 'secondary.main',
     },
     width: theme.spacing(15),
     '&.active': {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: 'secondary.main',
     },
-  },
-  filler: {
-    flex: '1 0',
-  },
-}));
-
-export const NavbarFull = (props: { navItems: INavItem[] }) => {
-  const classes = useStyles();
-  const [session] = useSession();
-  const isCommand = useAdmin();
-  const { navItems } = props;
+  };
 
   return (
-    <nav className={classes.root}>
-      {navItems.map((x) => {
-        return (
+    <AppBar position="static" color="inherit">
+      <Toolbar>
+        {navItems.map((x) => (
           <Link key={x.to} href={x.to}>
-            <Button key={x.to} href={x.to} className={classes.navLink}>
+            <Button key={x.to} href={x.to} sx={sxNavLink}>
               {x.text}
             </Button>
           </Link>
-        );
-      })}
-      <div className={classes.filler} />
-      {isCommand && (
-        <Link href="/admin">
-          <Button href="/admin" className={classes.navLink}>
-            Admin
-          </Button>
-        </Link>
-      )}
-      {session ? (
-        <Button
-          onClick={() => signout()}
-          color="secondary"
-          className={classes.navLinkJoin}
-          variant="contained"
-        >
-          Sign Out
-        </Button>
-      ) : (
-        <Link href="/join">
+        ))}
+        <Box sx={{ flex: '1 0' }} />
+        {isCommand && (
+          <Link href="/admin">
+            <Button href="/admin" sx={sxNavLink}>
+              Admin
+            </Button>
+          </Link>
+        )}
+        {session ? (
           <Button
-            href="/join"
+            onClick={() => signout()}
             color="secondary"
-            className={classes.navLinkJoin}
+            sx={sxJoinLink}
             variant="contained"
           >
-            Join
+            Sign Out
           </Button>
-        </Link>
-      )}
-    </nav>
+        ) : (
+          <Link href="/join">
+            <Button
+              href="/join"
+              color="secondary"
+              sx={sxJoinLink}
+              variant="contained"
+            >
+              Join
+            </Button>
+          </Link>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };

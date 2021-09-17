@@ -1,16 +1,15 @@
-import { Table, TableContainer, Paper, TableHead, TableCell, TableRow, TableBody } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import React from 'react';
 import { CarrierTableRow } from './carrierTableRow';
-
-const useStyles = makeStyles({
-  table: {
-    maxWidth: 600,
-    textAlign: 'center',
-    margin: 'auto',
-  },
-});
 
 /**
  * Displays USC Carriers
@@ -19,11 +18,13 @@ const useStyles = makeStyles({
 export const USCCarriers = (props: {
   carriers: IFleetCarrier[] | undefined;
 }) => {
-  const classes = useStyles();
   const { carriers } = props;
 
   return (
-    <TableContainer component={Paper} className={classes.table}>
+    <TableContainer
+      component={Paper}
+      sx={{ textAlign: 'center', margin: 'auto' }}
+    >
       <Table>
         <TableHead>
           <TableRow>

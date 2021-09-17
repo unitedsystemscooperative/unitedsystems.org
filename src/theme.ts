@@ -10,6 +10,7 @@ const theme = createTheme({
     },
     mode: 'dark',
   },
+  spacing: 8,
 });
 
 theme.components = {
@@ -25,6 +26,9 @@ theme.components = {
     },
   },
   MuiLink: {
+    defaultProps: {
+      underline: 'hover',
+    },
     styleOverrides: {
       root: {
         color: theme.palette.primary.main,

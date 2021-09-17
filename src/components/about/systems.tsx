@@ -10,7 +10,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
@@ -46,18 +45,7 @@ const SystemList = ({
   );
 };
 
-const useStyles = makeStyles(() => ({
-  textCenter: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    margin: 'auto',
-    maxWidth: 450,
-  },
-}));
 export const AboutSystems = () => {
-  const classes = useStyles();
   const { loading, factionSystems, error } = useSystems();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -70,43 +58,41 @@ export const AboutSystems = () => {
   }, [error, enqueueSnackbar]);
 
   if (loading) {
-    return <EDSpinner />;
+    return (
+      <Container maxWidth="sm">
+        <EDSpinner />
+      </Container>
+    );
   }
 
   return (
     <Fade in={true}>
       <Container maxWidth="sm">
-        <Typography variant="h3" className={classes.textCenter}>
+        <Typography variant="h3" sx={{ textAlign: 'center' }}>
           Faction Information
         </Typography>
-        <Paper className={classes.paper}>
-          <List>
-            <ListItem
-              button
-              component={Link}
-              href="https://inara.cz/galaxy-minorfaction/78085/"
-              target="_blank"
-            >
-              <ListItemText primary="United Systems Cooperative - Minor Faction" />
-            </ListItem>
-            {factionSystems && (
-              <>
-                <SystemList
-                  title="Controlled Systems"
-                  systems={factionSystems.filter(
-                    (x) => x.isControlled === true
-                  )}
-                />
-                <SystemList
-                  title="Present in Systems"
-                  systems={factionSystems.filter(
-                    (x) => x.isControlled === false
-                  )}
-                />
-              </>
-            )}
-          </List>
-        </Paper>
+        <List component={Paper} sx={{ margin: 'auto' }}>
+          <ListItem
+            button
+            component={Link}
+            href="https://inara.cz/galaxy-minorfaction/78085/"
+            target="_blank"
+          >
+            <ListItemText primary="United Systems Cooperative - Minor Faction" />
+          </ListItem>
+          {factionSystems && (
+            <>
+              <SystemList
+                title="Controlled Systems"
+                systems={factionSystems.filter((x) => x.isControlled === true)}
+              />
+              <SystemList
+                title="Present in Systems"
+                systems={factionSystems.filter((x) => x.isControlled === false)}
+              />
+            </>
+          )}
+        </List>
       </Container>
     </Fade>
   );

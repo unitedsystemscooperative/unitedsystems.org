@@ -1,23 +1,14 @@
 import { Container, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { PrimaryLayout } from './primary';
-import { ReactNode } from 'react';
-import { uscLinksList } from 'data/about';
 import { AboutLinks } from 'components/about/links';
-
-const useStyles = makeStyles(() => ({
-  center: {
-    textAlign: 'center',
-  },
-}));
+import { uscLinksList } from 'data/about';
+import { ReactNode } from 'react';
+import { PrimaryLayout } from './primary';
 
 export const AboutLayout = ({ children }: { children: ReactNode }) => {
-  const classes = useStyles();
-
   return (
     <PrimaryLayout>
       <Container maxWidth="md">
-        <Typography variant="h3" className={classes.center}>
+        <Typography variant="h3" sx={{ textAlign: 'center' }}>
           About USC
         </Typography>
         <AboutLinks
