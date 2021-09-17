@@ -1,3 +1,2 @@
 export * from './home';
-export * from './footer';
-export * from './navbar';
+export * from './layouts/components/footer';
