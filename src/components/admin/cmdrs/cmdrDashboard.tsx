@@ -15,7 +15,7 @@ import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
 import { useSnackbar } from 'notistack';
-import React, { MouseEvent, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { AmbassadorDashboard } from './ambassadorDashboard';
 import { AmbassadorDialog } from './dialogs/ambassadorDialog';
 import { GuestDialog } from './dialogs/guestDialog';

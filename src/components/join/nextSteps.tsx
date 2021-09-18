@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { useLinks } from 'hooks/useLinks';
-import React from 'react';
 import LinkIcon from '@mui/icons-material/Link';
 
 const useStyles = makeStyles((theme) => ({

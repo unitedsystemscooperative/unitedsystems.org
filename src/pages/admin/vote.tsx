@@ -3,7 +3,6 @@ import { PrimaryLayout } from 'components/layouts';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
-import React from 'react';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
 

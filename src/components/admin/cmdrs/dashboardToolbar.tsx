@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Clear, Search } from '@mui/icons-material';
-import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 const useTitleBarStyles = makeStyles((theme) => ({
   root: {

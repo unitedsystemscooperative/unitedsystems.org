@@ -7,7 +7,6 @@ import {
 } from 'functions/releases/getReleases';
 import NextLink from 'next/link';
 import Head from 'next/head';
-import React from 'react';
 import { USCMarkdown } from 'components/uscmarkdown';
 
 const useStyles = makeStyles((theme) => ({

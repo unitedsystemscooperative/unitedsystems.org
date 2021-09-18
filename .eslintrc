@@ -25,8 +25,5 @@
         "import/no-anonymous-default-export": "off"
       }
     }
-  ],
-  "globals": {
-    "React": "writable"
-  }
+  ]
 }

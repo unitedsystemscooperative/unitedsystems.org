@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { useJoinInfo } from 'hooks/join/useJoinInfo';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
 import { GuestsTable } from './joinTableGuests';
 import { MembersTable } from './joinTableMembers';

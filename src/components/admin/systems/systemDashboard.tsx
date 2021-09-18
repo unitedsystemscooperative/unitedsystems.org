@@ -19,7 +19,7 @@ import { Add, Delete, Edit } from '@mui/icons-material';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
 
 const useTitleBarStyles = makeStyles((theme) => ({

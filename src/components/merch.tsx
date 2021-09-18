@@ -7,7 +7,6 @@ import {
   useTheme,
 } from '@mui/material';
 import { useLinks } from 'hooks/useLinks';
-import React from 'react';
 
 export const Merch = () => {
   const links = useLinks();

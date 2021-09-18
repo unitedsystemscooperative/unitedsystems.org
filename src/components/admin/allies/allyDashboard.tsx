@@ -17,7 +17,7 @@ import { Add, Delete, Edit } from '@mui/icons-material';
 import { useAllies } from 'hooks/about/useAllies';
 import { IAlly } from 'models/about/ally';
 import { useSnackbar } from 'notistack';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AllyDialog } from './allyDialog';
 
 const useTitleBarStyles = makeStyles((theme) => ({

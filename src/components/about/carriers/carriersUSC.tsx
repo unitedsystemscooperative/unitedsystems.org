@@ -8,7 +8,6 @@ import {
   TableRow,
 } from '@mui/material';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
-import React from 'react';
 import { CarrierTableRow } from './carrierTableRow';
 
 /**

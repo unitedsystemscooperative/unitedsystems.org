@@ -11,7 +11,7 @@
     "test:watch": "jest --watch",
     "lint": "next lint",
     "lint:fix": "eslint . --ext ts,tsx --fix",
-    "rm-react": "npx react-codemod update-react-imports"
+    "fix-react-default-imports": "npx react-codemod update-react-imports"
   },
   "dependencies": {
     "@admiralfeb/react-components": "^1.1.1",

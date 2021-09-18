@@ -17,7 +17,7 @@ import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
 import { Region, RegionString } from 'models/admin/regions';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({

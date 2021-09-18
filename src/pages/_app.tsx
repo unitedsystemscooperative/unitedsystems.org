@@ -11,7 +11,7 @@ import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { theme } from 'theme';
 
 function USCApp({ Component, pageProps }: AppProps) {

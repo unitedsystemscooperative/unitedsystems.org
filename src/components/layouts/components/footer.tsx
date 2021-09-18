@@ -7,7 +7,6 @@ import {
   useTheme,
 } from '@mui/material';
 import NextLink from 'next/link';
-import React from 'react';
 
 function ImgCopyright() {
   return (

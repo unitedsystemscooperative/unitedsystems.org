@@ -2,9 +2,10 @@ import { Divider, TablePagination } from '@mui/material';
 import { Order } from 'functions/sort';
 import { useCmdrSearch } from 'hooks/useCmdrSearch';
 import { IMember } from 'models/admin/cmdr';
-import React, {
+import {
   ChangeEvent,
   Dispatch,
+  MouseEvent,
   SetStateAction,
   useEffect,
   useState,
@@ -76,7 +77,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
   }, [filteredCmdrs.length]);
 
   const handleRequestSort = (
-    _: React.MouseEvent<unknown>,
+    _: MouseEvent<unknown>,
     property: keyof IMember
   ) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -93,7 +94,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
     setSelected([]);
   };
 
-  const handleClick = (_: React.MouseEvent<unknown>, id: string) => {
+  const handleClick = (_: MouseEvent<unknown>, id: string) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: string[] = [];
 
@@ -117,9 +118,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };

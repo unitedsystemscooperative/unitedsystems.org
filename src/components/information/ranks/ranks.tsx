@@ -1,6 +1,5 @@
 import { Container, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React from 'react';
 import { RankData } from 'data/information/ranks';
 
 const useStyles = makeStyles((theme) => ({

@@ -17,7 +17,7 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { useFleetCarriers } from 'hooks/about/useFleetCarriers';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useSnackbar } from 'notistack';
 import { Add, Delete, Edit } from '@mui/icons-material';

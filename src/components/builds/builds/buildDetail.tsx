@@ -15,7 +15,7 @@ import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useLinks } from 'hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { BuildDialog, BuildDialogProps } from '../dialog/buildDialog';

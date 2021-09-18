@@ -1,7 +1,6 @@
 import { Box, Container, Paper, Typography, useTheme } from '@mui/material';
 // import { useDownloadLink } from 'hooks/useDownloadLink';
 import { latin, latinTranslation, lore } from 'data/home';
-import React from 'react';
 
 export const Home = () => {
   const theme = useTheme();

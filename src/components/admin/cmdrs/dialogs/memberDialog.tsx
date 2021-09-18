@@ -20,7 +20,7 @@ import { Platform } from 'models/admin/platforms';
 import { Rank, RankString } from 'models/admin/ranks';
 import { Referral, ReferralString } from 'models/admin/referrals';
 import { Region, RegionString } from 'models/admin/regions';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({

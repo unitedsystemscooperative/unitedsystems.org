@@ -14,7 +14,7 @@ import { RestoreFromTrash } from '@mui/icons-material';
 import Link from '@mui/icons-material/Link';
 import { genericSortArray, Order } from 'functions/sort';
 import { ICMDR } from 'models/admin/cmdr';
-import React, {
+import {
   ChangeEvent,
   Dispatch,
   MouseEvent,
@@ -193,8 +193,8 @@ export interface CmdrDefaultViewProps<T extends ICMDR> {
   order: Order;
   orderBy: keyof T;
   handleSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleRequestSort: (_: React.MouseEvent<unknown>, property: keyof T) => void;
-  handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
+  handleRequestSort: (_: MouseEvent<unknown>, property: keyof T) => void;
+  handleClick: (_: MouseEvent<unknown>, id: string) => void;
   headCells: HeadCell<T>[];
   data: (cmdr: T) => ViewData[];
   restoreCmdr?: (cmdr: T) => Promise<void>;

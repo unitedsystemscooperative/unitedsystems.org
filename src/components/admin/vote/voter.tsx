@@ -3,9 +3,9 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Check, Clear, Remove } from '@mui/icons-material';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { IVoter } from 'models/admin/voter';
-import React, { useState, MouseEvent } from 'react';
+import { useState, MouseEvent } from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     alignItems: 'center',

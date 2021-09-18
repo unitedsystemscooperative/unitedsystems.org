@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { IAlly } from 'models/about/ally';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,3 +1,4 @@
+import { FileCopy } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -9,23 +10,20 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { FileCopy } from '@mui/icons-material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { IJoinInfo } from 'models/join/joinInfo';
-import React from 'react';
+import { ChangeEvent, useState } from 'react';
 import { buildPlatforms } from './buildPlatforms';
 
 export const GuestsTable = ({ guests }: { guests: IJoinInfo[] }) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
