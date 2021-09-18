@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-// Can't get this Image to format correctly when using next/image.
 import { Container, Typography } from '@mui/material';
 import { PrimaryLayout } from 'components/layouts/primary';
 import { infoGraphics } from 'data/information/infographicList';
+import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 
 /**
  * Displays an infographic
@@ -11,9 +11,7 @@ import Head from 'next/head';
  */
 const Infographic = ({
   infographic,
-}: {
-  infographic: { id: string; title: string; img: string };
-}) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
@@ -25,7 +23,12 @@ const Infographic = ({
           {infographic ? (
             <>
               <Typography variant="h3">{infographic.title}</Typography>
-              <img src={infographic.img} alt={infographic.title} />
+              <Image
+                src={infographic.img}
+                alt={infographic.title}
+                height={infographic.height}
+                width={infographic.width}
+              />
             </>
           ) : (
             <Typography>Image not found</Typography>

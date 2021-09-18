@@ -1,4 +1,6 @@
 import DateAdapter from '@date-io/moment';
+import createCache from '@emotion/cache';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { MDXProvider } from '@mdx-js/react';
 import {
@@ -14,7 +16,15 @@ import { SnackbarProvider } from 'notistack';
 import { useEffect } from 'react';
 import { theme } from 'theme';
 
-function USCApp({ Component, pageProps }: AppProps) {
+const USCEmotionCache = createCache({ key: 'css' });
+
+interface USCAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function USCApp(props: USCAppProps) {
+  const { Component, emotionCache = USCEmotionCache, pageProps } = props;
+
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -22,7 +32,7 @@ function USCApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>United Systems Cooperative</title>
         <meta
@@ -51,8 +61,6 @@ function USCApp({ Component, pageProps }: AppProps) {
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
       </Provider>
-    </>
+    </CacheProvider>
   );
 }
-
-export default USCApp;
