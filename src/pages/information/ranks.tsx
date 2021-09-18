@@ -1,6 +1,6 @@
+import { Ranks } from 'components/information/ranks/ranks';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
-import { Ranks } from 'components/information/ranks/ranks';
 
 const RanksPage = () => {
   return (

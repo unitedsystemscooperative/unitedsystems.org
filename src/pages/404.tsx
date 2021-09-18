@@ -1,24 +1,11 @@
-import { Container, Link, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Box, Container, Link, Paper, Typography } from '@mui/material';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import errorImg from 'public/img/404.jpg';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    marginTop: theme.spacing(1),
-  },
-  img: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-}));
-
 export const NotFound = () => {
-  const classes = useStyles();
   return (
     <>
       <Head>
@@ -29,7 +16,7 @@ export const NotFound = () => {
         />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth="lg" className={classes.root}>
+        <Container maxWidth="lg" sx={{ textAlign: 'center', marginTop: 1 }}>
           <Paper>
             <Typography variant="h3">Mistakes were made</Typography>
             <Typography variant="subtitle1">
@@ -39,7 +26,12 @@ export const NotFound = () => {
               </NextLink>
               .
             </Typography>
-            <Image className={classes.img} alt="404 Error" src={errorImg} />
+            <Box
+              component={Image}
+              sx={{ maxWidth: '100%', height: 'auto' }}
+              alt="404 Error"
+              src={errorImg}
+            />
           </Paper>
         </Container>
       </PrimaryLayout>

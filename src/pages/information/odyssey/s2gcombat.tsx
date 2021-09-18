@@ -1,6 +1,6 @@
+import { OdysseyS2GCombat } from 'components/information/odyssey/s2gcombat';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
-import { OdysseyS2GCombat } from 'components/information/odyssey/s2gcombat';
 
 const OdyCombat = () => {
   return (

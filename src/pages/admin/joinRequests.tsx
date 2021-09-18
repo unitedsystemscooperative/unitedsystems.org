@@ -6,7 +6,7 @@ import { connectToDatabase } from 'utils/mongo';
 import { getIsHC } from 'utils/get-isHC';
 import { JoinDashboard } from 'components/admin/join/joinDashboard';
 
-export const JoinList = () => {
+export const JoinRequestsPage = () => {
   return (
     <>
       <Head>
@@ -20,7 +20,7 @@ export const JoinList = () => {
   );
 };
 
-export default JoinList;
+export default JoinRequestsPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);

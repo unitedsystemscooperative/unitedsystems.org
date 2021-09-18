@@ -1,6 +1,6 @@
+import { OdysseyDeath } from 'components/information/odyssey/death';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
-import { OdysseyDeath } from 'components/information/odyssey/death';
 
 const OdyDeath = () => {
   return (

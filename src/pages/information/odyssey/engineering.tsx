@@ -1,6 +1,6 @@
+import { OdysseyEngineering } from 'components/information/odyssey/engineering';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
-import { OdysseyEngineering } from 'components/information/odyssey/engineering';
 
 const OdyEng = () => {
   return (

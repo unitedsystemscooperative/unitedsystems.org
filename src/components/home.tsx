@@ -4,14 +4,13 @@ import { latin, latinTranslation, lore } from 'data/home';
 
 export const Home = () => {
   const theme = useTheme();
-  // const { getDownloadLink } = useDownloadLink();
   return (
     <Container maxWidth="lg">
       <Typography component="h1" variant="h3" sx={{ textAlign: 'center' }}>
         United Systems Cooperative
       </Typography>
-      <Paper sx={{ textAlign: 'center', padding: theme.spacing(1) }}>
-        <Typography sx={{ marginBottom: theme.spacing(1) }}>{lore}</Typography>
+      <Paper sx={{ textAlign: 'center', padding: 1 }}>
+        <Typography sx={{ marginBottom: 1 }}>{lore}</Typography>
         <Box
           sx={{
             display: 'flex',

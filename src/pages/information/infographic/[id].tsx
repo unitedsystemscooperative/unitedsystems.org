@@ -1,14 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
+// Can't get this Image to format correctly when using next/image.
 import { Container, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { PrimaryLayout } from 'components/layouts/primary';
 import { infoGraphics } from 'data/information/infographicList';
 import Head from 'next/head';
-
-const useStyles = makeStyles({
-  root: {
-    textAlign: 'center',
-  },
-});
 
 /**
  * Displays an infographic
@@ -19,18 +14,17 @@ const Infographic = ({
 }: {
   infographic: { id: string; title: string; img: string };
 }) => {
-  const classes = useStyles();
   return (
     <>
       <Head>
         <title>USC Infographic</title>
-        <meta name='description' content='Infographic' />
+        <meta name="description" content="Infographic" />
       </Head>
       <PrimaryLayout>
-        <Container className={classes.root}>
+        <Container sx={{ textAlign: 'center' }} maxWidth="lg">
           {infographic ? (
             <>
-              <Typography variant='h3'>{infographic.title}</Typography>
+              <Typography variant="h3">{infographic.title}</Typography>
               <img src={infographic.img} alt={infographic.title} />
             </>
           ) : (

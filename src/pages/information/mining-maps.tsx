@@ -1,3 +1,4 @@
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
   Button,
   Container,
@@ -12,23 +13,14 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { useMiningMaps } from 'hooks/information/useMiningMaps';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import { copytoClipboard } from 'functions/copytoClipboard';
-import { useLinks } from 'hooks/useLinks';
 import { PrimaryLayout } from 'components/layouts/primary';
+import { copytoClipboard } from 'functions/copytoClipboard';
+import { useMiningMaps } from 'hooks/information/useMiningMaps';
+import { useLinks } from 'hooks/useLinks';
 import Head from 'next/head';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    textAlign: 'center',
-  },
-}));
 
 const MiningMap = () => {
   const maps = useMiningMaps();
-  const classes = useStyles();
   const { inaraCommodity } = useLinks();
 
   return (
@@ -38,7 +30,7 @@ const MiningMap = () => {
         <meta name="description" content="Compiled Mining Maps" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth="md" className={classes.root}>
+        <Container maxWidth="md" sx={{ textAlign: 'center' }}>
           <Typography variant="h3">Mining Maps</Typography>
           <Typography variant="subtitle1">Compiled by Luisqa</Typography>
           <TableContainer component={Paper}>

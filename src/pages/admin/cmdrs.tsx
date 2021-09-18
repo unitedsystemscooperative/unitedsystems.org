@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
 
-const UserManagementPage = () => {
+const CmdrManagementPage = () => {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const UserManagementPage = () => {
   );
 };
 
-export default UserManagementPage;
+export default CmdrManagementPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);

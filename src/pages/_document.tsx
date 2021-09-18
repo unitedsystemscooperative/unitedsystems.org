@@ -12,6 +12,10 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/uscLogo.png" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

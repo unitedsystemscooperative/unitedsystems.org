@@ -1,6 +1,6 @@
 import { PrimaryLayout } from 'components/layouts/primary';
-import Head from 'next/head';
 import { Merch } from 'components/merch';
+import Head from 'next/head';
 
 export default function MerchLandingPage() {
   return (

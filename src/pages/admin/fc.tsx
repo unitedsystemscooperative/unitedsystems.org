@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase } from 'utils/mongo';
 
-const SystemManagementPage = () => {
+const FleetCarrierManagementPage = () => {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const SystemManagementPage = () => {
   );
 };
 
-export default SystemManagementPage;
+export default FleetCarrierManagementPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);

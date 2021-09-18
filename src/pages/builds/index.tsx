@@ -1,6 +1,6 @@
+import { BuildSystem } from 'components/builds';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
-import { BuildSystem } from 'components/builds';
 
 const BuildPage = () => {
   return (

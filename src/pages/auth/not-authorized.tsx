@@ -1,22 +1,11 @@
-import { Container, Link, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Box, Container, Link, Paper, Typography } from '@mui/material';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
+import Image from 'next/image';
 import NextLink from 'next/link';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    marginTop: theme.spacing(1),
-  },
-  img: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-}));
+import notFoundImg from 'public/img/404.jpg';
 
 export const NotFound = () => {
-  const classes = useStyles();
   return (
     <>
       <Head>
@@ -27,7 +16,7 @@ export const NotFound = () => {
         />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth="lg" className={classes.root}>
+        <Container maxWidth="lg" sx={{ textAlign: 'center', marginTop: 1 }}>
           <Paper>
             <Typography variant="h3">Not Authorized</Typography>
             <Typography variant="subtitle1">
@@ -38,7 +27,12 @@ export const NotFound = () => {
               </NextLink>
               .
             </Typography>
-            <img className={classes.img} alt="404 Error" src="/img/404.jpg" />
+            <Box
+              sx={{ maxWidth: '100%', height: 'auto' }}
+              component={Image}
+              alt="404 Error"
+              src={notFoundImg}
+            />
           </Paper>
         </Container>
       </PrimaryLayout>

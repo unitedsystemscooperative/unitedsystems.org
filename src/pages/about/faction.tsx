@@ -2,7 +2,7 @@ import { AboutSystems } from 'components/about';
 import { AboutLayout } from 'components/layouts';
 import Head from 'next/head';
 
-const FC = () => {
+const FactionPage = () => {
   return (
     <>
       <Head>
@@ -16,4 +16,4 @@ const FC = () => {
   );
 };
 
-export default FC;
+export default FactionPage;

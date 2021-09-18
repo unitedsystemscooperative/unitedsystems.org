@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Collapse,
   Container,
@@ -6,7 +7,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import {
   JoinFormAmbassador,
   JoinFormGuest,
@@ -20,27 +20,7 @@ import Head from 'next/head';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  textCenter: {
-    textAlign: 'center',
-  },
-  paper: {
-    width: 'fit-content',
-    margin: 'auto',
-    padding: theme.spacing(1),
-  },
-  joinTypes: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  form: {
-    width: '100%',
-    [theme.breakpoints.up('md')]: { width: 500 },
-  },
-}));
-
 export const JoinRequestPage = () => {
-  const classes = useStyles();
   const [form, setForm] = useState<number | null>();
   const addJoiner = useAddJoinInfo();
   const { enqueueSnackbar } = useSnackbar();
@@ -69,14 +49,20 @@ export const JoinRequestPage = () => {
         <Container maxWidth="sm">
           <Fade in={true}>
             <Container maxWidth="sm">
-              <Typography variant="h3" className={classes.textCenter}>
+              <Typography variant="h3" sx={{ textAlign: 'center' }}>
                 Join Us
               </Typography>
-              <Paper className={classes.paper}>
-                <Typography className={classes.textCenter}>
+              <Paper
+                sx={{
+                  width: 'fit-content',
+                  margin: 'auto',
+                  padding: 1,
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>
                   Welcome to USC. Please select how you'd like to join us below.
                 </Typography>
-                <div className={classes.joinTypes}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -98,7 +84,7 @@ export const JoinRequestPage = () => {
                   >
                     As an ambassador
                   </Button>
-                </div>
+                </Box>
               </Paper>
             </Container>
           </Fade>

@@ -1,22 +1,21 @@
-import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { PrimaryLayout } from 'components/layouts';
 import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';
 import Link from 'next/link';
-
-const useStyles = makeStyles(() => ({
-  center: {
-    textAlign: 'center',
-  },
-}));
 
 const ReleaseIndex = ({
   allReleases,
 }: {
   allReleases: { id: string; title: string; date: string }[];
 }) => {
-  const classes = useStyles();
   return (
     <>
       <Head>
@@ -25,7 +24,7 @@ const ReleaseIndex = ({
       </Head>
       <PrimaryLayout>
         <Container maxWidth="md">
-          <Typography variant="h4" className={classes.center}>
+          <Typography variant="h4" sx={{ textAlign: 'center' }}>
             Releases
           </Typography>
           <List component={Paper}>

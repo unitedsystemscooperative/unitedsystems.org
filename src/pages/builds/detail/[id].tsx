@@ -1,6 +1,6 @@
+import { BuildDetail } from 'components/builds/builds/buildDetail';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
-import { BuildDetail } from 'components/builds/builds/buildDetail';
 
 export const BuildDetailPage = () => {
   return (

@@ -10,20 +10,12 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { useShipReviews } from 'hooks/information/useShipReviews';
 import { PrimaryLayout } from 'components/layouts/primary';
+import { useShipReviews } from 'hooks/information/useShipReviews';
 import Head from 'next/head';
-
-const useStyles = makeStyles({
-  table: {
-    textAlign: 'center',
-  },
-});
 
 /** Displays the ship Review Table */
 const ShipReviews = () => {
-  const classes = useStyles();
   const shipReviews = useShipReviews();
   return (
     <>
@@ -32,10 +24,10 @@ const ShipReviews = () => {
         <meta name="description" content="Ship Reviews compiled by USC" />
       </Head>
       <PrimaryLayout>
-        <Container maxWidth="sm" className={classes.table}>
+        <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
           <Typography variant="h3">Ship Reviews</Typography>
           <TableContainer component={Paper}>
-            <Table className={classes.table}>
+            <Table sx={{ textAlign: 'center' }}>
               <TableHead>
                 <TableRow>
                   <TableCell>Ship</TableCell>
