@@ -1,10 +1,8 @@
-import { PrimaryLayout } from 'components/layouts/primary';
-import Head from 'next/head';
-import { getSession } from 'next-auth/client';
-import { GetServerSideProps } from 'next';
-import { connectToDatabase } from 'utils/mongo';
-import { getIsHC } from 'utils/get-isHC';
 import { JoinDashboard } from 'components/admin/join/joinDashboard';
+import { PrimaryLayout } from 'components/layouts/primary';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { runAdminAuthCheck } from 'utils/runAuthCheck';
 
 export const JoinRequestsPage = () => {
   return (
@@ -23,29 +21,5 @@ export const JoinRequestsPage = () => {
 export default JoinRequestsPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
-
-  if (session) {
-    const { db } = await connectToDatabase();
-    const isHC = await getIsHC(context.req, db);
-    if (isHC) {
-      return {
-        props: {},
-      };
-    } else {
-      return {
-        redirect: {
-          permanent: false,
-          destination: '/auth/not-authorized',
-        },
-      };
-    }
-  } else {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/auth/signIn?redirect=admin_joinList',
-      },
-    };
-  }
+  return runAdminAuthCheck(context, 'admin_joinList');
 };

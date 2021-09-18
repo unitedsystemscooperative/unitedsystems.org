@@ -39,7 +39,7 @@ const SignIn = () => {
           </Avatar>
           <Box
             component="form"
-            sx={{ marginTop: 1, textAlign: 'center' }}
+            sx={{ width: '100%', marginTop: 1, px: 1, textAlign: 'center' }}
             noValidate
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -60,10 +60,9 @@ const SignIn = () => {
               variant="contained"
               color="primary"
               sx={{
-                marginTop: 3,
-                marginBottom: 2,
-                marginRight: 0,
-                marginLeft: 0,
+                mt: 3,
+                mb: 1,
+                mx: 0,
               }}
             >
               Sign In
@@ -78,18 +77,15 @@ const SignIn = () => {
 export default SignIn;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const redirectKey = context.query.redirect as string;
-  const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
-
-  if (redirectPath) {
-    return {
-      redirect: { destination: redirectPath, permanent: false },
-    };
-  }
-
   const session = await getSession(context);
   if (session) {
-    return { redirect: { destination: '/home', permanent: false } };
+    const redirectKey = context.query.redirect as string;
+    const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
+    if (redirectPath) {
+      return {
+        redirect: { destination: redirectPath, permanent: false },
+      };
+    }
   }
 
   return { props: {} };
