@@ -1,8 +1,8 @@
-import DateAdapter from '@date-io/moment';
 import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { MDXProvider } from '@mdx-js/react';
+import DateAdapter from '@mui/lab/AdapterLuxon';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {
   CssBaseline,
   StyledEngineProvider,
@@ -48,7 +48,7 @@ export default function USCApp(props: USCAppProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <Provider session={pageProps.session}>
-        <MuiPickersUtilsProvider utils={DateAdapter}>
+        <LocalizationProvider dateAdapter={DateAdapter} locale="en-ca">
           <SnackbarProvider maxSnack={3}>
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={theme}>
@@ -59,7 +59,7 @@ export default function USCApp(props: USCAppProps) {
               </ThemeProvider>
             </StyledEngineProvider>
           </SnackbarProvider>
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
       </Provider>
     </CacheProvider>
   );

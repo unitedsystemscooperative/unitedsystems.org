@@ -1,3 +1,4 @@
+import { DatePicker } from '@mui/lab';
 import {
   Button,
   Checkbox,
@@ -14,7 +15,6 @@ import {
   TextField,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { KeyboardDatePicker } from '@material-ui/pickers';
 import { IMember } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank, RankString } from 'models/admin/ranks';
@@ -175,12 +175,13 @@ export const MemberDialog = (props: MemberDialogProps) => {
               control={control}
               defaultValue={new Date()}
               render={(field) => (
-                <KeyboardDatePicker
+                <DatePicker
                   label="Join Date"
-                  autoOk
                   disableFuture
-                  format="yyyy-MM-DD"
+                  mask="____-__-__"
                   {...field}
+                  clearable
+                  renderInput={(params) => <TextField {...params} />}
                 />
               )}
             />
@@ -190,13 +191,13 @@ export const MemberDialog = (props: MemberDialogProps) => {
               name="discordJoinDate"
               control={control}
               render={(field) => (
-                <KeyboardDatePicker
+                <DatePicker
                   label="Discord Join Date"
-                  autoOk
                   disableFuture
-                  format="yyyy-MM-DD"
+                  mask="____-__-__"
                   {...field}
                   clearable
+                  renderInput={(params) => <TextField {...params} />}
                 />
               )}
             />

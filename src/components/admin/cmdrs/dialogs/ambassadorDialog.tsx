@@ -1,3 +1,4 @@
+import { DatePicker } from '@mui/lab';
 import {
   Button,
   Dialog,
@@ -12,7 +13,6 @@ import {
   TextField,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { KeyboardDatePicker } from '@material-ui/pickers';
 import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
@@ -150,13 +150,13 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
               name="discordJoinDate"
               control={control}
               render={(field) => (
-                <KeyboardDatePicker
+                <DatePicker
                   label="Discord Join Date"
-                  autoOk
                   disableFuture
-                  format="yyyy-MM-DD"
+                  mask="____-__-__"
                   {...field}
                   clearable
+                  renderInput={(params) => <TextField {...params} />}
                 />
               )}
             />
