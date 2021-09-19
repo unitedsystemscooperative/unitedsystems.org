@@ -7,20 +7,10 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextFieldwMB1 } from 'components/_common';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
 
 export interface CarrierDialogProps {
   open: boolean;
@@ -29,7 +19,6 @@ export interface CarrierDialogProps {
 }
 
 export const CarrierDialog = (props: CarrierDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset } = useForm<IFleetCarrier>();
 
@@ -78,42 +67,37 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             name="_id"
             inputRef={register}
             disabled
-            className={classes.hide}
+            sx={{ display: 'none' }}
           />
-          <TextField
+          <TextFieldwMB1
             name="name"
             inputRef={register({ required: true })}
             fullWidth
             placeholder="Carrier Name"
-            className={classes.textField}
           />
-          <TextField
+          <TextFieldwMB1
             name="id"
             inputRef={register({ required: true })}
             fullWidth
             placeholder="Carrier ID"
-            className={classes.textField}
           />
-          <TextField
+          <TextFieldwMB1
             name="owner"
             inputRef={register({ required: true })}
             fullWidth
             placeholder="Owner"
-            className={classes.textField}
           />
-          <TextField
+          <TextFieldwMB1
             name="inaraLink"
             inputRef={register({ required: true })}
             fullWidth
             placeholder="Inara Link"
-            className={classes.textField}
           />
-          <TextField
+          <TextFieldwMB1
             name="purpose"
             inputRef={register({ required: false })}
             fullWidth
             placeholder="Purpose - Leave blank if Personal"
-            className={classes.textField}
           />
         </DialogContent>
         <DialogActions>

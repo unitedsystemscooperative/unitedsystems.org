@@ -5,7 +5,9 @@ import {
   Checkbox,
   Container,
   IconButton,
+  IconButtonProps,
   Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
@@ -25,6 +27,10 @@ import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useShipMap } from 'hooks/builds/useShipMap';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { MouseEvent, useReducer, useState } from 'react';
+
+const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+}));
 
 interface HeadCell {
   disablePadding: boolean;
@@ -188,14 +194,20 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                     <Checkbox checked={build.isBeginner} disabled />
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => onEdit(build)} size="large">
+                    <StyledIconButton
+                      onClick={() => onEdit(build)}
+                      size="large"
+                    >
                       <Edit />
-                    </IconButton>
+                    </StyledIconButton>
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => onDelete(build)} size="large">
+                    <StyledIconButton
+                      onClick={() => onDelete(build)}
+                      size="large"
+                    >
                       <Delete />
-                    </IconButton>
+                    </StyledIconButton>
                   </TableCell>
                 </TableRow>
               )

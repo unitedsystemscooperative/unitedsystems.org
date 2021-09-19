@@ -1,4 +1,3 @@
-import { DatePicker } from '@mui/lab';
 import {
   Button,
   Checkbox,
@@ -14,7 +13,11 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  BoxwMB1andFlex,
+  DatePickerwMB1,
+  TextFieldwMB1,
+} from 'components/_common';
 import { IMember } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank, RankString } from 'models/admin/ranks';
@@ -23,16 +26,6 @@ import { Region, RegionString } from 'models/admin/regions';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
-
 export interface MemberDialogProps {
   open: boolean;
   values: IMember[];
@@ -40,7 +33,6 @@ export interface MemberDialogProps {
 }
 
 export const MemberDialog = (props: MemberDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset, control } = useForm<IMember>();
 
@@ -150,286 +142,251 @@ export const MemberDialog = (props: MemberDialogProps) => {
             Please enter the CMDR information.
           </DialogContentText>
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="cmdrName"
               inputRef={register({ required: true })}
               fullWidth
               label="CMDR Name"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="discordName"
               inputRef={register({ required: true })}
               fullWidth
               label="Discord Handle - Format [name]#0000"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <Controller
-              name="joinDate"
-              control={control}
-              defaultValue={new Date()}
-              render={(field) => (
-                <DatePicker
-                  label="Join Date"
-                  disableFuture
-                  mask="____-__-__"
-                  {...field}
-                  clearable
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              )}
-            />
-          )}
-          {values?.length <= 1 && (
-            <Controller
-              name="discordJoinDate"
-              control={control}
-              render={(field) => (
-                <DatePicker
-                  label="Discord Join Date"
-                  disableFuture
-                  mask="____-__-__"
-                  {...field}
-                  clearable
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              )}
-            />
-          )}
-          <FormControl fullWidth>
-            <InputLabel>Platform</InputLabel>
-            <Controller
-              name="platform"
-              control={control}
-              as={
-                <Select label="Platform" fullWidth>
-                  <MenuItem value={Platform.PC}>PC</MenuItem>
-                  <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
-                  <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Rank</InputLabel>
-            <Controller
-              name="rank"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={Rank.FleetAdmiral}>
-                    {RankString[Rank.FleetAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.ViceAdmiral}>
-                    {RankString[Rank.ViceAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Commodore}>
-                    {RankString[Rank.Commodore]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Captain}>
-                    {RankString[Rank.Captain]}
-                  </MenuItem>
-                  <MenuItem value={Rank.LtCommander}>
-                    {RankString[Rank.LtCommander]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Lieutenant}>
-                    {RankString[Rank.Lieutenant]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Ensign}>
-                    {RankString[Rank.Ensign]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Cadet}>
-                    {RankString[Rank.Cadet]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Reserve}>
-                    {RankString[Rank.Reserve]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Promotion</InputLabel>
-            <Controller
-              name="promotion"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={-2}></MenuItem>
-                  <MenuItem value={-1}>None</MenuItem>
-                  <MenuItem value={Rank.FleetAdmiral}>
-                    {RankString[Rank.FleetAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.ViceAdmiral}>
-                    {RankString[Rank.ViceAdmiral]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Commodore}>
-                    {RankString[Rank.Commodore]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Captain}>
-                    {RankString[Rank.Captain]}
-                  </MenuItem>
-                  <MenuItem value={Rank.LtCommander}>
-                    {RankString[Rank.LtCommander]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Lieutenant}>
-                    {RankString[Rank.Lieutenant]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Ensign}>
-                    {RankString[Rank.Ensign]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Cadet}>
-                    {RankString[Rank.Cadet]}
-                  </MenuItem>
-                  <MenuItem value={Rank.Reserve}>
-                    {RankString[Rank.Reserve]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <Controller
-            name="isInInaraSquad"
-            control={control}
-            render={(field) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => field.onChange(e.target.checked)}
-                    checked={field.value}
-                  />
-                }
-                label="Is In Inara Squad?"
-                labelPlacement="start"
-              />
-            )}
-          />
-          <Controller
-            name="entersVoice"
-            control={control}
-            render={(field) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => field.onChange(e.target.checked)}
-                    checked={field.value}
-                  />
-                }
-                label="Do they enter voice?"
-                labelPlacement="start"
-              />
-            )}
-          />
-          <FormControl fullWidth>
-            <InputLabel>Region</InputLabel>
-            <Controller
-              name="region"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={Region.N_CAmerica}>
-                    {RegionString[Region.N_CAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.SAmerica}>
-                    {RegionString[Region.SAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.Europe_Africa}>
-                    {RegionString[Region.Europe_Africa]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia}>
-                    {RegionString[Region.Asia]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia_Pacific}>
-                    {RegionString[Region.Asia_Pacific]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          {values?.length <= 1 && (
-            <FormControl fullWidth>
-              <InputLabel>Reference</InputLabel>
+            <BoxwMB1andFlex>
               <Controller
-                name="ref1"
+                name="joinDate"
                 control={control}
-                as={
-                  <Select fullWidth>
-                    <MenuItem value={Referral.Discord}>
-                      {ReferralString[Referral.Discord]}
-                    </MenuItem>
-                    <MenuItem value={Referral.FB}>
-                      {ReferralString[Referral.FB]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Forums}>
-                      {ReferralString[Referral.Forums]}
-                    </MenuItem>
-                    <MenuItem value={Referral.InGame}>
-                      {ReferralString[Referral.InGame]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Inara}>
-                      {ReferralString[Referral.Inara]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Player}>
-                      {ReferralString[Referral.Player]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Reddit}>
-                      {ReferralString[Referral.Reddit]}
-                    </MenuItem>
-                    <MenuItem value={Referral.USI}>
-                      {ReferralString[Referral.USI]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Website}>
-                      {ReferralString[Referral.Website]}
-                    </MenuItem>
-                  </Select>
-                }
+                defaultValue={new Date()}
+                render={(field) => (
+                  <DatePickerwMB1
+                    label="Join Date"
+                    disableFuture
+                    mask="____-__-__"
+                    {...field}
+                    clearable
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                )}
               />
-            </FormControl>
+              <Controller
+                name="discordJoinDate"
+                control={control}
+                render={(field) => (
+                  <DatePickerwMB1
+                    label="Discord Join Date"
+                    disableFuture
+                    mask="____-__-__"
+                    {...field}
+                    clearable
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                )}
+              />
+            </BoxwMB1andFlex>
+          )}
+          <TextFieldwMB1
+            name="platform"
+            label="Platform"
+            select
+            inputRef={register()}
+            fullWidth
+            SelectProps={{ native: true }}
+          >
+            <option value={Platform.PC}>PC</option>
+            <option value={Platform.Xbox}>Xbox</option>
+            <option value={Platform.PS}>PlayStation</option>
+          </TextFieldwMB1>
+          <TextFieldwMB1
+            name="rank"
+            label="Rank"
+            select
+            inputRef={register()}
+            fullWidth
+          >
+            <MenuItem value={Rank.FleetAdmiral}>
+              {RankString[Rank.FleetAdmiral]}
+            </MenuItem>
+            <MenuItem value={Rank.ViceAdmiral}>
+              {RankString[Rank.ViceAdmiral]}
+            </MenuItem>
+            <MenuItem value={Rank.Commodore}>
+              {RankString[Rank.Commodore]}
+            </MenuItem>
+            <MenuItem value={Rank.Captain}>{RankString[Rank.Captain]}</MenuItem>
+            <MenuItem value={Rank.LtCommander}>
+              {RankString[Rank.LtCommander]}
+            </MenuItem>
+            <MenuItem value={Rank.Lieutenant}>
+              {RankString[Rank.Lieutenant]}
+            </MenuItem>
+            <MenuItem value={Rank.Ensign}>{RankString[Rank.Ensign]}</MenuItem>
+            <MenuItem value={Rank.Cadet}>{RankString[Rank.Cadet]}</MenuItem>
+            <MenuItem value={Rank.Reserve}>{RankString[Rank.Reserve]}</MenuItem>
+          </TextFieldwMB1>
+          <TextFieldwMB1
+            name="promotion"
+            label="Promotion to"
+            select
+            inputRef={register()}
+            fullWidth
+          >
+            <MenuItem value={-2}></MenuItem>
+            <MenuItem value={-1}>None</MenuItem>
+            <MenuItem value={Rank.FleetAdmiral}>
+              {RankString[Rank.FleetAdmiral]}
+            </MenuItem>
+            <MenuItem value={Rank.ViceAdmiral}>
+              {RankString[Rank.ViceAdmiral]}
+            </MenuItem>
+            <MenuItem value={Rank.Commodore}>
+              {RankString[Rank.Commodore]}
+            </MenuItem>
+            <MenuItem value={Rank.Captain}>{RankString[Rank.Captain]}</MenuItem>
+            <MenuItem value={Rank.LtCommander}>
+              {RankString[Rank.LtCommander]}
+            </MenuItem>
+            <MenuItem value={Rank.Lieutenant}>
+              {RankString[Rank.Lieutenant]}
+            </MenuItem>
+            <MenuItem value={Rank.Ensign}>{RankString[Rank.Ensign]}</MenuItem>
+            <MenuItem value={Rank.Cadet}>{RankString[Rank.Cadet]}</MenuItem>
+            <MenuItem value={Rank.Reserve}>{RankString[Rank.Reserve]}</MenuItem>
+          </TextFieldwMB1>
+          <BoxwMB1andFlex>
+            <Controller
+              name="isInInaraSquad"
+              control={control}
+              render={(field) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      checked={field.value}
+                    />
+                  }
+                  label="Is In Inara Squad?"
+                  labelPlacement="start"
+                />
+              )}
+            />
+            <Controller
+              name="entersVoice"
+              control={control}
+              render={(field) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      checked={field.value}
+                    />
+                  }
+                  label="Do they enter voice?"
+                  labelPlacement="start"
+                />
+              )}
+            />
+          </BoxwMB1andFlex>
+          <TextFieldwMB1
+            name="region"
+            label="Region"
+            select
+            inputRef={register()}
+            fullWidth
+          >
+            <MenuItem value={Region.N_CAmerica}>
+              {RegionString[Region.N_CAmerica]}
+            </MenuItem>
+            <MenuItem value={Region.SAmerica}>
+              {RegionString[Region.SAmerica]}
+            </MenuItem>
+            <MenuItem value={Region.Europe_Africa}>
+              {RegionString[Region.Europe_Africa]}
+            </MenuItem>
+            <MenuItem value={Region.Asia}>{RegionString[Region.Asia]}</MenuItem>
+            <MenuItem value={Region.Asia_Pacific}>
+              {RegionString[Region.Asia_Pacific]}
+            </MenuItem>
+          </TextFieldwMB1>
+
+          {values?.length <= 1 && (
+            <TextFieldwMB1
+              name="ref1"
+              label="Reference"
+              select
+              inputRef={register()}
+              fullWidth
+            >
+              <MenuItem value={Referral.Discord}>
+                {ReferralString[Referral.Discord]}
+              </MenuItem>
+              <MenuItem value={Referral.FB}>
+                {ReferralString[Referral.FB]}
+              </MenuItem>
+              <MenuItem value={Referral.Forums}>
+                {ReferralString[Referral.Forums]}
+              </MenuItem>
+              <MenuItem value={Referral.InGame}>
+                {ReferralString[Referral.InGame]}
+              </MenuItem>
+              <MenuItem value={Referral.Inara}>
+                {ReferralString[Referral.Inara]}
+              </MenuItem>
+              <MenuItem value={Referral.Player}>
+                {ReferralString[Referral.Player]}
+              </MenuItem>
+              <MenuItem value={Referral.Reddit}>
+                {ReferralString[Referral.Reddit]}
+              </MenuItem>
+              <MenuItem value={Referral.USI}>
+                {ReferralString[Referral.USI]}
+              </MenuItem>
+              <MenuItem value={Referral.Website}>
+                {ReferralString[Referral.Website]}
+              </MenuItem>
+            </TextFieldwMB1>
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="ref2"
               inputRef={register({ required: false })}
               fullWidth
               label="Referral Explanation"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="notes"
               inputRef={register({ required: false })}
               fullWidth
               label="Notes"
               multiline
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="inaraLink"
               inputRef={register({ required: false })}
               fullWidth
               label="Inara Link"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="email"
               inputRef={register({ required: false })}
               fullWidth
               label="Email"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}

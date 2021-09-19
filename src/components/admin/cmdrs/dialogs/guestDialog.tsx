@@ -12,7 +12,7 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextFieldwMB1 } from 'components/_common';
 import { IGuest } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
@@ -21,16 +21,6 @@ import { Region, RegionString } from 'models/admin/regions';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
-
 export interface GuestDialogProps {
   open: boolean;
   values: IGuest[];
@@ -38,7 +28,6 @@ export interface GuestDialogProps {
 }
 
 export const GuestDialog = (props: GuestDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset, control } = useForm<IGuest>();
 
@@ -128,22 +117,20 @@ export const GuestDialog = (props: GuestDialogProps) => {
             Please enter the CMDR information.
           </DialogContentText>
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="cmdrName"
               inputRef={register({ required: true })}
               fullWidth
               label="CMDR Name"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="discordName"
               inputRef={register({ required: true })}
               fullWidth
               label="Discord Handle - Format [name]#0000"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
@@ -244,54 +231,49 @@ export const GuestDialog = (props: GuestDialogProps) => {
             </FormControl>
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="ref2"
               inputRef={register({ required: false })}
               fullWidth
               label="Referral Explanation"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="notes"
               inputRef={register({ required: false })}
               fullWidth
               label="Notes"
               multiline
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="groupRepresented"
               inputRef={register({ required: false })}
               fullWidth
               label="Group Represented"
               multiline
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="inaraLink"
               inputRef={register({ required: false })}
               fullWidth
               label="Inara Link"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}
           {values?.length <= 1 && (
-            <TextField
+            <TextFieldwMB1
               name="email"
               inputRef={register({ required: false })}
               fullWidth
               label="Email"
-              className={classes.textField}
               disabled={values?.length > 1}
             />
           )}

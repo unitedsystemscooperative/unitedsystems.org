@@ -7,9 +7,10 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
+import { TextFieldwMB1 } from 'components/_common';
 import { IAlly } from 'models/about/ally';
 import { useEffect } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 export interface AllyDialogProps {
   open: boolean;
@@ -19,7 +20,7 @@ export interface AllyDialogProps {
 
 export const AllyDialog = (props: AllyDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset } = useForm<IAlly>();
+  const { register, handleSubmit, reset, control } = useForm<IAlly>();
 
   useEffect(() => {
     if (values) {
@@ -50,19 +51,23 @@ export const AllyDialog = (props: AllyDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>Please enter the Ally's name.</DialogContentText>
-          <TextField
-            name="_id"
-            inputRef={register}
-            disabled
-            sx={{ display: 'none' }}
-          />
-          <TextField
+          <Controller
+            control={control}
             name="name"
-            inputRef={register({ required: true })}
+            render={({ field: { value, onChange } }) => (
+              <TextFieldwMB1
+                fullWidth
+                placeholder="Ally Name"
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          {/* <TextField
+            {...register('name', { required: true })}
             fullWidth
             placeholder="Ally Name"
-            sx={{ mb: 1 }}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button variant="contained" color="primary" type="submit">

@@ -2,9 +2,10 @@ import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Container,
-  Fade,
   IconButton,
+  IconButtonProps,
   Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
@@ -12,7 +13,6 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { CarrierTableRow } from 'components/about/carriers/carrierTableRow';
 import { TitleBarwAdd } from 'components/_common';
 import { useFleetCarriers } from 'hooks/about/useFleetCarriers';
@@ -21,24 +21,16 @@ import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { CarrierDialog } from './carriersDialog';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  iconButton: {
-    marginLeft: theme.spacing(1),
-  },
+const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
+  marginLeft: theme.spacing(1),
 }));
+const defaultIconProps: Partial<IconButtonProps> = {
+  edge: 'end',
+  size: 'large',
+};
 
 /** Displays Fleet Carrier Information */
 export const CarriersDashboard = () => {
-  const classes = useStyles();
   const { fleetCarriers, isLoading } = useFleetCarriers();
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -84,62 +76,63 @@ export const CarriersDashboard = () => {
     }
   };
 
+  if (isLoading) return <EDSpinner />;
+
   return (
-    <>
-      <Fade in={isLoading}>{isLoading ? <EDSpinner /> : <div></div>}</Fade>
-      <Fade in={!isLoading}>
-        <Container component={Paper} maxWidth="md" className={classes.paper}>
-          <TitleBarwAdd
-            title="Carrier Management"
-            addTip="Add a carrier"
-            addItem={handleOpenDialog}
-          />
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Purpose</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Owner</TableCell>
-                  <TableCell>Admin</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {fleetCarriers?.map((carrier) => (
-                  <TableRow key={carrier.id}>
-                    <TableCell>{carrier.purpose}</TableCell>
-                    <CarrierTableRow carrier={carrier} />
-                    <TableCell>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleOpenDialog(carrier)}
-                        size="large"
-                      >
-                        <Edit />
-                      </IconButton>
-                      <IconButton
-                        edge="end"
-                        className={classes.iconButton}
-                        onClick={() => handleDelete(carrier)}
-                        size="large"
-                      >
-                        <Delete />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <CarrierDialog
-            values={dialogValues}
-            open={openDialog}
-            onClose={handleDialogClose}
-          />
-        </Container>
-      </Fade>
-    </>
+    <Container
+      component={Paper}
+      maxWidth="md"
+      sx={{
+        textAlign: 'center',
+        p: 1,
+        my: 1,
+      }}
+    >
+      <TitleBarwAdd
+        title="Carrier Management"
+        addTip="Add a carrier"
+        addItem={handleOpenDialog}
+      />
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Purpose</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Owner</TableCell>
+              <TableCell>Admin</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {fleetCarriers?.map((carrier) => (
+              <TableRow key={carrier.id}>
+                <TableCell>{carrier.purpose}</TableCell>
+                <CarrierTableRow carrier={carrier} />
+                <TableCell>
+                  <StyledIconButton
+                    {...defaultIconProps}
+                    onClick={() => handleOpenDialog(carrier)}
+                  >
+                    <Edit />
+                  </StyledIconButton>
+                  <StyledIconButton
+                    {...defaultIconProps}
+                    onClick={() => handleDelete(carrier)}
+                  >
+                    <Delete />
+                  </StyledIconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <CarrierDialog
+        values={dialogValues}
+        open={openDialog}
+        onClose={handleDialogClose}
+      />
+    </Container>
   );
 };
