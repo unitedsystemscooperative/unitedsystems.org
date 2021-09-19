@@ -1,6 +1,6 @@
 import { EDSpinner } from '@admiralfeb/react-components';
+import { Delete, Edit } from '@mui/icons-material';
 import {
-  Button,
   Container,
   IconButton,
   Link,
@@ -10,55 +10,14 @@ import {
   ListItemText,
   ListSubheader,
   Paper,
-  Toolbar,
-  Tooltip,
-  Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Add, Delete, Edit } from '@mui/icons-material';
+import { TitleBarwAdd } from 'components/_common';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
-
-const useTitleBarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  title: {
-    flex: '2 1 100%',
-    textAlign: 'left',
-  },
-  buttonGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'flex-end',
-      flexWrap: 'wrap',
-    },
-  },
-}));
-
-const DashboardTitleBar = ({ addSystem }: { addSystem: () => void }) => {
-  const classes = useTitleBarStyles();
-  return (
-    <Toolbar className={classes.root}>
-      <Typography variant="h4" component="div" className={classes.title}>
-        System Management
-      </Typography>
-      <Tooltip title="Add a System" arrow>
-        <Button variant="contained" color="primary" onClick={addSystem}>
-          <Add />
-        </Button>
-      </Tooltip>
-    </Toolbar>
-  );
-};
 
 const useSystemListStyles = makeStyles((theme) => ({
   iconButton: {
@@ -100,14 +59,16 @@ const SystemList = ({
               edge="end"
               className={classes.iconButton}
               onClick={() => editSystem(system)}
-              size="large">
+              size="large"
+            >
               <Edit />
             </IconButton>
             <IconButton
               edge="end"
               className={classes.iconButton}
               onClick={() => deleteSystem(system)}
-              size="large">
+              size="large"
+            >
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>
@@ -194,7 +155,11 @@ export const SystemDashboard = () => {
   return (
     <Container maxWidth="sm">
       <Paper className={classes.paper}>
-        <DashboardTitleBar addSystem={handleOpenDialog} />
+        <TitleBarwAdd
+          title="System Management"
+          addTip="Add a system"
+          addItem={handleOpenDialog}
+        />
         <List>
           <ListItem
             button

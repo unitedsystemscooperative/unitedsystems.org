@@ -1,6 +1,7 @@
 import { EDSpinner } from '@admiralfeb/react-components';
+import { Delete, Edit } from '@mui/icons-material';
 import {
-  Button,
+  Box,
   Checkbox,
   Container,
   IconButton,
@@ -12,41 +13,18 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Toolbar,
-  Tooltip,
-  Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Add, Delete, Edit } from '@mui/icons-material';
+import { visuallyHidden } from '@mui/utils';
 import { EngIcons } from 'components/builds/builds/engIcons';
 import { TagGroup } from 'components/builds/builds/tagGroup';
 import { BuildDialog } from 'components/builds/dialog/buildDialog';
 import { ConfirmDialog } from 'components/confirmDialog';
+import { TitleBarwAdd } from 'components/_common';
 import { genericSortArray, Order } from 'functions/sort';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useShipMap } from 'hooks/builds/useShipMap';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { MouseEvent, useReducer, useState } from 'react';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
-}));
 
 interface HeadCell {
   disablePadding: boolean;
@@ -106,7 +84,6 @@ const headCells: HeadCell[] = [
 ];
 
 interface TableHeadProps {
-  classes: ReturnType<typeof useStyles>;
   onRequestSort: (
     event: MouseEvent<unknown>,
     property: keyof IBuildInfov2
@@ -115,7 +92,7 @@ interface TableHeadProps {
   orderBy: string;
 }
 const BuildTableHead = (props: TableHeadProps) => {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof IBuildInfov2) => (
     event: MouseEvent<unknown>
   ) => onRequestSort(event, property);
@@ -137,9 +114,9 @@ const BuildTableHead = (props: TableHeadProps) => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
+                </Box>
               ) : null}
             </TableSortLabel>
           </TableCell>
@@ -158,11 +135,10 @@ const handleShipInfo = (shipId: string, ships: IShipInfo[]) => {
 
 interface BuildTableProps {
   builds: IBuildInfov2[];
-  classes: ReturnType<typeof useStyles>;
   onDelete: (build: IBuildInfov2) => void;
   onEdit: (build: IBuildInfov2) => void;
 }
-const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
+const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IBuildInfov2>('title');
   const ships = useShipMap();
@@ -180,7 +156,6 @@ const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
     <TableContainer component={Paper}>
       <Table size="small">
         <BuildTableHead
-          classes={classes}
           order={order}
           orderBy={orderBy}
           onRequestSort={handleRequestSort}
@@ -230,42 +205,6 @@ const BuildTable = ({ builds, classes, onDelete, onEdit }: BuildTableProps) => {
     </TableContainer>
   );
 };
-const useTitleBarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  title: {
-    flex: '2 1 100%',
-    textAlign: 'left',
-  },
-  buttonGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'flex-end',
-      flexWrap: 'wrap',
-    },
-  },
-}));
-const DashBoardTitleBar = ({ addBuild }: { addBuild: () => void }) => {
-  const classes = useTitleBarStyles();
-  return (
-    <Toolbar className={classes.root}>
-      <Typography variant="h4" component="div" className={classes.title}>
-        USC Build Management
-      </Typography>
-      <Tooltip title="Add a build" arrow>
-        <Button variant="contained" color="primary" onClick={addBuild}>
-          <Add />
-        </Button>
-      </Tooltip>
-    </Toolbar>
-  );
-};
 
 type action = {
   type: 'add' | 'delete' | 'edit' | 'confirm' | 'cancel';
@@ -273,7 +212,6 @@ type action = {
 };
 
 export const BuildDashboard = () => {
-  const classes = useStyles();
   const { loading, shipBuilds, deleteBuild } = useShipBuilds();
   const reducer = (prevState: action, action: action): action => {
     switch (action.type) {
@@ -301,9 +239,12 @@ export const BuildDashboard = () => {
 
   return (
     <Container maxWidth="xl">
-      <DashBoardTitleBar addBuild={() => dispatch({ type: 'add' })} />
+      <TitleBarwAdd
+        title="Build Management"
+        addTip="Add a build"
+        addItem={() => dispatch({ type: 'add' })}
+      />
       <BuildTable
-        classes={classes}
         builds={shipBuilds}
         onDelete={(build: IBuildInfov2) =>
           dispatch({ type: 'delete', value: build })

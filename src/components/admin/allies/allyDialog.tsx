@@ -7,20 +7,9 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { IAlly } from 'models/about/ally';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
 
 export interface AllyDialogProps {
   open: boolean;
@@ -29,7 +18,6 @@ export interface AllyDialogProps {
 }
 
 export const AllyDialog = (props: AllyDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset } = useForm<IAlly>();
 
@@ -66,14 +54,14 @@ export const AllyDialog = (props: AllyDialogProps) => {
             name="_id"
             inputRef={register}
             disabled
-            className={classes.hide}
+            sx={{ display: 'none' }}
           />
           <TextField
             name="name"
             inputRef={register({ required: true })}
             fullWidth
             placeholder="Ally Name"
-            className={classes.textField}
+            sx={{ mb: 1 }}
           />
         </DialogContent>
         <DialogActions>
