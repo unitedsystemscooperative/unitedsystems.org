@@ -1,4 +1,3 @@
-import { DatePicker } from '@mui/lab';
 import {
   Button,
   Dialog,
@@ -6,13 +5,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormControl,
-  InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
-import { TextFieldwMB1 } from 'components/_common';
+import { DatePickerwMB1, TextFieldwMB1 } from 'components/_common';
 import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
@@ -28,7 +24,9 @@ export interface AmbassadorDialogProps {
 
 export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<IAmbassador>();
+  const { register, handleSubmit, reset, control } = useForm<
+    Omit<IAmbassador, '_id'>
+  >();
 
   useEffect(() => {
     if (values) {
@@ -48,7 +46,6 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
         });
       } else {
         reset({
-          _id: undefined,
           cmdrName: undefined,
           discordName: undefined,
           discordJoinDate: null,
@@ -105,6 +102,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
       onClose(singleCmdrUpdate);
     }
   };
+  // TODO: Add errors to required and schema validation
 
   return (
     <Dialog onClose={handleClose} open={open}>
@@ -116,92 +114,76 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           </DialogContentText>
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="cmdrName"
-              inputRef={register({ required: true })}
-              fullWidth
               label="CMDR Name"
+              fullWidth
               disabled={values?.length > 1}
+              {...register('cmdrName', { required: true })}
             />
           )}
+          {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="discordName"
-              inputRef={register({ required: true })}
-              fullWidth
               label="Discord Handle - Format [name]#0000"
+              fullWidth
               disabled={values?.length > 1}
+              {...register('discordName', { required: true })}
             />
           )}
           {values?.length <= 1 && (
             <Controller
               name="discordJoinDate"
               control={control}
-              render={(field) => (
-                <DatePicker
+              render={({ field }) => (
+                <DatePickerwMB1
                   label="Discord Join Date"
                   disableFuture
                   mask="____-__-__"
                   {...field}
                   clearable
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => <TextField fullWidth {...params} />}
                 />
               )}
             />
           )}
-          <FormControl fullWidth>
-            <InputLabel>Platform</InputLabel>
-            <Controller
-              name="platform"
-              control={control}
-              as={
-                <Select label="Platform" fullWidth>
-                  <MenuItem value={Platform.PC}>PC</MenuItem>
-                  <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
-                  <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Region</InputLabel>
-            <Controller
-              name="region"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={Region.N_CAmerica}>
-                    {RegionString[Region.N_CAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.SAmerica}>
-                    {RegionString[Region.SAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.Europe_Africa}>
-                    {RegionString[Region.Europe_Africa]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia}>
-                    {RegionString[Region.Asia]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia_Pacific}>
-                    {RegionString[Region.Asia_Pacific]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
+          <Controller
+            name="platform"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextFieldwMB1 label="Platform" select fullWidth {...field}>
+                <MenuItem value={Platform.PC}>PC</MenuItem>
+                <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
+                <MenuItem value={Platform.PS}>PlayStation</MenuItem>
+              </TextFieldwMB1>
+            )}
+          />
+          <Controller
+            name="region"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextFieldwMB1 label="Region" select {...field} fullWidth>
+                <MenuItem value={Region.N_CAmerica}>
+                  {RegionString[Region.N_CAmerica]}
+                </MenuItem>
+                <MenuItem value={Region.SAmerica}>
+                  {RegionString[Region.SAmerica]}
+                </MenuItem>
+                <MenuItem value={Region.Europe_Africa}>
+                  {RegionString[Region.Europe_Africa]}
+                </MenuItem>
+                <MenuItem value={Region.Asia}>
+                  {RegionString[Region.Asia]}
+                </MenuItem>
+                <MenuItem value={Region.Asia_Pacific}>
+                  {RegionString[Region.Asia_Pacific]}
+                </MenuItem>
+              </TextFieldwMB1>
+            )}
+          />
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="notes"
-              inputRef={register({ required: false })}
-              fullWidth
-              label="Notes"
-              multiline
-              disabled={values?.length > 1}
-            />
-          )}
-          {values?.length <= 1 && (
-            <TextFieldwMB1
-              name="groupRepresented"
-              inputRef={register({ required: false })}
+              {...register('groupRepresented', { required: false })}
               fullWidth
               label="Group Represented"
               multiline
@@ -210,8 +192,16 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="inaraLink"
-              inputRef={register({ required: false })}
+              {...register('notes', { required: false })}
+              fullWidth
+              label="Notes"
+              multiline
+              disabled={values?.length > 1}
+            />
+          )}
+          {values?.length <= 1 && (
+            <TextFieldwMB1
+              {...register('inaraLink', { required: false })}
               fullWidth
               label="Inara Link"
               disabled={values?.length > 1}
@@ -219,8 +209,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="email"
-              inputRef={register({ required: false })}
+              {...register('email', { required: false })}
               fullWidth
               label="Email"
               disabled={values?.length > 1}

@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
 } from '@mui/material';
 import { TextFieldwMB1 } from 'components/_common';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
@@ -20,14 +19,24 @@ export interface CarrierDialogProps {
 
 export const CarrierDialog = (props: CarrierDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset } = useForm<IFleetCarrier>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Omit<IFleetCarrier, '_id'>>();
 
   useEffect(() => {
     if (values) {
-      reset(values);
+      reset({
+        name: values.name,
+        inaraLink: values.inaraLink,
+        owner: values.owner,
+        purpose: values.purpose,
+        id: values.id,
+      });
     } else {
       reset({
-        _id: undefined,
         name: undefined,
         inaraLink: undefined,
         owner: undefined,
@@ -63,41 +72,47 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and
             the Purpose (if Personal, just leave it blank).
           </DialogContentText>
-          <TextField
-            name="_id"
-            inputRef={register}
-            disabled
-            sx={{ display: 'none' }}
-          />
           <TextFieldwMB1
-            name="name"
-            inputRef={register({ required: true })}
-            fullWidth
             placeholder="Carrier Name"
-          />
-          <TextFieldwMB1
-            name="id"
-            inputRef={register({ required: true })}
             fullWidth
+            error={errors.name !== undefined}
+            helperText={
+              errors.name?.type === 'required' && 'This field is required.'
+            }
+            {...register('name', { required: true })}
+          />
+          {/* TODO: add schema validate for Carrier ID (VVV-VVV) */}
+          <TextFieldwMB1
             placeholder="Carrier ID"
+            fullWidth
+            error={errors.id !== undefined}
+            helperText={
+              errors.id?.type === 'required' && 'This field is required.'
+            }
+            {...register('id', { required: true })}
           />
           <TextFieldwMB1
-            name="owner"
-            inputRef={register({ required: true })}
-            fullWidth
             placeholder="Owner"
+            fullWidth
+            error={errors.owner !== undefined}
+            helperText={
+              errors.owner?.type === 'required' && 'This field is required.'
+            }
+            {...register('owner', { required: true })}
           />
           <TextFieldwMB1
-            name="inaraLink"
-            inputRef={register({ required: true })}
-            fullWidth
             placeholder="Inara Link"
+            fullWidth
+            error={errors.inaraLink !== undefined}
+            helperText={
+              errors.inaraLink?.type === 'required' && 'This field is required.'
+            }
+            {...register('inaraLink', { required: true })}
           />
           <TextFieldwMB1
-            name="purpose"
-            inputRef={register({ required: false })}
-            fullWidth
             placeholder="Purpose - Leave blank if Personal"
+            fullWidth
+            {...register('purpose', { required: false })}
           />
         </DialogContent>
         <DialogActions>

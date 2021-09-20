@@ -6,10 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormControl,
-  InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
 import { TextFieldwMB1 } from 'components/_common';
@@ -29,7 +26,9 @@ export interface GuestDialogProps {
 
 export const GuestDialog = (props: GuestDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<IGuest>();
+  const { register, handleSubmit, reset, control } = useForm<
+    Omit<IGuest, '_id'>
+  >();
 
   useEffect(() => {
     if (values) {
@@ -50,7 +49,6 @@ export const GuestDialog = (props: GuestDialogProps) => {
         });
       } else {
         reset({
-          _id: undefined,
           cmdrName: undefined,
           discordName: undefined,
           discordJoinDate: null,
@@ -107,6 +105,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
       onClose(singleCmdrUpdate);
     }
   };
+  // TODO: Add errors to required and schema validation
 
   return (
     <Dialog onClose={handleClose} open={open}>
@@ -119,16 +118,17 @@ export const GuestDialog = (props: GuestDialogProps) => {
           {values?.length <= 1 && (
             <TextFieldwMB1
               name="cmdrName"
-              inputRef={register({ required: true })}
+              {...register('cmdrName', { required: true })}
               fullWidth
               label="CMDR Name"
               disabled={values?.length > 1}
             />
           )}
+          {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
             <TextFieldwMB1
               name="discordName"
-              inputRef={register({ required: true })}
+              {...register('discordName', { required: true })}
               fullWidth
               label="Discord Handle - Format [name]#0000"
               disabled={values?.length > 1}
@@ -138,102 +138,95 @@ export const GuestDialog = (props: GuestDialogProps) => {
             <Controller
               name="discordJoinDate"
               control={control}
-              render={(field) => (
+              render={({ field }) => (
                 <DatePicker
                   label="Discord Join Date"
                   disableFuture
                   mask="____-__-__"
                   {...field}
                   clearable
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => <TextField fullWidth {...params} />}
                 />
               )}
             />
           )}
-          <FormControl fullWidth>
-            <InputLabel>Platform</InputLabel>
-            <Controller
-              name="platform"
-              control={control}
-              as={
-                <Select label="Platform" fullWidth>
-                  <MenuItem value={Platform.PC}>PC</MenuItem>
-                  <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
-                  <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Region</InputLabel>
-            <Controller
-              name="region"
-              control={control}
-              as={
-                <Select fullWidth>
-                  <MenuItem value={Region.N_CAmerica}>
-                    {RegionString[Region.N_CAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.SAmerica}>
-                    {RegionString[Region.SAmerica]}
-                  </MenuItem>
-                  <MenuItem value={Region.Europe_Africa}>
-                    {RegionString[Region.Europe_Africa]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia}>
-                    {RegionString[Region.Asia]}
-                  </MenuItem>
-                  <MenuItem value={Region.Asia_Pacific}>
-                    {RegionString[Region.Asia_Pacific]}
-                  </MenuItem>
-                </Select>
-              }
-            />
-          </FormControl>
+          <Controller
+            name="platform"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextFieldwMB1 label="Platform" select fullWidth {...field}>
+                <MenuItem value={Platform.PC}>PC</MenuItem>
+                <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
+                <MenuItem value={Platform.PS}>PlayStation</MenuItem>
+              </TextFieldwMB1>
+            )}
+          />
+          <Controller
+            name="region"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextFieldwMB1 label="Region" select {...field} fullWidth>
+                <MenuItem value={Region.N_CAmerica}>
+                  {RegionString[Region.N_CAmerica]}
+                </MenuItem>
+                <MenuItem value={Region.SAmerica}>
+                  {RegionString[Region.SAmerica]}
+                </MenuItem>
+                <MenuItem value={Region.Europe_Africa}>
+                  {RegionString[Region.Europe_Africa]}
+                </MenuItem>
+                <MenuItem value={Region.Asia}>
+                  {RegionString[Region.Asia]}
+                </MenuItem>
+                <MenuItem value={Region.Asia_Pacific}>
+                  {RegionString[Region.Asia_Pacific]}
+                </MenuItem>
+              </TextFieldwMB1>
+            )}
+          />
           {values?.length <= 1 && (
-            <FormControl fullWidth>
-              <InputLabel>Reference</InputLabel>
-              <Controller
-                name="ref1"
-                control={control}
-                as={
-                  <Select fullWidth>
-                    <MenuItem value={Referral.Discord}>
-                      {ReferralString[Referral.Discord]}
-                    </MenuItem>
-                    <MenuItem value={Referral.FB}>
-                      {ReferralString[Referral.FB]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Forums}>
-                      {ReferralString[Referral.Forums]}
-                    </MenuItem>
-                    <MenuItem value={Referral.InGame}>
-                      {ReferralString[Referral.InGame]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Inara}>
-                      {ReferralString[Referral.Inara]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Player}>
-                      {ReferralString[Referral.Player]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Reddit}>
-                      {ReferralString[Referral.Reddit]}
-                    </MenuItem>
-                    <MenuItem value={Referral.USI}>
-                      {ReferralString[Referral.USI]}
-                    </MenuItem>
-                    <MenuItem value={Referral.Website}>
-                      {ReferralString[Referral.Website]}
-                    </MenuItem>
-                  </Select>
-                }
-              />
-            </FormControl>
+            <Controller
+              name="ref1"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextFieldwMB1 label="Reference" select {...field} fullWidth>
+                  <MenuItem value={Referral.Discord}>
+                    {ReferralString[Referral.Discord]}
+                  </MenuItem>
+                  <MenuItem value={Referral.FB}>
+                    {ReferralString[Referral.FB]}
+                  </MenuItem>
+                  <MenuItem value={Referral.Forums}>
+                    {ReferralString[Referral.Forums]}
+                  </MenuItem>
+                  <MenuItem value={Referral.InGame}>
+                    {ReferralString[Referral.InGame]}
+                  </MenuItem>
+                  <MenuItem value={Referral.Inara}>
+                    {ReferralString[Referral.Inara]}
+                  </MenuItem>
+                  <MenuItem value={Referral.Player}>
+                    {ReferralString[Referral.Player]}
+                  </MenuItem>
+                  <MenuItem value={Referral.Reddit}>
+                    {ReferralString[Referral.Reddit]}
+                  </MenuItem>
+                  <MenuItem value={Referral.USI}>
+                    {ReferralString[Referral.USI]}
+                  </MenuItem>
+                  <MenuItem value={Referral.Website}>
+                    {ReferralString[Referral.Website]}
+                  </MenuItem>
+                </TextFieldwMB1>
+              )}
+            />
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="ref2"
-              inputRef={register({ required: false })}
+              {...register('ref2', { required: false })}
               fullWidth
               label="Referral Explanation"
               disabled={values?.length > 1}
@@ -241,8 +234,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="notes"
-              inputRef={register({ required: false })}
+              {...register('notes', { required: false })}
               fullWidth
               label="Notes"
               multiline
@@ -251,18 +243,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="groupRepresented"
-              inputRef={register({ required: false })}
-              fullWidth
-              label="Group Represented"
-              multiline
-              disabled={values?.length > 1}
-            />
-          )}
-          {values?.length <= 1 && (
-            <TextFieldwMB1
-              name="inaraLink"
-              inputRef={register({ required: false })}
+              {...register('inaraLink', { required: false })}
               fullWidth
               label="Inara Link"
               disabled={values?.length > 1}
@@ -270,8 +251,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
           )}
           {values?.length <= 1 && (
             <TextFieldwMB1
-              name="email"
-              inputRef={register({ required: false })}
+              {...register('email', { required: false })}
               fullWidth
               label="Email"
               disabled={values?.length > 1}

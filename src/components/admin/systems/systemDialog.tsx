@@ -7,22 +7,11 @@ import {
   DialogContentText,
   DialogTitle,
   FormControlLabel,
-  TextField,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextFieldwMB1 } from 'components/_common';
 import { System } from 'models/about/system';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
 
 export interface SystemDialogProps {
   open: boolean;
@@ -31,17 +20,22 @@ export interface SystemDialogProps {
 }
 
 export const SystemDialog = (props: SystemDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
-  const { handleSubmit, reset, control, setValue } = useForm<System>();
+  const { register, handleSubmit, reset, control } = useForm<
+    Omit<System, '_id'>
+  >();
 
   useEffect(() => {
     if (values) {
-      reset(values);
+      reset({
+        name: values.name,
+        inaraLink: values.inaraLink,
+        isControlled: values.isControlled,
+      });
     } else {
       reset();
     }
-  }, [values, reset, setValue]);
+  }, [values, reset]);
 
   const handleClose = () => {
     onClose();
@@ -66,34 +60,20 @@ export const SystemDialog = (props: SystemDialogProps) => {
             Please enter the System Name, Inara Link, and whether we control the
             system.
           </DialogContentText>
-          <Controller
-            name="name"
-            control={control}
-            render={(field) => (
-              <TextField
-                fullWidth
-                label="System Name"
-                className={classes.textField}
-                {...field}
-              />
-            )}
+          <TextFieldwMB1
+            label="System Name"
+            fullWidth
+            {...register('name', { required: true })}
           />
-          <Controller
-            name="inaraLink"
-            control={control}
-            render={(field) => (
-              <TextField
-                fullWidth
-                label="Inara Link"
-                className={classes.textField}
-                {...field}
-              />
-            )}
+          <TextFieldwMB1
+            label="Inara Link"
+            fullWidth
+            {...register('inaraLink', { required: true })}
           />
           <Controller
             name="isControlled"
             control={control}
-            render={(field) => (
+            render={({ field }) => (
               <FormControlLabel
                 control={
                   <Checkbox

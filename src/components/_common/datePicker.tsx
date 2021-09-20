@@ -6,6 +6,7 @@ import { styled } from '@mui/material';
  */
 export const DatePickerwMB1 = styled(DatePicker)<DatePickerProps>(
   ({ theme }) => ({
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   })
 );
