@@ -14,7 +14,7 @@ import {
 import { IJoinInfo } from 'models/join/joinInfo';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { QuestionBox } from './commonComponents';
+import { FormTextField, QuestionBox } from './commonComponents';
 
 export const JoinFormAmbassador = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
@@ -23,6 +23,7 @@ export const JoinFormAmbassador = (props: {
     register,
     handleSubmit,
     setValue,
+    formState,
     formState: { errors },
   } = useForm<Omit<IJoinInfo, '_id'>>();
 
@@ -61,33 +62,22 @@ export const JoinFormAmbassador = (props: {
           All items are required.
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <QuestionBox>
-            <Typography>Please enter your in-game CMDR name</Typography>
-            <TextField
-              label="CMDR Name"
-              {...register('cmdr', { required: true, minLength: 2 })}
-            />
-            {errors.cmdr && (
-              <Typography color="error">CMDR Name is required</Typography>
-            )}
-          </QuestionBox>
-          <QuestionBox>
-            <Typography>
-              Please enter your discord name in format: name#1234
-            </Typography>
-            <TextField
-              label="Discord Name"
-              {...register('discord', {
-                required: true,
-                pattern: /^.+#\d{4}$/gi,
-              })}
-            />
-            {errors.discord && (
-              <Typography color="error">
-                Discord Name is required and must be in name#1234 format
-              </Typography>
-            )}
-          </QuestionBox>
+          <FormTextField
+            question="Please enter your in-game CMDR name"
+            label="CMDR Name"
+            field="cmdr"
+            rules={{ required: true, minLength: 2 }}
+            register={register}
+            formState={formState}
+          />
+          <FormTextField
+            question="Please enter your discord name in format: name#1234"
+            label="Discord Tag"
+            field="discord"
+            rules={{ required: true, pattern: /^.+#\d{4}$/gi }}
+            register={register}
+            formState={formState}
+          />
           <QuestionBox>
             <Typography>
               Which platform(s) do you play on? Choose all that apply.
