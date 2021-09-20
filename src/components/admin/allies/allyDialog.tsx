@@ -5,12 +5,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
 } from '@mui/material';
 import { TextFieldwMB1 } from 'components/_common';
 import { IAlly } from 'models/about/ally';
 import { useEffect } from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 export interface AllyDialogProps {
   open: boolean;
@@ -20,14 +19,18 @@ export interface AllyDialogProps {
 
 export const AllyDialog = (props: AllyDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<IAlly>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Omit<IAlly, '_id'>>();
 
   useEffect(() => {
     if (values) {
-      reset(values);
+      reset({ name: values.name });
     } else {
       reset({
-        _id: undefined,
         name: undefined,
       });
     }
@@ -37,7 +40,9 @@ export const AllyDialog = (props: AllyDialogProps) => {
     onClose();
   };
 
-  const onSubmit: SubmitHandler<IAlly> = (data: IAlly) => {
+  const onSubmit: SubmitHandler<Omit<IAlly, '_id'>> = (
+    data: Omit<IAlly, '_id'>
+  ) => {
     const _id = values?._id ? values._id : undefined;
     onClose({
       _id,
@@ -46,28 +51,20 @@ export const AllyDialog = (props: AllyDialogProps) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} maxWidth="sm" fullWidth>
       <DialogTitle>{values ? 'Edit' : 'Add'} System</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>Please enter the Ally's name.</DialogContentText>
-          <Controller
-            control={control}
-            name="name"
-            render={({ field: { value, onChange } }) => (
-              <TextFieldwMB1
-                fullWidth
-                placeholder="Ally Name"
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          {/* <TextField
-            {...register('name', { required: true })}
-            fullWidth
+          <TextFieldwMB1
             placeholder="Ally Name"
-          /> */}
+            fullWidth
+            error={errors.name !== undefined}
+            helperText={
+              errors.name?.type === 'required' && 'This field is required.'
+            }
+            {...register('name', { required: true })}
+          />
         </DialogContent>
         <DialogActions>
           <Button variant="contained" color="primary" type="submit">
