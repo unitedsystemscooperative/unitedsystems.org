@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Checkbox,
   Container,
@@ -10,33 +11,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { IJoinInfo } from 'models/join/joinInfo';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { IJoinInfo } from 'models/join/joinInfo';
-
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  question: {
-    borderColor: theme.palette.secondary.main,
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    margin: theme.spacing(1, 0),
-    padding: theme.spacing(1),
-  },
-}));
+import { QuestionBox } from './commonComponents';
 
 export const JoinFormAmbassador = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
 }) => {
-  const classes = useStyles();
-  const { register, handleSubmit, setValue, errors } = useForm<IJoinInfo>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<Omit<IJoinInfo, '_id'>>();
 
   const [platforms, setPlatforms] = useState<{
     pc: boolean;
@@ -65,41 +53,42 @@ export const JoinFormAmbassador = (props: {
 
   return (
     <Container>
-      <Typography variant="h3" className={classes.header}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
         Ambassador
       </Typography>
-      <Paper className={classes.paper}>
-        <Typography className={classes.header}>
+      <Paper sx={{ p: 2 }}>
+        <Typography sx={{ textAlign: 'center' }}>
           All items are required.
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={classes.question}>
+          <QuestionBox>
             <Typography>Please enter your in-game CMDR name</Typography>
             <TextField
               label="CMDR Name"
-              inputRef={register({ required: true, minLength: 2 })}
-              name="cmdr"
+              {...register('cmdr', { required: true, minLength: 2 })}
             />
             {errors.cmdr && (
               <Typography color="error">CMDR Name is required</Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               Please enter your discord name in format: name#1234
             </Typography>
             <TextField
               label="Discord Name"
-              inputRef={register({ required: true, pattern: /^.+#\d{4}$/gi })}
-              name="discord"
+              {...register('discord', {
+                required: true,
+                pattern: /^.+#\d{4}$/gi,
+              })}
             />
             {errors.discord && (
               <Typography color="error">
                 Discord Name is required and must be in name#1234 format
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               Which platform(s) do you play on? Choose all that apply.
             </Typography>
@@ -142,17 +131,17 @@ export const JoinFormAmbassador = (props: {
                 You must select at least one platform.
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>What faction/group do you represent?</Typography>
-            <TextField inputRef={register} name="group" />
+            <TextField {...register('group', { required: true })} />
             {errors.group && (
               <Typography color="error">
                 Please enter the group you represent.
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               Do you have private information to discuss with High Command?
             </Typography>
@@ -160,19 +149,19 @@ export const JoinFormAmbassador = (props: {
               <FormGroup row>
                 <FormControlLabel
                   label="Yes"
-                  control={<Checkbox name="needPrivate" inputRef={register} />}
+                  control={<Checkbox {...register('needPrivate')} />}
                 />
               </FormGroup>
             </FormControl>
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>What timezone are you in?</Typography>
-            <TextField inputRef={register} name="timezone" />
+            <TextField {...register('timezone')} />
             {errors.timezone && (
               <Typography color="error">Please enter your timezone.</Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               I have read and agree to the{' '}
               <Link href="/about?x=rules" target="_blank">
@@ -181,12 +170,7 @@ export const JoinFormAmbassador = (props: {
               .
             </Typography>
             <FormControlLabel
-              control={
-                <Checkbox
-                  name="rules"
-                  inputRef={register({ required: true })}
-                />
-              }
+              control={<Checkbox {...register('rules', { required: true })} />}
               label="Yes"
             />
             {errors.rules && (
@@ -194,12 +178,12 @@ export const JoinFormAmbassador = (props: {
                 You must read and agree to abide by the rules.
               </Typography>
             )}
-          </div>
-          <div className={classes.header}>
+          </QuestionBox>
+          <Box component="div" sx={{ textAlign: 'center' }}>
             <Button type="submit" color="primary" variant="outlined">
               Submit Form
             </Button>
-          </div>
+          </Box>
         </form>
       </Paper>
     </Container>

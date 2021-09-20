@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Checkbox,
   Collapse,
@@ -14,39 +15,21 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { IJoinInfo } from 'models/join/joinInfo';
-
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  question: {
-    borderColor: theme.palette.secondary.main,
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    margin: theme.spacing(1, 0),
-    padding: theme.spacing(1),
-  },
-}));
+import { QuestionBox } from './commonComponents';
 
 export const JoinFormMember = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
 }) => {
-  const classes = useStyles();
   const {
     register,
     handleSubmit,
     control,
     setValue,
-    errors,
-  } = useForm<IJoinInfo>();
+    formState: { errors },
+  } = useForm<Omit<IJoinInfo, '_id'>>();
 
   const [platforms, setPlatforms] = useState<{
     pc: boolean;
@@ -94,41 +77,42 @@ export const JoinFormMember = (props: {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h3" className={classes.header}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
         Member
       </Typography>
-      <Paper className={classes.paper}>
-        <Typography className={classes.header}>
+      <Paper sx={{ p: 2 }}>
+        <Typography sx={{ textAlign: 'center' }}>
           All items are required.
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={classes.question}>
+          <QuestionBox>
             <Typography>Please enter your in-game CMDR name</Typography>
             <TextField
               label="CMDR Name"
-              inputRef={register({ required: true, minLength: 2 })}
-              name="cmdr"
+              {...register('cmdr', { required: true, minLength: 2 })}
             />
             {errors.cmdr && (
               <Typography color="error">CMDR Name is required</Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               Please enter your discord name in format: name#1234
             </Typography>
             <TextField
               label="Discord Name"
-              inputRef={register({ required: true, pattern: /^.+#\d{4}$/gi })}
-              name="discord"
+              {...register('discord', {
+                required: true,
+                pattern: /^.+#\d{4}$/gi,
+              })}
             />
             {errors.discord && (
               <Typography color="error">
                 Discord Name is required and must be in name#1234 format
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               Which platform(s) do you play on? Choose all that apply.
             </Typography>
@@ -171,12 +155,12 @@ export const JoinFormMember = (props: {
                 You must select at least one platform.
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>How long have you been playing?</Typography>
             <Controller
-              as={
-                <RadioGroup name="playingLength" row>
+              render={({ field }) => (
+                <RadioGroup row {...field}>
                   <FormControlLabel
                     value="lessthanMonth"
                     control={<Radio />}
@@ -198,7 +182,7 @@ export const JoinFormMember = (props: {
                     label="More than 1 year"
                   />
                 </RadioGroup>
-              }
+              )}
               name="playingLength"
               control={control}
               defaultValue=""
@@ -208,8 +192,8 @@ export const JoinFormMember = (props: {
                 You must select how long you've been playing.
               </Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>How did you find us?</Typography>
             <FormControl component="fieldset" required>
               <RadioGroup
@@ -270,10 +254,7 @@ export const JoinFormMember = (props: {
                 <Divider />
                 <div>
                   <Typography>{ref2Question}</Typography>
-                  <TextField
-                    inputRef={register({ required: true })}
-                    name="reference2"
-                  />
+                  <TextField {...register('reference2', { required: true })} />
                   {errors.reference2 && (
                     <Typography color="error">
                       You must populate this field.
@@ -282,15 +263,15 @@ export const JoinFormMember = (props: {
                 </div>
               </div>
             </Collapse>
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>What timezone are you in?</Typography>
-            <TextField inputRef={register} name="timezone" />
+            <TextField {...register('timezone')} />
             {errors.timezone && (
               <Typography color="error">Please enter your timezone.</Typography>
             )}
-          </div>
-          <div className={classes.question}>
+          </QuestionBox>
+          <QuestionBox>
             <Typography>
               I have read and agree to the{' '}
               <Link href="/about?x=rules" target="_blank">
@@ -299,12 +280,7 @@ export const JoinFormMember = (props: {
               .
             </Typography>
             <FormControlLabel
-              control={
-                <Checkbox
-                  name="rules"
-                  inputRef={register({ required: true })}
-                />
-              }
+              control={<Checkbox {...register('rules', { required: true })} />}
               label="Yes"
             />
             {errors.rules && (
@@ -312,12 +288,12 @@ export const JoinFormMember = (props: {
                 You must read and agree to abide by the rules.
               </Typography>
             )}
-          </div>
-          <div className={classes.header}>
+          </QuestionBox>
+          <Box sx={{ textAlign: 'center' }}>
             <Button type="submit" color="primary" variant="outlined">
               Submit Form
             </Button>
-          </div>
+          </Box>
         </form>
       </Paper>
     </Container>
