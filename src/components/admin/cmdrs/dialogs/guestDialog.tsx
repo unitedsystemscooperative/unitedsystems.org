@@ -9,7 +9,7 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { TextFieldwMB1 } from 'components/_common';
+import { TextFieldwM1 } from 'components/_common';
 import { IGuest } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
@@ -116,7 +116,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
             Please enter the CMDR information.
           </DialogContentText>
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               name="cmdrName"
               {...register('cmdrName', { required: true })}
               fullWidth
@@ -126,7 +126,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
           )}
           {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               name="discordName"
               {...register('discordName', { required: true })}
               fullWidth
@@ -155,11 +155,11 @@ export const GuestDialog = (props: GuestDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Platform" select fullWidth {...field}>
+              <TextFieldwM1 label="Platform" select fullWidth {...field}>
                 <MenuItem value={Platform.PC}>PC</MenuItem>
                 <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
                 <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           <Controller
@@ -167,7 +167,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Region" select {...field} fullWidth>
+              <TextFieldwM1 label="Region" select {...field} fullWidth>
                 <MenuItem value={Region.N_CAmerica}>
                   {RegionString[Region.N_CAmerica]}
                 </MenuItem>
@@ -183,7 +183,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
                 <MenuItem value={Region.Asia_Pacific}>
                   {RegionString[Region.Asia_Pacific]}
                 </MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           {values?.length <= 1 && (
@@ -192,7 +192,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextFieldwMB1 label="Reference" select {...field} fullWidth>
+                <TextFieldwM1 label="Reference" select {...field} fullWidth>
                   <MenuItem value={Referral.Discord}>
                     {ReferralString[Referral.Discord]}
                   </MenuItem>
@@ -220,12 +220,12 @@ export const GuestDialog = (props: GuestDialogProps) => {
                   <MenuItem value={Referral.Website}>
                     {ReferralString[Referral.Website]}
                   </MenuItem>
-                </TextFieldwMB1>
+                </TextFieldwM1>
               )}
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('ref2', { required: false })}
               fullWidth
               label="Referral Explanation"
@@ -233,7 +233,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('notes', { required: false })}
               fullWidth
               label="Notes"
@@ -242,7 +242,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('inaraLink', { required: false })}
               fullWidth
               label="Inara Link"
@@ -250,7 +250,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('email', { required: false })}
               fullWidth
               label="Email"

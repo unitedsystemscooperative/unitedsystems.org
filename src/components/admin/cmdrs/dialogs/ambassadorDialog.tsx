@@ -8,7 +8,7 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { DatePickerwMB1, TextFieldwMB1 } from 'components/_common';
+import { DatePickerwMB1, TextFieldwM1 } from 'components/_common';
 import { IAmbassador } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
@@ -113,7 +113,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             Please enter the CMDR information.
           </DialogContentText>
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               label="CMDR Name"
               fullWidth
               disabled={values?.length > 1}
@@ -122,7 +122,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
           )}
           {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               label="Discord Handle - Format [name]#0000"
               fullWidth
               disabled={values?.length > 1}
@@ -150,11 +150,11 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Platform" select fullWidth {...field}>
+              <TextFieldwM1 label="Platform" select fullWidth {...field}>
                 <MenuItem value={Platform.PC}>PC</MenuItem>
                 <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
                 <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           <Controller
@@ -162,7 +162,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Region" select {...field} fullWidth>
+              <TextFieldwM1 label="Region" select {...field} fullWidth>
                 <MenuItem value={Region.N_CAmerica}>
                   {RegionString[Region.N_CAmerica]}
                 </MenuItem>
@@ -178,11 +178,11 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
                 <MenuItem value={Region.Asia_Pacific}>
                   {RegionString[Region.Asia_Pacific]}
                 </MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('groupRepresented', { required: false })}
               fullWidth
               label="Group Represented"
@@ -191,7 +191,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('notes', { required: false })}
               fullWidth
               label="Notes"
@@ -200,7 +200,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('inaraLink', { required: false })}
               fullWidth
               label="Inara Link"
@@ -208,7 +208,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('email', { required: false })}
               fullWidth
               label="Email"

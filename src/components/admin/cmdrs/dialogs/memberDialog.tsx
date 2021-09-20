@@ -13,7 +13,7 @@ import {
 import {
   BoxwMB1andFlex,
   DatePickerwMB1,
-  TextFieldwMB1,
+  TextFieldwM1,
 } from 'components/_common';
 import { IMember } from 'models/admin/cmdr';
 import { Platform } from 'models/admin/platforms';
@@ -141,7 +141,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             Please enter the CMDR information.
           </DialogContentText>
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               label="CMDR Name"
               fullWidth
               disabled={values?.length > 1}
@@ -150,7 +150,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
           )}
           {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               label="Discord Handle - Format [name]#0000"
               fullWidth
               disabled={values?.length > 1}
@@ -195,11 +195,11 @@ export const MemberDialog = (props: MemberDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Platform" select fullWidth {...field}>
+              <TextFieldwM1 label="Platform" select fullWidth {...field}>
                 <MenuItem value={Platform.PC}>PC</MenuItem>
                 <MenuItem value={Platform.Xbox}>Xbox</MenuItem>
                 <MenuItem value={Platform.PS}>PlayStation</MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           <Controller
@@ -207,7 +207,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Rank" select fullWidth {...field}>
+              <TextFieldwM1 label="Rank" select fullWidth {...field}>
                 <MenuItem value={Rank.FleetAdmiral}>
                   {RankString[Rank.FleetAdmiral]}
                 </MenuItem>
@@ -233,14 +233,14 @@ export const MemberDialog = (props: MemberDialogProps) => {
                 <MenuItem value={Rank.Reserve}>
                   {RankString[Rank.Reserve]}
                 </MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           <Controller
             name="promotion"
             control={control}
             render={({ field }) => (
-              <TextFieldwMB1 label="Promotion to" fullWidth select {...field}>
+              <TextFieldwM1 label="Promotion to" fullWidth select {...field}>
                 <MenuItem value={-1}>None</MenuItem>
                 <MenuItem value={Rank.FleetAdmiral}>
                   {RankString[Rank.FleetAdmiral]}
@@ -267,7 +267,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
                 <MenuItem value={Rank.Reserve}>
                   {RankString[Rank.Reserve]}
                 </MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           <BoxwMB1andFlex>
@@ -309,7 +309,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <TextFieldwMB1 label="Region" select {...field} fullWidth>
+              <TextFieldwM1 label="Region" select {...field} fullWidth>
                 <MenuItem value={Region.N_CAmerica}>
                   {RegionString[Region.N_CAmerica]}
                 </MenuItem>
@@ -325,7 +325,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
                 <MenuItem value={Region.Asia_Pacific}>
                   {RegionString[Region.Asia_Pacific]}
                 </MenuItem>
-              </TextFieldwMB1>
+              </TextFieldwM1>
             )}
           />
           {values?.length <= 1 && (
@@ -334,7 +334,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
               control={control}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextFieldwMB1 label="Reference" select {...field} fullWidth>
+                <TextFieldwM1 label="Reference" select {...field} fullWidth>
                   <MenuItem value={Referral.Discord}>
                     {ReferralString[Referral.Discord]}
                   </MenuItem>
@@ -362,12 +362,12 @@ export const MemberDialog = (props: MemberDialogProps) => {
                   <MenuItem value={Referral.Website}>
                     {ReferralString[Referral.Website]}
                   </MenuItem>
-                </TextFieldwMB1>
+                </TextFieldwM1>
               )}
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('ref2', { required: false })}
               fullWidth
               label="Referral Explanation"
@@ -375,7 +375,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('notes', { required: false })}
               fullWidth
               label="Notes"
@@ -384,7 +384,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('inaraLink', { required: false })}
               fullWidth
               label="Inara Link"
@@ -392,7 +392,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             />
           )}
           {values?.length <= 1 && (
-            <TextFieldwMB1
+            <TextFieldwM1
               {...register('email', { required: false })}
               fullWidth
               label="Email"

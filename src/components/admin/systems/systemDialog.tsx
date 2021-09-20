@@ -8,7 +8,7 @@ import {
   DialogTitle,
   FormControlLabel,
 } from '@mui/material';
-import { TextFieldwMB1 } from 'components/_common';
+import { TextFieldwM1 } from 'components/_common';
 import { System } from 'models/about/system';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -60,12 +60,12 @@ export const SystemDialog = (props: SystemDialogProps) => {
             Please enter the System Name, Inara Link, and whether we control the
             system.
           </DialogContentText>
-          <TextFieldwMB1
+          <TextFieldwM1
             label="System Name"
             fullWidth
             {...register('name', { required: true })}
           />
-          <TextFieldwMB1
+          <TextFieldwM1
             label="Inara Link"
             fullWidth
             {...register('inaraLink', { required: true })}

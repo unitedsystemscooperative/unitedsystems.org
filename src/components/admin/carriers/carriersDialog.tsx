@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { TextFieldwMB1 } from 'components/_common';
+import { TextFieldwM1 } from 'components/_common';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -72,7 +72,7 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and
             the Purpose (if Personal, just leave it blank).
           </DialogContentText>
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Carrier Name"
             fullWidth
             error={errors.name !== undefined}
@@ -82,7 +82,7 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             {...register('name', { required: true })}
           />
           {/* TODO: add schema validate for Carrier ID (VVV-VVV) */}
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Carrier ID"
             fullWidth
             error={errors.id !== undefined}
@@ -91,7 +91,7 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             }
             {...register('id', { required: true })}
           />
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Owner"
             fullWidth
             error={errors.owner !== undefined}
@@ -100,7 +100,7 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             }
             {...register('owner', { required: true })}
           />
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Inara Link"
             fullWidth
             error={errors.inaraLink !== undefined}
@@ -109,7 +109,7 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             }
             {...register('inaraLink', { required: true })}
           />
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Purpose - Leave blank if Personal"
             fullWidth
             {...register('purpose', { required: false })}

@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { TextFieldwMB1 } from 'components/_common';
+import { TextFieldwM1 } from 'components/_common';
 import { IAlly } from 'models/about/ally';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -56,7 +56,7 @@ export const AllyDialog = (props: AllyDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>Please enter the Ally's name.</DialogContentText>
-          <TextFieldwMB1
+          <TextFieldwM1
             placeholder="Ally Name"
             fullWidth
             error={errors.name !== undefined}
