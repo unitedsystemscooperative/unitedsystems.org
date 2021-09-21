@@ -9,7 +9,7 @@ export interface IJoinInfo extends IDbItem {
   type: string;
   cmdr: string;
   discord: string;
-  platforms: Platform;
+  platform: Platform;
   //   playingLength?:
   //     | 'lessthanMonth'
   //     | 'morethanMonth'

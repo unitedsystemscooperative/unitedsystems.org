@@ -3,18 +3,20 @@ import {
   Button,
   Checkbox,
   Container,
-  FormControl,
   FormControlLabel,
-  FormGroup,
   Link,
   Paper,
   TextField,
   Typography,
 } from '@mui/material';
 import { IJoinInfo } from 'models/join/joinInfo';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormTextField, QuestionBox } from './commonComponents';
+import {
+  FormCheckBoxField,
+  FormPlatformRadioGroup,
+  FormTextField,
+  QuestionBox,
+} from './commonComponents';
 
 export const JoinFormAmbassador = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
@@ -22,33 +24,10 @@ export const JoinFormAmbassador = (props: {
   const {
     register,
     handleSubmit,
-    setValue,
     formState,
     formState: { errors },
+    control,
   } = useForm<Omit<IJoinInfo, '_id'>>();
-
-  const [platforms, setPlatforms] = useState<{
-    pc: boolean;
-    xbox: boolean;
-    ps: boolean;
-  }>({ pc: false, xbox: false, ps: false });
-
-  useEffect(() => {
-    register('platforms', { required: true });
-  }, [register]);
-
-  const handlePlatformChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const targetName = event.target.name;
-    const checked = event.target.checked;
-    if (targetName === 'pc' || targetName === 'xbox' || targetName === 'ps') {
-      setPlatforms((state) => {
-        state[targetName] = checked;
-        const newValue = { ...state, [targetName]: checked };
-        setValue('platforms', newValue);
-        return newValue;
-      });
-    }
-  };
 
   const onSubmit = (data: IJoinInfo) => props.onSubmit(data, 'ambassador');
 
@@ -66,7 +45,13 @@ export const JoinFormAmbassador = (props: {
             question="Please enter your in-game CMDR name"
             label="CMDR Name"
             field="cmdr"
-            rules={{ required: true, minLength: 2 }}
+            rules={{
+              required: 'Your CMDR name is required.',
+              minLength: {
+                value: 2,
+                message: 'Your CMDR name must be longer than 2 characters',
+              },
+            }}
             register={register}
             formState={formState}
           />
@@ -74,76 +59,32 @@ export const JoinFormAmbassador = (props: {
             question="Please enter your discord name in format: name#1234"
             label="Discord Tag"
             field="discord"
-            rules={{ required: true, pattern: /^.+#\d{4}$/gi }}
+            rules={{
+              required: 'The Discord tag is required.',
+              pattern: {
+                value: /^.+#\d{4}$/gi,
+                message: 'This must be in {username}#0000 format',
+              },
+            }}
             register={register}
             formState={formState}
           />
-          <QuestionBox>
-            <Typography>
-              Which platform(s) do you play on? Choose all that apply.
-            </Typography>
-            <FormControl component="fieldset" required>
-              <FormGroup row>
-                <FormControlLabel
-                  label="PC"
-                  control={
-                    <Checkbox
-                      name="pc"
-                      checked={platforms.pc}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label="Xbox One"
-                  control={
-                    <Checkbox
-                      name="xbox"
-                      checked={platforms.xbox}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label="PS4 / PS5"
-                  control={
-                    <Checkbox
-                      name="ps"
-                      checked={platforms.ps}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-              </FormGroup>
-            </FormControl>
-            {errors.platforms && (
-              <Typography color="error">
-                You must select at least one platform.
-              </Typography>
-            )}
-          </QuestionBox>
-          <QuestionBox>
-            <Typography>What faction/group do you represent?</Typography>
-            <TextField {...register('group', { required: true })} />
-            {errors.group && (
-              <Typography color="error">
-                Please enter the group you represent.
-              </Typography>
-            )}
-          </QuestionBox>
-          <QuestionBox>
-            <Typography>
-              Do you have private information to discuss with High Command?
-            </Typography>
-            <FormControl component="fieldset" required>
-              <FormGroup row>
-                <FormControlLabel
-                  label="Yes"
-                  control={<Checkbox {...register('needPrivate')} />}
-                />
-              </FormGroup>
-            </FormControl>
-          </QuestionBox>
+          <FormPlatformRadioGroup control={control} formState={formState} />
+          <FormTextField
+            question="What faction/group do you represent?"
+            label="Group"
+            field="group"
+            rules={{ required: 'This field is required' }}
+            register={register}
+            formState={formState}
+          />
+          <FormCheckBoxField
+            question="Do you have private information to discuss with High Command?"
+            label="Yes"
+            field="needPrivate"
+            register={register}
+            formState={formState}
+          />
           <QuestionBox>
             <Typography>What timezone are you in?</Typography>
             <TextField {...register('timezone')} />
