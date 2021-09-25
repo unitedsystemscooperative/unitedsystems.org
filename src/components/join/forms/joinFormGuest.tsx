@@ -18,17 +18,19 @@ import {
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IJoinInfo } from 'models/join/joinInfo';
-import { QuestionBox } from './commonComponents';
+import {
+  FormCmdrName,
+  FormDiscordName,
+  FormPlatformRadioGroup,
+  QuestionBox,
+} from './commonComponents';
 
 export const JoinFormGuest = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<Omit<IJoinInfo, '_id'>>();
+  const { register, handleSubmit, setValue, formState, control } = useForm<
+    Omit<IJoinInfo, '_id'>
+  >();
   const [platforms, setPlatforms] = useState<{
     pc: boolean;
     xbox: boolean;
@@ -83,77 +85,10 @@ export const JoinFormGuest = (props: {
           All items are required.
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <QuestionBox>
-            <Typography>Please enter your in-game CMDR name</Typography>
-            <TextField
-              label="CMDR Name"
-              {...register('cmdr', { required: true, minLength: 2 })}
-            />
-            {errors.cmdr && (
-              <Typography color="error">CMDR Name is required</Typography>
-            )}
-          </QuestionBox>
-          <QuestionBox>
-            <Typography>
-              Please enter your discord name in format: name#1234
-            </Typography>
-            <TextField
-              label="Discord Name"
-              {...register('discord', {
-                required: true,
-                pattern: /^.+#\d{4}$/gi,
-              })}
-            />
-            {errors.discord && (
-              <Typography color="error">
-                Discord Name is required and must be in name#1234 format
-              </Typography>
-            )}
-          </QuestionBox>
-          <QuestionBox>
-            <Typography>
-              Which platform(s) do you play on? Choose all that apply.
-            </Typography>
-            <FormControl component="fieldset" required>
-              <FormGroup row>
-                <FormControlLabel
-                  label="PC"
-                  control={
-                    <Checkbox
-                      name="pc"
-                      checked={platforms.pc}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label="Xbox One"
-                  control={
-                    <Checkbox
-                      name="xbox"
-                      checked={platforms.xbox}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label="PS4 / PS5"
-                  control={
-                    <Checkbox
-                      name="ps"
-                      checked={platforms.ps}
-                      onChange={handlePlatformChange}
-                    />
-                  }
-                />
-              </FormGroup>
-            </FormControl>
-            {errors.platforms && (
-              <Typography color="error">
-                You must select at least one platform.
-              </Typography>
-            )}
-          </QuestionBox>
+          <FormCmdrName register={register} formState={formState} />
+          <FormDiscordName register={register} formState={formState} />
+          <FormPlatformRadioGroup control={control} formState={formState} />
+
           <QuestionBox>
             <Typography>How did you find us?</Typography>
             <FormControl component="fieldset" required>
