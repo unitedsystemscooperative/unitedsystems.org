@@ -8,6 +8,7 @@ export enum Referral {
   InGame,
   Inara,
   Reddit,
+  Other,
 }
 
 export enum ReferralString {
@@ -20,4 +21,5 @@ export enum ReferralString {
   'In Game',
   'Inara',
   'Reddit',
+  'Other',
 }

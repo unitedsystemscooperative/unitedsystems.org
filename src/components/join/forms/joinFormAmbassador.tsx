@@ -10,14 +10,12 @@ import {
   FormRules,
   FormSubmit,
   FormTextField,
-} from './commonComponents';
+} from './joinComponents';
 
 export const JoinFormAmbassador = (props: {
   onSubmit: (data: IJoinInfo, type: string) => void;
 }) => {
-  const { register, handleSubmit, formState, control } = useForm<
-    Omit<IJoinInfo, '_id'>
-  >();
+  const { handleSubmit, control } = useForm<Omit<IJoinInfo, '_id'>>();
 
   const onSubmit = (data: IJoinInfo) => props.onSubmit(data, 'ambassador');
 
@@ -31,26 +29,25 @@ export const JoinFormAmbassador = (props: {
           All items are required.
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormCmdrName register={register} formState={formState} />
-          <FormDiscordName register={register} formState={formState} />
-          <FormPlatformRadioGroup control={control} formState={formState} />
+          <FormCmdrName control={control} />
+          <FormDiscordName control={control} />
+          <FormPlatformRadioGroup control={control} />
           <FormTextField
             question="What faction/group do you represent?"
             label="Group"
-            field="group"
-            rules={{ required: 'This field is required' }}
-            register={register}
-            formState={formState}
+            controllerProps={{
+              name: 'group',
+              rules: { required: 'This field is required' },
+              control,
+            }}
           />
           <FormCheckBoxField
             question="Do you have private information to discuss with High Command?"
             label="Yes"
-            fieldName="needPrivate"
-            control={control}
-            formState={formState}
+            controllerProps={{ name: 'needPrivate', control }}
           />
-          <FormRegion formState={formState} control={control} />
-          <FormRules formState={formState} control={control} />
+          <FormRegion control={control} />
+          <FormRules control={control} />
           <FormSubmit />
         </form>
       </Paper>
