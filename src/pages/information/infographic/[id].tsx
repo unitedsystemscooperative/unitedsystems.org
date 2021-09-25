@@ -9,7 +9,7 @@ import Image from 'next/image';
  * Displays an infographic
  * @param props imgID to display
  */
-const Infographic = ({
+const InfographicPage = ({
   infographic,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -52,4 +52,4 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return { props: { infographic } };
 }
 
-export default Infographic;
+export default InfographicPage;

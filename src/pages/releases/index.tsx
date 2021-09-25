@@ -11,7 +11,7 @@ import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';
 import Link from 'next/link';
 
-const ReleaseIndex = ({
+const ReleaseIndexPage = ({
   allReleases,
 }: {
   allReleases: { id: string; title: string; date: string }[];
@@ -53,4 +53,4 @@ export async function getStaticProps() {
   };
 }
 
-export default ReleaseIndex;
+export default ReleaseIndexPage;

@@ -13,8 +13,10 @@ import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
 
-const SignIn = () => {
-  const { register, handleSubmit } = useForm<{ email: string }>();
+const SignInPage = () => {
+  const { register, handleSubmit } = useForm<{ email: string }>({
+    defaultValues: { email: '' },
+  });
 
   const onSubmit = async (data: { email: string }) => {
     const { email } = data;
@@ -52,7 +54,7 @@ const SignIn = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              inputRef={register({ required: true })}
+              {...register('email', { required: 'Your email is required' })}
             />
             <Button
               type="submit"
@@ -74,7 +76,7 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);

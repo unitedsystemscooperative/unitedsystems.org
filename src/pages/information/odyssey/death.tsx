@@ -2,7 +2,7 @@ import { OdysseyDeath } from 'components/information/odyssey/death';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
 
-const OdyDeath = () => {
+const OdyDeathPage = () => {
   return (
     <>
       <Head>
@@ -19,4 +19,4 @@ const OdyDeath = () => {
   );
 };
 
-export default OdyDeath;
+export default OdyDeathPage;

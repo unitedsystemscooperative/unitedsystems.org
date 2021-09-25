@@ -8,7 +8,7 @@ import {
 import Head from 'next/head';
 import NextLink from 'next/link';
 
-const Release = ({
+const ReleasePage = ({
   releaseData,
 }: {
   releaseData: { id: string; content: string; title: string; date: string };
@@ -55,4 +55,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default Release;
+export default ReleasePage;

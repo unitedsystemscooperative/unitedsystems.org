@@ -2,7 +2,7 @@ import { OdysseyS2GCombat } from 'components/information/odyssey/s2gcombat';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
 
-const OdyCombat = () => {
+const OdyCombatPage = () => {
   return (
     <>
       <Head>
@@ -16,4 +16,4 @@ const OdyCombat = () => {
   );
 };
 
-export default OdyCombat;
+export default OdyCombatPage;

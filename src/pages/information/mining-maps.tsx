@@ -19,7 +19,7 @@ import { useMiningMaps } from 'hooks/information/useMiningMaps';
 import { useLinks } from 'hooks/useLinks';
 import Head from 'next/head';
 
-const MiningMap = () => {
+const MiningMapPage = () => {
   const maps = useMiningMaps();
   const { inaraCommodity } = useLinks();
 
@@ -90,4 +90,4 @@ const MiningMap = () => {
   );
 };
 
-export default MiningMap;
+export default MiningMapPage;

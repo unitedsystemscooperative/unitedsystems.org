@@ -3,7 +3,7 @@ import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 
 /** Information Landing Component */
-const Information = () => {
+const InformationPage = () => {
   return (
     <>
       <Head>
@@ -17,4 +17,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default InformationPage;

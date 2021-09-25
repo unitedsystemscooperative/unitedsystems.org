@@ -1,7 +1,7 @@
 import { Container, Paper, Typography } from '@mui/material';
 import { PrimaryLayout } from 'components/layouts';
 
-const AuthError = () => {
+const AuthErrorPage = () => {
   return (
     <PrimaryLayout>
       <Container maxWidth="xs">
@@ -23,4 +23,4 @@ const AuthError = () => {
   );
 };
 
-export default AuthError;
+export default AuthErrorPage;

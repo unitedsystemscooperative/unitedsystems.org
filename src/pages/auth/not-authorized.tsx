@@ -5,7 +5,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import notFoundImg from 'public/img/404.jpg';
 
-export const NotFound = () => {
+const NotAuthorizedPage = () => {
   return (
     <>
       <Head>
@@ -40,4 +40,4 @@ export const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotAuthorizedPage;

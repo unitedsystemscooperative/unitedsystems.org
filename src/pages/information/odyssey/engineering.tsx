@@ -2,7 +2,7 @@ import { OdysseyEngineering } from 'components/information/odyssey/engineering';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
 
-const OdyEng = () => {
+const OdyEngPage = () => {
   return (
     <>
       <Head>
@@ -19,4 +19,4 @@ const OdyEng = () => {
   );
 };
 
-export default OdyEng;
+export default OdyEngPage;

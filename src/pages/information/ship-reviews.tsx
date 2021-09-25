@@ -15,7 +15,7 @@ import { useShipReviews } from 'hooks/information/useShipReviews';
 import Head from 'next/head';
 
 /** Displays the ship Review Table */
-const ShipReviews = () => {
+const ShipReviewsPage = () => {
   const shipReviews = useShipReviews();
   return (
     <>
@@ -61,4 +61,4 @@ const ShipReviews = () => {
   );
 };
 
-export default ShipReviews;
+export default ShipReviewsPage;

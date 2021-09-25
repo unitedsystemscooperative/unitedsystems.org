@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { runAdminAuthCheck } from 'utils/runAuthCheck';
 
-export const JoinRequestsPage = () => {
+const JoinRequestsPage = () => {
   return (
     <>
       <Head>

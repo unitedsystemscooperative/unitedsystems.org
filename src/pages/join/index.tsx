@@ -2,7 +2,7 @@ import { Join } from 'components/join/join';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 
-export const JoinRequestPage = () => {
+const JoinRequestPage = () => {
   return (
     <>
       <Head>

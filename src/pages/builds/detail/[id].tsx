@@ -2,7 +2,7 @@ import { BuildDetail } from 'components/builds/builds/buildDetail';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 
-export const BuildDetailPage = () => {
+const BuildDetailPage = () => {
   return (
     <>
       <Head>
