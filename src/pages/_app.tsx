@@ -1,6 +1,5 @@
 import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { MDXProvider } from '@mdx-js/react';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {
@@ -8,7 +7,6 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from '@mui/material';
-import { mdComponents } from 'components/markdown/markdownComponents';
 import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -55,9 +53,7 @@ const USCApp = ({
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <MDXProvider components={mdComponents}>
-                  <Component {...pageProps} />
-                </MDXProvider>
+                <Component {...pageProps} />
               </ThemeProvider>
             </StyledEngineProvider>
           </SnackbarProvider>
