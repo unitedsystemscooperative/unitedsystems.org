@@ -22,9 +22,11 @@ interface USCAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function USCApp(props: USCAppProps) {
-  const { Component, emotionCache = USCEmotionCache, pageProps } = props;
-
+const USCApp = ({
+  Component,
+  emotionCache = USCEmotionCache,
+  pageProps,
+}: USCAppProps) => {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -63,4 +65,6 @@ export default function USCApp(props: USCAppProps) {
       </Provider>
     </CacheProvider>
   );
-}
+};
+
+export default USCApp;

@@ -2,7 +2,7 @@ import { Home } from 'components';
 import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 
-export default function HomePage() {
+const HomePage = ()=> {
   return (
     <>
       <Head>
@@ -18,3 +18,5 @@ export default function HomePage() {
     </>
   );
 }
+
+export default HomePage;

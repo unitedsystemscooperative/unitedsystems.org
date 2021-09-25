@@ -5,7 +5,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import errorImg from 'public/img/404.jpg';
 
-export const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <>
       <Head>
@@ -39,4 +39,4 @@ export const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

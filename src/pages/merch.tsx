@@ -2,7 +2,7 @@ import { PrimaryLayout } from 'components/layouts/primary';
 import { Merch } from 'components/merch';
 import Head from 'next/head';
 
-export default function MerchLandingPage() {
+const MerchLandingPage = () => {
   return (
     <>
       <Head>
@@ -14,4 +14,6 @@ export default function MerchLandingPage() {
       </PrimaryLayout>
     </>
   );
-}
+};
+
+export default MerchLandingPage;

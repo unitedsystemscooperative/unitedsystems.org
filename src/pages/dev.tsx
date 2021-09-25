@@ -2,7 +2,7 @@ import { DevComponent } from 'components/dev';
 import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
 
-export default function DevPage() {
+const DevPage = () => {
   return (
     <>
       <Head>
@@ -17,4 +17,6 @@ export default function DevPage() {
       </PrimaryLayout>
     </>
   );
-}
+};
+
+export default DevPage;
