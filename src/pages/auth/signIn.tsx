@@ -7,7 +7,6 @@ import {
   Paper,
   TextField,
 } from '@mui/material';
-import { PrimaryLayout } from 'components/layouts';
 import { redirects } from 'data/redirects';
 import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/client';
@@ -25,54 +24,52 @@ const SignInPage = () => {
   };
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth="xs">
-        <Paper
-          sx={{
-            marginTop: 8,
-            padding: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+    <Container maxWidth="xs">
+      <Paper
+        sx={{
+          marginTop: 8,
+          padding: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ margin: 1, backgroundColor: 'secondary.main' }}>
+          <LockOutlined />
+        </Avatar>
+        <Box
+          component="form"
+          sx={{ width: '100%', marginTop: 1, px: 1, textAlign: 'center' }}
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <Avatar sx={{ margin: 1, backgroundColor: 'secondary.main' }}>
-            <LockOutlined />
-          </Avatar>
-          <Box
-            component="form"
-            sx={{ width: '100%', marginTop: 1, px: 1, textAlign: 'center' }}
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            {...register('email', { required: 'Your email is required' })}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{
+              mt: 3,
+              mb: 1,
+              mx: 0,
+            }}
           >
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              {...register('email', { required: 'Your email is required' })}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{
-                mt: 3,
-                mb: 1,
-                mx: 0,
-              }}
-            >
-              Sign In
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+            Sign In
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 

@@ -1,16 +1,14 @@
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { AboutLinks } from 'components/about/links';
+import { CenteredTypography } from 'components/_common/typography';
 import { uscLinksList } from 'data/about';
 import { ReactNode } from 'react';
-import { PrimaryLayout } from './primary';
 
 export const AboutLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <PrimaryLayout>
+    <>
       <Container maxWidth="md">
-        <Typography variant="h3" sx={{ textAlign: 'center' }}>
-          About USC
-        </Typography>
+        <CenteredTypography variant="h3">About USC</CenteredTypography>
         <AboutLinks
           id="usc-links"
           key="usc-links"
@@ -19,6 +17,6 @@ export const AboutLayout = ({ children }: { children: ReactNode }) => {
         />
       </Container>
       {children}
-    </PrimaryLayout>
+    </>
   );
 };

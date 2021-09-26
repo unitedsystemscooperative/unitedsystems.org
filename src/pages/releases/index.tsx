@@ -6,7 +6,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { PrimaryLayout } from 'components/layouts';
 import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -22,24 +21,22 @@ const ReleaseIndexPage = ({
         <title>USC Website Releases</title>
         <meta name="description" content="USC Website Releases" />
       </Head>
-      <PrimaryLayout>
-        <Container maxWidth="md">
-          <Typography variant="h4" sx={{ textAlign: 'center' }}>
-            Releases
-          </Typography>
-          <List component={Paper}>
-            {allReleases.map(({ id, date, title }) => (
-              <NextLink key={id} href={`/releases/${id}`} passHref>
-                <ListItem button component="a">
-                  <ListItemText>
-                    {title} - {date}
-                  </ListItemText>
-                </ListItem>
-              </NextLink>
-            ))}
-          </List>
-        </Container>
-      </PrimaryLayout>
+      <Container maxWidth="md">
+        <Typography variant="h4" sx={{ textAlign: 'center' }}>
+          Releases
+        </Typography>
+        <List component={Paper}>
+          {allReleases.map(({ id, date, title }) => (
+            <NextLink key={id} href={`/releases/${id}`} passHref>
+              <ListItem button component="a">
+                <ListItemText>
+                  {title} - {date}
+                </ListItemText>
+              </ListItem>
+            </NextLink>
+          ))}
+        </List>
+      </Container>
     </>
   );
 };

@@ -7,6 +7,7 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from '@mui/material';
+import { PrimaryLayout } from 'components/layouts';
 import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -31,6 +32,7 @@ const USCApp = ({
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -53,7 +55,9 @@ const USCApp = ({
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Component {...pageProps} />
+                <PrimaryLayout>
+                  <Component {...pageProps} />
+                </PrimaryLayout>
               </ThemeProvider>
             </StyledEngineProvider>
           </SnackbarProvider>

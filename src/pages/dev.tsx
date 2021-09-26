@@ -1,5 +1,4 @@
 import { DevComponent } from 'components/dev';
-import { PrimaryLayout } from 'components/layouts';
 import Head from 'next/head';
 
 const DevPage = () => {
@@ -12,9 +11,7 @@ const DevPage = () => {
           content="Developer information of UnitedSystems.org"
         />
       </Head>
-      <PrimaryLayout>
-        <DevComponent />
-      </PrimaryLayout>
+      <DevComponent />
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { Container, Typography } from '@mui/material';
-import { PrimaryLayout } from 'components/layouts/primary';
 import { infoGraphics } from 'data/information/infographicList';
 import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
@@ -18,23 +17,21 @@ const InfographicPage = ({
         <title>USC Infographic</title>
         <meta name="description" content="Infographic" />
       </Head>
-      <PrimaryLayout>
-        <Container sx={{ textAlign: 'center' }} maxWidth="lg">
-          {infographic ? (
-            <>
-              <Typography variant="h3">{infographic.title}</Typography>
-              <Image
-                src={infographic.img}
-                alt={infographic.title}
-                height={infographic.height}
-                width={infographic.width}
-              />
-            </>
-          ) : (
-            <Typography>Image not found</Typography>
-          )}
-        </Container>
-      </PrimaryLayout>
+      <Container sx={{ textAlign: 'center' }} maxWidth="lg">
+        {infographic ? (
+          <>
+            <Typography variant="h3">{infographic.title}</Typography>
+            <Image
+              src={infographic.img}
+              alt={infographic.title}
+              height={infographic.height}
+              width={infographic.width}
+            />
+          </>
+        ) : (
+          <Typography>Image not found</Typography>
+        )}
+      </Container>
     </>
   );
 };

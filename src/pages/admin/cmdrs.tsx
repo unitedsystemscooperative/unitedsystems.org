@@ -1,5 +1,4 @@
 import { CMDRDashboard } from 'components/admin/cmdrs/cmdrDashboard';
-import { PrimaryLayout } from 'components/layouts';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { runAdminAuthCheck } from 'utils/runAuthCheck';
@@ -10,9 +9,7 @@ const CmdrManagementPage = () => {
       <Head>
         <title>USC | CMDR Management</title>
       </Head>
-      <PrimaryLayout>
-        <CMDRDashboard />
-      </PrimaryLayout>
+      <CMDRDashboard />
     </>
   );
 };

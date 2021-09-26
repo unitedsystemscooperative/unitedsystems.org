@@ -1,5 +1,4 @@
 import { AllyDashboard } from 'components/admin/allies/allyDashboard';
-import { PrimaryLayout } from 'components/layouts';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { runAdminAuthCheck } from 'utils/runAuthCheck';
@@ -10,9 +9,7 @@ const AlliesManagementPage = () => {
       <Head>
         <title>USC | Allies Management</title>
       </Head>
-      <PrimaryLayout>
-        <AllyDashboard />
-      </PrimaryLayout>
+      <AllyDashboard />
     </>
   );
 };
