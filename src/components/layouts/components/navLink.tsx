@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { cloneElement } from 'react';
 
@@ -17,8 +17,8 @@ export default function NavLink({
   }
 
   return (
-    <Link href={href} passHref>
+    <NextLink href={href} passHref>
       {cloneElement(children, { className })}
-    </Link>
+    </NextLink>
   );
 }

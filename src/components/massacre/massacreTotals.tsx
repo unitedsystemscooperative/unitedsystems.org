@@ -1,15 +1,11 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import RepCalculation from 'data/massacre/massacreKillValues.json';
 import {
   IFactionMission,
   IFactionwMissions,
   IMassacreTrack,
 } from 'models/massacreTrack';
-import RepCalculation from 'data/massacre/massacreKillValues.json';
 import { useEffect, useState } from 'react';
-
-const useStyles = makeStyles(() => ({
-  center: { textAlign: 'center' },
-}));
 
 const calcTotalKillsNeeded = (tracker: IMassacreTrack) => {
   return tracker.factions.reduce<number>(
@@ -73,7 +69,6 @@ const calcPayout = (tracker: IMassacreTrack) => {
 
 export const MassacreTotals = (props: { tracker: IMassacreTrack }) => {
   const { tracker } = props;
-  const classes = useStyles();
   const [totalMissions, setTotalMissions] = useState(0);
   const [totalKillsNeeded, setTotalKillsNeeded] = useState(0);
   const [payout, setPayout] = useState(0);
@@ -89,7 +84,7 @@ export const MassacreTotals = (props: { tracker: IMassacreTrack }) => {
 
   return (
     <Container maxWidth="xs">
-      <Paper className={classes.center}>
+      <Paper sx={{ textAlign: 'center' }}>
         <Typography>Total Missions: {totalMissions}</Typography>
         <Typography>Total Kills Needed: {totalKillsNeeded}</Typography>
         <Typography>

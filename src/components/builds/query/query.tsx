@@ -1,4 +1,4 @@
-import { makeStyles, Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 import { IQuery, OtherFilters } from 'models/builds';
 import { useRouter } from 'next/router';
 import qs from 'query-string';
@@ -9,29 +9,6 @@ import { QueryOther } from './queryOther';
 import { QueryShip } from './queryShip';
 import { QuerySpecialties } from './querySpecialities';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'grid',
-    rowGap: '2px',
-    gridTemplateAreas: `
-    'specializations'
-    'engineering'
-    'ship'
-    'other'
-    'buttons'`,
-    textAlign: 'center',
-    [theme.breakpoints.up('lg')]: {
-      gridTemplateAreas: `
-        'specializations    engineering'
-        'ship   other'
-        'buttons    buttons'`,
-      gridTemplateRows: '1fr 1fr 0.1fr',
-      rowGap: '5px',
-      columnGap: '5px',
-    },
-  },
-}));
-
 interface QueryProps {
   updateQuery: (query: IQuery) => void;
   addBuild: () => void;
@@ -40,7 +17,6 @@ interface QueryProps {
 export const Query = (props: QueryProps) => {
   const router = useRouter();
   const queryParams = router.asPath.substring(router.asPath.indexOf('?'));
-  const classes = useStyles();
   const { updateQuery, addBuild } = props;
 
   type action = {
@@ -74,7 +50,7 @@ export const Query = (props: QueryProps) => {
         newQuery = { ...prevState, specialties };
         break;
       case 'other':
-        const other: OtherFilters =
+        const other: OtherFilters | null =
           typeof action.value === 'object' && !Array.isArray(action.value)
             ? action.value
             : null;
@@ -210,7 +186,29 @@ export const Query = (props: QueryProps) => {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper
+      sx={{
+        display: 'grid',
+        rowGap: { xs: '2px', lg: '5px' },
+        columnGap: { lg: '5px' },
+        gridTemplateAreas: {
+          xs: `
+    'specializations'
+    'engineering'
+    'ship'
+    'other'
+    'buttons'`,
+          lg: `
+        'specializations    engineering'
+        'ship   other'
+        'buttons    buttons'`,
+        },
+        textAlign: 'center',
+        gridTemplateRows: {
+          lg: '1fr 1fr 0.1fr',
+        },
+      }}
+    >
       <QuerySpecialties
         selectedSpecialties={query.specialties}
         setSpecialties={(value: string[]) =>

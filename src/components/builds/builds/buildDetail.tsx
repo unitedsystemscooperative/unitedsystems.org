@@ -1,21 +1,25 @@
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
+  Box,
   Button,
   Container,
   Divider,
   Link,
-  makeStyles,
   Paper,
+  styled,
+  Theme,
   Typography,
   useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
+} from '@mui/material';
+import { BoxwMB1 } from 'components/_common';
+import { CenteredTypography } from 'components/_common/typography';
 import { useShipBuildInfo } from 'hooks/builds/useShipBuildInfo';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useLinks } from 'hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { BuildDialog, BuildDialogProps } from '../dialog/buildDialog';
@@ -23,21 +27,8 @@ import { BuildCard } from './buildCard';
 import { EngIcons } from './engIcons';
 import { TagGroup } from './tagGroup';
 
-const useDetailStyles = makeStyles(() => ({
-  paper: {
-    marginBottom: 5,
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  textCenter: {
-    textAlign: 'center',
-  },
-}));
 const BuildDetailBuilds = (props: { title: string; buildIDs: string[] }) => {
   const { title, buildIDs } = props;
-  const classes = useDetailStyles();
   const { loading, shipBuilds } = useShipBuilds();
 
   if (loading) {
@@ -45,64 +36,36 @@ const BuildDetailBuilds = (props: { title: string; buildIDs: string[] }) => {
   }
 
   return (
-    <div className={classes.textCenter}>
+    <div style={{ textAlign: 'center' }}>
       <Typography variant="h4">{title}</Typography>
-      <div className={classes.paper}>
+      <BoxwMB1
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
+      >
         {buildIDs.map((id) => {
           const build = shipBuilds.find(
             (x: { _id: unknown }) => ((x._id as unknown) as string) === id
           );
           return <BuildCard shipBuild={build} key={id} />;
         })}
-      </div>
+      </BoxwMB1>
     </div>
   );
 };
 
-const useFullStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  img: {
-    width: 300,
-  },
-  buttonGrid: {
-    display: 'grid',
-    gridTemplate: '1fr 1fr / 1fr 1fr',
-  },
-  flexDown: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& a': {
-      margin: theme.spacing(1),
-    },
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  flexAcross: {
-    display: 'flex',
-    flexDirection: 'row',
-    '& a': {
-      flexGrow: 1,
-    },
-    '& button': {
-      flexGrow: 1,
-    },
-  },
-  spacer: {
+const Spacer = styled('div')(() => ({ flexGrow: 1 }));
+const FlexAcross = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  '& a': {
     flexGrow: 1,
   },
-  gridDown: {
-    display: 'grid',
-    gridTemplate: 'auto / 1fr',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  textCenter: {
-    textAlign: 'center',
+  '& button': {
+    flexGrow: 1,
   },
 }));
 const BuildDetailFull = (props: {
@@ -110,25 +73,32 @@ const BuildDetailFull = (props: {
   shipInfo: IShipInfo | undefined;
   addBuild: (addType: 'variant' | 'related', refId: string) => void;
 }) => {
-  const classes = useFullStyles();
   const { blueprints } = useLinks();
   const { shipInfo, foundBuild, addBuild } = props;
 
   return (
-    <Paper className={classes.paper}>
-      <div className={classes.flexAcross}>
+    <Paper sx={{ p: 1, mb: 1 }}>
+      <FlexAcross>
         {shipInfo && (
-          <div className={`${classes.flexDown} ${classes.margin}`}>
-            <img
-              src={shipInfo.shipImg}
-              alt={shipInfo.name}
-              className={classes.img}
-            />
-            <div className={classes.flexAcross}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              '& a': {
+                m: 1,
+              },
+              '& button': {
+                m: 1,
+              },
+              m: 1,
+            }}
+          >
+            <Image src={shipInfo.shipImg} alt={shipInfo.name} width={300} />
+            <FlexAcross>
               <Typography>{shipInfo.name}</Typography>
-              <span className={classes.spacer} />
+              <Spacer />
               <Typography>{ShipSize[shipInfo.size]}</Typography>
-            </div>
+            </FlexAcross>
             {shipInfo.requires && (
               <Typography>Requires: {shipInfo.requires}</Typography>
             )}
@@ -141,7 +111,7 @@ const BuildDetailFull = (props: {
             >
               Show Build
             </Button>
-            <div className={classes.buttonGrid}>
+            <div style={{ display: 'grid', gridTemplate: '1fr 1fr / 1fr 1fr' }}>
               <Button
                 variant="contained"
                 color="secondary"
@@ -173,11 +143,22 @@ const BuildDetailFull = (props: {
                 Add Related
               </Button>
             </div>
-          </div>
+          </Box>
         )}
         <Divider orientation="vertical" flexItem />
-        <div
-          className={`${classes.flexDown} ${classes.spacer} ${classes.margin}`}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            '& a': {
+              m: 1,
+            },
+            '& button': {
+              m: 1,
+            },
+            flexGrow: 1,
+            m: 1,
+          }}
         >
           <Typography variant="h5">{foundBuild.title}</Typography>
           <Typography>Author: {foundBuild.author}</Typography>
@@ -191,35 +172,16 @@ const BuildDetailFull = (props: {
               {foundBuild.description}
             </ReactMarkdown>
           )}
-        </div>
-      </div>
+        </Box>
+      </FlexAcross>
     </Paper>
   );
 };
 
-const useMobileStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  img: {
-    width: 150,
-    flexShrink: 0,
-  },
-  flexrow: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  buttonGrid: {
-    display: 'grid',
-    gridTemplate: '1fr 1fr / 1fr 1fr',
-    gap: 5,
-    padding: theme.spacing(1),
-  },
-  spacer: {
-    flexGrow: 1,
-  },
+const NoShrinkImg = styled(Image)(() => ({ flexShrink: 0 }));
+const FlexRow = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'row',
 }));
 const BuildDetailMobile = (props: {
   foundBuild: IBuildInfov2;
@@ -228,31 +190,26 @@ const BuildDetailMobile = (props: {
 }) => {
   const { blueprints } = useLinks();
   const { foundBuild, shipInfo, addBuild } = props;
-  const classes = useMobileStyles();
   return (
-    <Paper className={classes.paper}>
-      <div className={classes.flexrow}>
+    <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
+      <FlexRow>
         {shipInfo && (
-          <img
-            src={shipInfo.shipImg}
-            alt={shipInfo.name}
-            className={classes.img}
-          />
+          <NoShrinkImg src={shipInfo.shipImg} alt={shipInfo.name} width={150} />
         )}
         <div>
           <Typography variant="h5">{foundBuild.title}</Typography>
           <Typography>Author: {foundBuild.author}</Typography>
-          <div className={classes.flexrow}>
+          <FlexRow>
             {shipInfo && (
               <>
                 <Typography>{shipInfo.name}</Typography>
-                <div className={classes.spacer} />
+                <Spacer />
                 <Typography>{ShipSize[shipInfo.size]}</Typography>
               </>
             )}
-          </div>
+          </FlexRow>
         </div>
-      </div>
+      </FlexRow>
       <Button
         variant="contained"
         color="primary"
@@ -261,7 +218,7 @@ const BuildDetailMobile = (props: {
       >
         Show Build
       </Button>
-      <Divider style={{ marginTop: '10px' }} />
+      <Divider sx={{ mt: 2 }} />
       <TagGroup build={foundBuild} />
       <EngIcons engLevel={foundBuild.engLevel} />
       {foundBuild.description && (
@@ -272,7 +229,14 @@ const BuildDetailMobile = (props: {
           {foundBuild.description}
         </ReactMarkdown>
       )}
-      <div className={classes.buttonGrid}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplate: '1fr 1fr / 1fr 1fr',
+          gap: 5,
+          p: 1,
+        }}
+      >
         {shipInfo && (
           <>
             <Button
@@ -308,25 +272,20 @@ const BuildDetailMobile = (props: {
         >
           Add Related
         </Button>
-      </div>
+      </Box>
     </Paper>
   );
 };
 
-const useStyles = makeStyles({
-  textCenter: {
-    textAlign: 'center',
-  },
-});
 export const BuildDetail = () => {
   const id = useRouter().asPath.substring(
     useRouter().asPath.lastIndexOf('/') + 1
   );
   console.log(id);
   const { loading, shipInfo, foundBuild } = useShipBuildInfo(id);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const classes = useStyles();
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
 
   const handleAddBuild = (addType: 'variant' | 'related', refId: string) => {
     console.log('add build');
@@ -347,9 +306,7 @@ export const BuildDetail = () => {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h3" className={classes.textCenter}>
-        Build Detail
-      </Typography>
+      <CenteredTypography variant="h3">Build Detail</CenteredTypography>
       {foundBuild ? (
         isMobile ? (
           <BuildDetailMobile

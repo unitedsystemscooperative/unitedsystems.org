@@ -1,29 +1,18 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { Rank } from 'models/admin/ranks';
 import { IVoter } from 'models/admin/voter';
 import { useEffect, useState } from 'react';
 import { Voter } from './voter';
 
-const useStyles = makeStyles((theme) => ({
-  title: {
-    textAlign: 'center',
-  },
-  paper: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-}));
-
 export const VoteDashboard = () => {
-  const classes = useStyles();
   const { cmdrs, loading } = useCMDRs();
   const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
 
   useEffect(() => {
     if (window) {
       const store: IVoter[] | null = JSON.parse(
-        window.localStorage.getItem('voters')
+        window.localStorage.getItem('voters') ?? ''
       );
       if (store && store.length > 0) {
         setVoteInfo(store);
@@ -49,10 +38,10 @@ export const VoteDashboard = () => {
 
   return (
     <>
-      <Typography variant="h3" className={classes.title}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
         Vote Assistant
       </Typography>
-      <Container maxWidth="xs" component={Paper} className={classes.paper}>
+      <Container maxWidth="xs" component={Paper} sx={{ py: 1 }}>
         {voteInfo.map((voter) => (
           <Voter key={voter.name} voter={voter} />
         ))}

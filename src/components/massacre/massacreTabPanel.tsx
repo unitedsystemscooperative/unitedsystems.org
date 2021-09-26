@@ -1,4 +1,4 @@
-import { Button, Container, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, Container, Typography } from '@mui/material';
 import {
   getFactionsinSystem,
   getStationsinSystem,
@@ -13,27 +13,12 @@ import { MassacreMissions } from './massacreMissions';
 import { MassacreTotals } from './massacreTotals';
 import { StationList } from './stationList';
 
-const useStyles = makeStyles((theme) => ({
-  systems: {
-    display: 'flex',
-    flexDirection: 'row',
-    margin: theme.spacing(1),
-  },
-  buttons: {
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
 export const MassacreTabPanel = (props: { system: string }) => {
   const { system } = props;
   const context = useContext(MassacreContext);
   const tracker = useMemo(() => {
     return context?.trackers.find((x) => x.hazRezSystem === system);
   }, [system, context?.trackers]);
-
-  const classes = useStyles();
 
   if (context && tracker) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -128,7 +113,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
 
     return (
       <Container maxWidth="xl">
-        <div className={classes.buttons}>
+        <Box sx={{ '& button': { m: 1 } }}>
           <Button onClick={deleteTracker} color="secondary" variant="contained">
             Delete Tracker
           </Button>
@@ -163,7 +148,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
           >
             Reset and Refresh Factions
           </Button>
-        </div>
+        </Box>
         <div>
           <MassacreTotals tracker={tracker} />
         </div>
@@ -178,7 +163,13 @@ export const MassacreTabPanel = (props: { system: string }) => {
         </div>
         <div>
           <Typography variant="h4">Stations</Typography>
-          <div className={classes.systems}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              m: 1,
+            }}
+          >
             {tracker.systemsin10LY.map((system) => (
               <StationList
                 key={system.name}
@@ -186,7 +177,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
                 stations={system.stations}
               />
             ))}
-          </div>
+          </Box>
         </div>
       </Container>
     );

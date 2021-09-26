@@ -1,8 +1,7 @@
-import { PrimaryLayout } from 'components/layouts';
-import Head from 'next/head';
 import { OdysseyEngineering } from 'components/information/odyssey/engineering';
+import Head from 'next/head';
 
-const OdyEng = () => {
+const OdyEngPage = () => {
   return (
     <>
       <Head>
@@ -12,11 +11,9 @@ const OdyEng = () => {
           content="What's different in Odyssey for Engineering?"
         />
       </Head>
-      <PrimaryLayout>
-        <OdysseyEngineering />
-      </PrimaryLayout>
+      <OdysseyEngineering />
     </>
   );
 };
 
-export default OdyEng;
+export default OdyEngPage;

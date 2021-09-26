@@ -1,6 +1,5 @@
-import { PrimaryLayout } from 'components/layouts/primary';
-import Head from 'next/head';
 import { BuildSystem } from 'components/builds';
+import Head from 'next/head';
 
 const BuildPage = () => {
   return (
@@ -9,9 +8,7 @@ const BuildPage = () => {
         <title>USC Build Archive</title>
         <meta name="description" content="Builds of the USC" />
       </Head>
-      <PrimaryLayout>
-        <BuildSystem />
-      </PrimaryLayout>
+      <BuildSystem />
     </>
   );
 };

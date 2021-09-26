@@ -1,39 +1,23 @@
-import { Divider, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Divider, Paper, Typography } from '@mui/material';
+import { BoxwMB1 } from 'components/_common';
 import { getStationSize } from 'functions/edsmQueries/getStationSize';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: theme.spacing(1),
-  },
-  paper: {
-    width: 200,
-    padding: theme.spacing(1),
-  },
-  flex: {
-    display: 'flex',
-  },
-  spacer: {
-    flexGrow: 1,
-  },
-}));
 
 export const StationList = (props: {
   system: string;
   stations: { type: string; name: string; distance: number }[];
 }) => {
   const { system, stations } = props;
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Typography variant="h5" className={classes.paper}>
+    <BoxwMB1>
+      <Typography variant="h5" m={1}>
         {system}
       </Typography>
-      <Paper className={classes.paper}>
+      <Paper sx={{ width: 200, p: 1 }}>
         {stations.map((station) => (
           <div key={station.name}>
-            <div className={classes.flex}>
+            <div style={{ display: 'flex' }}>
               <Typography>{station.name}</Typography>
-              <div className={classes.spacer} />
+              <div style={{ flexGrow: 1 }} />
               <Typography>
                 {getStationSize(station.type)?.slice(undefined, 1)}
               </Typography>
@@ -43,6 +27,6 @@ export const StationList = (props: {
           </div>
         ))}
       </Paper>
-    </div>
+    </BoxwMB1>
   );
 };

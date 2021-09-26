@@ -1,30 +1,23 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
-import { PrimaryLayout } from 'components/layouts';
+import { Container, Paper, Typography } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}));
-
-const AuthError = () => {
-  const classes = useStyles();
-
+const AuthErrorPage = () => {
   return (
-    <PrimaryLayout>
-      <Container maxWidth="xs">
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Sign In Failed
-          </Typography>
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+    <Container maxWidth="xs">
+      <Paper
+        sx={{
+          marginTop: 8,
+          padding: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Sign In Failed
+        </Typography>
+      </Paper>
+    </Container>
   );
 };
 
-export default AuthError;
+export default AuthErrorPage;

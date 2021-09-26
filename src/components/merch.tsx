@@ -1,37 +1,27 @@
 import {
+  Box,
   Container,
   Link,
-  makeStyles,
   Paper,
   Typography,
-} from '@material-ui/core';
+  useTheme,
+} from '@mui/material';
 import { useLinks } from 'hooks/useLinks';
 
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
-  img: {
-    width: '100%',
-  },
-}));
-
 export const Merch = () => {
-  const classes = useStyles();
   const links = useLinks();
+  const theme = useTheme();
   return (
-    <Container maxWidth="sm" className={classes.center}>
+    <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
       <Typography variant="h3">USC Merch Store</Typography>
-      <Paper className={classes.paper}>
+      <Paper sx={{ padding: theme.spacing(1) }}>
         <Typography>
           Click the image or link below to open the merch store.
         </Typography>
         <a href={links.merch} target="_blank" rel="noreferrer">
-          <img
-            className={classes.img}
+          <Box
+            component="img"
+            sx={{ width: '100%' }}
             src="/img/expansion.png"
             alt="expansion image"
           />

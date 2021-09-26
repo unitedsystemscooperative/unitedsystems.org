@@ -1,47 +1,17 @@
+import { Clear, Search } from '@mui/icons-material';
 import {
+  Box,
   FormControl,
   IconButton,
   InputBase,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import { Clear, Search } from '@material-ui/icons';
-import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
-
-const useTitleBarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  title: {
-    flex: '2 1 100%',
-    textAlign: 'left',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 200,
-  },
-  searchBar: {
-    display: 'flex',
-    minWidth: 250,
-    alignItems: 'center',
-  },
-  searchInput: {
-    flex: 1,
-    marginLeft: theme.spacing(1),
-  },
-  iconButton: {
-    padding: 10,
-  },
-}));
+} from '@mui/material';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 interface ToolbarProps {
   title: string;
@@ -53,7 +23,6 @@ interface ToolbarProps {
 }
 
 export const DashboardToolbar = (props: ToolbarProps) => {
-  const classes = useTitleBarStyles();
   const {
     title,
     viewOptions,
@@ -68,28 +37,44 @@ export const DashboardToolbar = (props: ToolbarProps) => {
   };
 
   return (
-    <Toolbar className={classes.root}>
-      <Typography variant="h4" component="div" className={classes.title}>
+    <Toolbar
+      sx={{
+        pl: 2,
+        pr: 1,
+        '& button': {
+          m: 1,
+        },
+      }}
+    >
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{ flex: '2 1 100%', textAlign: 'left' }}
+      >
         {title}
       </Typography>
-      <Paper className={classes.searchBar} variant="outlined">
-        <div className={classes.iconButton}>
+      <Paper
+        sx={{ display: 'flex', minWidth: 250, alignItems: 'center' }}
+        variant="outlined"
+      >
+        <Box sx={{ p: 4 }}>
           <Search />
-        </div>
+        </Box>
         <InputBase
-          className={classes.searchInput}
+          sx={{ flex: 1, ml: 1 }}
           placeholder="Search"
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />
         <IconButton
-          className={classes.iconButton}
+          sx={{ p: 4 }}
           onClick={() => setSearchValue('')}
+          size="large"
         >
           <Clear />
         </IconButton>
       </Paper>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel>{title} View</InputLabel>
         <Select
           label="View"
@@ -101,7 +86,6 @@ export const DashboardToolbar = (props: ToolbarProps) => {
               vertical: 'top',
               horizontal: 'center',
             },
-            getContentAnchorEl: null,
           }}
         >
           {viewOptions.map((option) => (

@@ -1,48 +1,31 @@
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
+  Box,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemText,
-  makeStyles,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+  useTheme,
+} from '@mui/material';
 import { useAdmin } from 'hooks/useAdmin';
 import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
 import { KeyboardEvent, MouseEvent, useState } from 'react';
 import Link from './navLink';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-}));
-
 export const NavbarMobile = (props: {
   title: string | undefined;
   navItems: INavItem[];
 }) => {
-  const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const { title, navItems } = props;
   const [session] = useSession();
   const isCommand = useAdmin();
+  const theme = useTheme();
 
   const toggleDrawer = (open: boolean) => (
     event: KeyboardEvent | MouseEvent
@@ -90,25 +73,31 @@ export const NavbarMobile = (props: {
   );
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" color="inherit">
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            sx={{ marginRight: theme.spacing(2) }}
             color="inherit"
             onClick={toggleDrawer(true)}
+            size="large"
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
         </Toolbar>
-        <Drawer anchor="left" open={openDrawer} onClose={toggleDrawer(false)}>
-          {navList()}
-        </Drawer>
       </AppBar>
+      <Drawer
+        anchor="top"
+        open={openDrawer}
+        onClose={toggleDrawer(false)}
+        variant="temporary"
+      >
+        <Box>{navList()}</Box>
+      </Drawer>
     </div>
   );
 };

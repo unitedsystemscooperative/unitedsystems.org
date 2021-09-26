@@ -1,4 +1,4 @@
-import { Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 

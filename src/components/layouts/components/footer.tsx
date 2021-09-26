@@ -1,4 +1,11 @@
-import { Container, Link, makeStyles, Typography } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  Link,
+  Paper,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import NextLink from 'next/link';
 
 function ImgCopyright() {
@@ -75,30 +82,29 @@ function SiteMap() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800],
-  },
-  center: {
-    textAlign: 'center',
-  },
-}));
-
 export const Footer = () => {
-  const classes = useStyles();
+  const theme = useTheme();
 
   return (
-    <footer className={classes.footer}>
-      <Container maxWidth="sm" className={classes.center}>
-        <Copyright />
-        <ImgCopyright />
-        <SiteMap />
-      </Container>
-    </footer>
+    <Box
+      component="footer"
+      sx={{
+        marginTop: 'auto',
+      }}
+    >
+      <Paper
+        sx={{
+          padding: theme.spacing(3, 2),
+          marginRight: 0,
+          marginLeft: 0,
+        }}
+      >
+        <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
+          <Copyright />
+          <ImgCopyright />
+          <SiteMap />
+        </Container>
+      </Paper>
+    </Box>
   );
 };

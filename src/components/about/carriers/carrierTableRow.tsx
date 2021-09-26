@@ -1,6 +1,5 @@
-import { Link, TableCell } from '@material-ui/core';
+import { Link, TableCell } from '@mui/material';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
-import React from 'react';
 
 export const CarrierTableRow = ({ carrier }: { carrier: IFleetCarrier }) => {
   return (

@@ -1,6 +1,5 @@
-import { PrimaryLayout } from 'components/layouts';
-import Head from 'next/head';
 import { Ranks } from 'components/information/ranks/ranks';
+import Head from 'next/head';
 
 const RanksPage = () => {
   return (
@@ -12,9 +11,7 @@ const RanksPage = () => {
           content="Pilot's Federation Ranks in Elite Dangerous"
         />
       </Head>
-      <PrimaryLayout>
-        <Ranks />
-      </PrimaryLayout>
+      <Ranks />
     </>
   );
 };

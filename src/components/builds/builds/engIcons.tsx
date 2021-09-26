@@ -1,24 +1,11 @@
-import { makeStyles } from '@material-ui/core';
+import Image from 'next/image';
 const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';
 
-const useStyles = makeStyles({
-  engineering: {
-    '& p': {
-      '& img': {
-        height: '20px',
-        width: '20px',
-        verticalAlign: 'middle',
-      },
-    },
-  },
-});
-
 export const EngIcons = (props: { engLevel: number; ditchText?: boolean }) => {
-  const classes = useStyles();
   let icons: JSX.Element[] = [];
   if (props.engLevel > 3 || props.engLevel < 1) {
     return (
-      <div className={classes.engineering}>
+      <div>
         <p>{props.ditchText ? 'None' : 'Engineering Level: None'}</p>
       </div>
     );
@@ -26,17 +13,23 @@ export const EngIcons = (props: { engLevel: number; ditchText?: boolean }) => {
     for (let i = 1; i <= props.engLevel; i++) {
       icons = [
         ...icons,
-        <img src={engineerIcon} key={i} alt="Engineering Icon" />,
+        <Image
+          src={engineerIcon}
+          key={i}
+          alt="Engineering Icon"
+          height={20}
+          width={20}
+        />,
       ];
     }
     if (props.ditchText)
       return (
-        <div className={classes.engineering}>
+        <div>
           <p>{icons.map((icon) => icon)}</p>
         </div>
       );
     return (
-      <div className={classes.engineering}>
+      <div>
         <p>
           <span>Engineering Level:</span> {icons.map((icon) => icon)}
         </p>

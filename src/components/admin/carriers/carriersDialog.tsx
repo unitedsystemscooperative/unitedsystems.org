@@ -5,22 +5,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  makeStyles,
-  TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+import { TextFieldwM1 } from 'components/_common';
 import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginBottom: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-    // visibility: 'collapse',
-  },
-}));
 
 export interface CarrierDialogProps {
   open: boolean;
@@ -29,16 +18,25 @@ export interface CarrierDialogProps {
 }
 
 export const CarrierDialog = (props: CarrierDialogProps) => {
-  const classes = useStyles();
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset } = useForm<IFleetCarrier>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Omit<IFleetCarrier, '_id'>>();
 
   useEffect(() => {
     if (values) {
-      reset(values);
+      reset({
+        name: values.name,
+        inaraLink: values.inaraLink,
+        owner: values.owner,
+        purpose: values.purpose,
+        id: values.id,
+      });
     } else {
       reset({
-        _id: undefined,
         name: undefined,
         inaraLink: undefined,
         owner: undefined,
@@ -74,46 +72,47 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and
             the Purpose (if Personal, just leave it blank).
           </DialogContentText>
-          <TextField
-            name="_id"
-            inputRef={register}
-            disabled
-            className={classes.hide}
-          />
-          <TextField
-            name="name"
-            inputRef={register({ required: true })}
-            fullWidth
+          <TextFieldwM1
             placeholder="Carrier Name"
-            className={classes.textField}
-          />
-          <TextField
-            name="id"
-            inputRef={register({ required: true })}
             fullWidth
+            error={errors.name !== undefined}
+            helperText={
+              errors.name?.type === 'required' && 'This field is required.'
+            }
+            {...register('name', { required: true })}
+          />
+          {/* TODO: add schema validate for Carrier ID (VVV-VVV) */}
+          <TextFieldwM1
             placeholder="Carrier ID"
-            className={classes.textField}
-          />
-          <TextField
-            name="owner"
-            inputRef={register({ required: true })}
             fullWidth
+            error={errors.id !== undefined}
+            helperText={
+              errors.id?.type === 'required' && 'This field is required.'
+            }
+            {...register('id', { required: true })}
+          />
+          <TextFieldwM1
             placeholder="Owner"
-            className={classes.textField}
-          />
-          <TextField
-            name="inaraLink"
-            inputRef={register({ required: true })}
             fullWidth
+            error={errors.owner !== undefined}
+            helperText={
+              errors.owner?.type === 'required' && 'This field is required.'
+            }
+            {...register('owner', { required: true })}
+          />
+          <TextFieldwM1
             placeholder="Inara Link"
-            className={classes.textField}
-          />
-          <TextField
-            name="purpose"
-            inputRef={register({ required: false })}
             fullWidth
+            error={errors.inaraLink !== undefined}
+            helperText={
+              errors.inaraLink?.type === 'required' && 'This field is required.'
+            }
+            {...register('inaraLink', { required: true })}
+          />
+          <TextFieldwM1
             placeholder="Purpose - Leave blank if Personal"
-            className={classes.textField}
+            fullWidth
+            {...register('purpose', { required: false })}
           />
         </DialogContent>
         <DialogActions>

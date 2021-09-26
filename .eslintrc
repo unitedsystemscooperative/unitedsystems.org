@@ -1,24 +1,29 @@
 {
-  "parser": "@typescript-eslint/parser",
   "extends": [
+    // "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:mdx/recommended"
+    "next",
+    "prettier"
   ],
-  "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier"],
   "rules": {
+    "prefer-const": "warn",
+    "react/no-unescaped-entities": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       { "argsIgnorePattern": "^_" }
     ],
-    "prefer-const": "warn",
-    "react/react-in-jsx-scope": "off",
-    "react/no-unescaped-entities": "off",
-    "mdx/no-unescaped-entities": "off"
+    // the following jsx rules are in relation to React 17's new JSX runtime
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   },
-  "globals": {
-    "React": "writable"
-  }
+  "overrides": [
+    {
+      // Default exports are normal for api functions.
+      "files": ["src/pages/api/**/*.ts"],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
 }

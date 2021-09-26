@@ -1,26 +1,13 @@
 import { UnderConstruction } from '@admiralfeb/react-components';
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
-  img: {
-    width: '100%',
-  },
-}));
+import { Container, Paper, Typography } from '@mui/material';
 
 export const DevComponent = () => {
-  const classes = useStyles();
   return (
     <Container maxWidth="md">
-      <Typography variant="h3" className={classes.center}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
         Developer Info
       </Typography>
-      <Paper className={classes.paper}>
+      <Paper sx={{ padding: 1 }}>
         <UnderConstruction />
       </Paper>
     </Container>

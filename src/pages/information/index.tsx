@@ -1,20 +1,17 @@
 import { InformationMain } from 'components/information/informationMain';
-import { PrimaryLayout } from 'components/layouts/primary';
 import Head from 'next/head';
 
 /** Information Landing Component */
-const Information = () => {
+const InformationPage = () => {
   return (
     <>
       <Head>
         <title>USC Information Archive</title>
         <meta name="description" content="USC Information Archive" />
       </Head>
-      <PrimaryLayout>
-        <InformationMain />
-      </PrimaryLayout>
+      <InformationMain />
     </>
   );
 };
 
-export default Information;
+export default InformationPage;

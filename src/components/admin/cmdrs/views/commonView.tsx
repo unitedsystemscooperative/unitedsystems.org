@@ -1,7 +1,9 @@
+import { RestoreFromTrash } from '@mui/icons-material';
+import Link from '@mui/icons-material/Link';
 import {
+  Box,
   Checkbox,
   IconButton,
-  makeStyles,
   Table,
   TableBody,
   TableCell,
@@ -9,12 +11,10 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-} from '@material-ui/core';
-import { RestoreFromTrash } from '@material-ui/icons';
-import Link from '@material-ui/icons/Link';
+} from '@mui/material';
 import { genericSortArray, Order } from 'functions/sort';
 import { ICMDR } from 'models/admin/cmdr';
-import React, {
+import {
   ChangeEvent,
   Dispatch,
   MouseEvent,
@@ -28,26 +28,6 @@ export interface HeadCell<T> {
   numeric: boolean;
 }
 
-export const useCmdrTableStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
-}));
-
 export const handleDate = (date) => {
   const newDate = new Date(date);
   return newDate > new Date('2019-01-01')
@@ -56,7 +36,6 @@ export const handleDate = (date) => {
 };
 
 export interface CmdrTableHeadProps<T> {
-  classes: ReturnType<typeof useCmdrTableStyles>;
   numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof T) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -68,7 +47,6 @@ export interface CmdrTableHeadProps<T> {
 
 export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
   const {
-    classes,
     onSelectAllClick,
     order,
     orderBy,
@@ -98,7 +76,7 @@ export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
           <TableCell
             key={headCell.id.toString()}
             align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -108,9 +86,22 @@ export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <Box
+                  component="span"
+                  sx={{
+                    border: 0,
+                    clip: 'rect(0 0 0 0)',
+                    height: 1,
+                    margin: -1,
+                    overflow: 'hidden',
+                    padding: 0,
+                    position: 'absolute',
+                    top: 20,
+                    width: 1,
+                  }}
+                >
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
+                </Box>
               ) : null}
             </TableSortLabel>
           </TableCell>
@@ -193,8 +184,8 @@ export interface CmdrDefaultViewProps<T extends ICMDR> {
   order: Order;
   orderBy: keyof T;
   handleSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleRequestSort: (_: React.MouseEvent<unknown>, property: keyof T) => void;
-  handleClick: (_: React.MouseEvent<unknown>, id: string) => void;
+  handleRequestSort: (_: MouseEvent<unknown>, property: keyof T) => void;
+  handleClick: (_: MouseEvent<unknown>, id: string) => void;
   headCells: HeadCell<T>[];
   data: (cmdr: T) => ViewData[];
   restoreCmdr?: (cmdr: T) => Promise<void>;
@@ -217,8 +208,6 @@ export const CmdrDefaultView = <T extends ICMDR>(
     restoreCmdr,
   } = props;
 
-  const classes = useCmdrTableStyles();
-
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
   const emptyRows =
@@ -229,7 +218,6 @@ export const CmdrDefaultView = <T extends ICMDR>(
       <TableContainer>
         <Table size="small">
           <CmdrTableHead
-            classes={classes}
             numSelected={selected.length}
             order={order}
             orderBy={orderBy}
@@ -256,7 +244,10 @@ export const CmdrDefaultView = <T extends ICMDR>(
                     {renderData(data(cmdr))}
                     {restoreCmdr && (
                       <TableCell>
-                        <IconButton onClick={() => restoreCmdr(cmdr)}>
+                        <IconButton
+                          onClick={() => restoreCmdr(cmdr)}
+                          size="large"
+                        >
                           <RestoreFromTrash />
                         </IconButton>
                       </TableCell>
