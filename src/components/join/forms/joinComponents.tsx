@@ -15,7 +15,7 @@ import { TextFieldwM1 } from 'components/_common';
 import { Platform, PlatformString } from 'models/admin/platforms';
 import { Referral, ReferralString } from 'models/admin/referrals';
 import { Region, RegionString } from 'models/admin/regions';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useEffect, useState } from 'react';
 import {
   Control,
@@ -34,10 +34,10 @@ export const QuestionBox = styled('div')(({ theme }) => ({
 }));
 
 interface ControllerProps {
-  name: keyof Omit<IJoinInfo, '_id'>;
+  name: keyof Omit<IJoinRequest, '_id'>;
   rules?: RegisterOptions;
   // eslint-disable-next-line @typescript-eslint/ban-types
-  control: Control<Omit<IJoinInfo, '_id'>, object>;
+  control: Control<Omit<IJoinRequest, '_id'>, object>;
 }
 
 interface FormQuestionProps {
@@ -106,7 +106,7 @@ export const FormCheckBoxField = ({
 };
 
 interface FormControlProps {
-  control: Control<Omit<IJoinInfo, '_id'>>;
+  control: Control<Omit<IJoinRequest, '_id'>>;
 }
 export const FormCmdrName = ({ control }: FormControlProps) => {
   return (

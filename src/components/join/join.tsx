@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useAddJoinInfo } from 'hooks/join/useJoinInfo';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ export const Join = () => {
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
 
-  const onSubmit = (data: IJoinInfo, type: string) => {
+  const onSubmit = (data: IJoinRequest, type: string) => {
     const newData = data;
     const time = new Date().getTime();
     newData.timeStamp = new Date(time).toISOString();

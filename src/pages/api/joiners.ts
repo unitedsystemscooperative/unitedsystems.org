@@ -1,4 +1,4 @@
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase, getItems, insertItem } from 'utils/mongo';
@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { db } = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
-    const joinInfo: IJoinInfo = req.body;
+    const joinInfo: IJoinRequest = req.body;
 
     if (req.method === 'POST') {
       await insertItem(COLLECTION, joinInfo, db);
@@ -21,7 +21,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return;
       }
 
-      const result = await getItems<IJoinInfo>(COLLECTION, db, 'timeStamp', -1);
+      const result = await getItems<IJoinRequest>(
+        COLLECTION,
+        db,
+        'timeStamp',
+        -1
+      );
       res.status(200).send(result);
     }
   } catch (e) {

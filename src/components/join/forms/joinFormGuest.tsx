@@ -1,5 +1,5 @@
 import { Container, Paper, Typography } from '@mui/material';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useForm } from 'react-hook-form';
 import {
   FormCmdrName,
@@ -12,11 +12,11 @@ import {
 } from './joinComponents';
 
 export const JoinFormGuest = (props: {
-  onSubmit: (data: IJoinInfo, type: string) => void;
+  onSubmit: (data: IJoinRequest, type: string) => void;
 }) => {
-  const { handleSubmit, control } = useForm<Omit<IJoinInfo, '_id'>>();
+  const { handleSubmit, control } = useForm<Omit<IJoinRequest, '_id'>>();
 
-  const onSubmit = (data: IJoinInfo) => props.onSubmit(data, 'guest');
+  const onSubmit = (data: IJoinRequest) => props.onSubmit(data, 'guest');
 
   return (
     <Container maxWidth="sm">

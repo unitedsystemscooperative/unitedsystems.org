@@ -24,6 +24,34 @@ const translateJoinerstoJoinRequests = async () => {
     // TimeStamp to date format
     cmdr.timeStamp = new Date(cmdr.timeStamp);
 
+    // Reference to enum
+    switch (cmdr.reference) {
+      case 'reddit':
+        cmdr.reference = 8;
+        break;
+      case 'inara':
+        cmdr.reference = 7;
+        break;
+      case 'player':
+        cmdr.reference = 1;
+        break;
+      case 'facebook':
+        cmdr.reference = 4;
+        break;
+      case 'website':
+        cmdr.reference = 5;
+        break;
+      case 'forums':
+        cmdr.reference = 3;
+        break;
+      case 'other':
+        cmdr.reference = 9;
+        break;
+      default:
+        cmdr.reference = 9;
+        break;
+    }
+
     const id = new ObjectId(cmdr._id);
     await localDb.collection('joinRequests').insertOne({ _id: id, ...cmdr });
   }

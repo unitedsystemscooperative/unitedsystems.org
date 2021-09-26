@@ -11,14 +11,14 @@ import {
   TableRow,
 } from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { PlatformString } from 'models/admin/platforms';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { ChangeEvent, useState } from 'react';
-import { buildPlatforms } from './buildPlatforms';
 
 export const AmbassadorsTable = ({
   ambassadors,
 }: {
-  ambassadors: IJoinInfo[];
+  ambassadors: IJoinRequest[];
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -74,7 +74,7 @@ export const AmbassadorsTable = ({
                         <FileCopy />
                       </IconButton>
                     </TableCell>
-                    <TableCell>{buildPlatforms(map.platforms)}</TableCell>
+                    <TableCell>{PlatformString[map.platform]}</TableCell>
                     <TableCell>{map.group}</TableCell>
                     <TableCell>{map.needPrivate?.toString()}</TableCell>
                     <TableCell>{map.timezone}</TableCell>

@@ -1,3 +1,4 @@
+import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -9,20 +10,18 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { Add, FileCopy } from '@mui/icons-material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IMember } from 'models/admin/cmdr';
-import { Platform } from 'models/admin/platforms';
+import { PlatformString } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
 import { Region } from 'models/admin/regions';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { MemberDialog } from '../cmdrs/dialogs/memberDialog';
-import { buildPlatforms } from './buildPlatforms';
 
-export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
+export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dialog, setDialog] = useState(false);
@@ -41,34 +40,17 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
     setPage(0);
   };
 
-  const processPlatform = (platforms: {
-    pc: boolean;
-    xbox: boolean;
-    ps: boolean;
-  }): Platform => {
-    if (platforms.pc) {
-      return Platform.PC;
-    }
-    if (platforms.xbox) {
-      return Platform.Xbox;
-    }
-    if (platforms.ps) {
-      return Platform.PS;
-    }
-    return Platform.PC;
-  };
-
-  const handleAddMember = (joinInfo: IJoinInfo) => {
+  const handleAddMember = (joinInfo: IJoinRequest) => {
     const newMember: IMember = {
       cmdrName: joinInfo.cmdr.toUpperCase(),
       discordName: joinInfo.discord,
       discordJoinDate: null,
       joinDate: new Date(),
-      platform: processPlatform(joinInfo.platforms),
+      platform: joinInfo.platform,
       rank: Rank.Cadet,
       region: joinInfo.region ?? Region.N_CAmerica,
-      ref1: joinInfo.reference,
-      ref2: joinInfo.reference2,
+      ref1: joinInfo.referral,
+      ref2: joinInfo.referral2,
       entersVoice: false,
       isInInaraSquad: false,
     };
@@ -107,88 +89,94 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
     }
   };
 
-  return <>
-    <Paper>
-      <TableContainer>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>TimeStamp</TableCell>
-              <TableCell>CMDR</TableCell>
-              <TableCell>Discord</TableCell>
-              <TableCell>Platform</TableCell>
-              <TableCell>Playing Length</TableCell>
-              <TableCell>Reference</TableCell>
-              <TableCell>Reference2</TableCell>
-              <TableCell>Region</TableCell>
-              <TableCell>Add to Dashboard</TableCell>
-            </TableRow>
-          </TableHead>
-          {members && (
-            <TableBody>
-              {members
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((map) => (
-                  <TableRow key={`${map.discord} ${map.timeStamp}`}>
-                    <TableCell>
-                      {new Date(map.timeStamp).toUTCString()}
-                    </TableCell>
-                    <TableCell>
-                      <div>
-                        {map.cmdr}
+  return (
+    <>
+      <Paper>
+        <TableContainer>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>TimeStamp</TableCell>
+                <TableCell>CMDR</TableCell>
+                <TableCell>Discord</TableCell>
+                <TableCell>Platform</TableCell>
+                <TableCell>Playing Length</TableCell>
+                <TableCell>Referral</TableCell>
+                <TableCell>Referral2</TableCell>
+                <TableCell>Region</TableCell>
+                <TableCell>Add to Dashboard</TableCell>
+              </TableRow>
+            </TableHead>
+            {members && (
+              <TableBody>
+                {members
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((map) => (
+                    <TableRow key={`${map.discord} ${map.timeStamp}`}>
+                      <TableCell>
+                        {new Date(map.timeStamp).toUTCString()}
+                      </TableCell>
+                      <TableCell>
+                        <div>
+                          {map.cmdr}
+                          <IconButton
+                            size="small"
+                            color="secondary"
+                            onClick={() =>
+                              copytoClipboard(map.cmdr.toUpperCase())
+                            }
+                          >
+                            <FileCopy />
+                          </IconButton>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div>
+                          {map.discord}
+                          <IconButton
+                            size="small"
+                            color="secondary"
+                            onClick={() => copytoClipboard(map.discord)}
+                          >
+                            <FileCopy />
+                          </IconButton>
+                        </div>
+                      </TableCell>
+                      <TableCell>{PlatformString[map.platform]}</TableCell>
+                      <TableCell>{processLength(map.playingLength)}</TableCell>
+                      <TableCell>{map.referral}</TableCell>
+                      <TableCell>{map.referral2}</TableCell>
+                      <TableCell>{map.region}</TableCell>
+                      <TableCell>
                         <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() =>
-                            copytoClipboard(map.cmdr.toUpperCase())
-                          }
+                          color="primary"
+                          onClick={() => handleAddMember(map)}
+                          size="large"
                         >
-                          <FileCopy />
+                          <Add />
                         </IconButton>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div>
-                        {map.discord}
-                        <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() => copytoClipboard(map.discord)}
-                        >
-                          <FileCopy />
-                        </IconButton>
-                      </div>
-                    </TableCell>
-                    <TableCell>{buildPlatforms(map.platforms)}</TableCell>
-                    <TableCell>{processLength(map.playingLength)}</TableCell>
-                    <TableCell>{map.reference}</TableCell>
-                    <TableCell>{map.reference2}</TableCell>
-                    <TableCell>{map.region}</TableCell>
-                    <TableCell>
-                      <IconButton color="primary" onClick={() => handleAddMember(map)} size="large">
-                        <Add />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          )}
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={members.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            )}
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={members.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <MemberDialog
+        open={dialog}
+        values={[dialogVal]}
+        onClose={onDialogClose}
       />
-    </Paper>
-    <MemberDialog
-      open={dialog}
-      values={[dialogVal]}
-      onClose={onDialogClose}
-    />
-  </>;
+    </>
+  );
 };

@@ -1,4 +1,4 @@
-import { IJoinInfo } from 'models/join/joinInfo';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
@@ -30,7 +30,7 @@ export const useJoinInfo = () => {
 
 export const useAllJoinInfo = () => {
   const { data, error } = useSWR('/api/joiners', (url: string) =>
-    axios.get<IJoinInfo[]>(url)
+    axios.get<IJoinRequest[]>(url)
   );
   const allJoiners = data?.data ?? [];
 
@@ -38,7 +38,7 @@ export const useAllJoinInfo = () => {
 };
 
 export const useAddJoinInfo = () => {
-  const addJoiner = async (joiner: IJoinInfo) => {
+  const addJoiner = async (joiner: IJoinRequest) => {
     try {
       await axios.post('/api/joiners', joiner);
     } catch (e) {

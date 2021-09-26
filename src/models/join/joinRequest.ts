@@ -3,7 +3,7 @@ import { Referral } from 'models/admin/referrals';
 import { Region } from 'models/admin/regions';
 import { IDbItem } from 'models/dbItem';
 
-export interface IJoinInfo extends IDbItem {
+export interface IJoinRequest extends IDbItem {
   //   type: 'join' | 'guest' | 'ambassador';
   timeStamp?: string;
   type: string;
@@ -16,8 +16,8 @@ export interface IJoinInfo extends IDbItem {
   //     | 'morethan6Month'
   //     | 'morethanYear';
   playingLength?: string;
-  reference?: Referral;
-  reference2?: string;
+  referral?: Referral;
+  referral2?: string;
   rules: boolean;
   timezone?: string;
   region?: Region;
