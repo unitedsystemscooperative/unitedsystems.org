@@ -1,30 +1,26 @@
-import { Chip } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Box, Chip } from '@mui/material';
 import { IBuildInfov2 } from 'models/builds';
-
-const useStyles = makeStyles((theme) => ({
-  chips: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: theme.spacing(1),
-    '& div': {
-      marginRight: theme.spacing(1),
-    },
-  },
-}));
 
 export const TagGroup = (props: { build: IBuildInfov2 }) => {
   const { build } = props;
-  const classes = useStyles();
   return (
-    <div className={classes.chips}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        m: 1,
+        '& div': { mr: 1 },
+      }}
+    >
       {build.specializations.map((v) => (
         <Chip label={v} key={v} />
       ))}
       {build.hasGuardian && <Chip label="Guardian" key="guardian" />}
       {build.hasPowerplay && <Chip label="PowerPlay" key="powerplay" />}
-      {build.isBeginner && <Chip label="Beginner" key="beginner" />}
-    </div>
+      {build.isBeginner && (
+        <Chip label="Beginner" key="beginner" color="secondary" />
+      )}
+    </Box>
   );
 };

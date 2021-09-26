@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import { IDbItem } from 'models/dbItem';
 import { Platform } from './platforms';
 import { Rank } from './ranks';
@@ -5,6 +6,7 @@ import { Referral } from './referrals';
 import { Region } from './regions';
 
 export interface ICMDR extends IDbItem {
+  _id: ObjectId;
   cmdrName: string;
   discordName: string;
   discordJoinDate: Date;
@@ -20,7 +22,7 @@ export interface ICMDR extends IDbItem {
 
 export interface IMember extends ICMDR {
   joinDate: Date;
-  promotion?: Rank;
+  promotion?: Rank | null;
   isInInaraSquad: boolean;
   ref1: Referral;
   ref2?: string;

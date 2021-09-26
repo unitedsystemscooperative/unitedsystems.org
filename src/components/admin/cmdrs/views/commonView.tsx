@@ -1,4 +1,7 @@
+import { RestoreFromTrash } from '@mui/icons-material';
+import Link from '@mui/icons-material/Link';
 import {
+  Box,
   Checkbox,
   IconButton,
   Table,
@@ -9,9 +12,6 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { RestoreFromTrash } from '@mui/icons-material';
-import Link from '@mui/icons-material/Link';
 import { genericSortArray, Order } from 'functions/sort';
 import { ICMDR } from 'models/admin/cmdr';
 import {
@@ -28,26 +28,6 @@ export interface HeadCell<T> {
   numeric: boolean;
 }
 
-export const useCmdrTableStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
-}));
-
 export const handleDate = (date) => {
   const newDate = new Date(date);
   return newDate > new Date('2019-01-01')
@@ -56,7 +36,6 @@ export const handleDate = (date) => {
 };
 
 export interface CmdrTableHeadProps<T> {
-  classes: ReturnType<typeof useCmdrTableStyles>;
   numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof T) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -68,7 +47,6 @@ export interface CmdrTableHeadProps<T> {
 
 export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
   const {
-    classes,
     onSelectAllClick,
     order,
     orderBy,
@@ -108,9 +86,22 @@ export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <Box
+                  component="span"
+                  sx={{
+                    border: 0,
+                    clip: 'rect(0 0 0 0)',
+                    height: 1,
+                    margin: -1,
+                    overflow: 'hidden',
+                    padding: 0,
+                    position: 'absolute',
+                    top: 20,
+                    width: 1,
+                  }}
+                >
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
+                </Box>
               ) : null}
             </TableSortLabel>
           </TableCell>
@@ -217,8 +208,6 @@ export const CmdrDefaultView = <T extends ICMDR>(
     restoreCmdr,
   } = props;
 
-  const classes = useCmdrTableStyles();
-
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
   const emptyRows =
@@ -229,7 +218,6 @@ export const CmdrDefaultView = <T extends ICMDR>(
       <TableContainer>
         <Table size="small">
           <CmdrTableHead
-            classes={classes}
             numSelected={selected.length}
             order={order}
             orderBy={orderBy}

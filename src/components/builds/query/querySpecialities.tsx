@@ -1,30 +1,16 @@
-import { Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { ToggleButton } from '@mui/material';
+import { Box, ToggleButton } from '@mui/material';
 import { ShipSpecialty } from 'models/builds/shipSpecialty';
-import { useSharedStyles } from './sharedStyles';
-
-const useStyles = makeStyles((theme) => ({
-  querySpecialtyButtons: {
-    display: 'grid',
-    gridTemplate: 'repeat(4, 1fr) / repeat(3, 1fr)',
-    '& button': {
-      marginRight: theme.spacing(1),
-      marginTop: theme.spacing(1),
-    },
-    [theme.breakpoints.up('lg')]: {
-      gridTemplate: 'repeat(3, 1fr) / repeat(4, 1fr)',
-    },
-  },
-}));
+import {
+  QueryExplanation,
+  QuerySection,
+  QuerySectionHeader,
+} from './sharedComponents';
 
 export const QuerySpecialties = (props: {
   selectedSpecialties: string[];
   setSpecialties: (value: string[]) => void;
 }) => {
   const { selectedSpecialties, setSpecialties } = props;
-  const sharedClasses = useSharedStyles();
-  const classes = useStyles();
 
   const handleSpecialties = (special: string) => {
     let newSpecials: string[] = [];
@@ -37,14 +23,22 @@ export const QuerySpecialties = (props: {
   };
 
   return (
-    <div className={sharedClasses.querySection}>
-      <h3 className={sharedClasses.querySectionheader}>Ship Specializations</h3>
-
-      <Typography className={sharedClasses.queryExplanationText}>
-        Select specializations that the ship should fulfill.
-      </Typography>
-
-      <div className={classes.querySpecialtyButtons}>
+    <QuerySection>
+      <QuerySectionHeader>Ship Specializations</QuerySectionHeader>
+      <QueryExplanation text="Select specializations that the ship should fulfill." />
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplate: {
+            xs: 'repeat(4, 1fr) / repeat(3, 1fr)',
+            lg: 'repeat(3, 1fr) / repeat(4, 1fr)',
+          },
+          '& button': {
+            mr: 1,
+            mt: 1,
+          },
+        }}
+      >
         {getSpecialties().map((special) => (
           <ToggleButton
             value={special}
@@ -55,8 +49,8 @@ export const QuerySpecialties = (props: {
             {special}
           </ToggleButton>
         ))}
-      </div>
-    </div>
+      </Box>
+    </QuerySection>
   );
 };
 

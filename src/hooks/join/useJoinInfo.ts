@@ -8,19 +8,19 @@ export const useJoinRequests = () => {
 
   const members = useMemo(() => {
     if (loading || error) {
-      return undefined;
+      return [];
     }
     return requests.filter((x) => x.type === 'join');
   }, [requests, loading, error]);
   const guests = useMemo(() => {
     if (loading || error) {
-      return undefined;
+      return [];
     }
     return requests.filter((x) => x.type === 'guest');
   }, [requests, loading, error]);
   const ambassadors = useMemo(() => {
     if (loading || error) {
-      return undefined;
+      return [];
     }
     return requests.filter((x) => x.type === 'ambassador');
   }, [requests, loading, error]);

@@ -1,27 +1,16 @@
 import { EDSpinner } from '@admiralfeb/react-components';
-import { useCallback, useEffect, useState } from 'react';
 import { filterShipBuilds } from 'functions/builds/filterShipBuilds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IQuery } from 'models/builds';
-import { BuildCard } from './buildCard';
-import makeStyles from '@mui/styles/makeStyles';
 import { useSnackbar } from 'notistack';
-
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-});
+import { useCallback, useEffect, useState } from 'react';
+import { BuildCard } from './buildCard';
 
 export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
   const [queriedBuilds, setQueriedBuilds] = useState<IBuildInfov2[]>();
   const { buildQuery } = props;
   const { loading, shipBuilds, error } = useShipBuilds();
   const { enqueueSnackbar } = useSnackbar();
-  const classes = useStyles();
 
   const filterBuilds = useCallback(() => {
     if (loading || error) {
@@ -44,7 +33,14 @@ export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
   }, [loading, filterBuilds, error, enqueueSnackbar]);
 
   return (
-    <div className={classes.root}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
+    >
       {loading ? (
         <EDSpinner />
       ) : (

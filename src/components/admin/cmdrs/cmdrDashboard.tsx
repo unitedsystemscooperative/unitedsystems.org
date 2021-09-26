@@ -1,4 +1,5 @@
 import { EDSpinner } from '@admiralfeb/react-components';
+import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
   Button,
   Collapse,
@@ -10,8 +11,6 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
 import { useSnackbar } from 'notistack';
@@ -23,28 +22,6 @@ import { MemberDialog } from './dialogs/memberDialog';
 import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
 
-const useTitleBarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  title: {
-    flex: '2 1 100%',
-    textAlign: 'left',
-  },
-  buttonGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'flex-end',
-      flexWrap: 'wrap',
-    },
-  },
-}));
-
 interface TitleBarProps {
   setView: (CmdrView) => void;
   selectedCount: number;
@@ -54,7 +31,6 @@ interface TitleBarProps {
 }
 
 const DashboardTitleBar = (props: TitleBarProps) => {
-  const classes = useTitleBarStyles();
   const { setView, selectedCount, addCMDR, editCMDR, deleteCMDR } = props;
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -68,8 +44,12 @@ const DashboardTitleBar = (props: TitleBarProps) => {
   const handleViewFilterClose = () => setAnchorEl(null);
 
   return (
-    <Toolbar className={classes.root}>
-      <Typography variant="h4" component="div" className={classes.title}>
+    <Toolbar sx={{ pl: 2, pr: 1, '& button': { m: 1 } }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{ flex: '2 1 100%', textAlign: 'left' }}
+      >
         CMDR Management
       </Typography>
       <Tooltip title="Add a cmdr" arrow>
@@ -141,16 +121,7 @@ enum CmdrView {
   Members = 'Members',
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-}));
-
 export const CMDRDashboard = () => {
-  const classes = useStyles();
   const {
     cmdrs,
     loading,
@@ -167,14 +138,10 @@ export const CMDRDashboard = () => {
   const [selectedCmdrs, setSelectedCmdrs] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState<CmdrView | undefined>(undefined);
   const [ambassadorDialogValues, setAmbassadorDialogValues] = useState<
-    IAmbassador[] | undefined
-  >(undefined);
-  const [guestDialogValues, setGuestDialogValues] = useState<
-    IGuest[] | undefined
-  >(undefined);
-  const [memberDialogValues, setMemberDialogValues] = useState<
-    IMember[] | undefined
-  >(undefined);
+    IAmbassador[]
+  >([]);
+  const [guestDialogValues, setGuestDialogValues] = useState<IGuest[]>([]);
+  const [memberDialogValues, setMemberDialogValues] = useState<IMember[]>([]);
 
   const handleShowDialog = () => {
     switch (cmdrView) {
@@ -210,7 +177,7 @@ export const CMDRDashboard = () => {
   ) => {
     setShowDialog(undefined);
 
-    if (returnedCmdrs && returnedCmdrs.length > 1) {
+    if (returnedCmdrs && returnedCmdrs.length > 1 && returnedCmdr) {
       try {
         await updateCMDRs(returnedCmdrs, returnedCmdr);
         setSelectedCmdrs([]);
@@ -263,7 +230,15 @@ export const CMDRDashboard = () => {
   }
 
   return (
-    <Container maxWidth="xl" component={Paper} className={classes.root}>
+    <Container
+      maxWidth="xl"
+      component={Paper}
+      sx={{
+        textAlign: 'center',
+        p: 1,
+        mt: 1,
+      }}
+    >
       <DashboardTitleBar
         setView={setCmdrView}
         selectedCount={selectedCmdrs.length}
