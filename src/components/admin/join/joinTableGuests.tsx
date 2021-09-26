@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { PlatformString } from 'models/admin/platforms';
+import { ReferralString } from 'models/admin/referrals';
+import { RegionString } from 'models/admin/regions';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { ChangeEvent, useState } from 'react';
 
@@ -37,9 +39,9 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
               <TableCell>CMDR</TableCell>
               <TableCell>Discord</TableCell>
               <TableCell>Platform</TableCell>
-              <TableCell>Reference</TableCell>
-              <TableCell>Reference2</TableCell>
-              <TableCell>Timezone</TableCell>
+              <TableCell>Referral</TableCell>
+              <TableCell>Referral2</TableCell>
+              <TableCell>Region</TableCell>
             </TableRow>
           </TableHead>
           {guests && (
@@ -70,9 +72,9 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
                       </IconButton>
                     </TableCell>
                     <TableCell>{PlatformString[map.platform]}</TableCell>
-                    <TableCell>{map.referral}</TableCell>
+                    <TableCell>{ReferralString[map.referral]}</TableCell>
                     <TableCell>{map.referral2}</TableCell>
-                    <TableCell>{map.timezone}</TableCell>
+                    <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>

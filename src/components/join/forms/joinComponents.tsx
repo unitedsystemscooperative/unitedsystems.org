@@ -223,21 +223,21 @@ export const FormPlayingLength = ({ control }: FormControlProps) => {
   );
 };
 
-export const FormReference = ({ control }: FormControlProps) => {
+export const FormReferral = ({ control }: FormControlProps) => {
   const {
     field,
     fieldState: { error },
   } = useController({
-    name: 'reference',
+    name: 'referral',
     control,
     rules: { required: 'You must select a referral type.' },
     defaultValue: null,
   });
-  const referral = useWatch({ control, name: 'reference' });
+  const referral = useWatch({ control, name: 'referral' });
   const {
     field: { ref: ref2, ...inputProps2 },
     fieldState: { error: error2 },
-  } = useController({ name: 'reference2', control, defaultValue: '' });
+  } = useController({ name: 'referral2', control, defaultValue: '' });
   const [ref2Question, setRef2Question] = useState('');
 
   useEffect(() => {

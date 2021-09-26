@@ -15,7 +15,8 @@ import { useCMDRs } from 'hooks/useCmdrs';
 import { IMember } from 'models/admin/cmdr';
 import { PlatformString } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
-import { Region } from 'models/admin/regions';
+import { ReferralString } from 'models/admin/referrals';
+import { Region, RegionString } from 'models/admin/regions';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
@@ -144,9 +145,11 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
                       </TableCell>
                       <TableCell>{PlatformString[map.platform]}</TableCell>
                       <TableCell>{processLength(map.playingLength)}</TableCell>
-                      <TableCell>{map.referral}</TableCell>
+                      <TableCell>{ReferralString[map.referral]}</TableCell>
                       <TableCell>{map.referral2}</TableCell>
-                      <TableCell>{map.region}</TableCell>
+                      <TableCell>
+                        {map.region ? RegionString[map.region] : map.timezone}
+                      </TableCell>
                       <TableCell>
                         <IconButton
                           color="primary"

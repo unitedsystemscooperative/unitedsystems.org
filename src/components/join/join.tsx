@@ -6,7 +6,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { useAddJoinInfo } from 'hooks/join/useJoinInfo';
+import { useAddJoinRequest } from 'hooks/join/useJoinInfo';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
@@ -17,7 +17,7 @@ import { JoinFormMember } from './forms/joinFormMember';
 
 export const Join = () => {
   const [form, setForm] = useState<number | null>();
-  const addJoiner = useAddJoinInfo();
+  const addJoiner = useAddJoinRequest();
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
 

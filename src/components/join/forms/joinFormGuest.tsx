@@ -5,7 +5,7 @@ import {
   FormCmdrName,
   FormDiscordName,
   FormPlatformRadioGroup,
-  FormReference,
+  FormReferral,
   FormRegion,
   FormRules,
   FormSubmit,
@@ -31,7 +31,7 @@ export const JoinFormGuest = (props: {
           <FormCmdrName control={control} />
           <FormDiscordName control={control} />
           <FormPlatformRadioGroup control={control} />
-          <FormReference control={control} />
+          <FormReferral control={control} />
           <FormRegion control={control} />
           <FormRules control={control} />
           <FormSubmit />

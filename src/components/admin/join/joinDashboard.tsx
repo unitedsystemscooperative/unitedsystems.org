@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { useJoinInfo } from 'hooks/join/useJoinInfo';
+import { useJoinRequests } from 'hooks/join/useJoinInfo';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
 import { GuestsTable } from './joinTableGuests';
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const JoinDashboard = () => {
   const classes = useStyles();
-  const joinInfo = useJoinInfo();
+  const joinInfo = useJoinRequests();
   const [joinView, setJoinView] = useState<JoinViews>(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -121,7 +121,7 @@ export const JoinDashboard = () => {
           </Paper>
         )}
         <Collapse in={joinView === JoinViews.Members}>
-          <MembersTable members={joinInfo.joiners} />
+          <MembersTable members={joinInfo.members} />
         </Collapse>
         <Collapse in={joinView === JoinViews.Guests}>
           <GuestsTable guests={joinInfo.guests} />

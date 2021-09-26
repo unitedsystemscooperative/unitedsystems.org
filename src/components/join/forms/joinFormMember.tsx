@@ -6,7 +6,7 @@ import {
   FormDiscordName,
   FormPlatformRadioGroup,
   FormPlayingLength,
-  FormReference,
+  FormReferral,
   FormRegion,
   FormRules,
   FormSubmit,
@@ -33,7 +33,7 @@ export const JoinFormMember = (props: {
           <FormDiscordName control={control} />
           <FormPlatformRadioGroup control={control} />
           <FormPlayingLength control={control} />
-          <FormReference control={control} />
+          <FormReferral control={control} />
           <FormRegion control={control} />
           <FormRules control={control} />
           <FormSubmit />

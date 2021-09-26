@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
 import { connectToDatabase, getItems, insertItem } from 'utils/mongo';
 
-const COLLECTION = 'joiners';
+const COLLECTION = 'joinRequests';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { db } = await connectToDatabase();

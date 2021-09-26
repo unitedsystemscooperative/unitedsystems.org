@@ -1,5 +1,6 @@
 import { FileCopy } from '@mui/icons-material';
 import {
+  Checkbox,
   IconButton,
   Paper,
   Table,
@@ -12,6 +13,7 @@ import {
 } from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { PlatformString } from 'models/admin/platforms';
+import { RegionString } from 'models/admin/regions';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { ChangeEvent, useState } from 'react';
 
@@ -44,7 +46,7 @@ export const AmbassadorsTable = ({
               <TableCell>Platform</TableCell>
               <TableCell>Group</TableCell>
               <TableCell>Need Private</TableCell>
-              <TableCell>Timezone</TableCell>
+              <TableCell>Region</TableCell>
             </TableRow>
           </TableHead>
           {ambassadors && (
@@ -76,8 +78,12 @@ export const AmbassadorsTable = ({
                     </TableCell>
                     <TableCell>{PlatformString[map.platform]}</TableCell>
                     <TableCell>{map.group}</TableCell>
-                    <TableCell>{map.needPrivate?.toString()}</TableCell>
-                    <TableCell>{map.timezone}</TableCell>
+                    <TableCell>
+                      <Checkbox checked={map.needPrivate ?? false} disabled />{' '}
+                    </TableCell>
+                    <TableCell>
+                      {map.region ? RegionString[map.region] : map.timezone}
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>

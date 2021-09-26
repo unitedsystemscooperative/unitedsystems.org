@@ -3,44 +3,44 @@ import { useMemo } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 
-export const useJoinInfo = () => {
-  const { allJoiners, loading, error } = useAllJoinInfo();
+export const useJoinRequests = () => {
+  const { requests, loading, error } = useAllJoinRequests();
 
-  const joiners = useMemo(() => {
+  const members = useMemo(() => {
     if (loading || error) {
       return undefined;
     }
-    return allJoiners.filter((x) => x.type === 'join');
-  }, [allJoiners, loading, error]);
+    return requests.filter((x) => x.type === 'join');
+  }, [requests, loading, error]);
   const guests = useMemo(() => {
     if (loading || error) {
       return undefined;
     }
-    return allJoiners.filter((x) => x.type === 'guest');
-  }, [allJoiners, loading, error]);
+    return requests.filter((x) => x.type === 'guest');
+  }, [requests, loading, error]);
   const ambassadors = useMemo(() => {
     if (loading || error) {
       return undefined;
     }
-    return allJoiners.filter((x) => x.type === 'ambassador');
-  }, [allJoiners, loading, error]);
+    return requests.filter((x) => x.type === 'ambassador');
+  }, [requests, loading, error]);
 
-  return { joiners, guests, ambassadors, loading, error };
+  return { members, guests, ambassadors, loading, error };
 };
 
-export const useAllJoinInfo = () => {
-  const { data, error } = useSWR('/api/joiners', (url: string) =>
+export const useAllJoinRequests = () => {
+  const { data, error } = useSWR('/api/joinRequests', (url: string) =>
     axios.get<IJoinRequest[]>(url)
   );
-  const allJoiners = data?.data ?? [];
+  const requests = data?.data ?? [];
 
-  return { allJoiners, loading: !error && !data, error };
+  return { requests, loading: !error && !data, error };
 };
 
-export const useAddJoinInfo = () => {
+export const useAddJoinRequest = () => {
   const addJoiner = async (joiner: IJoinRequest) => {
     try {
-      await axios.post('/api/joiners', joiner);
+      await axios.post('/api/joinRequests', joiner);
     } catch (e) {
       throw new Error(`Unable to add. ${e.message}`);
     }
