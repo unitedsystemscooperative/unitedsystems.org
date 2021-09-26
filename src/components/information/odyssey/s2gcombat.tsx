@@ -1,43 +1,29 @@
-import { Container, Link, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Container, Link, Typography } from '@mui/material';
+import { IndentedDiv } from 'components/_common/div';
+import { PaperP2 } from 'components/_common/paper';
+import { CenteredTypography } from 'components/_common/typography';
 import NextLink from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  indent: {
-    marginLeft: theme.spacing(3),
-    '& p': {
-      marginBottom: theme.spacing(2),
-    },
-  },
-}));
-
 export const OdysseyS2GCombat = () => {
-  const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" className={classes.center}>
+      <CenteredTypography variant="h4">
         Ship to Ground Combat
-      </Typography>
-      <Paper className={classes.paper}>
+      </CenteredTypography>
+      <PaperP2>
         <section>
           <Typography variant="h5">Be Wary</Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               Base defenses are not to be trifled with. They can potentially
               knock out a well-shielded (Clever-engineered) ship.
             </Typography>
-          </div>
+          </IndentedDiv>
         </section>
         <section>
           <Typography variant="h5">Recommended Weapons</Typography>
 
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               The recommended weapons here allow you to fire without locking
               onto a person on the ground.
@@ -47,7 +33,7 @@ export const OdysseyS2GCombat = () => {
               person on the ground. The SRV is able to target each person and
               perform scans at long range.
             </Typography>
-          </div>
+          </IndentedDiv>
 
           <Typography>
             <ul>
@@ -62,12 +48,12 @@ export const OdysseyS2GCombat = () => {
 
         <section>
           <Typography variant="h5">Recommended Ships</Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               The ships here have been tried and tested by our chief engineer,
               Clever Ape.
             </Typography>
-          </div>
+          </IndentedDiv>
           <Typography>
             <ul>
               <li>Mamba</li>
@@ -82,7 +68,10 @@ export const OdysseyS2GCombat = () => {
             <ul>
               <li>
                 <NextLink
-                  href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Combat%20-%20Ship%20to%20Ground"
+                  href={{
+                    pathname: '/builds',
+                    query: { specialties: 'Combat - Ship to Ground' },
+                  }}
                   passHref
                 >
                   <Link>Ship to Ground Combat Builds</Link>
@@ -90,7 +79,10 @@ export const OdysseyS2GCombat = () => {
               </li>
               <li>
                 <NextLink
-                  href="/builds?beginner&engLevel&guardian&powerplay&ship&showVariants=false&size&specialties=Odyssey%20Lander%20%2F%20Support"
+                  href={{
+                    pathname: '/builds',
+                    query: { specialties: 'Odyssey Lander / Support' },
+                  }}
                   passHref
                 >
                   <Link>Odyssey Lander/Support Builds</Link>
@@ -99,7 +91,7 @@ export const OdysseyS2GCombat = () => {
             </ul>
           </Typography>
         </section>
-      </Paper>
+      </PaperP2>
     </Container>
   );
 };

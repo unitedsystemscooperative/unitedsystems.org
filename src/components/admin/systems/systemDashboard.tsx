@@ -11,19 +11,12 @@ import {
   ListSubheader,
   Paper,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { TitleBarwAdd } from 'components/_common';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
-
-const useSystemListStyles = makeStyles((theme) => ({
-  iconButton: {
-    marginLeft: theme.spacing(1),
-  },
-}));
 
 const SystemList = ({
   title,
@@ -36,7 +29,6 @@ const SystemList = ({
   editSystem: (system: System) => void;
   deleteSystem: (system: System) => void;
 }) => {
-  const classes = useSystemListStyles();
   return (
     <List
       subheader={
@@ -57,7 +49,7 @@ const SystemList = ({
           <ListItemSecondaryAction>
             <IconButton
               edge="end"
-              className={classes.iconButton}
+              sx={{ ml: 1 }}
               onClick={() => editSystem(system)}
               size="large"
             >
@@ -65,7 +57,7 @@ const SystemList = ({
             </IconButton>
             <IconButton
               edge="end"
-              className={classes.iconButton}
+              sx={{ ml: 1 }}
               onClick={() => deleteSystem(system)}
               size="large"
             >
@@ -78,20 +70,7 @@ const SystemList = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
-
 export const SystemDashboard = () => {
-  const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<System | undefined>(
     undefined
@@ -154,7 +133,7 @@ export const SystemDashboard = () => {
 
   return (
     <Container maxWidth="sm">
-      <Paper className={classes.paper}>
+      <Paper sx={{ p: 1, my: 1, textAlign: 'center' }}>
         <TitleBarwAdd
           title="System Management"
           addTip="Add a system"

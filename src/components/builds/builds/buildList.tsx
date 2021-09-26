@@ -1,4 +1,6 @@
 import { EDSpinner } from '@admiralfeb/react-components';
+import { PaperP2 } from 'components/_common/paper';
+import { CenteredTypography } from 'components/_common/typography';
 import { filterShipBuilds } from 'functions/builds/filterShipBuilds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IQuery } from 'models/builds';
@@ -43,12 +45,18 @@ export const BuildList = (props: { buildQuery: IQuery | undefined }) => {
     >
       {loading ? (
         <EDSpinner />
-      ) : (
+      ) : queriedBuilds?.length > 0 ? (
         queriedBuilds?.map((ship) => {
           return (
             <BuildCard key={(ship._id as unknown) as string} shipBuild={ship} />
           );
         })
+      ) : (
+        <PaperP2>
+          <CenteredTypography>
+            No builds found for the selected query.
+          </CenteredTypography>
+        </PaperP2>
       )}
     </div>
   );

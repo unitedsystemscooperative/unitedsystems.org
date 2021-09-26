@@ -1,55 +1,52 @@
-import { Container, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Container,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Paper,
+  styled,
+} from '@mui/material';
+import { CenteredTypography } from 'components/_common/typography';
 import { RankData } from 'data/information/ranks';
+import Image from 'next/image';
 
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  rank: {
-    margin: theme.spacing(1),
-    flexGrow: 1,
-    // padding: theme.spacing(1),
-  },
-  avatar: {
-    margin: theme.spacing(1),
-  },
+const StyledSection = styled('section')(({ theme }) => ({
+  margin: theme.spacing(1),
+  flexGrow: 1,
 }));
 
+const generatePilotsRankList = (name: string) => {
+  return (
+    <StyledSection id={name}>
+      <CenteredTypography variant="h4">
+        {RankData[name]['name']}
+      </CenteredTypography>
+      <List>
+        {RankData[name].ranks.map((rank: string, i: number) => (
+          <ListItem key={rank + i}>
+            <ListItemAvatar sx={{ m: 1 }}>
+              <Image
+                src={`/img/ranks/${name}/${i}.png`}
+                alt=""
+                width={75}
+                height={75}
+              />
+            </ListItemAvatar>
+            <ListItemText primary={rank} />
+          </ListItem>
+        ))}
+      </List>
+    </StyledSection>
+  );
+};
 export const Ranks = () => {
-  const classes = useStyles();
-
-  const generatePilotsRankList = (name: string) => {
-    return (
-      <section id={name} className={classes.rank}>
-        <Typography variant="h4" className={classes.center}>
-          {RankData[name]['name']}
-        </Typography>
-        <List>
-          {RankData[name].ranks.map((rank: string, i: number) => (
-            <ListItem key={rank + i}>
-              <ListItemAvatar className={classes.avatar}>
-                <img src={`/img/ranks/${name}/${i}.png`} width="75" />
-              </ListItemAvatar>
-              <ListItemText primary={rank} />
-            </ListItem>
-          ))}
-        </List>
-      </section>
-    );
-  };
-
   return (
     <Container maxWidth="xl">
-      <Typography variant="h4" className={classes.center}>
+      <CenteredTypography variant="h4">
         Pilots Federation Ranks
-      </Typography>
-      <Paper className={classes.paper}>
+      </CenteredTypography>
+      <Paper sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         {generatePilotsRankList('combat')}
         {generatePilotsRankList('cqc')}
         {generatePilotsRankList('trade')}

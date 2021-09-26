@@ -7,7 +7,6 @@ import {
   FormGroup,
   Typography,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { processJSONBuild } from 'functions/builds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
@@ -24,21 +23,6 @@ import { QuerySpecialties } from '../query/querySpecialities';
 import { ShipAutocomplete } from '../shipAutocomplete';
 import { BuildAddText } from './buildAddText';
 import { BuildCheckBox } from './buildCheckBox';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    display: 'grid',
-    gridTemplate: 'auto / 1fr',
-    rowGap: '10px',
-    padding: theme.spacing(1),
-    maxHeight: 600,
-  },
-  center: {
-    textAlign: 'center',
-    margin: '0 auto',
-  },
-}));
 
 export interface BuildDialogProps {
   open: boolean;
@@ -158,7 +142,6 @@ export const BuildDialog = ({
   refId,
   onClose,
 }: BuildDialogProps) => {
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const {
     shipBuilds,
@@ -324,7 +307,16 @@ export const BuildDialog = ({
   return (
     <Dialog onClose={handleClose} open={open}>
       {parseDialogTitle(build, addType)}
-      <DialogContent className={classes.root}>
+      <DialogContent
+        sx={{
+          textAlign: 'center',
+          display: 'grid',
+          gridTemplate: 'auto / 1fr',
+          rowGap: 2,
+          p: 1,
+          maxHeight: 600,
+        }}
+      >
         <Typography>
           Save your build in Coriolis and choose Export. Paste the exported JSON
           into the Exported JSON field.
@@ -355,13 +347,13 @@ export const BuildDialog = ({
           selectedSpecialties={newBuild.specializations}
           setSpecialties={(value) => dispatch({ type: 'specialties', value })}
         />
-        <div className={classes.center}>
+        <div style={{ textAlign: 'center', margin: '0 auto' }}>
           <EngToggleGroup
             engLevel={newBuild.engLevel}
             handleEngLevelChange={handleEngLevelChange}
           />
         </div>
-        <FormGroup row className={classes.center}>
+        <FormGroup row style={{ textAlign: 'center', margin: '0 auto' }}>
           {checkFields.map((check) => (
             <BuildCheckBox key={check.id} {...check} onChange={handleChange} />
           ))}

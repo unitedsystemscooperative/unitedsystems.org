@@ -1,5 +1,5 @@
 import { Button, Paper, TextField, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { CenteredTypography } from 'components/_common/typography';
 import {
   getFactionsinSystem,
   getStationsinSystem,
@@ -12,17 +12,6 @@ import { useSnackbar } from 'notistack';
 import { MassacreContext } from 'providers/massacreTrackerProvider';
 import { ChangeEvent, useContext, useState } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    width: '90%',
-    margin: 'auto',
-    padding: theme.spacing(1),
-  },
-  center: {
-    textAlign: 'center',
-  },
-}));
-
 /**
  * 1. Ask user for system.
  * 2. Get populated systems within 10 LY
@@ -33,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 export const MassacreTabAddPanel = () => {
   const context = useContext(MassacreContext);
   const [system, setSystem] = useState('');
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -85,10 +73,10 @@ export const MassacreTabAddPanel = () => {
 
   return (
     <>
-      <Typography variant="h4" className={classes.center}>
+      <CenteredTypography variant="h4">
         Add a Massacre HazRez System
-      </Typography>
-      <Paper className={classes.paper}>
+      </CenteredTypography>
+      <Paper sx={{ width: '90%', margin: 'auto', p: 1 }}>
         <div>
           <Typography>Enter the HazRez system for reference</Typography>
           <TextField
