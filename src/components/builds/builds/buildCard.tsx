@@ -1,11 +1,19 @@
-import { CardMedia, Divider, Typography, Button, CardContent, Card, Fade } from '@mui/material';
+import {
+  CardMedia,
+  Divider,
+  Typography,
+  Button,
+  CardContent,
+  Card,
+  Fade,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { IBuildInfov2, ShipSize } from 'models/builds';
 import { EngIcons } from './engIcons';
 import { useShipIdfromMap } from 'hooks/builds/useShipMap';
 import { TagGroup } from './tagGroup';
 import { theme } from 'theme';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 const useStyles = makeStyles({
   root: {
@@ -69,14 +77,14 @@ export const BuildCard = (props: { shipBuild: IBuildInfov2 | undefined }) => {
             >
               View Build
             </Button>
-            <Link
+            <NextLink
               href={`/builds/detail/${(shipBuild._id as unknown) as string}`}
               passHref
             >
               <Button color="primary" variant="contained">
                 More Details
               </Button>
-            </Link>
+            </NextLink>
           </div>
         </div>
         <CardContent className={classes.content}>

@@ -9,7 +9,7 @@ import {
 import { PrimaryLayout } from 'components/layouts';
 import { getReleases } from 'functions/releases/getReleases';
 import Head from 'next/head';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 const ReleaseIndexPage = ({
   allReleases,
@@ -29,13 +29,13 @@ const ReleaseIndexPage = ({
           </Typography>
           <List component={Paper}>
             {allReleases.map(({ id, date, title }) => (
-              <Link key={id} href={`/releases/${id}`} passHref>
+              <NextLink key={id} href={`/releases/${id}`} passHref>
                 <ListItem button component="a">
                   <ListItemText>
                     {title} - {date}
                   </ListItemText>
                 </ListItem>
-              </Link>
+              </NextLink>
             ))}
           </List>
         </Container>

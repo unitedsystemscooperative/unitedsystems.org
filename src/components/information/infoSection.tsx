@@ -1,7 +1,7 @@
 import { Button, Paper, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { IInfoButton } from 'models/information/infoButtonModel';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,7 +62,7 @@ export const InfoSection = (props: ISectionProps) => {
             .filter((x) => x.beginner === true)
             .map((guide) => {
               return guide.local ? (
-                <Link
+                <NextLink
                   href={`/information/${guide.link}`}
                   key={guide.title}
                   passHref
@@ -76,7 +76,7 @@ export const InfoSection = (props: ISectionProps) => {
                       <Typography variant="caption">{guide.caption}</Typography>
                     </div>
                   </Button>
-                </Link>
+                </NextLink>
               ) : (
                 <Button
                   variant="outlined"
@@ -97,7 +97,7 @@ export const InfoSection = (props: ISectionProps) => {
             .filter((x) => x.beginner === false)
             .map((guide) => {
               return guide.local ? (
-                <Link
+                <NextLink
                   href={`/information/${guide.link}`}
                   key={guide.title}
                   passHref
@@ -111,7 +111,7 @@ export const InfoSection = (props: ISectionProps) => {
                       <Typography variant="caption">{guide.caption}</Typography>
                     </div>
                   </Button>
-                </Link>
+                </NextLink>
               ) : (
                 <Button
                   variant="outlined"
