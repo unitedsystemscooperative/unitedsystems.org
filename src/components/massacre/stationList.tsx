@@ -1,5 +1,4 @@
-import { Divider, Paper, Typography } from '@mui/material';
-import { BoxwMB1 } from 'components/_common';
+import { Box, Divider, Paper, Typography } from '@mui/material';
 import { getStationSize } from 'functions/edsmQueries/getStationSize';
 
 export const StationList = (props: {
@@ -8,11 +7,11 @@ export const StationList = (props: {
 }) => {
   const { system, stations } = props;
   return (
-    <BoxwMB1>
+    <Box maxWidth="xs" m={1}>
       <Typography variant="h5" m={1}>
         {system}
       </Typography>
-      <Paper sx={{ width: 200, p: 1 }}>
+      <Paper sx={{ width: 200, p: 1, mx: 'auto' }}>
         {stations.map((station) => (
           <div key={station.name}>
             <div style={{ display: 'flex' }}>
@@ -27,6 +26,6 @@ export const StationList = (props: {
           </div>
         ))}
       </Paper>
-    </BoxwMB1>
+    </Box>
   );
 };
