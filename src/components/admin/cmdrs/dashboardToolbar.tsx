@@ -1,6 +1,5 @@
 import { Clear, Search } from '@mui/icons-material';
 import {
-  Box,
   FormControl,
   IconButton,
   InputBase,
@@ -54,12 +53,16 @@ export const DashboardToolbar = (props: ToolbarProps) => {
         {title}
       </Typography>
       <Paper
-        sx={{ display: 'flex', minWidth: 250, alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          minWidth: 250,
+          alignItems: 'center',
+        }}
         variant="outlined"
       >
-        <Box sx={{ p: 4 }}>
+        <IconButton disabled>
           <Search />
-        </Box>
+        </IconButton>
         <InputBase
           sx={{ flex: 1, ml: 1 }}
           placeholder="Search"
@@ -67,7 +70,7 @@ export const DashboardToolbar = (props: ToolbarProps) => {
           onChange={(event) => setSearchValue(event.target.value)}
         />
         <IconButton
-          sx={{ p: 4 }}
+          sx={{ pl: 2 }}
           onClick={() => setSearchValue('')}
           size="large"
         >

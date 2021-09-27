@@ -44,6 +44,9 @@ const DashBoardTitleBar = ({
           flexDirection: 'row',
           justifyContent: { xs: 'flex-end', md: 'initial' },
           flexWrap: { xs: 'wrap', md: 'initial' },
+          '& button': {
+            mx: 1,
+          },
         }}
       >
         <Button
