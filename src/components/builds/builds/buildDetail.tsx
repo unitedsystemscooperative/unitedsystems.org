@@ -12,6 +12,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { BoxwMB1 } from 'components/_common';
+import { PaperP2 } from 'components/_common/paper';
 import { CenteredTypography } from 'components/_common/typography';
 import { useShipBuildInfo } from 'hooks/builds/useShipBuildInfo';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
@@ -63,6 +64,7 @@ const FlexAcross = styled('div')(() => ({
   flexDirection: 'row',
   '& a': {
     flexGrow: 1,
+    textAlign: 'center',
   },
   '& button': {
     flexGrow: 1,
@@ -86,6 +88,7 @@ const BuildDetailFull = (props: {
               flexDirection: 'column',
               '& a': {
                 m: 1,
+                textAlign: 'center',
               },
               '& button': {
                 m: 1,
@@ -93,7 +96,12 @@ const BuildDetailFull = (props: {
               m: 1,
             }}
           >
-            <Image src={shipInfo.shipImg} alt={shipInfo.name} width={300} />
+            <Image
+              src={shipInfo.shipImg}
+              alt={shipInfo.name}
+              width={300}
+              height={300}
+            />
             <FlexAcross>
               <Typography>{shipInfo.name}</Typography>
               <Spacer />
@@ -194,7 +202,12 @@ const BuildDetailMobile = (props: {
     <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
       <FlexRow>
         {shipInfo && (
-          <NoShrinkImg src={shipInfo.shipImg} alt={shipInfo.name} width={150} />
+          <NoShrinkImg
+            src={shipInfo.shipImg}
+            alt={shipInfo.name}
+            width={150}
+            height={150}
+          />
         )}
         <div>
           <Typography variant="h5">{foundBuild.title}</Typography>
@@ -308,19 +321,31 @@ export const BuildDetail = () => {
     <Container maxWidth="lg">
       <CenteredTypography variant="h3">Build Detail</CenteredTypography>
       {foundBuild ? (
-        isMobile ? (
-          <BuildDetailMobile
-            foundBuild={foundBuild}
-            shipInfo={shipInfo}
-            addBuild={handleAddBuild}
-          />
-        ) : (
-          <BuildDetailFull
-            foundBuild={foundBuild}
-            shipInfo={shipInfo}
-            addBuild={handleAddBuild}
-          />
-        )
+        <>
+          {isMobile ? (
+            <BuildDetailMobile
+              foundBuild={foundBuild}
+              shipInfo={shipInfo}
+              addBuild={handleAddBuild}
+            />
+          ) : (
+            <BuildDetailFull
+              foundBuild={foundBuild}
+              shipInfo={shipInfo}
+              addBuild={handleAddBuild}
+            />
+          )}
+          <PaperP2>
+            <CenteredTypography variant="subtitle2">
+              Ship Image by{' '}
+              <Link href="https://forums.frontier.co.uk/member.php/118579-Qohen-Leth">
+                CMDR Qohen Leth
+              </Link>{' '}
+              via Copyright CC BY-NC-SA 4.0 (available on{' '}
+              <Link href="https://edassets.org">edassets.org</Link>)
+            </CenteredTypography>
+          </PaperP2>
+        </>
       ) : (
         <></>
       )}
@@ -336,6 +361,7 @@ export const BuildDetail = () => {
           buildIDs={foundBuild.related}
         />
       ) : null}
+
       <BuildDialog {...dialogProps} />
     </Container>
   );

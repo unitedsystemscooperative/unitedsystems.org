@@ -3,11 +3,14 @@ import {
   Box,
   Container,
   Fab,
+  Link,
   Slide,
   Theme,
   Typography,
   useMediaQuery,
 } from '@mui/material';
+import { PaperP2 } from 'components/_common/paper';
+import { CenteredTypography } from 'components/_common/typography';
 import { IQuery } from 'models/builds';
 import { useCallback, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
@@ -47,6 +50,16 @@ export const BuildSystem = () => {
       <div ref={buildRef}>
         <BuildList buildQuery={query} />
       </div>
+      <PaperP2>
+        <CenteredTypography variant="subtitle2">
+          Ship Images by{' '}
+          <Link href="https://forums.frontier.co.uk/member.php/118579-Qohen-Leth">
+            CMDR Qohen Leth
+          </Link>{' '}
+          via Copyright CC BY-NC-SA 4.0 (available on{' '}
+          <Link href="https://edassets.org">edassets.org</Link>)
+        </CenteredTypography>
+      </PaperP2>
       <Slide direction="left" in={isMobile} timeout={1000}>
         <Box sx={{ position: 'fixed', bottom: '5px', right: '10px' }}>
           <Fab color="primary" onClick={handleFab}>
