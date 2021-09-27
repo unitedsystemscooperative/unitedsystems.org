@@ -204,6 +204,7 @@ export const memberPromotionHeadCells: HeadCell<IMember>[] = [
 export const memberPromotionData = (cmdr: IMember): ViewData[] => {
   return [
     { type: 'string', data: cmdr.cmdrName.toUpperCase() },
+    { type: 'string', data: cmdr.discordName },
     { type: 'string', data: handleDate(cmdr.joinDate) },
     { type: 'string', data: handleDate(cmdr.discordJoinDate) },
     { type: 'string', data: PlatformString[cmdr.platform] },
@@ -244,6 +245,6 @@ export const memberRefData = (cmdr: IMember): ViewData[] => {
     { type: 'string', data: handleDate(cmdr.discordJoinDate) },
     { type: 'string', data: PlatformString[cmdr.platform] },
     { type: 'string', data: ReferralString[cmdr.ref1] },
-    { type: 'string', data: cmdr.notes },
+    { type: 'string', data: cmdr.ref2 ?? '' },
   ];
 };

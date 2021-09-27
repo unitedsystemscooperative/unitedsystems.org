@@ -9,16 +9,16 @@ export const VoteDashboard = () => {
   const { cmdrs, loading } = useCMDRs();
   const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
 
-  useEffect(() => {
-    if (window) {
-      const store: IVoter[] | null = JSON.parse(
-        window.localStorage.getItem('voters') ?? ''
-      );
-      if (store && store.length > 0) {
-        setVoteInfo(store);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window) {
+  //     const store: IVoter[] | null = JSON.parse(
+  //       window.localStorage.getItem('voters') ?? ''
+  //     );
+  //     if (store && store.length > 0) {
+  //       setVoteInfo(store);
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!loading && voteInfo.length < 1) {
