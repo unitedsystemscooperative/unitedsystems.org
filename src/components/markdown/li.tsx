@@ -1,9 +1,5 @@
-import { ListItemText, makeStyles } from '@material-ui/core';
+import { ListItemText } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  li: { marginBottom: theme.spacing(2) },
-}));
 export const Li = (props) => {
-  const classes = useStyles();
-  return <ListItemText inset className={classes.li} {...props} />;
+  return <ListItemText inset sx={{ mb: 2 }} {...props} />;
 };

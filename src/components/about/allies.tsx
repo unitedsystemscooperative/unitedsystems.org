@@ -5,44 +5,30 @@ import {
   List,
   ListItem,
   ListItemText,
-  makeStyles,
   Paper,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useAllies } from 'hooks/about/useAllies';
-
-const useStyles = makeStyles({
-  header: {
-    textAlign: 'center',
-  },
-  allies: {
-    margin: 'auto',
-    maxWidth: 450,
-  },
-});
 
 /** Displays Allies */
 export const AboutAllies = () => {
-  const classes = useStyles();
   const { allies, loading } = useAllies();
   return (
     <Fade in={true}>
-      <Container maxWidth="sm">
-        <Typography variant="h4" className={classes.header}>
+      <Container maxWidth="xs">
+        <Typography variant="h4" sx={{ textAlign: 'center' }}>
           Allies
         </Typography>
         {loading ? (
           <EDSpinner />
         ) : (
-          <Paper className={classes.allies}>
-            <List>
-              {allies.map((ally: { name: string }, i: number) => (
-                <ListItem key={i}>
-                  <ListItemText primary={`${ally.name}`} />
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
+          <List component={Paper} sx={{ margin: 'auto' }}>
+            {allies.map((ally: { name: string }, i: number) => (
+              <ListItem key={i}>
+                <ListItemText primary={`${ally.name}`} />
+              </ListItem>
+            ))}
+          </List>
         )}
       </Container>
     </Fade>

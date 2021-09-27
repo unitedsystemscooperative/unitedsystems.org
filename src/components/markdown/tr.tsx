@@ -1,3 +1,3 @@
-import { TableRow } from '@material-ui/core';
+import { TableRow } from '@mui/material';
 
 export const TR = (props) => <TableRow {...props} />;

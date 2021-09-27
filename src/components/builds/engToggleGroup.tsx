@@ -1,6 +1,11 @@
-import { makeStyles, Tooltip } from '@material-ui/core';
-import BlockIcon from '@material-ui/icons/Block';
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import BlockIcon from '@mui/icons-material/Block';
+import {
+  styled,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
+} from '@mui/material';
+import Image from 'next/image';
 import { MouseEvent } from 'react';
 
 const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';
@@ -10,19 +15,16 @@ interface IEngToggleGroupProps {
   engLevel: number | null;
 }
 
-const useStyles = makeStyles({
-  engButton: {
-    display: 'flex',
-    '& img': {
-      height: '20px',
-      width: '20px',
-    },
-  },
-});
+const EngIconSet = styled('div')(() => ({
+  display: 'flex',
+}));
+
+const EngIcon = () => (
+  <Image src={engineerIcon} alt="engineeringIcon" height={20} width={20} />
+);
 
 export const EngToggleGroup = (props: IEngToggleGroupProps) => {
   const { engLevel, handleEngLevelChange } = props;
-  const classes = useStyles();
 
   return (
     <ToggleButtonGroup
@@ -32,33 +34,33 @@ export const EngToggleGroup = (props: IEngToggleGroupProps) => {
     >
       <ToggleButton value={0}>
         <Tooltip title="No Engineering" arrow>
-          <div className={classes.engButton}>
+          <EngIconSet>
             <BlockIcon />
-          </div>
+          </EngIconSet>
         </Tooltip>
       </ToggleButton>
       <ToggleButton value={1}>
         <Tooltip title="Simple Engineering" arrow>
-          <div className={classes.engButton}>
-            <img src={engineerIcon} alt="engineeringIcon" />
-          </div>
+          <EngIconSet>
+            <EngIcon />
+          </EngIconSet>
         </Tooltip>
       </ToggleButton>
       <ToggleButton value={2}>
         <Tooltip title="Moderate Engineering" arrow>
-          <div className={classes.engButton}>
-            <img src={engineerIcon} alt="engineeringIcon" />
-            <img src={engineerIcon} alt="engineeringIcon" />
-          </div>
+          <EngIconSet>
+            <EngIcon />
+            <EngIcon />
+          </EngIconSet>
         </Tooltip>
       </ToggleButton>
       <ToggleButton value={3}>
         <Tooltip title="End-Game/Extreme Engineering" arrow>
-          <div className={classes.engButton}>
-            <img src={engineerIcon} alt="engineeringIcon" />
-            <img src={engineerIcon} alt="engineeringIcon" />
-            <img src={engineerIcon} alt="engineeringIcon" />
-          </div>
+          <EngIconSet>
+            <EngIcon />
+            <EngIcon />
+            <EngIcon />
+          </EngIconSet>
         </Tooltip>
       </ToggleButton>
     </ToggleButtonGroup>

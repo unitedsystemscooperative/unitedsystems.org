@@ -5,7 +5,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export const temp = () => {
   return (

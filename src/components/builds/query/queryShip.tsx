@@ -1,27 +1,8 @@
-import { makeStyles, Tooltip } from '@material-ui/core';
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import { Box, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { IShipInfo } from 'models/builds';
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { ShipAutocomplete } from '../shipAutocomplete';
-import { useSharedStyles } from './sharedStyles';
-
-const useStyles = makeStyles((theme) => ({
-  shipQueries: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-  },
-  shipTypeQuery: {
-    [theme.breakpoints.up('lg')]: {
-      minWidth: 200,
-      margin: theme.spacing(1),
-      flex: '1 0',
-    },
-  },
-  shipSizeQuery: {
-    margin: 'auto',
-  },
-}));
+import { QuerySection, QuerySectionHeader } from './sharedComponents';
 
 export const QueryShip = (props: {
   shipSize: number | null;
@@ -30,8 +11,6 @@ export const QueryShip = (props: {
   setShipType: Dispatch<SetStateAction<string | null>>;
 }) => {
   const { shipType, setShipType, shipSize, setShipSize } = props;
-  const sharedClasses = useSharedStyles();
-  const classes = useStyles();
 
   const handleShipSizeChange = (
     _: MouseEvent<HTMLElement>,
@@ -48,16 +27,16 @@ export const QueryShip = (props: {
   };
 
   return (
-    <div className={sharedClasses.querySection}>
-      <h3 className={sharedClasses.querySectionheader}>Ship Type and Size</h3>
-      <div className={classes.shipQueries}>
-        <div className={classes.shipTypeQuery}>
+    <QuerySection>
+      <QuerySectionHeader>Ship Type and Size</QuerySectionHeader>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        <Box sx={{ minWidth: 200, margin: 1, flex: '1 0' }}>
           <ShipAutocomplete
             shipType={shipType}
             handleShipChange={handleShipChange}
           />
-        </div>
-        <div className={classes.shipSizeQuery}>
+        </Box>
+        <div style={{ margin: 'auto' }}>
           <Tooltip
             title="What's the size of the ship you're looking for?"
             arrow
@@ -74,6 +53,6 @@ export const QueryShip = (props: {
           </Tooltip>
         </div>
       </div>
-    </div>
+    </QuerySection>
   );
 };

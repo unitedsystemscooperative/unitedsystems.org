@@ -1,32 +1,11 @@
-import {
-  Button,
-  makeStyles,
-  Paper,
-  TextField,
-  Typography,
-} from '@material-ui/core';
-import {
-  getFactionsinSystem,
-  getStationsinSystem,
-  getSystemsinSphere,
-} from 'functions/edsmQueries';
-import { genericSortArray } from 'functions/sort';
+import { Button, Paper, TextField, Typography } from '@mui/material';
+import { CenteredTypography } from 'components/_common/typography';
+import { processHazRezSystem } from 'functions/processHazRezSystem';
 import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
 import { ReputationLevels } from 'models/reputationLevels';
 import { useSnackbar } from 'notistack';
 import { MassacreContext } from 'providers/massacreTrackerProvider';
 import { ChangeEvent, useContext, useState } from 'react';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    width: '90%',
-    margin: 'auto',
-    padding: theme.spacing(1),
-  },
-  center: {
-    textAlign: 'center',
-  },
-}));
 
 /**
  * 1. Ask user for system.
@@ -38,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 export const MassacreTabAddPanel = () => {
   const context = useContext(MassacreContext);
   const [system, setSystem] = useState('');
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -90,10 +68,10 @@ export const MassacreTabAddPanel = () => {
 
   return (
     <>
-      <Typography variant="h4" className={classes.center}>
+      <CenteredTypography variant="h4">
         Add a Massacre HazRez System
-      </Typography>
-      <Paper className={classes.paper}>
+      </CenteredTypography>
+      <Paper sx={{ width: '90%', margin: 'auto', p: 1 }}>
         <div>
           <Typography>Enter the HazRez system for reference</Typography>
           <TextField
@@ -106,52 +84,4 @@ export const MassacreTabAddPanel = () => {
       </Paper>
     </>
   );
-};
-
-const processHazRezSystem = async (system: string) => {
-  const systemsInSphere = await getSystemsinSphere(system, 10);
-  const populatedSystems = systemsInSphere.filter(
-    (x) => Object.keys(x.information).length > 0
-  );
-  const systems = await Promise.all(
-    populatedSystems.map(async (x) => {
-      const factionsinSystem = await getFactionsinSystem(x.name);
-      const factions = factionsinSystem.factions
-        .map((faction) => {
-          const name = faction.name;
-          const id = faction.id;
-          const influence = faction.influence;
-          const removed = false;
-          return { name, id, influence, removed };
-        })
-        .filter((faction) => faction.influence > 0)
-        .sort((a, b) => {
-          if (a.name > b.name) {
-            return 1;
-          }
-          if (a.name < b.name) {
-            return -1;
-          }
-          return 0;
-        });
-
-      const stationsinSystem = await getStationsinSystem(x.name);
-      const stations = stationsinSystem.stations
-        .map((station) => {
-          const type = station.type;
-          const name = station.name;
-          const distance = station.distanceToArrival;
-          return { type, name, distance };
-        })
-        .filter((station) => station.type !== 'Fleet Carrier');
-
-      const sortedStations = genericSortArray(stations, {
-        orderBy: 'distance',
-        order: 'asc',
-      });
-
-      return { name: x.name, factions, stations: sortedStations };
-    })
-  );
-  return systems;
 };

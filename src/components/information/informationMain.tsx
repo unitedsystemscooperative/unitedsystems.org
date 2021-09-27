@@ -1,44 +1,25 @@
 import {
+  Box,
   Button,
   Container,
-  makeStyles,
+  Paper,
+  Theme,
+  Typography,
   useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
-import { Typography, Paper } from '@material-ui/core';
+} from '@mui/material';
 import { InfoSection } from 'components/information/infoSection';
 import { useInfoButtons } from 'hooks/useInfoButtons';
 import { MutableRefObject, useRef } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  specialButton: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  secondary: {
-    color: theme.palette.secondary.main,
-  },
-}));
 export const InformationMain = () => {
-  const classes = useStyles();
   const { toolsList, docsList, guidesList, odysseyList } = useInfoButtons();
   const odysseyRef = useRef<HTMLDivElement | null>(null);
   const guidesRef = useRef<HTMLDivElement | null>(null);
   const toolsRef = useRef<HTMLDivElement | null>(null);
   const docsRef = useRef<HTMLDivElement | null>(null);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('lg')
+  );
 
   const handleScroll = (ref: MutableRefObject<HTMLDivElement | null>) => {
     if (ref.current) {
@@ -47,20 +28,40 @@ export const InformationMain = () => {
   };
   return (
     <Container maxWidth="lg">
-      <Typography variant="h3" className={classes.header}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
         Information Archive
       </Typography>
 
-      <Paper className={classes.paper}>
+      <Paper
+        sx={{
+          textAlign: 'center',
+          padding: 1,
+          marginBottom: 1,
+          '& button': {
+            margin: 1,
+          },
+        }}
+      >
         <Typography variant="subtitle1">
           New Players look to the{' '}
-          <span className={classes.secondary}> blue buttons </span>for helpful
-          tips in getting started with the Guides, Tools, and Documentation
-          below.
+          <Box component="span" sx={{ color: 'seconary.main' }}>
+            blue buttons
+          </Box>{' '}
+          for helpful tips in getting started with the Guides, Tools, and
+          Documentation below.
         </Typography>
       </Paper>
       {isMobile && (
-        <Paper className={classes.paper}>
+        <Paper
+          sx={{
+            textAlign: 'center',
+            padding: 1,
+            marginBottom: 1,
+            '& button': {
+              margin: 1,
+            },
+          }}
+        >
           <Typography variant="subtitle1">Scroll To:</Typography>
           <Button
             variant="outlined"

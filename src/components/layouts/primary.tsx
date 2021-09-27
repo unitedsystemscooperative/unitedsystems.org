@@ -1,39 +1,27 @@
-import { makeStyles } from '@material-ui/core';
-import { Footer } from 'components/footer';
-import { Navbar } from 'components/navbar';
+import { Box, useTheme } from '@mui/material';
+import { Footer } from 'components/layouts/components/footer';
+import { Navbar } from './components/navbar';
 import { ReactNode } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-  },
-  main: {
-    marginTop: 0,
-    marginBottom: theme.spacing(2),
-  },
-  footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800],
-  },
-  center: {
-    textAlign: 'center',
-  },
-}));
-
 export const PrimaryLayout = ({ children }: { children: ReactNode }) => {
-  const classes = useStyles();
+  const theme = useTheme();
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
+    >
       <Navbar />
-      <main className={classes.main}>{children}</main>
+      <Box
+        component="main"
+        sx={{ marginTop: 0, marginBottom: theme.spacing(2) }}
+      >
+        {children}
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 };

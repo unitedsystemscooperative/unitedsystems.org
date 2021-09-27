@@ -1,58 +1,21 @@
+import { LockOutlined } from '@mui/icons-material';
 import {
   Avatar,
+  Box,
   Button,
   Container,
-  makeStyles,
   Paper,
   TextField,
-} from '@material-ui/core';
-import { LockOutlined } from '@material-ui/icons';
-import { PrimaryLayout } from 'components/layouts';
-import { signIn, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import qs from 'query-string';
+} from '@mui/material';
 import { redirects } from 'data/redirects';
+import { GetServerSideProps } from 'next';
+import { getSession, signIn } from 'next-auth/client';
+import { useForm } from 'react-hook-form';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    textAlign: 'center',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-const SignIn = () => {
-  const classes = useStyles();
-  const [session] = useSession();
-  const router = useRouter();
-  const { register, handleSubmit } = useForm<{ email: string }>();
-
-  useEffect(() => {
-    if (session) {
-      const params = qs.parseUrl(router.asPath);
-      const redirectKey = params.query.redirect as string;
-      const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
-      if (redirectPath) {
-        router.push(redirectPath);
-      }
-    }
-  }, [router, session]);
+const SignInPage = () => {
+  const { register, handleSubmit } = useForm<{ email: string }>({
+    defaultValues: { email: '' },
+  });
 
   const onSubmit = async (data: { email: string }) => {
     const { email } = data;
@@ -61,48 +24,68 @@ const SignIn = () => {
   };
 
   return (
-    <PrimaryLayout>
-      <Container maxWidth="xs">
-        <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlined />
-          </Avatar>
-          {session ? (
-            <></>
-          ) : (
-            <>
-              <form
-                className={classes.form}
-                noValidate
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  inputRef={register({ required: true })}
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Sign In
-                </Button>
-              </form>
-            </>
-          )}
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+    <Container maxWidth="xs">
+      <Paper
+        sx={{
+          marginTop: 8,
+          padding: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ margin: 1, backgroundColor: 'secondary.main' }}>
+          <LockOutlined />
+        </Avatar>
+        <Box
+          component="form"
+          sx={{ width: '100%', marginTop: 1, px: 1, textAlign: 'center' }}
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            {...register('email', { required: 'Your email is required' })}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{
+              mt: 3,
+              mb: 1,
+              mx: 0,
+            }}
+          >
+            Sign In
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 
-export default SignIn;
+export default SignInPage;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  if (session) {
+    const redirectKey = context.query.redirect as string;
+    const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
+    if (redirectPath) {
+      return {
+        redirect: { destination: redirectPath, permanent: false },
+      };
+    }
+  }
+
+  return { props: {} };
+};

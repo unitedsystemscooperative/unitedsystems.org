@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -8,13 +8,14 @@ const theme = createTheme({
     secondary: {
       main: '#00B3F7',
     },
-    type: 'dark',
+    mode: 'dark',
   },
+  spacing: 8,
 });
 
-theme.overrides = {
+theme.components = {
   MuiCssBaseline: {
-    '@global': {
+    styleOverrides: {
       body: {
         height: '100vh',
         backgroundImage: `url("/img/usc-raz-2021-01.png")`,
@@ -25,13 +26,20 @@ theme.overrides = {
     },
   },
   MuiLink: {
-    root: {
-      color: theme.palette.primary.main,
+    defaultProps: {
+      underline: 'hover',
+    },
+    styleOverrides: {
+      root: {
+        color: theme.palette.primary.main,
+      },
     },
   },
   MuiButton: {
-    root: {
-      textTransform: 'initial',
+    styleOverrides: {
+      root: {
+        textTransform: 'initial',
+      },
     },
   },
 };

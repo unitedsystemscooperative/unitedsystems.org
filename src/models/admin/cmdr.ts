@@ -20,7 +20,7 @@ export interface ICMDR extends IDbItem {
 
 export interface IMember extends ICMDR {
   joinDate: Date;
-  promotion?: Rank;
+  promotion?: Rank | null;
   isInInaraSquad: boolean;
   ref1: Referral;
   ref2?: string;

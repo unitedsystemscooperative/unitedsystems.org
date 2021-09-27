@@ -1,58 +1,36 @@
-import {
-  Button,
-  Container,
-  Divider,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import { PrimaryLayout } from 'components/layouts';
+import { Button, Container, Divider, Paper, Typography } from '@mui/material';
+import { USCMarkdown } from 'components/uscmarkdown';
 import {
   getAllReleaseIDs,
   getReleaseData,
 } from 'functions/releases/getReleases';
-import NextLink from 'next/link';
 import Head from 'next/head';
-import React from 'react';
-import { USCMarkdown } from 'components/uscmarkdown';
+import NextLink from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(1),
-  },
-  paper: {
-    marginTop: theme.spacing(1),
-    padding: theme.spacing(1),
-  },
-}));
-
-const Release = ({
+const ReleasePage = ({
   releaseData,
 }: {
   releaseData: { id: string; content: string; title: string; date: string };
 }) => {
-  const classes = useStyles();
   return (
     <>
       <Head>
         <title>{releaseData.title}</title>
         <meta name="description" content="Release of the website" />
       </Head>
-      <PrimaryLayout>
-        <Container maxWidth="lg" className={classes.root}>
-          <NextLink href="/releases" passHref>
-            <Button color="secondary" variant="contained">
-              Return to Releases
-            </Button>
-          </NextLink>
-          <Paper className={classes.paper}>
-            <Typography variant="h4">{releaseData.title}</Typography>
-            <Typography variant="subtitle1">{releaseData.date}</Typography>
-            <Divider />
-            <USCMarkdown>{releaseData.content}</USCMarkdown>
-          </Paper>
-        </Container>
-      </PrimaryLayout>
+      <Container maxWidth="lg" sx={{ marginTop: 1 }}>
+        <NextLink href="/releases" passHref>
+          <Button color="secondary" variant="contained">
+            Return to Releases
+          </Button>
+        </NextLink>
+        <Paper sx={{ marginTop: 1, padding: 1 }}>
+          <Typography variant="h4">{releaseData.title}</Typography>
+          <Typography variant="subtitle1">{releaseData.date}</Typography>
+          <Divider />
+          <USCMarkdown>{releaseData.content}</USCMarkdown>
+        </Paper>
+      </Container>
     </>
   );
 };
@@ -74,4 +52,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default Release;
+export default ReleasePage;

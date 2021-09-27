@@ -1,6 +1,5 @@
-import { PrimaryLayout } from 'components/layouts';
-import Head from 'next/head';
 import { BGSInfo } from 'components/information/bgs';
+import Head from 'next/head';
 
 const BGSPage = () => {
   return (
@@ -12,9 +11,7 @@ const BGSPage = () => {
           content="Background Information (BGS) General Information"
         />
       </Head>
-      <PrimaryLayout>
-        <BGSInfo />
-      </PrimaryLayout>
+      <BGSInfo />
     </>
   );
 };

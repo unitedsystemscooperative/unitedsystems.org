@@ -1,3 +1,4 @@
+import { FileCopy } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -8,24 +9,23 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
-import { FileCopy } from '@material-ui/icons';
+} from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
-import { IJoinInfo } from 'models/join/joinInfo';
-import React from 'react';
-import { buildPlatforms } from './buildPlatforms';
+import { PlatformString } from 'models/admin/platforms';
+import { ReferralString } from 'models/admin/referrals';
+import { RegionString } from 'models/admin/regions';
+import { IJoinRequest } from 'models/join/joinRequest';
+import { ChangeEvent, useState } from 'react';
 
-export const GuestsTable = ({ guests }: { guests: IJoinInfo[] }) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -39,9 +39,9 @@ export const GuestsTable = ({ guests }: { guests: IJoinInfo[] }) => {
               <TableCell>CMDR</TableCell>
               <TableCell>Discord</TableCell>
               <TableCell>Platform</TableCell>
-              <TableCell>Reference</TableCell>
-              <TableCell>Reference2</TableCell>
-              <TableCell>Timezone</TableCell>
+              <TableCell>Referral</TableCell>
+              <TableCell>Referral2</TableCell>
+              <TableCell>Region</TableCell>
             </TableRow>
           </TableHead>
           {guests && (
@@ -71,10 +71,10 @@ export const GuestsTable = ({ guests }: { guests: IJoinInfo[] }) => {
                         <FileCopy />
                       </IconButton>
                     </TableCell>
-                    <TableCell>{buildPlatforms(map.platforms)}</TableCell>
-                    <TableCell>{map.reference}</TableCell>
-                    <TableCell>{map.reference2}</TableCell>
-                    <TableCell>{map.timezone}</TableCell>
+                    <TableCell>{PlatformString[map.platform]}</TableCell>
+                    <TableCell>{ReferralString[map.referral]}</TableCell>
+                    <TableCell>{map.referral2}</TableCell>
+                    <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>

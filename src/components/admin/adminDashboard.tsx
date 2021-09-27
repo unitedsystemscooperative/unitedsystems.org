@@ -1,162 +1,123 @@
 import {
   Button,
+  ButtonProps,
   Container,
-  makeStyles,
   Paper,
+  styled,
   Typography,
-} from '@material-ui/core';
-import Link from 'next/link';
+} from '@mui/material';
+import NextLink from 'next/link';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-    marginBottom: theme.spacing(1),
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  linkButton: {
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+const Header = styled(Typography)(({ theme }) => ({
+  textAlign: 'center',
+  marginBottom: theme.spacing(1),
+}));
+
+const AdminPaper = styled(Paper)(({ theme }) => ({
+  textAlign: 'center',
+  padding: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  '& button': {
+    margin: theme.spacing(1),
   },
 }));
 
+interface LinkButtonProps extends ButtonProps {
+  target?: string;
+}
+const LinkButton = styled(Button)<LinkButtonProps>(({ theme }) => ({
+  marginRight: theme.spacing(1),
+  marginBlock: theme.spacing(1),
+}));
+
 export const AdminDashboard = () => {
-  const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <Typography variant="h3" className={classes.header}>
-        USC Administration
-      </Typography>
-      <Paper className={classes.paper}>
-        <Typography variant="h4" className={classes.header}>
-          User Management
-        </Typography>
-        <Link href="/admin/cmdrs" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+      <Header variant="h3">USC Administration</Header>
+      <AdminPaper>
+        <Header variant="h4">User Management</Header>
+        <NextLink href="/admin/cmdrs" passHref>
+          <LinkButton variant="contained" color="primary">
             CMDR Dashboard
-          </Button>
-        </Link>
-        <Link href="/admin/joinRequests" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+        <NextLink href="/admin/joinRequests" passHref>
+          <LinkButton variant="contained" color="primary">
             Join Requests
-          </Button>
-        </Link>
-        <Link href="/admin/vote" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+        <NextLink href="/admin/vote" passHref>
+          <LinkButton variant="contained" color="primary">
             Vote Assistant
-          </Button>
-        </Link>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Typography variant="h4" className={classes.header}>
-          Website Management
-        </Typography>
-        <Link href="/admin/allies" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+      </AdminPaper>
+      <AdminPaper>
+        <Header variant="h4">Website Management</Header>
+        <NextLink href="/admin/allies" passHref>
+          <LinkButton variant="contained" color="primary">
             Allies List
-          </Button>
-        </Link>
-        <Link href="/admin/fc" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+        <NextLink href="/admin/fc" passHref>
+          <LinkButton variant="contained" color="primary">
             Fleet Carrier List
-          </Button>
-        </Link>
-        <Link href="/admin/systems" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+        <NextLink href="/admin/systems" passHref>
+          <LinkButton variant="contained" color="primary">
             System List
-          </Button>
-        </Link>
-        <Link href="/admin/builds" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.linkButton}
-          >
+          </LinkButton>
+        </NextLink>
+        <NextLink href="/admin/builds" passHref>
+          <LinkButton variant="contained" color="primary">
             Build Management
-          </Button>
-        </Link>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Typography variant="h4" className={classes.header}>
-          Bot Management
-        </Typography>
-
-        <Button
+          </LinkButton>
+        </NextLink>
+      </AdminPaper>
+      <AdminPaper>
+        <Header variant="h4">Bot Management</Header>
+        <LinkButton
           variant="contained"
           color="primary"
           href="https://carl.gg"
           target="_blank"
-          className={classes.linkButton}
         >
           Carl / COVAS Carl
-        </Button>
-        <Button
+        </LinkButton>
+        <LinkButton
           variant="contained"
           color="primary"
           href="https://dyno.gg/"
           target="_blank"
-          className={classes.linkButton}
         >
           Dyno / COVAS Archer
-        </Button>
-        <Button
+        </LinkButton>
+        <LinkButton
           variant="contained"
           color="primary"
           href="https://giveawaybot.party/"
           target="_blank"
-          className={classes.linkButton}
         >
           Giveaway Bot
-        </Button>
-        <Button
+        </LinkButton>
+        <LinkButton
           variant="contained"
           color="primary"
           href="https://mee6.xyz/"
           target="_blank"
-          className={classes.linkButton}
         >
           Mee6
-        </Button>
-        <Button
+        </LinkButton>
+        <LinkButton
           variant="contained"
           color="primary"
           href="https://monitorss.xyz/"
           target="_blank"
-          className={classes.linkButton}
         >
           MonitoRSS
-        </Button>
-      </Paper>
+        </LinkButton>
+      </AdminPaper>
     </Container>
   );
 };

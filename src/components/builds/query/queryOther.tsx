@@ -1,36 +1,26 @@
-import { makeStyles, Tooltip } from '@material-ui/core';
-import BlockIcon from '@material-ui/icons/Block';
-import CheckIcon from '@material-ui/icons/Check';
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import BlockIcon from '@mui/icons-material/Block';
+import CheckIcon from '@mui/icons-material/Check';
+import {
+  styled,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
+} from '@mui/material';
 import { OtherFilters } from 'models/builds/otherFilters';
 import { MouseEvent } from 'react';
-import { useSharedStyles } from './sharedStyles';
+import { QuerySection, QuerySectionHeader } from './sharedComponents';
 
-const useStyles = makeStyles((theme) => ({
-  queryOtherButtons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+const ButtonGrid = styled('div')(({ theme }) => ({
+  display: 'grid',
+  gridTemplateRows: '0.5fr 1fr',
+  margin: theme.spacing(0, 1),
+  '& div': {
+    margin: 'auto',
+    padding: theme.spacing(1),
   },
-  queryOtherButtonGrids: {
-    display: 'grid',
-    gridTemplateRows: '0.5fr 1fr',
-    margin: theme.spacing(0, 1),
-    '& div': {
-      margin: 'auto',
-      padding: theme.spacing(1),
-    },
-    '& label': {
-      height: '25px',
-      padding: theme.spacing(1),
-    },
-  },
-  QueryOtherBeginnerButtons: {
-    borderWidth: '3px',
-    borderStyle: 'solid',
-    borderColor: theme.palette.secondary.main,
-    borderRadius: '5px',
+  '& label': {
+    height: '25px',
+    padding: theme.spacing(1),
   },
 }));
 
@@ -39,8 +29,6 @@ export const QueryOther = (props: {
   setOther: (value: OtherFilters) => void;
 }) => {
   const { other, setOther } = props;
-  const sharedClasses = useSharedStyles();
-  const classes = useStyles();
 
   const handleGuardianChange = (
     _: MouseEvent<HTMLElement>,
@@ -68,11 +56,18 @@ export const QueryOther = (props: {
   };
 
   return (
-    <div className={sharedClasses.querySection}>
-      <h3 className={sharedClasses.querySectionheader}>Other Filters</h3>
-      <div className={classes.queryOtherButtons}>
+    <QuerySection>
+      <QuerySectionHeader>Other Filters</QuerySectionHeader>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
         <Tooltip title="Show all builds, including variants" arrow>
-          <div className={classes.queryOtherButtonGrids}>
+          <ButtonGrid>
             <label>Show Variants</label>
             <ToggleButtonGroup
               value={other.showVariants}
@@ -83,10 +78,10 @@ export const QueryOther = (props: {
                 <CheckIcon />
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </ButtonGrid>
         </Tooltip>
         <Tooltip title="Should the build have Guardian components?" arrow>
-          <div className={classes.queryOtherButtonGrids}>
+          <ButtonGrid>
             <label>Guardian</label>
             <ToggleButtonGroup
               value={other.guardian}
@@ -100,10 +95,10 @@ export const QueryOther = (props: {
                 <BlockIcon />
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </ButtonGrid>
         </Tooltip>
         <Tooltip title="Does the build have Power Play modules?" arrow>
-          <div className={classes.queryOtherButtonGrids}>
+          <ButtonGrid>
             <label>Power Play</label>
             <ToggleButtonGroup
               value={other.powerplay}
@@ -117,11 +112,16 @@ export const QueryOther = (props: {
                 <BlockIcon />
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </ButtonGrid>
         </Tooltip>
         <Tooltip title="Is this build easy to achieve early-game?" arrow>
-          <div
-            className={`${classes.queryOtherButtonGrids} ${classes.QueryOtherBeginnerButtons}`}
+          <ButtonGrid
+            sx={{
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              borderColor: 'secondary.main',
+              borderRadius: '5px',
+            }}
           >
             <label>Beginner</label>
             <ToggleButtonGroup
@@ -136,9 +136,9 @@ export const QueryOther = (props: {
                 <BlockIcon />
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </ButtonGrid>
         </Tooltip>
       </div>
-    </div>
+    </QuerySection>
   );
 };

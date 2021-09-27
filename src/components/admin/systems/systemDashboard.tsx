@@ -1,6 +1,6 @@
 import { EDSpinner } from '@admiralfeb/react-components';
+import { Delete, Edit } from '@mui/icons-material';
 import {
-  Button,
   Container,
   IconButton,
   Link,
@@ -9,62 +9,14 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
-  makeStyles,
   Paper,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
-import { Add, Delete, Edit } from '@material-ui/icons';
+} from '@mui/material';
+import { TitleBarwAdd } from 'components/_common';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
-
-const useTitleBarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  title: {
-    flex: '2 1 100%',
-    textAlign: 'left',
-  },
-  buttonGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'flex-end',
-      flexWrap: 'wrap',
-    },
-  },
-}));
-
-const DashboardTitleBar = ({ addSystem }: { addSystem: () => void }) => {
-  const classes = useTitleBarStyles();
-  return (
-    <Toolbar className={classes.root}>
-      <Typography variant="h4" component="div" className={classes.title}>
-        System Management
-      </Typography>
-      <Tooltip title="Add a System" arrow>
-        <Button variant="contained" color="primary" onClick={addSystem}>
-          <Add />
-        </Button>
-      </Tooltip>
-    </Toolbar>
-  );
-};
-
-const useSystemListStyles = makeStyles((theme) => ({
-  iconButton: {
-    marginLeft: theme.spacing(1),
-  },
-}));
 
 const SystemList = ({
   title,
@@ -77,7 +29,6 @@ const SystemList = ({
   editSystem: (system: System) => void;
   deleteSystem: (system: System) => void;
 }) => {
-  const classes = useSystemListStyles();
   return (
     <List
       subheader={
@@ -98,15 +49,17 @@ const SystemList = ({
           <ListItemSecondaryAction>
             <IconButton
               edge="end"
-              className={classes.iconButton}
+              sx={{ ml: 1 }}
               onClick={() => editSystem(system)}
+              size="large"
             >
               <Edit />
             </IconButton>
             <IconButton
               edge="end"
-              className={classes.iconButton}
+              sx={{ ml: 1 }}
               onClick={() => deleteSystem(system)}
+              size="large"
             >
               <Delete />
             </IconButton>
@@ -117,20 +70,7 @@ const SystemList = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    textAlign: 'center',
-  },
-  paper: {
-    textAlign: 'center',
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
-
 export const SystemDashboard = () => {
-  const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<System | undefined>(
     undefined
@@ -193,8 +133,12 @@ export const SystemDashboard = () => {
 
   return (
     <Container maxWidth="sm">
-      <Paper className={classes.paper}>
-        <DashboardTitleBar addSystem={handleOpenDialog} />
+      <Paper sx={{ p: 1, my: 1, textAlign: 'center' }}>
+        <TitleBarwAdd
+          title="System Management"
+          addTip="Add a system"
+          addItem={handleOpenDialog}
+        />
         <List>
           <ListItem
             button

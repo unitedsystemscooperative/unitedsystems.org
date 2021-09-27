@@ -1,31 +1,24 @@
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core';
-import { PrimaryLayout } from 'components/layouts';
+import { Container, Paper, Typography } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-  },
-}));
-
-const AuthError = () => {
-  const classes = useStyles();
-
+const VerifyRequestPage = () => {
   return (
-    <PrimaryLayout>
-      <Container maxWidth="xs">
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Check your email for a 'magic' link to sign in.
-          </Typography>
-        </Paper>
-      </Container>
-    </PrimaryLayout>
+    <Container maxWidth="xs">
+      <Paper
+        sx={{
+          marginTop: 8,
+          padding: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Check your email for a 'magic' link to sign in.
+        </Typography>
+      </Paper>
+    </Container>
   );
 };
 
-export default AuthError;
+export default VerifyRequestPage;

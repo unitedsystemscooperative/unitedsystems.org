@@ -1,4 +1,6 @@
+import { FileCopy } from '@mui/icons-material';
 import {
+  Checkbox,
   IconButton,
   Paper,
   Table,
@@ -8,28 +10,26 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
-import { FileCopy } from '@material-ui/icons';
+} from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
-import { IJoinInfo } from 'models/join/joinInfo';
-import React from 'react';
-import { buildPlatforms } from './buildPlatforms';
+import { PlatformString } from 'models/admin/platforms';
+import { RegionString } from 'models/admin/regions';
+import { IJoinRequest } from 'models/join/joinRequest';
+import { ChangeEvent, useState } from 'react';
 
 export const AmbassadorsTable = ({
   ambassadors,
 }: {
-  ambassadors: IJoinInfo[];
+  ambassadors: IJoinRequest[];
 }) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -46,7 +46,7 @@ export const AmbassadorsTable = ({
               <TableCell>Platform</TableCell>
               <TableCell>Group</TableCell>
               <TableCell>Need Private</TableCell>
-              <TableCell>Timezone</TableCell>
+              <TableCell>Region</TableCell>
             </TableRow>
           </TableHead>
           {ambassadors && (
@@ -76,10 +76,14 @@ export const AmbassadorsTable = ({
                         <FileCopy />
                       </IconButton>
                     </TableCell>
-                    <TableCell>{buildPlatforms(map.platforms)}</TableCell>
+                    <TableCell>{PlatformString[map.platform]}</TableCell>
                     <TableCell>{map.group}</TableCell>
-                    <TableCell>{map.needPrivate?.toString()}</TableCell>
-                    <TableCell>{map.timezone}</TableCell>
+                    <TableCell>
+                      <Checkbox checked={map.needPrivate ?? false} disabled />{' '}
+                    </TableCell>
+                    <TableCell>
+                      {map.region ? RegionString[map.region] : map.timezone}
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>

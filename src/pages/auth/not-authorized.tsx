@@ -1,27 +1,10 @@
-import {
-  Container,
-  Link,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import { PrimaryLayout } from 'components/layouts/primary';
+import { Box, Container, Link, Paper, Typography } from '@mui/material';
 import Head from 'next/head';
+import Image from 'next/image';
 import NextLink from 'next/link';
+import notFoundImg from 'public/img/404.jpg';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    marginTop: theme.spacing(1),
-  },
-  img: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-}));
-
-export const NotFound = () => {
-  const classes = useStyles();
+const NotAuthorizedPage = () => {
   return (
     <>
       <Head>
@@ -31,24 +14,27 @@ export const NotFound = () => {
           content="Web site of the United Systems Cooperative"
         />
       </Head>
-      <PrimaryLayout>
-        <Container maxWidth="lg" className={classes.root}>
-          <Paper>
-            <Typography variant="h3">Not Authorized</Typography>
-            <Typography variant="subtitle1">
-              You were hyperdicted by the auth patrol... escape destruction by
-              going{' '}
-              <NextLink href="/home" passHref>
-                <Link>home</Link>
-              </NextLink>
-              .
-            </Typography>
-            <img className={classes.img} alt="404 Error" src="/img/404.jpg" />
-          </Paper>
-        </Container>
-      </PrimaryLayout>
+      <Container maxWidth="lg" sx={{ textAlign: 'center', marginTop: 1 }}>
+        <Paper>
+          <Typography variant="h3">Not Authorized</Typography>
+          <Typography variant="subtitle1">
+            You were hyperdicted by the auth patrol... escape destruction by
+            going{' '}
+            <NextLink href="/home" passHref>
+              <Link>home</Link>
+            </NextLink>
+            .
+          </Typography>
+          <Box
+            sx={{ maxWidth: '100%', height: 'auto' }}
+            component={Image}
+            alt="404 Error"
+            src={notFoundImg}
+          />
+        </Paper>
+      </Container>
     </>
   );
 };
 
-export default NotFound;
+export default NotAuthorizedPage;

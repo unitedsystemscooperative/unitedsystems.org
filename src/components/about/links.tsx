@@ -1,42 +1,6 @@
-import {
-  Button,
-  Container,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import NavLink from 'next/link';
+import { Box, Button, Container, Paper, Typography } from '@mui/material';
 import { IInfoButton } from 'models/information/infoButtonModel';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    textAlign: 'center',
-    width: 'fit-content',
-    margin: 'auto',
-    padding: 5,
-    paddingBottom: 10,
-    marginBottom: 5,
-  },
-  specialButton: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  flex: {
-    '& button': {
-      margin: 5,
-    },
-    '& a': {
-      margin: 5,
-    },
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateRows: 'auto',
-  },
-  secondary: {
-    color: theme.palette.secondary.main,
-  },
-}));
+import NavLink from 'next/link';
 
 /** Interface for Info Section Props */
 interface ISectionProps {
@@ -53,14 +17,31 @@ interface ISectionProps {
  * @param props id, header, and button array.
  */
 export const AboutLinks = (props: ISectionProps) => {
-  const classes = useStyles();
   const { id, buttons } = props;
 
   return (
-    <Container maxWidth="sm">
-      <Paper id={id} className={classes.paper}>
-        <div className={classes.grid}>
-          <div className={classes.flex}>
+    <Container maxWidth="md">
+      <Paper
+        id={id}
+        sx={{
+          textAlign: 'center',
+          width: 'fit-content',
+          margin: 'auto',
+          padding: 1,
+          marginBottom: 1,
+        }}
+      >
+        <Box sx={{ display: 'grid', gridTemplateRows: 'auto' }}>
+          <Box
+            sx={{
+              '& button': {
+                margin: 1,
+              },
+              '& a': {
+                margin: 1,
+              },
+            }}
+          >
             {buttons
               .filter((x) => x.beginner === true)
               .map((guide) => {
@@ -71,12 +52,12 @@ export const AboutLinks = (props: ISectionProps) => {
                         variant="outlined"
                         color={guide.beginner ? 'secondary' : 'primary'}
                       >
-                        <div className={classes.specialButton}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography>{guide.title}</Typography>
                           <Typography variant="caption">
                             {guide.caption}
                           </Typography>
-                        </div>
+                        </Box>
                       </Button>
                     </NavLink>
                   );
@@ -89,18 +70,27 @@ export const AboutLinks = (props: ISectionProps) => {
                       target="_blank"
                       key={guide.title}
                     >
-                      <div className={classes.specialButton}>
+                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography>{guide.title}</Typography>
                         <Typography variant="caption">
                           {guide.caption}
                         </Typography>
-                      </div>
+                      </Box>
                     </Button>
                   );
                 }
               })}
-          </div>
-          <div className={classes.flex}>
+          </Box>
+          <Box
+            sx={{
+              '& button': {
+                margin: 1,
+              },
+              '& a': {
+                margin: 1,
+              },
+            }}
+          >
             {buttons
               .filter((x) => x.beginner === false)
               .map((guide) => {
@@ -111,12 +101,12 @@ export const AboutLinks = (props: ISectionProps) => {
                         variant="outlined"
                         color={guide.beginner ? 'secondary' : 'primary'}
                       >
-                        <div className={classes.specialButton}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography>{guide.title}</Typography>
                           <Typography variant="caption">
                             {guide.caption}
                           </Typography>
-                        </div>
+                        </Box>
                       </Button>
                     </NavLink>
                   );
@@ -129,18 +119,18 @@ export const AboutLinks = (props: ISectionProps) => {
                       target="_blank"
                       key={guide.title}
                     >
-                      <div className={classes.specialButton}>
+                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography>{guide.title}</Typography>
                         <Typography variant="caption">
                           {guide.caption}
                         </Typography>
-                      </div>
+                      </Box>
                     </Button>
                   );
                 }
               })}
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Paper>
     </Container>
   );

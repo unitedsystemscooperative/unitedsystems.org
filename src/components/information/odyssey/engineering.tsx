@@ -1,40 +1,20 @@
-import {
-  Container,
-  Link,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import React from 'react';
-
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  indent: {
-    marginLeft: theme.spacing(3),
-    '& p': {
-      marginBottom: theme.spacing(2),
-    },
-  },
-}));
+import { Container, Link, Typography } from '@mui/material';
+import { IndentedDiv } from 'components/_common/div';
+import { PaperP2 } from 'components/_common/paper';
+import { CenteredTypography } from 'components/_common/typography';
 
 export const OdysseyEngineering = () => {
-  const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" className={classes.center}>
+      <CenteredTypography variant="h4">
         Engineering in Odyssey
-      </Typography>
-      <Paper className={classes.paper}>
+      </CenteredTypography>
+      <PaperP2>
         <Typography>What's different from Horizons in Engineering?</Typography>
 
         <section>
           <Typography variant="h5">Engineers</Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               There are 9 new engineers. They can be found{' '}
               <Link
@@ -61,12 +41,12 @@ export const OdysseyEngineering = () => {
               ship engineers do as a ship is required for engineering with the
               others.
             </Typography>
-          </div>
+          </IndentedDiv>
         </section>
 
         <section>
           <Typography variant="h5">Process</Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               The process for engineering your suit or weapon is different here.
             </Typography>
@@ -104,25 +84,25 @@ export const OdysseyEngineering = () => {
                 </li>
               </ol>
             </Typography>
-          </div>
+          </IndentedDiv>
         </section>
 
         <section>
           <Typography variant="h5">
             Pre-Upgraded/Engineered Equipment
           </Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               It is entirely possible to find Grade 2 or 3 suits or weapons with
               an empty or filled engineering slot. The availablility is random
               and will disappear once bought by a player.
             </Typography>
-          </div>
+          </IndentedDiv>
         </section>
 
         <section>
           <Typography variant="h5">Farming Materials</Typography>
-          <div className={classes.indent}>
+          <IndentedDiv>
             <Typography>
               As expected of Odyssey, you must be on ground to farm materials.
               You will need a Detailed Surface Scanner to find farming locations
@@ -136,9 +116,9 @@ export const OdysseyEngineering = () => {
                 <li>Crashed Ship</li>
               </ul>
             </Typography>
-          </div>
+          </IndentedDiv>
         </section>
-      </Paper>
+      </PaperP2>
     </Container>
   );
 };

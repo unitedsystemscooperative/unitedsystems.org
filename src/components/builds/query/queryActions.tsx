@@ -1,14 +1,4 @@
-import { Button, makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    gridArea: 'buttons',
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import { Box, Button } from '@mui/material';
 
 export interface QueryActionsProps {
   resetQueries: () => void;
@@ -16,14 +6,14 @@ export interface QueryActionsProps {
 }
 
 export const QueryActions = ({ resetQueries, addBuild }: QueryActionsProps) => {
-  const classes = useStyles();
-
   const handleAdd = () => {
     console.log('QueryActions: Add build clicked');
     addBuild();
   };
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{ textAlign: 'center', gridArea: 'buttons', '& button': { m: 1 } }}
+    >
       <Button
         onClick={resetQueries}
         color="primary"
@@ -35,6 +25,6 @@ export const QueryActions = ({ resetQueries, addBuild }: QueryActionsProps) => {
       <Button onClick={handleAdd} variant="outlined" color="secondary">
         Add Build
       </Button>
-    </div>
+    </Box>
   );
 };

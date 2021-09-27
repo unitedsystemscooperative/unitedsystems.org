@@ -2,7 +2,21 @@
 const withPWA = require('next-pwa');
 
 module.exports = withPWA({
-  pwa: {
-    dest: 'public'
-  }
+  pwa: { dest: 'public' },
+  async redirects() {
+    return [
+      { source: '/', destination: '/home', permanent: true },
+      // Join Request List has moved twice since inception.
+      {
+        source: '/admin/joinList',
+        destination: '/admin/joinRequests',
+        permanent: true,
+      },
+      {
+        source: '/join/joinListforHC',
+        destination: '/admin/joinRequests',
+        permanent: true,
+      },
+    ];
+  },
 });

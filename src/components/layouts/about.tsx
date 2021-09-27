@@ -1,24 +1,14 @@
-import { Container, makeStyles, Typography } from '@material-ui/core';
-import { PrimaryLayout } from './primary';
-import { ReactNode } from 'react';
-import { uscLinksList } from 'data/about';
+import { Container } from '@mui/material';
 import { AboutLinks } from 'components/about/links';
-
-const useStyles = makeStyles(() => ({
-  center: {
-    textAlign: 'center',
-  },
-}));
+import { CenteredTypography } from 'components/_common/typography';
+import { uscLinksList } from 'data/about';
+import { ReactNode } from 'react';
 
 export const AboutLayout = ({ children }: { children: ReactNode }) => {
-  const classes = useStyles();
-
   return (
-    <PrimaryLayout>
+    <>
       <Container maxWidth="md">
-        <Typography variant="h3" className={classes.center}>
-          About USC
-        </Typography>
+        <CenteredTypography variant="h3">About USC</CenteredTypography>
         <AboutLinks
           id="usc-links"
           key="usc-links"
@@ -27,6 +17,6 @@ export const AboutLayout = ({ children }: { children: ReactNode }) => {
         />
       </Container>
       {children}
-    </PrimaryLayout>
+    </>
   );
 };

@@ -1,44 +1,35 @@
 import {
   Container,
   Divider,
-  makeStyles,
   Paper,
+  styled,
   Table,
-  TableHead,
-  TableCell,
-  TableRow,
   TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  indent: {
-    marginLeft: theme.spacing(3),
-    '& p': {
-      marginBottom: theme.spacing(2),
-    },
+const IndentDiv = styled('div')(({ theme }) => ({
+  marginLeft: theme.spacing(3),
+  '& p': {
+    marginBottom: theme.spacing(2),
   },
 }));
 
 export const BGSInfo = () => {
-  const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" className={classes.center}>
+      <Typography variant="h4" textAlign="center">
         Background Simulation (BGS) General Information
       </Typography>
-      <Paper className={classes.paper}>
+      <Paper sx={{ p: 2 }}>
         <section>
           <Typography variant="h5">Influence</Typography>
-          <div className={classes.indent}>
+          <IndentDiv>
             <Typography variant="h6">Adding Influence</Typography>
-            <div className={classes.indent}>
+            <IndentDiv>
               <Typography>There are multiple ways to add influence:</Typography>
               <Typography>
                 <ul>
@@ -65,10 +56,10 @@ export const BGSInfo = () => {
                   </li>
                 </ul>
               </Typography>
-            </div>
+            </IndentDiv>
 
             <Typography variant="h6">Decreasing Influence</Typography>
-            <div className={classes.indent}>
+            <IndentDiv>
               <Typography>
                 <ul>
                   <li>
@@ -93,27 +84,27 @@ export const BGSInfo = () => {
                   </li>
                 </ul>
               </Typography>
-            </div>
+            </IndentDiv>
             <Typography variant="h6">Diminishing Returns</Typography>
-            <div className={classes.indent}>
+            <IndentDiv>
               <Typography>
                 Too much of one thing is too much. There are caps in place to
                 prevent over-inflating changes in influence
               </Typography>
-            </div>
-          </div>
+            </IndentDiv>
+          </IndentDiv>
         </section>
         <Divider />
         <section>
           <Typography variant="h5">Conflicts</Typography>
-          <div className={classes.indent}>
+          <IndentDiv>
             <Typography variant="h6">Elections</Typography>
-            <Typography className={classes.indent}>
+            <Typography ml={3}>
               Complete election missions to win the conflict.
             </Typography>
 
             <Typography variant="h6">Wars</Typography>
-            <div className={classes.indent}>
+            <IndentDiv>
               <Typography>Wars are won in two ways:</Typography>
               <Typography>
                 <ul>
@@ -149,8 +140,8 @@ export const BGSInfo = () => {
                   </TableBody>
                 </Table>
               </Container>
-            </div>
-          </div>
+            </IndentDiv>
+          </IndentDiv>
         </section>
       </Paper>
     </Container>

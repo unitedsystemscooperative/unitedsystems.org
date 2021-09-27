@@ -1,8 +1,7 @@
-import { PrimaryLayout } from 'components/layouts/primary';
-import Head from 'next/head';
 import { Home } from 'components';
+import Head from 'next/head';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Head>
@@ -12,9 +11,9 @@ export default function HomePage() {
           content="Web site of the United Systems Cooperative"
         />
       </Head>
-      <PrimaryLayout>
-        <Home />
-      </PrimaryLayout>
+      <Home />
     </>
   );
-}
+};
+
+export default HomePage;

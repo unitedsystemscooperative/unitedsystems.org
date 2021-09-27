@@ -1,21 +1,16 @@
-import { makeStyles, Typography } from '@material-ui/core';
-import { SetStateAction, MouseEvent, Dispatch } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
-import { useSharedStyles } from './sharedStyles';
-
-const useStyles = makeStyles({
-  engineeringQuery: {
-    gridArea: 'engineering',
-  },
-});
+import {
+  QueryExplanation,
+  QuerySection,
+  QuerySectionHeader,
+} from './sharedComponents';
 
 export const QueryEngineering = (props: {
   engLevel: number | null;
   setEngLevel: Dispatch<SetStateAction<number | null>>;
 }) => {
   const { engLevel, setEngLevel } = props;
-  const sharedClasses = useSharedStyles();
-  const classes = useStyles();
 
   const handleEngLevelChange = (
     _: MouseEvent<HTMLElement>,
@@ -25,20 +20,13 @@ export const QueryEngineering = (props: {
   };
 
   return (
-    <div
-      className={`${sharedClasses.querySection} ${classes.engineeringQuery}`}
-    >
-      <h3 className={sharedClasses.querySectionheader}>
-        Ship Engineering Level
-      </h3>
-
-      <Typography className={sharedClasses.queryExplanationText}>
-        Select Engineering level ranging from None to Max Engineering.
-      </Typography>
+    <QuerySection sx={{ gridArea: 'engineering' }}>
+      <QuerySectionHeader>Ship Engineering Level</QuerySectionHeader>
+      <QueryExplanation text="Select Engineering level ranging from None to Max Engineering." />
       <EngToggleGroup
         engLevel={engLevel}
         handleEngLevelChange={handleEngLevelChange}
       />
-    </div>
+    </QuerySection>
   );
 };

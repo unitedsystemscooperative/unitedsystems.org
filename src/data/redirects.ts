@@ -1,4 +1,4 @@
-export const redirects = [
+export const redirects: { key: string; path: string }[] = [
   { key: 'admin_index', path: '/admin' },
   { key: 'admin_allies', path: '/admin/allies' },
   { key: 'admin_cmdrs', path: '/admin/cmdrs' },

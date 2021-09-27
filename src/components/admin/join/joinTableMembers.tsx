@@ -1,3 +1,4 @@
+import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -8,21 +9,20 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
-import { Add, FileCopy } from '@material-ui/icons';
+} from '@mui/material';
 import { copytoClipboard } from 'functions/copytoClipboard';
 import { useCMDRs } from 'hooks/useCmdrs';
 import { IMember } from 'models/admin/cmdr';
-import { Platform } from 'models/admin/platforms';
+import { PlatformString } from 'models/admin/platforms';
 import { Rank } from 'models/admin/ranks';
-import { Region } from 'models/admin/regions';
-import { IJoinInfo } from 'models/join/joinInfo';
+import { ReferralString } from 'models/admin/referrals';
+import { Region, RegionString } from 'models/admin/regions';
+import { IJoinRequest } from 'models/join/joinRequest';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { MemberDialog } from '../cmdrs/dialogs/memberDialog';
-import { buildPlatforms } from './buildPlatforms';
 
-export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
+export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dialog, setDialog] = useState(false);
@@ -41,34 +41,17 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
     setPage(0);
   };
 
-  const processPlatform = (platforms: {
-    pc: boolean;
-    xbox: boolean;
-    ps: boolean;
-  }): Platform => {
-    if (platforms.pc) {
-      return Platform.PC;
-    }
-    if (platforms.xbox) {
-      return Platform.Xbox;
-    }
-    if (platforms.ps) {
-      return Platform.PS;
-    }
-    return Platform.PC;
-  };
-
-  const handleAddMember = (joinInfo: IJoinInfo) => {
+  const handleAddMember = (joinInfo: IJoinRequest) => {
     const newMember: IMember = {
       cmdrName: joinInfo.cmdr.toUpperCase(),
       discordName: joinInfo.discord,
       discordJoinDate: null,
       joinDate: new Date(),
-      platform: processPlatform(joinInfo.platforms),
+      platform: joinInfo.platform,
       rank: Rank.Cadet,
       region: joinInfo.region ?? Region.N_CAmerica,
-      ref1: joinInfo.reference,
-      ref2: joinInfo.reference2,
+      ref1: joinInfo.referral,
+      ref2: joinInfo.referral2,
       entersVoice: false,
       isInInaraSquad: false,
     };
@@ -119,8 +102,8 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
                 <TableCell>Discord</TableCell>
                 <TableCell>Platform</TableCell>
                 <TableCell>Playing Length</TableCell>
-                <TableCell>Reference</TableCell>
-                <TableCell>Reference2</TableCell>
+                <TableCell>Referral</TableCell>
+                <TableCell>Referral2</TableCell>
                 <TableCell>Region</TableCell>
                 <TableCell>Add to Dashboard</TableCell>
               </TableRow>
@@ -160,15 +143,18 @@ export const MembersTable = ({ members }: { members: IJoinInfo[] }) => {
                           </IconButton>
                         </div>
                       </TableCell>
-                      <TableCell>{buildPlatforms(map.platforms)}</TableCell>
+                      <TableCell>{PlatformString[map.platform]}</TableCell>
                       <TableCell>{processLength(map.playingLength)}</TableCell>
-                      <TableCell>{map.reference}</TableCell>
-                      <TableCell>{map.reference2}</TableCell>
-                      <TableCell>{map.region}</TableCell>
+                      <TableCell>{ReferralString[map.referral]}</TableCell>
+                      <TableCell>{map.referral2}</TableCell>
+                      <TableCell>
+                        {map.region ? RegionString[map.region] : map.timezone}
+                      </TableCell>
                       <TableCell>
                         <IconButton
                           color="primary"
                           onClick={() => handleAddMember(map)}
+                          size="large"
                         >
                           <Add />
                         </IconButton>
