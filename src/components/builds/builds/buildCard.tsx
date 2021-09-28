@@ -54,7 +54,7 @@ export const BuildCard = (props: { shipBuild: IBuildInfov2 | undefined }) => {
             }}
           >
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               href={shipBuild.buildLink}
               target="_blank"
@@ -65,7 +65,7 @@ export const BuildCard = (props: { shipBuild: IBuildInfov2 | undefined }) => {
               href={`/builds/detail/${(shipBuild._id as unknown) as string}`}
               passHref
             >
-              <Button color="primary" variant="contained">
+              <Button color="primary" variant="outlined">
                 More Details
               </Button>
             </NextLink>

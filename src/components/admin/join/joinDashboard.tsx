@@ -50,21 +50,21 @@ const DashBoardTitleBar = ({
         }}
       >
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setJoinView(JoinViews.Members)}
         >
           {JoinViews[JoinViews.Members]}
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setJoinView(JoinViews.Guests)}
         >
           {JoinViews[JoinViews.Guests]}
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => setJoinView(JoinViews.Ambassadors)}
         >

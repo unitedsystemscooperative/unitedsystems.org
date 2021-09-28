@@ -57,7 +57,7 @@ const SignInPage = () => {
           <Button
             type="submit"
             fullWidth
-            variant="contained"
+            variant="outlined"
             color="primary"
             sx={{
               mt: 3,

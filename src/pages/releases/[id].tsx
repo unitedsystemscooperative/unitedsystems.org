@@ -1,5 +1,6 @@
-import { Button, Container, Divider, Paper, Typography } from '@mui/material';
+import { Container, Divider, Paper, Typography } from '@mui/material';
 import { USCMarkdown } from 'components/uscmarkdown';
+import { PaperOutlineButton } from 'components/_common/button';
 import {
   getAllReleaseIDs,
   getReleaseData,
@@ -20,9 +21,9 @@ const ReleasePage = ({
       </Head>
       <Container maxWidth="lg" sx={{ marginTop: 1 }}>
         <NextLink href="/releases" passHref>
-          <Button color="secondary" variant="contained">
+          <PaperOutlineButton color="secondary" variant="outlined">
             Return to Releases
-          </Button>
+          </PaperOutlineButton>
         </NextLink>
         <Paper sx={{ marginTop: 1, padding: 1 }}>
           <Typography variant="h4">{releaseData.title}</Typography>

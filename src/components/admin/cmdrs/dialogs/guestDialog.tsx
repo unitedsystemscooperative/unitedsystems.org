@@ -259,10 +259,10 @@ export const GuestDialog = (props: GuestDialogProps) => {
           )}
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="outlined" color="primary" type="submit">
             Submit
           </Button>
-          <Button variant="contained" color="secondary" onClick={handleClose}>
+          <Button variant="outlined" color="secondary" onClick={handleClose}>
             Cancel
           </Button>
         </DialogActions>

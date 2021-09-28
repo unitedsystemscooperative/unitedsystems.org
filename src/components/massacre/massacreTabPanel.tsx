@@ -1,4 +1,5 @@
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
+import { PaperOutlineButton } from 'components/_common/button';
 import { processHazRezSystem } from 'functions/processHazRezSystem';
 import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
 import { ReputationLevels } from 'models/reputationLevels';
@@ -109,40 +110,48 @@ export const MassacreTabPanel = (props: { system: string }) => {
     return (
       <Container maxWidth="xl">
         <Box sx={{ '& button': { m: 1 } }}>
-          <Button onClick={deleteTracker} color="secondary" variant="contained">
+          <PaperOutlineButton
+            onClick={deleteTracker}
+            color="secondary"
+            variant="outlined"
+          >
             Delete Tracker
-          </Button>
-          <Button
+          </PaperOutlineButton>
+          <PaperOutlineButton
             onClick={addMissionColumn}
             color="secondary"
-            variant="contained"
+            variant="outlined"
           >
             Add Column to tracker
-          </Button>
-          <Button
+          </PaperOutlineButton>
+          <PaperOutlineButton
             onClick={deleteLastMissionColumn}
             color="secondary"
-            variant="contained"
+            variant="outlined"
           >
             Delete last column of tracker
-          </Button>
-          <Button
+          </PaperOutlineButton>
+          <PaperOutlineButton
             onClick={displayAllFactions}
             color="secondary"
-            variant="contained"
+            variant="outlined"
           >
             Unhide all factions
-          </Button>
-          <Button onClick={resetCounts} color="secondary" variant="contained">
+          </PaperOutlineButton>
+          <PaperOutlineButton
+            onClick={resetCounts}
+            color="secondary"
+            variant="outlined"
+          >
             Reset Counts
-          </Button>
-          <Button
+          </PaperOutlineButton>
+          <PaperOutlineButton
             onClick={refreshFactions}
             color="secondary"
-            variant="contained"
+            variant="outlined"
           >
             Reset and Refresh Factions
-          </Button>
+          </PaperOutlineButton>
         </Box>
         <div>
           <MassacreTotals tracker={tracker} />
