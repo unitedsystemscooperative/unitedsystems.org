@@ -112,7 +112,7 @@ const BuildDetailFull = (props: {
             )}
 
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               href={foundBuild.buildLink}
               target="_blank"
@@ -121,7 +121,7 @@ const BuildDetailFull = (props: {
             </Button>
             <div style={{ display: 'grid', gridTemplate: '1fr 1fr / 1fr 1fr' }}>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 href={shipInfo.shipReview}
                 target="_blank"
@@ -129,7 +129,7 @@ const BuildDetailFull = (props: {
                 {`Pilot's Review`}
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 href={`${blueprints}?s=${shipInfo.blueprint}`}
                 target="_blank"
@@ -137,14 +137,14 @@ const BuildDetailFull = (props: {
                 Ship Anatomy
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 onClick={() => addBuild('variant', foundBuild._id.toString())}
               >
                 Add Variant
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 onClick={() => addBuild('related', foundBuild._id.toString())}
               >
@@ -224,7 +224,7 @@ const BuildDetailMobile = (props: {
         </div>
       </FlexRow>
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         href={foundBuild.buildLink}
         target="_blank"
@@ -253,7 +253,7 @@ const BuildDetailMobile = (props: {
         {shipInfo && (
           <>
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               href={shipInfo.shipReview}
               target="_blank"
@@ -261,7 +261,7 @@ const BuildDetailMobile = (props: {
               Pilot's Review
             </Button>
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               href={`${blueprints}?s=${shipInfo.blueprint}`}
               target="_blank"
@@ -272,14 +272,14 @@ const BuildDetailMobile = (props: {
         )}
 
         <Button
-          variant="contained"
+          variant="outlined"
           color="secondary"
           onClick={() => addBuild('variant', foundBuild._id.toString())}
         >
           Add Variant
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="secondary"
           onClick={() => addBuild('related', foundBuild._id.toString())}
         >

@@ -20,7 +20,7 @@ export const TitleBarwAdd = ({
         {title}
       </Typography>
       <Tooltip title={addTip} arrow>
-        <Button variant="contained" color="primary" onClick={addItem}>
+        <Button variant="outlined" color="primary" onClick={addItem}>
           <Add />
         </Button>
       </Tooltip>

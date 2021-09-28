@@ -26,11 +26,11 @@ export const ConfirmDialog = ({
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={onClose} color="secondary">
+        <Button variant="outlined" onClick={onClose} color="secondary">
           No
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           onClick={() => {
             onConfirm();
           }}
