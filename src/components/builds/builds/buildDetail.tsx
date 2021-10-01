@@ -11,6 +11,7 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
+import { USCMarkdown } from 'components/uscmarkdown';
 import { BoxwMB1 } from 'components/_common';
 import { PaperP2 } from 'components/_common/paper';
 import { CenteredTypography } from 'components/_common/typography';
@@ -21,8 +22,6 @@ import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
 import { BuildDialog, BuildDialogProps } from '../dialog/buildDialog';
 import { BuildCard } from './buildCard';
 import { EngIcons } from './engIcons';
@@ -173,12 +172,7 @@ const BuildDetailFull = (props: {
           <EngIcons engLevel={foundBuild.engLevel} />
           <TagGroup build={foundBuild} />
           {foundBuild.description && (
-            <ReactMarkdown
-              plugins={[gfm]}
-              renderers={{ paragraph: Typography, link: Link }}
-            >
-              {foundBuild.description}
-            </ReactMarkdown>
+            <USCMarkdown>{foundBuild.description}</USCMarkdown>
           )}
         </Box>
       </FlexAcross>
@@ -235,12 +229,7 @@ const BuildDetailMobile = (props: {
       <TagGroup build={foundBuild} />
       <EngIcons engLevel={foundBuild.engLevel} />
       {foundBuild.description && (
-        <ReactMarkdown
-          plugins={[gfm]}
-          renderers={{ paragraph: Typography, link: Link }}
-        >
-          {foundBuild.description}
-        </ReactMarkdown>
+        <USCMarkdown>{foundBuild.description}</USCMarkdown>
       )}
       <Box
         sx={{
