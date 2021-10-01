@@ -5,7 +5,7 @@ import { IDbItem } from 'models/dbItem';
 
 export interface IJoinRequest extends IDbItem {
   //   type: 'join' | 'guest' | 'ambassador';
-  timeStamp?: string;
+  timeStamp?: Date | string;
   type: string;
   cmdr: string;
   discord: string;
