@@ -84,6 +84,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       return {
         redirect: { destination: redirectPath, permanent: false },
       };
+    } else {
+      return {
+        redirect: { destination: '/home', permanent: false },
+      };
     }
   }
 

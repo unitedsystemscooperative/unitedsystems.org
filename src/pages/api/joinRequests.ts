@@ -12,6 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const joinInfo: IJoinRequest = req.body;
 
     if (req.method === 'POST') {
+      joinInfo.timeStamp = new Date(joinInfo.timeStamp);
       await insertItem(COLLECTION, joinInfo, db);
 
       res.status(200).end();
