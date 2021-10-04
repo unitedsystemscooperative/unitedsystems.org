@@ -40,7 +40,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.15.4",
     "react-markdown": "^5.0.3",
-    "remark-gfm": "^1.0.0",
+    "remark-gfm": "^3.0.0",
     "rxjs": "^7.3.0",
     "swr": "^1.0.1"
   },
