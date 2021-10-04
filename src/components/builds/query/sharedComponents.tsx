@@ -1,7 +1,7 @@
-import { styled, Typography } from '@mui/material';
+import { Paper, styled, Typography } from '@mui/material';
 
-export const QuerySection = styled('div')(({ theme }) => ({
-  width: '90%',
+export const QuerySection = styled(Paper)(({ theme }) => ({
+  width: '100%',
   minWidth: '90%',
   height: '100%',
   borderWidth: 2,
@@ -18,7 +18,7 @@ export const QuerySection = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   [theme.breakpoints.up('lg')]: {
-    width: '98%',
+    // width: '98%',
   },
 }));
 
@@ -27,6 +27,6 @@ export const QuerySectionHeader = styled('h3')(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export const QueryExplanation = ({ text }: { text: string }) => {
-  return <Typography color="grey.400">{text}</Typography>;
-};
+export const QueryExplanation = styled(Typography)(() => ({
+  color: 'grey.400',
+}));

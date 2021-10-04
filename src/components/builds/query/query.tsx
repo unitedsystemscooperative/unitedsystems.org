@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material';
+import { Box } from '@mui/material';
 import { IQuery, OtherFilters } from 'models/builds';
 import { useRouter } from 'next/router';
 import qs from 'query-string';
@@ -186,7 +186,7 @@ export const Query = (props: QueryProps) => {
   };
 
   return (
-    <Paper
+    <Box
       sx={{
         display: 'grid',
         rowGap: { xs: '2px', lg: '5px' },
@@ -199,13 +199,13 @@ export const Query = (props: QueryProps) => {
     'other'
     'buttons'`,
           lg: `
-        'specializations    engineering'
-        'ship   other'
-        'buttons    buttons'`,
+        'specializations   specializations   specializations'
+        'engineering   ship   other'
+        'buttons    buttons   buttons'`,
         },
         textAlign: 'center',
         gridTemplateRows: {
-          lg: '1fr 1fr 0.1fr',
+          lg: 'fit-content(300px) fit-content(200px) fit-content(100px)',
         },
       }}
     >
@@ -230,6 +230,6 @@ export const Query = (props: QueryProps) => {
         setOther={(value: OtherFilters) => dispatch({ type: 'other', value })}
       />
       <QueryActions resetQueries={resetQueries} addBuild={handleAdd} />
-    </Paper>
+    </Box>
   );
 };

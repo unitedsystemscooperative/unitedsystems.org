@@ -1,4 +1,5 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete } from '@mui/material';
+import { TextFieldwM1 } from 'components/_common';
 import { genericSortArray } from 'functions/sort';
 import { useShipMap } from 'hooks/builds/useShipMap';
 import { IShipInfo } from 'models/builds';
@@ -14,10 +15,11 @@ const findShipName = (ships: IShipInfo[], shipID: string | null) => {
 interface IShipAutocompleteProps {
   shipType: string | null;
   handleShipChange: (_, value: IShipInfo | null) => void;
+  disableClearable?: boolean;
 }
 
 export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
-  const { shipType, handleShipChange } = props;
+  const { shipType, handleShipChange, disableClearable } = props;
   const ships = useShipMap();
 
   return (
@@ -25,19 +27,9 @@ export const ShipAutocomplete = (props: IShipAutocompleteProps) => {
       id="shipType"
       options={genericSortArray(ships, { orderBy: 'name', order: 'asc' })}
       autoHighlight
-      disableClearable
+      disableClearable={disableClearable}
       getOptionLabel={(option) => option.name}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Ship Type"
-          variant="outlined"
-          inputProps={{
-            ...params.inputProps,
-            autocomplete: 'new-password',
-          }}
-        />
-      )}
+      renderInput={(params) => <TextFieldwM1 {...params} label="Ship Type" />}
       value={findShipName(ships, shipType)}
       onChange={handleShipChange}
     />

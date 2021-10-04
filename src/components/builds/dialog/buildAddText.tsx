@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextFieldwM1 } from 'components/_common';
 import { ChangeEvent } from 'react';
 
 interface IBuildAddText {
@@ -16,8 +16,7 @@ interface IBuildAddText {
 export const BuildAddText = (props: IBuildAddText) => {
   const { id, label, value, onChange, isMultiline, disabled } = props;
   return (
-    <TextField
-      variant="outlined"
+    <TextFieldwM1
       id={id}
       label={label}
       multiline={isMultiline}

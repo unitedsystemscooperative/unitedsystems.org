@@ -1,10 +1,27 @@
-import { Box, ToggleButton } from '@mui/material';
+import { styled } from '@mui/material';
+import { PaperOutlineToggleButton } from 'components/_common/button';
 import { ShipSpecialty } from 'models/builds/shipSpecialty';
 import {
   QueryExplanation,
   QuerySection,
   QuerySectionHeader,
 } from './sharedComponents';
+
+const SpecialBox = styled('div')(({ theme }) => ({
+  textAlign: 'center',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  // gridAutoColumns: '1fr',
+  // gridTemplate: {
+  //   xs: 'repeat(4, 1fr) / repeat(3, 1fr)',
+  //   lg: 'repeat(3, 1fr) / repeat(4, 1fr)',
+  // },
+  '& button': {
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(1),
+  },
+}));
 
 export const QuerySpecialties = (props: {
   selectedSpecialties: string[];
@@ -23,38 +40,41 @@ export const QuerySpecialties = (props: {
   };
 
   return (
-    <QuerySection>
+    <QuerySection sx={{ gridArea: 'specializations' }}>
       <QuerySectionHeader>Ship Specializations</QuerySectionHeader>
-      <QueryExplanation text="Select specializations that the ship should fulfill." />
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplate: {
-            xs: 'repeat(4, 1fr) / repeat(3, 1fr)',
-            lg: 'repeat(3, 1fr) / repeat(4, 1fr)',
-          },
-          '& button': {
-            mr: 1,
-            mt: 1,
-          },
-        }}
-      >
-        {getSpecialties().map((special) => (
-          <ToggleButton
+      <QueryExplanation>
+        Select specializations that the ship should fulfill.
+      </QueryExplanation>
+      <SpecialBox>
+        {getSpecialties(false).map((special) => (
+          <PaperOutlineToggleButton
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
             onChange={() => handleSpecialties(special)}
           >
             {special}
-          </ToggleButton>
+          </PaperOutlineToggleButton>
         ))}
-      </Box>
+      </SpecialBox>
+      <QueryExplanation sx={{ my: 1 }}>Combat Specialties</QueryExplanation>
+      <SpecialBox>
+        {getSpecialties(true).map((special) => (
+          <PaperOutlineToggleButton
+            value={special}
+            key={special}
+            selected={selectedSpecialties.includes(special)}
+            onChange={() => handleSpecialties(special)}
+          >
+            {special}
+          </PaperOutlineToggleButton>
+        ))}
+      </SpecialBox>
     </QuerySection>
   );
 };
 
-const getSpecialties = (): string[] => {
+const getSpecialties = (isCombat: boolean): string[] => {
   let specialties: string[] = [];
 
   for (const speciality in ShipSpecialty) {
@@ -63,5 +83,8 @@ const getSpecialties = (): string[] => {
       ShipSpecialty[speciality as keyof typeof ShipSpecialty],
     ];
   }
+  specialties = isCombat
+    ? specialties.filter((x) => x.startsWith('Combat'))
+    : specialties.filter((x) => !x.startsWith('Combat'));
   return specialties;
 };

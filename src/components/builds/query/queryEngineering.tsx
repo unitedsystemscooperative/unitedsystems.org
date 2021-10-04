@@ -22,7 +22,9 @@ export const QueryEngineering = (props: {
   return (
     <QuerySection sx={{ gridArea: 'engineering' }}>
       <QuerySectionHeader>Ship Engineering Level</QuerySectionHeader>
-      <QueryExplanation text="Select Engineering level ranging from None to Max Engineering." />
+      <QueryExplanation>
+        Select Engineering level ranging from None to Max Engineering.
+      </QueryExplanation>
       <EngToggleGroup
         engLevel={engLevel}
         handleEngLevelChange={handleEngLevelChange}

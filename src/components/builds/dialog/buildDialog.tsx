@@ -310,9 +310,8 @@ export const BuildDialog = ({
       <DialogContent
         sx={{
           textAlign: 'center',
-          display: 'grid',
-          gridTemplate: 'auto / 1fr',
-          rowGap: 2,
+          display: 'flex',
+          flexDirection: 'column',
           p: 1,
           maxHeight: 600,
         }}
@@ -342,6 +341,7 @@ export const BuildDialog = ({
         <ShipAutocomplete
           shipType={newBuild.shipId}
           handleShipChange={handleShipChange}
+          disableClearable
         />
         <QuerySpecialties
           selectedSpecialties={newBuild.specializations}

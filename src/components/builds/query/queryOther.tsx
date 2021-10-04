@@ -56,7 +56,7 @@ export const QueryOther = (props: {
   };
 
   return (
-    <QuerySection>
+    <QuerySection sx={{ gridArea: 'other' }}>
       <QuerySectionHeader>Other Filters</QuerySectionHeader>
       <div
         style={{

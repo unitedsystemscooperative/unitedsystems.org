@@ -27,7 +27,7 @@ export const QueryShip = (props: {
   };
 
   return (
-    <QuerySection>
+    <QuerySection sx={{ gridArea: 'ship' }}>
       <QuerySectionHeader>Ship Type and Size</QuerySectionHeader>
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <Box sx={{ minWidth: 200, margin: 1, flex: '1 0' }}>
