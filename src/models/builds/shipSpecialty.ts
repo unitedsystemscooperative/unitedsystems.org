@@ -6,6 +6,7 @@ export enum ShipSpecialty {
   mining = 'Miner',
   pve = 'Combat - PvE',
   pvp = 'Combat - PvP',
+  csupport = 'Combat - Support',
   ax = 'Combat - Anti-Xeno',
   s2g = 'Combat - Ship to Ground',
   ody = 'Odyssey Lander / Support',
