@@ -1,23 +1,19 @@
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   FormGroup,
+  TextField,
   Typography,
 } from '@mui/material';
 import { processJSONBuild } from 'functions/builds';
 import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { useSnackbar } from 'notistack';
-import {
-  ChangeEvent,
-  Fragment,
-  MouseEvent,
-  useEffect,
-  useReducer,
-} from 'react';
+import { ChangeEvent, Fragment, MouseEvent, useEffect, useReducer } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
 import { QuerySpecialties } from '../query/querySpecialities';
 import { ShipAutocomplete } from '../shipAutocomplete';
@@ -51,30 +47,16 @@ const DEFAULTBUILD: IBuildInfov2 = {
   jsonBuild: '',
 };
 
-const parseDialogTitle = (
-  build: IBuildInfov2,
-  addType: 'related' | 'variant'
-) => {
+const parseDialogTitle = (build: IBuildInfov2, addType: 'related' | 'variant') => {
   if (build) return <DialogTitle>Update Build</DialogTitle>;
-  if (addType === 'related')
-    return <DialogTitle>Add Related Build</DialogTitle>;
-  if (addType === 'variant')
-    return <DialogTitle>Add Variant Build</DialogTitle>;
+  if (addType === 'related') return <DialogTitle>Add Related Build</DialogTitle>;
+  if (addType === 'variant') return <DialogTitle>Add Variant Build</DialogTitle>;
   return <DialogTitle>Add Build</DialogTitle>;
 };
 
-function findBuildTitle(
-  builds: IBuildInfov2[],
-  ids: string | IBuildInfov2
-): IBuildInfov2;
-function findBuildTitle(
-  builds: IBuildInfov2[],
-  ids: (string | IBuildInfov2)[]
-): IBuildInfov2[];
-function findBuildTitle(
-  builds: IBuildInfov2[],
-  ids: string | IBuildInfov2 | (string | IBuildInfov2)[]
-) {
+function findBuildTitle(builds: IBuildInfov2[], ids: string | IBuildInfov2): IBuildInfov2;
+function findBuildTitle(builds: IBuildInfov2[], ids: (string | IBuildInfov2)[]): IBuildInfov2[];
+function findBuildTitle(builds: IBuildInfov2[], ids: string | IBuildInfov2 | (string | IBuildInfov2)[]) {
   if (Array.isArray(ids)) {
     if (ids.length < 1) return [];
     const results = ids.map((x) => builds.find((y) => y._id.toString() === x));
@@ -98,10 +80,7 @@ type action =
   | { type: 'variantOf'; value: string | IBuildInfov2 }
   | { type: 'relateds'; value: (string | IBuildInfov2)[] }
   | { type: 'variants'; value: (string | IBuildInfov2)[] };
-const buildReducer = (
-  prevState: IBuildInfov2,
-  action: action
-): IBuildInfov2 => {
+const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => {
   let newState = prevState;
   switch (action.type) {
     case 'default':
@@ -111,14 +90,7 @@ const buildReducer = (
       newState = action.value;
       break;
     case 'json':
-      const {
-        buildName,
-        shipId,
-        hasGuardian,
-        hasPowerplay,
-        engineering,
-        url,
-      } = processJSONBuild(action.value);
+      const { buildName, shipId, hasGuardian, hasPowerplay, engineering, url } = processJSONBuild(action.value);
       const engLevel = engineering ? 1 : 0;
       newState = {
         ...newState,
@@ -186,22 +158,9 @@ const buildReducer = (
  *
  * Used for all build creation and editing.
  */
-export const BuildDialog = ({
-  open,
-  build,
-  builds,
-  addType,
-  refId,
-  onClose,
-}: BuildDialogProps) => {
+export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: BuildDialogProps) => {
   const { enqueueSnackbar } = useSnackbar();
-  const {
-    shipBuilds,
-    addBuild,
-    addRelated,
-    addVariant,
-    updateBuild,
-  } = useShipBuilds();
+  const { shipBuilds, addBuild, addRelated, addVariant, updateBuild } = useShipBuilds();
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
 
   useEffect(() => {
@@ -209,10 +168,7 @@ export const BuildDialog = ({
     else dispatch({ type: 'default' });
   }, [build]);
 
-  const handleClose = (
-    _?: never,
-    reason?: 'escapeKeyDown' | 'backdropClick'
-  ) => {
+  const handleClose = (_?: never, reason?: 'escapeKeyDown' | 'backdropClick') => {
     if (reason === 'backdropClick') {
       enqueueSnackbar('Please hit the ESC key to close the dialog', {
         variant: 'info',
@@ -224,20 +180,10 @@ export const BuildDialog = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
-    if (
-      id === 'json' ||
-      id === 'title' ||
-      id === 'description' ||
-      id === 'buildLink' ||
-      id === 'author'
-    ) {
+    if (id === 'json' || id === 'title' || id === 'description' || id === 'buildLink' || id === 'author') {
       const value = event.target.value;
       dispatch({ type: id, value });
-    } else if (
-      id === 'isBeginner' ||
-      id === 'hasGuardian' ||
-      id === 'hasPowerplay'
-    ) {
+    } else if (id === 'isBeginner' || id === 'hasGuardian' || id === 'hasPowerplay') {
       const value = event.target.checked;
       dispatch({ type: id, value });
     }
@@ -247,29 +193,20 @@ export const BuildDialog = ({
       dispatch({ type: 'ship', value: value.shipId });
     }
   };
-  const handleEngLevelChange = (
-    _: MouseEvent<HTMLElement>,
-    engLevel: number
-  ) => {
+  const handleEngLevelChange = (_: MouseEvent<HTMLElement>, engLevel: number) => {
     dispatch({ type: 'engLevel', value: engLevel });
   };
   const handleSubmit = async () => {
     try {
       if (newBuild.jsonBuild === '')
-        throw new Error(
-          'Exported JSON is blank. Verify you have pasted the JSON from Coriolis.'
-        );
+        throw new Error('Exported JSON is blank. Verify you have pasted the JSON from Coriolis.');
       if (newBuild.specializations.length < 1)
-        throw new Error(
-          'No specializations have been selected. Minimum is one.'
-        );
+        throw new Error('No specializations have been selected. Minimum is one.');
       if (newBuild.author === '') throw new Error('Author is blank.');
       if (newBuild.description === '') throw new Error('Description is blank.');
       if (newBuild.title === '') throw new Error('Build Title is blank.');
       if (newBuild.buildLink === '')
-        throw new Error(
-          'Build Link is blank. Verify you have pasted the JSON from Coriolis.'
-        );
+        throw new Error('Build Link is blank. Verify you have pasted the JSON from Coriolis.');
 
       try {
         if (newBuild._id) {
@@ -366,16 +303,11 @@ export const BuildDialog = ({
           flexDirection: 'column',
           p: 1,
           maxHeight: 600,
-        }}
-      >
+        }}>
         <Typography>
-          Save your build in Coriolis and choose Export. Paste the exported JSON
-          into the Exported JSON field.
+          Save your build in Coriolis and choose Export. Paste the exported JSON into the Exported JSON field.
         </Typography>
-        <Typography>
-          Verify/enter remaining information and click Submit Build at the
-          bottom.
-        </Typography>
+        <Typography>Verify/enter remaining information and click Submit Build at the bottom.</Typography>
         {textFields.map((field) => (
           <Fragment key={field.id}>
             <BuildAddText {...field} />
@@ -383,27 +315,19 @@ export const BuildDialog = ({
               <Button
                 href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
                 target="_blank"
-                color="primary"
-              >
+                color="primary">
                 Markdown Cheatsheet - Opens a new tab
               </Button>
             )}
           </Fragment>
         ))}
-        <ShipAutocomplete
-          shipType={newBuild.shipId}
-          handleShipChange={handleShipChange}
-          disableClearable
-        />
+        <ShipAutocomplete shipType={newBuild.shipId} handleShipChange={handleShipChange} disableClearable />
         <QuerySpecialties
           selectedSpecialties={newBuild.specializations}
           setSpecialties={(value) => dispatch({ type: 'specialties', value })}
         />
         <div style={{ textAlign: 'center', margin: '0 auto' }}>
-          <EngToggleGroup
-            engLevel={newBuild.engLevel}
-            handleEngLevelChange={handleEngLevelChange}
-          />
+          <EngToggleGroup engLevel={newBuild.engLevel} handleEngLevelChange={handleEngLevelChange} />
         </div>
         <FormGroup row style={{ textAlign: 'center', margin: '0 auto' }}>
           {checkFields.map((check) => (
@@ -415,13 +339,7 @@ export const BuildDialog = ({
           options={builds}
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="standard"
-              label="Variant of Build"
-            />
-          )}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Variant of Build" />}
           value={findBuildTitle(shipBuilds, newBuild.variantOf)}
           onChange={(_, value) => dispatch({ type: 'variantOf', value: value })}
         />
@@ -431,9 +349,7 @@ export const BuildDialog = ({
           options={builds}
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
-          renderInput={(params) => (
-            <TextField {...params} variant="standard" label="Related Builds" />
-          )}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Related Builds" />}
           value={findBuildTitle(shipBuilds, newBuild.related)}
           onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
         />
@@ -443,9 +359,7 @@ export const BuildDialog = ({
           options={builds}
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
-          renderInput={(params) => (
-            <TextField {...params} variant="standard" label="Variant Builds" />
-          )}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Variant Builds" />}
           value={findBuildTitle(shipBuilds, newBuild.variants)}
           onChange={(_, value) => dispatch({ type: 'variants', value: value })}
         />

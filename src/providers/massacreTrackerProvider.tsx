@@ -1,14 +1,15 @@
-import { IMassacreContext } from 'models/massacreContext';
-import { IMassacreTrack } from 'models/massacreTrack';
-import {
-  createContext,
-  ReactNode,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
 import massacreDefaults from 'data/massacre/massacreDefaults.json';
+import { IMassacreTrack } from 'models/massacreTrack';
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useReducer, useState } from 'react';
 
+export interface IMassacreContext {
+  trackers: IMassacreTrack[];
+  addTracker: (newTracker: IMassacreTrack) => string;
+  updateTracker: (hazRezSystem: string, newTracker: IMassacreTrack) => void;
+  deleteTracker: (tracker: IMassacreTrack) => void;
+  selectedTab: string;
+  setSelectedTab: Dispatch<SetStateAction<string>>;
+}
 export const MassacreContext = createContext<IMassacreContext | null>(null);
 
 type trackerAction =
@@ -17,63 +18,54 @@ type trackerAction =
   | { type: 'delete'; tracker: IMassacreTrack }
   | { type: 'set'; trackers: IMassacreTrack[] };
 
-export const MassacreContextProvider = (props: { children: ReactNode }) => {
-  const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
-    switch (action.type) {
-      case 'add':
-        const trackerToAdd = action.tracker;
-        if (prevTrackers) {
-          const foundTracker = prevTrackers.find(
-            (x) =>
-              x.hazRezSystem.toLowerCase() ===
-              trackerToAdd.hazRezSystem.toLowerCase()
-          );
-          if (foundTracker) {
-            throw new Error(
-              `Tracker for ${trackerToAdd.hazRezSystem} already exists.`
-            );
-          }
-          return [...prevTrackers, trackerToAdd];
-        } else {
-          return [trackerToAdd];
+const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
+  switch (action.type) {
+    case 'add':
+      const trackerToAdd = action.tracker;
+      if (prevTrackers) {
+        const foundTracker = prevTrackers.find(
+          (x) => x.hazRezSystem.toLowerCase() === trackerToAdd.hazRezSystem.toLowerCase()
+        );
+        if (foundTracker) {
+          throw new Error(`Tracker for ${trackerToAdd.hazRezSystem} already exists.`);
         }
-      case 'update':
-        const hazRezSystem = action.hazRezSystem;
-        const trackerToUpdate = action.tracker;
-        if (prevTrackers.length > 0) {
-          const trackerIndex = prevTrackers.findIndex(
-            (x) => x.hazRezSystem === hazRezSystem
-          );
-          if (trackerIndex === -1) {
-            return [...prevTrackers, trackerToUpdate];
-          }
-          const newTrackers = [
-            ...prevTrackers.slice(0, trackerIndex),
-            trackerToUpdate,
-            ...prevTrackers.slice(trackerIndex + 1),
-          ];
-          return newTrackers;
-        } else {
-          return [trackerToUpdate];
+        return [...prevTrackers, trackerToAdd];
+      } else {
+        return [trackerToAdd];
+      }
+    case 'update':
+      const hazRezSystem = action.hazRezSystem;
+      const trackerToUpdate = action.tracker;
+      if (prevTrackers.length > 0) {
+        const trackerIndex = prevTrackers.findIndex((x) => x.hazRezSystem === hazRezSystem);
+        if (trackerIndex === -1) {
+          return [...prevTrackers, trackerToUpdate];
         }
-      case 'delete':
-        const trackerToDelete = action.tracker;
-        if (prevTrackers) {
-          const index = prevTrackers.indexOf(trackerToDelete);
-          return [
-            ...prevTrackers.slice(0, index),
-            ...prevTrackers.slice(index + 1),
-          ];
-        } else {
-          return [];
-        }
-      case 'set':
-        return action.trackers;
-      default:
-        throw new Error('No action exists for that tracker action.');
-    }
-  };
+        const newTrackers = [
+          ...prevTrackers.slice(0, trackerIndex),
+          trackerToUpdate,
+          ...prevTrackers.slice(trackerIndex + 1),
+        ];
+        return newTrackers;
+      } else {
+        return [trackerToUpdate];
+      }
+    case 'delete':
+      const trackerToDelete = action.tracker;
+      if (prevTrackers) {
+        const index = prevTrackers.indexOf(trackerToDelete);
+        return [...prevTrackers.slice(0, index), ...prevTrackers.slice(index + 1)];
+      } else {
+        return [];
+      }
+    case 'set':
+      return action.trackers;
+    default:
+      throw new Error('No action exists for that tracker action.');
+  }
+};
 
+export const MassacreContextProvider = (props: { children: ReactNode }) => {
   const [trackers, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
@@ -89,9 +81,7 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   useEffect(() => {
     if (window) {
-      const store: IMassacreTrack[] | null = JSON.parse(
-        window.localStorage.getItem('massacreTrackerStore')
-      );
+      const store: IMassacreTrack[] | null = JSON.parse(window.localStorage.getItem('massacreTrackerStore'));
       if (store && store.length > 0) {
         dispatch({ type: 'set', trackers: store });
       } else {
@@ -102,10 +92,7 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(
-      'massacreTrackerStore',
-      JSON.stringify(trackers)
-    );
+    window.localStorage.setItem('massacreTrackerStore', JSON.stringify(trackers));
   }, [trackers]);
 
   const [selectedTab, setSelectedTab] = useState<string>(() => {
@@ -152,9 +139,5 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
     setSelectedTab,
   };
 
-  return (
-    <MassacreContext.Provider value={wrapper}>
-      {props.children}
-    </MassacreContext.Provider>
-  );
+  return <MassacreContext.Provider value={wrapper}>{props.children}</MassacreContext.Provider>;
 };
