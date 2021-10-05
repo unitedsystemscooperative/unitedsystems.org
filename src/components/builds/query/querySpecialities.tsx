@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import { PaperOutlineToggleButton } from 'components/_common/button';
+import { styled, ToggleButton } from '@mui/material';
 import { ShipSpecialty } from 'models/builds/shipSpecialty';
 import {
   QueryExplanation,
@@ -12,11 +11,6 @@ const SpecialBox = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
-  // gridAutoColumns: '1fr',
-  // gridTemplate: {
-  //   xs: 'repeat(4, 1fr) / repeat(3, 1fr)',
-  //   lg: 'repeat(3, 1fr) / repeat(4, 1fr)',
-  // },
   '& button': {
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(1),
@@ -47,27 +41,27 @@ export const QuerySpecialties = (props: {
       </QueryExplanation>
       <SpecialBox>
         {getSpecialties(false).map((special) => (
-          <PaperOutlineToggleButton
+          <ToggleButton
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
             onChange={() => handleSpecialties(special)}
           >
             {special}
-          </PaperOutlineToggleButton>
+          </ToggleButton>
         ))}
       </SpecialBox>
       <QueryExplanation sx={{ my: 1 }}>Combat Specialties</QueryExplanation>
       <SpecialBox>
         {getSpecialties(true).map((special) => (
-          <PaperOutlineToggleButton
+          <ToggleButton
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
             onChange={() => handleSpecialties(special)}
           >
             {special}
-          </PaperOutlineToggleButton>
+          </ToggleButton>
         ))}
       </SpecialBox>
     </QuerySection>

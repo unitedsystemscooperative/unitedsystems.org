@@ -10,7 +10,7 @@ export const TagGroup = (props: { build: IBuildInfov2 }) => {
         flexDirection: 'row',
         flexWrap: 'wrap',
         m: 1,
-        '& div': { mr: 1 },
+        '& div': { mr: 1, mb: 1 },
       }}
     >
       {build.specializations.map((v) => (

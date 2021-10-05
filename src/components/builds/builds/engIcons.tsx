@@ -1,13 +1,17 @@
+import { styled } from '@mui/material';
 import Image from 'next/image';
 const engineerIcon = '/img/shipBuilds/Engineer_icon.svg';
+
+const EngDiv = styled('div')(({ theme }) => ({
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+}));
 
 export const EngIcons = (props: { engLevel: number; ditchText?: boolean }) => {
   let icons: JSX.Element[] = [];
   if (props.engLevel > 3 || props.engLevel < 1) {
     return (
-      <div>
-        <p>{props.ditchText ? 'None' : 'Engineering Level: None'}</p>
-      </div>
+      <EngDiv>{props.ditchText ? 'None' : 'Engineering Level: None'}</EngDiv>
     );
   } else {
     for (let i = 1; i <= props.engLevel; i++) {
@@ -22,18 +26,11 @@ export const EngIcons = (props: { engLevel: number; ditchText?: boolean }) => {
         />,
       ];
     }
-    if (props.ditchText)
-      return (
-        <div>
-          <p>{icons.map((icon) => icon)}</p>
-        </div>
-      );
+    if (props.ditchText) return <EngDiv>{icons.map((icon) => icon)}</EngDiv>;
     return (
-      <div>
-        <p>
-          <span>Engineering Level:</span> {icons.map((icon) => icon)}
-        </p>
-      </div>
+      <EngDiv>
+        <span>Engineering Level:</span> {icons.map((icon) => icon)}
+      </EngDiv>
     );
   }
 };

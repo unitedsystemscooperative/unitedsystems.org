@@ -17,9 +17,6 @@ export const QuerySection = styled(Paper)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  [theme.breakpoints.up('lg')]: {
-    // width: '98%',
-  },
 }));
 
 export const QuerySectionHeader = styled('h3')(({ theme }) => ({
