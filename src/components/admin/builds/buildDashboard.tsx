@@ -19,14 +19,12 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import { EngIcons } from 'components/builds/builds/engIcons';
 import { TagGroup } from 'components/builds/builds/tagGroup';
-import { BuildDialog } from 'components/builds/dialog/buildDialog';
-import { ConfirmDialog } from 'components/confirmDialog';
 import { TitleBarwAdd } from 'components/_common';
 import { genericSortArray, Order } from 'functions/sort';
-import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { useShipMap } from 'hooks/builds/useShipMap';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
-import { MouseEvent, useReducer, useState } from 'react';
+import { BuildContext, BuildContextProvider } from 'providers/buildProvider';
+import { MouseEvent, useContext, useState } from 'react';
 
 const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(1),
@@ -96,18 +94,14 @@ const headCells: HeadCell[] = [
 ];
 
 interface TableHeadProps {
-  onRequestSort: (
-    event: MouseEvent<unknown>,
-    property: keyof IBuildInfov2
-  ) => void;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof IBuildInfov2) => void;
   order: Order;
   orderBy: string;
 }
 const BuildTableHead = (props: TableHeadProps) => {
   const { order, orderBy, onRequestSort } = props;
-  const createSortHandler = (property: keyof IBuildInfov2) => (
-    event: MouseEvent<unknown>
-  ) => onRequestSort(event, property);
+  const createSortHandler = (property: keyof IBuildInfov2) => (event: MouseEvent<unknown>) =>
+    onRequestSort(event, property);
 
   return (
     <TableHead>
@@ -117,13 +111,11 @@ const BuildTableHead = (props: TableHeadProps) => {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
+            sortDirection={orderBy === headCell.id ? order : false}>
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
+              onClick={createSortHandler(headCell.id)}>
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
@@ -155,10 +147,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
   const [orderBy, setOrderBy] = useState<keyof IBuildInfov2>('title');
   const ships = useShipMap();
 
-  const handleRequestSort = (
-    _: React.MouseEvent<unknown>,
-    property: keyof IBuildInfov2
-  ) => {
+  const handleRequestSort = (_: React.MouseEvent<unknown>, property: keyof IBuildInfov2) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -167,11 +156,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table size="small">
-        <BuildTableHead
-          order={order}
-          orderBy={orderBy}
-          onRequestSort={handleRequestSort}
-        />
+        <BuildTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
         <TableBody>
           {genericSortArray(builds, { order, orderBy }).map(
             (build: IBuildInfov2) =>
@@ -180,9 +165,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                   <TableCell component="th" scope="row" padding="normal">
                     {build.title}
                   </TableCell>
-                  <TableCell>
-                    {handleShipInfo(build.shipId, ships).name ?? ''}
-                  </TableCell>
+                  <TableCell>{handleShipInfo(build.shipId, ships).name ?? ''}</TableCell>
                   <TableCell>{build.author}</TableCell>
                   <TableCell padding="none">
                     <TagGroup build={build} />
@@ -200,10 +183,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                     <Checkbox checked={build.isBeginner} disabled />
                   </TableCell>
                   <TableCell>
-                    <Checkbox
-                      checked={build.variantOf !== '' || build.isVariant}
-                      disabled
-                    />
+                    <Checkbox checked={build.variantOf !== '' || build.isVariant} disabled />
                   </TableCell>
                   <TableCell>
                     <StyledIconButton onClick={() => onEdit(build)}>
@@ -211,10 +191,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                     </StyledIconButton>
                   </TableCell>
                   <TableCell>
-                    <StyledIconButton
-                      onClick={() => onDelete(build)}
-                      size="large"
-                    >
+                    <StyledIconButton onClick={() => onDelete(build)} size="large">
                       <Delete />
                     </StyledIconButton>
                   </TableCell>
@@ -227,67 +204,27 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
   );
 };
 
-type action = {
-  type: 'add' | 'delete' | 'edit' | 'confirm' | 'cancel';
-  value?: IBuildInfov2;
-};
+const BuildDashboardDisplay = () => {
+  const { areBuildsLoading, builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
 
-export const BuildDashboard = () => {
-  const { loading, shipBuilds, deleteBuild } = useShipBuilds();
-  const reducer = (prevState: action, action: action): action => {
-    switch (action.type) {
-      case 'cancel':
-        return { type: 'cancel' };
-      case 'confirm':
-        if (prevState.type === 'delete') {
-          console.log('delete confirmed for', prevState.value);
-          deleteBuild(prevState.value._id.toString());
-        }
-        return { type: 'cancel' };
-      case 'delete':
-        return { type: 'delete', value: action.value };
-      case 'edit':
-        return { type: 'edit', value: action.value };
-      case 'add':
-        return { type: 'add' };
-      default:
-        return { type: 'cancel' };
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, { type: 'cancel' });
-
-  if (loading) return <EDSpinner />;
+  if (areBuildsLoading) return <EDSpinner />;
 
   return (
     <Container maxWidth="xl">
-      <TitleBarwAdd
-        title="Build Management"
-        addTip="Add a build"
-        addItem={() => dispatch({ type: 'add' })}
-      />
+      <TitleBarwAdd title="Build Management" addTip="Add a build" addItem={addBuild} />
       <BuildTable
-        builds={shipBuilds}
-        onDelete={(build: IBuildInfov2) =>
-          dispatch({ type: 'delete', value: build })
-        }
-        onEdit={(build: IBuildInfov2) =>
-          dispatch({ type: 'edit', value: build })
-        }
-      />
-      <ConfirmDialog
-        title="Delete"
-        open={state.type === 'delete'}
-        onClose={() => dispatch({ type: 'cancel' })}
-        onConfirm={() => dispatch({ type: 'confirm' })}
-      >
-        Are you sure you want to delete build '{state.value?.title}'?
-      </ConfirmDialog>
-      <BuildDialog
-        open={state.type === 'edit' || state.type === 'add'}
-        build={state.value}
-        onClose={() => dispatch({ type: 'cancel' })}
-        builds={shipBuilds}
+        builds={builds}
+        onDelete={(build: IBuildInfov2) => deleteBuild(build)}
+        onEdit={(build: IBuildInfov2) => editBuild(build)}
       />
     </Container>
+  );
+};
+
+export const BuildDashboard = () => {
+  return (
+    <BuildContextProvider>
+      <BuildDashboardDisplay />
+    </BuildContextProvider>
   );
 };

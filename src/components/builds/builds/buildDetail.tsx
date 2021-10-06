@@ -9,9 +9,8 @@ import { useLinks } from 'hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { BuildContext } from 'providers/buildProvider';
-import { useContext, useState } from 'react';
-import { BuildDialog, BuildDialogProps } from '../dialog/buildDialog';
+import { AddBuildFunction, BuildContext } from 'providers/buildProvider';
+import { useContext } from 'react';
 import { BuildCard } from './buildCard';
 import { EngIcons } from './engIcons';
 import { TagGroup } from './tagGroup';
@@ -55,13 +54,14 @@ const FlexAcross = styled('div')(() => ({
   },
 }));
 
-const BuildDetailFull = (props: {
+interface BuildDetailProps {
   foundBuild: IBuildInfov2;
   shipInfo: IShipInfo | undefined;
-  addBuild: (addType: 'variant' | 'related', refId: string) => void;
-}) => {
+  addBuild: AddBuildFunction;
+}
+
+const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) => {
   const { blueprints } = useLinks();
-  const { shipInfo, foundBuild, addBuild } = props;
 
   return (
     <Paper sx={{ p: 1, mb: 1 }}>
@@ -147,13 +147,8 @@ const FlexRow = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'row',
 }));
-const BuildDetailMobile = (props: {
-  foundBuild: IBuildInfov2;
-  shipInfo: IShipInfo | undefined;
-  addBuild: (addType: 'variant' | 'related', refId: string) => void;
-}) => {
+const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) => {
   const { blueprints } = useLinks();
-  const { foundBuild, shipInfo, addBuild } = props;
   return (
     <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
       <FlexRow>
@@ -216,20 +211,8 @@ export const BuildDetail = () => {
   const id = useRouter().asPath.substring(useRouter().asPath.lastIndexOf('/') + 1);
   console.log(id);
   const { loading, shipInfo, foundBuild } = useShipBuildInfo(id);
+  const { addBuild } = useContext(BuildContext);
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-
-  const handleAddBuild = (addType: 'variant' | 'related', refId: string) => {
-    console.log('add build');
-
-    setDialogProps((prev) => ({ ...prev, open: true, addType, refId }));
-  };
-  const handleAddClose = () => {
-    setDialogProps((prev) => ({ ...prev, open: false }));
-  };
-  const [dialogProps, setDialogProps] = useState<BuildDialogProps>({
-    open: false,
-    onClose: handleAddClose,
-  });
 
   if (loading) {
     return <EDSpinner />;
@@ -241,9 +224,9 @@ export const BuildDetail = () => {
       {foundBuild ? (
         <>
           {isMobile ? (
-            <BuildDetailMobile foundBuild={foundBuild} shipInfo={shipInfo} addBuild={handleAddBuild} />
+            <BuildDetailMobile foundBuild={foundBuild} shipInfo={shipInfo} addBuild={addBuild} />
           ) : (
-            <BuildDetailFull foundBuild={foundBuild} shipInfo={shipInfo} addBuild={handleAddBuild} />
+            <BuildDetailFull foundBuild={foundBuild} shipInfo={shipInfo} addBuild={addBuild} />
           )}
           <PaperP2>
             <CenteredTypography variant="subtitle2">
@@ -262,8 +245,6 @@ export const BuildDetail = () => {
       {foundBuild && foundBuild.related.length > 0 ? (
         <BuildDetailBuilds title="Related Builds" buildIDs={foundBuild.related} />
       ) : null}
-
-      <BuildDialog {...dialogProps} />
     </Container>
   );
 };

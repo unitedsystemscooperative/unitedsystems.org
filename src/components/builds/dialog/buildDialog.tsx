@@ -10,7 +10,6 @@ import {
   Typography,
 } from '@mui/material';
 import { processJSONBuild } from 'functions/builds';
-import { useShipBuilds } from 'hooks/builds/useShipBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useReducer } from 'react';
@@ -26,7 +25,7 @@ export interface BuildDialogProps {
   builds: IBuildInfov2[];
   addType?: 'variant' | 'related';
   refId?: string;
-  onClose: () => void;
+  onClose: (build?: IBuildInfov2) => void;
 }
 
 const DEFAULTBUILD: IBuildInfov2 = {
@@ -158,9 +157,8 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
  *
  * Used for all build creation and editing.
  */
-export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: BuildDialogProps) => {
+export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDialogProps) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { shipBuilds, addBuild, addRelated, addVariant, updateBuild } = useShipBuilds();
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
 
   useEffect(() => {
@@ -208,30 +206,7 @@ export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: Bu
       if (newBuild.buildLink === '')
         throw new Error('Build Link is blank. Verify you have pasted the JSON from Coriolis.');
 
-      try {
-        if (newBuild._id) {
-          await updateBuild(newBuild);
-        } else {
-          switch (addType) {
-            case 'variant':
-              if (refId) await addVariant(refId, shipBuilds, newBuild);
-              else throw new Error('Build reference ID missing from URL');
-              break;
-            case 'related':
-              if (refId) await addRelated(refId, shipBuilds, newBuild);
-              else throw new Error('Build reference ID missing from URL');
-              break;
-            default:
-              await addBuild(newBuild);
-              break;
-          }
-        }
-        enqueueSnackbar('Build successfully submitted', { variant: 'success' });
-        onClose();
-      } catch (e) {
-        enqueueSnackbar(`Submit Failed: ${e.message}`, { variant: 'error' });
-        console.error(e);
-      }
+      onClose(newBuild);
     } catch (e) {
       enqueueSnackbar(`Submit failed. ${e.message}`, { variant: 'error' });
     }
@@ -340,7 +315,7 @@ export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: Bu
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Variant of Build" />}
-          value={findBuildTitle(shipBuilds, newBuild.variantOf)}
+          value={findBuildTitle(builds, newBuild.variantOf)}
           onChange={(_, value) => dispatch({ type: 'variantOf', value: value })}
         />
         <Autocomplete
@@ -350,7 +325,7 @@ export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: Bu
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Related Builds" />}
-          value={findBuildTitle(shipBuilds, newBuild.related)}
+          value={findBuildTitle(builds, newBuild.related)}
           onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
         />
         <Autocomplete
@@ -360,7 +335,7 @@ export const BuildDialog = ({ open, build, builds, addType, refId, onClose }: Bu
           getOptionLabel={(b) => b.title}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Variant Builds" />}
-          value={findBuildTitle(shipBuilds, newBuild.variants)}
+          value={findBuildTitle(builds, newBuild.variants)}
           onChange={(_, value) => dispatch({ type: 'variants', value: value })}
         />
       </DialogContent>
