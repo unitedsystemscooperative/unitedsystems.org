@@ -1,5 +1,16 @@
 import { EDSpinner } from '@admiralfeb/react-components';
-import { Box, Button, Container, Divider, Link, Paper, styled, Theme, Typography, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Link,
+  Paper,
+  styled,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { USCMarkdown } from 'components/uscmarkdown';
 import { BoxwMB1 } from 'components/_common';
 import { PaperP2 } from 'components/_common/paper';
@@ -88,28 +99,38 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
             </FlexAcross>
             {shipInfo.requires && <Typography>Requires: {shipInfo.requires}</Typography>}
 
-            <Button variant="contained" color="primary" href={foundBuild.buildLink} target="_blank">
+            <Button
+              variant="outlined"
+              color="primary"
+              href={foundBuild.buildLink}
+              target="_blank"
+            >
               Show Build
             </Button>
             <div style={{ display: 'grid', gridTemplate: '1fr 1fr / 1fr 1fr' }}>
-              <Button variant="contained" color="secondary" href={shipInfo.shipReview} target="_blank">
+              <Button
+                variant="outlined"
+                color="secondary"
+                href={shipInfo.shipReview}
+                target="_blank"
+              >
                 {`Pilot's Review`}
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 href={`${blueprints}?s=${shipInfo.blueprint}`}
                 target="_blank">
                 Ship Anatomy
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 onClick={() => addBuild('variant', foundBuild._id.toString())}>
                 Add Variant
               </Button>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 onClick={() => addBuild('related', foundBuild._id.toString())}>
                 Add Related
@@ -135,7 +156,9 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
           <Typography>Author: {foundBuild.author}</Typography>
           <EngIcons engLevel={foundBuild.engLevel} />
           <TagGroup build={foundBuild} />
-          {foundBuild.description && <USCMarkdown>{foundBuild.description}</USCMarkdown>}
+          {foundBuild.description && (
+            <USCMarkdown>{foundBuild.description}</USCMarkdown>
+          )}
         </Box>
       </FlexAcross>
     </Paper>
@@ -167,13 +190,20 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
           </FlexRow>
         </div>
       </FlexRow>
-      <Button variant="contained" color="primary" href={foundBuild.buildLink} target="_blank">
+      <Button
+        variant="outlined"
+        color="primary"
+        href={foundBuild.buildLink}
+        target="_blank"
+      >
         Show Build
       </Button>
       <Divider sx={{ mt: 2 }} />
       <TagGroup build={foundBuild} />
       <EngIcons engLevel={foundBuild.engLevel} />
-      {foundBuild.description && <USCMarkdown>{foundBuild.description}</USCMarkdown>}
+      {foundBuild.description && (
+        <USCMarkdown>{foundBuild.description}</USCMarkdown>
+      )}
       <Box
         sx={{
           display: 'grid',
@@ -183,11 +213,16 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
         }}>
         {shipInfo && (
           <>
-            <Button variant="contained" color="secondary" href={shipInfo.shipReview} target="_blank">
+            <Button
+              variant="outlined"
+              color="secondary"
+              href={shipInfo.shipReview}
+              target="_blank"
+            >
               Pilot's Review
             </Button>
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               href={`${blueprints}?s=${shipInfo.blueprint}`}
               target="_blank">
@@ -196,10 +231,18 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
           </>
         )}
 
-        <Button variant="contained" color="secondary" onClick={() => addBuild('variant', foundBuild._id.toString())}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => addBuild('variant', foundBuild._id.toString())}
+        >
           Add Variant
         </Button>
-        <Button variant="contained" color="secondary" onClick={() => addBuild('related', foundBuild._id.toString())}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => addBuild('related', foundBuild._id.toString())}
+        >
           Add Related
         </Button>
       </Box>

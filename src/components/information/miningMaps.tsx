@@ -63,7 +63,7 @@ export const MiningMaps = () => {
                 <TableCell>{map.overlap}</TableCell>
                 <TableCell>
                   <Button
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
                     href={map.link}
                     target="_blank"

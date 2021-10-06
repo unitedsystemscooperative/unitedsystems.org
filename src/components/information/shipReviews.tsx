@@ -35,7 +35,7 @@ export const ShipReviews = () => {
                   <Button
                     href={review.shipReview}
                     target="_blank"
-                    variant="contained"
+                    variant="outlined"
                     color="secondary"
                   >
                     Pilot Review

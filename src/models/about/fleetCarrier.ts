@@ -4,6 +4,6 @@ export interface IFleetCarrier extends IDbItem {
   owner: string;
   name: string;
   id: string;
-  inaraLink: string;
+  inaraLink?: string;
   purpose: string;
 }

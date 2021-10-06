@@ -18,5 +18,5 @@ const JoinRequestsPage = () => {
 export default JoinRequestsPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  return runAdminAuthCheck(context, 'admin_joinList');
+  return runAdminAuthCheck(context, 'admin_joinRequests');
 };

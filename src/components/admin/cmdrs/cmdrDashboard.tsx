@@ -54,7 +54,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
       </Typography>
       <Tooltip title="Add a cmdr" arrow>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => addCMDR()}
           disabled={selectedCount !== 0}
@@ -64,7 +64,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
       </Tooltip>
       <Tooltip title="Edit cmdr(s)" arrow>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={() => editCMDR()}
           disabled={selectedCount < 1}
@@ -74,7 +74,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
       </Tooltip>
       <Tooltip title="Delete cmdr(s)" arrow>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={deleteCMDR}
           disabled={selectedCount < 1}
@@ -84,7 +84,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
       </Tooltip>
       <Tooltip title="Select between Ambassadors, Guests, and Members" arrow>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={handleViewFilterClick}
         >

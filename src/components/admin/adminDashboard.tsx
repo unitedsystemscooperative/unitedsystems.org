@@ -37,17 +37,17 @@ export const AdminDashboard = () => {
       <AdminPaper>
         <Header variant="h4">User Management</Header>
         <NextLink href="/admin/cmdrs" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             CMDR Dashboard
           </LinkButton>
         </NextLink>
         <NextLink href="/admin/joinRequests" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             Join Requests
           </LinkButton>
         </NextLink>
         <NextLink href="/admin/vote" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             Vote Assistant
           </LinkButton>
         </NextLink>
@@ -55,22 +55,22 @@ export const AdminDashboard = () => {
       <AdminPaper>
         <Header variant="h4">Website Management</Header>
         <NextLink href="/admin/allies" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             Allies List
           </LinkButton>
         </NextLink>
         <NextLink href="/admin/fc" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             Fleet Carrier List
           </LinkButton>
         </NextLink>
         <NextLink href="/admin/systems" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             System List
           </LinkButton>
         </NextLink>
         <NextLink href="/admin/builds" passHref>
-          <LinkButton variant="contained" color="primary">
+          <LinkButton variant="outlined" color="primary">
             Build Management
           </LinkButton>
         </NextLink>
@@ -78,7 +78,7 @@ export const AdminDashboard = () => {
       <AdminPaper>
         <Header variant="h4">Bot Management</Header>
         <LinkButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           href="https://carl.gg"
           target="_blank"
@@ -86,7 +86,7 @@ export const AdminDashboard = () => {
           Carl / COVAS Carl
         </LinkButton>
         <LinkButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           href="https://dyno.gg/"
           target="_blank"
@@ -94,7 +94,7 @@ export const AdminDashboard = () => {
           Dyno / COVAS Archer
         </LinkButton>
         <LinkButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           href="https://giveawaybot.party/"
           target="_blank"
@@ -102,7 +102,7 @@ export const AdminDashboard = () => {
           Giveaway Bot
         </LinkButton>
         <LinkButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           href="https://mee6.xyz/"
           target="_blank"
@@ -110,7 +110,7 @@ export const AdminDashboard = () => {
           Mee6
         </LinkButton>
         <LinkButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           href="https://monitorss.xyz/"
           target="_blank"

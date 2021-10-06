@@ -57,7 +57,7 @@ const SignInPage = () => {
           <Button
             type="submit"
             fullWidth
-            variant="contained"
+            variant="outlined"
             color="primary"
             sx={{
               mt: 3,
@@ -83,6 +83,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (redirectPath) {
       return {
         redirect: { destination: redirectPath, permanent: false },
+      };
+    } else {
+      return {
+        redirect: { destination: '/home', permanent: false },
       };
     }
   }

@@ -10,6 +10,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+import { buildInaraLink } from 'functions/buildInaraLink';
 import { useSystems } from 'hooks/about/useSystems';
 import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
@@ -35,7 +36,7 @@ const SystemList = ({
           button
           key={system.name}
           component={Link}
-          href={system.inaraLink}
+          href={buildInaraLink('system', system.name)}
           target="_blank"
         >
           <ListItemText primary={system.name} />

@@ -40,12 +40,21 @@ export const BuildCard = ({ shipBuild }: { shipBuild: IBuildInfov2 | undefined }
                 minWidth: 121,
                 mb: 1,
               },
-            }}>
-            <Button variant="contained" color="secondary" href={shipBuild.buildLink} target="_blank">
+            }}
+          >
+            <Button
+              variant="outlined"
+              color="secondary"
+              href={shipBuild.buildLink}
+              target="_blank"
+            >
               View Build
             </Button>
-            <NextLink href={`/builds/detail/${(shipBuild._id as unknown) as string}`} passHref>
-              <Button color="primary" variant="contained">
+            <NextLink
+              href={`/builds/detail/${(shipBuild._id as unknown) as string}`}
+              passHref
+            >
+              <Button color="primary" variant="outlined">
                 More Details
               </Button>
             </NextLink>
