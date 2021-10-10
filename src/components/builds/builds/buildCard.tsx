@@ -2,8 +2,8 @@ import { Box, Button, Card, CardContent, CardMedia, Divider, Fade, Typography } 
 import { useShipIdfromMap } from 'hooks/builds/useShipMap';
 import { IBuildInfov2, ShipSize } from 'models/builds';
 import NextLink from 'next/link';
-import { EngIcons } from './engIcons';
-import { TagGroup } from './tagGroup';
+import { EngIcons } from '../engIcons';
+import { TagGroup } from '../tagGroup';
 
 export const BuildCard = ({ shipBuild }: { shipBuild: IBuildInfov2 | undefined }) => {
   const shipInfo = useShipIdfromMap(shipBuild?.shipId);
@@ -40,20 +40,11 @@ export const BuildCard = ({ shipBuild }: { shipBuild: IBuildInfov2 | undefined }
                 minWidth: 121,
                 mb: 1,
               },
-            }}
-          >
-            <Button
-              variant="outlined"
-              color="secondary"
-              href={shipBuild.buildLink}
-              target="_blank"
-            >
+            }}>
+            <Button variant="outlined" color="secondary" href={shipBuild.buildLink} target="_blank">
               View Build
             </Button>
-            <NextLink
-              href={`/builds/detail/${(shipBuild._id as unknown) as string}`}
-              passHref
-            >
+            <NextLink href={`/builds/detail/${shipBuild._id as unknown as string}`} passHref>
               <Button color="primary" variant="outlined">
                 More Details
               </Button>

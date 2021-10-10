@@ -1,4 +1,3 @@
-import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Box,
@@ -17,8 +16,8 @@ import {
   TableSortLabel,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import { EngIcons } from 'components/builds/builds/engIcons';
-import { TagGroup } from 'components/builds/builds/tagGroup';
+import { EngIcons } from 'components/builds/engIcons';
+import { TagGroup } from 'components/builds/tagGroup';
 import { TitleBarwAdd } from 'components/_common';
 import { genericSortArray, Order } from 'functions/sort';
 import { useShipMap } from 'hooks/builds/useShipMap';
@@ -205,9 +204,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
 };
 
 const BuildDashboardDisplay = () => {
-  const { areBuildsLoading, builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
-
-  if (areBuildsLoading) return <EDSpinner />;
+  const { builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
 
   return (
     <Container maxWidth="xl">

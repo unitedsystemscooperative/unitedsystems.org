@@ -1,38 +1,27 @@
-import { EDSpinner } from '@admiralfeb/react-components';
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Link,
-  Paper,
-  styled,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Button, Container, Divider, Paper, styled, Theme, Typography, useMediaQuery } from '@mui/material';
 import { USCMarkdown } from 'components/uscmarkdown';
 import { BoxwMB1 } from 'components/_common';
-import { PaperP2 } from 'components/_common/paper';
 import { CenteredTypography } from 'components/_common/typography';
-import { useShipBuildInfo } from 'hooks/builds/useShipBuildInfo';
 import { useLinks } from 'hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { AddBuildFunction, BuildContext } from 'providers/buildProvider';
-import { useContext } from 'react';
+import { AddBuildFunction, BuildContext, BuildContextProvider } from 'providers/buildProvider';
+import { useContext, useMemo } from 'react';
 import { BuildCard } from './buildCard';
-import { EngIcons } from './engIcons';
-import { TagGroup } from './tagGroup';
+import { EngIcons } from '../engIcons';
+import { ShipImgAcknowledgement } from './shipImgAcknowledgement';
+import { TagGroup } from '../tagGroup';
 
-const BuildDetailBuilds = ({ title, buildIDs }: { title: string; buildIDs: string[] }) => {
-  const { areBuildsLoading, builds } = useContext(BuildContext);
-
-  if (areBuildsLoading) {
-    return <EDSpinner />;
-  }
-
+const BuildDetailBuilds = ({
+  title,
+  buildIDs,
+  builds,
+}: {
+  title: string;
+  buildIDs: string[];
+  builds: IBuildInfov2[];
+}) => {
   return (
     <div style={{ textAlign: 'center' }}>
       <Typography variant="h4">{title}</Typography>
@@ -44,7 +33,7 @@ const BuildDetailBuilds = ({ title, buildIDs }: { title: string; buildIDs: strin
           justifyContent: 'center',
         }}>
         {buildIDs.map((id) => {
-          const build = builds.find((x) => ((x._id as unknown) as string) === id);
+          const build = builds.find((x) => x._id.toString() === id);
           return <BuildCard shipBuild={build} key={id} />;
         })}
       </BoxwMB1>
@@ -99,21 +88,11 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
             </FlexAcross>
             {shipInfo.requires && <Typography>Requires: {shipInfo.requires}</Typography>}
 
-            <Button
-              variant="outlined"
-              color="primary"
-              href={foundBuild.buildLink}
-              target="_blank"
-            >
+            <Button variant="outlined" color="primary" href={foundBuild.buildLink} target="_blank">
               Show Build
             </Button>
             <div style={{ display: 'grid', gridTemplate: '1fr 1fr / 1fr 1fr' }}>
-              <Button
-                variant="outlined"
-                color="secondary"
-                href={shipInfo.shipReview}
-                target="_blank"
-              >
+              <Button variant="outlined" color="secondary" href={shipInfo.shipReview} target="_blank">
                 {`Pilot's Review`}
               </Button>
               <Button
@@ -156,9 +135,7 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
           <Typography>Author: {foundBuild.author}</Typography>
           <EngIcons engLevel={foundBuild.engLevel} />
           <TagGroup build={foundBuild} />
-          {foundBuild.description && (
-            <USCMarkdown>{foundBuild.description}</USCMarkdown>
-          )}
+          {foundBuild.description && <USCMarkdown>{foundBuild.description}</USCMarkdown>}
         </Box>
       </FlexAcross>
     </Paper>
@@ -190,20 +167,13 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
           </FlexRow>
         </div>
       </FlexRow>
-      <Button
-        variant="outlined"
-        color="primary"
-        href={foundBuild.buildLink}
-        target="_blank"
-      >
+      <Button variant="outlined" color="primary" href={foundBuild.buildLink} target="_blank">
         Show Build
       </Button>
       <Divider sx={{ mt: 2 }} />
       <TagGroup build={foundBuild} />
       <EngIcons engLevel={foundBuild.engLevel} />
-      {foundBuild.description && (
-        <USCMarkdown>{foundBuild.description}</USCMarkdown>
-      )}
+      {foundBuild.description && <USCMarkdown>{foundBuild.description}</USCMarkdown>}
       <Box
         sx={{
           display: 'grid',
@@ -213,36 +183,19 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
         }}>
         {shipInfo && (
           <>
-            <Button
-              variant="outlined"
-              color="secondary"
-              href={shipInfo.shipReview}
-              target="_blank"
-            >
+            <Button variant="outlined" color="secondary" href={shipInfo.shipReview} target="_blank">
               Pilot's Review
             </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              href={`${blueprints}?s=${shipInfo.blueprint}`}
-              target="_blank">
+            <Button variant="outlined" color="secondary" href={`${blueprints}?s=${shipInfo.blueprint}`} target="_blank">
               Ship Anatomy
             </Button>
           </>
         )}
 
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => addBuild('variant', foundBuild._id.toString())}
-        >
+        <Button variant="outlined" color="secondary" onClick={() => addBuild('variant', foundBuild._id.toString())}>
           Add Variant
         </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => addBuild('related', foundBuild._id.toString())}
-        >
+        <Button variant="outlined" color="secondary" onClick={() => addBuild('related', foundBuild._id.toString())}>
           Add Related
         </Button>
       </Box>
@@ -250,44 +203,45 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
   );
 };
 
-export const BuildDetail = () => {
+export const BuildDetailDisplay = () => {
   const id = useRouter().asPath.substring(useRouter().asPath.lastIndexOf('/') + 1);
   console.log(id);
-  const { loading, shipInfo, foundBuild } = useShipBuildInfo(id);
-  const { addBuild } = useContext(BuildContext);
+  const { addBuild, findBuildandShipInfo, builds } = useContext(BuildContext);
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
-  if (loading) {
-    return <EDSpinner />;
-  }
+  const { build, shipInfo } = useMemo(() => {
+    return findBuildandShipInfo(id);
+  }, [findBuildandShipInfo, id]);
 
   return (
     <Container maxWidth="lg">
       <CenteredTypography variant="h3">Build Detail</CenteredTypography>
-      {foundBuild ? (
+      {build ? (
         <>
           {isMobile ? (
-            <BuildDetailMobile foundBuild={foundBuild} shipInfo={shipInfo} addBuild={addBuild} />
+            <BuildDetailMobile foundBuild={build} shipInfo={shipInfo} addBuild={addBuild} />
           ) : (
-            <BuildDetailFull foundBuild={foundBuild} shipInfo={shipInfo} addBuild={addBuild} />
+            <BuildDetailFull foundBuild={build} shipInfo={shipInfo} addBuild={addBuild} />
           )}
-          <PaperP2>
-            <CenteredTypography variant="subtitle2">
-              Ship Image by{' '}
-              <Link href="https://forums.frontier.co.uk/member.php/118579-Qohen-Leth">CMDR Qohen Leth</Link> via
-              Copyright CC BY-NC-SA 4.0 (available on <Link href="https://edassets.org">edassets.org</Link>)
-            </CenteredTypography>
-          </PaperP2>
+          <ShipImgAcknowledgement />
         </>
       ) : (
         <></>
       )}
-      {foundBuild && foundBuild.variants.length > 0 ? (
-        <BuildDetailBuilds title="Build Variants" buildIDs={foundBuild.variants} />
+      {build && build.variants.length > 0 ? (
+        <BuildDetailBuilds title="Build Variants" buildIDs={build.variants} builds={builds} />
       ) : null}
-      {foundBuild && foundBuild.related.length > 0 ? (
-        <BuildDetailBuilds title="Related Builds" buildIDs={foundBuild.related} />
+      {build && build.related.length > 0 ? (
+        <BuildDetailBuilds title="Related Builds" buildIDs={build.related} builds={builds} />
       ) : null}
     </Container>
+  );
+};
+
+export const BuildDetail = () => {
+  return (
+    <BuildContextProvider>
+      <BuildDetailDisplay />
+    </BuildContextProvider>
   );
 };

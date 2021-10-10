@@ -16,11 +16,11 @@ export const genericSort = <T>(a: T, b: T, sorter: ISorter<T>) => {
     let x: string;
     let y: string;
     if (isString(a[sorter.orderBy])) {
-      x = (a[sorter.orderBy] as unknown) as string;
+      x = a[sorter.orderBy] as unknown as string;
       x = x.toLowerCase();
     }
     if (isString(b[sorter.orderBy])) {
-      y = (b[sorter.orderBy] as unknown) as string;
+      y = b[sorter.orderBy] as unknown as string;
       y = y.toLowerCase();
     }
     if (x && y) {

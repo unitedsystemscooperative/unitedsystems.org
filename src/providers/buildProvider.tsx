@@ -5,6 +5,7 @@ import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { useSnackbar } from 'notistack';
 import { createContext, ReactNode, useState } from 'react';
 import { getShipInfofromID } from 'functions/builds/getShipInfo';
+import { EDSpinner } from '@admiralfeb/react-components';
 
 /**
  * Add Build Function. Used in the Build Provider to trigger the dialog.
@@ -12,6 +13,20 @@ import { getShipInfofromID } from 'functions/builds/getShipInfo';
  * Type made to standardize the function.
  */
 export type AddBuildFunction = (addType?: 'related' | 'variant', refId?: string) => void;
+export type FindBuildandShipInfoFunc = (
+  buildId: string,
+  builds?: IBuildInfov2[]
+) => { build: IBuildInfov2; shipInfo: IShipInfo } | null;
+
+const findBuildandShipInfo: FindBuildandShipInfoFunc = (buildId: string, builds: IBuildInfov2[]) => {
+  const build = builds.find((x) => x._id.toString() === buildId);
+
+  if (build) {
+    return { build, shipInfo: getShipInfofromID(build.shipId) };
+  } else {
+    return null;
+  }
+};
 
 interface IBuildContext {
   builds: IBuildInfov2[];
@@ -20,7 +35,7 @@ interface IBuildContext {
   addBuild: AddBuildFunction;
   editBuild: (build: IBuildInfov2) => void;
   deleteBuild: (build: IBuildInfov2) => void;
-  getShipInfofromId: (id: string) => IShipInfo;
+  findBuildandShipInfo: FindBuildandShipInfoFunc;
 }
 
 export const BuildContext = createContext<IBuildContext | null>(null);
@@ -41,36 +56,39 @@ export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
 
   const handleDialogClose = async () => {
     const { build, addType, refId } = dialogProps;
-    try {
-      if (build._id) {
-        await updateBuild(build);
-      } else {
-        switch (addType) {
-          case 'variant':
-            if (refId) await addVariant(refId, shipBuilds, build);
-            else throw new Error('Build reference ID missing from URL');
-            break;
-          case 'related':
-            if (refId) await addRelated(refId, shipBuilds, build);
-            else throw new Error('Build reference ID missing from URL');
-            break;
-          default:
-            await addBuild(build);
-            break;
+    if (build) {
+      try {
+        if (build._id) {
+          await updateBuild(build);
+        } else {
+          switch (addType) {
+            case 'variant':
+              if (refId) await addVariant(refId, shipBuilds, build);
+              else throw new Error('Build reference ID missing from URL');
+              break;
+            case 'related':
+              if (refId) await addRelated(refId, shipBuilds, build);
+              else throw new Error('Build reference ID missing from URL');
+              break;
+            default:
+              await addBuild(build);
+              break;
+          }
         }
+        setDialogProps((prev) => ({ ...prev, open: false, addType: undefined, refId: undefined, build: undefined }));
+        enqueueSnackbar('Build successfully submitted', { variant: 'success' });
+      } catch (e) {
+        enqueueSnackbar(`Submit Failed: ${e.message}`, { variant: 'error' });
+        console.error(e);
       }
+    } else {
       setDialogProps((prev) => ({ ...prev, open: false, addType: undefined, refId: undefined, build: undefined }));
-      enqueueSnackbar('Build successfully submitted', { variant: 'success' });
-    } catch (e) {
-      enqueueSnackbar(`Submit Failed: ${e.message}`, { variant: 'error' });
-      console.error(e);
     }
   };
 
-  const [dialogProps, setDialogProps] = useState<BuildDialogProps>({
+  const [dialogProps, setDialogProps] = useState<Omit<BuildDialogProps, 'builds'>>({
     open: false,
     onClose: handleDialogClose,
-    builds: shipBuilds,
   });
 
   const handleAddBuild: AddBuildFunction = (addType?: 'related' | 'variant', refId?: string) => {
@@ -91,6 +109,10 @@ export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
   const handleDeleteBuild = (build: IBuildInfov2) => {
     setShowDeleteDialog(build);
   };
+  const handleFindBuildandShipInfo: FindBuildandShipInfoFunc = (buildId: string) => {
+    return findBuildandShipInfo(buildId, shipBuilds);
+  };
+
   const confirmDelete = async (build: IBuildInfov2) => {
     setShowDeleteDialog(undefined);
     await deleteBuild(build._id.toString(), build.authorId);
@@ -103,20 +125,24 @@ export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
     addBuild: handleAddBuild,
     editBuild: handleEditBuild,
     deleteBuild: handleDeleteBuild,
-    getShipInfofromId: getShipInfofromID,
+    findBuildandShipInfo: handleFindBuildandShipInfo,
   };
+
+  if (isLoading) {
+    return <EDSpinner />;
+  }
 
   return (
     <BuildContext.Provider value={wrapper}>
       <>
         {children}
-        <BuildDialog {...dialogProps} />
+        <BuildDialog builds={shipBuilds} {...dialogProps} />
         <ConfirmDialog
           title="Delete"
           open={showDeleteDialog !== undefined}
           onClose={() => setShowDeleteDialog(undefined)}
           onConfirm={() => confirmDelete(showDeleteDialog)}>
-          Are you sure you want to delete build '{showDeleteDialog.title}'?
+          Are you sure you want to delete build '{showDeleteDialog?.title}'?
         </ConfirmDialog>
       </>
     </BuildContext.Provider>

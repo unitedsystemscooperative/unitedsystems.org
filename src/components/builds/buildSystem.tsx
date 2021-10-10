@@ -1,13 +1,12 @@
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import { Box, Container, Fab, Link, Slide, Theme, Typography, useMediaQuery } from '@mui/material';
-import { PaperP2 } from 'components/_common/paper';
-import { CenteredTypography } from 'components/_common/typography';
+import { Box, Container, Fab, Slide, Theme, Typography, useMediaQuery } from '@mui/material';
 import { filterShipBuilds } from 'functions/builds';
 import { IBuildInfov2, IQuery } from 'models/builds';
 import { useSnackbar } from 'notistack';
 import { BuildContext, BuildContextProvider } from 'providers/buildProvider';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
+import { ShipImgAcknowledgement } from './builds/shipImgAcknowledgement';
 import { Query } from './query/query';
 
 const BuildSystemDisplay = () => {
@@ -64,13 +63,7 @@ const BuildSystemDisplay = () => {
         <div ref={buildRef}>
           <BuildList shipBuilds={queriedBuilds} />
         </div>
-        <PaperP2>
-          <CenteredTypography variant="subtitle2">
-            Ship Images by{' '}
-            <Link href="https://forums.frontier.co.uk/member.php/118579-Qohen-Leth">CMDR Qohen Leth</Link> via Copyright
-            CC BY-NC-SA 4.0 (available on <Link href="https://edassets.org">edassets.org</Link>)
-          </CenteredTypography>
-        </PaperP2>
+        <ShipImgAcknowledgement />
         <Slide direction="left" in={isMobile} timeout={1000}>
           <Box sx={{ position: 'fixed', bottom: '5px', right: '10px' }}>
             <Fab color="primary" onClick={handleFab}>

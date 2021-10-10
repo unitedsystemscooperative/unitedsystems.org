@@ -9,15 +9,17 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { processJSONBuild } from 'functions/builds';
+import { getShipInfofromID, processJSONBuild } from 'functions/builds';
+import { groupandSortBuilds } from 'functions/builds/groupandSortBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
 import { useSnackbar } from 'notistack';
-import { ChangeEvent, Fragment, MouseEvent, useEffect, useReducer } from 'react';
+import { ChangeEvent, Fragment, MouseEvent, useEffect, useMemo, useReducer } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
 import { QuerySpecialties } from '../query/querySpecialities';
 import { ShipAutocomplete } from '../shipAutocomplete';
 import { BuildAddText } from './buildAddText';
 import { BuildCheckBox } from './buildCheckBox';
+import { BuildOption } from './buildOption';
 
 export interface BuildDialogProps {
   open: boolean;
@@ -53,9 +55,9 @@ const parseDialogTitle = (build: IBuildInfov2, addType: 'related' | 'variant') =
   return <DialogTitle>Add Build</DialogTitle>;
 };
 
-function findBuildTitle(builds: IBuildInfov2[], ids: string | IBuildInfov2): IBuildInfov2;
-function findBuildTitle(builds: IBuildInfov2[], ids: (string | IBuildInfov2)[]): IBuildInfov2[];
-function findBuildTitle(builds: IBuildInfov2[], ids: string | IBuildInfov2 | (string | IBuildInfov2)[]) {
+function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2): IBuildInfov2;
+function findBuildValue(builds: IBuildInfov2[], ids: (string | IBuildInfov2)[]): IBuildInfov2[];
+function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2 | (string | IBuildInfov2)[]) {
   if (Array.isArray(ids)) {
     if (ids.length < 1) return [];
     const results = ids.map((x) => builds.find((y) => y._id.toString() === x));
@@ -152,6 +154,10 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
   return newState;
 };
 
+interface BuildwShipType extends IBuildInfov2 {
+  shipType: string;
+}
+
 /**
  * Build Screen
  *
@@ -160,6 +166,14 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
 export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDialogProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
+
+  const buildswShipType: BuildwShipType[] = useMemo(() => {
+    return groupandSortBuilds(builds).map((b) => {
+      const shipType = getShipInfofromID(b.shipId).name;
+      const buildwShipType: BuildwShipType = { ...b, shipType };
+      return buildwShipType;
+    });
+  }, [builds]);
 
   useEffect(() => {
     if (build) dispatch({ type: 'build', value: build });
@@ -311,31 +325,35 @@ export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDial
         </FormGroup>
         <Autocomplete
           id="variantOfBuild"
-          options={builds}
+          options={builds.filter((x) => x.shipId === newBuild.shipId)}
           getOptionLabel={(b) => b.title}
+          renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Variant of Build" />}
-          value={findBuildTitle(builds, newBuild.variantOf)}
+          value={findBuildValue(builds, newBuild.variantOf)}
           onChange={(_, value) => dispatch({ type: 'variantOf', value: value })}
         />
         <Autocomplete
           multiple
           id="relatedBuilds"
-          options={builds}
+          options={buildswShipType}
           getOptionLabel={(b) => b.title}
+          groupBy={(b: BuildwShipType) => b.shipType}
+          renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Related Builds" />}
-          value={findBuildTitle(builds, newBuild.related)}
+          value={findBuildValue(builds, newBuild.related)}
           onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
         />
         <Autocomplete
           multiple
           id="variantBuilds"
-          options={builds}
+          options={builds.filter((x) => x.shipId === newBuild.shipId)}
           getOptionLabel={(b) => b.title}
+          renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
           filterSelectedOptions
           renderInput={(params) => <TextField {...params} variant="standard" label="Variant Builds" />}
-          value={findBuildTitle(builds, newBuild.variants)}
+          value={findBuildValue(builds, newBuild.variants)}
           onChange={(_, value) => dispatch({ type: 'variants', value: value })}
         />
       </DialogContent>
