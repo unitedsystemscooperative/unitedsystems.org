@@ -29,6 +29,12 @@ export const MassacreTabAddPanel = () => {
       return;
     }
 
+    if (context?.trackers.find((x) => x.hazRezSystem.trim() === system.toUpperCase().trim())) {
+      enqueueSnackbar('That tracker already exists', { variant: 'info' });
+      context?.setSelectedTab(system.toUpperCase());
+      return;
+    }
+
     const result = await processHazRezSystem(system);
 
     let factions: IFactionwMissions[] = [];
@@ -68,17 +74,11 @@ export const MassacreTabAddPanel = () => {
 
   return (
     <>
-      <CenteredTypography variant="h4">
-        Add a Massacre HazRez System
-      </CenteredTypography>
+      <CenteredTypography variant="h4">Add a Massacre HazRez System</CenteredTypography>
       <Paper sx={{ width: '90%', margin: 'auto', p: 1 }}>
         <div>
           <Typography>Enter the HazRez system for reference</Typography>
-          <TextField
-            value={system}
-            onChange={handleTextChange}
-            label="HazRez System"
-          />
+          <TextField value={system} onChange={handleTextChange} label="HazRez System" />
           <Button onClick={handleSystemSubmission}>Submit System</Button>
         </div>
       </Paper>

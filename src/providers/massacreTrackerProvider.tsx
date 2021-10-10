@@ -22,12 +22,13 @@ const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
   switch (action.type) {
     case 'add':
       const trackerToAdd = action.tracker;
+      trackerToAdd.hazRezSystem = trackerToAdd.hazRezSystem.toUpperCase();
       if (prevTrackers) {
         const foundTracker = prevTrackers.find(
           (x) => x.hazRezSystem.toLowerCase() === trackerToAdd.hazRezSystem.toLowerCase()
         );
         if (foundTracker) {
-          throw new Error(`Tracker for ${trackerToAdd.hazRezSystem} already exists.`);
+          return [...prevTrackers];
         }
         return [...prevTrackers, trackerToAdd];
       } else {
@@ -83,10 +84,22 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
     if (window) {
       const store: IMassacreTrack[] | null = JSON.parse(window.localStorage.getItem('massacreTrackerStore'));
       if (store && store.length > 0) {
-        dispatch({ type: 'set', trackers: store });
+        dispatch({
+          type: 'set',
+          trackers: store.map((x) => {
+            const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
+            return tracker;
+          }),
+        });
       } else {
         const defaultTrackers: IMassacreTrack[] = massacreDefaults;
-        dispatch({ type: 'set', trackers: defaultTrackers });
+        dispatch({
+          type: 'set',
+          trackers: defaultTrackers.map((x) => {
+            const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
+            return tracker;
+          }),
+        });
       }
     }
   }, []);
@@ -128,6 +141,8 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   const deleteTracker = (tracker: IMassacreTrack) => {
     dispatch({ type: 'delete', tracker });
+    if (trackers.length === 0) setSelectedTab('+');
+    else setSelectedTab(trackers[0].hazRezSystem);
   };
 
   const wrapper: IMassacreContext = {
