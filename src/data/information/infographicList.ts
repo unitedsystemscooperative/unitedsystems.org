@@ -1,10 +1,6 @@
-export const infoGraphics: {
-  id: string;
-  title: string;
-  img: string;
-  width: number;
-  height: number;
-}[] = [
+import { Infographic } from 'models/information/infographic';
+
+export const infoGraphics: Infographic[] = [
   {
     id: 'cave-johnson',
     title: 'Cave Johnson',

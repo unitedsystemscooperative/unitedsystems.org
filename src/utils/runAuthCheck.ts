@@ -1,6 +1,5 @@
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { getSession } from 'next-auth/client';
-import { ParsedUrlQuery } from 'querystring';
 import { getIsHC } from './get-isHC';
 import { connectToDatabase } from './mongo';
 
@@ -11,9 +10,9 @@ import { connectToDatabase } from './mongo';
  * @returns
  */
 export const runAdminAuthCheck = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery>,
+  context: GetServerSidePropsContext,
   redirect: string
-) => {
+): Promise<GetServerSidePropsResult<Record<string, never>>> => {
   const session = await getSession(context);
 
   if (session) {

@@ -1,20 +1,11 @@
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { getReleases } from 'functions/releases/getReleases';
+import { ReleaseInfo } from 'models/releaseInfo';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
 
-const ReleaseIndexPage = ({
-  allReleases,
-}: {
-  allReleases: { id: string; title: string; date: string }[];
-}) => {
+const ReleaseIndexPage = ({ allReleases }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
@@ -41,13 +32,13 @@ const ReleaseIndexPage = ({
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<{ allReleases: Omit<ReleaseInfo, 'content'>[] }> = () => {
   const allReleases = getReleases();
   return {
     props: {
       allReleases,
     },
   };
-}
+};
 
 export default ReleaseIndexPage;

@@ -1,14 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { ReleaseInfo } from 'models/releaseInfo';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'data', 'releases');
 
-export function getReleases() {
+export function getReleases(): Omit<ReleaseInfo, 'content'>[] {
   // Get file names under /posts
-  const fileNames = fs
-    .readdirSync(postsDirectory)
-    .filter((x) => x.endsWith('.md'));
+  const fileNames = fs.readdirSync(postsDirectory).filter((x) => x.endsWith('.md'));
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
@@ -51,7 +50,7 @@ export function getAllReleaseIDs() {
   });
 }
 
-export function getReleaseData(id: string) {
+export function getReleaseData(id: string): ReleaseInfo {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 

@@ -1,6 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import { infoGraphics } from 'data/information/infographicList';
-import { InferGetStaticPropsType } from 'next';
+import { Infographic } from 'models/information/infographic';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -8,9 +9,7 @@ import Image from 'next/image';
  * Displays an infographic
  * @param props imgID to display
  */
-const InfographicPage = ({
-  infographic,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const InfographicPage = ({ infographic }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
@@ -36,17 +35,17 @@ const InfographicPage = ({
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = infoGraphics.map((infographic) => ({
     params: { id: infographic.id },
   }));
 
   return { paths, fallback: false };
-}
+};
 
-export async function getStaticProps({ params }: { params: { id: string } }) {
+export const getStaticProps: GetStaticProps<{ infographic: Infographic }> = ({ params }) => {
   const infographic = infoGraphics.find((x) => params.id === x.id);
   return { props: { infographic } };
-}
+};
 
 export default InfographicPage;
