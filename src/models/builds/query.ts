@@ -7,5 +7,4 @@ export type IQuery = {
   guardian: number | null;
   powerplay: number | null;
   beginner: number | null;
-  showVariants: boolean | null;
 };

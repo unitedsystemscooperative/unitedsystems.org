@@ -25,7 +25,6 @@ export interface BuildDialogProps {
   open: boolean;
   build?: IBuildInfov2;
   builds: IBuildInfov2[];
-  addType?: 'variant' | 'related';
   refId?: string;
   onClose: (build?: IBuildInfov2) => void;
 }
@@ -40,19 +39,9 @@ const DEFAULTBUILD: IBuildInfov2 = {
   hasPowerplay: false,
   isBeginner: false,
   author: '',
-  isVariant: false,
-  variantOf: '',
-  variants: [],
   related: [],
   description: '',
   jsonBuild: '',
-};
-
-const parseDialogTitle = (build: IBuildInfov2, addType: 'related' | 'variant') => {
-  if (build) return <DialogTitle>Update Build</DialogTitle>;
-  if (addType === 'related') return <DialogTitle>Add Related Build</DialogTitle>;
-  if (addType === 'variant') return <DialogTitle>Add Variant Build</DialogTitle>;
-  return <DialogTitle>Add Build</DialogTitle>;
 };
 
 function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2): IBuildInfov2;
@@ -70,7 +59,7 @@ function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2 | (st
 }
 
 type action =
-  | { type: 'default' }
+  | { type: 'default'; value?: string }
   | { type: 'build'; value: IBuildInfov2 }
   | { type: 'json'; value: string }
   | { type: 'title' | 'description' | 'buildLink' | 'author'; value: string }
@@ -78,14 +67,13 @@ type action =
   | { type: 'engLevel'; value: number }
   | { type: 'hasGuardian' | 'hasPowerplay' | 'isBeginner'; value: boolean }
   | { type: 'specialties'; value: string[] }
-  | { type: 'variantOf'; value: string | IBuildInfov2 }
-  | { type: 'relateds'; value: (string | IBuildInfov2)[] }
-  | { type: 'variants'; value: (string | IBuildInfov2)[] };
+  | { type: 'relateds'; value: (string | IBuildInfov2)[] };
 const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => {
   let newState = prevState;
   switch (action.type) {
     case 'default':
-      newState = DEFAULTBUILD;
+      if (action.value) newState = { ...DEFAULTBUILD, related: [action.value] };
+      else newState = DEFAULTBUILD;
       break;
     case 'build':
       newState = action.value;
@@ -126,24 +114,11 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
     case 'specialties':
       newState = { ...newState, specializations: action.value };
       break;
-    case 'variantOf':
-      console.log(action.value);
-      break;
     case 'relateds':
       console.log(action.value);
       newState = {
         ...newState,
         related: action.value.map((x) => {
-          if (typeof x === 'string') return x;
-          else return x._id.toString();
-        }),
-      };
-      break;
-    case 'variants':
-      console.log(action.value);
-      newState = {
-        ...newState,
-        variants: action.value.map((x) => {
           if (typeof x === 'string') return x;
           else return x._id.toString();
         }),
@@ -163,7 +138,7 @@ interface BuildwShipType extends IBuildInfov2 {
  *
  * Used for all build creation and editing.
  */
-export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDialogProps) => {
+export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialogProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
 
@@ -177,8 +152,8 @@ export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDial
 
   useEffect(() => {
     if (build) dispatch({ type: 'build', value: build });
-    else dispatch({ type: 'default' });
-  }, [build]);
+    else dispatch({ type: 'default', value: refId });
+  }, [build, refId]);
 
   const handleClose = (_?: never, reason?: 'escapeKeyDown' | 'backdropClick') => {
     if (reason === 'backdropClick') {
@@ -284,7 +259,7 @@ export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDial
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      {parseDialogTitle(build, addType)}
+      {build ? <DialogTitle>Update Build</DialogTitle> : <DialogTitle>Add Build</DialogTitle>}
       <DialogContent
         sx={{
           textAlign: 'center',
@@ -324,16 +299,6 @@ export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDial
           ))}
         </FormGroup>
         <Autocomplete
-          id="variantOfBuild"
-          options={builds.filter((x) => x.shipId === newBuild.shipId)}
-          getOptionLabel={(b) => b.title}
-          renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} variant="standard" label="Variant of Build" />}
-          value={findBuildValue(builds, newBuild.variantOf)}
-          onChange={(_, value) => dispatch({ type: 'variantOf', value: value })}
-        />
-        <Autocomplete
           multiple
           id="relatedBuilds"
           options={buildswShipType}
@@ -344,17 +309,6 @@ export const BuildDialog = ({ open, build, builds, addType, onClose }: BuildDial
           renderInput={(params) => <TextField {...params} variant="standard" label="Related Builds" />}
           value={findBuildValue(builds, newBuild.related)}
           onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
-        />
-        <Autocomplete
-          multiple
-          id="variantBuilds"
-          options={builds.filter((x) => x.shipId === newBuild.shipId)}
-          getOptionLabel={(b) => b.title}
-          renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
-          filterSelectedOptions
-          renderInput={(params) => <TextField {...params} variant="standard" label="Variant Builds" />}
-          value={findBuildValue(builds, newBuild.variants)}
-          onChange={(_, value) => dispatch({ type: 'variants', value: value })}
         />
       </DialogContent>
 

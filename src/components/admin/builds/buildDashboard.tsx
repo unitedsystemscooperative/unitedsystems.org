@@ -84,12 +84,6 @@ const headCells: HeadCell[] = [
     disablePadding: false,
     label: 'Beginner?',
   },
-  {
-    id: 'isVariant',
-    numeric: false,
-    disablePadding: false,
-    label: 'Variant?',
-  },
 ];
 
 interface TableHeadProps {
@@ -180,9 +174,6 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                   </TableCell>
                   <TableCell>
                     <Checkbox checked={build.isBeginner} disabled />
-                  </TableCell>
-                  <TableCell>
-                    <Checkbox checked={build.variantOf !== '' || build.isVariant} disabled />
                   </TableCell>
                   <TableCell>
                     <StyledIconButton onClick={() => onEdit(build)}>

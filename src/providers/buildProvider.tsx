@@ -12,7 +12,7 @@ import { EDSpinner } from '@admiralfeb/react-components';
  *
  * Type made to standardize the function.
  */
-export type AddBuildFunction = (addType?: 'related' | 'variant', refId?: string) => void;
+export type AddBuildFunction = (refId?: string) => void;
 export type FindBuildandShipInfoFunc = (
   buildId: string,
   builds?: IBuildInfov2[]
@@ -41,40 +41,17 @@ interface IBuildContext {
 export const BuildContext = createContext<IBuildContext | null>(null);
 
 export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
-  const {
-    shipBuilds,
-    loading: isLoading,
-    error,
-    addBuild,
-    addVariant,
-    addRelated,
-    updateBuild,
-    deleteBuild,
-  } = useShipBuilds();
+  const { shipBuilds, loading: isLoading, error, addBuild, updateBuild, deleteBuild } = useShipBuilds();
   const { enqueueSnackbar } = useSnackbar();
   const [showDeleteDialog, setShowDeleteDialog] = useState<IBuildInfov2 | undefined>(undefined);
 
   const handleDialogClose = async () => {
-    const { build, addType, refId } = dialogProps;
+    const { build } = dialogProps;
     if (build) {
       try {
-        if (build._id) {
-          await updateBuild(build);
-        } else {
-          switch (addType) {
-            case 'variant':
-              if (refId) await addVariant(refId, shipBuilds, build);
-              else throw new Error('Build reference ID missing from URL');
-              break;
-            case 'related':
-              if (refId) await addRelated(refId, shipBuilds, build);
-              else throw new Error('Build reference ID missing from URL');
-              break;
-            default:
-              await addBuild(build);
-              break;
-          }
-        }
+        if (build._id) await updateBuild(build);
+        else await addBuild(build);
+
         setDialogProps((prev) => ({ ...prev, open: false, addType: undefined, refId: undefined, build: undefined }));
         enqueueSnackbar('Build successfully submitted', { variant: 'success' });
       } catch (e) {
@@ -91,10 +68,9 @@ export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
     onClose: handleDialogClose,
   });
 
-  const handleAddBuild: AddBuildFunction = (addType?: 'related' | 'variant', refId?: string) => {
+  const handleAddBuild: AddBuildFunction = (refId?: string) => {
     setDialogProps((prev) => ({
       ...prev,
-      addType,
       refId,
       open: true,
     }));

@@ -102,16 +102,10 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
                 target="_blank">
                 Ship Anatomy
               </Button>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => addBuild('variant', foundBuild._id.toString())}>
-                Add Variant
+              <Button variant="outlined" color="secondary" onClick={() => addBuild()}>
+                Add Build
               </Button>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => addBuild('related', foundBuild._id.toString())}>
+              <Button variant="outlined" color="secondary" onClick={() => addBuild(foundBuild._id.toString())}>
                 Add Related
               </Button>
             </div>
@@ -192,10 +186,10 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
           </>
         )}
 
-        <Button variant="outlined" color="secondary" onClick={() => addBuild('variant', foundBuild._id.toString())}>
-          Add Variant
+        <Button variant="outlined" color="secondary" onClick={() => addBuild()}>
+          Add Build
         </Button>
-        <Button variant="outlined" color="secondary" onClick={() => addBuild('related', foundBuild._id.toString())}>
+        <Button variant="outlined" color="secondary" onClick={() => addBuild(foundBuild._id.toString())}>
           Add Related
         </Button>
       </Box>
@@ -228,9 +222,6 @@ export const BuildDetailDisplay = () => {
       ) : (
         <></>
       )}
-      {build && build.variants.length > 0 ? (
-        <BuildDetailBuilds title="Build Variants" buildIDs={build.variants} builds={builds} />
-      ) : null}
       {build && build.related.length > 0 ? (
         <BuildDetailBuilds title="Related Builds" buildIDs={build.related} builds={builds} />
       ) : null}

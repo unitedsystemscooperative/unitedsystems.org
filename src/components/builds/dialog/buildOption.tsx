@@ -40,7 +40,6 @@ const BuildCard = ({ shipBuild, shipInfo }: { shipBuild: IBuildInfov2; shipInfo:
         <EngIcons engLevel={shipBuild.engLevel} />
         <Divider />
         <Typography>Author: {shipBuild.author}</Typography>
-        {shipBuild.variants.length > 0 ? <Typography>Has Variants</Typography> : null}
         {shipBuild.related.length > 0 ? <Typography>Has Related Builds</Typography> : null}
         <div style={{ flexGrow: 1 }} />
       </CardContent>

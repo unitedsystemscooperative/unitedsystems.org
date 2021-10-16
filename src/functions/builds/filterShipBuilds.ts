@@ -1,15 +1,9 @@
 import { IBuildInfov2, IQuery } from 'models/builds';
 import { getShipInfofromID } from './getShipInfo';
 
-export const filterShipBuilds = (
-  shipBuilds: IBuildInfov2[] | undefined,
-  query: IQuery | undefined
-) => {
+export const filterShipBuilds = (shipBuilds: IBuildInfov2[] | undefined, query: IQuery | undefined) => {
   if (shipBuilds && query) {
     let newList = shipBuilds;
-    if (query.showVariants === null || query.showVariants === false) {
-      newList = newList.filter((build) => build.isVariant === false);
-    }
     // ship type
     if (query.ship !== null) {
       newList = newList.filter((build) => build.shipId === query.ship);
@@ -34,13 +28,9 @@ export const filterShipBuilds = (
       let tempList: IBuildInfov2[] = [];
       for (const specialty of query.specialties) {
         if (tempList.length > 0) {
-          tempList = tempList.filter((build) =>
-            build.specializations.includes(specialty)
-          );
+          tempList = tempList.filter((build) => build.specializations.includes(specialty));
         } else {
-          tempList = newList.filter((build) =>
-            build.specializations.includes(specialty)
-          );
+          tempList = newList.filter((build) => build.specializations.includes(specialty));
         }
       }
       newList = tempList;
