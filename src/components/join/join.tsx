@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  Collapse,
-  Container,
-  Paper,
-  Typography,
-} from '@mui/material';
-import { useAddJoinRequest } from 'hooks/join/useJoinInfo';
+import { Box, Button, Collapse, Container, Paper, Typography } from '@mui/material';
+import { useJoinRequests } from 'hooks/join/useJoinInfo';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
@@ -17,7 +10,7 @@ import { JoinFormMember } from './forms/joinFormMember';
 
 export const Join = () => {
   const [form, setForm] = useState<number | null>();
-  const addJoiner = useAddJoinRequest();
+  const { addJoinRequest } = useJoinRequests();
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
 
@@ -27,7 +20,7 @@ export const Join = () => {
     newData.timeStamp = new Date(time).toISOString();
     newData.type = type;
     try {
-      addJoiner(newData);
+      addJoinRequest(newData);
       enqueueSnackbar('Successfully submitted form', { variant: 'success' });
       router.push('/join/nextSteps');
     } catch (e) {
@@ -45,8 +38,7 @@ export const Join = () => {
           width: 'fit-content',
           margin: 'auto',
           padding: 1,
-        }}
-      >
+        }}>
         <Typography sx={{ textAlign: 'center' }}>
           Welcome to USC. Please select how you'd like to join us below.
         </Typography>

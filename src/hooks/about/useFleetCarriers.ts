@@ -1,53 +1,17 @@
-import { IFleetCarrier } from 'models/about/fleetCarrier';
-import { useMemo } from 'react';
-import useSWR, { mutate } from 'swr';
 import axios from 'axios';
 import { genericSortArray } from 'functions/sort';
+import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { useMemo } from 'react';
+import useSWR from 'swr';
 
-const addCarrier = async (carrier: IFleetCarrier) => {
-  try {
-    await axios.post<IFleetCarrier>('/api/fc', carrier);
-    mutate('/api/fc');
-  } catch (error) {
-    throw new Error(error.response.statusText);
-  }
-};
-
-const updateCarrier = async (carrier: IFleetCarrier) => {
-  try {
-    await axios.put('/api/fc', carrier);
-    mutate('/api/fc');
-  } catch (error) {
-    throw new Error(error.response.statusText);
-  }
-};
-
-const deleteCarrier = async (carrier: IFleetCarrier) => {
-  try {
-    await axios.delete(`/api/fc?id=${carrier._id}`);
-    mutate('/api/fc');
-  } catch (error) {
-    throw new Error(error.response.statusText);
-  }
-};
+const API_PATH = '/api/fc';
 
 export const useFleetCarriers = () => {
-  const { data, error } = useSWR('/api/fc', (url: string) => axios.get(url));
-  const fleetCarriers = data?.data ?? [];
-  return {
-    fleetCarriers,
-    isLoading: !error && !data,
-    error,
-    addCarrier,
-    updateCarrier,
-    deleteCarrier,
-  };
-};
+  const { data, error, mutate } = useSWR(API_PATH, (url: string) => axios.get<IFleetCarrier[]>(url));
 
-export const usePersonalCarriers = (
-  fleetCarriers: IFleetCarrier[] | undefined
-) => {
-  return useMemo(() => {
+  const fleetCarriers = useMemo(() => data?.data ?? [], [data?.data]);
+
+  const personalCarriers = useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => !x.purpose);
       return genericSortArray(personalCarriers, {
@@ -58,12 +22,7 @@ export const usePersonalCarriers = (
       return undefined;
     }
   }, [fleetCarriers]);
-};
-
-export const useSquadCarriers = (
-  fleetCarriers: IFleetCarrier[] | undefined
-) => {
-  return useMemo(() => {
+  const squadCarriers = useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => x.purpose);
       return genericSortArray(personalCarriers, {
@@ -74,4 +33,42 @@ export const useSquadCarriers = (
       return undefined;
     }
   }, [fleetCarriers]);
+
+  const addCarrier = async (carrier: IFleetCarrier) => {
+    try {
+      await axios.post<IFleetCarrier>(API_PATH, carrier);
+      mutate();
+    } catch (error) {
+      throw new Error(error.response.statusText);
+    }
+  };
+
+  const updateCarrier = async (carrier: IFleetCarrier) => {
+    try {
+      await axios.put(API_PATH, carrier);
+      mutate();
+    } catch (error) {
+      throw new Error(error.response.statusText);
+    }
+  };
+
+  const deleteCarrier = async (carrier: IFleetCarrier) => {
+    try {
+      await axios.delete(`${API_PATH}?id=${carrier._id}`);
+      mutate();
+    } catch (error) {
+      throw new Error(error.response.statusText);
+    }
+  };
+
+  return {
+    fleetCarriers,
+    personalCarriers,
+    squadCarriers,
+    isLoading: !error && !data,
+    error,
+    addCarrier,
+    updateCarrier,
+    deleteCarrier,
+  };
 };

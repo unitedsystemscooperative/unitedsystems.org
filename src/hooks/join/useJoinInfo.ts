@@ -1,10 +1,15 @@
+import axios from 'axios';
 import { IJoinRequest } from 'models/join/joinRequest';
 import { useMemo } from 'react';
 import useSWR from 'swr';
-import axios from 'axios';
+
+const API_PATH = '/api/joinRequests';
 
 export const useJoinRequests = () => {
-  const { requests, loading, error } = useAllJoinRequests();
+  const { data, error } = useSWR(API_PATH, (url: string) => axios.get<IJoinRequest[]>(url));
+  const requests = useMemo(() => data?.data ?? [], [data.data]);
+
+  const loading = useMemo(() => !data && !error, [data, error]);
 
   const members = useMemo(() => {
     if (loading || error) {
@@ -25,26 +30,13 @@ export const useJoinRequests = () => {
     return requests.filter((x) => x.type === 'ambassador');
   }, [requests, loading, error]);
 
-  return { members, guests, ambassadors, loading, error };
-};
-
-export const useAllJoinRequests = () => {
-  const { data, error } = useSWR('/api/joinRequests', (url: string) =>
-    axios.get<IJoinRequest[]>(url)
-  );
-  const requests = data?.data ?? [];
-
-  return { requests, loading: !error && !data, error };
-};
-
-export const useAddJoinRequest = () => {
-  const addJoiner = async (joiner: IJoinRequest) => {
+  const addJoinRequest = async (request: IJoinRequest) => {
     try {
-      await axios.post('/api/joinRequests', joiner);
+      await axios.post(API_PATH, request);
     } catch (e) {
       throw new Error(`Unable to add. ${e.message}`);
     }
   };
 
-  return addJoiner;
+  return { members, guests, ambassadors, loading, error, addJoinRequest };
 };
