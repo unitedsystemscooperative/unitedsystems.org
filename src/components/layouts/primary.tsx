@@ -3,7 +3,7 @@ import { Footer } from 'components/layouts/components/footer';
 import { Navbar } from './components/navbar';
 import { ReactNode } from 'react';
 
-export const PrimaryLayout = ({ children }: { children: ReactNode }) => {
+export const PrimaryLayout = ({ children, version }: { children: ReactNode, version: string }) => {
   const theme = useTheme();
 
   return (
@@ -21,7 +21,7 @@ export const PrimaryLayout = ({ children }: { children: ReactNode }) => {
       >
         {children}
       </Box>
-      <Footer />
+      <Footer version={ version }/>
     </Box>
   );
 };

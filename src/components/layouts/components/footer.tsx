@@ -1,31 +1,16 @@
-import {
-  Box,
-  Container,
-  Link,
-  Paper,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { Box, Container, Link, Paper, Typography, useTheme } from '@mui/material';
 import NextLink from 'next/link';
 
 function ImgCopyright() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      style={{ textAlign: 'center' }}
-    >
+    <Typography variant="body2" color="textSecondary" style={{ textAlign: 'center' }}>
       Thank you to CMDR RaZ uryel for the background image
     </Typography>
   );
 }
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      style={{ textAlign: 'center' }}
-    >
+    <Typography variant="body2" color="textSecondary" style={{ textAlign: 'center' }}>
       {'Copyright © '}
       <Link color="inherit" href="https://unitedsystems.org/">
         United Systems Cooperative
@@ -38,11 +23,7 @@ function Copyright() {
 
 function SiteMap() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      style={{ textAlign: 'center' }}
-    >
+    <Typography variant="body2" color="textSecondary" style={{ textAlign: 'center' }}>
       <NextLink href="/home" passHref>
         <Link>Home</Link>
       </NextLink>{' '}
@@ -82,7 +63,7 @@ function SiteMap() {
   );
 }
 
-export const Footer = () => {
+export const Footer = ({ version }: { version: string }) => {
   const theme = useTheme();
 
   return (
@@ -90,19 +71,20 @@ export const Footer = () => {
       component="footer"
       sx={{
         marginTop: 'auto',
-      }}
-    >
+      }}>
       <Paper
         sx={{
           padding: theme.spacing(3, 2),
           marginRight: 0,
           marginLeft: 0,
-        }}
-      >
+        }}>
         <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
           <Copyright />
           <ImgCopyright />
           <SiteMap />
+          <Typography variant="body2" color="textSecondary">
+            Version: {version}
+          </Typography>
         </Container>
       </Paper>
     </Box>
