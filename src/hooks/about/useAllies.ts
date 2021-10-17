@@ -4,9 +4,14 @@ import useSWR from 'swr';
 
 const API_PATH = '/api/allies';
 
-export const useAllies = () => {
-  const { data, error, mutate } = useSWR(API_PATH, (url: string) => axios.get<IAlly[]>(url));
-  const allies = data?.data ?? [];
+export const useAllies = (initState?: IAlly[]) => {
+  const {
+    data: allies,
+    mutate,
+    error,
+  } = useSWR(API_PATH, (url: string) => axios.get<IAlly[]>(url).then((res) => res.data ?? []), {
+    fallbackData: initState,
+  });
 
   const addAlly = async (ally: IAlly) => {
     try {
@@ -37,7 +42,7 @@ export const useAllies = () => {
 
   return {
     allies,
-    loading: !error && !data,
+    loading: !allies && !error,
     error,
     addAlly,
     updateAlly,

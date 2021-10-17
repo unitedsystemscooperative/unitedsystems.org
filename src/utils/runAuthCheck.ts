@@ -1,3 +1,4 @@
+import { Db } from 'mongodb4';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { getSession } from 'next-auth/client';
 import { getIsHC } from './get-isHC';
@@ -9,17 +10,24 @@ import { connectToDatabase } from './mongo';
  * @param redirect key of path to the page to direct after login
  * @returns
  */
-export const runAdminAuthCheck = async (
+export const runAdminAuthCheck = async <T = never>(
   context: GetServerSidePropsContext,
-  redirect: string
-): Promise<GetServerSidePropsResult<Record<string, never>>> => {
+  redirect: string,
+  fetchFn?: (db: Db) => Promise<T>
+): Promise<GetServerSidePropsResult<{ data: T }>> => {
   const session = await getSession(context);
 
   if (session) {
     const { db } = await connectToDatabase();
     const isHC = await getIsHC(context.req, db);
-    if (isHC) return { props: {} };
-    else
+    if (isHC) {
+      if (fetchFn) {
+        const result = await fetchFn(db);
+        return { props: { data: result } };
+      } else {
+        return { props: { data: null } };
+      }
+    } else
       return {
         redirect: { permanent: false, destination: '/auth/not-authorized' },
       };

@@ -1,14 +1,6 @@
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
-import {
-  Container,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  Paper,
-} from '@mui/material';
+import { Container, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, Paper } from '@mui/material';
 import { TitleBarwAdd } from 'components/_common';
 import { useAllies } from 'hooks/about/useAllies';
 import { IAlly } from 'models/about/ally';
@@ -16,19 +8,10 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { AllyDialog } from './allyDialog';
 
-export const AllyDashboard = () => {
+export const AllyDashboard = ({ init }: { init?: IAlly[] }) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [dialogValues, setDialogValues] = useState<IAlly | undefined>(
-    undefined
-  );
-  const {
-    loading,
-    allies,
-    error,
-    addAlly,
-    updateAlly,
-    deleteAlly,
-  } = useAllies();
+  const [dialogValues, setDialogValues] = useState<IAlly | undefined>(undefined);
+  const { loading, allies, error, addAlly, updateAlly, deleteAlly } = useAllies(init);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -84,32 +67,17 @@ export const AllyDashboard = () => {
           padding: 1,
           marginTop: 1,
           marginBottom: 1,
-        }}
-      >
-        <TitleBarwAdd
-          title="Ally Dashboard"
-          addTip="Add an ally"
-          addItem={handleOpenDialog}
-        />
+        }}>
+        <TitleBarwAdd title="Ally Dashboard" addTip="Add an ally" addItem={handleOpenDialog} />
         <List>
           {allies.map((ally: { name: string }, i: number) => (
             <ListItem key={i}>
               <ListItemText primary={`${ally.name}`} />
               <ListItemSecondaryAction>
-                <IconButton
-                  edge="end"
-                  sx={{ ml: 1 }}
-                  onClick={() => handleOpenDialog(ally)}
-                  size="large"
-                >
+                <IconButton edge="end" sx={{ ml: 1 }} onClick={() => handleOpenDialog(ally)} size="large">
                   <Edit />
                 </IconButton>
-                <IconButton
-                  edge="end"
-                  sx={{ ml: 1 }}
-                  onClick={() => handleDelete(ally)}
-                  size="large"
-                >
+                <IconButton edge="end" sx={{ ml: 1 }} onClick={() => handleDelete(ally)} size="large">
                   <Delete />
                 </IconButton>
               </ListItemSecondaryAction>
@@ -117,11 +85,7 @@ export const AllyDashboard = () => {
           ))}
         </List>
       </Paper>
-      <AllyDialog
-        values={dialogValues}
-        open={openDialog}
-        onClose={handleDialogClose}
-      />
+      <AllyDialog values={dialogValues} open={openDialog} onClose={handleDialogClose} />
     </Container>
   );
 };

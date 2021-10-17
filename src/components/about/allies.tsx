@@ -1,18 +1,11 @@
 import { EDSpinner } from '@admiralfeb/react-components';
-import {
-  Container,
-  Fade,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Container, Fade, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { useAllies } from 'hooks/about/useAllies';
+import { IAlly } from 'models/about/ally';
 
 /** Displays Allies */
-export const AboutAllies = () => {
-  const { allies, loading } = useAllies();
+export const AboutAllies = ({ init }: { init: IAlly[] }) => {
+  const { allies, loading } = useAllies(init);
   return (
     <Fade in={true}>
       <Container maxWidth="xs">
