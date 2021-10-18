@@ -35,32 +35,15 @@ const SystemList = ({
         <ListSubheader>
           {title} - {systems.length}
         </ListSubheader>
-      }
-    >
+      }>
       {systems.map((system) => (
-        <ListItem
-          button
-          key={system.name}
-          component={Link}
-          href={system.inaraLink}
-          target="_blank"
-        >
+        <ListItem button key={system.name} component={Link} href={system.inaraLink} target="_blank">
           <ListItemText primary={system.name} />
           <ListItemSecondaryAction>
-            <IconButton
-              edge="end"
-              sx={{ ml: 1 }}
-              onClick={() => editSystem(system)}
-              size="large"
-            >
+            <IconButton edge="end" sx={{ ml: 1 }} onClick={() => editSystem(system)} size="large">
               <Edit />
             </IconButton>
-            <IconButton
-              edge="end"
-              sx={{ ml: 1 }}
-              onClick={() => deleteSystem(system)}
-              size="large"
-            >
+            <IconButton edge="end" sx={{ ml: 1 }} onClick={() => deleteSystem(system)} size="large">
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>
@@ -70,19 +53,11 @@ const SystemList = ({
   );
 };
 
-export const SystemDashboard = () => {
+export const SystemDashboard = ({ init }: { init?: System[] }) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [dialogValues, setDialogValues] = useState<System | undefined>(
-    undefined
-  );
-  const {
-    loading,
-    factionSystems,
-    error,
-    addSystem,
-    updateSystem,
-    deleteSystem,
-  } = useSystems();
+  const [dialogValues, setDialogValues] = useState<System | undefined>(undefined);
+  const { loading, factionSystems, error, addSystem, updateSystem, deleteSystem } =
+    useSystems(init);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -109,10 +84,9 @@ export const SystemDashboard = () => {
           await addSystem(system);
         }
       } catch (e) {
-        enqueueSnackbar(
-          `Failed to add or update system. Reason: ${e.message}`,
-          { variant: 'error' }
-        );
+        enqueueSnackbar(`Failed to add or update system. Reason: ${e.message}`, {
+          variant: 'error',
+        });
       }
     }
   };
@@ -134,35 +108,26 @@ export const SystemDashboard = () => {
   return (
     <Container maxWidth="sm">
       <Paper sx={{ p: 1, my: 1, textAlign: 'center' }}>
-        <TitleBarwAdd
-          title="System Management"
-          addTip="Add a system"
-          addItem={handleOpenDialog}
-        />
+        <TitleBarwAdd title="System Management" addTip="Add a system" addItem={handleOpenDialog} />
         <List>
           <ListItem
             button
             component={Link}
             href="https://inara.cz/galaxy-minorfaction/78085/"
-            target="_blank"
-          >
+            target="_blank">
             <ListItemText primary="United Systems Cooperative - Minor Faction" />
           </ListItem>
           {factionSystems && (
             <>
               <SystemList
                 title="Controlled Systems"
-                systems={factionSystems.filter(
-                  (system) => system.isControlled === true
-                )}
+                systems={factionSystems.filter((system) => system.isControlled === true)}
                 editSystem={handleOpenDialog}
                 deleteSystem={handleDelete}
               />
               <SystemList
                 title="Present In Systems"
-                systems={factionSystems.filter(
-                  (system) => system.isControlled === false
-                )}
+                systems={factionSystems.filter((system) => system.isControlled === false)}
                 editSystem={handleOpenDialog}
                 deleteSystem={handleDelete}
               />
@@ -170,11 +135,7 @@ export const SystemDashboard = () => {
           )}
         </List>
       </Paper>
-      <SystemDialog
-        values={dialogValues}
-        open={openDialog}
-        onClose={handleDialogClose}
-      />
+      <SystemDialog values={dialogValues} open={openDialog} onClose={handleDialogClose} />
     </Container>
   );
 };

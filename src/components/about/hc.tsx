@@ -1,11 +1,4 @@
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { hc } from 'data/about';
 
 /** Displays High Command Members */

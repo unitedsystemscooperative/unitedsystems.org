@@ -36,3 +36,9 @@ export interface IAmbassador extends ICMDR {
   groupRepresented: string;
   isCoalition: boolean;
 }
+
+export interface ICMDRs {
+  members: IMember[];
+  guests: IGuest[];
+  ambassadors: IAmbassador[];
+}

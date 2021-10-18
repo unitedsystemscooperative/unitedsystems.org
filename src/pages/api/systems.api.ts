@@ -1,13 +1,8 @@
 import { System } from 'models/about/system';
+import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import {
-  connectToDatabase,
-  deleteItem,
-  getItems,
-  insertItem,
-  updateItem,
-} from 'utils/mongo';
+import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from 'utils/mongo';
 
 const COLLECTION = 'systems';
 
@@ -51,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const result = await getItems<System>(COLLECTION, db, 'name', 1);
+        const result = await getSystems(db);
 
         res.status(200).send(result);
         break;
@@ -60,4 +55,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.error(e);
     res.status(500).send(e.message);
   }
+};
+
+export const getSystems = async (db: Db) => {
+  const items = await getItems<System>(COLLECTION, db, 'name', 1);
+  return items.map((x) => {
+    x._id = x._id.toString();
+    return x;
+  });
 };

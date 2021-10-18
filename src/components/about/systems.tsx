@@ -16,29 +16,21 @@ import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 
-const SystemList = ({
-  title,
-  systems,
-}: {
-  title: string;
-  systems: System[];
-}) => {
+const SystemList = ({ title, systems }: { title: string; systems: System[] }) => {
   return (
     <List
       subheader={
         <ListSubheader>
           {title} - {systems.length}
         </ListSubheader>
-      }
-    >
+      }>
       {systems.map((system) => (
         <ListItem
           button
           key={system.name}
           component={Link}
           href={buildInaraLink('system', system.name)}
-          target="_blank"
-        >
+          target="_blank">
           <ListItemText primary={system.name} />
         </ListItem>
       ))}
@@ -46,8 +38,8 @@ const SystemList = ({
   );
 };
 
-export const AboutSystems = () => {
-  const { loading, factionSystems, error } = useSystems();
+export const AboutSystems = ({ init }: { init?: System[] }) => {
+  const { loading, factionSystems, error } = useSystems(init);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -77,8 +69,7 @@ export const AboutSystems = () => {
             button
             component={Link}
             href="https://inara.cz/galaxy-minorfaction/78085/"
-            target="_blank"
-          >
+            target="_blank">
             <ListItemText primary="United Systems Cooperative - Minor Faction" />
           </ListItem>
           {factionSystems && (

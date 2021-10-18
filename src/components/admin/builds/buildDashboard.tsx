@@ -209,9 +209,9 @@ const BuildDashboardDisplay = () => {
   );
 };
 
-export const BuildDashboard = () => {
+export const BuildDashboard = ({ init }: { init?: IBuildInfov2[] }) => {
   return (
-    <BuildContextProvider>
+    <BuildContextProvider init={init}>
       <BuildDashboardDisplay />
     </BuildContextProvider>
   );

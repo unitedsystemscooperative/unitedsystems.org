@@ -1,13 +1,8 @@
 import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import {
-  connectToDatabase,
-  deleteItem,
-  getItems,
-  insertItem,
-  updateItem,
-} from 'utils/mongo';
+import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from 'utils/mongo';
 
 const COLLECTION = 'fleetCarriers';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -49,16 +44,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const results = await getItems<IFleetCarrier>(
-          COLLECTION,
-          db,
-          'name',
-          1
-        );
+        const results = await getFCs(db);
 
         res.status(200).send(results);
     }
   } catch (e) {
     res.status(500).send(e.message);
   }
+};
+
+export const getFCs = async (db: Db) => {
+  const items = await getItems<IFleetCarrier>(COLLECTION, db, 'name', 1);
+  return items.map((x) => {
+    x._id = x._id.toString();
+    return x;
+  });
 };

@@ -4,9 +4,14 @@ import useSWR from 'swr';
 
 const API_PATH = '/api/systems';
 
-export const useSystems = () => {
-  const { data, error, mutate } = useSWR(API_PATH, (url: string) => axios.get<System[]>(url));
-  const factionSystems = data?.data ?? [];
+export const useSystems = (init?: System[]) => {
+  const {
+    data: factionSystems,
+    error,
+    mutate,
+  } = useSWR(API_PATH, (url: string) => axios.get<System[]>(url).then((data) => data?.data ?? []), {
+    fallbackData: init,
+  });
 
   const addSystem = async (system: System) => {
     try {
@@ -37,7 +42,7 @@ export const useSystems = () => {
 
   return {
     factionSystems,
-    loading: !error && !data,
+    loading: !error && !factionSystems,
     error,
     addSystem,
     updateSystem,

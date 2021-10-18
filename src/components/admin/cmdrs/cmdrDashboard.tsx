@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useCMDRs } from 'hooks/useCmdrs';
-import { IAmbassador, IGuest, IMember } from 'models/admin/cmdr';
+import { IAmbassador, ICMDRs, IGuest, IMember } from 'models/admin/cmdr';
 import { useSnackbar } from 'notistack';
 import { MouseEvent, useState } from 'react';
 import { AmbassadorDashboard } from './ambassadorDashboard';
@@ -45,11 +45,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
 
   return (
     <Toolbar sx={{ pl: 2, pr: 1, '& button': { m: 1 } }}>
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{ flex: '2 1 100%', textAlign: 'left' }}
-      >
+      <Typography variant="h4" component="div" sx={{ flex: '2 1 100%', textAlign: 'left' }}>
         CMDR Management
       </Typography>
       <Tooltip title="Add a cmdr" arrow>
@@ -57,8 +53,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
           variant="outlined"
           color="primary"
           onClick={() => addCMDR()}
-          disabled={selectedCount !== 0}
-        >
+          disabled={selectedCount !== 0}>
           <Add />
         </Button>
       </Tooltip>
@@ -67,8 +62,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
           variant="outlined"
           color="primary"
           onClick={() => editCMDR()}
-          disabled={selectedCount < 1}
-        >
+          disabled={selectedCount < 1}>
           <Edit />
         </Button>
       </Tooltip>
@@ -77,17 +71,12 @@ const DashboardTitleBar = (props: TitleBarProps) => {
           variant="outlined"
           color="primary"
           onClick={deleteCMDR}
-          disabled={selectedCount < 1}
-        >
+          disabled={selectedCount < 1}>
           <Delete />
         </Button>
       </Tooltip>
       <Tooltip title="Select between Ambassadors, Guests, and Members" arrow>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={handleViewFilterClick}
-        >
+        <Button variant="outlined" color="primary" onClick={handleViewFilterClick}>
           <FilterList />
         </Button>
       </Tooltip>
@@ -100,13 +89,9 @@ const DashboardTitleBar = (props: TitleBarProps) => {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'center',
-        }}
-      >
+        }}>
         {Object.keys(CmdrView).map((option) => (
-          <MenuItem
-            key={option}
-            onClick={(event) => handleViewMenuClick(event, option)}
-          >
+          <MenuItem key={option} onClick={(event) => handleViewMenuClick(event, option)}>
             {option}
           </MenuItem>
         ))}
@@ -121,25 +106,22 @@ enum CmdrView {
   Members = 'Members',
 }
 
-export const CMDRDashboard = () => {
+export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
   const {
-    cmdrs,
+    cmdrs: { members, guests, ambassadors },
     loading,
     addCMDR,
     updateCMDR,
     updateCMDRs,
     deleteCMDR,
     restoreCMDR,
-  } = useCMDRs();
+  } = useCMDRs(init);
   const { enqueueSnackbar } = useSnackbar();
-  const { members, guests, ambassadors } = cmdrs;
 
   const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Members);
   const [selectedCmdrs, setSelectedCmdrs] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState<CmdrView | undefined>(undefined);
-  const [ambassadorDialogValues, setAmbassadorDialogValues] = useState<
-    IAmbassador[]
-  >([]);
+  const [ambassadorDialogValues, setAmbassadorDialogValues] = useState<IAmbassador[]>([]);
   const [guestDialogValues, setGuestDialogValues] = useState<IGuest[]>([]);
   const [memberDialogValues, setMemberDialogValues] = useState<IMember[]>([]);
 
@@ -153,16 +135,12 @@ export const CMDRDashboard = () => {
         setShowDialog(CmdrView.Ambassadors);
         break;
       case CmdrView.Guests:
-        const guestsToEdit = guests.filter((x) =>
-          selectedCmdrs.includes(x._id.toString())
-        );
+        const guestsToEdit = guests.filter((x) => selectedCmdrs.includes(x._id.toString()));
         setGuestDialogValues(guestsToEdit);
         setShowDialog(CmdrView.Guests);
         break;
       case CmdrView.Members:
-        const membersToEdit = members.filter((x) =>
-          selectedCmdrs.includes(x._id.toString())
-        );
+        const membersToEdit = members.filter((x) => selectedCmdrs.includes(x._id.toString()));
         setMemberDialogValues(membersToEdit);
         setShowDialog(CmdrView.Members);
         break;
@@ -237,8 +215,7 @@ export const CMDRDashboard = () => {
         textAlign: 'center',
         p: 1,
         mt: 1,
-      }}
-    >
+      }}>
       <DashboardTitleBar
         setView={setCmdrView}
         selectedCount={selectedCmdrs.length}
@@ -261,11 +238,7 @@ export const CMDRDashboard = () => {
           onClose={handleCloseDialog}
         />
       </Collapse>
-      <Collapse
-        in={cmdrView === CmdrView.Ambassadors}
-        mountOnEnter
-        unmountOnExit
-      >
+      <Collapse in={cmdrView === CmdrView.Ambassadors} mountOnEnter unmountOnExit>
         <AmbassadorDashboard
           cmdrs={ambassadors.filter((x) => !x.isDeleted)}
           deletedCmdrs={ambassadors.filter((x) => x.isDeleted)}

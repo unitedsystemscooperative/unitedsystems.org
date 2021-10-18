@@ -3,7 +3,14 @@ import { Db, Filter, ObjectId } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
 import { getUserId } from 'utils/get-userId';
-import { connectToDatabase, deleteItem, getItems, getItemsByQuery, insertItem, updateItem } from 'utils/mongo';
+import {
+  connectToDatabase,
+  deleteItem,
+  getItems,
+  getItemsByQuery,
+  insertItem,
+  updateItem,
+} from 'utils/mongo';
 
 const COLLECTION = 'shipBuildsv2';
 
@@ -36,7 +43,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           }
         }
 
-        const oldBuild = await db.collection<IBuildInfov2>(COLLECTION).findOne({ _id: new ObjectId(updateBuild._id) });
+        const oldBuild = await db
+          .collection<IBuildInfov2>(COLLECTION)
+          .findOne({ _id: new ObjectId(updateBuild._id) });
 
         const updateResult = await updateItem(COLLECTION, updateBuild, db);
         await processOtherBuilds(updateBuild, db, oldBuild);
@@ -72,7 +81,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         break;
       case 'GET':
       default:
-        const result = await getItems<IBuildInfov2>(COLLECTION, db, 'shipId', 1);
+        const result = await getBuilds(db);
 
         res.status(200).send(result);
         break;
@@ -83,12 +92,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
+export const getBuilds = async (db: Db) => {
+  const items = await getItems<IBuildInfov2>(COLLECTION, db, 'shipId', 1);
+  return items.map((x) => {
+    x._id = x._id.toString();
+    return x;
+  });
+};
+
 /**
  * Verifies that other builds have the proper information such as VariantOf, Related, and Variant.
  * @param newBuild
  * @param db
  */
-const processOtherBuilds = async (newBuild: IBuildInfov2 | Partial<IBuildInfov2>, db: Db, oldBuild?: IBuildInfov2) => {
+const processOtherBuilds = async (
+  newBuild: IBuildInfov2 | Partial<IBuildInfov2>,
+  db: Db,
+  oldBuild?: IBuildInfov2
+) => {
   if (newBuild.related && newBuild.related !== oldBuild?.related) {
     const builds = await getItems<IBuildInfov2>(COLLECTION, db);
     const newRelated = newBuild.related.filter((x) => !oldBuild.related?.includes(x)) ?? [];
@@ -98,7 +119,11 @@ const processOtherBuilds = async (newBuild: IBuildInfov2 | Partial<IBuildInfov2>
       for (const bId of newRelated) {
         const b = builds.find((x) => x._id.toString() === bId);
         if (b) {
-          await updateItem(COLLECTION, { ...b, related: [...b.related, newBuild._id.toString()] }, db);
+          await updateItem(
+            COLLECTION,
+            { ...b, related: [...b.related, newBuild._id.toString()] },
+            db
+          );
         }
       }
     }

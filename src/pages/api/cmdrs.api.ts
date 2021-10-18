@@ -1,18 +1,13 @@
-import { IAmbassador, ICMDR, IGuest, IMember } from 'models/admin/cmdr';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
+import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getIsHC } from 'utils/get-isHC';
-import {
-  connectToDatabase,
-  getItems,
-  insertItem,
-  updateItem,
-} from 'utils/mongo';
+import { connectToDatabase, getItems, insertItem, updateItem } from 'utils/mongo';
 
 const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
   cmdr.rank === Rank.Ambassador;
-const determineCMDRisGuest = (cmdr: ICMDR): cmdr is IGuest =>
-  cmdr.rank === Rank.Guest;
+const determineCMDRisGuest = (cmdr: ICMDR): cmdr is IGuest => cmdr.rank === Rank.Guest;
 const determineCMDRisMember = (cmdr: ICMDR): cmdr is IMember =>
   cmdr.rank >= Rank.FleetAdmiral && cmdr.rank <= Rank.Reserve;
 
@@ -31,8 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
 
-        if (determineCMDRisMember(cmdr))
-          cmdr.joinDate = new Date(cmdr.joinDate);
+        if (determineCMDRisMember(cmdr)) cmdr.joinDate = new Date(cmdr.joinDate);
         cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
         await insertItem(COLLECTION, cmdr, db);
 
@@ -44,8 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        if (determineCMDRisMember(cmdr))
-          cmdr.joinDate = new Date(cmdr.joinDate);
+        if (determineCMDRisMember(cmdr)) cmdr.joinDate = new Date(cmdr.joinDate);
         cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
 
         const updateResult = await updateItem(COLLECTION, cmdr, db);
@@ -76,28 +69,29 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const result = await getItems<IAmbassador | IGuest | IMember>(
-          COLLECTION,
-          db,
-          'cmdrName',
-          1
-        );
+        const result = await getCmdrs(db);
 
-        const members: IMember[] = result.filter((x) =>
-          determineCMDRisMember(x)
-        ) as IMember[];
-        const guests: IGuest[] = result.filter((x) =>
-          determineCMDRisGuest(x)
-        ) as IGuest[];
-        const ambassadors: IAmbassador[] = result.filter((x) =>
-          determineCMDRisAmbassador(x)
-        ) as IAmbassador[];
-
-        res.status(200).send({ members, guests, ambassadors });
+        res.status(200).send(result);
         break;
     }
   } catch (e) {
     console.log(e);
     res.status(500).send(e.message);
   }
+};
+
+export const getCmdrs = async (db: Db): Promise<ICMDRs> => {
+  const items = await getItems<IAmbassador | IGuest | IMember>(COLLECTION, db, 'cmdrName', 1);
+  const newItems = items.map((x) => {
+    x._id = x._id.toString();
+    return x;
+  });
+
+  const members: IMember[] = newItems.filter((x) => determineCMDRisMember(x)) as IMember[];
+  const guests: IGuest[] = newItems.filter((x) => determineCMDRisGuest(x)) as IGuest[];
+  const ambassadors: IAmbassador[] = newItems.filter((x) =>
+    determineCMDRisAmbassador(x)
+  ) as IAmbassador[];
+
+  return { members, guests, ambassadors };
 };

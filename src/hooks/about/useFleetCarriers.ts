@@ -6,11 +6,14 @@ import useSWR from 'swr';
 
 const API_PATH = '/api/fc';
 
-export const useFleetCarriers = () => {
-  const { data, error, mutate } = useSWR(API_PATH, (url: string) => axios.get<IFleetCarrier[]>(url));
-
-  const fleetCarriers = useMemo(() => data?.data ?? [], [data?.data]);
-
+export const useFleetCarriers = (init?: IFleetCarrier[]) => {
+  const {
+    data: fleetCarriers,
+    error,
+    mutate,
+  } = useSWR(API_PATH, (url: string) => axios.get<IFleetCarrier[]>(url).then((data) => data?.data ?? []), {
+    fallbackData: init,
+  });
   const personalCarriers = useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => !x.purpose);
@@ -65,7 +68,7 @@ export const useFleetCarriers = () => {
     fleetCarriers,
     personalCarriers,
     squadCarriers,
-    isLoading: !error && !data,
+    isLoading: !error && !fleetCarriers,
     error,
     addCarrier,
     updateCarrier,

@@ -6,29 +6,21 @@ import useSWR from 'swr';
 const API_PATH = '/api/joinRequests';
 
 export const useJoinRequests = () => {
-  const { data, error } = useSWR(API_PATH, (url: string) => axios.get<IJoinRequest[]>(url));
-  const requests = useMemo(() => data?.data ?? [], [data.data]);
-
-  const loading = useMemo(() => !data && !error, [data, error]);
+  const { data: requests, error } = useSWR(
+    API_PATH,
+    (url: string) => axios.get<IJoinRequest[]>(url).then((data) => data?.data ?? []),
+    { fallbackData: [] }
+  );
 
   const members = useMemo(() => {
-    if (loading || error) {
-      return [];
-    }
     return requests.filter((x) => x.type === 'join');
-  }, [requests, loading, error]);
+  }, [requests]);
   const guests = useMemo(() => {
-    if (loading || error) {
-      return [];
-    }
     return requests.filter((x) => x.type === 'guest');
-  }, [requests, loading, error]);
+  }, [requests]);
   const ambassadors = useMemo(() => {
-    if (loading || error) {
-      return [];
-    }
     return requests.filter((x) => x.type === 'ambassador');
-  }, [requests, loading, error]);
+  }, [requests]);
 
   const addJoinRequest = async (request: IJoinRequest) => {
     try {
@@ -38,5 +30,5 @@ export const useJoinRequests = () => {
     }
   };
 
-  return { members, guests, ambassadors, loading, error, addJoinRequest };
+  return { members, guests, ambassadors, loading: !requests && !error, error, addJoinRequest };
 };

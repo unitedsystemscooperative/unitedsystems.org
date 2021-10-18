@@ -40,8 +40,8 @@ interface IBuildContext {
 
 export const BuildContext = createContext<IBuildContext | null>(null);
 
-export const BuildContextProvider = ({ children }: { children: ReactNode }) => {
-  const { shipBuilds, loading: isLoading, error, addBuild, updateBuild, deleteBuild } = useShipBuilds();
+export const BuildContextProvider = ({ children, init }: { children: ReactNode; init?: IBuildInfov2[] }) => {
+  const { shipBuilds, loading: isLoading, error, addBuild, updateBuild, deleteBuild } = useShipBuilds(init);
   const { enqueueSnackbar } = useSnackbar();
   const [showDeleteDialog, setShowDeleteDialog] = useState<IBuildInfov2 | undefined>(undefined);
 

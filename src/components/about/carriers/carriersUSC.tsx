@@ -14,16 +14,11 @@ import { CarrierTableRow } from './carrierTableRow';
  * Displays USC Carriers
  * @param props carriers to display
  */
-export const USCCarriers = (props: {
-  carriers: IFleetCarrier[] | undefined;
-}) => {
+export const USCCarriers = (props: { carriers: IFleetCarrier[] | undefined }) => {
   const { carriers } = props;
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{ textAlign: 'center', margin: 'auto' }}
-    >
+    <TableContainer component={Paper} sx={{ textAlign: 'center', margin: 'auto' }}>
       <Table>
         <TableHead>
           <TableRow>

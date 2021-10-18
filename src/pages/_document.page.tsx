@@ -1,11 +1,6 @@
 import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document';
+// eslint-disable-next-line @next/next/no-document-import-in-page
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { Children } from 'react';
 import { theme } from 'theme';
 
@@ -47,10 +42,7 @@ class MyDocument extends Document {
     return {
       ...initialProps,
       // Styles fragment is rendered after the app and page rendering finish.
-      styles: [
-        ...Children.toArray(initialProps.styles),
-        sheets.getStyleElement(),
-      ],
+      styles: [...Children.toArray(initialProps.styles), sheets.getStyleElement()],
     };
   }
 
@@ -62,10 +54,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/uscLogo.png" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
-            rel="stylesheet"
-          />
+          <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

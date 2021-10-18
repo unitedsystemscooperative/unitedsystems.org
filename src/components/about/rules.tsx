@@ -59,8 +59,7 @@ export const USCRules = () => {
                       <Tooltip title="Intentionally and Improperly closing the game/session to avoid dying in combat">
                         <Link
                           href="https://elite-dangerous.fandom.com/wiki/Combat_Logging"
-                          target="_blank"
-                        >
+                          target="_blank">
                           Combat Log
                         </Link>
                       </Tooltip>
@@ -80,12 +79,11 @@ export const USCRules = () => {
                   border: '3px solid white',
                   borderRadius: '10px',
                   padding: 1,
-                }}
-              >
-                Those found in violation of any of these Discord or Group rules,
-                or found attempting to bypass these rules in any way, will first
-                be subject to a minimum of a warning, further offences will be
-                subject to demotion, expulsion, and/or USC Kill-on-Sight status.
+                }}>
+                Those found in violation of any of these Discord or Group rules, or found attempting
+                to bypass these rules in any way, will first be subject to a minimum of a warning,
+                further offences will be subject to demotion, expulsion, and/or USC Kill-on-Sight
+                status.
               </Typography>
             </Grid>
           </Grid>

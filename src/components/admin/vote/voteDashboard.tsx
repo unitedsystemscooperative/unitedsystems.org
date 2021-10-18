@@ -1,12 +1,16 @@
 import { Container, Paper, Typography } from '@mui/material';
 import { useCMDRs } from 'hooks/useCmdrs';
+import { ICMDRs } from 'models/admin/cmdr';
 import { Rank } from 'models/admin/ranks';
 import { IVoter } from 'models/admin/voter';
 import { useEffect, useState } from 'react';
 import { Voter } from './voter';
 
-export const VoteDashboard = () => {
-  const { cmdrs, loading } = useCMDRs();
+export const VoteDashboard = ({ init }: { init?: ICMDRs }) => {
+  const {
+    cmdrs: { members },
+    loading,
+  } = useCMDRs(init);
   const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
 
   // useEffect(() => {
@@ -22,19 +26,14 @@ export const VoteDashboard = () => {
 
   useEffect(() => {
     if (!loading && voteInfo.length < 1) {
-      const hcCmdrs = cmdrs.members.filter(
-        (c) => c.rank <= Rank.Captain && c.isDeleted !== true
-      );
+      const hcCmdrs = members.filter((c) => c.rank <= Rank.Captain && c.isDeleted !== true);
       let hcVoters: IVoter[] = [];
       for (const voter of hcCmdrs) {
-        hcVoters = [
-          ...hcVoters,
-          { name: voter.cmdrName.toUpperCase(), hasVoted: null },
-        ];
+        hcVoters = [...hcVoters, { name: voter.cmdrName.toUpperCase(), hasVoted: null }];
       }
       setVoteInfo(hcVoters);
     }
-  }, [loading, cmdrs.members, voteInfo]);
+  }, [loading, members, voteInfo]);
 
   return (
     <>

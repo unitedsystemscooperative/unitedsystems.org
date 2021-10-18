@@ -54,31 +54,29 @@ const BuildSystemDisplay = () => {
   };
 
   return (
-    <BuildContextProvider>
-      <Container maxWidth="xl">
-        <Typography variant="h3" sx={{ textAlign: 'center' }}>
-          Ship Build Archive
-        </Typography>
-        <Query updateQuery={handleQuery} addBuild={handleAddBuild} />
-        <div ref={buildRef}>
-          <BuildList shipBuilds={queriedBuilds} />
-        </div>
-        <ShipImgAcknowledgement />
-        <Slide direction="left" in={isMobile} timeout={1000}>
-          <Box sx={{ position: 'fixed', bottom: '5px', right: '10px' }}>
-            <Fab color="primary" onClick={handleFab}>
-              <ArrowDownwardIcon />
-            </Fab>
-          </Box>
-        </Slide>
-      </Container>
-    </BuildContextProvider>
+    <Container maxWidth="xl">
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>
+        Ship Build Archive
+      </Typography>
+      <Query updateQuery={handleQuery} addBuild={handleAddBuild} />
+      <div ref={buildRef}>
+        <BuildList shipBuilds={queriedBuilds} />
+      </div>
+      <ShipImgAcknowledgement />
+      <Slide direction="left" in={isMobile} timeout={1000}>
+        <Box sx={{ position: 'fixed', bottom: '5px', right: '10px' }}>
+          <Fab color="primary" onClick={handleFab}>
+            <ArrowDownwardIcon />
+          </Fab>
+        </Box>
+      </Slide>
+    </Container>
   );
 };
 
-export const BuildSystem = () => {
+export const BuildSystem = ({ init }: { init?: IBuildInfov2[] }) => {
   return (
-    <BuildContextProvider>
+    <BuildContextProvider init={init}>
       <BuildSystemDisplay />
     </BuildContextProvider>
   );

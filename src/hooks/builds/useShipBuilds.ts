@@ -4,10 +4,14 @@ import useSWR from 'swr';
 
 const API_PATH = '/api/builds';
 
-export const useShipBuilds = () => {
-  const { data, error, mutate } = useSWR(API_PATH, (url: string) => axios.get<IBuildInfov2[]>(url));
-
-  const shipBuilds = data?.data ?? [];
+export const useShipBuilds = (init?: IBuildInfov2[]) => {
+  const {
+    data: shipBuilds,
+    error,
+    mutate,
+  } = useSWR(API_PATH, (url: string) => axios.get<IBuildInfov2[]>(url).then((data) => data?.data ?? []), {
+    fallbackData: init,
+  });
 
   const addBuild = async (build: IBuildInfov2) => {
     const data = await axios.post<IBuildInfov2[]>(API_PATH, build);
@@ -25,7 +29,7 @@ export const useShipBuilds = () => {
   };
 
   return {
-    loading: !error && !data,
+    loading: !error && !shipBuilds,
     shipBuilds,
     error,
     addBuild,

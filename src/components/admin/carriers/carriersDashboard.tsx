@@ -30,13 +30,11 @@ const defaultIconProps: Partial<IconButtonProps> = {
 };
 
 /** Displays Fleet Carrier Information */
-export const CarriersDashboard = () => {
-  const { fleetCarriers, isLoading } = useFleetCarriers();
+export const CarriersDashboard = ({ init }: { init?: IFleetCarrier[] }) => {
+  const { fleetCarriers, isLoading } = useFleetCarriers(init);
 
   const [openDialog, setOpenDialog] = useState(false);
-  const [dialogValues, setDialogValues] = useState<IFleetCarrier | undefined>(
-    undefined
-  );
+  const [dialogValues, setDialogValues] = useState<IFleetCarrier | undefined>(undefined);
   const { addCarrier, updateCarrier, deleteCarrier } = useFleetCarriers();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -56,12 +54,9 @@ export const CarriersDashboard = () => {
           await addCarrier(carrier);
         }
       } catch (e) {
-        enqueueSnackbar(
-          `Failed to add or update carrier. Reason: ${e.message}`,
-          {
-            variant: 'error',
-          }
-        );
+        enqueueSnackbar(`Failed to add or update carrier. Reason: ${e.message}`, {
+          variant: 'error',
+        });
       }
     }
   };
@@ -86,13 +81,8 @@ export const CarriersDashboard = () => {
         textAlign: 'center',
         p: 1,
         my: 1,
-      }}
-    >
-      <TitleBarwAdd
-        title="Carrier Management"
-        addTip="Add a carrier"
-        addItem={handleOpenDialog}
-      />
+      }}>
+      <TitleBarwAdd title="Carrier Management" addTip="Add a carrier" addItem={handleOpenDialog} />
       <TableContainer>
         <Table>
           <TableHead>
@@ -110,16 +100,10 @@ export const CarriersDashboard = () => {
                 <TableCell>{carrier.purpose}</TableCell>
                 <CarrierTableRow carrier={carrier} />
                 <TableCell>
-                  <StyledIconButton
-                    {...defaultIconProps}
-                    onClick={() => handleOpenDialog(carrier)}
-                  >
+                  <StyledIconButton {...defaultIconProps} onClick={() => handleOpenDialog(carrier)}>
                     <Edit />
                   </StyledIconButton>
-                  <StyledIconButton
-                    {...defaultIconProps}
-                    onClick={() => handleDelete(carrier)}
-                  >
+                  <StyledIconButton {...defaultIconProps} onClick={() => handleDelete(carrier)}>
                     <Delete />
                   </StyledIconButton>
                 </TableCell>
@@ -128,11 +112,7 @@ export const CarriersDashboard = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <CarrierDialog
-        values={dialogValues}
-        open={openDialog}
-        onClose={handleDialogClose}
-      />
+      <CarrierDialog values={dialogValues} open={openDialog} onClose={handleDialogClose} />
     </Container>
   );
 };

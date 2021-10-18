@@ -29,8 +29,7 @@ export const AboutLinks = (props: ISectionProps) => {
           margin: 'auto',
           padding: 1,
           marginBottom: 1,
-        }}
-      >
+        }}>
         <Box sx={{ display: 'grid', gridTemplateRows: 'auto' }}>
           <Box
             sx={{
@@ -40,23 +39,17 @@ export const AboutLinks = (props: ISectionProps) => {
               '& a': {
                 margin: 1,
               },
-            }}
-          >
+            }}>
             {buttons
               .filter((x) => x.beginner === true)
               .map((guide) => {
                 if (guide.local === true) {
                   return (
                     <NavLink href={guide.link} key={guide.title} passHref>
-                      <Button
-                        variant="outlined"
-                        color={guide.beginner ? 'secondary' : 'primary'}
-                      >
+                      <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography>{guide.title}</Typography>
-                          <Typography variant="caption">
-                            {guide.caption}
-                          </Typography>
+                          <Typography variant="caption">{guide.caption}</Typography>
                         </Box>
                       </Button>
                     </NavLink>
@@ -68,13 +61,10 @@ export const AboutLinks = (props: ISectionProps) => {
                       color={guide.beginner ? 'secondary' : 'primary'}
                       href={guide.link}
                       target="_blank"
-                      key={guide.title}
-                    >
+                      key={guide.title}>
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography>{guide.title}</Typography>
-                        <Typography variant="caption">
-                          {guide.caption}
-                        </Typography>
+                        <Typography variant="caption">{guide.caption}</Typography>
                       </Box>
                     </Button>
                   );
@@ -89,23 +79,17 @@ export const AboutLinks = (props: ISectionProps) => {
               '& a': {
                 margin: 1,
               },
-            }}
-          >
+            }}>
             {buttons
               .filter((x) => x.beginner === false)
               .map((guide) => {
                 if (guide.local === true) {
                   return (
                     <NavLink key={guide.title} href={guide.link} passHref>
-                      <Button
-                        variant="outlined"
-                        color={guide.beginner ? 'secondary' : 'primary'}
-                      >
+                      <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography>{guide.title}</Typography>
-                          <Typography variant="caption">
-                            {guide.caption}
-                          </Typography>
+                          <Typography variant="caption">{guide.caption}</Typography>
                         </Box>
                       </Button>
                     </NavLink>
@@ -117,13 +101,10 @@ export const AboutLinks = (props: ISectionProps) => {
                       color={guide.beginner ? 'secondary' : 'primary'}
                       href={guide.link}
                       target="_blank"
-                      key={guide.title}
-                    >
+                      key={guide.title}>
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography>{guide.title}</Typography>
-                        <Typography variant="caption">
-                          {guide.caption}
-                        </Typography>
+                        <Typography variant="caption">{guide.caption}</Typography>
                       </Box>
                     </Button>
                   );

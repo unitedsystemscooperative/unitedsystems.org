@@ -1,25 +1,34 @@
 import axios from 'axios';
-import { IAmbassador, ICMDR, IGuest, IMember } from 'models/admin/cmdr';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from 'models/admin/cmdr';
 import { Rank, RankString } from 'models/admin/ranks';
 import useSWR from 'swr';
 
-const checkInstanceofAmbassador = (cmdr: ICMDR): cmdr is IAmbassador => cmdr.rank === Rank.Ambassador;
+const checkInstanceofAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
+  cmdr.rank === Rank.Ambassador;
 const checkInstanceofGuest = (cmdr: ICMDR): cmdr is IGuest => cmdr.rank === Rank.Guest;
 const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
   cmdr.rank >= Rank.FleetAdmiral && cmdr.rank <= Rank.Reserve;
 
 const API_PATH = '/api/cmdrs';
 
-export const useCMDRs = () => {
-  const { data, error, mutate } = useSWR(API_PATH, (url: string) =>
-    axios.get<{
-      members: IMember[];
-      guests: IGuest[];
-      ambassadors: IAmbassador[];
-    }>(url)
+export const useCMDRs = (init?: ICMDRs) => {
+  const {
+    data: cmdrs,
+    error,
+    mutate,
+  } = useSWR(
+    API_PATH,
+    (url: string) =>
+      axios
+        .get<{
+          members: IMember[];
+          guests: IGuest[];
+          ambassadors: IAmbassador[];
+        }>(url)
+        .then((data) => data.data),
+    { fallbackData: init }
   );
 
-  const cmdrs = data?.data ?? { members: [], guests: [], ambassadors: [] };
   cmdrs.members = cmdrs.members.map((cmdr) => {
     cmdr.joinDate = new Date(cmdr.joinDate);
     cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
@@ -139,7 +148,7 @@ export const useCMDRs = () => {
 
   return {
     cmdrs,
-    loading: !error && !data,
+    loading: !error && !cmdrs,
     error,
     addCMDR,
     updateCMDR,

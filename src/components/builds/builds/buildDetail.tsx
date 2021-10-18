@@ -1,4 +1,14 @@
-import { Box, Button, Container, Divider, Paper, styled, Theme, Typography, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Paper,
+  styled,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { USCMarkdown } from 'components/uscmarkdown';
 import { BoxwMB1 } from 'components/_common';
 import { CenteredTypography } from 'components/_common/typography';
@@ -92,7 +102,11 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
               Show Build
             </Button>
             <div style={{ display: 'grid', gridTemplate: '1fr 1fr / 1fr 1fr' }}>
-              <Button variant="outlined" color="secondary" href={shipInfo.shipReview} target="_blank">
+              <Button
+                variant="outlined"
+                color="secondary"
+                href={shipInfo.shipReview}
+                target="_blank">
                 {`Pilot's Review`}
               </Button>
               <Button
@@ -105,7 +119,10 @@ const BuildDetailFull = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps) =
               <Button variant="outlined" color="secondary" onClick={() => addBuild()}>
                 Add Build
               </Button>
-              <Button variant="outlined" color="secondary" onClick={() => addBuild(foundBuild._id.toString())}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => addBuild(foundBuild._id.toString())}>
                 Add Related
               </Button>
             </div>
@@ -146,7 +163,9 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
   return (
     <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
       <FlexRow>
-        {shipInfo && <NoShrinkImg src={shipInfo.shipImg} alt={shipInfo.name} width={150} height={150} />}
+        {shipInfo && (
+          <NoShrinkImg src={shipInfo.shipImg} alt={shipInfo.name} width={150} height={150} />
+        )}
         <div>
           <Typography variant="h5">{foundBuild.title}</Typography>
           <Typography>Author: {foundBuild.author}</Typography>
@@ -180,7 +199,11 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
             <Button variant="outlined" color="secondary" href={shipInfo.shipReview} target="_blank">
               Pilot's Review
             </Button>
-            <Button variant="outlined" color="secondary" href={`${blueprints}?s=${shipInfo.blueprint}`} target="_blank">
+            <Button
+              variant="outlined"
+              color="secondary"
+              href={`${blueprints}?s=${shipInfo.blueprint}`}
+              target="_blank">
               Ship Anatomy
             </Button>
           </>
@@ -189,7 +212,10 @@ const BuildDetailMobile = ({ shipInfo, foundBuild, addBuild }: BuildDetailProps)
         <Button variant="outlined" color="secondary" onClick={() => addBuild()}>
           Add Build
         </Button>
-        <Button variant="outlined" color="secondary" onClick={() => addBuild(foundBuild._id.toString())}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => addBuild(foundBuild._id.toString())}>
           Add Related
         </Button>
       </Box>
@@ -229,9 +255,9 @@ export const BuildDetailDisplay = () => {
   );
 };
 
-export const BuildDetail = () => {
+export const BuildDetail = ({ init }: { init?: IBuildInfov2[] }) => {
   return (
-    <BuildContextProvider>
+    <BuildContextProvider init={init}>
       <BuildDetailDisplay />
     </BuildContextProvider>
   );
