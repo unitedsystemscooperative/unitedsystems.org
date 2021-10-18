@@ -28,7 +28,7 @@
       "models/*": ["src/models/*"],
       "providers/*": ["src/providers/*"],
       "utils/*": ["src/utils/*"],
-      "theme": ["src/theme.ts"]
+      "styles/*": ["src/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "usc.d.ts", "**/*.ts", "**/*.tsx"],

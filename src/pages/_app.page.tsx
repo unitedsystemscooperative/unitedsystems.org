@@ -1,4 +1,3 @@
-import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -9,12 +8,13 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import { useEffect } from 'react';
-import { theme } from 'theme';
+import createEmotionCache from 'styles/createEmotionCache';
+import { theme } from 'styles/theme';
 import info from '../../package.json';
 
-const USCEmotionCache = createCache({ key: 'css' });
+const USCEmotionCache = createEmotionCache();
 
-interface USCAppProps extends AppProps {
+export interface USCAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
