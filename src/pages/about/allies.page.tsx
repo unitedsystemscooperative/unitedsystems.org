@@ -4,7 +4,7 @@ import { IAlly } from 'models/about/ally';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { connectToDatabase } from 'utils/mongo';
-import { getAllies } from '../api/allies';
+import { getAllies } from '../api/allies.api';
 
 const AlliesPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (

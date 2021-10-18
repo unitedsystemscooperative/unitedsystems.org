@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withPWA = require('next-pwa');
 
+/**
+ * @type {import('next').NextConfig}
+ */
 module.exports = withPWA({
   pwa: { dest: 'public' },
   experimental: { esmExternals: true },
+  pageExtensions: ['page.tsx', 'api.ts'],
   async redirects() {
     return [
       { source: '/', destination: '/home', permanent: true },

@@ -3,7 +3,7 @@ import { IAlly } from 'models/about/ally';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { runAdminAuthCheck } from 'utils/runAuthCheck';
-import { getAllies } from '../api/allies';
+import { getAllies } from '../api/allies.api';
 
 const AlliesManagementPage = ({ data }: { data: IAlly[] }) => {
   return (
