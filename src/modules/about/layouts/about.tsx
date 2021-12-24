@@ -1,7 +1,7 @@
+import { CenteredTypography } from '@/components/_common/typography';
+import { AboutLinks } from '@@/about/components/links';
+import { uscLinksList } from '@@/about/data';
 import { Container } from '@mui/material';
-import { AboutLinks } from 'components/about/links';
-import { CenteredTypography } from 'components/_common/typography';
-import { uscLinksList } from 'data/about';
 import { ReactNode } from 'react';
 
 export const AboutLayout = ({ children }: { children: ReactNode }) => {
@@ -9,12 +9,7 @@ export const AboutLayout = ({ children }: { children: ReactNode }) => {
     <>
       <Container maxWidth="md">
         <CenteredTypography variant="h3">About USC</CenteredTypography>
-        <AboutLinks
-          id="usc-links"
-          key="usc-links"
-          header="USC Links"
-          buttons={uscLinksList}
-        />
+        <AboutLinks id="usc-links" key="usc-links" header="USC Links" buttons={uscLinksList} />
       </Container>
       {children}
     </>

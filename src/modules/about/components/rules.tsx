@@ -1,3 +1,4 @@
+import { discordRules, memberRules } from '@@/about/data';
 import {
   Box,
   Container,
@@ -12,7 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 import { SxProps } from '@mui/system';
-import { discordRules, memberRules } from 'data/about';
 
 /** Displays the rules */
 export const USCRules = () => {

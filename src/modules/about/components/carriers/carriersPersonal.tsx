@@ -1,3 +1,4 @@
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import {
   Paper,
   Table,
@@ -7,7 +8,6 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { CarrierTableRow } from './carrierTableRow';
 
 /**

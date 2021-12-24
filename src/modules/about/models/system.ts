@@ -1,4 +1,4 @@
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
 
 export interface System extends IDbItem {
   name: string;

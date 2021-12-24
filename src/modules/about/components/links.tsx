@@ -1,5 +1,5 @@
+import { IInfoButton } from '@/models/information/infoButtonModel';
 import { Box, Button, Container, Paper, Typography } from '@mui/material';
-import { IInfoButton } from 'models/information/infoButtonModel';
 import NavLink from 'next/link';
 
 /** Interface for Info Section Props */

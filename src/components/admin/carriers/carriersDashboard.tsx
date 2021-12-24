@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { CarrierTableRow } from 'components/about/carriers/carrierTableRow';
+import { CarrierTableRow } from 'src/modules/about/components/carriers/carrierTableRow';
 import { TitleBarwAdd } from 'components/_common';
 import { useFleetCarriers } from 'hooks/about/useFleetCarriers';
 import { IFleetCarrier } from 'models/about/fleetCarrier';

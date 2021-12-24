@@ -1,3 +1,6 @@
+import { buildInaraLink } from '@/functions/buildInaraLink';
+import { useSystems } from '@@/about/hooks/useSystems';
+import { System } from '@@/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Container,
@@ -10,9 +13,6 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { buildInaraLink } from 'functions/buildInaraLink';
-import { useSystems } from 'hooks/about/useSystems';
-import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 

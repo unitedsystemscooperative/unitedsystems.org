@@ -1,4 +1,4 @@
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
 
 export interface IFleetCarrier extends IDbItem {
   owner: string;

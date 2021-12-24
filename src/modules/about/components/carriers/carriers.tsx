@@ -1,7 +1,7 @@
+import { useFleetCarriers } from '@@/about/hooks/useFleetCarriers';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Container, Typography } from '@mui/material';
-import { useFleetCarriers } from 'hooks/about/useFleetCarriers';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { PersonalCarriers } from './carriersPersonal';
 import { USCCarriers } from './carriersUSC';
 

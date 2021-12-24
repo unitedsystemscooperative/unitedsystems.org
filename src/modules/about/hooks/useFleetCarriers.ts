@@ -1,6 +1,6 @@
+import { genericSortArray } from '@/functions/sort';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import axios from 'axios';
-import { genericSortArray } from 'functions/sort';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 
@@ -11,9 +11,13 @@ export const useFleetCarriers = (init?: IFleetCarrier[]) => {
     data: fleetCarriers,
     error,
     mutate,
-  } = useSWR(API_PATH, (url: string) => axios.get<IFleetCarrier[]>(url).then((data) => data?.data ?? []), {
-    fallbackData: init,
-  });
+  } = useSWR(
+    API_PATH,
+    (url: string) => axios.get<IFleetCarrier[]>(url).then((data) => data?.data ?? []),
+    {
+      fallbackData: init,
+    }
+  );
   const personalCarriers = useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => !x.purpose);

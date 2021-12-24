@@ -1,5 +1,5 @@
+import { IAlly } from '@@/about/models/ally';
 import axios from 'axios';
-import { IAlly } from 'models/about/ally';
 import useSWR from 'swr';
 
 const API_PATH = '/api/allies';

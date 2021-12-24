@@ -1,5 +1,5 @@
+import { System } from '@@/about/models/system';
 import axios from 'axios';
-import { System } from 'models/about/system';
 import useSWR from 'swr';
 
 const API_PATH = '/api/systems';

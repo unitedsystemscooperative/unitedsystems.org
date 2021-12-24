@@ -1,5 +1,5 @@
-import { IInfoButton } from 'models/information/infoButtonModel';
-import { getLinks } from 'hooks/useLinks';
+import { getLinks } from '@/hooks/useLinks';
+import { IInfoButton } from '@/models/information/infoButtonModel';
 const { inaraSquadLink, discordLink, patreonLink, youtube } = getLinks();
 export const uscLinksList: IInfoButton[] = [
   {
