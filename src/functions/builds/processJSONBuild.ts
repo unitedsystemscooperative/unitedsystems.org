@@ -15,34 +15,38 @@ export const processJSONBuild = (
   engineering: boolean;
   url: string;
 } => {
-  const build: ICoriolisLoadout = JSON.parse(json);
+  try {
+    const build: ICoriolisLoadout = JSON.parse(json);
 
-  const buildName = build.name;
-  const shipId = build.references[0].shipId ?? '';
-  const url = build.references[0].url ?? '';
+    const buildName = build.name;
+    const shipId = build.references[0].shipId ?? '';
+    const url = build.references[0].url ?? '';
 
-  const components = build.components;
-  const core = components.standard;
-  const hardpoints = components.hardpoints;
-  const internals = components.internal;
+    const components = build.components;
+    const core = components.standard;
+    const hardpoints = components.hardpoints;
+    const internals = components.internal;
 
-  // Check for Guardian
-  const hasGuardian = checkGuardian(core, hardpoints, internals);
+    // Check for Guardian
+    const hasGuardian = checkGuardian(core, hardpoints, internals);
 
-  // Check for PowerPlay
-  const hasPowerplay = checkPowerplay(internals, hardpoints);
+    // Check for PowerPlay
+    const hasPowerplay = checkPowerplay(internals, hardpoints);
 
-  // Check for engineering
-  const engineering = checkEngineering(hardpoints, internals, core);
+    // Check for engineering
+    const engineering = checkEngineering(hardpoints, internals, core);
 
-  return {
-    buildName,
-    shipId,
-    hasGuardian,
-    hasPowerplay,
-    engineering,
-    url,
-  };
+    return {
+      buildName,
+      shipId,
+      hasGuardian,
+      hasPowerplay,
+      engineering,
+      url,
+    };
+  } catch (e) {
+    throw e;
+  }
 };
 
 /**
@@ -85,10 +89,7 @@ const checkEngineering = (
  * @param internals
  * @param hardpoints
  */
-const checkPowerplay = (
-  internals: IShipInternalModules,
-  hardpoints: IShipHardpoints
-) => {
+const checkPowerplay = (internals: IShipInternalModules, hardpoints: IShipHardpoints) => {
   let powerplay = false;
   const powerplayWeaponNames = [
     'disruptor',
@@ -102,9 +103,7 @@ const checkPowerplay = (
     'pacifier',
     'rocket propelled fsd disruptor',
   ];
-  const powerplayInternals = internals.find((x) =>
-    x?.group?.toLowerCase().startsWith('prismatic')
-  );
+  const powerplayInternals = internals.find((x) => x?.group?.toLowerCase().startsWith('prismatic'));
   if (powerplay === false && powerplayInternals) {
     powerplay = true;
   }
@@ -133,12 +132,8 @@ const checkGuardian = (
   let guardian = false;
   const ppName = (core.powerPlant.name as string) ?? '';
   const pdName = (core.powerDistributor.name as string) ?? '';
-  const guardianHardPoints = hardpoints.find((x) =>
-    x?.group?.toLowerCase().startsWith('guardian')
-  );
-  const guardianInternals = internals.find((x) =>
-    x?.group?.toLowerCase().startsWith('guardian')
-  );
+  const guardianHardPoints = hardpoints.find((x) => x?.group?.toLowerCase().startsWith('guardian'));
+  const guardianInternals = internals.find((x) => x?.group?.toLowerCase().startsWith('guardian'));
   if (
     ppName.toLowerCase().startsWith('guardian') ||
     pdName.toLowerCase().startsWith('guardian') ||

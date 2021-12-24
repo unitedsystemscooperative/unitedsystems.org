@@ -18,7 +18,10 @@ export type FindBuildandShipInfoFunc = (
   builds?: IBuildInfov2[]
 ) => { build: IBuildInfov2; shipInfo: IShipInfo } | null;
 
-const findBuildandShipInfo: FindBuildandShipInfoFunc = (buildId: string, builds: IBuildInfov2[]) => {
+const findBuildandShipInfo: FindBuildandShipInfoFunc = (
+  buildId: string,
+  builds: IBuildInfov2[]
+) => {
   const build = builds.find((x) => x._id.toString() === buildId);
 
   if (build) {
@@ -40,26 +43,50 @@ interface IBuildContext {
 
 export const BuildContext = createContext<IBuildContext | null>(null);
 
-export const BuildContextProvider = ({ children, init }: { children: ReactNode; init?: IBuildInfov2[] }) => {
-  const { shipBuilds, loading: isLoading, error, addBuild, updateBuild, deleteBuild } = useShipBuilds(init);
+export const BuildContextProvider = ({
+  children,
+  init,
+}: {
+  children: ReactNode;
+  init?: IBuildInfov2[];
+}) => {
+  const {
+    shipBuilds,
+    loading: isLoading,
+    error,
+    addBuild,
+    updateBuild,
+    deleteBuild,
+  } = useShipBuilds(init);
   const { enqueueSnackbar } = useSnackbar();
   const [showDeleteDialog, setShowDeleteDialog] = useState<IBuildInfov2 | undefined>(undefined);
 
-  const handleDialogClose = async () => {
-    const { build } = dialogProps;
-    if (build) {
+  const handleDialogClose = async (newBuild?: IBuildInfov2) => {
+    if (newBuild) {
       try {
-        if (build._id) await updateBuild(build);
-        else await addBuild(build);
+        if (newBuild._id) await updateBuild(newBuild);
+        else await addBuild(newBuild);
 
-        setDialogProps((prev) => ({ ...prev, open: false, addType: undefined, refId: undefined, build: undefined }));
+        setDialogProps((prev) => ({
+          ...prev,
+          open: false,
+          addType: undefined,
+          refId: undefined,
+          build: undefined,
+        }));
         enqueueSnackbar('Build successfully submitted', { variant: 'success' });
       } catch (e) {
         enqueueSnackbar(`Submit Failed: ${e.message}`, { variant: 'error' });
         console.error(e);
       }
     } else {
-      setDialogProps((prev) => ({ ...prev, open: false, addType: undefined, refId: undefined, build: undefined }));
+      setDialogProps((prev) => ({
+        ...prev,
+        open: false,
+        addType: undefined,
+        refId: undefined,
+        build: undefined,
+      }));
     }
   };
 

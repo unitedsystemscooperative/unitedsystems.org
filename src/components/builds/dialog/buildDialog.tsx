@@ -12,7 +12,7 @@ import {
 import { getShipInfofromID, processJSONBuild } from 'functions/builds';
 import { groupandSortBuilds } from 'functions/builds/groupandSortBuilds';
 import { IBuildInfov2, IShipInfo } from 'models/builds';
-import { useSnackbar } from 'notistack';
+import { OptionsObject, SnackbarKey, SnackbarMessage, useSnackbar } from 'notistack';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useMemo, useReducer } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
 import { QuerySpecialties } from '../query/querySpecialities';
@@ -44,24 +44,18 @@ const DEFAULTBUILD: IBuildInfov2 = {
   jsonBuild: '',
 };
 
-function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2): IBuildInfov2;
-function findBuildValue(builds: IBuildInfov2[], ids: (string | IBuildInfov2)[]): IBuildInfov2[];
-function findBuildValue(builds: IBuildInfov2[], ids: string | IBuildInfov2 | (string | IBuildInfov2)[]) {
-  if (Array.isArray(ids)) {
-    if (ids.length < 1) return [];
-    const results = ids.map((x) => builds.find((y) => y._id.toString() === x));
-    return results;
-  }
-  if (ids) {
-    const result = builds.find((x) => x._id.toString() === ids);
-    return result;
-  }
+function isOptionEqualToValue(option: IBuildInfov2, value: IBuildInfov2): boolean {
+  return option._id.toString() === value._id.toString();
 }
 
 type action =
   | { type: 'default'; value?: string }
   | { type: 'build'; value: IBuildInfov2 }
-  | { type: 'json'; value: string }
+  | {
+      type: 'json';
+      value: string;
+      enqueueSnackbar: (message: SnackbarMessage, options: OptionsObject) => SnackbarKey;
+    }
   | { type: 'title' | 'description' | 'buildLink' | 'author'; value: string }
   | { type: 'ship'; value: string }
   | { type: 'engLevel'; value: number }
@@ -79,20 +73,33 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
       newState = action.value;
       break;
     case 'json':
-      const { buildName, shipId, hasGuardian, hasPowerplay, engineering, url } = processJSONBuild(action.value);
-      const engLevel = engineering ? 1 : 0;
-      newState = {
-        ...newState,
-        title: buildName,
-        hasGuardian,
-        hasPowerplay,
-        buildLink: url,
-        shipId,
-        specializations: [],
-        engLevel,
-        isBeginner: false,
-        jsonBuild: action.value,
-      };
+      try {
+        const { buildName, shipId, hasGuardian, hasPowerplay, engineering, url } = processJSONBuild(
+          action.value
+        );
+        const engLevel = engineering ? 1 : 0;
+        newState = {
+          ...newState,
+          title: buildName,
+          hasGuardian,
+          hasPowerplay,
+          buildLink: url,
+          shipId,
+          specializations: [],
+          engLevel,
+          isBeginner: false,
+          jsonBuild: action.value,
+        };
+        action.enqueueSnackbar(
+          'JSON parsed. Title, Build Link, Ship Type, Engineering, Guardian, and PowerPlay have been updated.',
+          { variant: 'success' }
+        );
+      } catch (e) {
+        action.enqueueSnackbar(
+          'Issue parsing JSON. Was it copy/pasted correctly?\nNo changes have been made to the build.',
+          { variant: 'warning' }
+        );
+      }
       break;
     case 'title':
     case 'description':
@@ -115,7 +122,6 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
       newState = { ...newState, specializations: action.value };
       break;
     case 'relateds':
-      console.log(action.value);
       newState = {
         ...newState,
         related: action.value.map((x) => {
@@ -128,7 +134,6 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
 
   return newState;
 };
-
 interface BuildwShipType extends IBuildInfov2 {
   shipType: string;
 }
@@ -140,6 +145,7 @@ interface BuildwShipType extends IBuildInfov2 {
  */
 export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialogProps) => {
   const { enqueueSnackbar } = useSnackbar();
+
   const [newBuild, dispatch] = useReducer(buildReducer, DEFAULTBUILD);
 
   const buildswShipType: BuildwShipType[] = useMemo(() => {
@@ -167,9 +173,12 @@ export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialog
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
-    if (id === 'json' || id === 'title' || id === 'description' || id === 'buildLink' || id === 'author') {
+    if (id === 'title' || id === 'description' || id === 'buildLink' || id === 'author') {
       const value = event.target.value;
       dispatch({ type: id, value });
+    } else if (id === 'json') {
+      const value = event.target.value;
+      dispatch({ type: id, value, enqueueSnackbar });
     } else if (id === 'isBeginner' || id === 'hasGuardian' || id === 'hasPowerplay') {
       const value = event.target.checked;
       dispatch({ type: id, value });
@@ -192,6 +201,8 @@ export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialog
       if (newBuild.author === '') throw new Error('Author is blank.');
       if (newBuild.description === '') throw new Error('Description is blank.');
       if (newBuild.title === '') throw new Error('Build Title is blank.');
+      if (builds.find((x) => x.title.trim().toUpperCase() === newBuild.title.trim().toUpperCase()))
+        throw new Error('Duplicate build title. Build title must be unique.');
       if (newBuild.buildLink === '')
         throw new Error('Build Link is blank. Verify you have pasted the JSON from Coriolis.');
 
@@ -269,9 +280,12 @@ export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialog
           maxHeight: 600,
         }}>
         <Typography>
-          Save your build in Coriolis and choose Export. Paste the exported JSON into the Exported JSON field.
+          Save your build in Coriolis and choose Export. Paste the exported JSON into the Exported
+          JSON field.
         </Typography>
-        <Typography>Verify/enter remaining information and click Submit Build at the bottom.</Typography>
+        <Typography>
+          Verify/enter remaining information and click Submit Build at the bottom.
+        </Typography>
         {textFields.map((field) => (
           <Fragment key={field.id}>
             <BuildAddText {...field} />
@@ -285,13 +299,20 @@ export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialog
             )}
           </Fragment>
         ))}
-        <ShipAutocomplete shipType={newBuild.shipId} handleShipChange={handleShipChange} disableClearable />
+        <ShipAutocomplete
+          shipType={newBuild.shipId}
+          handleShipChange={handleShipChange}
+          disableClearable
+        />
         <QuerySpecialties
           selectedSpecialties={newBuild.specializations}
           setSpecialties={(value) => dispatch({ type: 'specialties', value })}
         />
         <div style={{ textAlign: 'center', margin: '0 auto' }}>
-          <EngToggleGroup engLevel={newBuild.engLevel} handleEngLevelChange={handleEngLevelChange} />
+          <EngToggleGroup
+            engLevel={newBuild.engLevel}
+            handleEngLevelChange={handleEngLevelChange}
+          />
         </div>
         <FormGroup row style={{ textAlign: 'center', margin: '0 auto' }}>
           {checkFields.map((check) => (
@@ -306,8 +327,13 @@ export const BuildDialog = ({ open, build, builds, refId, onClose }: BuildDialog
           groupBy={(b: BuildwShipType) => b.shipType}
           renderOption={(liprops, option) => <BuildOption shipBuild={option} {...liprops} />}
           filterSelectedOptions
-          renderInput={(params) => <TextField {...params} variant="standard" label="Related Builds" />}
-          value={findBuildValue(builds, newBuild.related)}
+          renderInput={(params) => (
+            <TextField {...params} variant="standard" label="Related Builds" />
+          )}
+          isOptionEqualToValue={(option: IBuildInfov2, value: IBuildInfov2) =>
+            option._id.toString() === value._id.toString()
+          }
+          value={newBuild.related.map((x) => builds.find((y) => y._id.toString() === x))}
           onChange={(_, value) => dispatch({ type: 'relateds', value: value })}
         />
       </DialogContent>
