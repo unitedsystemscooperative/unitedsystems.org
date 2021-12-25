@@ -17,6 +17,7 @@
     "paths": {
       "public/*": ["public/*"],
       "@/*": ["src/*"],
+      "#/*": ["src/pages/api/*"],
       "@@/about/*": ["src/modules/about/*"]
     }
   },

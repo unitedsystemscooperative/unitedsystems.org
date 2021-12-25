@@ -1,4 +1,4 @@
-import { IInfoButton } from '@/models/information/infoButtonModel';
+import { IInfoButton } from '@/modules/information/models/infoButtonModel';
 import { Box, Button, Container, Paper, Typography } from '@mui/material';
 import NavLink from 'next/link';
 
