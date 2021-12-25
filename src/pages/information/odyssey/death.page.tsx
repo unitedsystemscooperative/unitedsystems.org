@@ -1,4 +1,4 @@
-import { OdysseyDeath } from 'components/information/odyssey/death';
+import { OdysseyDeath } from '@@/information/components/odyssey/death';
 import Head from 'next/head';
 
 const OdyDeathPage = () => {
@@ -6,10 +6,7 @@ const OdyDeathPage = () => {
     <>
       <Head>
         <title>USC | Odyssey Death</title>
-        <meta
-          name="description"
-          content="What happens on player death in Odyssey?"
-        />
+        <meta name="description" content="What happens on player death in Odyssey?" />
       </Head>
       <OdysseyDeath />
     </>

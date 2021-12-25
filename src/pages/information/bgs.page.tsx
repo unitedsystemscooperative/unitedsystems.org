@@ -1,4 +1,4 @@
-import { BGSInfo } from 'components/information/bgs';
+import { BGSInfo } from '@@/information/components/bgs';
 import Head from 'next/head';
 
 const BGSPage = () => {
@@ -6,10 +6,7 @@ const BGSPage = () => {
     <>
       <Head>
         <title>BGS General Info</title>
-        <meta
-          name="description"
-          content="Background Information (BGS) General Information"
-        />
+        <meta name="description" content="Background Information (BGS) General Information" />
       </Head>
       <BGSInfo />
     </>

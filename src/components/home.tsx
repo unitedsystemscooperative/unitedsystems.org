@@ -1,6 +1,5 @@
+import { latin, latinTranslation, lore } from '@/data/home';
 import { Box, Container, Paper, Typography, useTheme } from '@mui/material';
-// import { useDownloadLink } from 'hooks/useDownloadLink';
-import { latin, latinTranslation, lore } from 'data/home';
 
 export const Home = () => {
   const theme = useTheme();
@@ -23,8 +22,7 @@ export const Home = () => {
             [theme.breakpoints.down('md')]: {
               width: '100%',
             },
-          }}
-        >
+          }}>
           <Typography
             sx={{
               fontFamily: 'Cinzel, serif',
@@ -33,8 +31,7 @@ export const Home = () => {
                 fontSize: 24,
               },
             }}
-            variant="h4"
-          >
+            variant="h4">
             {latin}
           </Typography>
           <Typography variant="subtitle2" sx={{ flex: '0 0' }}>

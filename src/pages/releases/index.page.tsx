@@ -1,6 +1,6 @@
+import { getReleases } from '@@/releases/getReleases';
+import { ReleaseInfo } from '@@/releases/releaseInfo';
 import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
-import { getReleases } from 'functions/releases/getReleases';
-import { ReleaseInfo } from 'models/releaseInfo';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -32,13 +32,14 @@ const ReleaseIndexPage = ({ allReleases }: InferGetStaticPropsType<typeof getSta
   );
 };
 
-export const getStaticProps: GetStaticProps<{ allReleases: Omit<ReleaseInfo, 'content'>[] }> = () => {
-  const allReleases = getReleases();
-  return {
-    props: {
-      allReleases,
-    },
+export const getStaticProps: GetStaticProps<{ allReleases: Omit<ReleaseInfo, 'content'>[] }> =
+  () => {
+    const allReleases = getReleases();
+    return {
+      props: {
+        allReleases,
+      },
+    };
   };
-};
 
 export default ReleaseIndexPage;

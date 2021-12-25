@@ -1,4 +1,4 @@
-import { JoinNextSteps } from 'components/join';
+import { JoinNextSteps } from '@@/join/components';
 import Head from 'next/head';
 
 export const JoinNextStepsPage = () => {

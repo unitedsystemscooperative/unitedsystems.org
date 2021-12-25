@@ -1,4 +1,4 @@
-import { MassacreKillTracker } from 'components/massacre/massacreKillTracker';
+import { MassacreKillTracker } from '@@/massacre/components/massacreKillTracker';
 import Head from 'next/head';
 
 const MassacrePage = () => {

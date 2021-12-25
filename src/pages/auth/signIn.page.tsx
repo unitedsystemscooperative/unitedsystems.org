@@ -1,13 +1,6 @@
+import { redirects } from '@/data/redirects';
 import { LockOutlined } from '@mui/icons-material';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Paper,
-  TextField,
-} from '@mui/material';
-import { redirects } from 'data/redirects';
+import { Avatar, Box, Button, Container, Paper, TextField } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
@@ -32,8 +25,7 @@ const SignInPage = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-        }}
-      >
+        }}>
         <Avatar sx={{ margin: 1, backgroundColor: 'secondary.main' }}>
           <LockOutlined />
         </Avatar>
@@ -41,8 +33,7 @@ const SignInPage = () => {
           component="form"
           sx={{ width: '100%', marginTop: 1, px: 1, textAlign: 'center' }}
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -63,8 +54,7 @@ const SignInPage = () => {
               mt: 3,
               mb: 1,
               mx: 0,
-            }}
-          >
+            }}>
             Sign In
           </Button>
         </Box>

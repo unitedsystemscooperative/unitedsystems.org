@@ -1,4 +1,4 @@
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
 import {
   Db,
   Filter,
@@ -13,15 +13,11 @@ import {
 const { MONGODB_URI, MONGODB_DB } = process.env;
 
 if (!MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
-  );
+  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
 if (!MONGODB_DB) {
-  throw new Error(
-    'Please define the MONGODB_DB environment variable inside .env.local'
-  );
+  throw new Error('Please define the MONGODB_DB environment variable inside .env.local');
 }
 
 /**
@@ -66,11 +62,8 @@ export const insertItem = async <T extends IDbItem>(
   itemToInsert: T,
   db: Db
 ) => {
-  if (typeof itemToInsert._id === 'string')
-    itemToInsert._id = new ObjectId(itemToInsert._id);
-  const result = await db
-    .collection<T>(collectionName)
-    .insertOne(itemToInsert as OptionalId<T>);
+  if (typeof itemToInsert._id === 'string') itemToInsert._id = new ObjectId(itemToInsert._id);
+  const result = await db.collection<T>(collectionName).insertOne(itemToInsert as OptionalId<T>);
   return result.insertedId;
 };
 
@@ -92,11 +85,7 @@ export const updateItem = async <T extends IDbItem>(
   else return false;
 };
 
-export const deleteItem = async (
-  collectionName: string,
-  id: string,
-  db: Db
-) => {
+export const deleteItem = async (collectionName: string, id: string, db: Db) => {
   const idtoDelete = new ObjectId(id);
   await db.collection(collectionName).deleteOne({ _id: idtoDelete });
 };

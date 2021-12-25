@@ -1,9 +1,9 @@
-import { BuildSystem } from 'components/builds';
-import { IBuildInfov2 } from 'models/builds';
+import { getBuilds } from '#/builds.api';
+import { connectToDatabase } from '@/utils/mongo';
+import { BuildSystem } from '@@/builds/components';
+import { IBuildInfov2 } from '@@/builds/models';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
-import { connectToDatabase } from 'utils/mongo';
-import { getBuilds } from '../api/builds.api';
 
 const BuildPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (

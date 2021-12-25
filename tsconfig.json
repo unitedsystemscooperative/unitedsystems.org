@@ -16,19 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "public/*": ["public/*"],
-      "components": ["src/components/index.ts"],
-      "components/*": ["src/components/*"],
-      "data": ["src/data/index.ts"],
-      "data/*": ["src/data/*"],
-      "functions": ["src/functions/index.ts"],
-      "functions/*": ["src/functions/*"],
-      "hooks": ["src/hooks/index.ts"],
-      "hooks/*": ["src/hooks/*"],
-      "models": ["src/models/index.ts"],
-      "models/*": ["src/models/*"],
-      "providers/*": ["src/providers/*"],
-      "utils/*": ["src/utils/*"],
-      "styles/*": ["src/styles/*"]
+      "@/*": ["src/*"],
+      "#/*": ["src/pages/api/*"],
+      "@@/*": ["src/modules/*"]
     }
   },
   "include": ["next-env.d.ts", "usc.d.ts", "**/*.ts", "**/*.tsx"],

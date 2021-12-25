@@ -1,4 +1,4 @@
-import { AboutLayout } from 'components/layouts';
+import { AboutLayout } from '@@/about/layouts/about';
 import Head from 'next/head';
 
 const AboutPage = () => {

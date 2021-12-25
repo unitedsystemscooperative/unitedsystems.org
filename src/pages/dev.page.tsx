@@ -1,4 +1,4 @@
-import { DevComponent } from 'components/dev';
+import { DevComponent } from '@/components/dev';
 import Head from 'next/head';
 
 const DevPage = () => {
@@ -6,10 +6,7 @@ const DevPage = () => {
     <>
       <Head>
         <title>USC | Dev Info</title>
-        <meta
-          name="description"
-          content="Developer information of UnitedSystems.org"
-        />
+        <meta name="description" content="Developer information of UnitedSystems.org" />
       </Head>
       <DevComponent />
     </>

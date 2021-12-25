@@ -9,10 +9,7 @@ const NotFoundPage = () => {
     <>
       <Head>
         <title>United Systems Cooperative</title>
-        <meta
-          name="description"
-          content="Web site of the United Systems Cooperative"
-        />
+        <meta name="description" content="Web site of the United Systems Cooperative" />
       </Head>
       <Container maxWidth="lg" sx={{ textAlign: 'center', marginTop: 1 }}>
         <Paper>

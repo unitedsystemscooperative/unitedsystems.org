@@ -1,6 +1,6 @@
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from '@@/admin/models/cmdr';
+import { Rank, RankString } from '@@/admin/models/ranks';
 import axios from 'axios';
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from 'models/admin/cmdr';
-import { Rank, RankString } from 'models/admin/ranks';
 import useSWR from 'swr';
 
 const checkInstanceofAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>

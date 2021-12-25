@@ -1,9 +1,9 @@
-import { CarriersDashboard } from 'components/admin/carriers/carriersDashboard';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { getFCs } from '#/fc.api';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { CarriersDashboard } from '@@/admin/components/carriers/carriersDashboard';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import { runAdminAuthCheck } from 'utils/runAuthCheck';
-import { getFCs } from '../api/fc.api';
 
 const FleetCarrierManagementPage = ({
   data,
