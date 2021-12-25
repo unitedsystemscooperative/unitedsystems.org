@@ -83,6 +83,10 @@ export const getCmdrs = async (db: Db): Promise<ICMDRs> => {
   const items = await getItems<IAmbassador | IGuest | IMember>(COLLECTION, db, 'cmdrName', 1);
   const newItems = items.map((x) => {
     x._id = x._id.toString();
+    x.discordJoinDate = x.discordJoinDate?.toString() ?? null;
+    if (determineCMDRisMember(x)) {
+      x.joinDate = x.joinDate?.toString() ?? null;
+    }
     return x;
   });
 

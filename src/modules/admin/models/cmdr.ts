@@ -7,7 +7,7 @@ import { Region } from './regions';
 export interface ICMDR extends IDbItem {
   cmdrName: string;
   discordName: string;
-  discordJoinDate: Date;
+  discordJoinDate: Date | string;
   platform: Platform;
   rank: Rank;
   rankString?: string;
@@ -19,7 +19,7 @@ export interface ICMDR extends IDbItem {
 }
 
 export interface IMember extends ICMDR {
-  joinDate: Date;
+  joinDate: Date | string;
   promotion?: Rank | null;
   isInInaraSquad: boolean;
   ref1: Referral;
