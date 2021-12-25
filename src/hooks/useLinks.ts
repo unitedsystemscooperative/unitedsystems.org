@@ -6,7 +6,7 @@ import {
   InaraSquadLink,
   MerchStore,
   YouTubeLink,
-} from 'data/links';
+} from '@/data/links';
 
 export const useLinks = () => {
   return { ...links };
