@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { PaperOutlineButton } from 'components/_common/button';
+import { PaperOutlineButton } from '@/components/_common/button';
 
 export interface QueryActionsProps {
   resetQueries: () => void;
@@ -12,22 +12,15 @@ export const QueryActions = ({ resetQueries, addBuild }: QueryActionsProps) => {
     addBuild();
   };
   return (
-    <Box
-      sx={{ textAlign: 'center', gridArea: 'buttons', '& button': { m: 1 } }}
-    >
+    <Box sx={{ textAlign: 'center', gridArea: 'buttons', '& button': { m: 1 } }}>
       <PaperOutlineButton
         onClick={resetQueries}
         color="primary"
         variant="outlined"
-        className="resetButton"
-      >
+        className="resetButton">
         Reset Selections
       </PaperOutlineButton>
-      <PaperOutlineButton
-        onClick={handleAdd}
-        variant="outlined"
-        color="secondary"
-      >
+      <PaperOutlineButton onClick={handleAdd} variant="outlined" color="secondary">
         Add Build
       </PaperOutlineButton>
     </Box>

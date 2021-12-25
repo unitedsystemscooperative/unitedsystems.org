@@ -1,15 +1,8 @@
+import { Order } from '@/functions/sort';
+import { useCmdrSearch } from '@/hooks/useCmdrSearch';
+import { IAmbassador } from '@@/admin/models';
 import { Divider, TablePagination } from '@mui/material';
-import { Order } from 'functions/sort';
-import { useCmdrSearch } from 'hooks/useCmdrSearch';
-import { IAmbassador } from 'models/admin/cmdr';
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
 import {
   ambassadorDefaultData,
@@ -53,10 +46,7 @@ export const AmbassadorDashboard = (props: AmbassadorDashboardProps) => {
     setPage(0);
   }, [filteredCmdrs.length]);
 
-  const handleRequestSort = (
-    _: MouseEvent<unknown>,
-    property: keyof IAmbassador
-  ) => {
+  const handleRequestSort = (_: MouseEvent<unknown>, property: keyof IAmbassador) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);

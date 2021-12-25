@@ -1,4 +1,4 @@
-import { ShipSize } from '.';
+import { ShipSize } from './shipSize';
 export type IQuery = {
   ship: string | null;
   size: ShipSize | null;

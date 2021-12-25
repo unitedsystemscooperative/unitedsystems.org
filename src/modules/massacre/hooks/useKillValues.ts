@@ -1,4 +1,4 @@
-import killValues from 'data/massacre/massacreKillValues.json';
+import killValues from '@@/massacre/data/massacreKillValues.json';
 
 export const useKillValues = () => {
   return killValues;

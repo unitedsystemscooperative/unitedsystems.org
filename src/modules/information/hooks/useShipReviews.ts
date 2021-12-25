@@ -1,6 +1,6 @@
-import reviews from 'data/builds/shipMap.json';
-import { genericSortArray } from 'functions/sort';
-import { IShipReview } from 'models/information/shipReview';
+import { genericSortArray } from '@/functions/sort';
+import reviews from '@@/builds/data/shipMap.json';
+import { IShipReview } from '@@/information/models/shipReview';
 
 export const useShipReviews = (): IShipReview[] => {
   const reviewList = reviews.map((review) => {

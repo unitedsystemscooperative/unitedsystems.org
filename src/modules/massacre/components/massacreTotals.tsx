@@ -1,31 +1,24 @@
+import RepCalculation from '@@/massacre/data/massacreKillValues.json';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '@@/massacre/massacreTrack';
 import { Container, Paper, Typography } from '@mui/material';
-import RepCalculation from 'data/massacre/massacreKillValues.json';
-import {
-  IFactionMission,
-  IFactionwMissions,
-  IMassacreTrack,
-} from 'models/massacreTrack';
 import { useEffect, useState } from 'react';
 
 const calcTotalKillsNeeded = (tracker: IMassacreTrack) => {
-  return tracker.factions.reduce<number>(
-    (acc: number, faction: IFactionwMissions) => {
-      if (faction.missions && faction.missions.length > 0) {
-        const missionKillsNeeded = faction.missions.reduce<number>(
-          (acc2: number, mission: IFactionMission | null) => {
-            if (mission) {
-              return acc2 + mission.killsforMission;
-            }
-            return acc2;
-          },
-          0
-        );
-        return acc < missionKillsNeeded ? missionKillsNeeded : acc;
-      }
-      return acc;
-    },
-    0
-  );
+  return tracker.factions.reduce<number>((acc: number, faction: IFactionwMissions) => {
+    if (faction.missions && faction.missions.length > 0) {
+      const missionKillsNeeded = faction.missions.reduce<number>(
+        (acc2: number, mission: IFactionMission | null) => {
+          if (mission) {
+            return acc2 + mission.killsforMission;
+          }
+          return acc2;
+        },
+        0
+      );
+      return acc < missionKillsNeeded ? missionKillsNeeded : acc;
+    }
+    return acc;
+  }, 0);
 };
 
 const calcTotalMissions = (tracker: IMassacreTrack) => {
@@ -50,15 +43,12 @@ const calcPayout = (tracker: IMassacreTrack) => {
     )?.value;
     if (repValue) {
       if (faction.missions && faction.missions.length > 0) {
-        const missionPayout = faction.missions.reduce<number>(
-          (acc2, mission) => {
-            if (mission && mission.killsforMission > 0) {
-              return acc2 + repValue * mission.killsforMission;
-            }
-            return acc2;
-          },
-          0
-        );
+        const missionPayout = faction.missions.reduce<number>((acc2, mission) => {
+          if (mission && mission.killsforMission > 0) {
+            return acc2 + repValue * mission.killsforMission;
+          }
+          return acc2;
+        }, 0);
         return acc + missionPayout;
       }
     }
@@ -87,9 +77,7 @@ export const MassacreTotals = (props: { tracker: IMassacreTrack }) => {
       <Paper sx={{ textAlign: 'center' }}>
         <Typography>Total Missions: {totalMissions}</Typography>
         <Typography>Total Kills Needed: {totalKillsNeeded}</Typography>
-        <Typography>
-          Approx Payout based on set Rep: {payout} million
-        </Typography>
+        <Typography>Approx Payout based on set Rep: {payout} million</Typography>
       </Paper>
     </Container>
   );

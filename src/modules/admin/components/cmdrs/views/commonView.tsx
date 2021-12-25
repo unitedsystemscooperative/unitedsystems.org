@@ -1,3 +1,5 @@
+import { genericSortArray, Order } from '@/functions/sort';
+import { ICMDR } from '@@/admin/models';
 import { RestoreFromTrash } from '@mui/icons-material';
 import Link from '@mui/icons-material/Link';
 import {
@@ -12,15 +14,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import { genericSortArray, Order } from 'functions/sort';
-import { ICMDR } from 'models/admin/cmdr';
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  ReactNode,
-  SetStateAction,
-} from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, ReactNode, SetStateAction } from 'react';
 export interface HeadCell<T> {
   disablePadding: boolean;
   id: keyof T;
@@ -30,9 +24,7 @@ export interface HeadCell<T> {
 
 export const handleDate = (date) => {
   const newDate = new Date(date);
-  return newDate > new Date('2019-01-01')
-    ? newDate.toLocaleDateString('en-CA')
-    : '';
+  return newDate > new Date('2019-01-01') ? newDate.toLocaleDateString('en-CA') : '';
 };
 
 export interface CmdrTableHeadProps<T> {
@@ -46,18 +38,9 @@ export interface CmdrTableHeadProps<T> {
 }
 
 export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
-  const {
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-    headCells,
-  } = props;
-  const createSortHandler = (property: keyof T) => (
-    event: MouseEvent<unknown>
-  ) => {
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } =
+    props;
+  const createSortHandler = (property: keyof T) => (event: MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
 
@@ -77,13 +60,11 @@ export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
             key={headCell.id.toString()}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
+            sortDirection={orderBy === headCell.id ? order : false}>
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
+              onClick={createSortHandler(headCell.id)}>
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box
@@ -98,8 +79,7 @@ export const CmdrTableHead = <T,>(props: CmdrTableHeadProps<T>) => {
                     position: 'absolute',
                     top: 20,
                     width: 1,
-                  }}
-                >
+                  }}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -130,8 +110,7 @@ export const CmdrTableRow = <T extends ICMDR>({
       role="checkbox"
       aria-checked={isItemSelected}
       tabIndex={-1}
-      selected={isItemSelected}
-    >
+      selected={isItemSelected}>
       {children}
     </TableRow>
   );
@@ -157,12 +136,7 @@ export const renderData = (data: ViewData[]) => {
         return (
           <TableCell>
             {item.data && (
-              <IconButton
-                href={item.data}
-                color="primary"
-                size="small"
-                target="_blank"
-              >
+              <IconButton href={item.data} color="primary" size="small" target="_blank">
                 <Link />
               </IconButton>
             )}
@@ -190,9 +164,7 @@ export interface CmdrDefaultViewProps<T extends ICMDR> {
   data: (cmdr: T) => ViewData[];
   restoreCmdr?: (cmdr: T) => Promise<void>;
 }
-export const CmdrDefaultView = <T extends ICMDR>(
-  props: CmdrDefaultViewProps<T>
-) => {
+export const CmdrDefaultView = <T extends ICMDR>(props: CmdrDefaultViewProps<T>) => {
   const {
     cmdrs,
     selected,
@@ -210,8 +182,7 @@ export const CmdrDefaultView = <T extends ICMDR>(
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, cmdrs.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, cmdrs.length - page * rowsPerPage);
 
   return (
     <>
@@ -236,18 +207,14 @@ export const CmdrDefaultView = <T extends ICMDR>(
                     key={cmdr._id.toString()}
                     cmdr={cmdr}
                     isItemSelected={isItemSelected}
-                    handleClick={handleClick}
-                  >
+                    handleClick={handleClick}>
                     <TableCell padding="checkbox">
                       <Checkbox checked={isItemSelected} />
                     </TableCell>
                     {renderData(data(cmdr))}
                     {restoreCmdr && (
                       <TableCell>
-                        <IconButton
-                          onClick={() => restoreCmdr(cmdr)}
-                          size="large"
-                        >
+                        <IconButton onClick={() => restoreCmdr(cmdr)} size="large">
                           <RestoreFromTrash />
                         </IconButton>
                       </TableCell>

@@ -13,7 +13,7 @@
 //   moreInfo?: string;
 // }
 
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
 
 export interface IBuildInfov2 extends IDbItem {
   shipId: string;

@@ -1,5 +1,5 @@
+import { IInfoButton } from '@@/information/models/infoButtonModel';
 import { Button, Paper, styled, Typography } from '@mui/material';
-import { IInfoButton } from 'models/information/infoButtonModel';
 import NextLink from 'next/link';
 
 const SpecialButton = styled('div')(() => ({
@@ -47,15 +47,8 @@ export const InfoSection = (props: ISectionProps) => {
             .filter((x) => x.beginner === true)
             .map((guide) => {
               return guide.local ? (
-                <NextLink
-                  href={`/information/${guide.link}`}
-                  key={guide.title}
-                  passHref
-                >
-                  <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                  >
+                <NextLink href={`/information/${guide.link}`} key={guide.title} passHref>
+                  <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
                     <SpecialButton>
                       <Typography>{guide.title}</Typography>
                       <Typography variant="caption">{guide.caption}</Typography>
@@ -67,8 +60,7 @@ export const InfoSection = (props: ISectionProps) => {
                   variant="outlined"
                   color={guide.beginner ? 'secondary' : 'primary'}
                   href={`${guide.link}`}
-                  key={guide.title}
-                >
+                  key={guide.title}>
                   <SpecialButton>
                     <Typography>{guide.title}</Typography>
                     <Typography variant="caption">{guide.caption}</Typography>
@@ -82,15 +74,8 @@ export const InfoSection = (props: ISectionProps) => {
             .filter((x) => x.beginner === false)
             .map((guide) => {
               return guide.local ? (
-                <NextLink
-                  href={`/information/${guide.link}`}
-                  key={guide.title}
-                  passHref
-                >
-                  <Button
-                    variant="outlined"
-                    color={guide.beginner ? 'secondary' : 'primary'}
-                  >
+                <NextLink href={`/information/${guide.link}`} key={guide.title} passHref>
+                  <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
                     <SpecialButton>
                       <Typography>{guide.title}</Typography>
                       <Typography variant="caption">{guide.caption}</Typography>
@@ -102,8 +87,7 @@ export const InfoSection = (props: ISectionProps) => {
                   variant="outlined"
                   color={guide.beginner ? 'secondary' : 'primary'}
                   href={`${guide.link}`}
-                  key={guide.title}
-                >
+                  key={guide.title}>
                   <SpecialButton>
                     <Typography>{guide.title}</Typography>
                     <Typography variant="caption">{guide.caption}</Typography>

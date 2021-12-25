@@ -1,11 +1,4 @@
-import {
-  Button,
-  ButtonProps,
-  Container,
-  Paper,
-  styled,
-  Typography,
-} from '@mui/material';
+import { Button, ButtonProps, Container, Paper, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
 
 const Header = styled(Typography)(({ theme }) => ({
@@ -77,44 +70,27 @@ export const AdminDashboard = () => {
       </AdminPaper>
       <AdminPaper>
         <Header variant="h4">Bot Management</Header>
-        <LinkButton
-          variant="outlined"
-          color="primary"
-          href="https://carl.gg"
-          target="_blank"
-        >
+        <LinkButton variant="outlined" color="primary" href="https://carl.gg" target="_blank">
           Carl / COVAS Carl
         </LinkButton>
-        <LinkButton
-          variant="outlined"
-          color="primary"
-          href="https://dyno.gg/"
-          target="_blank"
-        >
+        <LinkButton variant="outlined" color="primary" href="https://dyno.gg/" target="_blank">
           Dyno / COVAS Archer
         </LinkButton>
         <LinkButton
           variant="outlined"
           color="primary"
           href="https://giveawaybot.party/"
-          target="_blank"
-        >
+          target="_blank">
           Giveaway Bot
         </LinkButton>
-        <LinkButton
-          variant="outlined"
-          color="primary"
-          href="https://mee6.xyz/"
-          target="_blank"
-        >
+        <LinkButton variant="outlined" color="primary" href="https://mee6.xyz/" target="_blank">
           Mee6
         </LinkButton>
         <LinkButton
           variant="outlined"
           color="primary"
           href="https://monitorss.xyz/"
-          target="_blank"
-        >
+          target="_blank">
           MonitoRSS
         </LinkButton>
       </AdminPaper>

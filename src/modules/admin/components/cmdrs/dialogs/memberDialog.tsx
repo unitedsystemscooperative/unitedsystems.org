@@ -1,3 +1,14 @@
+import { BoxwMB1andFlex, DatePickerwMB1, TextFieldwM1 } from '@/components/_common';
+import {
+  IMember,
+  Platform,
+  Rank,
+  RankString,
+  Referral,
+  ReferralString,
+  Region,
+  RegionString,
+} from '@@/admin/models';
 import {
   Button,
   Checkbox,
@@ -10,16 +21,6 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import {
-  BoxwMB1andFlex,
-  DatePickerwMB1,
-  TextFieldwM1,
-} from 'components/_common';
-import { IMember } from 'models/admin/cmdr';
-import { Platform } from 'models/admin/platforms';
-import { Rank, RankString } from 'models/admin/ranks';
-import { Referral, ReferralString } from 'models/admin/referrals';
-import { Region, RegionString } from 'models/admin/regions';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -31,9 +32,7 @@ export interface MemberDialogProps {
 
 export const MemberDialog = (props: MemberDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<
-    Omit<IMember, '_id'>
-  >();
+  const { register, handleSubmit, reset, control } = useForm<Omit<IMember, '_id'>>();
 
   useEffect(() => {
     if (values) {
@@ -44,9 +43,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
             cmdrName: value.cmdrName,
             discordName: value.discordName,
             joinDate: value.joinDate ? value.joinDate : null,
-            discordJoinDate: value.discordJoinDate
-              ? value.discordJoinDate
-              : null,
+            discordJoinDate: value.discordJoinDate ? value.discordJoinDate : null,
             platform: value.platform,
             rank: value.rank,
             isInInaraSquad: value.isInInaraSquad,
@@ -137,9 +134,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>{values?.length > 0 ? 'Edit' : 'Add'} CMDR</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Please enter the CMDR information.
-          </DialogContentText>
+          <DialogContentText>Please enter the CMDR information.</DialogContentText>
           {values?.length <= 1 && (
             <TextFieldwM1
               label="CMDR Name"
@@ -208,31 +203,15 @@ export const MemberDialog = (props: MemberDialogProps) => {
             rules={{ required: true }}
             render={({ field }) => (
               <TextFieldwM1 label="Rank" select fullWidth {...field}>
-                <MenuItem value={Rank.FleetAdmiral}>
-                  {RankString[Rank.FleetAdmiral]}
-                </MenuItem>
-                <MenuItem value={Rank.ViceAdmiral}>
-                  {RankString[Rank.ViceAdmiral]}
-                </MenuItem>
-                <MenuItem value={Rank.Commodore}>
-                  {RankString[Rank.Commodore]}
-                </MenuItem>
-                <MenuItem value={Rank.Captain}>
-                  {RankString[Rank.Captain]}
-                </MenuItem>
-                <MenuItem value={Rank.LtCommander}>
-                  {RankString[Rank.LtCommander]}
-                </MenuItem>
-                <MenuItem value={Rank.Lieutenant}>
-                  {RankString[Rank.Lieutenant]}
-                </MenuItem>
-                <MenuItem value={Rank.Ensign}>
-                  {RankString[Rank.Ensign]}
-                </MenuItem>
+                <MenuItem value={Rank.FleetAdmiral}>{RankString[Rank.FleetAdmiral]}</MenuItem>
+                <MenuItem value={Rank.ViceAdmiral}>{RankString[Rank.ViceAdmiral]}</MenuItem>
+                <MenuItem value={Rank.Commodore}>{RankString[Rank.Commodore]}</MenuItem>
+                <MenuItem value={Rank.Captain}>{RankString[Rank.Captain]}</MenuItem>
+                <MenuItem value={Rank.LtCommander}>{RankString[Rank.LtCommander]}</MenuItem>
+                <MenuItem value={Rank.Lieutenant}>{RankString[Rank.Lieutenant]}</MenuItem>
+                <MenuItem value={Rank.Ensign}>{RankString[Rank.Ensign]}</MenuItem>
                 <MenuItem value={Rank.Cadet}>{RankString[Rank.Cadet]}</MenuItem>
-                <MenuItem value={Rank.Reserve}>
-                  {RankString[Rank.Reserve]}
-                </MenuItem>
+                <MenuItem value={Rank.Reserve}>{RankString[Rank.Reserve]}</MenuItem>
               </TextFieldwM1>
             )}
           />
@@ -242,31 +221,15 @@ export const MemberDialog = (props: MemberDialogProps) => {
             render={({ field }) => (
               <TextFieldwM1 label="Promotion to" fullWidth select {...field}>
                 <MenuItem value={-1}>None</MenuItem>
-                <MenuItem value={Rank.FleetAdmiral}>
-                  {RankString[Rank.FleetAdmiral]}
-                </MenuItem>
-                <MenuItem value={Rank.ViceAdmiral}>
-                  {RankString[Rank.ViceAdmiral]}
-                </MenuItem>
-                <MenuItem value={Rank.Commodore}>
-                  {RankString[Rank.Commodore]}
-                </MenuItem>
-                <MenuItem value={Rank.Captain}>
-                  {RankString[Rank.Captain]}
-                </MenuItem>
-                <MenuItem value={Rank.LtCommander}>
-                  {RankString[Rank.LtCommander]}
-                </MenuItem>
-                <MenuItem value={Rank.Lieutenant}>
-                  {RankString[Rank.Lieutenant]}
-                </MenuItem>
-                <MenuItem value={Rank.Ensign}>
-                  {RankString[Rank.Ensign]}
-                </MenuItem>
+                <MenuItem value={Rank.FleetAdmiral}>{RankString[Rank.FleetAdmiral]}</MenuItem>
+                <MenuItem value={Rank.ViceAdmiral}>{RankString[Rank.ViceAdmiral]}</MenuItem>
+                <MenuItem value={Rank.Commodore}>{RankString[Rank.Commodore]}</MenuItem>
+                <MenuItem value={Rank.Captain}>{RankString[Rank.Captain]}</MenuItem>
+                <MenuItem value={Rank.LtCommander}>{RankString[Rank.LtCommander]}</MenuItem>
+                <MenuItem value={Rank.Lieutenant}>{RankString[Rank.Lieutenant]}</MenuItem>
+                <MenuItem value={Rank.Ensign}>{RankString[Rank.Ensign]}</MenuItem>
                 <MenuItem value={Rank.Cadet}>{RankString[Rank.Cadet]}</MenuItem>
-                <MenuItem value={Rank.Reserve}>
-                  {RankString[Rank.Reserve]}
-                </MenuItem>
+                <MenuItem value={Rank.Reserve}>{RankString[Rank.Reserve]}</MenuItem>
               </TextFieldwM1>
             )}
           />
@@ -310,21 +273,13 @@ export const MemberDialog = (props: MemberDialogProps) => {
             rules={{ required: true }}
             render={({ field }) => (
               <TextFieldwM1 label="Region" select {...field} fullWidth>
-                <MenuItem value={Region.N_CAmerica}>
-                  {RegionString[Region.N_CAmerica]}
-                </MenuItem>
-                <MenuItem value={Region.SAmerica}>
-                  {RegionString[Region.SAmerica]}
-                </MenuItem>
+                <MenuItem value={Region.N_CAmerica}>{RegionString[Region.N_CAmerica]}</MenuItem>
+                <MenuItem value={Region.SAmerica}>{RegionString[Region.SAmerica]}</MenuItem>
                 <MenuItem value={Region.Europe_Africa}>
                   {RegionString[Region.Europe_Africa]}
                 </MenuItem>
-                <MenuItem value={Region.Asia}>
-                  {RegionString[Region.Asia]}
-                </MenuItem>
-                <MenuItem value={Region.Asia_Pacific}>
-                  {RegionString[Region.Asia_Pacific]}
-                </MenuItem>
+                <MenuItem value={Region.Asia}>{RegionString[Region.Asia]}</MenuItem>
+                <MenuItem value={Region.Asia_Pacific}>{RegionString[Region.Asia_Pacific]}</MenuItem>
               </TextFieldwM1>
             )}
           />
@@ -335,33 +290,15 @@ export const MemberDialog = (props: MemberDialogProps) => {
               rules={{ required: true }}
               render={({ field }) => (
                 <TextFieldwM1 label="Reference" select {...field} fullWidth>
-                  <MenuItem value={Referral.Discord}>
-                    {ReferralString[Referral.Discord]}
-                  </MenuItem>
-                  <MenuItem value={Referral.FB}>
-                    {ReferralString[Referral.FB]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Forums}>
-                    {ReferralString[Referral.Forums]}
-                  </MenuItem>
-                  <MenuItem value={Referral.InGame}>
-                    {ReferralString[Referral.InGame]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Inara}>
-                    {ReferralString[Referral.Inara]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Player}>
-                    {ReferralString[Referral.Player]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Reddit}>
-                    {ReferralString[Referral.Reddit]}
-                  </MenuItem>
-                  <MenuItem value={Referral.USI}>
-                    {ReferralString[Referral.USI]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Website}>
-                    {ReferralString[Referral.Website]}
-                  </MenuItem>
+                  <MenuItem value={Referral.Discord}>{ReferralString[Referral.Discord]}</MenuItem>
+                  <MenuItem value={Referral.FB}>{ReferralString[Referral.FB]}</MenuItem>
+                  <MenuItem value={Referral.Forums}>{ReferralString[Referral.Forums]}</MenuItem>
+                  <MenuItem value={Referral.InGame}>{ReferralString[Referral.InGame]}</MenuItem>
+                  <MenuItem value={Referral.Inara}>{ReferralString[Referral.Inara]}</MenuItem>
+                  <MenuItem value={Referral.Player}>{ReferralString[Referral.Player]}</MenuItem>
+                  <MenuItem value={Referral.Reddit}>{ReferralString[Referral.Reddit]}</MenuItem>
+                  <MenuItem value={Referral.USI}>{ReferralString[Referral.USI]}</MenuItem>
+                  <MenuItem value={Referral.Website}>{ReferralString[Referral.Website]}</MenuItem>
                 </TextFieldwM1>
               )}
             />

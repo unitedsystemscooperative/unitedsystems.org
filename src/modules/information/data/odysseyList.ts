@@ -1,4 +1,4 @@
-import { IInfoButton } from 'models/information/infoButtonModel';
+import { IInfoButton } from '@@/information/models/infoButtonModel';
 
 export const odysseyList: IInfoButton[] = [
   {
@@ -12,8 +12,7 @@ export const odysseyList: IInfoButton[] = [
     title: 'Guide to Planetary Exobiology',
     caption: 'via Reddit',
     local: false,
-    link:
-      'https://www.reddit.com/r/EliteDangerous/comments/nohsyt/a_brief_guide_to_planetary_exobiology/',
+    link: 'https://www.reddit.com/r/EliteDangerous/comments/nohsyt/a_brief_guide_to_planetary_exobiology/',
     beginner: true,
   },
   {

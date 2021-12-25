@@ -1,7 +1,5 @@
-import { Platform } from 'models/admin/platforms';
-import { Referral } from 'models/admin/referrals';
-import { Region } from 'models/admin/regions';
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
+import { Platform, Referral, Region } from '@@/admin/models';
 
 export interface IJoinRequest extends IDbItem {
   //   type: 'join' | 'guest' | 'ambassador';

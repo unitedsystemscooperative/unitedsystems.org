@@ -1,3 +1,6 @@
+import { copytoClipboard } from '@/functions/copytoClipboard';
+import { PlatformString, ReferralString, RegionString } from '@@/admin/models';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { FileCopy } from '@mui/icons-material';
 import {
   IconButton,
@@ -10,11 +13,6 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { copytoClipboard } from 'functions/copytoClipboard';
-import { PlatformString } from 'models/admin/platforms';
-import { ReferralString } from 'models/admin/referrals';
-import { RegionString } from 'models/admin/regions';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { ChangeEvent, useState } from 'react';
 
 export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
@@ -46,37 +44,33 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
           </TableHead>
           {guests && (
             <TableBody>
-              {guests
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((map) => (
-                  <TableRow key={`${map.discord} ${map.timeStamp}`}>
-                    <TableCell>{map.timeStamp}</TableCell>
-                    <TableCell>
-                      {map.cmdr}{' '}
-                      <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={() => copytoClipboard(map.cmdr.toUpperCase())}
-                      >
-                        <FileCopy />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell>
-                      {map.discord}{' '}
-                      <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={() => copytoClipboard(map.discord)}
-                      >
-                        <FileCopy />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell>{PlatformString[map.platform]}</TableCell>
-                    <TableCell>{ReferralString[map.referral]}</TableCell>
-                    <TableCell>{map.referral2}</TableCell>
-                    <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
-                  </TableRow>
-                ))}
+              {guests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((map) => (
+                <TableRow key={`${map.discord} ${map.timeStamp}`}>
+                  <TableCell>{map.timeStamp}</TableCell>
+                  <TableCell>
+                    {map.cmdr}{' '}
+                    <IconButton
+                      size="small"
+                      color="secondary"
+                      onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
+                      <FileCopy />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    {map.discord}{' '}
+                    <IconButton
+                      size="small"
+                      color="secondary"
+                      onClick={() => copytoClipboard(map.discord)}>
+                      <FileCopy />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>{PlatformString[map.platform]}</TableCell>
+                  <TableCell>{ReferralString[map.referral]}</TableCell>
+                  <TableCell>{map.referral2}</TableCell>
+                  <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           )}
         </Table>

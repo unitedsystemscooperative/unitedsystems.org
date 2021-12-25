@@ -1,8 +1,4 @@
-import { IMember } from 'models/admin/cmdr';
-import { PlatformString } from 'models/admin/platforms';
-import { RankString } from 'models/admin/ranks';
-import { ReferralString } from 'models/admin/referrals';
-import { RegionString } from 'models/admin/regions';
+import { IMember, PlatformString, RankString, ReferralString, RegionString } from '@@/admin/models';
 import { handleDate, HeadCell, ViewData } from './commonView';
 
 export const memberDefaultHeadCells: HeadCell<IMember>[] = [
@@ -63,10 +59,7 @@ export const memberDefaultData = (cmdr: IMember): ViewData[] => {
     { type: 'string', data: RankString[cmdr.rank] },
     {
       type: 'string',
-      data:
-        !isNaN(cmdr.promotion) && cmdr.promotion > -1
-          ? RankString[cmdr.promotion]
-          : '',
+      data: !isNaN(cmdr.promotion) && cmdr.promotion > -1 ? RankString[cmdr.promotion] : '',
     },
     { type: 'boolean', data: cmdr.isInInaraSquad },
     { type: 'string', data: RegionString[cmdr.region] },
@@ -161,10 +154,7 @@ export const memberNoteData = (cmdr: IMember): ViewData[] => {
     { type: 'string', data: RankString[cmdr.rank] },
     {
       type: 'string',
-      data:
-        !isNaN(cmdr.promotion) && cmdr.promotion > -1
-          ? RankString[cmdr.promotion]
-          : '',
+      data: !isNaN(cmdr.promotion) && cmdr.promotion > -1 ? RankString[cmdr.promotion] : '',
     },
     { type: 'string', data: cmdr.notes },
     { type: 'link', data: cmdr.inaraLink },
@@ -212,10 +202,7 @@ export const memberPromotionData = (cmdr: IMember): ViewData[] => {
     { type: 'string', data: RankString[cmdr.rank] },
     {
       type: 'string',
-      data:
-        !isNaN(cmdr.promotion) && cmdr.promotion > -1
-          ? RankString[cmdr.promotion]
-          : '',
+      data: !isNaN(cmdr.promotion) && cmdr.promotion > -1 ? RankString[cmdr.promotion] : '',
     },
   ];
 };

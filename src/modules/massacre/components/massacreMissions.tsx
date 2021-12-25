@@ -1,3 +1,5 @@
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '@@/massacre/massacreTrack';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Container,
   IconButton,
@@ -12,14 +14,8 @@ import {
 } from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
-import {
-  IFactionMission,
-  IFactionwMissions,
-  IMassacreTrack,
-} from 'models/massacreTrack';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useEffect, useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 export const MassacreMissions = (props: {
   tracker: IMassacreTrack;
@@ -113,14 +109,12 @@ const FactionRow = (props: {
   const { enqueueSnackbar } = useSnackbar();
 
   const [totalKills, setTotalKills] = useState(0);
-  const [missionKills, setMissionKills] = useState<Array<IFactionMission>>(
-    () => {
-      const newMissions = processMissions(faction);
-      const totalKillsNeeded: number = newMissions.reduce(reduceTotalKills, 0);
-      setTotalKills(totalKillsNeeded);
-      return newMissions;
-    }
-  );
+  const [missionKills, setMissionKills] = useState<Array<IFactionMission>>(() => {
+    const newMissions = processMissions(faction);
+    const totalKillsNeeded: number = newMissions.reduce(reduceTotalKills, 0);
+    setTotalKills(totalKillsNeeded);
+    return newMissions;
+  });
 
   useEffect(() => {
     const newMissions = processMissions(faction);
@@ -129,9 +123,7 @@ const FactionRow = (props: {
     setTotalKills(totalKillsNeeded);
   }, [faction, faction.missions]);
 
-  const handleKillsforMissionChange = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleKillsforMissionChange = (event: ChangeEvent<HTMLInputElement>) => {
     const stringTitle = event.target.name;
     const stringValue = event.target.value;
 
@@ -151,12 +143,9 @@ const FactionRow = (props: {
         ...previous[killIndex],
         killsforMission: numberValue,
       };
-      const totalKillsNeeded: number = previous.reduce(
-        (acc: number, current: IFactionMission) => {
-          return acc + current.killsforMission;
-        },
-        0
-      );
+      const totalKillsNeeded: number = previous.reduce((acc: number, current: IFactionMission) => {
+        return acc + current.killsforMission;
+      }, 0);
       setTotalKills(totalKillsNeeded);
       onFactionChange({ ...faction, missions: previous });
       return previous;

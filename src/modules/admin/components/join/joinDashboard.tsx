@@ -1,3 +1,4 @@
+import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { useJoinRequests } from 'hooks/join/useJoinInfo';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
 import { GuestsTable } from './joinTableGuests';
@@ -31,11 +31,7 @@ const DashBoardTitleBar = ({
 }) => {
   return (
     <Toolbar sx={{ pl: 2, pr: 1 }}>
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{ flex: '2 1 100%', textAlign: 'left' }}
-      >
+      <Typography variant="h4" component="div" sx={{ flex: '2 1 100%', textAlign: 'left' }}>
         {JoinViews[joinView]}
       </Typography>
       <Box
@@ -47,27 +43,17 @@ const DashBoardTitleBar = ({
           '& button': {
             mx: 1,
           },
-        }}
-      >
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => setJoinView(JoinViews.Members)}
-        >
+        }}>
+        <Button variant="outlined" color="primary" onClick={() => setJoinView(JoinViews.Members)}>
           {JoinViews[JoinViews.Members]}
         </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => setJoinView(JoinViews.Guests)}
-        >
+        <Button variant="outlined" color="primary" onClick={() => setJoinView(JoinViews.Guests)}>
           {JoinViews[JoinViews.Guests]}
         </Button>
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => setJoinView(JoinViews.Ambassadors)}
-        >
+          onClick={() => setJoinView(JoinViews.Ambassadors)}>
           {JoinViews[JoinViews.Ambassadors]}
         </Button>
       </Box>
@@ -92,9 +78,7 @@ export const JoinDashboard = () => {
         <DashBoardTitleBar joinView={joinView} setJoinView={setJoinView} />
         {isMobile && (
           <Paper sx={{ textAlign: 'center', mt: 1 }}>
-            <Typography>
-              Table and pagination scroll on small screens
-            </Typography>
+            <Typography>Table and pagination scroll on small screens</Typography>
           </Paper>
         )}
         <Collapse in={joinView === JoinViews.Members}>

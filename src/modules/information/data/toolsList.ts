@@ -1,4 +1,4 @@
-import { IInfoButton } from 'models/information/infoButtonModel';
+import { IInfoButton } from '@@/information/models/infoButtonModel';
 
 export const toolsList: IInfoButton[] = [
   {
@@ -61,8 +61,7 @@ export const toolsList: IInfoButton[] = [
     title: 'Massacre Mission Tracker',
     caption: 'Created by CMDR Clever Ape',
     local: false,
-    link:
-      'https://docs.google.com/spreadsheets/d/1K0Su9HS9i43gx_RxLBR9NdwUI7iMhibKxwbaWf39WpQ/edit?usp=sharing',
+    link: 'https://docs.google.com/spreadsheets/d/1K0Su9HS9i43gx_RxLBR9NdwUI7iMhibKxwbaWf39WpQ/edit?usp=sharing',
     beginner: false,
   },
   {
@@ -90,8 +89,7 @@ export const toolsList: IInfoButton[] = [
     title: 'The Hurt Highway',
     caption: 'Created by EXO',
     local: false,
-    link:
-      'https://www.edsm.net/en/galactic-routes/show/id/291/name/The+Hurt+Highway',
+    link: 'https://www.edsm.net/en/galactic-routes/show/id/291/name/The+Hurt+Highway',
     beginner: false,
   },
   {

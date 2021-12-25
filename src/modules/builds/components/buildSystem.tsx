@@ -1,9 +1,9 @@
+import { filterShipBuilds } from '@@/builds/functions';
+import { IBuildInfov2, IQuery } from '@@/builds/models';
+import { BuildContext, BuildContextProvider } from '@@/builds/providers/buildProvider';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Box, Container, Fab, Slide, Theme, Typography, useMediaQuery } from '@mui/material';
-import { filterShipBuilds } from 'functions/builds';
-import { IBuildInfov2, IQuery } from 'models/builds';
 import { useSnackbar } from 'notistack';
-import { BuildContext, BuildContextProvider } from 'providers/buildProvider';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
 import { ShipImgAcknowledgement } from './builds/shipImgAcknowledgement';

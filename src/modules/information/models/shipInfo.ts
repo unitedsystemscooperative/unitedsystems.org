@@ -1,4 +1,4 @@
-import { ShipSize } from '../../builds/models/shipSize';
+import { ShipSize } from '@@/builds/models/shipSize';
 
 export interface IShipInfo {
   id: number;

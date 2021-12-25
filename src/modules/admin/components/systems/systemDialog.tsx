@@ -1,3 +1,5 @@
+import { TextFieldwM1 } from '@/components/_common';
+import { System } from '@@/about/models/system';
 import {
   Button,
   Checkbox,
@@ -8,8 +10,6 @@ import {
   DialogTitle,
   FormControlLabel,
 } from '@mui/material';
-import { TextFieldwM1 } from 'components/_common';
-import { System } from 'models/about/system';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -21,9 +21,7 @@ export interface SystemDialogProps {
 
 export const SystemDialog = (props: SystemDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<
-    Omit<System, '_id'>
-  >();
+  const { register, handleSubmit, reset, control } = useForm<Omit<System, '_id'>>();
 
   useEffect(() => {
     if (values) {
@@ -57,14 +55,9 @@ export const SystemDialog = (props: SystemDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>
-            Please enter the System Name, Inara Link, and whether we control the
-            system.
+            Please enter the System Name, Inara Link, and whether we control the system.
           </DialogContentText>
-          <TextFieldwM1
-            label="System Name"
-            fullWidth
-            {...register('name', { required: true })}
-          />
+          <TextFieldwM1 label="System Name" fullWidth {...register('name', { required: true })} />
           <TextFieldwM1
             label="Inara Link"
             fullWidth

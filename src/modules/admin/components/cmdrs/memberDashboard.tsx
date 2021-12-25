@@ -1,15 +1,8 @@
+import { Order } from '@/functions/sort';
+import { useCmdrSearch } from '@/hooks/useCmdrSearch';
+import { IMember } from '@@/admin/models';
 import { Divider, TablePagination } from '@mui/material';
-import { Order } from 'functions/sort';
-import { useCmdrSearch } from 'hooks/useCmdrSearch';
-import { IMember } from 'models/admin/cmdr';
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
 import { CmdrDefaultView, HeadCell, ViewData } from './views/commonView';
 import {
@@ -46,14 +39,7 @@ interface MemberDashboardProps {
 }
 
 export const MemberDashboard = (props: MemberDashboardProps) => {
-  const {
-    cmdrs,
-    selected,
-    setSelected,
-    deletedCmdrs,
-    promoCmdrs,
-    restoreCMDR,
-  } = props;
+  const { cmdrs, selected, setSelected, deletedCmdrs, promoCmdrs, restoreCMDR } = props;
 
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof IMember>('cmdrName');
@@ -76,10 +62,7 @@ export const MemberDashboard = (props: MemberDashboardProps) => {
     setPage(0);
   }, [filteredCmdrs.length]);
 
-  const handleRequestSort = (
-    _: MouseEvent<unknown>,
-    property: keyof IMember
-  ) => {
+  const handleRequestSort = (_: MouseEvent<unknown>, property: keyof IMember) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);

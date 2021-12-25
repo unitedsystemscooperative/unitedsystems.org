@@ -1,5 +1,5 @@
+import { ISphereSystem } from '@@/edsmQueries/models/sphereSystems.model';
 import axios from 'axios';
-import { ISphereSystem } from '../../models';
 
 const apiURL = 'https://www.edsm.net/api-v1/sphere-systems';
 

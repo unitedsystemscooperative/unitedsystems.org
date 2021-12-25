@@ -1,3 +1,6 @@
+import { TitleBarwAdd } from '@/components/_common';
+import { useAllies } from '@@/about/hooks/useAllies';
+import { IAlly } from '@@/about/models/ally';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
@@ -9,9 +12,6 @@ import {
   ListItemText,
   Paper,
 } from '@mui/material';
-import { TitleBarwAdd } from '@/components/_common';
-import { useAllies } from 'hooks/about/useAllies';
-import { IAlly } from 'models/about/ally';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { AllyDialog } from './allyDialog';

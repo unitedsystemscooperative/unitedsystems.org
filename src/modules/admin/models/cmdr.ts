@@ -1,4 +1,4 @@
-import { IDbItem } from 'models/dbItem';
+import { IDbItem } from '@/models/dbItem';
 import { Platform } from './platforms';
 import { Rank } from './ranks';
 import { Referral } from './referrals';

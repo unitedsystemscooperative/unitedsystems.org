@@ -1,15 +1,13 @@
+import { genericSortArray } from '@/functions/sort';
 import {
-  getSystemsinSphere,
   getFactionsinSystem,
   getStationsinSystem,
-} from './edsmQueries';
-import { genericSortArray } from './sort';
+  getSystemsinSphere,
+} from '@@/edsmQueries/functions';
 
 export const processHazRezSystem = async (system: string) => {
   const systemsInSphere = await getSystemsinSphere(system, 10);
-  const populatedSystems = systemsInSphere.filter(
-    (x) => Object.keys(x.information).length > 0
-  );
+  const populatedSystems = systemsInSphere.filter((x) => Object.keys(x.information).length > 0);
   const systems = await Promise.all(
     populatedSystems.map(async (x) => {
       const factionsinSystem = await getFactionsinSystem(x.name);
@@ -35,9 +33,7 @@ export const processHazRezSystem = async (system: string) => {
       const stationsinSystem = await getStationsinSystem(x.name);
       const stations = stationsinSystem.stations
         .filter(
-          (station) =>
-            station.type !== 'Fleet Carrier' &&
-            station.type !== 'Odyssey Settlement'
+          (station) => station.type !== 'Fleet Carrier' && station.type !== 'Odyssey Settlement'
         )
         .map((station) => {
           const type = station.type;

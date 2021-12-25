@@ -22,14 +22,7 @@ interface ToolbarProps {
 }
 
 export const DashboardToolbar = (props: ToolbarProps) => {
-  const {
-    title,
-    viewOptions,
-    view,
-    setView,
-    searchValue,
-    setSearchValue,
-  } = props;
+  const { title, viewOptions, view, setView, searchValue, setSearchValue } = props;
 
   const handleViewMenuClick = (_: MouseEvent<HTMLElement>, option: string) => {
     setView(option);
@@ -43,13 +36,8 @@ export const DashboardToolbar = (props: ToolbarProps) => {
         '& button': {
           m: 1,
         },
-      }}
-    >
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{ flex: '2 1 100%', textAlign: 'left' }}
-      >
+      }}>
+      <Typography variant="h4" component="div" sx={{ flex: '2 1 100%', textAlign: 'left' }}>
         {title}
       </Typography>
       <Paper
@@ -58,8 +46,7 @@ export const DashboardToolbar = (props: ToolbarProps) => {
           minWidth: 250,
           alignItems: 'center',
         }}
-        variant="outlined"
-      >
+        variant="outlined">
         <IconButton disabled>
           <Search />
         </IconButton>
@@ -69,11 +56,7 @@ export const DashboardToolbar = (props: ToolbarProps) => {
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />
-        <IconButton
-          sx={{ pl: 2 }}
-          onClick={() => setSearchValue('')}
-          size="large"
-        >
+        <IconButton sx={{ pl: 2 }} onClick={() => setSearchValue('')} size="large">
           <Clear />
         </IconButton>
       </Paper>
@@ -89,14 +72,12 @@ export const DashboardToolbar = (props: ToolbarProps) => {
               vertical: 'top',
               horizontal: 'center',
             },
-          }}
-        >
+          }}>
           {viewOptions.map((option) => (
             <MenuItem
               key={option}
               value={option}
-              onClick={(event) => handleViewMenuClick(event, option)}
-            >
+              onClick={(event) => handleViewMenuClick(event, option)}>
               {option}
             </MenuItem>
           ))}

@@ -1,3 +1,13 @@
+import { TextFieldwM1 } from '@/components/_common';
+import {
+  IGuest,
+  Platform,
+  Rank,
+  Referral,
+  ReferralString,
+  Region,
+  RegionString,
+} from '@@/admin/models';
 import { DatePicker } from '@mui/lab';
 import {
   Button,
@@ -9,12 +19,6 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { TextFieldwM1 } from 'components/_common';
-import { IGuest } from 'models/admin/cmdr';
-import { Platform } from 'models/admin/platforms';
-import { Rank } from 'models/admin/ranks';
-import { Referral, ReferralString } from 'models/admin/referrals';
-import { Region, RegionString } from 'models/admin/regions';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -26,9 +30,7 @@ export interface GuestDialogProps {
 
 export const GuestDialog = (props: GuestDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<
-    Omit<IGuest, '_id'>
-  >();
+  const { register, handleSubmit, reset, control } = useForm<Omit<IGuest, '_id'>>();
 
   useEffect(() => {
     if (values) {
@@ -112,9 +114,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>{values?.length > 0 ? 'Edit' : 'Add'} CMDR</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Please enter the CMDR information.
-          </DialogContentText>
+          <DialogContentText>Please enter the CMDR information.</DialogContentText>
           {values?.length <= 1 && (
             <TextFieldwM1
               name="cmdrName"
@@ -168,21 +168,13 @@ export const GuestDialog = (props: GuestDialogProps) => {
             rules={{ required: true }}
             render={({ field }) => (
               <TextFieldwM1 label="Region" select {...field} fullWidth>
-                <MenuItem value={Region.N_CAmerica}>
-                  {RegionString[Region.N_CAmerica]}
-                </MenuItem>
-                <MenuItem value={Region.SAmerica}>
-                  {RegionString[Region.SAmerica]}
-                </MenuItem>
+                <MenuItem value={Region.N_CAmerica}>{RegionString[Region.N_CAmerica]}</MenuItem>
+                <MenuItem value={Region.SAmerica}>{RegionString[Region.SAmerica]}</MenuItem>
                 <MenuItem value={Region.Europe_Africa}>
                   {RegionString[Region.Europe_Africa]}
                 </MenuItem>
-                <MenuItem value={Region.Asia}>
-                  {RegionString[Region.Asia]}
-                </MenuItem>
-                <MenuItem value={Region.Asia_Pacific}>
-                  {RegionString[Region.Asia_Pacific]}
-                </MenuItem>
+                <MenuItem value={Region.Asia}>{RegionString[Region.Asia]}</MenuItem>
+                <MenuItem value={Region.Asia_Pacific}>{RegionString[Region.Asia_Pacific]}</MenuItem>
               </TextFieldwM1>
             )}
           />
@@ -193,33 +185,15 @@ export const GuestDialog = (props: GuestDialogProps) => {
               rules={{ required: true }}
               render={({ field }) => (
                 <TextFieldwM1 label="Reference" select {...field} fullWidth>
-                  <MenuItem value={Referral.Discord}>
-                    {ReferralString[Referral.Discord]}
-                  </MenuItem>
-                  <MenuItem value={Referral.FB}>
-                    {ReferralString[Referral.FB]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Forums}>
-                    {ReferralString[Referral.Forums]}
-                  </MenuItem>
-                  <MenuItem value={Referral.InGame}>
-                    {ReferralString[Referral.InGame]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Inara}>
-                    {ReferralString[Referral.Inara]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Player}>
-                    {ReferralString[Referral.Player]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Reddit}>
-                    {ReferralString[Referral.Reddit]}
-                  </MenuItem>
-                  <MenuItem value={Referral.USI}>
-                    {ReferralString[Referral.USI]}
-                  </MenuItem>
-                  <MenuItem value={Referral.Website}>
-                    {ReferralString[Referral.Website]}
-                  </MenuItem>
+                  <MenuItem value={Referral.Discord}>{ReferralString[Referral.Discord]}</MenuItem>
+                  <MenuItem value={Referral.FB}>{ReferralString[Referral.FB]}</MenuItem>
+                  <MenuItem value={Referral.Forums}>{ReferralString[Referral.Forums]}</MenuItem>
+                  <MenuItem value={Referral.InGame}>{ReferralString[Referral.InGame]}</MenuItem>
+                  <MenuItem value={Referral.Inara}>{ReferralString[Referral.Inara]}</MenuItem>
+                  <MenuItem value={Referral.Player}>{ReferralString[Referral.Player]}</MenuItem>
+                  <MenuItem value={Referral.Reddit}>{ReferralString[Referral.Reddit]}</MenuItem>
+                  <MenuItem value={Referral.USI}>{ReferralString[Referral.USI]}</MenuItem>
+                  <MenuItem value={Referral.Website}>{ReferralString[Referral.Website]}</MenuItem>
                 </TextFieldwM1>
               )}
             />

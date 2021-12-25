@@ -1,10 +1,6 @@
+import { ShipSpecialty } from '@@/builds/models/shipSpecialty';
 import { styled, ToggleButton } from '@mui/material';
-import { ShipSpecialty } from 'models/builds/shipSpecialty';
-import {
-  QueryExplanation,
-  QuerySection,
-  QuerySectionHeader,
-} from './sharedComponents';
+import { QueryExplanation, QuerySection, QuerySectionHeader } from './sharedComponents';
 
 const SpecialBox = styled('div')(({ theme }) => ({
   textAlign: 'center',
@@ -36,17 +32,14 @@ export const QuerySpecialties = (props: {
   return (
     <QuerySection sx={{ gridArea: 'specializations' }}>
       <QuerySectionHeader>Ship Specializations</QuerySectionHeader>
-      <QueryExplanation>
-        Select specializations that the ship should fulfill.
-      </QueryExplanation>
+      <QueryExplanation>Select specializations that the ship should fulfill.</QueryExplanation>
       <SpecialBox>
         {getSpecialties(false).map((special) => (
           <ToggleButton
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
-            onChange={() => handleSpecialties(special)}
-          >
+            onChange={() => handleSpecialties(special)}>
             {special}
           </ToggleButton>
         ))}
@@ -58,8 +51,7 @@ export const QuerySpecialties = (props: {
             value={special}
             key={special}
             selected={selectedSpecialties.includes(special)}
-            onChange={() => handleSpecialties(special)}
-          >
+            onChange={() => handleSpecialties(special)}>
             {special}
           </ToggleButton>
         ))}
@@ -72,10 +64,7 @@ const getSpecialties = (isCombat: boolean): string[] => {
   let specialties: string[] = [];
 
   for (const speciality in ShipSpecialty) {
-    specialties = [
-      ...specialties,
-      ShipSpecialty[speciality as keyof typeof ShipSpecialty],
-    ];
+    specialties = [...specialties, ShipSpecialty[speciality as keyof typeof ShipSpecialty]];
   }
   specialties = isCombat
     ? specialties.filter((x) => x.startsWith('Combat'))

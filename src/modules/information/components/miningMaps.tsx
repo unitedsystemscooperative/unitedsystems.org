@@ -1,3 +1,6 @@
+import { copytoClipboard } from '@/functions/copytoClipboard';
+import { useLinks } from '@/hooks/useLinks';
+import { useMiningMaps } from '@@/information/hooks/useMiningMaps';
 import { FileCopy } from '@mui/icons-material';
 import {
   Button,
@@ -13,9 +16,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { copytoClipboard } from 'functions/copytoClipboard';
-import { useMiningMaps } from 'hooks/information/useMiningMaps';
-import { useLinks } from 'hooks/useLinks';
 
 export const MiningMaps = () => {
   const maps = useMiningMaps();
@@ -45,29 +45,20 @@ export const MiningMaps = () => {
                   <IconButton
                     size="small"
                     color="secondary"
-                    onClick={() => copytoClipboard(map.system)}
-                  >
+                    onClick={() => copytoClipboard(map.system)}>
                     <FileCopy />
                   </IconButton>
                 </TableCell>
                 <TableCell>{map.body}</TableCell>
                 <TableCell>
-                  <Link
-                    href={`${inaraCommodity}${map.materialInara}`}
-                    target="_blank"
-                  >
+                  <Link href={`${inaraCommodity}${map.materialInara}`} target="_blank">
                     {map.material}
                   </Link>
                 </TableCell>
                 <TableCell>{map.miningType}</TableCell>
                 <TableCell>{map.overlap}</TableCell>
                 <TableCell>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    href={map.link}
-                    target="_blank"
-                  >
+                  <Button variant="outlined" color="primary" href={map.link} target="_blank">
                     Open Map
                   </Button>
                 </TableCell>

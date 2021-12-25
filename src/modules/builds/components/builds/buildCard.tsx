@@ -1,6 +1,15 @@
-import { Box, Button, Card, CardContent, CardMedia, Divider, Fade, Typography } from '@mui/material';
-import { useShipIdfromMap } from 'hooks/builds/useShipMap';
-import { IBuildInfov2, ShipSize } from 'models/builds';
+import { useShipIdfromMap } from '@@/builds/hooks/useShipMap';
+import { IBuildInfov2, ShipSize } from '@@/builds/models';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Divider,
+  Fade,
+  Typography,
+} from '@mui/material';
 import NextLink from 'next/link';
 import { EngIcons } from '../engIcons';
 import { TagGroup } from '../tagGroup';

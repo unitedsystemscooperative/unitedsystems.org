@@ -1,11 +1,11 @@
-import { BuildDialog, BuildDialogProps } from 'components/builds/dialog/buildDialog';
-import { ConfirmDialog } from 'components/confirmDialog';
-import { useShipBuilds } from 'hooks/builds/useShipBuilds';
-import { IBuildInfov2, IShipInfo } from 'models/builds';
+import { ConfirmDialog } from '@/components/confirmDialog';
+import { BuildDialog, BuildDialogProps } from '@@/builds/components/dialog/buildDialog';
+import { getShipInfofromID } from '@@/builds/functions/getShipInfo';
+import { useShipBuilds } from '@@/builds/hooks/useShipBuilds';
+import { IBuildInfov2, IShipInfo } from '@@/builds/models';
+import { EDSpinner } from '@admiralfeb/react-components';
 import { useSnackbar } from 'notistack';
 import { createContext, ReactNode, useState } from 'react';
-import { getShipInfofromID } from 'functions/builds/getShipInfo';
-import { EDSpinner } from '@admiralfeb/react-components';
 
 /**
  * Add Build Function. Used in the Build Provider to trigger the dialog.

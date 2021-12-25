@@ -1,5 +1,5 @@
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import axios from 'axios';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 

@@ -1,3 +1,4 @@
+import { useShipReviews } from '@@/information/hooks/useShipReviews';
 import {
   Button,
   Container,
@@ -10,7 +11,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useShipReviews } from 'hooks/information/useShipReviews';
 
 export const ShipReviews = () => {
   const shipReviews = useShipReviews();
@@ -36,8 +36,7 @@ export const ShipReviews = () => {
                     href={review.shipReview}
                     target="_blank"
                     variant="outlined"
-                    color="secondary"
-                  >
+                    color="secondary">
                     Pilot Review
                   </Button>
                 </TableCell>

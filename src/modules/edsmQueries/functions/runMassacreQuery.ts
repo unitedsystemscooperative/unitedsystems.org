@@ -1,5 +1,5 @@
-import { ISphereSystem } from 'models';
-import { IPossibility } from 'models/possibility.model';
+import { IPossibility } from '@@/edsmQueries/models/possibility.model';
+import { ISphereSystem } from '@@/edsmQueries/models/sphereSystems.model';
 import { BehaviorSubject } from 'rxjs';
 import { getBodiesinSystem } from './getBodiesinSystem';
 import { getFactionsinSystem } from './getFactionsinSystem';
@@ -10,18 +10,12 @@ const massacreQueryProgress = new BehaviorSubject('');
 const runMassacreQuery = async (systemName = 'Bibaridji', range = 50) => {
   massacreQueryProgress.next('Retrieving Systems');
   let systemList = await getSystemsinSphere(systemName, range);
-  systemList = systemList.filter(
-    (s) => Object.keys(s.information).length !== 0
-  );
+  systemList = systemList.filter((s) => Object.keys(s.information).length !== 0);
 
-  massacreQueryProgress.next(
-    `Retrieving Body Information for ${systemList.length} systems`
-  );
+  massacreQueryProgress.next(`Retrieving Body Information for ${systemList.length} systems`);
   systemList = await getSystemswithRings(systemList);
 
-  massacreQueryProgress.next(
-    `Retrieving Faction Information for ${systemList.length} systems`
-  );
+  massacreQueryProgress.next(`Retrieving Faction Information for ${systemList.length} systems`);
   systemList = await getSystemswithAnarchyFaction(systemList);
 
   const possibilities = await finalizePossibilities(systemList);
@@ -83,9 +77,7 @@ const finalizePossibilities = async (systemList: ISphereSystem[]) => {
 
 const getPopulatedSystemswithin10LY = async (system: ISphereSystem) => {
   let closeSystems: ISphereSystem[] = await getSystemsinSphere(system.name, 10);
-  closeSystems = closeSystems.filter(
-    (v) => Object.keys(v.information).length !== 0
-  );
+  closeSystems = closeSystems.filter((v) => Object.keys(v.information).length !== 0);
   closeSystems = closeSystems.filter((v) => v.information.population > 100);
   return closeSystems;
 };

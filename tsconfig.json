@@ -18,7 +18,7 @@
       "public/*": ["public/*"],
       "@/*": ["src/*"],
       "#/*": ["src/pages/api/*"],
-      "@@/about/*": ["src/modules/about/*"]
+      "@@/*": ["src/modules/*"]
     }
   },
   "include": ["next-env.d.ts", "usc.d.ts", "**/*.ts", "**/*.tsx"],

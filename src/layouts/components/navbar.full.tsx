@@ -1,9 +1,9 @@
+import { useAdmin } from '@/hooks/useAdmin';
+import Link from '@/layouts/components/navLink';
+import { INavItem } from '@/models/navItem';
 import { AppBar, Button, Toolbar, useTheme } from '@mui/material';
 import { Box, SxProps } from '@mui/system';
-import { useAdmin } from 'hooks/useAdmin';
-import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
-import Link from './navLink';
 
 export const NavbarFull = (props: { navItems: INavItem[] }) => {
   const [session] = useSession();
@@ -60,22 +60,12 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
           </Link>
         )}
         {session ? (
-          <Button
-            onClick={() => signout()}
-            color="secondary"
-            sx={sxJoinLink}
-            variant="contained"
-          >
+          <Button onClick={() => signout()} color="secondary" sx={sxJoinLink} variant="contained">
             Sign Out
           </Button>
         ) : (
           <Link href="/join">
-            <Button
-              href="/join"
-              color="secondary"
-              sx={sxJoinLink}
-              variant="contained"
-            >
+            <Button href="/join" color="secondary" sx={sxJoinLink} variant="contained">
               Join
             </Button>
           </Link>

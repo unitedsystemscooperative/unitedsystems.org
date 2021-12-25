@@ -1,6 +1,5 @@
-import { PaperP2 } from 'components/_common/paper';
-import { CenteredTypography } from 'components/_common/typography';
-import { IBuildInfov2 } from 'models/builds';
+import { CenteredTypography, PaperP2 } from '@/components/_common';
+import { IBuildInfov2 } from '@@/builds/models';
 import { BuildCard } from './buildCard';
 
 interface BuildListProps {
@@ -18,7 +17,7 @@ export const BuildList = ({ shipBuilds }: BuildListProps) => {
       }}>
       {shipBuilds?.length > 0 ? (
         shipBuilds?.map((ship) => {
-          return <BuildCard key={(ship._id as unknown) as string} shipBuild={ship} />;
+          return <BuildCard key={ship._id as unknown as string} shipBuild={ship} />;
         })
       ) : (
         <PaperP2>

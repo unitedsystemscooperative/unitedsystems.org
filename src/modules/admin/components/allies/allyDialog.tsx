@@ -1,3 +1,5 @@
+import { TextFieldwM1 } from '@/components/_common';
+import { IAlly } from '@@/about/models/ally';
 import {
   Button,
   Dialog,
@@ -6,8 +8,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { TextFieldwM1 } from 'components/_common';
-import { IAlly } from 'models/about/ally';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -40,9 +40,7 @@ export const AllyDialog = (props: AllyDialogProps) => {
     onClose();
   };
 
-  const onSubmit: SubmitHandler<Omit<IAlly, '_id'>> = (
-    data: Omit<IAlly, '_id'>
-  ) => {
+  const onSubmit: SubmitHandler<Omit<IAlly, '_id'>> = (data: Omit<IAlly, '_id'>) => {
     const _id = values?._id ? values._id : undefined;
     onClose({
       _id,
@@ -60,9 +58,7 @@ export const AllyDialog = (props: AllyDialogProps) => {
             placeholder="Ally Name"
             fullWidth
             error={errors.name !== undefined}
-            helperText={
-              errors.name?.type === 'required' && 'This field is required.'
-            }
+            helperText={errors.name?.type === 'required' && 'This field is required.'}
             {...register('name', { required: true })}
           />
         </DialogContent>

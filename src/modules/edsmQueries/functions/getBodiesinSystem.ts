@@ -1,5 +1,5 @@
+import { ISystemBodies } from '@@/edsmQueries/models/bodies.model';
 import axios from 'axios';
-import { ISystemBodies } from 'models';
 
 const apiURL = 'https://www.edsm.net/api-system-v1/bodies';
 

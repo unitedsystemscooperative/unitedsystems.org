@@ -1,7 +1,10 @@
-import { IBuildInfov2, IQuery } from 'models/builds';
+import { IBuildInfov2, IQuery } from '@@/builds/models';
 import { getShipInfofromID } from './getShipInfo';
 
-export const filterShipBuilds = (shipBuilds: IBuildInfov2[] | undefined, query: IQuery | undefined) => {
+export const filterShipBuilds = (
+  shipBuilds: IBuildInfov2[] | undefined,
+  query: IQuery | undefined
+) => {
   if (shipBuilds && query) {
     let newList = shipBuilds;
     // ship type

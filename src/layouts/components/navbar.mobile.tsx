@@ -1,3 +1,5 @@
+import { useAdmin } from '@/hooks/useAdmin';
+import { INavItem } from '@/models/navItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
@@ -11,29 +13,21 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { useAdmin } from 'hooks/useAdmin';
-import { INavItem } from 'models/navItem';
 import { signout, useSession } from 'next-auth/client';
 import { KeyboardEvent, MouseEvent, useState } from 'react';
 import Link from './navLink';
 
-export const NavbarMobile = (props: {
-  title: string | undefined;
-  navItems: INavItem[];
-}) => {
+export const NavbarMobile = (props: { title: string | undefined; navItems: INavItem[] }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { title, navItems } = props;
   const [session] = useSession();
   const isCommand = useAdmin();
   const theme = useTheme();
 
-  const toggleDrawer = (open: boolean) => (
-    event: KeyboardEvent | MouseEvent
-  ) => {
+  const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent) => {
     if (
       event.type === 'keydown' &&
-      ((event as KeyboardEvent).key === 'Tab' ||
-        (event as KeyboardEvent).key === 'Shift')
+      ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')
     ) {
       return;
     }
@@ -81,8 +75,7 @@ export const NavbarMobile = (props: {
             sx={{ marginRight: theme.spacing(2) }}
             color="inherit"
             onClick={toggleDrawer(true)}
-            size="large"
-          >
+            size="large">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -90,12 +83,7 @@ export const NavbarMobile = (props: {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="top"
-        open={openDrawer}
-        onClose={toggleDrawer(false)}
-        variant="temporary"
-      >
+      <Drawer anchor="top" open={openDrawer} onClose={toggleDrawer(false)} variant="temporary">
         <Box>{navList()}</Box>
       </Drawer>
     </div>

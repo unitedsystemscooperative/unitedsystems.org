@@ -1,4 +1,4 @@
-import { IBuildInfov2 } from 'models/builds';
+import { IBuildInfov2 } from '@@/builds/models';
 
 export const testBuildNoExtra: IBuildInfov2 = {
   _id: '1234',

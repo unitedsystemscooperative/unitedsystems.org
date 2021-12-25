@@ -1,3 +1,12 @@
+import { USCMarkdown } from '@/components/uscmarkdown';
+import { BoxwMB1, CenteredTypography } from '@/components/_common';
+import { useLinks } from '@/hooks/useLinks';
+import { IBuildInfov2, IShipInfo, ShipSize } from '@@/builds/models';
+import {
+  AddBuildFunction,
+  BuildContext,
+  BuildContextProvider,
+} from '@@/builds/providers/buildProvider';
 import {
   Box,
   Button,
@@ -9,19 +18,13 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { USCMarkdown } from 'components/uscmarkdown';
-import { BoxwMB1 } from 'components/_common';
-import { CenteredTypography } from 'components/_common/typography';
-import { useLinks } from 'hooks/useLinks';
-import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { AddBuildFunction, BuildContext, BuildContextProvider } from 'providers/buildProvider';
 import { useContext, useMemo } from 'react';
-import { BuildCard } from './buildCard';
 import { EngIcons } from '../engIcons';
-import { ShipImgAcknowledgement } from './shipImgAcknowledgement';
 import { TagGroup } from '../tagGroup';
+import { BuildCard } from './buildCard';
+import { ShipImgAcknowledgement } from './shipImgAcknowledgement';
 
 const BuildDetailBuilds = ({
   title,

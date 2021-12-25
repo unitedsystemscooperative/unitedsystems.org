@@ -1,3 +1,13 @@
+import { TextFieldwM1 } from '@/components/_common';
+import {
+  Platform,
+  PlatformString,
+  Referral,
+  ReferralString,
+  Region,
+  RegionString,
+} from '@@/admin/models';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import {
   Box,
   Button,
@@ -11,18 +21,8 @@ import {
   styled,
   Typography,
 } from '@mui/material';
-import { TextFieldwM1 } from 'components/_common';
-import { Platform, PlatformString } from 'models/admin/platforms';
-import { Referral, ReferralString } from 'models/admin/referrals';
-import { Region, RegionString } from 'models/admin/regions';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { useEffect, useState } from 'react';
-import {
-  Control,
-  RegisterOptions,
-  useController,
-  useWatch,
-} from 'react-hook-form';
+import { Control, RegisterOptions, useController, useWatch } from 'react-hook-form';
 
 export const QuestionBox = styled('div')(({ theme }) => ({
   borderColor: theme.palette.secondary.main,
@@ -45,11 +45,7 @@ interface FormQuestionProps {
   label: string;
   controllerProps: ControllerProps;
 }
-export const FormTextField = ({
-  question,
-  label,
-  controllerProps,
-}: FormQuestionProps) => {
+export const FormTextField = ({ question, label, controllerProps }: FormQuestionProps) => {
   const {
     field: { ref, ...inputProps },
     fieldState: { error },
@@ -57,25 +53,13 @@ export const FormTextField = ({
   return (
     <QuestionBox>
       <Typography>{question}</Typography>
-      <TextFieldwM1
-        label={label}
-        {...inputProps}
-        inputRef={ref}
-        fullWidth
-        variant="standard"
-      />
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      <TextFieldwM1 label={label} {...inputProps} inputRef={ref} fullWidth variant="standard" />
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };
 
-export const FormCheckBoxField = ({
-  question,
-  label,
-  controllerProps,
-}: FormQuestionProps) => {
+export const FormCheckBoxField = ({ question, label, controllerProps }: FormQuestionProps) => {
   const {
     field: { value, onChange },
     fieldState: { error },
@@ -87,20 +71,13 @@ export const FormCheckBoxField = ({
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <FormControlLabel
             label={label}
-            control={
-              <Checkbox
-                checked={value}
-                onChange={(e) => onChange(e.target.checked)}
-              />
-            }
+            control={<Checkbox checked={value} onChange={(e) => onChange(e.target.checked)} />}
           />
         </Box>
       ) : (
         <Typography color="error">This field should be a checkbox</Typography>
       )}
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };
@@ -174,9 +151,7 @@ export const FormPlatformRadioGroup = ({ control }: FormControlProps) => {
             />
           ))}
       </RadioGroup>
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };
@@ -195,30 +170,12 @@ export const FormPlayingLength = ({ control }: FormControlProps) => {
     <QuestionBox>
       <Typography>How long have you been playing?</Typography>
       <RadioGroup row {...field} sx={{ justifyContent: 'space-evenly' }}>
-        <FormControlLabel
-          value="lessthanMonth"
-          control={<Radio />}
-          label="Less than 1 month"
-        />
-        <FormControlLabel
-          value="morethanMonth"
-          control={<Radio />}
-          label="More than 1 month"
-        />
-        <FormControlLabel
-          value="morethan6Month"
-          control={<Radio />}
-          label="More than 6 months"
-        />
-        <FormControlLabel
-          value="morethan1Year"
-          control={<Radio />}
-          label="More than 1 year"
-        />
+        <FormControlLabel value="lessthanMonth" control={<Radio />} label="Less than 1 month" />
+        <FormControlLabel value="morethanMonth" control={<Radio />} label="More than 1 month" />
+        <FormControlLabel value="morethan6Month" control={<Radio />} label="More than 6 months" />
+        <FormControlLabel value="morethan1Year" control={<Radio />} label="More than 1 year" />
       </RadioGroup>
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };
@@ -269,15 +226,8 @@ export const FormReferral = ({ control }: FormControlProps) => {
             />
           ))}
       </RadioGroup>
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
-      <Collapse
-        in={ref2Question !== ''}
-        timeout={500}
-        mountOnEnter
-        unmountOnExit
-      >
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
+      <Collapse in={ref2Question !== ''} timeout={500} mountOnEnter unmountOnExit>
         <div>
           <Divider />
           <div>
@@ -323,9 +273,7 @@ export const FormRegion = ({ control }: FormControlProps) => {
           ))}
       </RadioGroup>
 
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };
@@ -352,18 +300,11 @@ export const FormRules = ({ control }: FormControlProps) => {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <FormControlLabel
           label="Yes"
-          control={
-            <Checkbox
-              checked={value}
-              onChange={(e) => onChange(e.target.checked)}
-            />
-          }
+          control={<Checkbox checked={value} onChange={(e) => onChange(e.target.checked)} />}
         />
       </Box>
 
-      {error?.message && (
-        <Typography color="error">{error?.message}</Typography>
-      )}
+      {error?.message && <Typography color="error">{error?.message}</Typography>}
     </QuestionBox>
   );
 };

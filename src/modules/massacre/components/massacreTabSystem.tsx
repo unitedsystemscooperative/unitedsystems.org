@@ -1,5 +1,5 @@
-import { AppBar, Tab, Tabs, Typography, Collapse } from '@mui/material';
-import { MassacreContext } from 'providers/massacreTrackerProvider';
+import { MassacreContext } from '@@/massacre/providers/massacreTrackerProvider';
+import { AppBar, Collapse, Tab, Tabs, Typography } from '@mui/material';
 import { ChangeEvent, useContext } from 'react';
 import { MassacreTabAddPanel } from './massacreTabAddPanel';
 import { MassacreTabPanel } from './massacreTabPanel';
@@ -34,8 +34,7 @@ export const MassacreTabSystem = () => {
             in={tracker.hazRezSystem === context.selectedTab}
             key={tracker.hazRezSystem}
             unmountOnExit
-            mountOnEnter
-          >
+            mountOnEnter>
             <div>
               <MassacreTabPanel system={tracker.hazRezSystem} />
             </div>

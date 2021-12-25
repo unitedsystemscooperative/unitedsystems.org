@@ -1,3 +1,5 @@
+import { CenteredTypography } from '@/components/_common';
+import { RankData } from '@@/information/data/ranks';
 import {
   Container,
   List,
@@ -7,8 +9,6 @@ import {
   Paper,
   styled,
 } from '@mui/material';
-import { CenteredTypography } from 'components/_common/typography';
-import { RankData } from 'data/information/ranks';
 import Image from 'next/image';
 
 const StyledSection = styled('section')(({ theme }) => ({
@@ -19,19 +19,12 @@ const StyledSection = styled('section')(({ theme }) => ({
 const generatePilotsRankList = (name: string) => {
   return (
     <StyledSection id={name}>
-      <CenteredTypography variant="h4">
-        {RankData[name]['name']}
-      </CenteredTypography>
+      <CenteredTypography variant="h4">{RankData[name]['name']}</CenteredTypography>
       <List>
         {RankData[name].ranks.map((rank: string, i: number) => (
           <ListItem key={rank + i}>
             <ListItemAvatar sx={{ m: 1 }}>
-              <Image
-                src={`/img/ranks/${name}/${i}.png`}
-                alt=""
-                width={75}
-                height={75}
-              />
+              <Image src={`/img/ranks/${name}/${i}.png`} alt="" width={75} height={75} />
             </ListItemAvatar>
             <ListItemText primary={rank} />
           </ListItem>
@@ -43,9 +36,7 @@ const generatePilotsRankList = (name: string) => {
 export const Ranks = () => {
   return (
     <Container maxWidth="xl">
-      <CenteredTypography variant="h4">
-        Pilots Federation Ranks
-      </CenteredTypography>
+      <CenteredTypography variant="h4">Pilots Federation Ranks</CenteredTypography>
       <Paper sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         {generatePilotsRankList('combat')}
         {generatePilotsRankList('cqc')}

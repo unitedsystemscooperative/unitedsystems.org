@@ -35,24 +35,15 @@ export const BGSInfo = () => {
                 <ul>
                   <li>Complete INF missions. The more +'s the better.</li>
                   <li>
-                    Bounty Hunting - Dropping the bounties at a station where
-                    the giver of the bounty has a presence.
+                    Bounty Hunting - Dropping the bounties at a station where the giver of the
+                    bounty has a presence.
                   </li>
+                  <li>Exploration Data hand-in - Increases INF for the owner of the station.</li>
+                  <li>Commodity Trading - Increases INF for the owner of the station.</li>
+                  <li>Interstellar Factors - Increases INF for the owner of the station.</li>
                   <li>
-                    Exploration Data hand-in - Increases INF for the owner of
-                    the station.
-                  </li>
-                  <li>
-                    Commodity Trading - Increases INF for the owner of the
-                    station.
-                  </li>
-                  <li>
-                    Interstellar Factors - Increases INF for the owner of the
-                    station.
-                  </li>
-                  <li>
-                    Vista Genomics hand-in (Odyssey-Only and Unconfirmed) -
-                    Increases INF for the owner of the station.
+                    Vista Genomics hand-in (Odyssey-Only and Unconfirmed) - Increases INF for the
+                    owner of the station.
                   </li>
                 </ul>
               </Typography>
@@ -62,25 +53,20 @@ export const BGSInfo = () => {
             <IndentDiv>
               <Typography>
                 <ul>
+                  <li>Completing INF missions for other factions in the system.</li>
                   <li>
-                    Completing INF missions for other factions in the system.
+                    "Clean Killing" - Killing innocent NPCs of that faction. This is considered
+                    illegal and can bring System Authority against you.
                   </li>
                   <li>
-                    "Clean Killing" - Killing innocent NPCs of that faction.
-                    This is considered illegal and can bring System Authority
-                    against you.
+                    Black Market Trading - Bringing illegal/illicit goods and selling them to a
+                    station will decrease the station owner's INF.
                   </li>
                   <li>
-                    Black Market Trading - Bringing illegal/illicit goods and
-                    selling them to a station will decrease the station owner's
-                    INF.
-                  </li>
-                  <li>
-                    Failing missions - Failing missions, whether intentional or
-                    not, will decrease the mission faction's INF.
+                    Failing missions - Failing missions, whether intentional or not, will decrease
+                    the mission faction's INF.
                     <br />
-                    Note: Aborting the mission will only decrease your REP
-                    without affecting INF.
+                    Note: Aborting the mission will only decrease your REP without affecting INF.
                   </li>
                 </ul>
               </Typography>
@@ -88,8 +74,8 @@ export const BGSInfo = () => {
             <Typography variant="h6">Diminishing Returns</Typography>
             <IndentDiv>
               <Typography>
-                Too much of one thing is too much. There are caps in place to
-                prevent over-inflating changes in influence
+                Too much of one thing is too much. There are caps in place to prevent over-inflating
+                changes in influence
               </Typography>
             </IndentDiv>
           </IndentDiv>
@@ -99,9 +85,7 @@ export const BGSInfo = () => {
           <Typography variant="h5">Conflicts</Typography>
           <IndentDiv>
             <Typography variant="h6">Elections</Typography>
-            <Typography ml={3}>
-              Complete election missions to win the conflict.
-            </Typography>
+            <Typography ml={3}>Complete election missions to win the conflict.</Typography>
 
             <Typography variant="h6">Wars</Typography>
             <IndentDiv>
@@ -113,8 +97,8 @@ export const BGSInfo = () => {
                 </ul>
               </Typography>
               <Typography>
-                Diminishing returns are a possibility here. Follow the list
-                below. A maximum of 9 should be a good cap.
+                Diminishing returns are a possibility here. Follow the list below. A maximum of 9
+                should be a good cap.
               </Typography>
               <Container maxWidth="xs">
                 <Table>

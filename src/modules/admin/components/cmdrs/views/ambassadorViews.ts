@@ -1,5 +1,4 @@
-import { IAmbassador } from 'models/admin/cmdr';
-import { PlatformString } from 'models/admin/platforms';
+import { IAmbassador, PlatformString } from '@@/admin/models';
 import { handleDate, HeadCell, ViewData } from './commonView';
 
 export const ambassadorDefaultHeadCells: HeadCell<IAmbassador>[] = [

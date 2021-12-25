@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
-import { ReleaseInfo } from 'models/releaseInfo';
+import path from 'path';
+import { ReleaseInfo } from './releaseInfo';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'data', 'releases');
 

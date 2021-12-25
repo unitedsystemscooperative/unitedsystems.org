@@ -1,7 +1,7 @@
+import { OtherFilters } from '@@/builds/models/otherFilters';
 import BlockIcon from '@mui/icons-material/Block';
 import CheckIcon from '@mui/icons-material/Check';
 import { styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
-import { OtherFilters } from 'models/builds/otherFilters';
 import { MouseEvent } from 'react';
 import { QuerySection, QuerySectionHeader } from './sharedComponents';
 
@@ -19,7 +19,10 @@ const ButtonGrid = styled('div')(({ theme }) => ({
   },
 }));
 
-export const QueryOther = (props: { other: OtherFilters; setOther: (value: OtherFilters) => void }) => {
+export const QueryOther = (props: {
+  other: OtherFilters;
+  setOther: (value: OtherFilters) => void;
+}) => {
   const { other, setOther } = props;
 
   const handleGuardianChange = (_: MouseEvent<HTMLElement>, newValue: number) => {

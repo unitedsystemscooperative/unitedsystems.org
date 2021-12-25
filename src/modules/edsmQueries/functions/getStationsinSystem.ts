@@ -1,5 +1,5 @@
+import { ISystemStations } from '@@/edsmQueries/models/stationsInSystem';
 import axios from 'axios';
-import { ISystemStations } from 'models/stationsInSystem';
 
 const apiURL = 'https://www.edsm.net/api-system-v1/stations';
 

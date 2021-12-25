@@ -1,6 +1,14 @@
-import massacreDefaults from 'data/massacre/massacreDefaults.json';
-import { IMassacreTrack } from 'models/massacreTrack';
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useReducer, useState } from 'react';
+import massacreDefaults from '@@/massacre/data/massacreDefaults.json';
+import { IMassacreTrack } from '@@/massacre/massacreTrack';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 
 export interface IMassacreContext {
   trackers: IMassacreTrack[];
@@ -82,7 +90,9 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   useEffect(() => {
     if (window) {
-      const store: IMassacreTrack[] | null = JSON.parse(window.localStorage.getItem('massacreTrackerStore'));
+      const store: IMassacreTrack[] | null = JSON.parse(
+        window.localStorage.getItem('massacreTrackerStore')
+      );
       if (store && store.length > 0) {
         dispatch({
           type: 'set',

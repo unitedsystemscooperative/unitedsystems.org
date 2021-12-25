@@ -1,22 +1,18 @@
+import { CenteredTypography, IndentedDiv, PaperP2 } from '@/components/_common';
 import { Container, Link, Typography } from '@mui/material';
-import { IndentedDiv } from 'components/_common/div';
-import { PaperP2 } from 'components/_common/paper';
-import { CenteredTypography } from 'components/_common/typography';
 import NextLink from 'next/link';
 
 export const OdysseyS2GCombat = () => {
   return (
     <Container maxWidth="lg">
-      <CenteredTypography variant="h4">
-        Ship to Ground Combat
-      </CenteredTypography>
+      <CenteredTypography variant="h4">Ship to Ground Combat</CenteredTypography>
       <PaperP2>
         <section>
           <Typography variant="h5">Be Wary</Typography>
           <IndentedDiv>
             <Typography>
-              Base defenses are not to be trifled with. They can potentially
-              knock out a well-shielded (Clever-engineered) ship.
+              Base defenses are not to be trifled with. They can potentially knock out a
+              well-shielded (Clever-engineered) ship.
             </Typography>
           </IndentedDiv>
         </section>
@@ -25,13 +21,12 @@ export const OdysseyS2GCombat = () => {
 
           <IndentedDiv>
             <Typography>
-              The recommended weapons here allow you to fire without locking
-              onto a person on the ground.
+              The recommended weapons here allow you to fire without locking onto a person on the
+              ground.
             </Typography>
             <Typography>
-              The sensors of a ship will not be able to lock onto an individual
-              person on the ground. The SRV is able to target each person and
-              perform scans at long range.
+              The sensors of a ship will not be able to lock onto an individual person on the
+              ground. The SRV is able to target each person and perform scans at long range.
             </Typography>
           </IndentedDiv>
 
@@ -39,9 +34,7 @@ export const OdysseyS2GCombat = () => {
             <ul>
               <li>Dumb-fire Missiles</li>
               <li>Remote-Release Flechette Launcher</li>
-              <li>
-                Mines (be fast when deploying so they don't explode on you)
-              </li>
+              <li>Mines (be fast when deploying so they don't explode on you)</li>
             </ul>
           </Typography>
         </section>
@@ -50,8 +43,7 @@ export const OdysseyS2GCombat = () => {
           <Typography variant="h5">Recommended Ships</Typography>
           <IndentedDiv>
             <Typography>
-              The ships here have been tried and tested by our chief engineer,
-              Clever Ape.
+              The ships here have been tried and tested by our chief engineer, Clever Ape.
             </Typography>
           </IndentedDiv>
           <Typography>
@@ -72,8 +64,7 @@ export const OdysseyS2GCombat = () => {
                     pathname: '/builds',
                     query: { specialties: 'Combat - Ship to Ground' },
                   }}
-                  passHref
-                >
+                  passHref>
                   <Link>Ship to Ground Combat Builds</Link>
                 </NextLink>
               </li>
@@ -83,8 +74,7 @@ export const OdysseyS2GCombat = () => {
                     pathname: '/builds',
                     query: { specialties: 'Odyssey Lander / Support' },
                   }}
-                  passHref
-                >
+                  passHref>
                   <Link>Odyssey Lander/Support Builds</Link>
                 </NextLink>
               </li>

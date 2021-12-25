@@ -1,3 +1,6 @@
+import { copytoClipboard } from '@/functions/copytoClipboard';
+import { PlatformString, RegionString } from '@@/admin/models';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { FileCopy } from '@mui/icons-material';
 import {
   Checkbox,
@@ -11,17 +14,9 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { copytoClipboard } from 'functions/copytoClipboard';
-import { PlatformString } from 'models/admin/platforms';
-import { RegionString } from 'models/admin/regions';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { ChangeEvent, useState } from 'react';
 
-export const AmbassadorsTable = ({
-  ambassadors,
-}: {
-  ambassadors: IJoinRequest[];
-}) => {
+export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -61,8 +56,7 @@ export const AmbassadorsTable = ({
                       <IconButton
                         size="small"
                         color="secondary"
-                        onClick={() => copytoClipboard(map.cmdr.toUpperCase())}
-                      >
+                        onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
                         <FileCopy />
                       </IconButton>
                     </TableCell>
@@ -71,8 +65,7 @@ export const AmbassadorsTable = ({
                       <IconButton
                         size="small"
                         color="secondary"
-                        onClick={() => copytoClipboard(map.discord)}
-                      >
+                        onClick={() => copytoClipboard(map.discord)}>
                         <FileCopy />
                       </IconButton>
                     </TableCell>
@@ -81,9 +74,7 @@ export const AmbassadorsTable = ({
                     <TableCell>
                       <Checkbox checked={map.needPrivate ?? false} disabled />{' '}
                     </TableCell>
-                    <TableCell>
-                      {map.region ? RegionString[map.region] : map.timezone}
-                    </TableCell>
+                    <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>

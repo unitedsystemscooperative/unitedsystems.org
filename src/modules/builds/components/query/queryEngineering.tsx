@@ -1,10 +1,6 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { EngToggleGroup } from '../engToggleGroup';
-import {
-  QueryExplanation,
-  QuerySection,
-  QuerySectionHeader,
-} from './sharedComponents';
+import { QueryExplanation, QuerySection, QuerySectionHeader } from './sharedComponents';
 
 export const QueryEngineering = (props: {
   engLevel: number | null;
@@ -12,10 +8,7 @@ export const QueryEngineering = (props: {
 }) => {
   const { engLevel, setEngLevel } = props;
 
-  const handleEngLevelChange = (
-    _: MouseEvent<HTMLElement>,
-    newValue: number
-  ) => {
+  const handleEngLevelChange = (_: MouseEvent<HTMLElement>, newValue: number) => {
     setEngLevel(newValue);
   };
 
@@ -25,10 +18,7 @@ export const QueryEngineering = (props: {
       <QueryExplanation>
         Select Engineering level ranging from None to Max Engineering.
       </QueryExplanation>
-      <EngToggleGroup
-        engLevel={engLevel}
-        handleEngLevelChange={handleEngLevelChange}
-      />
+      <EngToggleGroup engLevel={engLevel} handleEngLevelChange={handleEngLevelChange} />
     </QuerySection>
   );
 };

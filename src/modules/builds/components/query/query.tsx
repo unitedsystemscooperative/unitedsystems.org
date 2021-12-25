@@ -1,5 +1,5 @@
+import { IQuery, OtherFilters } from '@@/builds/models';
 import { Box } from '@mui/material';
-import { IQuery, OtherFilters } from 'models/builds';
 import { useRouter } from 'next/router';
 import qs from 'query-string';
 import { useEffect, useReducer } from 'react';
@@ -71,7 +71,9 @@ export const Query = (props: QueryProps) => {
         break;
       case 'query':
         newQuery =
-          typeof action.value === 'object' && !Array.isArray(action.value) ? (action.value as IQuery) : prevState;
+          typeof action.value === 'object' && !Array.isArray(action.value)
+            ? (action.value as IQuery)
+            : prevState;
         break;
       case 'reset':
         newQuery = {
@@ -200,7 +202,10 @@ export const Query = (props: QueryProps) => {
         engLevel={query.engLevel}
         setEngLevel={(value: number) => dispatch({ type: 'engLevel', value })}
       />
-      <QueryOther other={{ ...query }} setOther={(value: OtherFilters) => dispatch({ type: 'other', value })} />
+      <QueryOther
+        other={{ ...query }}
+        setOther={(value: OtherFilters) => dispatch({ type: 'other', value })}
+      />
       <QueryActions resetQueries={resetQueries} addBuild={handleAdd} />
     </Box>
   );

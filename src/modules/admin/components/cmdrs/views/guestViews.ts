@@ -1,5 +1,4 @@
-import { IGuest } from 'models/admin/cmdr';
-import { PlatformString } from 'models/admin/platforms';
+import { IGuest, PlatformString } from '@@/admin/models';
 import { handleDate, HeadCell, ViewData } from './commonView';
 
 export const guestDefaultHeadCells: HeadCell<IGuest>[] = [

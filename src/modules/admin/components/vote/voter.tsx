@@ -1,6 +1,6 @@
+import { IVoter } from '@@/admin/models';
 import { Check, Clear, Remove } from '@mui/icons-material';
 import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
-import { IVoter } from 'models/admin/voter';
 import { MouseEvent, useState } from 'react';
 
 export const Voter = ({ voter }: { voter: IVoter }) => {
@@ -15,8 +15,7 @@ export const Voter = ({ voter }: { voter: IVoter }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      }}
-    >
+      }}>
       <Typography>{voter.name}</Typography>
       <div style={{ flexGrow: 1 }} />
       <ToggleButtonGroup value={vote} exclusive onChange={handleVote}>

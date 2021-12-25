@@ -1,6 +1,6 @@
+import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { Box, Button, Collapse, Container, Paper, Typography } from '@mui/material';
-import { useJoinRequests } from 'hooks/join/useJoinInfo';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';

@@ -1,6 +1,6 @@
+import { useShipIdfromMap } from '@@/builds/hooks/useShipMap';
+import { IBuildInfov2, IShipInfo, ShipSize } from '@@/builds/models';
 import { Box, Card, CardContent, CardMedia, Divider, ListItem, Typography } from '@mui/material';
-import { useShipIdfromMap } from 'hooks/builds/useShipMap';
-import { IBuildInfov2, IShipInfo, ShipSize } from 'models/builds';
 import { HTMLAttributes } from 'react';
 import { EngIcons } from '../engIcons';
 import { TagGroup } from '../tagGroup';

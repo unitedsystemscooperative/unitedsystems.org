@@ -1,3 +1,15 @@
+import { copytoClipboard } from '@/functions/copytoClipboard';
+import { useCMDRs } from '@/hooks/useCmdrs';
+import { MemberDialog } from '@@/admin/components/cmdrs/dialogs/memberDialog';
+import {
+  IMember,
+  PlatformString,
+  Rank,
+  ReferralString,
+  Region,
+  RegionString,
+} from '@@/admin/models';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,
@@ -10,17 +22,8 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { copytoClipboard } from 'functions/copytoClipboard';
-import { useCMDRs } from 'hooks/useCmdrs';
-import { IMember } from 'models/admin/cmdr';
-import { PlatformString } from 'models/admin/platforms';
-import { Rank } from 'models/admin/ranks';
-import { ReferralString } from 'models/admin/referrals';
-import { Region, RegionString } from 'models/admin/regions';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
-import { MemberDialog } from '../cmdrs/dialogs/memberDialog';
 
 export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
@@ -34,9 +37,7 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -110,57 +111,43 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
             </TableHead>
             {members && (
               <TableBody>
-                {members
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((map) => (
-                    <TableRow key={`${map.discord} ${map.timeStamp}`}>
-                      <TableCell>
-                        {new Date(map.timeStamp).toUTCString()}
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          {map.cmdr}
-                          <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() =>
-                              copytoClipboard(map.cmdr.toUpperCase())
-                            }
-                          >
-                            <FileCopy />
-                          </IconButton>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          {map.discord}
-                          <IconButton
-                            size="small"
-                            color="secondary"
-                            onClick={() => copytoClipboard(map.discord)}
-                          >
-                            <FileCopy />
-                          </IconButton>
-                        </div>
-                      </TableCell>
-                      <TableCell>{PlatformString[map.platform]}</TableCell>
-                      <TableCell>{processLength(map.playingLength)}</TableCell>
-                      <TableCell>{ReferralString[map.referral]}</TableCell>
-                      <TableCell>{map.referral2}</TableCell>
-                      <TableCell>
-                        {map.region ? RegionString[map.region] : map.timezone}
-                      </TableCell>
-                      <TableCell>
+                {members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((map) => (
+                  <TableRow key={`${map.discord} ${map.timeStamp}`}>
+                    <TableCell>{new Date(map.timeStamp).toUTCString()}</TableCell>
+                    <TableCell>
+                      <div>
+                        {map.cmdr}
                         <IconButton
-                          color="primary"
-                          onClick={() => handleAddMember(map)}
-                          size="large"
-                        >
-                          <Add />
+                          size="small"
+                          color="secondary"
+                          onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
+                          <FileCopy />
                         </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div>
+                        {map.discord}
+                        <IconButton
+                          size="small"
+                          color="secondary"
+                          onClick={() => copytoClipboard(map.discord)}>
+                          <FileCopy />
+                        </IconButton>
+                      </div>
+                    </TableCell>
+                    <TableCell>{PlatformString[map.platform]}</TableCell>
+                    <TableCell>{processLength(map.playingLength)}</TableCell>
+                    <TableCell>{ReferralString[map.referral]}</TableCell>
+                    <TableCell>{map.referral2}</TableCell>
+                    <TableCell>{map.region ? RegionString[map.region] : map.timezone}</TableCell>
+                    <TableCell>
+                      <IconButton color="primary" onClick={() => handleAddMember(map)} size="large">
+                        <Add />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             )}
           </Table>
@@ -175,11 +162,7 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <MemberDialog
-        open={dialog}
-        values={[dialogVal]}
-        onClose={onDialogClose}
-      />
+      <MemberDialog open={dialog} values={[dialogVal]} onClose={onDialogClose} />
     </>
   );
 };

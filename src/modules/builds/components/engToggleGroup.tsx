@@ -1,10 +1,5 @@
 import BlockIcon from '@mui/icons-material/Block';
-import {
-  styled,
-  ToggleButton,
-  ToggleButtonGroup,
-  Tooltip,
-} from '@mui/material';
+import { styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import { MouseEvent } from 'react';
 
@@ -19,19 +14,13 @@ const EngIconSet = styled('div')(() => ({
   display: 'flex',
 }));
 
-const EngIcon = () => (
-  <Image src={engineerIcon} alt="engineeringIcon" height={20} width={20} />
-);
+const EngIcon = () => <Image src={engineerIcon} alt="engineeringIcon" height={20} width={20} />;
 
 export const EngToggleGroup = (props: IEngToggleGroupProps) => {
   const { engLevel, handleEngLevelChange } = props;
 
   return (
-    <ToggleButtonGroup
-      value={engLevel}
-      exclusive
-      onChange={handleEngLevelChange}
-    >
+    <ToggleButtonGroup value={engLevel} exclusive onChange={handleEngLevelChange}>
       <ToggleButton value={0}>
         <Tooltip title="No Engineering" arrow>
           <EngIconSet>

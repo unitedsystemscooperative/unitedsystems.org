@@ -1,5 +1,5 @@
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { Container, Paper, Typography } from '@mui/material';
-import { IJoinRequest } from 'models/join/joinRequest';
 import { useForm } from 'react-hook-form';
 import {
   FormCmdrName,
@@ -11,9 +11,7 @@ import {
   FormSubmit,
 } from './joinComponents';
 
-export const JoinFormGuest = (props: {
-  onSubmit: (data: IJoinRequest, type: string) => void;
-}) => {
+export const JoinFormGuest = (props: { onSubmit: (data: IJoinRequest, type: string) => void }) => {
   const { handleSubmit, control } = useForm<Omit<IJoinRequest, '_id'>>();
 
   const onSubmit = (data: IJoinRequest) => props.onSubmit(data, 'guest');
@@ -24,9 +22,7 @@ export const JoinFormGuest = (props: {
         Guest
       </Typography>
       <Paper sx={{ p: 2 }}>
-        <Typography sx={{ textAlign: 'center' }}>
-          All items are required.
-        </Typography>
+        <Typography sx={{ textAlign: 'center' }}>All items are required.</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormCmdrName control={control} />
           <FormDiscordName control={control} />

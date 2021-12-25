@@ -1,4 +1,4 @@
-import { Rank } from '../../modules/admin/models/ranks';
+import { Rank } from '@@/admin/models/ranks';
 
 export interface IUser {
   _id: string;

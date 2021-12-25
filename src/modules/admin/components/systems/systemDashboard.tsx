@@ -1,3 +1,6 @@
+import { TitleBarwAdd } from '@/components/_common';
+import { useSystems } from '@@/about/hooks/useSystems';
+import { System } from '@@/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
@@ -11,9 +14,6 @@ import {
   ListSubheader,
   Paper,
 } from '@mui/material';
-import { TitleBarwAdd } from 'components/_common';
-import { useSystems } from 'hooks/about/useSystems';
-import { System } from 'models/about/system';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';

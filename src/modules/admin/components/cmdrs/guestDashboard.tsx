@@ -1,15 +1,8 @@
+import { Order } from '@/functions/sort';
+import { useCmdrSearch } from '@/hooks/useCmdrSearch';
+import { IGuest } from '@@/admin/models';
 import { Divider, TablePagination } from '@mui/material';
-import { Order } from 'functions/sort';
-import { useCmdrSearch } from 'hooks/useCmdrSearch';
-import { IGuest } from 'models/admin/cmdr';
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';
 import { CmdrDefaultView, HeadCell, ViewData } from './views/commonView';
 import {
@@ -53,10 +46,7 @@ export const GuestDashboard = (props: GuestDashboardProps) => {
     setPage(0);
   }, [filteredCmdrs.length]);
 
-  const handleRequestSort = (
-    _: MouseEvent<unknown>,
-    property: keyof IGuest
-  ) => {
+  const handleRequestSort = (_: MouseEvent<unknown>, property: keyof IGuest) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);

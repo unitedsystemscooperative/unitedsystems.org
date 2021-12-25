@@ -1,5 +1,5 @@
+import { getStationSize } from '@@/edsmQueries/functions/getStationSize';
 import { Box, Divider, Paper, Typography } from '@mui/material';
-import { getStationSize } from 'functions/edsmQueries/getStationSize';
 
 export const StationList = (props: {
   system: string;
@@ -17,9 +17,7 @@ export const StationList = (props: {
             <div style={{ display: 'flex' }}>
               <Typography>{station.name}</Typography>
               <div style={{ flexGrow: 1 }} />
-              <Typography>
-                {getStationSize(station.type)?.slice(undefined, 1)}
-              </Typography>
+              <Typography>{getStationSize(station.type)?.slice(undefined, 1)}</Typography>
             </div>
             <Typography>{station.distance} ls</Typography>
             <Divider />

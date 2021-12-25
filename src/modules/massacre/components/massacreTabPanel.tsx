@@ -1,9 +1,9 @@
+import { PaperOutlineButton } from '@/components/_common/button';
+import { IFactionwMissions, IMassacreTrack } from '@@/massacre/massacreTrack';
+import { processHazRezSystem } from '@@/massacre/processHazRezSystem';
+import { MassacreContext } from '@@/massacre/providers/massacreTrackerProvider';
+import { ReputationLevels } from '@@/massacre/reputationLevels';
 import { Box, Container, Typography } from '@mui/material';
-import { PaperOutlineButton } from 'components/_common/button';
-import { processHazRezSystem } from 'functions/processHazRezSystem';
-import { IFactionwMissions, IMassacreTrack } from 'models/massacreTrack';
-import { ReputationLevels } from 'models/reputationLevels';
-import { MassacreContext } from 'providers/massacreTrackerProvider';
 import { useContext, useMemo } from 'react';
 import { MassacreMissions } from './massacreMissions';
 import { MassacreTotals } from './massacreTotals';
@@ -41,9 +41,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
 
     const deleteLastMissionColumn = () => {
       const newFactions = tracker.factions.map((faction) => {
-        faction.missions = [
-          ...faction.missions.slice(0, faction.missions.length - 1),
-        ];
+        faction.missions = [...faction.missions.slice(0, faction.missions.length - 1)];
         return faction;
       });
       const newTracker: IMassacreTrack = { ...tracker, factions: newFactions };
@@ -110,46 +108,25 @@ export const MassacreTabPanel = (props: { system: string }) => {
     return (
       <Container maxWidth="xl">
         <Box sx={{ '& button': { m: 1 } }}>
-          <PaperOutlineButton
-            onClick={deleteTracker}
-            color="secondary"
-            variant="outlined"
-          >
+          <PaperOutlineButton onClick={deleteTracker} color="secondary" variant="outlined">
             Delete Tracker
           </PaperOutlineButton>
-          <PaperOutlineButton
-            onClick={addMissionColumn}
-            color="secondary"
-            variant="outlined"
-          >
+          <PaperOutlineButton onClick={addMissionColumn} color="secondary" variant="outlined">
             Add Column to tracker
           </PaperOutlineButton>
           <PaperOutlineButton
             onClick={deleteLastMissionColumn}
             color="secondary"
-            variant="outlined"
-          >
+            variant="outlined">
             Delete last column of tracker
           </PaperOutlineButton>
-          <PaperOutlineButton
-            onClick={displayAllFactions}
-            color="secondary"
-            variant="outlined"
-          >
+          <PaperOutlineButton onClick={displayAllFactions} color="secondary" variant="outlined">
             Unhide all factions
           </PaperOutlineButton>
-          <PaperOutlineButton
-            onClick={resetCounts}
-            color="secondary"
-            variant="outlined"
-          >
+          <PaperOutlineButton onClick={resetCounts} color="secondary" variant="outlined">
             Reset Counts
           </PaperOutlineButton>
-          <PaperOutlineButton
-            onClick={refreshFactions}
-            color="secondary"
-            variant="outlined"
-          >
+          <PaperOutlineButton onClick={refreshFactions} color="secondary" variant="outlined">
             Reset and Refresh Factions
           </PaperOutlineButton>
         </Box>
@@ -157,10 +134,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
           <MassacreTotals tracker={tracker} />
         </div>
         <div>
-          <MassacreMissions
-            tracker={tracker}
-            updateTracker={context.updateTracker}
-          />
+          <MassacreMissions tracker={tracker} updateTracker={context.updateTracker} />
         </div>
         <div>
           <MassacreTotals tracker={tracker} />
@@ -172,14 +146,9 @@ export const MassacreTabPanel = (props: { system: string }) => {
               display: 'flex',
               flexDirection: 'row',
               m: 1,
-            }}
-          >
+            }}>
             {tracker.systemsin10LY.map((system) => (
-              <StationList
-                key={system.name}
-                system={system.name}
-                stations={system.stations}
-              />
+              <StationList key={system.name} system={system.name} stations={system.stations} />
             ))}
           </Box>
         </div>

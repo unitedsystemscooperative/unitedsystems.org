@@ -1,3 +1,7 @@
+import { TitleBarwAdd } from '@/components/_common';
+import { CarrierTableRow } from '@@/about/components/carriers/carrierTableRow';
+import { useFleetCarriers } from '@@/about/hooks/useFleetCarriers';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
@@ -13,10 +17,6 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { CarrierTableRow } from 'src/modules/about/components/carriers/carrierTableRow';
-import { TitleBarwAdd } from 'components/_common';
-import { useFleetCarriers } from 'hooks/about/useFleetCarriers';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { CarrierDialog } from './carriersDialog';

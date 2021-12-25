@@ -1,3 +1,5 @@
+import { DatePickerwMB1, TextFieldwM1 } from '@/components/_common';
+import { IAmbassador, Platform, Rank, Region, RegionString } from '@@/admin/models';
 import {
   Button,
   Dialog,
@@ -8,11 +10,6 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { DatePickerwMB1, TextFieldwM1 } from 'components/_common';
-import { IAmbassador } from 'models/admin/cmdr';
-import { Platform } from 'models/admin/platforms';
-import { Rank } from 'models/admin/ranks';
-import { Region, RegionString } from 'models/admin/regions';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -24,9 +21,7 @@ export interface AmbassadorDialogProps {
 
 export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
   const { open, values, onClose } = props;
-  const { register, handleSubmit, reset, control } = useForm<
-    Omit<IAmbassador, '_id'>
-  >();
+  const { register, handleSubmit, reset, control } = useForm<Omit<IAmbassador, '_id'>>();
 
   useEffect(() => {
     if (values) {
@@ -109,9 +104,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>{values?.length > 0 ? 'Edit' : 'Add'} CMDR</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Please enter the CMDR information.
-          </DialogContentText>
+          <DialogContentText>Please enter the CMDR information.</DialogContentText>
           {values?.length <= 1 && (
             <TextFieldwM1
               label="CMDR Name"
@@ -163,21 +156,13 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
             rules={{ required: true }}
             render={({ field }) => (
               <TextFieldwM1 label="Region" select {...field} fullWidth>
-                <MenuItem value={Region.N_CAmerica}>
-                  {RegionString[Region.N_CAmerica]}
-                </MenuItem>
-                <MenuItem value={Region.SAmerica}>
-                  {RegionString[Region.SAmerica]}
-                </MenuItem>
+                <MenuItem value={Region.N_CAmerica}>{RegionString[Region.N_CAmerica]}</MenuItem>
+                <MenuItem value={Region.SAmerica}>{RegionString[Region.SAmerica]}</MenuItem>
                 <MenuItem value={Region.Europe_Africa}>
                   {RegionString[Region.Europe_Africa]}
                 </MenuItem>
-                <MenuItem value={Region.Asia}>
-                  {RegionString[Region.Asia]}
-                </MenuItem>
-                <MenuItem value={Region.Asia_Pacific}>
-                  {RegionString[Region.Asia_Pacific]}
-                </MenuItem>
+                <MenuItem value={Region.Asia}>{RegionString[Region.Asia]}</MenuItem>
+                <MenuItem value={Region.Asia_Pacific}>{RegionString[Region.Asia_Pacific]}</MenuItem>
               </TextFieldwM1>
             )}
           />

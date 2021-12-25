@@ -1,3 +1,5 @@
+import { TextFieldwM1 } from '@/components/_common';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import {
   Button,
   Dialog,
@@ -6,8 +8,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { TextFieldwM1 } from 'components/_common';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -69,16 +69,14 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>
-            Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and
-            the Purpose (if Personal, just leave it blank).
+            Please enter the Carrier Name, Carrier ID, Owner, Inara Link, and the Purpose (if
+            Personal, just leave it blank).
           </DialogContentText>
           <TextFieldwM1
             placeholder="Carrier Name"
             fullWidth
             error={errors.name !== undefined}
-            helperText={
-              errors.name?.type === 'required' && 'This field is required.'
-            }
+            helperText={errors.name?.type === 'required' && 'This field is required.'}
             {...register('name', { required: true })}
           />
           {/* TODO: add schema validate for Carrier ID (VVV-VVV) */}
@@ -86,27 +84,21 @@ export const CarrierDialog = (props: CarrierDialogProps) => {
             placeholder="Carrier ID"
             fullWidth
             error={errors.id !== undefined}
-            helperText={
-              errors.id?.type === 'required' && 'This field is required.'
-            }
+            helperText={errors.id?.type === 'required' && 'This field is required.'}
             {...register('id', { required: true })}
           />
           <TextFieldwM1
             placeholder="Owner"
             fullWidth
             error={errors.owner !== undefined}
-            helperText={
-              errors.owner?.type === 'required' && 'This field is required.'
-            }
+            helperText={errors.owner?.type === 'required' && 'This field is required.'}
             {...register('owner', { required: true })}
           />
           <TextFieldwM1
             placeholder="Inara Link"
             fullWidth
             error={errors.inaraLink !== undefined}
-            helperText={
-              errors.inaraLink?.type === 'required' && 'This field is required.'
-            }
+            helperText={errors.inaraLink?.type === 'required' && 'This field is required.'}
             {...register('inaraLink', { required: true })}
           />
           <TextFieldwM1

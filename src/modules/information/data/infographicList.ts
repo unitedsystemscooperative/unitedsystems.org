@@ -1,4 +1,4 @@
-import { Infographic } from 'models/information/infographic';
+import { Infographic } from '@@/information/models/infographic';
 
 export const infoGraphics: Infographic[] = [
   {
