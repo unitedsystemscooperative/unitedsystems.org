@@ -8,7 +8,7 @@ const API_PATH = '/api/joinRequests';
 export const useJoinRequests = () => {
   const { data: requests, error } = useSWR(
     API_PATH,
-    (url: string) => axios.get<IJoinRequest[]>(url).then((data) => data?.data ?? []),
+    (url: string) => axios.get<IJoinRequest[]>(url).then((data) => data.data ?? []),
     { fallbackData: [] }
   );
 

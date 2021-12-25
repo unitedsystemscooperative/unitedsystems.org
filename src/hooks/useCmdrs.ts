@@ -11,7 +11,7 @@ const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
 
 const API_PATH = '/api/cmdrs';
 
-export const useCMDRs = (init?: ICMDRs) => {
+export const useCMDRs = (init: ICMDRs = { members: [], ambassadors: [], guests: [] }) => {
   const {
     data: cmdrs,
     error,
