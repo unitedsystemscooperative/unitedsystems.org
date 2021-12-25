@@ -1,9 +1,8 @@
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from 'models/admin/cmdr';
-import { Rank } from 'models/admin/ranks';
+import { getIsHC } from '@/utils/get-isHC';
+import { connectToDatabase, getItems, insertItem, updateItem } from '@/utils/mongo';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '@@/admin/models';
 import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase, getItems, insertItem, updateItem } from 'utils/mongo';
 
 const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
   cmdr.rank === Rank.Ambassador;

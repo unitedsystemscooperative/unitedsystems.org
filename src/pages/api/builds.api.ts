@@ -1,8 +1,5 @@
-import { IBuildInfov2 } from 'models/builds';
-import { Db, Filter, ObjectId } from 'mongodb4';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getIsHC } from 'utils/get-isHC';
-import { getUserId } from 'utils/get-userId';
+import { getIsHC } from '@/utils/get-isHC';
+import { getUserId } from '@/utils/get-userId';
 import {
   connectToDatabase,
   deleteItem,
@@ -10,7 +7,10 @@ import {
   getItemsByQuery,
   insertItem,
   updateItem,
-} from 'utils/mongo';
+} from '@/utils/mongo';
+import { IBuildInfov2 } from '@@/builds/models';
+import { Db, Filter, ObjectId } from 'mongodb4';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'shipBuildsv2';
 

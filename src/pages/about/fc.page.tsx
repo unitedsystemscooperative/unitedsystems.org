@@ -1,10 +1,10 @@
-import { Carriers } from 'components/about';
-import { AboutLayout } from 'components/layouts';
-import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { getFCs } from '#/fc.api';
+import { connectToDatabase } from '@/utils/mongo';
+import { Carriers } from '@@/about/components';
+import { AboutLayout } from '@@/about/layouts/about';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
-import { connectToDatabase } from 'utils/mongo';
-import { getFCs } from '../api/fc.api';
 
 const FleetCarriersPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (

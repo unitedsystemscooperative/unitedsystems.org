@@ -1,9 +1,9 @@
-import { CMDRDashboard } from 'components/admin/cmdrs/cmdrDashboard';
-import { ICMDRs } from 'models/admin/cmdr';
+import { getCmdrs } from '#/cmdrs.api';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { CMDRDashboard } from '@@/admin/components/cmdrs/cmdrDashboard';
+import { ICMDRs } from '@@/admin/models';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import { runAdminAuthCheck } from 'utils/runAuthCheck';
-import { getCmdrs } from '../api/cmdrs.api';
 
 const CmdrManagementPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (

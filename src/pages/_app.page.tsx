@@ -1,15 +1,15 @@
+import { PrimaryLayout } from '@/layouts';
+import createEmotionCache from '@/styles/createEmotionCache';
+import { theme } from '@/styles/theme';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
-import { PrimaryLayout } from 'components/layouts';
 import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import { useEffect } from 'react';
-import createEmotionCache from 'styles/createEmotionCache';
-import { theme } from 'styles/theme';
 import info from '../../package.json';
 
 const USCEmotionCache = createEmotionCache();

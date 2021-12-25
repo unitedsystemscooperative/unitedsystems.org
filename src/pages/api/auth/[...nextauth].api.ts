@@ -1,8 +1,8 @@
-import { ICMDR } from 'models/admin/cmdr';
+import { connectToDatabase } from '@/utils/mongo';
+import { ICMDR } from '@@/admin/models/cmdr';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { connectToDatabase } from 'utils/mongo';
 
 const signIn = async (user) => {
   const { db } = await connectToDatabase();
@@ -11,9 +11,7 @@ const signIn = async (user) => {
   const cursor = db.collection<ICMDR>('cmdrs').find({});
   const members = await cursor.toArray();
   cursor.close();
-  const authUser = members.find(
-    (x) => x.email.toLowerCase() === email.toLowerCase()
-  );
+  const authUser = members.find((x) => x.email.toLowerCase() === email.toLowerCase());
 
   return authUser ? true : false;
 };
@@ -120,5 +118,4 @@ const options = {
   debug: false,
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) =>
-  NextAuth(req, res, options);
+export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);

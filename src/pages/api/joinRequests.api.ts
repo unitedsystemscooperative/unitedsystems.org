@@ -1,7 +1,7 @@
-import { IJoinRequest } from 'models/join/joinRequest';
+import { getIsHC } from '@/utils/get-isHC';
+import { connectToDatabase, getItems, insertItem } from '@/utils/mongo';
+import { IJoinRequest } from '@@/join/models/joinRequest';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase, getItems, insertItem } from 'utils/mongo';
 
 const COLLECTION = 'joinRequests';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -22,12 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return;
       }
 
-      const result = await getItems<IJoinRequest>(
-        COLLECTION,
-        db,
-        'timeStamp',
-        -1
-      );
+      const result = await getItems<IJoinRequest>(COLLECTION, db, 'timeStamp', -1);
       res.status(200).send(result);
     }
   } catch (e) {

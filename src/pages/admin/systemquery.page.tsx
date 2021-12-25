@@ -1,9 +1,9 @@
-import { SystemDashboard } from 'components/admin/systems/systemDashboard';
-import { System } from 'models/about/system';
+import { getSystems } from '#/systems.api';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { System } from '@@/about/models/system';
+import { SystemDashboard } from '@@/admin/components/systems/systemDashboard';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import { runAdminAuthCheck } from 'utils/runAuthCheck';
-import { getSystems } from '../api/systems.api';
 
 const SystemQueryPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (

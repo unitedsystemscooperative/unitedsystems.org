@@ -1,9 +1,9 @@
-import { VoteDashboard } from 'components/admin/vote/voteDashboard';
-import { ICMDRs } from 'models/admin/cmdr';
+import { getCmdrs } from '#/cmdrs.api';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { VoteDashboard } from '@@/admin/components/vote/voteDashboard';
+import { ICMDRs } from '@@/admin/models/cmdr';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import { runAdminAuthCheck } from 'utils/runAuthCheck';
-import { getCmdrs } from '../api/cmdrs.api';
 
 const VoteAssistPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (

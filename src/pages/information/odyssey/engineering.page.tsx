@@ -1,4 +1,4 @@
-import { OdysseyEngineering } from 'components/information/odyssey/engineering';
+import { OdysseyEngineering } from '@@/information/components/odyssey/engineering';
 import Head from 'next/head';
 
 const OdyEngPage = () => {
@@ -6,10 +6,7 @@ const OdyEngPage = () => {
     <>
       <Head>
         <title>USC | Odyssey Engineering</title>
-        <meta
-          name="description"
-          content="What's different in Odyssey for Engineering?"
-        />
+        <meta name="description" content="What's different in Odyssey for Engineering?" />
       </Head>
       <OdysseyEngineering />
     </>

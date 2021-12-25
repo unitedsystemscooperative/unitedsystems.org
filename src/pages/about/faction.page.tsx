@@ -1,10 +1,10 @@
-import { AboutSystems } from 'components/about';
-import { AboutLayout } from 'components/layouts';
-import { System } from 'models/about/system';
+import { getSystems } from '#/systems.api';
+import { connectToDatabase } from '@/utils/mongo';
+import { AboutSystems } from '@@/about/components';
+import { AboutLayout } from '@@/about/layouts/about';
+import { System } from '@@/about/models/system';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
-import { connectToDatabase } from 'utils/mongo';
-import { getSystems } from '../api/systems.api';
 
 const FactionPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (

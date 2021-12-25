@@ -1,6 +1,6 @@
+import { getIsHC } from '@/utils/get-isHC';
+import { connectToDatabase } from '@/utils/mongo';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase } from 'utils/mongo';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {

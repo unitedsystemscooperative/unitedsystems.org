@@ -1,8 +1,8 @@
+import { USCMarkdown } from '@/components/uscmarkdown';
+import { PaperOutlineButton } from '@/components/_common/button';
+import { getAllReleaseIDs, getReleaseData } from '@@/releases/getReleases';
+import { ReleaseInfo } from '@@/releases/releaseInfo';
 import { Container, Divider, Paper, Typography } from '@mui/material';
-import { USCMarkdown } from 'components/uscmarkdown';
-import { PaperOutlineButton } from 'components/_common/button';
-import { getAllReleaseIDs, getReleaseData } from 'functions/releases/getReleases';
-import { ReleaseInfo } from 'models/releaseInfo';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -31,7 +31,7 @@ const ReleasePage = ({ releaseData }: InferGetStaticPropsType<typeof getStaticPr
   );
 };
 
-export const getStaticPaths: GetStaticPaths =  () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllReleaseIDs();
   return {
     paths,

@@ -1,4 +1,4 @@
-import { Home } from 'components';
+import { Home } from '@/components';
 import Head from 'next/head';
 
 const HomePage = () => {
@@ -6,10 +6,7 @@ const HomePage = () => {
     <>
       <Head>
         <title>United Systems Cooperative</title>
-        <meta
-          name="description"
-          content="Web site of the United Systems Cooperative"
-        />
+        <meta name="description" content="Web site of the United Systems Cooperative" />
       </Head>
       <Home />
     </>

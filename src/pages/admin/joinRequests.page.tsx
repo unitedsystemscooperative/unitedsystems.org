@@ -1,7 +1,7 @@
-import { JoinDashboard } from 'components/admin/join/joinDashboard';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { JoinDashboard } from '@@/admin/components/join/joinDashboard';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { runAdminAuthCheck } from 'utils/runAuthCheck';
 
 const JoinRequestsPage = () => {
   return (

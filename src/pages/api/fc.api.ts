@@ -1,8 +1,8 @@
-import { IFleetCarrier } from 'models/about/fleetCarrier';
+import { getIsHC } from '@/utils/get-isHC';
+import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from '@/utils/mongo';
+import { IFleetCarrier } from '@@/about/models/fleetCarrier';
 import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getIsHC } from 'utils/get-isHC';
-import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from 'utils/mongo';
 
 const COLLECTION = 'fleetCarriers';
 export default async (req: NextApiRequest, res: NextApiResponse) => {

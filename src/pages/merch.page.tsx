@@ -1,4 +1,4 @@
-import { Merch } from 'components/merch';
+import { Merch } from '@/components/merch';
 import Head from 'next/head';
 
 const MerchLandingPage = () => {
