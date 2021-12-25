@@ -1,4 +1,4 @@
-import { ISphereSystem } from 'models';
+import { ISphereSystem } from '@@/edsmQueries/models/sphereSystems.model';
 import { BehaviorSubject } from 'rxjs';
 import { getBodiesinSystem } from './getBodiesinSystem';
 import { getFactionsinSystem } from './getFactionsinSystem';
@@ -8,10 +8,7 @@ import { getSystemsinSphere } from './getSystemsinSphere';
 
 const interestingQueryProgress = new BehaviorSubject('');
 
-const runInterestingQuery = async (
-  referenceSystem: string | string[],
-  range = 50
-) => {
+const runInterestingQuery = async (referenceSystem: string | string[], range = 50) => {
   interestingQueryProgress.next('Starting Interesting Query');
   let systemList: ISphereSystem[] = [];
   if (Array.isArray(referenceSystem)) {
@@ -19,9 +16,7 @@ const runInterestingQuery = async (
     for (const system of referenceSystem) {
       interestingQueryProgress.next(`Processing Sphere for ${system}`);
       let tempList = await getSystemsinSphere(system, range);
-      tempList = tempList.filter(
-        (s) => Object.keys(s.information).length !== 0
-      );
+      tempList = tempList.filter((s) => Object.keys(s.information).length !== 0);
 
       for (const sys of tempList) {
         if (systemList.findIndex((x) => x.name === sys.name) === -1) {
@@ -32,9 +27,7 @@ const runInterestingQuery = async (
   } else {
     interestingQueryProgress.next(`Processing Sphere for ${referenceSystem}`);
     systemList = await getSystemsinSphere(referenceSystem, range);
-    systemList = systemList.filter(
-      (s) => Object.keys(s.information).length !== 0
-    );
+    systemList = systemList.filter((s) => Object.keys(s.information).length !== 0);
   }
 
   let results = [];
@@ -70,9 +63,7 @@ const runInterestingQuery = async (
     }
 
     if (shouldList === true) {
-      interestingQueryProgress.next(
-        `Processing System: ${systemName}: Finalizing`
-      );
+      interestingQueryProgress.next(`Processing System: ${systemName}: Finalizing`);
       const systemFactions = await getFactionsinSystem(systemName);
       const result = {
         systemName,

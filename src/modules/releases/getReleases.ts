@@ -3,7 +3,7 @@ import matter from 'gray-matter';
 import path from 'path';
 import { ReleaseInfo } from './releaseInfo';
 
-const postsDirectory = path.join(process.cwd(), 'src', 'data', 'releases');
+const postsDirectory = path.join(process.cwd(), 'src', 'modules', 'releases', 'data');
 
 export function getReleases(): Omit<ReleaseInfo, 'content'>[] {
   // Get file names under /posts
