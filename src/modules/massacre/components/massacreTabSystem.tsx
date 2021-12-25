@@ -1,4 +1,4 @@
-import { MassacreContext } from '@@/massacre/providers/massacreTrackerProvider';
+import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { AppBar, Collapse, Tab, Tabs, Typography } from '@mui/material';
 import { ChangeEvent, useContext } from 'react';
 import { MassacreTabAddPanel } from './massacreTabAddPanel';

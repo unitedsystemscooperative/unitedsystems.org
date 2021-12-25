@@ -1,6 +1,6 @@
 import { copytoClipboard } from '@/functions/copytoClipboard';
 import { useLinks } from '@/hooks/useLinks';
-import { useMiningMaps } from '@@/information/hooks/useMiningMaps';
+import { useMiningMaps } from '~/information/hooks/useMiningMaps';
 import { FileCopy } from '@mui/icons-material';
 import {
   Button,

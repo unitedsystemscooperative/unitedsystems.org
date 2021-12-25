@@ -1,5 +1,5 @@
-import { getReleases } from '@@/releases/getReleases';
-import { ReleaseInfo } from '@@/releases/releaseInfo';
+import { getReleases } from '~/releases/getReleases';
+import { ReleaseInfo } from '~/releases/releaseInfo';
 import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';

@@ -1,5 +1,5 @@
-import massacreDefaults from '@@/massacre/data/massacreDefaults.json';
-import { IMassacreTrack } from '@@/massacre/massacreTrack';
+import massacreDefaults from '~/massacre/data/massacreDefaults.json';
+import { IMassacreTrack } from '~/massacre/massacreTrack';
 import {
   createContext,
   Dispatch,

@@ -1,5 +1,5 @@
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from '@@/admin/models/cmdr';
-import { Rank, RankString } from '@@/admin/models/ranks';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from '~/admin/models/cmdr';
+import { Rank, RankString } from '~/admin/models/ranks';
 import axios from 'axios';
 import useSWR from 'swr';
 

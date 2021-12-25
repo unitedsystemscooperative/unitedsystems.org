@@ -1,6 +1,6 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from '@/utils/mongo';
-import { IAlly } from '@@/about/models/ally';
+import { IAlly } from '~/about/models/ally';
 import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 

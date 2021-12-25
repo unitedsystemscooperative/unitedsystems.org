@@ -1,4 +1,4 @@
-import { hc } from '@@/about/data';
+import { hc } from '~/about/data';
 import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 
 /** Displays High Command Members */

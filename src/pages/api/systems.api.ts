@@ -1,6 +1,6 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from '@/utils/mongo';
-import { System } from '@@/about/models/system';
+import { System } from '~/about/models/system';
 import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 

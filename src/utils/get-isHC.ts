@@ -1,4 +1,4 @@
-import { IMember, Rank } from '@@/admin/models';
+import { IMember, Rank } from '~/admin/models';
 import { Db } from 'mongodb4';
 import { getSession } from 'next-auth/client';
 

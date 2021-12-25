@@ -1,5 +1,5 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { ICMDRs, IVoter, Rank } from '@@/admin/models';
+import { ICMDRs, IVoter, Rank } from '~/admin/models';
 import { Container, Paper, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Voter } from './voter';

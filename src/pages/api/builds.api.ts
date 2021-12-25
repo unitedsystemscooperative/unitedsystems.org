@@ -8,7 +8,7 @@ import {
   insertItem,
   updateItem,
 } from '@/utils/mongo';
-import { IBuildInfov2 } from '@@/builds/models';
+import { IBuildInfov2 } from '~/builds/models';
 import { Db, Filter, ObjectId } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 

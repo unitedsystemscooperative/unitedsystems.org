@@ -1,7 +1,7 @@
 import { getCmdrs } from '#/cmdrs.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { VoteDashboard } from '@@/admin/components/vote/voteDashboard';
-import { ICMDRs } from '@@/admin/models/cmdr';
+import { VoteDashboard } from '~/admin/components/vote/voteDashboard';
+import { ICMDRs } from '~/admin/models/cmdr';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 

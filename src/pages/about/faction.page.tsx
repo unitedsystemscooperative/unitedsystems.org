@@ -1,8 +1,8 @@
 import { getSystems } from '#/systems.api';
 import { connectToDatabase } from '@/utils/mongo';
-import { AboutSystems } from '@@/about/components';
-import { AboutLayout } from '@@/about/layouts/about';
-import { System } from '@@/about/models/system';
+import { AboutSystems } from '~/about/components';
+import { AboutLayout } from '~/about/layouts/about';
+import { System } from '~/about/models/system';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 

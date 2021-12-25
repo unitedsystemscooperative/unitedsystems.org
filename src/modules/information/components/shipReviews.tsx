@@ -1,4 +1,4 @@
-import { useShipReviews } from '@@/information/hooks/useShipReviews';
+import { useShipReviews } from '~/information/hooks/useShipReviews';
 import {
   Button,
   Container,

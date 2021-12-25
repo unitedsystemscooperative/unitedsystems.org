@@ -1,4 +1,4 @@
-import { BGSInfo } from '@@/information/components/bgs';
+import { BGSInfo } from '~/information/components/bgs';
 import Head from 'next/head';
 
 const BGSPage = () => {

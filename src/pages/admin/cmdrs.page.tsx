@@ -1,7 +1,7 @@
 import { getCmdrs } from '#/cmdrs.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { CMDRDashboard } from '@@/admin/components/cmdrs/cmdrDashboard';
-import { ICMDRs } from '@@/admin/models';
+import { CMDRDashboard } from '~/admin/components/cmdrs/cmdrDashboard';
+import { ICMDRs } from '~/admin/models';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 

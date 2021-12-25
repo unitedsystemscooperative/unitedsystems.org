@@ -1,6 +1,6 @@
-import { filterShipBuilds } from '@@/builds/functions';
-import { IBuildInfov2, IQuery } from '@@/builds/models';
-import { BuildContext, BuildContextProvider } from '@@/builds/providers/buildProvider';
+import { filterShipBuilds } from '~/builds/functions';
+import { IBuildInfov2, IQuery } from '~/builds/models';
+import { BuildContext, BuildContextProvider } from '~/builds/providers/buildProvider';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Box, Container, Fab, Slide, Theme, Typography, useMediaQuery } from '@mui/material';
 import { useSnackbar } from 'notistack';

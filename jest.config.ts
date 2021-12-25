@@ -79,7 +79,12 @@ export default {
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^public/(.*)': '<rootDir>/public/$1',
+    '^@/(.*)': '<rootDir>/src/$1',
+    '^#/(.*)': '<rootDir>/src/pages/api/$1',
+    '^~/(.*)': '<rootDir>/src/modules/$1',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -187,10 +192,7 @@ export default {
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
 
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 
   // Whether to use watchman for file crawling
   // watchman: true,

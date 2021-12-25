@@ -1,7 +1,7 @@
 import { getBuilds } from '#/builds.api';
 import { connectToDatabase } from '@/utils/mongo';
-import { BuildSystem } from '@@/builds/components';
-import { IBuildInfov2 } from '@@/builds/models';
+import { BuildSystem } from '~/builds/components';
+import { IBuildInfov2 } from '~/builds/models';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 

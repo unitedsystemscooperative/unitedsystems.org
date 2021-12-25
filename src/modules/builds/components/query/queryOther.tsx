@@ -1,4 +1,4 @@
-import { OtherFilters } from '@@/builds/models/otherFilters';
+import { OtherFilters } from '~/builds/models/otherFilters';
 import BlockIcon from '@mui/icons-material/Block';
 import CheckIcon from '@mui/icons-material/Check';
 import { styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';

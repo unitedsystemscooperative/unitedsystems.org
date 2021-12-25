@@ -1,5 +1,5 @@
-import { USCRules } from '@@/about/components';
-import { AboutLayout } from '@@/about/layouts/about';
+import { USCRules } from '~/about/components';
+import { AboutLayout } from '~/about/layouts/about';
 import Head from 'next/head';
 
 const RulesPage = () => {

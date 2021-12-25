@@ -1,5 +1,5 @@
 import { connectToDatabase } from '@/utils/mongo';
-import { ICMDR } from '@@/admin/models/cmdr';
+import { ICMDR } from '~/admin/models/cmdr';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';

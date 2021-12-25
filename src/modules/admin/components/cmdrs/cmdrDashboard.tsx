@@ -1,5 +1,5 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { IAmbassador, ICMDRs, IGuest, IMember } from '@@/admin/models';
+import { IAmbassador, ICMDRs, IGuest, IMember } from '~/admin/models';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {

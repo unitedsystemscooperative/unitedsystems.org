@@ -1,6 +1,6 @@
 import { TitleBarwAdd } from '@/components/_common';
-import { useSystems } from '@@/about/hooks/useSystems';
-import { System } from '@@/about/models/system';
+import { useSystems } from '~/about/hooks/useSystems';
+import { System } from '~/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {

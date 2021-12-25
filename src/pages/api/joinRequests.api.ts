@@ -1,6 +1,6 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, getItems, insertItem } from '@/utils/mongo';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '~/join/models/joinRequest';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'joinRequests';

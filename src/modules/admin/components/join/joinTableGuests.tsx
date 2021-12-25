@@ -1,6 +1,6 @@
 import { copytoClipboard } from '@/functions/copytoClipboard';
-import { PlatformString, ReferralString, RegionString } from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { PlatformString, ReferralString, RegionString } from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 import { FileCopy } from '@mui/icons-material';
 import {
   IconButton,

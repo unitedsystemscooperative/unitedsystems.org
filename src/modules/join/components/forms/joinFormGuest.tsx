@@ -1,4 +1,4 @@
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '~/join/models/joinRequest';
 import { Container, Paper, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import {

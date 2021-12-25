@@ -18,9 +18,9 @@
       "public/*": ["public/*"],
       "@/*": ["src/*"],
       "#/*": ["src/pages/api/*"],
-      "@@/*": ["src/modules/*"]
+      "~/*": ["src/modules/*"]
     }
   },
-  "include": ["next-env.d.ts", "usc.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "usc.d.ts", "**/*.ts", "**/*.tsx", "jest.config.ts"],
   "exclude": ["node_modules"]
 }

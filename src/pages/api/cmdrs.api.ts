@@ -1,6 +1,6 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, getItems, insertItem, updateItem } from '@/utils/mongo';
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '@@/admin/models';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '~/admin/models';
 import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 

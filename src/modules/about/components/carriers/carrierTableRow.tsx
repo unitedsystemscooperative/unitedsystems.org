@@ -1,5 +1,5 @@
 import { buildInaraLink } from '@/functions/buildInaraLink';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
 import { Link, TableCell } from '@mui/material';
 
 export const CarrierTableRow = ({ carrier }: { carrier: IFleetCarrier }) => {

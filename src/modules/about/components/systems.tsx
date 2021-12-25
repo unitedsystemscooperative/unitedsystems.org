@@ -1,6 +1,6 @@
 import { buildInaraLink } from '@/functions/buildInaraLink';
-import { useSystems } from '@@/about/hooks/useSystems';
-import { System } from '@@/about/models/system';
+import { useSystems } from '~/about/hooks/useSystems';
+import { System } from '~/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Container,

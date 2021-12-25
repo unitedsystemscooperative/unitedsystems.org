@@ -1,5 +1,5 @@
-import { useAllies } from '@@/about/hooks/useAllies';
-import { IAlly } from '@@/about/models/ally';
+import { useAllies } from '~/about/hooks/useAllies';
+import { IAlly } from '~/about/models/ally';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Container, Fade, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 

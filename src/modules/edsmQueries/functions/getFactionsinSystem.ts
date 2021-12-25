@@ -1,4 +1,4 @@
-import { ISystemFactionInfo } from '@@/edsmQueries/models/faction.model';
+import { ISystemFactionInfo } from '~/edsmQueries/models/faction.model';
 import axios from 'axios';
 
 const apiURL = 'https://www.edsm.net/api-system-v1/factions';

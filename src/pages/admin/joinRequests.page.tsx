@@ -1,5 +1,5 @@
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { JoinDashboard } from '@@/admin/components/join/joinDashboard';
+import { JoinDashboard } from '~/admin/components/join/joinDashboard';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
