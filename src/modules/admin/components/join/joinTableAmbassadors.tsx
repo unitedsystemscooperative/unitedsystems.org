@@ -1,6 +1,4 @@
 import { copytoClipboard } from '@/functions/copytoClipboard';
-import { PlatformString, RegionString } from '~/admin/models';
-import { IJoinRequest } from '~/join/models/joinRequest';
 import { FileCopy } from '@mui/icons-material';
 import {
   Checkbox,
@@ -14,11 +12,15 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { ChangeEvent, useState } from 'react';
+import { PlatformString, RegionString } from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 
 export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -27,6 +29,15 @@ export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const copy = async (text: string) => {
+    try {
+      await copytoClipboard(text);
+      enqueueSnackbar('Copied', { variant: 'success' });
+    } catch {
+      enqueueSnackbar('Failed to copy', { variant: 'error' });
+    }
   };
 
   return (
@@ -56,16 +67,13 @@ export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] 
                       <IconButton
                         size="small"
                         color="secondary"
-                        onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
+                        onClick={() => copy(map.cmdr.toUpperCase())}>
                         <FileCopy />
                       </IconButton>
                     </TableCell>
                     <TableCell>
                       {map.discord}{' '}
-                      <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={() => copytoClipboard(map.discord)}>
+                      <IconButton size="small" color="secondary" onClick={() => copy(map.discord)}>
                         <FileCopy />
                       </IconButton>
                     </TableCell>
