@@ -115,7 +115,7 @@ export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
     updateCMDRs,
     deleteCMDR,
     restoreCMDR,
-  } = useCMDRs(init);
+  } = useCMDRs();
   const { enqueueSnackbar } = useSnackbar();
 
   const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Members);

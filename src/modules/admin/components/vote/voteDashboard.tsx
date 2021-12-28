@@ -4,11 +4,11 @@ import { Container, Paper, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Voter } from './voter';
 
-export const VoteDashboard = ({ init }: { init?: ICMDRs }) => {
+export const VoteDashboard = () => {
   const {
     cmdrs: { members },
     loading,
-  } = useCMDRs(init);
+  } = useCMDRs();
   const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
 
   // useEffect(() => {

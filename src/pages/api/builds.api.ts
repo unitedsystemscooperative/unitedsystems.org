@@ -9,14 +9,14 @@ import {
   updateItem,
 } from '@/utils/mongo';
 import { IBuildInfov2 } from '~/builds/models';
-import { Db, Filter, ObjectId } from 'mongodb4';
+import { Db, Filter, ObjectId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'shipBuildsv2';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const isHC = await getIsHC(req, db);
     const userId = await getUserId(req, db);
 

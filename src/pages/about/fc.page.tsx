@@ -21,7 +21,7 @@ const FleetCarriersPage = ({ data }: InferGetStaticPropsType<typeof getStaticPro
 };
 
 export const getStaticProps: GetStaticProps<{ data: IFleetCarrier[] }> = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const fcs = await getFCs(db);
 
   return { props: { data: fcs } };

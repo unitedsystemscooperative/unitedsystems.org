@@ -11,7 +11,7 @@ const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
 
 const API_PATH = '/api/cmdrs';
 
-export const useCMDRs = (init: ICMDRs = { members: [], ambassadors: [], guests: [] }) => {
+export const useCMDRs = () => {
   const {
     data: cmdrs,
     error,
@@ -26,7 +26,7 @@ export const useCMDRs = (init: ICMDRs = { members: [], ambassadors: [], guests: 
           ambassadors: IAmbassador[];
         }>(url)
         .then((data) => data.data),
-    { fallbackData: init }
+    { fallbackData: { members: [], ambassadors: [], guests: [] } }
   );
 
   cmdrs.members = cmdrs.members.map((cmdr) => {
@@ -148,7 +148,7 @@ export const useCMDRs = (init: ICMDRs = { members: [], ambassadors: [], guests: 
 
   return {
     cmdrs,
-    loading: !error && !cmdrs,
+    loading: !error && cmdrs.members.length < 1,
     error,
     addCMDR,
     updateCMDR,

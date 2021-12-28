@@ -8,7 +8,7 @@ import {
   OptionalId,
   UpdateFilter,
   UpdateOptions,
-} from 'mongodb4';
+} from 'mongodb';
 
 const { MONGODB_URI, MONGODB_DB } = process.env;
 
@@ -20,42 +20,31 @@ if (!MONGODB_DB) {
   throw new Error('Please define the MONGODB_DB environment variable inside .env.local');
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
-let cached = global.mongo;
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
+const opts: MongoClientOptions = {
+  maxIdleTimeMS: 10000,
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 20000,
+};
 
-if (!cached) {
-  cached = global.mongo = { conn: null, promise: null };
+if (process.env.NODE_ENV === 'development') {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(MONGODB_URI, opts);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(MONGODB_URI, opts);
+  clientPromise = client.connect();
 }
 
-export async function connectToDatabase(): Promise<{
-  client: MongoClient;
-  db: Db;
-}> {
-  if (cached.conn) {
-    return cached.conn;
-  }
+export { clientPromise };
 
-  if (!cached.promise) {
-    const opts: MongoClientOptions = {
-      maxIdleTimeMS: 10000,
-      serverSelectionTimeoutMS: 10000,
-      socketTimeoutMS: 20000,
-    };
-
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
-      return {
-        client,
-        db: client.db(MONGODB_DB),
-      };
-    });
-  }
-  cached.conn = await cached.promise;
-  return cached.conn;
-}
+export const connectToDatabase = async () => {
+  const client = await clientPromise;
+  return client.db();
+};
 
 export const insertItem = async <T extends IDbItem>(
   collectionName: string,
@@ -100,7 +89,7 @@ export const getItems = async <T>(
     .collection<T>(collectionName)
     .find({})
     .sort({ [sortField]: order });
-  const results = await cursor.toArray();
+  const results = (await cursor.toArray()) as T[];
   cursor.close();
 
   return results;

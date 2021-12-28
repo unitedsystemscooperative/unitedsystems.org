@@ -18,14 +18,14 @@ const BuildDetailPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps
 };
 
 export const getStaticProps: GetStaticProps<{ data: IBuildInfov2[] }> = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const builds = await getBuilds(db);
 
   return { props: { data: builds } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const builds = await getBuilds(db);
 
   const paths = builds.map((build) => ({ params: { id: build._id.toString() } }));

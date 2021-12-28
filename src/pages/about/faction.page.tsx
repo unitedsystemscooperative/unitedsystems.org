@@ -21,7 +21,7 @@ const FactionPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) =
 };
 
 export const getStaticProps: GetStaticProps<{ data: System[] }> = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const systems = await getSystems(db);
 
   return { props: { data: systems } };

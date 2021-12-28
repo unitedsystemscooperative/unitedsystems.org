@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const COLLECTION = 'joinRequests';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
     const joinInfo: IJoinRequest = req.body;

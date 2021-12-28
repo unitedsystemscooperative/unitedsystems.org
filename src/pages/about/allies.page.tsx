@@ -21,7 +21,7 @@ const AlliesPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) =>
 };
 
 export const getStaticProps: GetStaticProps<{ data: IAlly[] }> = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const allies = await getAllies(db);
 
   return { props: { data: allies } };

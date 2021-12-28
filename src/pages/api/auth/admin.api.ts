@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const isHC = await getIsHC(req, db);
     res.status(200).send(isHC);
   } catch (e) {
