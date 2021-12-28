@@ -3,15 +3,22 @@ import fleetCarrierData from '~/about/data/fleetCarriers.json';
 import * as hooks from '~/about/hooks/useFleetCarriers';
 import { render } from '@testing-library/react';
 import { cleanup } from '@testing-library/react-hooks';
+import { PersonalCarriers } from '../carriers/carriersPersonal';
 
+const useFleetCarriersSpy = jest.spyOn(hooks, 'useFleetCarriers');
 describe('Carriers', () => {
   afterEach(cleanup);
 
   it('renders when loading', (cb) => {
-    const spy = jest.spyOn(hooks, 'useFleetCarriers');
-    spy.mockReturnValue({
+    useFleetCarriersSpy.mockReturnValue({
+      fleetCarriers: null,
+      personalCarriers: null,
+      squadCarriers: null,
       isLoading: true,
-      fleetCarriers: [],
+      error: null,
+      addCarrier: jest.fn(),
+      updateCarrier: jest.fn(),
+      deleteCarrier: jest.fn(),
     });
     const { getByText } = render(<Carriers />);
 
@@ -20,10 +27,15 @@ describe('Carriers', () => {
   });
 
   it('renders Fleet Carriers', () => {
-    const spy = jest.spyOn(hooks, 'useFleetCarriers');
-    spy.mockReturnValue({
-      isLoading: false,
+    useFleetCarriersSpy.mockReturnValue({
       fleetCarriers: fleetCarrierData,
+      personalCarriers: fleetCarrierData.filter((carrier) => !carrier.purpose),
+      squadCarriers: fleetCarrierData.filter((carrier) => carrier.purpose),
+      isLoading: false,
+      error: null,
+      addCarrier: jest.fn(),
+      updateCarrier: jest.fn(),
+      deleteCarrier: jest.fn(),
     });
     const { getByText } = render(<Carriers />);
 

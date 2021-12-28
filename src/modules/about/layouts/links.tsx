@@ -16,9 +16,7 @@ interface ISectionProps {
  * Displays an info Section set of buttons
  * @param props id, header, and button array.
  */
-export const AboutLinks = (props: ISectionProps) => {
-  const { id, buttons } = props;
-
+export const AboutLinks = ({ id, buttons }: ISectionProps) => {
   return (
     <Container maxWidth="md">
       <Paper
