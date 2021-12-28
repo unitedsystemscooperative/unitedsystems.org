@@ -1,4 +1,4 @@
-import { discordRules, memberRules } from '@@/about/data';
+import { discordRules, memberRules } from '~/about/data';
 import {
   Box,
   Container,

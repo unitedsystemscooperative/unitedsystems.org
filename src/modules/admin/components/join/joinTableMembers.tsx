@@ -1,15 +1,5 @@
 import { copytoClipboard } from '@/functions/copytoClipboard';
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { MemberDialog } from '@@/admin/components/cmdrs/dialogs/memberDialog';
-import {
-  IMember,
-  PlatformString,
-  Rank,
-  ReferralString,
-  Region,
-  RegionString,
-} from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
 import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,
@@ -24,6 +14,16 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
+import { MemberDialog } from '~/admin/components/cmdrs/dialogs/memberDialog';
+import {
+  IMember,
+  PlatformString,
+  Rank,
+  ReferralString,
+  Region,
+  RegionString,
+} from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 
 export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
@@ -40,6 +40,14 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+  const copy = async (text: string) => {
+    try {
+      await copytoClipboard(text);
+      enqueueSnackbar('Copied', { variant: 'success' });
+    } catch {
+      enqueueSnackbar('Failed to copy', { variant: 'error' });
+    }
   };
 
   const handleAddMember = (joinInfo: IJoinRequest) => {
@@ -120,7 +128,7 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
                         <IconButton
                           size="small"
                           color="secondary"
-                          onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
+                          onClick={() => copy(map.cmdr.toUpperCase())}>
                           <FileCopy />
                         </IconButton>
                       </div>
@@ -131,7 +139,7 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
                         <IconButton
                           size="small"
                           color="secondary"
-                          onClick={() => copytoClipboard(map.discord)}>
+                          onClick={() => copy(map.discord)}>
                           <FileCopy />
                         </IconButton>
                       </div>

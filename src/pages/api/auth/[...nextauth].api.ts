@@ -1,11 +1,12 @@
-import { connectToDatabase } from '@/utils/mongo';
-import { ICMDR } from '@@/admin/models/cmdr';
+import { clientPromise, connectToDatabase } from '@/utils/mongo';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import { NextApiRequest, NextApiResponse } from 'next';
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import EmailProvider from 'next-auth/providers/email';
+import { ICMDR } from '~/admin/models/cmdr';
 
-const signIn = async (user) => {
-  const { db } = await connectToDatabase();
+const signIn = async ({ user }) => {
+  const db = await connectToDatabase();
   const email: string = user.email;
 
   const cursor = db.collection<ICMDR>('cmdrs').find({});
@@ -16,10 +17,10 @@ const signIn = async (user) => {
   return authUser ? true : false;
 };
 
-const jwt = async (token, user) => {
+const jwt = async ({ token, user }) => {
   if (user) {
     const email: string = user.email;
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const cursor = db.collection<ICMDR>('cmdrs').find({});
     const members = await cursor.toArray();
     cursor.close();
@@ -31,10 +32,10 @@ const jwt = async (token, user) => {
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-const options = {
+const options: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Email({
+    EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER,
         port: 465,
@@ -52,7 +53,7 @@ const options = {
   // Notes:
   // * You must to install an appropriate node_module for your database
   // * The Email provider requires a database (OAuth providers do not)
-  database: process.env.MONGODB_URI,
+  adapter: MongoDBAdapter(clientPromise),
 
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
@@ -60,14 +61,15 @@ const options = {
   secret: process.env.AUTH_SECRET,
 
   session: {
-    // Use JSON Web Tokens for session instead of database sessions.
-    // This option can be used with or without a database for users/accounts.
-    // Note: `jwt` is automatically set to `true` if no database is specified.
-    jwt: true,
-
+    // Choose how you want to save the user session.
+    // The default is `"jwt"`, an encrypted JWT (JWE) in the session cookie.
+    // If you use an `adapter` however, we default it to `"database"` instead.
+    // You can still force a JWT session by explicitly defining `"jwt"`.
+    // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+    // which is used to look up the session in the database.
+    strategy: 'jwt',
     // Seconds - How long until an idle session expires and is no longer valid.
     // maxAge: 30 * 24 * 60 * 60, // 30 days
-
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
     // Note: This option is ignored if using JSON Web Tokens
@@ -81,11 +83,10 @@ const options = {
     // A secret to use for key generation (you should set this explicitly)
     // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
     // Set to true to use encryption (default: false)
-    encryption: false,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
-    // encode: async ({ secret, token, maxAge }) => {},
-    // decode: async ({ secret, token, maxAge }) => {},
+    // async encode({ secret, token, maxAge }) {},
+    // async decode({ secret, token }) {},
   },
 
   // You can define custom pages to override the built-in pages.
@@ -112,7 +113,11 @@ const options = {
 
   // Events are useful for logging
   // https://next-auth.js.org/configuration/events
-  events: {},
+  events: {
+    async signIn(message) {
+      console.log(message);
+    },
+  },
 
   // Enable debug messages in the console if you are having problems
   debug: false,

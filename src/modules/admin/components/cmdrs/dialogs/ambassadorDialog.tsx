@@ -1,5 +1,5 @@
 import { DatePickerwMB1, TextFieldwM1 } from '@/components/_common';
-import { IAmbassador, Platform, Rank, Region, RegionString } from '@@/admin/models';
+import { IAmbassador, Platform, Rank, Region, RegionString } from '~/admin/models';
 import {
   Button,
   Dialog,

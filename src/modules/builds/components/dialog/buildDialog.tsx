@@ -1,5 +1,5 @@
-import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '@@/builds/functions';
-import { IBuildInfov2, IShipInfo } from '@@/builds/models';
+import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '~/builds/functions';
+import { IBuildInfov2, IShipInfo } from '~/builds/models';
 import {
   Autocomplete,
   Button,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   FormGroup,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { OptionsObject, SnackbarKey, SnackbarMessage, useSnackbar } from 'notistack';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useMemo, useReducer } from 'react';

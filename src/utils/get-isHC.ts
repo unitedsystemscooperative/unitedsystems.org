@@ -1,6 +1,6 @@
-import { IMember, Rank } from '@@/admin/models';
-import { Db } from 'mongodb4';
-import { getSession } from 'next-auth/client';
+import { IMember, Rank } from '~/admin/models';
+import { Db } from 'mongodb';
+import { getSession } from 'next-auth/react';
 
 export async function getIsHC(req, db: Db) {
   const session = await getSession({ req });

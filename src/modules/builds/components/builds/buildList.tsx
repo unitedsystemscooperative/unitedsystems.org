@@ -1,5 +1,5 @@
 import { CenteredTypography, PaperP2 } from '@/components/_common';
-import { IBuildInfov2 } from '@@/builds/models';
+import { IBuildInfov2 } from '~/builds/models';
 import { BuildCard } from './buildCard';
 
 interface BuildListProps {

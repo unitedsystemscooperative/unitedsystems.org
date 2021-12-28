@@ -1,6 +1,6 @@
 import { CenteredTypography } from '@/components/_common/typography';
-import { AboutLinks } from '@@/about/components/links';
-import { uscLinksList } from '@@/about/data';
+import { AboutLinks } from '@/modules/about/layouts/links';
+import { uscLinksList } from '~/about/data';
 import { Container } from '@mui/material';
 import { ReactNode } from 'react';
 

@@ -1,4 +1,4 @@
-import { IAlly } from '@@/about/models/ally';
+import { IAlly } from '~/about/models/ally';
 import axios from 'axios';
 import useSWR from 'swr';
 

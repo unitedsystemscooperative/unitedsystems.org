@@ -1,4 +1,4 @@
-import { OdysseyEngineering } from '@@/information/components/odyssey/engineering';
+import { OdysseyEngineering } from '~/information/components/odyssey/engineering';
 import Head from 'next/head';
 
 const OdyEngPage = () => {

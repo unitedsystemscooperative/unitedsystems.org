@@ -1,5 +1,5 @@
 import { genericSearchArray } from '@/functions/search';
-import { ICMDR } from '@@/admin/models/cmdr';
+import { ICMDR } from '~/admin/models/cmdr';
 import { useEffect, useState } from 'react';
 
 export const useCmdrSearch = <T extends ICMDR>({

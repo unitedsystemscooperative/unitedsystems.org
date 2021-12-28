@@ -1,15 +1,15 @@
+import { PaperP1 } from '@/components/_common';
 import { useLinks } from '@/hooks/useLinks';
-import { Box, Container, Link, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Container, Link, Typography } from '@mui/material';
 
 export const Merch = () => {
   const { merch } = useLinks();
-  const theme = useTheme();
   return (
     <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
       <Typography variant="h3">USC Merch Store</Typography>
-      <Paper sx={{ padding: theme.spacing(1) }}>
+      <PaperP1>
         <Typography>Click the image or link below to open the merch store.</Typography>
-        <a href={merch} target="_blank" rel="noreferrer">
+        <a href={merch} target="_blank" rel="noreferrer" data-testid="img-link">
           <Box
             component="img"
             sx={{ width: '100%' }}
@@ -17,10 +17,10 @@ export const Merch = () => {
             alt="expansion image"
           />
         </a>
-        <Link href={merch} target="_blank">
+        <Link href={merch} target="_blank" data-testid="straight-link">
           Go to the Merch Store
         </Link>
-      </Paper>
+      </PaperP1>
     </Container>
   );
 };

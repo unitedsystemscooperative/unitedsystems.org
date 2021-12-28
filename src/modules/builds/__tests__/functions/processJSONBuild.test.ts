@@ -1,8 +1,8 @@
-import cleversBuild from 'data/builds/testBuilds/testBuildClever.json';
-import corvetteMiningBuild from 'data/builds/testBuilds/testCorvetteMiner.json';
-import cleverPrismaticBuild from 'data/builds/testBuilds/testBuildCleverPrismatic.json';
-import cleverPowerplayBuild from 'data/builds/testBuilds/testBuildCleverPP.json';
-import { processJSONBuild } from 'functions/builds';
+import cleversBuild from '~/builds/data/testBuilds/testBuildClever.json';
+import cleverPowerplayBuild from '~/builds/data/testBuilds/testBuildCleverPP.json';
+import cleverPrismaticBuild from '~/builds/data/testBuilds/testBuildCleverPrismatic.json';
+import corvetteMiningBuild from '~/builds/data/testBuilds/testCorvetteMiner.json';
+import { processJSONBuild } from '~/builds/functions';
 
 describe('processJSONBuild', () => {
   it(`should process Clever's build with no powerplay or guardian`, () => {

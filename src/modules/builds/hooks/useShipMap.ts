@@ -1,5 +1,5 @@
-import Ships from '@@/builds/data/shipMap.json';
-import { IShipInfo } from '@@/builds/models';
+import Ships from '~/builds/data/shipMap.json';
+import { IShipInfo } from '~/builds/models';
 
 export const useShipMap = () => {
   const ships: IShipInfo[] = Ships;

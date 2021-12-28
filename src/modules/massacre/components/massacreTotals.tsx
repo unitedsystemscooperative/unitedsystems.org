@@ -1,5 +1,5 @@
-import RepCalculation from '@@/massacre/data/massacreKillValues.json';
-import { IFactionMission, IFactionwMissions, IMassacreTrack } from '@@/massacre/massacreTrack';
+import RepCalculation from '~/massacre/data/massacreKillValues.json';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 import { Container, Paper, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 

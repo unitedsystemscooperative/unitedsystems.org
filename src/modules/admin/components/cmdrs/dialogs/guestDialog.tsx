@@ -7,7 +7,7 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@@/admin/models';
+} from '~/admin/models';
 import { DatePicker } from '@mui/lab';
 import {
   Button,

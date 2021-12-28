@@ -1,4 +1,4 @@
-import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
+import { useJoinRequests } from '~/join/hooks/useJoinInfo';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Box,

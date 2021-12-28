@@ -1,4 +1,4 @@
-import { MiningMaps } from '@@/information/components/miningMaps';
+import { MiningMaps } from '~/information/components/miningMaps';
 import Head from 'next/head';
 
 const MiningMapPage = () => {

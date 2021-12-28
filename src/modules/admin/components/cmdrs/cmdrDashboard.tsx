@@ -1,5 +1,5 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { IAmbassador, ICMDRs, IGuest, IMember } from '@@/admin/models';
+import { IAmbassador, ICMDRs, IGuest, IMember } from '~/admin/models';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
@@ -115,7 +115,7 @@ export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
     updateCMDRs,
     deleteCMDR,
     restoreCMDR,
-  } = useCMDRs(init);
+  } = useCMDRs();
   const { enqueueSnackbar } = useSnackbar();
 
   const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Members);

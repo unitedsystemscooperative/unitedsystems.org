@@ -1,12 +1,12 @@
 import { USCMarkdown } from '@/components/uscmarkdown';
 import { BoxwMB1, CenteredTypography } from '@/components/_common';
 import { useLinks } from '@/hooks/useLinks';
-import { IBuildInfov2, IShipInfo, ShipSize } from '@@/builds/models';
+import { IBuildInfov2, IShipInfo, ShipSize } from '~/builds/models';
 import {
   AddBuildFunction,
   BuildContext,
   BuildContextProvider,
-} from '@@/builds/providers/buildProvider';
+} from '~/builds/providers/buildProvider';
 import {
   Box,
   Button,

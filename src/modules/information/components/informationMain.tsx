@@ -1,5 +1,5 @@
 import { useInfoButtons } from '@/hooks/useInfoButtons';
-import { InfoSection } from '@@/information/components/infoSection';
+import { InfoSection } from '~/information/components/infoSection';
 import { Box, Button, Container, Paper, Theme, Typography, useMediaQuery } from '@mui/material';
 import { MutableRefObject, useRef } from 'react';
 

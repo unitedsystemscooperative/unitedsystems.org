@@ -1,6 +1,6 @@
 import { genericSortArray } from '@/functions/sort';
-import shipMap from '@@/builds/data/shipMap.json';
-import { IBuildInfov2, IShipInfo } from '@@/builds/models';
+import shipMap from '~/builds/data/shipMap.json';
+import { IBuildInfov2, IShipInfo } from '~/builds/models';
 
 export const groupandSortBuilds = (builds: IBuildInfov2[]) => {
   const shipMapSorted: IShipInfo[] = genericSortArray(shipMap, { order: 'asc', orderBy: 'shipId' });

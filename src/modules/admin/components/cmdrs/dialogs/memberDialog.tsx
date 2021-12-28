@@ -8,7 +8,7 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@@/admin/models';
+} from '~/admin/models';
 import {
   Button,
   Checkbox,

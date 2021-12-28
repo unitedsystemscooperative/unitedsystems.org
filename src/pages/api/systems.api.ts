@@ -1,14 +1,14 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from '@/utils/mongo';
-import { System } from '@@/about/models/system';
-import { Db } from 'mongodb4';
+import { System } from '~/about/models/system';
+import { Db } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'systems';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
     const system: System = req.body;

@@ -1,7 +1,7 @@
 import { TitleBarwAdd } from '@/components/_common';
-import { CarrierTableRow } from '@@/about/components/carriers/carrierTableRow';
-import { useFleetCarriers } from '@@/about/hooks/useFleetCarriers';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { CarrierTableRow } from '~/about/components/carriers/carrierTableRow';
+import { useFleetCarriers } from '~/about/hooks/useFleetCarriers';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {

@@ -1,8 +1,8 @@
 import { ConfirmDialog } from '@/components/confirmDialog';
-import { BuildDialog, BuildDialogProps } from '@@/builds/components/dialog/buildDialog';
-import { getShipInfofromID } from '@@/builds/functions/getShipInfo';
-import { useShipBuilds } from '@@/builds/hooks/useShipBuilds';
-import { IBuildInfov2, IShipInfo } from '@@/builds/models';
+import { BuildDialog, BuildDialogProps } from '~/builds/components/dialog/buildDialog';
+import { getShipInfofromID } from '~/builds/functions/getShipInfo';
+import { useShipBuilds } from '~/builds/hooks/useShipBuilds';
+import { IBuildInfov2, IShipInfo } from '~/builds/models';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { useSnackbar } from 'notistack';
 import { createContext, ReactNode, useState } from 'react';

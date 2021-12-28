@@ -6,8 +6,8 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+} from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 import {
   Box,
   Button,

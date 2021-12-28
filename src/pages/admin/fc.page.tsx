@@ -1,7 +1,7 @@
 import { getFCs } from '#/fc.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
-import { CarriersDashboard } from '@@/admin/components/carriers/carriersDashboard';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
+import { CarriersDashboard } from '~/admin/components/carriers/carriersDashboard';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
