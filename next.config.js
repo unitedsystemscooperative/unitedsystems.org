@@ -6,7 +6,6 @@ const withPWA = require('next-pwa');
  */
 module.exports = withPWA({
   pwa: { dest: 'public' },
-  experimental: { esmExternals: true },
   pageExtensions: ['page.tsx', 'api.ts'],
   async redirects() {
     return [
