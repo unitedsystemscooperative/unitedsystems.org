@@ -47,7 +47,7 @@ const NavbarMobile = ({ title, navItems, isAuthenticated, isAdmin }: NavbarProps
       <List>
         {navItems.map((x) => (
           <Link key={x.to} href={x.to}>
-            <ListItem button component="a">
+            <ListItem button component="a" data-testid={`mobile-navlink-${x.text}`}>
               <ListItemText primary={x.text} />
             </ListItem>
           </Link>
@@ -69,7 +69,7 @@ const NavbarMobile = ({ title, navItems, isAuthenticated, isAdmin }: NavbarProps
           </ListItem>
         ) : (
           <Link href="/join">
-            <ListItem button component="a">
+            <ListItem button component="a" data-testid={`mobile-navlink-Join`}>
               <ListItemText primary="Join" />
             </ListItem>
           </Link>
@@ -139,7 +139,7 @@ const NavbarFull = ({ navItems, isAuthenticated, isAdmin }: NavbarProps) => {
       <Toolbar>
         {navItems.map((x) => (
           <Link key={x.to} href={x.to}>
-            <Button key={x.to} href={x.to} sx={sxNavLink}>
+            <Button key={x.to} href={x.to} sx={sxNavLink} data-testid={`full-navlink-${x.text}`}>
               {x.text}
             </Button>
           </Link>
@@ -163,7 +163,12 @@ const NavbarFull = ({ navItems, isAuthenticated, isAdmin }: NavbarProps) => {
           </Button>
         ) : (
           <Link href="/join">
-            <Button href="/join" color="secondary" sx={sxJoinLink} variant="contained">
+            <Button
+              href="/join"
+              color="secondary"
+              sx={sxJoinLink}
+              variant="contained"
+              data-testid="full-navlink-Join">
               Join
             </Button>
           </Link>
