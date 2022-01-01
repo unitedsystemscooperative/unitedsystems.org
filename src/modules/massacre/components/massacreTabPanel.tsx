@@ -1,23 +1,23 @@
 import { PaperOutlineButton } from '@/components/_common/button';
+import { Box, Container, Typography } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { useContext, useMemo } from 'react';
 import { IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 import { processHazRezSystem } from '~/massacre/processHazRezSystem';
 import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { ReputationLevels } from '~/massacre/reputationLevels';
-import { Box, Container, Typography } from '@mui/material';
-import { useContext, useMemo } from 'react';
 import { MassacreMissions } from './massacreMissions';
 import { MassacreTotals } from './massacreTotals';
 import { StationList } from './stationList';
 
-export const MassacreTabPanel = (props: { system: string }) => {
-  const { system } = props;
+export const MassacreTabPanel = ({ system }: { system: string }) => {
   const context = useContext(MassacreContext);
+  const { enqueueSnackbar } = useSnackbar();
   const tracker = useMemo(() => {
     return context?.trackers.find((x) => x.hazRezSystem === system);
   }, [system, context?.trackers]);
 
   if (context && tracker) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const deleteTracker = () => {
       const shouldDelete = window.confirm(
         `Do you really want to delete the ${tracker.hazRezSystem} tracker?`
@@ -28,24 +28,32 @@ export const MassacreTabPanel = (props: { system: string }) => {
     };
 
     const addMissionColumn = () => {
-      const newFactions = tracker.factions.map((faction) => {
-        faction.missions = [
-          ...faction.missions,
-          { timeStamp: new Date(), killsforMission: 0, killsCompleted: 0 },
-        ];
-        return faction;
-      });
-      const newTracker: IMassacreTrack = { ...tracker, factions: newFactions };
-      context.updateTracker(tracker.hazRezSystem, newTracker);
+      if (tracker.factions.some((x) => x.missions.length < 20)) {
+        const newFactions = tracker.factions.map((faction) => {
+          faction.missions = [
+            ...faction.missions,
+            { timeStamp: new Date(), killsforMission: 0, killsCompleted: 0 },
+          ];
+          return faction;
+        });
+        const newTracker: IMassacreTrack = { ...tracker, factions: newFactions };
+        context.updateTracker(tracker.hazRezSystem, newTracker);
+      } else {
+        enqueueSnackbar('Maximum number of mission columns (20) reached.', { variant: 'warning' });
+      }
     };
 
     const deleteLastMissionColumn = () => {
-      const newFactions = tracker.factions.map((faction) => {
-        faction.missions = [...faction.missions.slice(0, faction.missions.length - 1)];
-        return faction;
-      });
-      const newTracker: IMassacreTrack = { ...tracker, factions: newFactions };
-      context.updateTracker(tracker.hazRezSystem, newTracker);
+      if (tracker.factions.some((x) => x.missions.length > 1)) {
+        const newFactions = tracker.factions.map((faction) => {
+          faction.missions = [...faction.missions.slice(0, faction.missions.length - 1)];
+          return faction;
+        });
+        const newTracker: IMassacreTrack = { ...tracker, factions: newFactions };
+        context.updateTracker(tracker.hazRezSystem, newTracker);
+      } else {
+        enqueueSnackbar('Minimum number of mission columns (1) reached', { variant: 'warning' });
+      }
     };
 
     const displayAllFactions = () => {
@@ -62,6 +70,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
       };
       context.updateTracker(tracker.hazRezSystem, newTracker);
     };
+
     const resetCounts = () => {
       const newFactions = tracker.factions.map((faction) => {
         faction.missions = faction.missions.map((_) => {
@@ -75,6 +84,7 @@ export const MassacreTabPanel = (props: { system: string }) => {
       };
       context.updateTracker(tracker.hazRezSystem, newTracker);
     };
+
     const refreshFactions = async () => {
       const result = await processHazRezSystem(tracker.hazRezSystem);
       let factions: IFactionwMissions[] = [];
