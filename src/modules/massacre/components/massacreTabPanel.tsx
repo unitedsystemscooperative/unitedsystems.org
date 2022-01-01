@@ -6,7 +6,7 @@ import { IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 import { processHazRezSystem } from '~/massacre/processHazRezSystem';
 import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { ReputationLevels } from '~/massacre/reputationLevels';
-import { MassacreMissions } from './massacreMissions';
+import { MassacreMissionTable } from './massacreMissionTable';
 import { MassacreTotals } from './massacreTotals';
 import { StationList } from './stationList';
 
@@ -144,7 +144,7 @@ export const MassacreTabPanel = ({ system }: { system: string }) => {
           <MassacreTotals tracker={tracker} />
         </div>
         <div>
-          <MassacreMissions tracker={tracker} updateTracker={context.updateTracker} />
+          <MassacreMissionTable tracker={tracker} updateTracker={context.updateTracker} />
         </div>
         <div>
           <MassacreTotals tracker={tracker} />

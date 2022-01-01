@@ -23,7 +23,7 @@ interface IMassacreMissions {
   updateTracker: (hazRezSystem: string, newTracker: IMassacreTrack) => void;
 }
 
-export const MassacreMissions = ({ tracker, updateTracker }: IMassacreMissions) => {
+export const MassacreMissionTable = ({ tracker, updateTracker }: IMassacreMissions) => {
   const handleFactionChange = (faction: IFactionwMissions) => {
     const index = tracker.factions.findIndex((f) => f.id === faction.id);
     const factions = tracker.factions;
