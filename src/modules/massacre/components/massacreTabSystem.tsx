@@ -24,6 +24,7 @@ export const MassacreTabSystem = () => {
                 key={tracker.hazRezSystem}
                 label={tracker.hazRezSystem}
                 value={tracker.hazRezSystem}
+                data-testid={`massacretab-${tracker.hazRezSystem}`}
               />
             ))}
             <Tab label="+" value="+" />

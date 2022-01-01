@@ -151,8 +151,7 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   const deleteTracker = (tracker: IMassacreTrack) => {
     dispatch({ type: 'delete', tracker });
-    if (trackers.length === 0) setSelectedTab('+');
-    else setSelectedTab(trackers[0].hazRezSystem);
+    setSelectedTab('+');
   };
 
   const wrapper: IMassacreContext = {
