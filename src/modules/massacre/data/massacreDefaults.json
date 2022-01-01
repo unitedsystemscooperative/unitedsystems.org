@@ -6,55 +6,54 @@
         "name": "Pegasi Sector IG-X b1-1",
         "factions": [
           {
-            "name": "Revolutionary HIP 996 for Equality",
-            "id": 24390,
-            "influence": 0.189848,
-            "removed": false
-          },
-          {
-            "name": "Regulatory State of Evnici",
-            "id": 16107,
-            "influence": 0.182741,
-            "removed": false
-          },
-          {
-            "name": "Evnici Movement",
-            "id": 78178,
-            "influence": 0.182741,
-            "removed": false
-          },
-          {
-            "name": "New Bibaridji Green Party",
-            "id": 9729,
-            "influence": 0.139086,
-            "removed": false
-          },
-          {
-            "name": "Democrats of Evnici",
-            "id": 23630,
-            "influence": 0.121827,
+            "name": "Cortex Interstellar Group",
+            "id": 82514,
+            "influence": 0.063872,
             "removed": false
           },
           {
             "name": "Evnici Jet Comms PLC",
             "id": 78176,
-            "influence": 0.088325,
+            "influence": 0.149701,
             "removed": false
           },
           {
-            "name": "Atahingar Co-op",
-            "id": 12522,
-            "influence": 0.085279,
+            "name": "Evnici Movement",
+            "id": 78178,
+            "influence": 0.193613,
             "removed": false
           },
           {
-            "name": "Evnici Crimson Syndicate",
-            "id": 78177,
-            "influence": 0.010152,
+            "name": "New Bibaridji Green Party",
+            "id": 9729,
+            "influence": 0.140719,
+            "removed": false
+          },
+          {
+            "name": "Revolutionary HIP 996 for Equality",
+            "id": 24390,
+            "influence": 0.047904,
+            "removed": false
+          },
+          {
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.337325,
+            "removed": false
+          },
+          {
+            "name": "criminals in disguise",
+            "id": 81140,
+            "influence": 0.066866,
             "removed": false
           }
         ],
         "stations": [
+          {
+            "type": "Planetary Outpost",
+            "name": "Bushkov Survey",
+            "distance": 813
+          },
           {
             "type": "Planetary Outpost",
             "name": "Bulmer Point",
@@ -66,39 +65,45 @@
         "name": "Pegasi Sector JW-W c1-23",
         "factions": [
           {
-            "name": "New Bibaridji Green Party",
-            "id": 9729,
-            "influence": 0.263903,
-            "removed": false
-          },
-          {
             "name": "Atahingar Co-op",
             "id": 12522,
-            "influence": 0.224469,
-            "removed": false
-          },
-          {
-            "name": "Workers of Neris Worker's Party",
-            "id": 20087,
-            "influence": 0.171891,
-            "removed": false
-          },
-          {
-            "name": "HIP 2828 Gold Creative Ltd",
-            "id": 18245,
-            "influence": 0.132457,
+            "influence": 0.152847,
             "removed": false
           },
           {
             "name": "Democrats of Evnici",
             "id": 23630,
-            "influence": 0.132457,
+            "influence": 0.093906,
+            "removed": false
+          },
+          {
+            "name": "HIP 2828 Gold Creative Ltd",
+            "id": 18245,
+            "influence": 0.135864,
+            "removed": false
+          },
+          {
+            "name": "New Bibaridji Green Party",
+            "id": 9729,
+            "influence": 0.122877,
             "removed": false
           },
           {
             "name": "Revolutionary HIP 996 for Equality",
             "id": 24390,
-            "influence": 0.074823,
+            "influence": 0.08991,
+            "removed": false
+          },
+          {
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.361638,
+            "removed": false
+          },
+          {
+            "name": "Workers of Neris Worker's Party",
+            "id": 20087,
+            "influence": 0.042957,
             "removed": false
           }
         ],
@@ -110,8 +115,13 @@
           },
           {
             "type": "Planetary Outpost",
+            "name": "Offutt Relay",
+            "distance": 500
+          },
+          {
+            "type": "Planetary Outpost",
             "name": "Bergerac's Folly",
-            "distance": 37200
+            "distance": 37842
           }
         ]
       },
@@ -119,33 +129,39 @@
         "name": "Pegasi Sector PH-V b2-0",
         "factions": [
           {
-            "name": "New Bibaridji Green Party",
-            "id": 9729,
-            "influence": 0.353,
+            "name": "Atahingar Co-op",
+            "id": 12522,
+            "influence": 0.090726,
             "removed": false
           },
           {
             "name": "Bibaridji Organisation",
             "id": 78997,
-            "influence": 0.303,
+            "influence": 0.129032,
+            "removed": false
+          },
+          {
+            "name": "Cortex Interstellar Group",
+            "id": 82514,
+            "influence": 0.133065,
+            "removed": false
+          },
+          {
+            "name": "New Bibaridji Green Party",
+            "id": 9729,
+            "influence": 0.194556,
             "removed": false
           },
           {
             "name": "Revolutionary HIP 996 for Equality",
             "id": 24390,
-            "influence": 0.159,
+            "influence": 0.059476,
             "removed": false
           },
           {
-            "name": "Atahingar Co-op",
-            "id": 12522,
-            "influence": 0.159,
-            "removed": false
-          },
-          {
-            "name": "Bibaridji Jet Mafia",
-            "id": 78996,
-            "influence": 0.026,
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.393145,
             "removed": false
           }
         ],
@@ -161,45 +177,45 @@
         "name": "HIP 3551",
         "factions": [
           {
-            "name": "HIP 3551 Nobles",
-            "id": 23679,
-            "influence": 0.2999,
-            "removed": false
-          },
-          {
-            "name": "HIP 3551 as one",
-            "id": 79611,
-            "influence": 0.14343,
+            "name": "Atahingar Co-op",
+            "id": 12522,
+            "influence": 0.093939,
             "removed": false
           },
           {
             "name": "HIP 2327 Prison Colony",
             "id": 22024,
-            "influence": 0.137412,
+            "influence": 0.141414,
+            "removed": false
+          },
+          {
+            "name": "HIP 3551 Nobles",
+            "id": 23679,
+            "influence": 0.110101,
+            "removed": false
+          },
+          {
+            "name": "HIP 3551 as one",
+            "id": 79611,
+            "influence": 0.220202,
             "removed": false
           },
           {
             "name": "New Bibaridji Green Party",
             "id": 9729,
-            "influence": 0.137412,
+            "influence": 0.093939,
+            "removed": false
+          },
+          {
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.244444,
             "removed": false
           },
           {
             "name": "Workers of Neris Worker's Party",
             "id": 20087,
-            "influence": 0.104313,
-            "removed": false
-          },
-          {
-            "name": "Arugbal Revolutionary Party",
-            "id": 19239,
-            "influence": 0.095286,
-            "removed": false
-          },
-          {
-            "name": "Atahingar Co-op",
-            "id": 12522,
-            "influence": 0.082247,
+            "influence": 0.09596,
             "removed": false
           }
         ],
@@ -207,128 +223,211 @@
           {
             "type": "Planetary Outpost",
             "name": "Simmons Landing",
-            "distance": 1196
+            "distance": 1181
           },
           {
             "type": "Outpost",
             "name": "Sawyer Stop",
-            "distance": 1717.93045
+            "distance": 1717.50762
           }
         ]
       }
     ],
     "factions": [
       {
-        "name": "Revolutionary HIP 996 for Equality",
-        "id": 24390,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Regulatory State of Evnici",
-        "id": 16107,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Evnici Movement",
-        "id": 78178,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "New Bibaridji Green Party",
-        "id": 9729,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Democrats of Evnici",
-        "id": 23630,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Evnici Jet Comms PLC",
-        "id": 78176,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
         "name": "Atahingar Co-op",
         "id": 12522,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Evnici Crimson Syndicate",
-        "id": 78177,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Workers of Neris Worker's Party",
-        "id": 20087,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "HIP 2828 Gold Creative Ltd",
-        "id": 18245,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
         "name": "Bibaridji Organisation",
         "id": 78997,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
-        "name": "Bibaridji Jet Mafia",
-        "id": 78996,
+        "name": "Cortex Interstellar Group",
+        "id": 82514,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
-        "name": "HIP 3551 Nobles",
-        "id": 23679,
+        "name": "Democrats of Evnici",
+        "id": 23630,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
-        "name": "HIP 3551 as one",
-        "id": 79611,
+        "name": "Evnici Jet Comms PLC",
+        "id": 78176,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Evnici Movement",
+        "id": 78178,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
         "name": "HIP 2327 Prison Colony",
         "id": 22024,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
-        "name": "Arugbal Revolutionary Party",
-        "id": 19239,
+        "name": "HIP 2828 Gold Creative Ltd",
+        "id": 18245,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "HIP 3551 Nobles",
+        "id": 23679,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "HIP 3551 as one",
+        "id": 79611,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "New Bibaridji Green Party",
+        "id": 9729,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Revolutionary HIP 996 for Equality",
+        "id": 24390,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "United Systems Cooperative",
+        "id": 82211,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Workers of Neris Worker's Party",
+        "id": 20087,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "criminals in disguise",
+        "id": 81140,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       }
     ],
     "current": true
@@ -342,43 +441,37 @@
           {
             "name": "HIP 2828 Gold Creative Ltd",
             "id": 18245,
-            "influence": 0.335664,
-            "removed": false
-          },
-          {
-            "name": "Progressive Party of Sanopijcha",
-            "id": 5731,
-            "influence": 0.148851,
-            "removed": false
-          },
-          {
-            "name": "Atahingar Co-op",
-            "id": 12522,
-            "influence": 0.136863,
-            "removed": false
-          },
-          {
-            "name": "Sanopijcha Corp.",
-            "id": 76557,
-            "influence": 0.121878,
+            "influence": 0.193,
             "removed": false
           },
           {
             "name": "Nationalists of Sanopijcha",
             "id": 76558,
-            "influence": 0.121878,
+            "influence": 0.056,
             "removed": false
           },
           {
-            "name": "HIP 5527 Coordinated",
-            "id": 22075,
-            "influence": 0.11988,
+            "name": "Progressive Party of Sanopijcha",
+            "id": 5731,
+            "influence": 0.038,
             "removed": false
           },
           {
             "name": "Sanopijcha Blue Family",
             "id": 76559,
-            "influence": 0.014985,
+            "influence": 0.029,
+            "removed": false
+          },
+          {
+            "name": "Sanopijcha Corp.",
+            "id": 76557,
+            "influence": 0.072,
+            "removed": false
+          },
+          {
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.612,
             "removed": false
           }
         ],
@@ -386,7 +479,7 @@
           {
             "type": "Coriolis Starport",
             "name": "Maire City",
-            "distance": 363.306208
+            "distance": 363.288593
           },
           {
             "type": "Planetary Outpost",
@@ -396,17 +489,17 @@
           {
             "type": "Outpost",
             "name": "Ron Hubbard Orbital",
-            "distance": 529.367949
-          },
-          {
-            "type": "Planetary Outpost",
-            "name": "Varley's Inheritance",
-            "distance": 69061
+            "distance": 529.746072
           },
           {
             "type": "Outpost",
             "name": "Clair Mines",
-            "distance": 69619.978339
+            "distance": 69211.455327
+          },
+          {
+            "type": "Planetary Outpost",
+            "name": "Varley's Inheritance",
+            "distance": 70385
           }
         ]
       },
@@ -414,45 +507,45 @@
         "name": "Grebatabea",
         "factions": [
           {
-            "name": "Conservatives of Grebatabea",
-            "id": 23636,
-            "influence": 0.271556,
+            "name": "Alba Rotam Private Military Contractor",
+            "id": 82123,
+            "influence": 0.122754,
             "removed": false
           },
           {
-            "name": "HIP 4120 Republic Party",
-            "id": 24263,
-            "influence": 0.207136,
+            "name": "Conservatives of Grebatabea",
+            "id": 23636,
+            "influence": 0.00998,
             "removed": false
           },
           {
             "name": "Grebatabea Advanced & Co",
             "id": 67634,
-            "influence": 0.14668,
-            "removed": false
-          },
-          {
-            "name": "People's Grebatabea Democrats",
-            "id": 67633,
-            "influence": 0.122894,
-            "removed": false
-          },
-          {
-            "name": "HIP 5527 Coordinated",
-            "id": 22075,
-            "influence": 0.122894,
-            "removed": false
-          },
-          {
-            "name": "Progressive Party of Sanopijcha",
-            "id": 5731,
-            "influence": 0.11893,
+            "influence": 0.122754,
             "removed": false
           },
           {
             "name": "Grebatabea Jet Mob",
             "id": 67635,
-            "influence": 0.009911,
+            "influence": 0.023952,
+            "removed": false
+          },
+          {
+            "name": "People's Grebatabea Democrats",
+            "id": 67633,
+            "influence": 0.068862,
+            "removed": false
+          },
+          {
+            "name": "Progressive Party of Sanopijcha",
+            "id": 5731,
+            "influence": 0.05988,
+            "removed": false
+          },
+          {
+            "name": "United Systems Cooperative",
+            "id": 82211,
+            "influence": 0.591816,
             "removed": false
           }
         ],
@@ -460,7 +553,7 @@
           {
             "type": "Outpost",
             "name": "Akers Enterprise",
-            "distance": 394.874694
+            "distance": 394.626425
           },
           {
             "type": "Planetary Outpost",
@@ -477,90 +570,149 @@
     ],
     "factions": [
       {
-        "name": "HIP 2828 Gold Creative Ltd",
-        "id": 18245,
+        "name": "Alba Rotam Private Military Contractor",
+        "id": 82123,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Progressive Party of Sanopijcha",
-        "id": 5731,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Atahingar Co-op",
-        "id": 12522,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Sanopijcha Corp.",
-        "id": 76557,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Nationalists of Sanopijcha",
-        "id": 76558,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "HIP 5527 Coordinated",
-        "id": 22075,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "Sanopijcha Blue Family",
-        "id": 76559,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
         "name": "Conservatives of Grebatabea",
         "id": 23636,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "HIP 4120 Republic Party",
-        "id": 24263,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
         "name": "Grebatabea Advanced & Co",
         "id": 67634,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
-      },
-      {
-        "name": "People's Grebatabea Democrats",
-        "id": 67633,
-        "removed": false,
-        "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       },
       {
         "name": "Grebatabea Jet Mob",
         "id": 67635,
         "removed": false,
         "reputation": "Allied",
-        "missions": [null, null, null, null, null]
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "HIP 2828 Gold Creative Ltd",
+        "id": 18245,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Nationalists of Sanopijcha",
+        "id": 76558,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "People's Grebatabea Democrats",
+        "id": 67633,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Progressive Party of Sanopijcha",
+        "id": 5731,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Sanopijcha Blue Family",
+        "id": 76559,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "Sanopijcha Corp.",
+        "id": 76557,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "name": "United Systems Cooperative",
+        "id": 82211,
+        "removed": false,
+        "reputation": "Allied",
+        "missions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       }
     ],
-    "current": false
+    "current": true
   }
 ]
