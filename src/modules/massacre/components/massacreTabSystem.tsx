@@ -18,7 +18,7 @@ export const MassacreTabSystem = () => {
     return (
       <div className="root">
         <AppBar position="static" color="default">
-          <Tabs value={context.selectedTab ?? 0} onChange={handleTabChange}>
+          <Tabs value={context.selectedTab} onChange={handleTabChange}>
             {context.trackers.map((tracker) => (
               <Tab
                 key={tracker.hazRezSystem}
