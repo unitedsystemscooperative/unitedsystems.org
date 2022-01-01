@@ -1,9 +1,9 @@
-import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Container,
   IconButton,
   Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
@@ -16,13 +16,14 @@ import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 
-export const MassacreMissions = (props: {
+interface IMassacreMissions {
   tracker: IMassacreTrack;
   updateTracker: (hazRezSystem: string, newTracker: IMassacreTrack) => void;
-}) => {
-  const { tracker, updateTracker } = props;
+}
 
+export const MassacreMissions = ({ tracker, updateTracker }: IMassacreMissions) => {
   const handleFactionChange = (faction: IFactionwMissions) => {
     const index = tracker.factions.findIndex((f) => f.id === faction.id);
     const factions = tracker.factions;
@@ -178,14 +179,18 @@ const FactionRow = (props: {
       </TableCell>
       <TableCell>{faction.reputation}</TableCell>
       {missionKills.map((mission, index) => (
-        <TableCell key={index}>
+        <SizedTableCell key={index}>
           <TextField
             value={mission.killsforMission}
             onChange={handleKillsforMissionChange}
             name={index.toString()}
           />
-        </TableCell>
+        </SizedTableCell>
       ))}
     </StyledTableRow>
   );
 };
+
+const SizedTableCell = styled(TableCell)(({ theme }) => ({
+  maxWidth: 75,
+}));
