@@ -1,4 +1,5 @@
 export * from './box';
+export * from './copy-button';
 export * from './datePicker';
 export * from './div';
 export * from './paper';

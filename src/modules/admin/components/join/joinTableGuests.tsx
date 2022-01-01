@@ -1,7 +1,5 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { FileCopy } from '@mui/icons-material';
+import { CopyButton } from '@/components/_common';
 import {
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -11,7 +9,6 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { useSnackbar } from 'notistack';
 import { ChangeEvent, useState } from 'react';
 import { PlatformString, ReferralString, RegionString } from '~/admin/models';
 import { IJoinRequest } from '~/join/models/joinRequest';
@@ -19,7 +16,6 @@ import { IJoinRequest } from '~/join/models/joinRequest';
 export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -28,15 +24,6 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  const copy = async (text: string) => {
-    try {
-      await copytoClipboard(text);
-      enqueueSnackbar('Copied', { variant: 'success' });
-    } catch {
-      enqueueSnackbar('Failed to copy', { variant: 'error' });
-    }
   };
 
   return (
@@ -60,19 +47,10 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
                 <TableRow key={`${map.discord} ${map.timeStamp}`}>
                   <TableCell>{map.timeStamp}</TableCell>
                   <TableCell>
-                    {map.cmdr}{' '}
-                    <IconButton
-                      size="small"
-                      color="secondary"
-                      onClick={() => copy(map.cmdr.toUpperCase())}>
-                      <FileCopy />
-                    </IconButton>
+                    {map.cmdr} <CopyButton value={map.cmdr.toUpperCase()} />
                   </TableCell>
                   <TableCell>
-                    {map.discord}{' '}
-                    <IconButton size="small" color="secondary" onClick={() => copy(map.discord)}>
-                      <FileCopy />
-                    </IconButton>
+                    {map.discord} <CopyButton value={map.discord} />
                   </TableCell>
                   <TableCell>{PlatformString[map.platform]}</TableCell>
                   <TableCell>{ReferralString[map.referral]}</TableCell>

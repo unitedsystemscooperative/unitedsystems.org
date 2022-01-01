@@ -1,10 +1,8 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
+import { CopyButton } from '@/components/_common';
 import { useLinks } from '@/hooks/useLinks';
-import { FileCopy } from '@mui/icons-material';
 import {
   Button,
   Container,
-  IconButton,
   Link,
   Paper,
   Table,
@@ -15,22 +13,11 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useSnackbar } from 'notistack';
 import { useMiningMaps } from '~/information/hooks/useMiningMaps';
 
 export const MiningMaps = () => {
   const maps = useMiningMaps();
   const { inaraCommodity } = useLinks();
-  const { enqueueSnackbar } = useSnackbar();
-
-  const copy = async (text: string) => {
-    try {
-      await copytoClipboard(text);
-      enqueueSnackbar('Copied', { variant: 'success' });
-    } catch {
-      enqueueSnackbar('Failed to copy', { variant: 'error' });
-    }
-  };
 
   return (
     <Container maxWidth="md" sx={{ textAlign: 'center' }}>
@@ -52,10 +39,7 @@ export const MiningMaps = () => {
             {maps.map((map) => (
               <TableRow key={map.link}>
                 <TableCell>
-                  {map.system}{' '}
-                  <IconButton size="small" color="secondary" onClick={() => copy(map.system)}>
-                    <FileCopy />
-                  </IconButton>
+                  {map.system} <CopyButton value={map.system} />
                 </TableCell>
                 <TableCell>{map.body}</TableCell>
                 <TableCell>
