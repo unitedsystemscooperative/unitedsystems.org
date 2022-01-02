@@ -14,7 +14,7 @@ import { ChangeEvent, useContext, useState } from 'react';
  * 4. Get stations within the possible systems
  */
 
-export const MassacreTabAddPanel = () => {
+export const MassacreAddTab = () => {
   const context = useContext(MassacreContext);
   const [system, setSystem] = useState('');
   const { enqueueSnackbar } = useSnackbar();

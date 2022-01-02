@@ -57,7 +57,7 @@ const calcPayout = (tracker: IMassacreTrack) => {
   return +payout.toFixed(2);
 };
 
-export const MassacreTotals = (props: { tracker: IMassacreTrack }) => {
+export const MassacreSummary = (props: { tracker: IMassacreTrack }) => {
   const { tracker } = props;
   const [totalMissions, setTotalMissions] = useState(0);
   const [totalKillsNeeded, setTotalKillsNeeded] = useState(0);

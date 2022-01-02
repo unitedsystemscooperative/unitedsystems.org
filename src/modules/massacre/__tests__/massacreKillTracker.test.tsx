@@ -7,7 +7,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { MassacreKillTracker } from '../components/massacreKillTracker';
-import { MassacreTabSystem } from '../components/massacreTabSystem';
+import { MassacreTabs } from '../components/massacreTabs';
 import { theme } from '@/styles/theme';
 
 const bbtestId = 'massacretab-BIBARIDJI';
@@ -23,7 +23,7 @@ const TestComponent = () => {
 describe('Massacre Mission Tracker', () => {
   describe('Massacre Tab System w/o Context', () => {
     it('should render message', () => {
-      const { getByText } = render(<MassacreTabSystem />);
+      const { getByText } = render(<MassacreTabs />);
       expect(getByText('Unable to retrieve context')).toBeTruthy();
     });
   });

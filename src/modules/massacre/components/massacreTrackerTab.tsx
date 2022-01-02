@@ -7,10 +7,10 @@ import { processHazRezSystem } from '~/massacre/processHazRezSystem';
 import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { ReputationLevels } from '~/massacre/reputationLevels';
 import { MassacreMissionTable } from './massacreMissionTable';
-import { MassacreTotals } from './massacreTotals';
+import { MassacreSummary } from './massacreSummary';
 import { StationList } from './stationList';
 
-export const MassacreTabPanel = ({ system }: { system: string }) => {
+export const MassacreTrackerTab = ({ system }: { system: string }) => {
   const context = useContext(MassacreContext);
   const { enqueueSnackbar } = useSnackbar();
   const tracker = useMemo(() => {
@@ -118,36 +118,57 @@ export const MassacreTabPanel = ({ system }: { system: string }) => {
     return (
       <Container maxWidth="xl">
         <Box sx={{ '& button': { m: 1 } }}>
-          <PaperOutlineButton onClick={deleteTracker} color="secondary" variant="outlined">
+          <PaperOutlineButton
+            onClick={deleteTracker}
+            color="secondary"
+            variant="outlined"
+            data-testid="tracker-delete">
             Delete Tracker
           </PaperOutlineButton>
-          <PaperOutlineButton onClick={addMissionColumn} color="secondary" variant="outlined">
+          <PaperOutlineButton
+            onClick={addMissionColumn}
+            color="secondary"
+            variant="outlined"
+            data-testid="tracker-add-column">
             Add Column to tracker
           </PaperOutlineButton>
           <PaperOutlineButton
             onClick={deleteLastMissionColumn}
             color="secondary"
-            variant="outlined">
+            variant="outlined"
+            data-testid="tracker-delete-column">
             Delete last column of tracker
           </PaperOutlineButton>
-          <PaperOutlineButton onClick={displayAllFactions} color="secondary" variant="outlined">
+          <PaperOutlineButton
+            onClick={displayAllFactions}
+            color="secondary"
+            variant="outlined"
+            data-testid="tracker-unhide-factions">
             Unhide all factions
           </PaperOutlineButton>
-          <PaperOutlineButton onClick={resetCounts} color="secondary" variant="outlined">
+          <PaperOutlineButton
+            onClick={resetCounts}
+            color="secondary"
+            variant="outlined"
+            data-testid="tracker-reset-counts">
             Reset Counts
           </PaperOutlineButton>
-          <PaperOutlineButton onClick={refreshFactions} color="secondary" variant="outlined">
+          <PaperOutlineButton
+            onClick={refreshFactions}
+            color="secondary"
+            variant="outlined"
+            data-testid="tracker-reset-factions">
             Reset and Refresh Factions
           </PaperOutlineButton>
         </Box>
         <div>
-          <MassacreTotals tracker={tracker} />
+          <MassacreSummary tracker={tracker} />
         </div>
         <div>
           <MassacreMissionTable tracker={tracker} updateTracker={context.updateTracker} />
         </div>
         <div>
-          <MassacreTotals tracker={tracker} />
+          <MassacreSummary tracker={tracker} />
         </div>
         <div>
           <Typography variant="h4">Stations</Typography>
@@ -155,6 +176,7 @@ export const MassacreTabPanel = ({ system }: { system: string }) => {
             sx={{
               display: 'flex',
               flexDirection: 'row',
+              flexWrap: 'wrap',
               m: 1,
             }}>
             {tracker.systemsin10LY.map((system) => (
