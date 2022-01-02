@@ -36,6 +36,7 @@ const jestConfig: Config.InitialOptions = {
     '<rootDir>/node_modules/',
     '<rootDir>/src/data/',
     '<rootDir>/src/.+/data/',
+    '<rootDir>/src/components/markdown/',
   ],
 
   // Indicates which provider should be used to instrument code for coverage
