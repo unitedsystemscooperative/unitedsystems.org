@@ -28,7 +28,7 @@ export const MassacreTabs = () => {
                 data-testid={`massacretab-${tracker.hazRezSystem}`}
               />
             ))}
-            <Tab icon={<Add />} value="+" />
+            <Tab icon={<Add />} value="+" data-testid="massacretab-add" />
           </Tabs>
         </AppBar>
         {context.trackers.map((tracker) => (

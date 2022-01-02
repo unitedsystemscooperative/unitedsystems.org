@@ -117,7 +117,7 @@ export const MassacreTrackerTab = ({ system }: { system: string }) => {
 
     return (
       <Container maxWidth="xl">
-        <Box sx={{ '& button': { m: 1 } }}>
+        <Box sx={{ '& button': { m: 1 } }} data-testid="tracker-function-buttons">
           <PaperOutlineButton
             onClick={deleteTracker}
             color="secondary"

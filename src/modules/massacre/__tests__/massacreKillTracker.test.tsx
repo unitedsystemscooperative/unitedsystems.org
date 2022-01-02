@@ -1,14 +1,8 @@
+import { theme } from '@/styles/theme';
 import { ThemeProvider } from '@mui/material';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  RenderResult,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react';
 import { MassacreKillTracker } from '../components/massacreKillTracker';
 import { MassacreTabs } from '../components/massacreTabs';
-import { theme } from '@/styles/theme';
 
 const bbtestId = 'massacretab-BIBARIDJI';
 
@@ -49,17 +43,17 @@ describe('Massacre Mission Tracker', () => {
       expect(getByText(/^HIP 4120$/i)).toBeTruthy();
 
       // Current tab check
-      expect(getByText(/^\+$/)).toHaveClass('Mui-selected');
+      expect(getByTestId('massacretab-add')).toHaveClass('Mui-selected');
       expect(getByText('Enter the HazRez system for reference')).toBeTruthy();
       expect(queryByText('Stations')).toBeNull();
     });
 
     it('should change system tab', () => {
-      const { getByText, getByTestId } = component;
+      const { getByTestId } = component;
 
       fireEvent.click(getByTestId(bbtestId));
 
-      expect(getByText(/^\+$/)).not.toHaveClass('Mui-selected');
+      expect(getByTestId('massacretab-add')).not.toHaveClass('Mui-selected');
       expect(getByTestId(bbtestId)).toHaveClass('Mui-selected');
     });
 
@@ -74,7 +68,19 @@ describe('Massacre Mission Tracker', () => {
         localStorage.clear();
       });
 
-      it.todo('should have 6 function buttons');
+      it('should have 6 function buttons', () => {
+        const { getByTestId } = component;
+
+        const functionButtonBox = getByTestId('tracker-function-buttons');
+        expect(functionButtonBox.children.length).toBe(6);
+
+        expect(getByTestId('tracker-delete')).toBeTruthy();
+        expect(getByTestId('tracker-add-column')).toBeTruthy();
+        expect(getByTestId('tracker-delete-column')).toBeTruthy();
+        expect(getByTestId('tracker-unhide-factions')).toBeTruthy();
+        expect(getByTestId('tracker-reset-counts')).toBeTruthy();
+        expect(getByTestId('tracker-reset-factions')).toBeTruthy();
+      });
 
       it.todo('should update and calculate totals');
 
@@ -92,12 +98,12 @@ describe('Massacre Mission Tracker', () => {
         const confirmSpy = jest.spyOn(window, 'confirm');
         confirmSpy.mockImplementation(jest.fn(() => true));
 
-        const { getByText, queryByTestId } = component;
+        const { getByText, getByTestId, queryByTestId } = component;
         fireEvent.click(getByText('Delete Tracker'));
 
         expect(queryByTestId(bbtestId)).toBeFalsy();
-        expect(getByText(/^\+$/)).toBeTruthy();
-        expect(getByText(/^\+$/)).toHaveClass('Mui-selected');
+        expect(getByTestId('massacretab-add')).toBeTruthy();
+        expect(getByTestId('massacretab-add')).toHaveClass('Mui-selected');
       });
 
       it('should not delete the tracker if not confirmed', () => {
