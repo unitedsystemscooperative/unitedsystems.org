@@ -1,46 +1,25 @@
-import { render } from '@testing-library/react';
-import { cleanup } from '@testing-library/react-hooks';
+import fleetCarrierData from '@/modules/about/data/fleetCarriers.json';
+import { server } from '@/__mocks__/server/server';
+import { render, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
 import { Carriers } from '~/about/components/carriers/carriers';
-import fleetCarrierData from '~/about/data/fleetCarriers.json';
-import * as hooks from '~/about/hooks/useFleetCarriers';
 
-const useFleetCarriersSpy = jest.spyOn(hooks, 'useFleetCarriers');
 describe('Carriers', () => {
-  afterEach(cleanup);
-
-  it('renders when loading', (cb) => {
-    useFleetCarriersSpy.mockReturnValue({
-      fleetCarriers: null,
-      personalCarriers: null,
-      squadCarriers: null,
-      isLoading: true,
-      error: null,
-      addCarrier: jest.fn(),
-      updateCarrier: jest.fn(),
-      deleteCarrier: jest.fn(),
-    });
+  it('renders when loading', () => {
     const { getByText } = render(<Carriers />);
 
     expect(getByText('Loading')).toBeDefined();
-    cb();
   });
 
-  it('renders Fleet Carriers', () => {
-    useFleetCarriersSpy.mockReturnValue({
-      fleetCarriers: fleetCarrierData,
-      personalCarriers: fleetCarrierData.filter((carrier) => !carrier.purpose),
-      squadCarriers: fleetCarrierData.filter((carrier) => carrier.purpose),
-      isLoading: false,
-      error: null,
-      addCarrier: jest.fn(),
-      updateCarrier: jest.fn(),
-      deleteCarrier: jest.fn(),
-    });
+  it('renders Fleet Carriers', async () => {
+    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(fleetCarrierData))));
     const { getByText } = render(<Carriers />);
 
-    expect(getByText('Almagest')).toBeDefined();
-    expect(getByText('Zocalo')).toBeDefined();
-    expect(getByText('UltraNeros')).toBeDefined();
-    expect(getByText('Ellen Jameson')).toBeDefined();
+    await waitFor(() => {
+      expect(getByText('Almagest')).toBeDefined();
+      expect(getByText('Zocalo')).toBeDefined();
+      expect(getByText('UltraNeros')).toBeDefined();
+      expect(getByText('Ellen Jameson')).toBeDefined();
+    });
   });
 });
