@@ -191,6 +191,6 @@ const FactionRow = (props: {
   );
 };
 
-const SizedTableCell = styled(TableCell)(({ theme }) => ({
+const SizedTableCell = styled(TableCell)(() => ({
   maxWidth: 75,
 }));

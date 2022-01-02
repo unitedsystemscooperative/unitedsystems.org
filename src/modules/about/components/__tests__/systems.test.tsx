@@ -1,15 +1,10 @@
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { AboutSystems } from '~/about/components/systems';
 import systems from '~/about/data/systems.json';
 import * as hook from '~/about/hooks/useSystems';
-import { AboutSystems } from '~/about/components/systems';
-import * as useSnackbar from 'notistack';
 
 const useSystemsSpy = jest.spyOn(hook, 'useSystems');
-const enqueueSnackbarSpy = jest.fn();
-const useSnackbarSpy = jest.spyOn(useSnackbar, 'useSnackbar').mockImplementation(() => ({
-  enqueueSnackbar: enqueueSnackbarSpy,
-  closeSnackbar: jest.fn(),
-}));
+
 const mockenqueueSnackbar = jest.fn();
 jest.mock('notistack', () => ({
   useSnackbar() {

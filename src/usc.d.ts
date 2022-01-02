@@ -1,5 +1,5 @@
-import { Db, MongoClient } from 'mongodb';
 import { Theme } from '@mui/material';
+import { MongoClient } from 'mongodb';
 
 declare global {
   namespace NodeJS {

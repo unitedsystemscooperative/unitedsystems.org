@@ -1,9 +1,8 @@
+import { render } from '@testing-library/react';
+import { cleanup } from '@testing-library/react-hooks';
 import { Carriers } from '~/about/components/carriers/carriers';
 import fleetCarrierData from '~/about/data/fleetCarriers.json';
 import * as hooks from '~/about/hooks/useFleetCarriers';
-import { render } from '@testing-library/react';
-import { cleanup } from '@testing-library/react-hooks';
-import { PersonalCarriers } from '../carriers/carriersPersonal';
 
 const useFleetCarriersSpy = jest.spyOn(hooks, 'useFleetCarriers');
 describe('Carriers', () => {

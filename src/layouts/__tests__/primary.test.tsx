@@ -12,18 +12,19 @@ const useSessionSpy = jest
   .mockReturnValue({ status: 'unauthenticated', data: null });
 const signOutSpy = jest
   .spyOn(auth, 'signOut')
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   .mockImplementation(jest.fn().mockImplementation(() => {}));
 
 const createMatchMedia = (width) => {
   return (query): MediaQueryList => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    addEventListener: () => {},
-    removeListener: () => {},
-    removeEventListener: () => {},
+    addListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeListener: jest.fn(),
+    removeEventListener: jest.fn(),
     media: '',
-    onchange: () => {},
-    dispatchEvent: (event) => true,
+    onchange: jest.fn(),
+    dispatchEvent: (_event) => true,
   });
 };
 
