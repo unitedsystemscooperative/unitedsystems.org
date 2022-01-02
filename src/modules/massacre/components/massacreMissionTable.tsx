@@ -1,3 +1,4 @@
+import { genericSortArray } from '@/functions/sort';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Container,
@@ -47,25 +48,15 @@ export const MassacreMissionTable = ({ tracker, updateTracker }: IMassacreMissio
             </TableRow>
           </TableHead>
           <TableBody>
-            {tracker.factions
-              .sort((a, b) => {
-                if (a.name > b.name) {
-                  return 1;
-                }
-                if (a.name < b.name) {
-                  return -1;
-                }
-                return 0;
-              })
-              .map((faction) =>
-                faction.removed ? null : (
-                  <FactionRow
-                    key={faction.name}
-                    faction={faction}
-                    onFactionChange={handleFactionChange}
-                  />
-                )
-              )}
+            {genericSortArray(tracker.factions, { order: 'asc', orderBy: 'name' }).map((faction) =>
+              faction.removed ? null : (
+                <FactionRow
+                  key={faction.name}
+                  faction={faction}
+                  onFactionChange={handleFactionChange}
+                />
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>
@@ -170,20 +161,28 @@ const FactionRow = (props: {
 
   return (
     <StyledTableRow>
-      <TableCell>{totalKills}</TableCell>
+      <TableCell data-testid={`faction-totalKills-${faction.name.toLowerCase()}`}>
+        {totalKills}
+      </TableCell>
       <TableCell>
-        {faction.name}{' '}
-        <IconButton onClick={removeFaction} size="large">
+        {faction.name}
+        <IconButton
+          onClick={removeFaction}
+          size="large"
+          data-testid={`faction-delete-${faction.name.toLowerCase()}`}>
           <DeleteIcon />
         </IconButton>
       </TableCell>
-      <TableCell>{faction.reputation}</TableCell>
+      <TableCell data-testid={`faction-rep-${faction.name.toLowerCase()}`}>
+        {faction.reputation}
+      </TableCell>
       {missionKills.map((mission, index) => (
         <SizedTableCell key={index}>
           <TextField
             value={mission.killsforMission}
             onChange={handleKillsforMissionChange}
             name={index.toString()}
+            data-testid={`faction-mission-${index}-${faction.name.toLowerCase()}`}
           />
         </SizedTableCell>
       ))}

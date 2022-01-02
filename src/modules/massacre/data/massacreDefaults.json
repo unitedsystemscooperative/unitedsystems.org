@@ -235,8 +235,8 @@
     ],
     "factions": [
       {
-        "name": "Atahingar Co-op",
-        "id": 12522,
+        "name": "Bibaridji Organisation",
+        "id": 78997,
         "removed": false,
         "reputation": "Allied",
         "missions": [
@@ -248,8 +248,8 @@
         ]
       },
       {
-        "name": "Bibaridji Organisation",
-        "id": 78997,
+        "name": "Atahingar Co-op",
+        "id": 12522,
         "removed": false,
         "reputation": "Allied",
         "missions": [
