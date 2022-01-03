@@ -76,6 +76,7 @@ const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
 
 export const MassacreContextProvider = (props: { children: ReactNode }) => {
   const [trackers, dispatch] = useReducer(reducer, []);
+  const [selectedTab, setSelectedTab] = useState<string>('+');
 
   useEffect(() => {
     const setTab = localStorage.getItem('massacreTrackerTab');
@@ -111,19 +112,6 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
   useEffect(() => {
     localStorage.setItem('massacreTrackerStore', JSON.stringify(trackers));
   }, [trackers]);
-
-  const [selectedTab, setSelectedTab] = useState<string>(() => {
-    if (trackers && trackers.length > 0) {
-      const selectedTrack = trackers.find((x) => x.current === true);
-      if (selectedTrack) {
-        return selectedTrack.hazRezSystem;
-      } else {
-        return '+';
-      }
-    } else {
-      return '+';
-    }
-  });
 
   useEffect(() => {
     localStorage.setItem('massacreTrackerTab', selectedTab);

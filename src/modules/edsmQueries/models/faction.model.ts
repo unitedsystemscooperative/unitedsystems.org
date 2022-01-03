@@ -21,7 +21,7 @@ export interface Faction {
   government: string;
   influence: number;
   state: string;
-  activeStates: string[];
+  activeStates: unknown[];
   recoveringStates: unknown[];
   pendingStates: unknown[];
   happiness: string;

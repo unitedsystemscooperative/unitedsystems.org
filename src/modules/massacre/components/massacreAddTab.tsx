@@ -79,7 +79,9 @@ export const MassacreAddTab = () => {
         <div>
           <Typography>Enter the HazRez system for reference</Typography>
           <TextField value={system} onChange={handleTextChange} label="HazRez System" />
-          <Button onClick={handleSystemSubmission}>Submit System</Button>
+          <Button onClick={handleSystemSubmission} data-testid="system-submit">
+            Submit System
+          </Button>
         </div>
       </Paper>
     </>
