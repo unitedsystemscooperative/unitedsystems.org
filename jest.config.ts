@@ -3,7 +3,9 @@
  * https://jestjs.io/docs/en/configuration.html
  */
 
-export default {
+import type { Config } from '@jest/types';
+
+const jestConfig: Config.InitialOptions = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -34,6 +36,7 @@ export default {
     '<rootDir>/node_modules/',
     '<rootDir>/src/data/',
     '<rootDir>/src/.+/data/',
+    '<rootDir>/src/components/markdown/',
   ],
 
   // Indicates which provider should be used to instrument code for coverage
@@ -135,7 +138,7 @@ export default {
   setupFiles: ['dotenv/config'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/jest.setup.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -203,3 +206,5 @@ export default {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+export default jestConfig;

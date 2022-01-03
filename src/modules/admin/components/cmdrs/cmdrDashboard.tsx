@@ -1,5 +1,4 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { IAmbassador, ICMDRs, IGuest, IMember } from '~/admin/models';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
@@ -15,6 +14,7 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { MouseEvent, useState } from 'react';
+import { IAmbassador, IGuest, IMember } from '~/admin/models';
 import { AmbassadorDashboard } from './ambassadorDashboard';
 import { AmbassadorDialog } from './dialogs/ambassadorDialog';
 import { GuestDialog } from './dialogs/guestDialog';
@@ -106,7 +106,7 @@ enum CmdrView {
   Members = 'Members',
 }
 
-export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
+export const CMDRDashboard = () => {
   const {
     cmdrs: { members, guests, ambassadors },
     loading,

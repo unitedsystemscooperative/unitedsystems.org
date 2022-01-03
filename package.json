@@ -12,8 +12,9 @@
     "cypress": "cypress open",
     "pree2e": "npm run build",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
-    "lint": "next lint",
+    "lint:next": "next lint",
     "lint:fix": "eslint . --ext ts,tsx --fix",
+    "lint": "eslint . --ext ts,tsx",
     "fix-react-default-imports": "npx react-codemod update-react-imports"
   },
   "dependencies": {
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.7",
+    "@testing-library/cypress": "^8.0.2",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -80,7 +82,6 @@
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
     "start-server-and-test": "^1.14.0",
-    "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }

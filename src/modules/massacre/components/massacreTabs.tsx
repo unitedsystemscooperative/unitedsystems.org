@@ -1,10 +1,11 @@
 import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { AppBar, Collapse, Tab, Tabs, Typography } from '@mui/material';
 import { ChangeEvent, useContext } from 'react';
-import { MassacreTabAddPanel } from './massacreTabAddPanel';
-import { MassacreTabPanel } from './massacreTabPanel';
+import { MassacreAddTab } from './massacreAddTab';
+import { MassacreTrackerTab } from './massacreTrackerTab';
+import { Add } from '@mui/icons-material';
 
-export const MassacreTabSystem = () => {
+export const MassacreTabs = () => {
   const context = useContext(MassacreContext);
 
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -17,16 +18,17 @@ export const MassacreTabSystem = () => {
   } else {
     return (
       <div className="root">
-        <AppBar position="static" color="default">
-          <Tabs value={context.selectedTab ?? 0} onChange={handleTabChange}>
+        <AppBar position="static" color="default" sx={{ px: 2 }}>
+          <Tabs value={context.selectedTab} onChange={handleTabChange}>
             {context.trackers.map((tracker) => (
               <Tab
                 key={tracker.hazRezSystem}
                 label={tracker.hazRezSystem}
                 value={tracker.hazRezSystem}
+                data-testid={`massacretab-${tracker.hazRezSystem}`}
               />
             ))}
-            <Tab label="+" value="+" />
+            <Tab icon={<Add />} value="+" data-testid="massacretab-add" />
           </Tabs>
         </AppBar>
         {context.trackers.map((tracker) => (
@@ -36,13 +38,13 @@ export const MassacreTabSystem = () => {
             unmountOnExit
             mountOnEnter>
             <div>
-              <MassacreTabPanel system={tracker.hazRezSystem} />
+              <MassacreTrackerTab system={tracker.hazRezSystem} />
             </div>
           </Collapse>
         ))}
         <Collapse in={context.selectedTab === '+'} unmountOnExit mountOnEnter>
           <div>
-            <MassacreTabAddPanel />
+            <MassacreAddTab />
           </div>
         </Collapse>
       </div>

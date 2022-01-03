@@ -43,10 +43,6 @@ const DEFAULTBUILD: IBuildInfov2 = {
   jsonBuild: '',
 };
 
-function isOptionEqualToValue(option: IBuildInfov2, value: IBuildInfov2): boolean {
-  return option._id.toString() === value._id.toString();
-}
-
 type action =
   | { type: 'default'; value?: string }
   | { type: 'build'; value: IBuildInfov2 }

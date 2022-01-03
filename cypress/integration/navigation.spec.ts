@@ -13,33 +13,32 @@ describe('Navigation', () => {
     });
 
     it('should navigate to /about', () => {
-      cy.get('[data-testid=full-navlink-About]').click();
-
+      cy.findByTestId('full-navlink-About').click();
       cy.url().should('include', '/about');
     });
 
     it('should navigate to /information', () => {
-      cy.get('[data-testid=full-navlink-Information]').click();
+      cy.findByTestId('full-navlink-Information').click();
       cy.url().should('include', '/information');
     });
 
     it('should navigate to /builds', () => {
-      cy.get('[data-testid="full-navlink-USC Builds"]').click();
+      cy.findByTestId('full-navlink-USC Builds').click();
       cy.url().should('include', '/builds');
     });
 
     it('should navigate to /massacres', () => {
-      cy.get('[data-testid="full-navlink-Massacre Mission Tracker"]').click();
+      cy.findByTestId('full-navlink-Massacre Mission Tracker').click();
       cy.url().should('include', '/massacres');
     });
 
     it('should navigate to /merch', () => {
-      cy.get('[data-testid=full-navlink-Merch]').click();
+      cy.findByTestId('full-navlink-Merch').click();
       cy.url().should('include', '/merch');
     });
 
     it('should navigate to /join', () => {
-      cy.get('[data-testid=full-navlink-Join]').click();
+      cy.findByTestId('full-navlink-Join').click();
       cy.url().should('include', '/join');
     });
   });
@@ -47,37 +46,36 @@ describe('Navigation', () => {
   describe('Mobile Navigation', () => {
     beforeEach(() => {
       cy.viewport('iphone-x');
-      cy.get('[data-testid=mobile-drawer-button]').click();
+      cy.findByTestId('mobile-drawer-button').click();
     });
 
     it('should navigate to /about', () => {
-      cy.get('[data-testid=mobile-navlink-About]').click();
-
+      cy.findByTestId('mobile-navlink-About').click();
       cy.url().should('include', '/about');
     });
 
     it('should navigate to /information', () => {
-      cy.get('[data-testid=mobile-navlink-Information]').click();
+      cy.findByTestId('mobile-navlink-Information').click();
       cy.url().should('include', '/information');
     });
 
     it('should navigate to /builds', () => {
-      cy.get('[data-testid="mobile-navlink-USC Builds"]').click();
+      cy.findByTestId('mobile-navlink-USC Builds').click();
       cy.url().should('include', '/builds');
     });
 
     it('should navigate to /massacres', () => {
-      cy.get('[data-testid="mobile-navlink-Massacre Mission Tracker"]').click();
+      cy.findByTestId('mobile-navlink-Massacre Mission Tracker').click();
       cy.url().should('include', '/massacres');
     });
 
     it('should navigate to /merch', () => {
-      cy.get('[data-testid=mobile-navlink-Merch]').click();
+      cy.findByTestId('mobile-navlink-Merch').click();
       cy.url().should('include', '/merch');
     });
 
     it('should navigate to /join', () => {
-      cy.get('[data-testid=mobile-navlink-Join]').click();
+      cy.findByTestId('mobile-navlink-Join').click();
       cy.url().should('include', '/join');
     });
   });

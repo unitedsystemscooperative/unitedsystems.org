@@ -1,6 +1,6 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
+import { CopyButton } from '@/components/_common';
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { Add, FileCopy } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -40,14 +40,6 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-  const copy = async (text: string) => {
-    try {
-      await copytoClipboard(text);
-      enqueueSnackbar('Copied', { variant: 'success' });
-    } catch {
-      enqueueSnackbar('Failed to copy', { variant: 'error' });
-    }
   };
 
   const handleAddMember = (joinInfo: IJoinRequest) => {
@@ -124,24 +116,12 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
                     <TableCell>{new Date(map.timeStamp).toUTCString()}</TableCell>
                     <TableCell>
                       <div>
-                        {map.cmdr}
-                        <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() => copy(map.cmdr.toUpperCase())}>
-                          <FileCopy />
-                        </IconButton>
+                        {map.cmdr} <CopyButton value={map.cmdr.toUpperCase()} />
                       </div>
                     </TableCell>
                     <TableCell>
                       <div>
-                        {map.discord}
-                        <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() => copy(map.discord)}>
-                          <FileCopy />
-                        </IconButton>
+                        {map.discord} <CopyButton value={map.discord} />
                       </div>
                     </TableCell>
                     <TableCell>{PlatformString[map.platform]}</TableCell>

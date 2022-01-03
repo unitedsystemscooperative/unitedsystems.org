@@ -2,6 +2,7 @@ import { copytoClipboard } from '@/functions/copytoClipboard';
 
 Object.defineProperty(navigator, 'clipboard', {
   value: {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     writeText: async () => {},
   },
 });

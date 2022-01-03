@@ -16,7 +16,7 @@ export const AboutAllies = ({ init }: { init: IAlly[] }) => {
           <EDSpinner />
         ) : (
           <List component={Paper} sx={{ margin: 'auto' }} data-testid="allies-list">
-            {allies.map((ally: { name: string }, i: number) => (
+            {allies.map((ally: IAlly, i: number) => (
               <ListItem key={i}>
                 <ListItemText primary={`${ally.name}`} />
               </ListItem>

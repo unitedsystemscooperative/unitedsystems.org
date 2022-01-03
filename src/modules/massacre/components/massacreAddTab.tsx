@@ -14,7 +14,7 @@ import { ChangeEvent, useContext, useState } from 'react';
  * 4. Get stations within the possible systems
  */
 
-export const MassacreTabAddPanel = () => {
+export const MassacreAddTab = () => {
   const context = useContext(MassacreContext);
   const [system, setSystem] = useState('');
   const { enqueueSnackbar } = useSnackbar();
@@ -79,7 +79,9 @@ export const MassacreTabAddPanel = () => {
         <div>
           <Typography>Enter the HazRez system for reference</Typography>
           <TextField value={system} onChange={handleTextChange} label="HazRez System" />
-          <Button onClick={handleSystemSubmission}>Submit System</Button>
+          <Button onClick={handleSystemSubmission} data-testid="system-submit">
+            Submit System
+          </Button>
         </div>
       </Paper>
     </>

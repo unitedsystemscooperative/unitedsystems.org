@@ -1,9 +1,10 @@
-import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
+import { genericSortArray } from '@/functions/sort';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Container,
   IconButton,
   Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
@@ -16,13 +17,14 @@ import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
 
-export const MassacreMissions = (props: {
+interface IMassacreMissions {
   tracker: IMassacreTrack;
   updateTracker: (hazRezSystem: string, newTracker: IMassacreTrack) => void;
-}) => {
-  const { tracker, updateTracker } = props;
+}
 
+export const MassacreMissionTable = ({ tracker, updateTracker }: IMassacreMissions) => {
   const handleFactionChange = (faction: IFactionwMissions) => {
     const index = tracker.factions.findIndex((f) => f.id === faction.id);
     const factions = tracker.factions;
@@ -46,25 +48,15 @@ export const MassacreMissions = (props: {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tracker.factions
-              .sort((a, b) => {
-                if (a.name > b.name) {
-                  return 1;
-                }
-                if (a.name < b.name) {
-                  return -1;
-                }
-                return 0;
-              })
-              .map((faction) =>
-                faction.removed ? null : (
-                  <FactionRow
-                    key={faction.name}
-                    faction={faction}
-                    onFactionChange={handleFactionChange}
-                  />
-                )
-              )}
+            {genericSortArray(tracker.factions, { order: 'asc', orderBy: 'name' }).map((faction) =>
+              faction.removed ? null : (
+                <FactionRow
+                  key={faction.name}
+                  faction={faction}
+                  onFactionChange={handleFactionChange}
+                />
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>
@@ -169,23 +161,35 @@ const FactionRow = (props: {
 
   return (
     <StyledTableRow>
-      <TableCell>{totalKills}</TableCell>
+      <TableCell data-testid={`faction-totalKills-${faction.name.toLowerCase()}`}>
+        {totalKills}
+      </TableCell>
       <TableCell>
-        {faction.name}{' '}
-        <IconButton onClick={removeFaction} size="large">
+        {faction.name}
+        <IconButton
+          onClick={removeFaction}
+          size="large"
+          data-testid={`faction-delete-${faction.name.toLowerCase()}`}>
           <DeleteIcon />
         </IconButton>
       </TableCell>
-      <TableCell>{faction.reputation}</TableCell>
+      <TableCell data-testid={`faction-rep-${faction.name.toLowerCase()}`}>
+        {faction.reputation}
+      </TableCell>
       {missionKills.map((mission, index) => (
-        <TableCell key={index}>
+        <SizedTableCell key={index}>
           <TextField
             value={mission.killsforMission}
             onChange={handleKillsforMissionChange}
             name={index.toString()}
+            data-testid={`faction-mission-${index}-${faction.name.toLowerCase()}`}
           />
-        </TableCell>
+        </SizedTableCell>
       ))}
     </StyledTableRow>
   );
 };
+
+const SizedTableCell = styled(TableCell)(() => ({
+  maxWidth: 75,
+}));
