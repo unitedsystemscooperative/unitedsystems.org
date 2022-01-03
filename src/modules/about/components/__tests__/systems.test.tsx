@@ -1,9 +1,10 @@
-import { render } from '@testing-library/react';
+import { errorHandlers } from '@/__mocks__/server/handlers/errorHandlers';
+import { server } from '@/__mocks__/server/server';
+import { SWRConfigReset } from '@/__mocks__/swr-reset';
+import { render, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
 import { AboutSystems } from '~/about/components/systems';
 import systems from '~/about/data/systems.json';
-import * as hook from '~/about/hooks/useSystems';
-
-const useSystemsSpy = jest.spyOn(hook, 'useSystems');
 
 const mockenqueueSnackbar = jest.fn();
 jest.mock('notistack', () => ({
@@ -16,49 +17,42 @@ jest.mock('notistack', () => ({
 
 describe('Allies Component', () => {
   it('should render with loading', () => {
-    useSystemsSpy.mockImplementation(() => ({
-      factionSystems: null,
-      loading: true,
-      error: null,
-      addSystem: jest.fn(),
-      updateSystem: jest.fn(),
-      deleteSystem: jest.fn(),
-    }));
-
-    const { queryByTestId } = render(<AboutSystems init={null} />);
+    const { queryByTestId } = render(
+      <SWRConfigReset>
+        <AboutSystems init={null} />
+      </SWRConfigReset>
+    );
 
     expect(queryByTestId('system-loader')).toBeTruthy();
     expect(queryByTestId('system-list')).toBeNull();
   });
 
-  it('should render with data', () => {
-    useSystemsSpy.mockImplementation(() => ({
-      factionSystems: systems,
-      loading: false,
-      error: null,
-      addSystem: jest.fn(),
-      updateSystem: jest.fn(),
-      deleteSystem: jest.fn(),
-    }));
+  it('should render with data', async () => {
+    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(systems))));
 
-    const { queryByTestId, getByText } = render(<AboutSystems init={null} />);
+    const { queryByTestId, getByText } = render(
+      <SWRConfigReset>
+        <AboutSystems init={null} />
+      </SWRConfigReset>
+    );
 
-    expect(queryByTestId('system-list')).toBeTruthy();
-    expect(getByText('HIP 4120')).toBeTruthy();
+    await waitFor(() => {
+      expect(queryByTestId('system-list')).toBeTruthy();
+      expect(getByText('HIP 4120')).toBeTruthy();
+    });
   });
 
   it('should call snackbar if an error occurs', async () => {
-    useSystemsSpy.mockImplementation(() => ({
-      factionSystems: null,
-      loading: true,
-      error: 'error is here',
-      addSystem: jest.fn(),
-      updateSystem: jest.fn(),
-      deleteSystem: jest.fn(),
-    }));
+    server.use(...errorHandlers);
 
-    render(<AboutSystems init={null} />);
+    render(
+      <SWRConfigReset>
+        <AboutSystems init={null} />
+      </SWRConfigReset>
+    );
 
-    expect(mockenqueueSnackbar).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(mockenqueueSnackbar).toHaveBeenCalled();
+    });
   });
 });
