@@ -1,9 +1,7 @@
 # United Systems Cooperative Website
 
 [![usc-website](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/k3gzuz&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/k3gzuz/runs)
-
-### Test Coverage
-![Statements](https://img.shields.io/badge/statements-23.04%25-red.svg?style=flat) ![Branches](https://img.shields.io/badge/branches-18.22%25-red.svg?style=flat) ![Functions](https://img.shields.io/badge/functions-24.07%25-red.svg?style=flat) ![Lines](https://img.shields.io/badge/lines-22.67%25-red.svg?style=flat)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Admiralfeb/usc-website.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Admiralfeb/usc-website/context:javascript)
 
 ## United Systems Cooperative
 

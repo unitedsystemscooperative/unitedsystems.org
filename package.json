@@ -7,7 +7,7 @@
     "dev:debug": "node --inspect ./node_modules/next/dist/bin/next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest && npm run make-coverage-badges",
+    "test": "jest",
     "test:watch": "jest --watch",
     "cypress": "cypress open",
     "cy:run": "cypress run --record",
@@ -18,8 +18,7 @@
     "lint:next": "next lint",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "lint": "eslint . --ext ts,tsx",
-    "fix-react-default-imports": "npx react-codemod update-react-imports",
-    "make-coverage-badges": "istanbul-badges-readme"
+    "fix-react-default-imports": "npx react-codemod update-react-imports"
   },
   "dependencies": {
     "@admiralfeb/react-components": "^1.2.0",
@@ -79,7 +78,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-babel-module": "^5.3.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "istanbul-badges-readme": "^1.8.1",
     "jest": "^27.4.5",
     "jest-circus": "^27.4.5",
     "jest-watch-typeahead": "^1.0.0",
