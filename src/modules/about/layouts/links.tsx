@@ -1,6 +1,6 @@
-import { IInfoButton } from '@/modules/information/models/infoButtonModel';
 import { Box, Button, Container, Paper, Typography } from '@mui/material';
 import NavLink from 'next/link';
+import { IAboutButton } from '../models/aboutButton';
 
 /** Interface for Info Section Props */
 interface ISectionProps {
@@ -9,7 +9,7 @@ interface ISectionProps {
   /** header to display */
   header: string;
   /** Buttons to display */
-  buttons: IInfoButton[];
+  buttons: IAboutButton[];
 }
 
 /**
@@ -39,35 +39,17 @@ export const AboutLinks = ({ id, buttons }: ISectionProps) => {
               },
             }}>
             {buttons
-              .filter((x) => x.beginner === true)
-              .map((guide) => {
-                if (guide.local === true) {
-                  return (
-                    <NavLink href={guide.link} key={guide.title} passHref>
-                      <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                          <Typography>{guide.title}</Typography>
-                          <Typography variant="caption">{guide.caption}</Typography>
-                        </Box>
-                      </Button>
-                    </NavLink>
-                  );
-                } else {
-                  return (
-                    <Button
-                      variant="outlined"
-                      color={guide.beginner ? 'secondary' : 'primary'}
-                      href={guide.link}
-                      target="_blank"
-                      key={guide.title}>
-                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Typography>{guide.title}</Typography>
-                        <Typography variant="caption">{guide.caption}</Typography>
-                      </Box>
-                    </Button>
-                  );
-                }
-              })}
+              .filter((x) => x.local === true)
+              .map((guide) => (
+                <NavLink href={guide.link} key={guide.title} passHref>
+                  <Button variant="outlined" color="secondary">
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                      <Typography>{guide.title}</Typography>
+                      <Typography variant="caption">{guide.caption}</Typography>
+                    </Box>
+                  </Button>
+                </NavLink>
+              ))}
           </Box>
           <Box
             sx={{
@@ -79,35 +61,17 @@ export const AboutLinks = ({ id, buttons }: ISectionProps) => {
               },
             }}>
             {buttons
-              .filter((x) => x.beginner === false)
-              .map((guide) => {
-                if (guide.local === true) {
-                  return (
-                    <NavLink key={guide.title} href={guide.link} passHref>
-                      <Button variant="outlined" color={guide.beginner ? 'secondary' : 'primary'}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                          <Typography>{guide.title}</Typography>
-                          <Typography variant="caption">{guide.caption}</Typography>
-                        </Box>
-                      </Button>
-                    </NavLink>
-                  );
-                } else {
-                  return (
-                    <Button
-                      variant="outlined"
-                      color={guide.beginner ? 'secondary' : 'primary'}
-                      href={guide.link}
-                      target="_blank"
-                      key={guide.title}>
-                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Typography>{guide.title}</Typography>
-                        <Typography variant="caption">{guide.caption}</Typography>
-                      </Box>
-                    </Button>
-                  );
-                }
-              })}
+              .filter((x) => x.local === false)
+              .map((x) => (
+                <NavLink href={x.link} key={x.title} passHref>
+                  <Button variant="outlined" color="primary">
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                      <Typography>{x.title}</Typography>
+                      <Typography variant="caption">{x.caption}</Typography>
+                    </Box>
+                  </Button>
+                </NavLink>
+              ))}
           </Box>
         </Box>
       </Paper>
