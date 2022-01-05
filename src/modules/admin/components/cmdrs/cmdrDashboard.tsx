@@ -23,7 +23,7 @@ import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
 
 interface TitleBarProps {
-  setView: (CmdrView) => void;
+  setView: (view: CmdrView) => void;
   selectedCount: number;
   addCMDR: () => void;
   editCMDR: () => void;
@@ -38,7 +38,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
   const handleViewFilterClick = (event: MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
   const handleViewMenuClick = (_: MouseEvent<HTMLElement>, option: string) => {
-    setView(option);
+    setView(CmdrView[option]);
     setAnchorEl(null);
   };
   const handleViewFilterClose = () => setAnchorEl(null);
