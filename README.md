@@ -1,5 +1,6 @@
 # United Systems Cooperative Website
 
+[![codecov](https://codecov.io/gh/Admiralfeb/usc-website/branch/main/graph/badge.svg?token=IaHGsZAblr)](https://codecov.io/gh/Admiralfeb/usc-website)
 [![usc-website](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/k3gzuz&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/k3gzuz/runs)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Admiralfeb/usc-website.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Admiralfeb/usc-website/context:javascript)
 
