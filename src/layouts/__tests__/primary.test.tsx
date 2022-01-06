@@ -2,9 +2,9 @@ import { PrimaryLayout } from '@/layouts';
 import { theme } from '@/styles/theme';
 import { ThemeProvider } from '@mui/styles';
 import { render, fireEvent } from '@testing-library/react';
-import mediaQuery from 'css-mediaquery';
 import * as useAdmin from '@/hooks/useAdmin';
 import * as auth from 'next-auth/react';
+import { createMatchMedia } from '@/__mocks__/mediaquery';
 
 const useAdminSpy = jest.spyOn(useAdmin, 'useAdmin');
 const useSessionSpy = jest
@@ -14,19 +14,6 @@ const signOutSpy = jest
   .spyOn(auth, 'signOut')
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   .mockImplementation(jest.fn().mockImplementation(() => {}));
-
-const createMatchMedia = (width) => {
-  return (query): MediaQueryList => ({
-    matches: mediaQuery.match(query, { width }),
-    addListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    media: '',
-    onchange: jest.fn(),
-    dispatchEvent: (_event) => true,
-  });
-};
 
 jest.mock('next/router', () => ({
   useRouter() {

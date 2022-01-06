@@ -42,32 +42,29 @@ export const OdysseyEngineering = () => {
               The process for engineering your suit or weapon is different here.
             </Typography>
             <Typography>To upgrade a suit or weapon, you must:</Typography>
-            <Typography>
-              <ol>
-                <li>
-                  Visit Pioneer Supplies and choose the <strong>Upgrade/Sell</strong> button for
-                  either suits or weapons.
-                </li>
-                <li>
-                  You must spend the materials that you gather to pay for the upgrade to the next
-                  grade, which provides better protection and an engineering slot. For grade info,
-                  see{' '}
-                  <Link href="https://inara.cz/blueprints/#tab_blueprintsequipment" target="blank">
-                    Inara
-                  </Link>
-                  .
-                </li>
-                <li>
-                  With an empty engineering slot, you can take your equipment to an engineer that
-                  specializes in the upgrade you desire and have them add it to the suit or weapon.
-                  See{' '}
-                  <Link href="https://inara.cz/blueprints/#tab_blueprintsequipment" target="blank">
-                    Inara
-                  </Link>{' '}
-                  for possible upgrades.
-                </li>
-              </ol>
-            </Typography>
+            <ol>
+              <Typography component="li">
+                Visit Pioneer Supplies and choose the <strong>Upgrade/Sell</strong> button for
+                either suits or weapons.
+              </Typography>
+              <Typography component="li">
+                You must spend the materials that you gather to pay for the upgrade to the next
+                grade, which provides better protection and an engineering slot. For grade info, see{' '}
+                <Link href="https://inara.cz/blueprints/#tab_blueprintsequipment" target="blank">
+                  Inara
+                </Link>
+                .
+              </Typography>
+              <Typography component="li">
+                With an empty engineering slot, you can take your equipment to an engineer that
+                specializes in the upgrade you desire and have them add it to the suit or weapon.
+                See{' '}
+                <Link href="https://inara.cz/blueprints/#tab_blueprintsequipment" target="blank">
+                  Inara
+                </Link>{' '}
+                for possible upgrades.
+              </Typography>
+            </ol>
           </IndentedDiv>
         </section>
 
@@ -89,14 +86,12 @@ export const OdysseyEngineering = () => {
               As expected of Odyssey, you must be on ground to farm materials. You will need a
               Detailed Surface Scanner to find farming locations on planet surfaces.
             </Typography>
-            <Typography>
-              The following are locations where you can retrieve materials:
-              <ul>
-                <li>Irregular Markers</li>
-                <li>Impact Site</li>
-                <li>Crashed Ship</li>
-              </ul>
-            </Typography>
+            <Typography>The following are locations where you can retrieve materials:</Typography>
+            <ul>
+              <Typography component="li">Irregular Markers</Typography>
+              <Typography component="li">Impact Site</Typography>
+              <Typography component="li">Crashed Ship</Typography>
+            </ul>
           </IndentedDiv>
         </section>
       </PaperP2>
