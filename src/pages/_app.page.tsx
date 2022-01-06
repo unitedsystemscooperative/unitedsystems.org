@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { PrimaryLayout } from '@/layouts';
 import createEmotionCache from '@/styles/createEmotionCache';
 import { theme } from '@/styles/theme';

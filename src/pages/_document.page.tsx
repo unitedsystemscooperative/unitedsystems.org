@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import createEmotionCache from '@/styles/createEmotionCache';
 import { theme } from '@/styles/theme';
 import createEmotionServer from '@emotion/server/create-instance';
