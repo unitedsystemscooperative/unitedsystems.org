@@ -11,7 +11,6 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-import coverageTask from '@cypress/code-coverage/task';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const plugins: Cypress.PluginConfig = (on, config) => {
