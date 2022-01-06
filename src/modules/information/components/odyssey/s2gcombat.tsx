@@ -30,13 +30,13 @@ export const OdysseyS2GCombat = () => {
             </Typography>
           </IndentedDiv>
 
-          <Typography>
-            <ul>
-              <li>Dumb-fire Missiles</li>
-              <li>Remote-Release Flechette Launcher</li>
-              <li>Mines (be fast when deploying so they don't explode on you)</li>
-            </ul>
-          </Typography>
+          <ul>
+            <Typography component="li">Dumb-fire Missiles</Typography>
+            <Typography component="li">Remote-Release Flechette Launcher</Typography>
+            <Typography component="li">
+              Mines (be fast when deploying so they don't explode on you)
+            </Typography>
+          </ul>
         </section>
 
         <section>
@@ -46,40 +46,36 @@ export const OdysseyS2GCombat = () => {
               The ships here have been tried and tested by our chief engineer, Clever Ape.
             </Typography>
           </IndentedDiv>
-          <Typography>
-            <ul>
-              <li>Mamba</li>
-              <li>Imperial Courier</li>
-            </ul>
-          </Typography>
+          <ul>
+            <Typography component="li">Mamba</Typography>
+            <Typography component="li">Imperial Courier</Typography>
+          </ul>
         </section>
 
         <section>
           <Typography variant="h5">Builds</Typography>
-          <Typography>
-            <ul>
-              <li>
-                <NextLink
-                  href={{
-                    pathname: '/builds',
-                    query: { specialties: 'Combat - Ship to Ground' },
-                  }}
-                  passHref>
-                  <Link>Ship to Ground Combat Builds</Link>
-                </NextLink>
-              </li>
-              <li>
-                <NextLink
-                  href={{
-                    pathname: '/builds',
-                    query: { specialties: 'Odyssey Lander / Support' },
-                  }}
-                  passHref>
-                  <Link>Odyssey Lander/Support Builds</Link>
-                </NextLink>
-              </li>
-            </ul>
-          </Typography>
+          <ul>
+            <Typography component="li">
+              <NextLink
+                href={{
+                  pathname: '/builds',
+                  query: { specialties: 'Combat - Ship to Ground' },
+                }}
+                passHref>
+                <Link>Ship to Ground Combat Builds</Link>
+              </NextLink>
+            </Typography>
+            <Typography component="li">
+              <NextLink
+                href={{
+                  pathname: '/builds',
+                  query: { specialties: 'Odyssey Lander / Support' },
+                }}
+                passHref>
+                <Link>Odyssey Lander/Support Builds</Link>
+              </NextLink>
+            </Typography>
+          </ul>
         </section>
       </PaperP2>
     </Container>

@@ -43,6 +43,7 @@ const SignInPage = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            data-testid="email"
             {...register('email', { required: 'Your email is required' })}
           />
           <Button
@@ -50,6 +51,7 @@ const SignInPage = () => {
             fullWidth
             variant="outlined"
             color="primary"
+            data-testid="email-submit"
             sx={{
               mt: 3,
               mb: 1,

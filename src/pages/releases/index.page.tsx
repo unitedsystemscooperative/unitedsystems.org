@@ -32,14 +32,15 @@ const ReleaseIndexPage = ({ allReleases }: InferGetStaticPropsType<typeof getSta
   );
 };
 
-export const getStaticProps: GetStaticProps<{ allReleases: Omit<ReleaseInfo, 'content'>[] }> =
-  () => {
-    const allReleases = getReleases();
-    return {
-      props: {
-        allReleases,
-      },
-    };
+export const getStaticProps: GetStaticProps<{
+  allReleases: Omit<ReleaseInfo, 'content'>[];
+}> = () => {
+  const allReleases = getReleases();
+  return {
+    props: {
+      allReleases,
+    },
   };
+};
 
 export default ReleaseIndexPage;

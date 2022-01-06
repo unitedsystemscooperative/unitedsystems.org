@@ -5,5 +5,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "deepscan.enable": false,
-  "jest.jestCommandLine": "npm test --"
+  "jest.jestCommandLine": "npm test -- --coverage=false"
 }

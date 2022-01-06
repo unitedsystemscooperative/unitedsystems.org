@@ -1,8 +1,6 @@
 import { Box, Container, Link, Paper, Typography } from '@mui/material';
 import Head from 'next/head';
-import Image from 'next/image';
 import NextLink from 'next/link';
-import errorImg from 'public/img/404.jpg';
 
 const NotFoundPage = () => {
   return (
@@ -22,10 +20,10 @@ const NotFoundPage = () => {
             .
           </Typography>
           <Box
-            component={Image}
+            component="img"
             sx={{ maxWidth: '100%', height: 'auto' }}
             alt="404 Error"
-            src={errorImg}
+            src="/img/404.jpg"
           />
         </Paper>
       </Container>
