@@ -31,45 +31,51 @@ export const BGSInfo = () => {
             <Typography variant="h6">Adding Influence</Typography>
             <IndentDiv>
               <Typography>There are multiple ways to add influence:</Typography>
-              <Typography>
-                <ul>
-                  <li>Complete INF missions. The more +'s the better.</li>
-                  <li>
-                    Bounty Hunting - Dropping the bounties at a station where the giver of the
-                    bounty has a presence.
-                  </li>
-                  <li>Exploration Data hand-in - Increases INF for the owner of the station.</li>
-                  <li>Commodity Trading - Increases INF for the owner of the station.</li>
-                  <li>Interstellar Factors - Increases INF for the owner of the station.</li>
-                  <li>
-                    Vista Genomics hand-in (Odyssey-Only and Unconfirmed) - Increases INF for the
-                    owner of the station.
-                  </li>
-                </ul>
-              </Typography>
+              <ul>
+                <Typography component="li">
+                  Complete INF missions. The more +'s the better.
+                </Typography>
+                <Typography component="li">
+                  Bounty Hunting - Dropping the bounties at a station where the giver of the bounty
+                  has a presence.
+                </Typography>
+                <Typography component="li">
+                  Exploration Data hand-in - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Commodity Trading - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Interstellar Factors - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Vista Genomics hand-in (Odyssey-Only and Unconfirmed) - Increases INF for the
+                  owner of the station.
+                </Typography>
+              </ul>
             </IndentDiv>
 
             <Typography variant="h6">Decreasing Influence</Typography>
             <IndentDiv>
-              <Typography>
-                <ul>
-                  <li>Completing INF missions for other factions in the system.</li>
-                  <li>
-                    "Clean Killing" - Killing innocent NPCs of that faction. This is considered
-                    illegal and can bring System Authority against you.
-                  </li>
-                  <li>
-                    Black Market Trading - Bringing illegal/illicit goods and selling them to a
-                    station will decrease the station owner's INF.
-                  </li>
-                  <li>
-                    Failing missions - Failing missions, whether intentional or not, will decrease
-                    the mission faction's INF.
-                    <br />
-                    Note: Aborting the mission will only decrease your REP without affecting INF.
-                  </li>
-                </ul>
-              </Typography>
+              <ul>
+                <Typography component="li">
+                  Completing INF missions for other factions in the system.
+                </Typography>
+                <Typography component="li">
+                  "Clean Killing" - Killing innocent NPCs of that faction. This is considered
+                  illegal and can bring System Authority against you.
+                </Typography>
+                <Typography component="li">
+                  Black Market Trading - Bringing illegal/illicit goods and selling them to a
+                  station will decrease the station owner's INF.
+                </Typography>
+                <Typography component="li">
+                  Failing missions - Failing missions, whether intentional or not, will decrease the
+                  mission faction's INF.
+                  <br />
+                  Note: Aborting the mission will only decrease your REP without affecting INF.
+                </Typography>
+              </ul>
             </IndentDiv>
             <Typography variant="h6">Diminishing Returns</Typography>
             <IndentDiv>
@@ -90,12 +96,10 @@ export const BGSInfo = () => {
             <Typography variant="h6">Wars</Typography>
             <IndentDiv>
               <Typography>Wars are won in two ways:</Typography>
-              <Typography>
-                <ul>
-                  <li>Conflict Zones</li>
-                  <li>Combat Bonds</li>
-                </ul>
-              </Typography>
+              <ul>
+                <Typography component="li">Conflict Zones</Typography>
+                <Typography component="li">Combat Bonds</Typography>
+              </ul>
               <Typography>
                 Diminishing returns are a possibility here. Follow the list below. A maximum of 9
                 should be a good cap.

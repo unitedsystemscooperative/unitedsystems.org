@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { MongoClient } from 'mongodb4';
+import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
 // const { ObjectID } = require('bson');
@@ -49,19 +49,13 @@ const batchSetAuthorId = async () => {
 
   for (const build of builds) {
     const author = build.author;
-    const cmdr = cmdrs.find(
-      (x) => x.cmdrName.toLowerCase().trim() === author.toLowerCase().trim()
-    );
+    const cmdr = cmdrs.find((x) => x.cmdrName.toLowerCase().trim() === author.toLowerCase().trim());
     if (cmdr) {
       const authorId = cmdr._id.toHexString();
       try {
         const response = await db
           .collection('shipBuildsv2')
-          .updateOne(
-            { _id: build._id },
-            { $set: { authorId } },
-            { upsert: false }
-          );
+          .updateOne({ _id: build._id }, { $set: { authorId } }, { upsert: false });
         if (response.modifiedCount < 1) throw new Error();
         console.log(`${build.title} updated`);
       } catch (e) {

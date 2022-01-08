@@ -1,0 +1,244 @@
+[{
+  "_id": {
+    "$oid": "5fc816a996556612740176ae"
+  },
+  "owner": "thegoog",
+  "name": "Moya",
+  "id": "Q0B-4VT",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/226506/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176ad"
+  },
+  "owner": "Ellen Jameson",
+  "name": "Far Far Away",
+  "id": "Q7Z-42X",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/184783/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b9"
+  },
+  "owner": "Admiralfeb",
+  "name": "Zocalo",
+  "id": "J9H-22H",
+  "purpose": "Engineering / Trading",
+  "inaraLink": "https://inara.cz/station/190563/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176ac"
+  },
+  "owner": "PracticalHalo",
+  "name": "Chaldea",
+  "id": "J2T-37X",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/205452/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176af"
+  },
+  "owner": "Clever Ape",
+  "name": "Overcompensation",
+  "id": "V2V-9HT",
+  "purpose": "Operations",
+  "inaraLink": "https://inara.cz/station/185733/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b6"
+  },
+  "owner": "Lokioo42",
+  "name": "USC Sulaco",
+  "id": "K0X-T6K",
+  "purpose": "Anti-Xeno",
+  "inaraLink": "https://inara.cz/station/185216/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b3"
+  },
+  "owner": "Slatemeister11",
+  "name": "Astraeus",
+  "id": "V3H-B8T",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/228597/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b7"
+  },
+  "owner": "Eolin Solarviento",
+  "name": "Tranquility Base",
+  "id": "KHM-BQN",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/229101/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b1"
+  },
+  "owner": "Luisqa",
+  "name": "Pillar of Autumn",
+  "id": "V7X-23Z",
+  "purpose": "Mining",
+  "inaraLink": "https://inara.cz/station/228316/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b0"
+  },
+  "owner": "Clever Ape",
+  "name": "Wastage",
+  "id": "VBV-T7G",
+  "purpose": "Outfitting",
+  "inaraLink": "https://inara.cz/station/229331/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b4"
+  },
+  "owner": "Aurelius Publius",
+  "name": "Spirit of Alethea",
+  "id": "KFV-G9K",
+  "purpose": "Community Goals",
+  "inaraLink": "https://inara.cz/station/201888/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176ab"
+  },
+  "owner": "Redfang Culph",
+  "name": "Cabal Enforcer",
+  "id": "J8W-3XG",
+  "purpose": "Operations",
+  "inaraLink": "https://inara.cz/station/185290/"
+},{
+  "_id": {
+    "$oid": "5fc816a996556612740176b8"
+  },
+  "owner": "UltraNeros",
+  "name": "Verrows Chamber",
+  "id": "JFK-L1T",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/204146/"
+},{
+  "_id": {
+    "$oid": "5fe6a14f99885807ec4935d1"
+  },
+  "owner": "Lemony Freshness",
+  "name": "Lemon's Aide",
+  "id": "V3J-L5G",
+  "purpose": "Recruitment / Taxi",
+  "inaraLink": "https://inara.cz/station/230524/"
+},{
+  "_id": {
+    "$oid": "5ffb3a957bf8d05970b4d29e"
+  },
+  "owner": "Budgie Black",
+  "name": "==Jupies Landing==",
+  "id": "KNX-11Y",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/228482/"
+},{
+  "_id": {
+    "$oid": "60270b491de9362868a10e7b"
+  },
+  "owner": "Vincent Tuffs",
+  "name": "Clever Quip",
+  "id": "V8Z-N9L",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/232475/"
+},{
+  "_id": {
+    "$oid": "6047fe5a5c5c075bf080d003"
+  },
+  "owner": "Kamiru Clark",
+  "name": "Akuma",
+  "id": "QBX-88Z",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/188401/"
+},{
+  "_id": {
+    "$oid": "6047ff425c5c075bf080d004"
+  },
+  "owner": "TheNamesJay03",
+  "name": "Axiom",
+  "id": "V8M-1HT",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/233360/"
+},{
+  "_id": {
+    "$oid": "604e663984d9491d202cfbe8"
+  },
+  "owner": "Sebyujii",
+  "name": "The Unsinkable #3",
+  "id": "H1J-T3V",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/202059/"
+},{
+  "_id": {
+    "$oid": "604e667084d9491d202cfbe9"
+  },
+  "owner": "Hazior",
+  "name": "Undercompensation",
+  "id": "H0K-38X",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/226317/"
+},{
+  "_id": {
+    "$oid": "60577d2708a39472dc1833a5"
+  },
+  "owner": "Hatsune Miku",
+  "name": "Sky Love Hurricane",
+  "id": "X6K-1KW",
+  "purpose": "",
+  "inaraLink": "https://inara.cz/station/233915/"
+},{
+  "_id": {
+    "$oid": "606e248a914ae60008243e23"
+  },
+  "name": "Emmas's Lair",
+  "inaraLink": "https://inara.cz/cmdr-fleetcarrier/128725/234810/",
+  "purpose": "",
+  "id": "XHK-B4N",
+  "owner": "Emma The Em"
+},{
+  "_id": {
+    "$oid": "607dec2646b772000984adcd"
+  },
+  "name": "Z.V.E.Z.D.A. Ltd",
+  "inaraLink": "https://inara.cz/station/231162/",
+  "purpose": "",
+  "id": "K8X-60G",
+  "owner": "Lightmun"
+},{
+  "_id": {
+    "$oid": "6095964f09dc6c0008953463"
+  },
+  "name": "Mcrn Donnager",
+  "inaraLink": "https://inara.cz/station/199700/",
+  "purpose": "",
+  "id": "X4K-W8W",
+  "owner": "InfernalViper"
+},{
+  "_id": {
+    "$oid": "60fb2f88d2fe8700060cc6f4"
+  },
+  "name": "Surge Protector",
+  "inaraLink": "https://inara.cz/station/376195/",
+  "purpose": "",
+  "id": "V7H-T2V",
+  "owner": "Archflameax7"
+},{
+  "_id": {
+    "$oid": "610af2f9e4c41000084d6097"
+  },
+  "name": "USC Towsie Tyke",
+  "inaraLink": "https://inara.cz/cmdr-fleetcarrier/320730/391456/",
+  "purpose": "Bounty Hunting",
+  "id": "H2Z-1TT",
+  "owner": "Trubs"
+},{
+  "_id": {
+    "$oid": "616df13957063522a688fadd"
+  },
+  "name": "THE QUARTER POUNDER",
+  "inaraLink": "https://inara.cz/station/?search=H5W-WXT",
+  "purpose": "USC Activities",
+  "id": "H5W-WXT",
+  "owner": "KENJURO382"
+}]

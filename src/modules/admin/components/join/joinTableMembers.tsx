@@ -1,16 +1,6 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
+import { CopyButton } from '@/components/_common';
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { MemberDialog } from '@@/admin/components/cmdrs/dialogs/memberDialog';
-import {
-  IMember,
-  PlatformString,
-  Rank,
-  ReferralString,
-  Region,
-  RegionString,
-} from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
-import { Add, FileCopy } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import {
   IconButton,
   Paper,
@@ -24,6 +14,16 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
+import { MemberDialog } from '~/admin/components/cmdrs/dialogs/memberDialog';
+import {
+  IMember,
+  PlatformString,
+  Rank,
+  ReferralString,
+  Region,
+  RegionString,
+} from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 
 export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
@@ -116,24 +116,12 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
                     <TableCell>{new Date(map.timeStamp).toUTCString()}</TableCell>
                     <TableCell>
                       <div>
-                        {map.cmdr}
-                        <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
-                          <FileCopy />
-                        </IconButton>
+                        {map.cmdr} <CopyButton value={map.cmdr.toUpperCase()} />
                       </div>
                     </TableCell>
                     <TableCell>
                       <div>
-                        {map.discord}
-                        <IconButton
-                          size="small"
-                          color="secondary"
-                          onClick={() => copytoClipboard(map.discord)}>
-                          <FileCopy />
-                        </IconButton>
+                        {map.discord} <CopyButton value={map.discord} />
                       </div>
                     </TableCell>
                     <TableCell>{PlatformString[map.platform]}</TableCell>

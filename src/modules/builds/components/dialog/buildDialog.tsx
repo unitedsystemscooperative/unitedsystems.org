@@ -1,5 +1,5 @@
-import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '@@/builds/functions';
-import { IBuildInfov2, IShipInfo } from '@@/builds/models';
+import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '~/builds/functions';
+import { IBuildInfov2, IShipInfo } from '~/builds/models';
 import {
   Autocomplete,
   Button,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   FormGroup,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { OptionsObject, SnackbarKey, SnackbarMessage, useSnackbar } from 'notistack';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useMemo, useReducer } from 'react';
@@ -42,10 +42,6 @@ const DEFAULTBUILD: IBuildInfov2 = {
   description: '',
   jsonBuild: '',
 };
-
-function isOptionEqualToValue(option: IBuildInfov2, value: IBuildInfov2): boolean {
-  return option._id.toString() === value._id.toString();
-}
 
 type action =
   | { type: 'default'; value?: string }

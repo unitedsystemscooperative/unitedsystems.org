@@ -1,4 +1,4 @@
-import { IQuery, OtherFilters } from '@@/builds/models';
+import { IQuery, OtherFilters } from '~/builds/models';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import qs from 'query-string';

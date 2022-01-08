@@ -1,5 +1,5 @@
-import massacreDefaults from '@@/massacre/data/massacreDefaults.json';
-import { IMassacreTrack } from '@@/massacre/massacreTrack';
+import massacreDefaults from '~/massacre/data/massacreDefaults.json';
+import { IMassacreTrack } from '~/massacre/massacreTrack';
 import {
   createContext,
   Dispatch,
@@ -76,63 +76,45 @@ const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
 
 export const MassacreContextProvider = (props: { children: ReactNode }) => {
   const [trackers, dispatch] = useReducer(reducer, []);
+  const [selectedTab, setSelectedTab] = useState<string>('+');
 
   useEffect(() => {
-    if (window) {
-      const setTab = window.localStorage.getItem('massacreTrackerTab');
-      if (setTab) {
-        setSelectedTab(setTab);
-      } else {
-        setSelectedTab('+');
-      }
+    const setTab = localStorage.getItem('massacreTrackerTab');
+    if (setTab) {
+      setSelectedTab(setTab);
+    } else {
+      setSelectedTab('+');
     }
   }, []);
 
   useEffect(() => {
-    if (window) {
-      const store: IMassacreTrack[] | null = JSON.parse(
-        window.localStorage.getItem('massacreTrackerStore')
-      );
-      if (store && store.length > 0) {
-        dispatch({
-          type: 'set',
-          trackers: store.map((x) => {
-            const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
-            return tracker;
-          }),
-        });
-      } else {
-        const defaultTrackers: IMassacreTrack[] = massacreDefaults;
-        dispatch({
-          type: 'set',
-          trackers: defaultTrackers.map((x) => {
-            const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
-            return tracker;
-          }),
-        });
-      }
+    const store: IMassacreTrack[] | null = JSON.parse(localStorage.getItem('massacreTrackerStore'));
+    if (store && store.length > 0) {
+      dispatch({
+        type: 'set',
+        trackers: store.map((x) => {
+          const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
+          return tracker;
+        }),
+      });
+    } else {
+      const defaultTrackers: IMassacreTrack[] = massacreDefaults;
+      dispatch({
+        type: 'set',
+        trackers: defaultTrackers.map((x) => {
+          const tracker: IMassacreTrack = { hazRezSystem: x.hazRezSystem.toUpperCase(), ...x };
+          return tracker;
+        }),
+      });
     }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('massacreTrackerStore', JSON.stringify(trackers));
+    localStorage.setItem('massacreTrackerStore', JSON.stringify(trackers));
   }, [trackers]);
 
-  const [selectedTab, setSelectedTab] = useState<string>(() => {
-    if (trackers && trackers.length > 0) {
-      const selectedTrack = trackers.find((x) => x.current === true);
-      if (selectedTrack) {
-        return selectedTrack.hazRezSystem;
-      } else {
-        return '+';
-      }
-    } else {
-      return '+';
-    }
-  });
-
   useEffect(() => {
-    window.localStorage.setItem('massacreTrackerTab', selectedTab);
+    localStorage.setItem('massacreTrackerTab', selectedTab);
   }, [selectedTab]);
 
   const addTracker = (newTracker: IMassacreTrack) => {
@@ -151,8 +133,7 @@ export const MassacreContextProvider = (props: { children: ReactNode }) => {
 
   const deleteTracker = (tracker: IMassacreTrack) => {
     dispatch({ type: 'delete', tracker });
-    if (trackers.length === 0) setSelectedTab('+');
-    else setSelectedTab(trackers[0].hazRezSystem);
+    setSelectedTab('+');
   };
 
   const wrapper: IMassacreContext = {

@@ -1,4 +1,4 @@
-import { IBuildInfov2, IQuery } from '@@/builds/models';
+import { IBuildInfov2, IQuery } from '~/builds/models';
 import { getShipInfofromID } from './getShipInfo';
 
 export const filterShipBuilds = (

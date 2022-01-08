@@ -1,4 +1,4 @@
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
 import {
   Paper,
   Table,

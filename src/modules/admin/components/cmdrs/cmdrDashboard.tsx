@@ -1,5 +1,4 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { IAmbassador, ICMDRs, IGuest, IMember } from '@@/admin/models';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
@@ -15,6 +14,7 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { MouseEvent, useState } from 'react';
+import { IAmbassador, IGuest, IMember } from '~/admin/models';
 import { AmbassadorDashboard } from './ambassadorDashboard';
 import { AmbassadorDialog } from './dialogs/ambassadorDialog';
 import { GuestDialog } from './dialogs/guestDialog';
@@ -23,7 +23,7 @@ import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
 
 interface TitleBarProps {
-  setView: (CmdrView) => void;
+  setView: (view: CmdrView) => void;
   selectedCount: number;
   addCMDR: () => void;
   editCMDR: () => void;
@@ -38,7 +38,7 @@ const DashboardTitleBar = (props: TitleBarProps) => {
   const handleViewFilterClick = (event: MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
   const handleViewMenuClick = (_: MouseEvent<HTMLElement>, option: string) => {
-    setView(option);
+    setView(CmdrView[option]);
     setAnchorEl(null);
   };
   const handleViewFilterClose = () => setAnchorEl(null);
@@ -106,7 +106,7 @@ enum CmdrView {
   Members = 'Members',
 }
 
-export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
+export const CMDRDashboard = () => {
   const {
     cmdrs: { members, guests, ambassadors },
     loading,
@@ -115,7 +115,7 @@ export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
     updateCMDRs,
     deleteCMDR,
     restoreCMDR,
-  } = useCMDRs(init);
+  } = useCMDRs();
   const { enqueueSnackbar } = useSnackbar();
 
   const [cmdrView, setCmdrView] = useState<CmdrView>(CmdrView.Members);

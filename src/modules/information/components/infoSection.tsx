@@ -1,4 +1,4 @@
-import { IInfoButton } from '@@/information/models/infoButtonModel';
+import { IInfoButton } from '~/information/models/infoButtonModel';
 import { Button, Paper, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
 

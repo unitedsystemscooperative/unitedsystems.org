@@ -1,4 +1,4 @@
-import { IBuildInfov2 } from '@@/builds/models';
+import { IBuildInfov2 } from '~/builds/models';
 import { Box, Chip } from '@mui/material';
 
 export const TagGroup = (props: { build: IBuildInfov2 }) => {

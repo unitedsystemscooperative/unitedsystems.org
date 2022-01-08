@@ -2,7 +2,7 @@ import { redirects } from '@/data/redirects';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, Paper, TextField } from '@mui/material';
 import { GetServerSideProps } from 'next';
-import { getSession, signIn } from 'next-auth/client';
+import { getSession, signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
 const SignInPage = () => {
@@ -43,6 +43,7 @@ const SignInPage = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            data-testid="email"
             {...register('email', { required: 'Your email is required' })}
           />
           <Button
@@ -50,6 +51,7 @@ const SignInPage = () => {
             fullWidth
             variant="outlined"
             color="primary"
+            data-testid="email-submit"
             sx={{
               mt: 3,
               mb: 1,

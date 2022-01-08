@@ -1,0 +1,77 @@
+import RepCalculation from '~/massacre/data/massacreKillValues.json';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
+import { Container, Paper, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+const calcTotalKillsNeeded = (tracker: IMassacreTrack) => {
+  return tracker.factions.reduce<number>((acc: number, faction: IFactionwMissions) => {
+    if (faction.missions?.length > 0) {
+      const missionKillsNeeded = faction.missions.reduce<number>(
+        (acc2: number, mission: IFactionMission | null) => {
+          return mission ? acc2 + mission.killsforMission : acc2;
+        },
+        0
+      );
+      return acc < missionKillsNeeded ? missionKillsNeeded : acc;
+    }
+    return acc;
+  }, 0);
+};
+
+const calcTotalMissions = (tracker: IMassacreTrack) => {
+  return tracker.factions.reduce<number>((acc, faction) => {
+    if (faction.missions?.length > 0) {
+      const missionCount = faction.missions.reduce<number>((acc2, mission) => {
+        return mission?.killsforMission > 0 ? acc2 + 1 : acc2;
+      }, 0);
+      return acc + missionCount;
+    }
+    return acc;
+  }, 0);
+};
+
+const calcPayout = (tracker: IMassacreTrack) => {
+  const payout = tracker.factions.reduce<number>((acc, faction) => {
+    const repValue = RepCalculation.find(
+      (x) => x.key.toLowerCase() === faction.reputation.toLowerCase()
+    )?.value;
+    if (repValue) {
+      if (faction.missions?.length > 0) {
+        const missionPayout = faction.missions.reduce<number>((acc2, mission) => {
+          return mission?.killsforMission > 0 ? acc2 + repValue * mission.killsforMission : acc2;
+        }, 0);
+        return acc + missionPayout;
+      }
+    }
+    return acc;
+  }, 0);
+  return +payout.toFixed(2);
+};
+
+export const MassacreSummary = (props: { tracker: IMassacreTrack }) => {
+  const { tracker } = props;
+  const [totalMissions, setTotalMissions] = useState(0);
+  const [totalKillsNeeded, setTotalKillsNeeded] = useState(0);
+  const [payout, setPayout] = useState(0);
+
+  useEffect(() => {
+    const totalMissionCount = calcTotalMissions(tracker);
+    setTotalMissions(totalMissionCount);
+    const totalKillsNeeded = calcTotalKillsNeeded(tracker);
+    setTotalKillsNeeded(totalKillsNeeded);
+    const payout = calcPayout(tracker);
+    setPayout(payout);
+  }, [tracker]);
+
+  return (
+    <Container maxWidth="xs">
+      <Paper sx={{ textAlign: 'center' }}>
+        <Typography data-testid="total-missions">Total Missions: {totalMissions}</Typography>
+        <Typography data-testid="total-kills">Total Kills Needed: {totalKillsNeeded}</Typography>
+        <Typography data-testid="total-payout">
+          Approx Payout based on set Rep: {payout} million
+        </Typography>
+      </Paper>
+    </Container>
+  );
+};

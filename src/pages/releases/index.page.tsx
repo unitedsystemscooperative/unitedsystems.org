@@ -1,5 +1,5 @@
-import { getReleases } from '@@/releases/getReleases';
-import { ReleaseInfo } from '@@/releases/releaseInfo';
+import { getReleases } from '~/releases/getReleases';
+import { ReleaseInfo } from '~/releases/releaseInfo';
 import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
@@ -32,14 +32,15 @@ const ReleaseIndexPage = ({ allReleases }: InferGetStaticPropsType<typeof getSta
   );
 };
 
-export const getStaticProps: GetStaticProps<{ allReleases: Omit<ReleaseInfo, 'content'>[] }> =
-  () => {
-    const allReleases = getReleases();
-    return {
-      props: {
-        allReleases,
-      },
-    };
+export const getStaticProps: GetStaticProps<{
+  allReleases: Omit<ReleaseInfo, 'content'>[];
+}> = () => {
+  const allReleases = getReleases();
+  return {
+    props: {
+      allReleases,
+    },
   };
+};
 
 export default ReleaseIndexPage;

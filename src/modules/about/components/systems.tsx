@@ -1,6 +1,6 @@
 import { buildInaraLink } from '@/functions/buildInaraLink';
-import { useSystems } from '@@/about/hooks/useSystems';
-import { System } from '@@/about/models/system';
+import { useSystems } from '~/about/hooks/useSystems';
+import { System } from '~/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Container,
@@ -52,7 +52,7 @@ export const AboutSystems = ({ init }: { init?: System[] }) => {
 
   if (loading) {
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" data-testid="system-loader">
         <EDSpinner />
       </Container>
     );
@@ -64,7 +64,7 @@ export const AboutSystems = ({ init }: { init?: System[] }) => {
         <Typography variant="h3" sx={{ textAlign: 'center' }}>
           Faction Information
         </Typography>
-        <List component={Paper} sx={{ margin: 'auto' }}>
+        <List component={Paper} sx={{ margin: 'auto' }} data-testid="system-list">
           <ListItem
             button
             component={Link}

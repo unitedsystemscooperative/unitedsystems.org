@@ -1,5 +1,5 @@
 import { CenteredTypography } from '@/components/_common';
-import { RankData } from '@@/information/data/ranks';
+import { RankData } from '~/information/data/ranks';
 import {
   Container,
   List,

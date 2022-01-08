@@ -3,7 +3,7 @@ import {
   getFactionsinSystem,
   getStationsinSystem,
   getSystemsinSphere,
-} from '@@/edsmQueries/functions';
+} from '~/edsmQueries/functions';
 
 export const processHazRezSystem = async (system: string) => {
   const systemsInSphere = await getSystemsinSphere(system, 10);
@@ -12,23 +12,16 @@ export const processHazRezSystem = async (system: string) => {
     populatedSystems.map(async (x) => {
       const factionsinSystem = await getFactionsinSystem(x.name);
       const factions = factionsinSystem.factions
+        .filter((faction) => faction.influence > 0)
         .map((faction) => {
           const name = faction.name;
           const id = faction.id;
           const influence = faction.influence;
           const removed = false;
           return { name, id, influence, removed };
-        })
-        .filter((faction) => faction.influence > 0)
-        .sort((a, b) => {
-          if (a.name > b.name) {
-            return 1;
-          }
-          if (a.name < b.name) {
-            return -1;
-          }
-          return 0;
         });
+
+      const sortedFactions = genericSortArray(factions, { order: 'asc', orderBy: 'name' });
 
       const stationsinSystem = await getStationsinSystem(x.name);
       const stations = stationsinSystem.stations
@@ -47,7 +40,7 @@ export const processHazRezSystem = async (system: string) => {
         order: 'asc',
       });
 
-      return { name: x.name, factions, stations: sortedStations };
+      return { name: x.name, factions: sortedFactions, stations: sortedStations };
     })
   );
   return systems;

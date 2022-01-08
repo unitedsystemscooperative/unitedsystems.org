@@ -1,13 +1,10 @@
-import { Db, MongoClient } from 'mongodb';
 import { Theme } from '@mui/material';
+import { MongoClient } from 'mongodb';
 
 declare global {
   namespace NodeJS {
     interface Global {
-      mongo: {
-        conn: { client: MongoClient; db: Db };
-        promise: Promise<{ client: MongoClient; db: Db }>;
-      };
+      mongo: { _mongoClientPromise: Promise<MongoClient> };
     }
   }
 }

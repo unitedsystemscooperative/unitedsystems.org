@@ -1,5 +1,5 @@
-import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { useJoinRequests } from '~/join/hooks/useJoinInfo';
+import { IJoinRequest } from '~/join/models/joinRequest';
 import { Box, Button, Collapse, Container, Paper, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';

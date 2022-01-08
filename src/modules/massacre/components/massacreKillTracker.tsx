@@ -1,10 +1,10 @@
-import { MassacreContextProvider } from '@@/massacre/providers/massacreTrackerProvider';
-import { MassacreTabSystem } from './massacreTabSystem';
+import { MassacreContextProvider } from '~/massacre/providers/massacreTrackerProvider';
+import { MassacreTabs } from './massacreTabs';
 
 export const MassacreKillTracker = () => {
   return (
     <MassacreContextProvider>
-      <MassacreTabSystem />
+      <MassacreTabs />
     </MassacreContextProvider>
   );
 };

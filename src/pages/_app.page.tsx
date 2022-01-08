@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { PrimaryLayout } from '@/layouts';
 import createEmotionCache from '@/styles/createEmotionCache';
 import { theme } from '@/styles/theme';
@@ -5,7 +6,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
-import { Provider } from 'next-auth/client';
+import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
@@ -36,7 +37,7 @@ const USCApp = ({ Component, emotionCache = USCEmotionCache, pageProps }: USCApp
         <link rel="icon" href="/uscLogo.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
-      <Provider session={pageProps.session}>
+      <SessionProvider session={pageProps.session}>
         <LocalizationProvider dateAdapter={DateAdapter} locale="en-ca">
           <SnackbarProvider maxSnack={3}>
             <StyledEngineProvider injectFirst>
@@ -49,7 +50,7 @@ const USCApp = ({ Component, emotionCache = USCEmotionCache, pageProps }: USCApp
             </StyledEngineProvider>
           </SnackbarProvider>
         </LocalizationProvider>
-      </Provider>
+      </SessionProvider>
     </CacheProvider>
   );
 };

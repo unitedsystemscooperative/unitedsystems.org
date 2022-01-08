@@ -1,14 +1,14 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
-import { ICMDRs, IVoter, Rank } from '@@/admin/models';
 import { Container, Paper, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { IVoter, Rank } from '~/admin/models';
 import { Voter } from './voter';
 
-export const VoteDashboard = ({ init }: { init?: ICMDRs }) => {
+export const VoteDashboard = () => {
   const {
     cmdrs: { members },
     loading,
-  } = useCMDRs(init);
+  } = useCMDRs();
   const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
 
   // useEffect(() => {

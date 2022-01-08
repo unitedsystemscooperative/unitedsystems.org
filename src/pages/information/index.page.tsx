@@ -1,4 +1,4 @@
-import { InformationMain } from '@@/information/components/informationMain';
+import { InformationMain } from '~/information/components/informationMain';
 import Head from 'next/head';
 
 /** Information Landing Component */

@@ -1,5 +1,5 @@
-import { useFleetCarriers } from '@@/about/hooks/useFleetCarriers';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { useFleetCarriers } from '~/about/hooks/useFleetCarriers';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Container, Typography } from '@mui/material';
 import { PersonalCarriers } from './carriersPersonal';

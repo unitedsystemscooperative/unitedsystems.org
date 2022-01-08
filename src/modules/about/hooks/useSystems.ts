@@ -1,4 +1,4 @@
-import { System } from '@@/about/models/system';
+import { System } from '~/about/models/system';
 import axios from 'axios';
 import useSWR from 'swr';
 

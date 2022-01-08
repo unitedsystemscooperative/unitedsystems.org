@@ -1,4 +1,4 @@
-import { OdysseyS2GCombat } from '@@/information/components/odyssey/s2gcombat';
+import { OdysseyS2GCombat } from '~/information/components/odyssey/s2gcombat';
 import Head from 'next/head';
 
 const OdyCombatPage = () => {

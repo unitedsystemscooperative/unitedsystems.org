@@ -1,7 +1,7 @@
 import { getIsHC } from '@/utils/get-isHC';
 import { connectToDatabase, getItems, insertItem, updateItem } from '@/utils/mongo';
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '@@/admin/models';
-import { Db } from 'mongodb4';
+import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '~/admin/models';
+import { Db } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
@@ -13,7 +13,7 @@ const determineCMDRisMember = (cmdr: ICMDR): cmdr is IMember =>
 const COLLECTION = 'cmdrs';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
+    const db = await connectToDatabase();
     const isHC = await getIsHC(req, db);
 
     const cmdr: IAmbassador | IGuest | IMember = req.body;

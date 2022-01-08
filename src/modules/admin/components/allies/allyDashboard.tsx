@@ -1,6 +1,6 @@
 import { TitleBarwAdd } from '@/components/_common';
-import { useAllies } from '@@/about/hooks/useAllies';
-import { IAlly } from '@@/about/models/ally';
+import { useAllies } from '~/about/hooks/useAllies';
+import { IAlly } from '~/about/models/ally';
 import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {

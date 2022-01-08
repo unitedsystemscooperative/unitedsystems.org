@@ -4,5 +4,6 @@
   "files.eol": "\n",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
-  "deepscan.enable": false
+  "deepscan.enable": false,
+  "jest.jestCommandLine": "npm test -- --coverage=false"
 }

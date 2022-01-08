@@ -1,7 +1,7 @@
-import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember } from '@@/admin/models/cmdr';
-import { Rank, RankString } from '@@/admin/models/ranks';
 import axios from 'axios';
 import useSWR from 'swr';
+import { IAmbassador, ICMDR, IGuest, IMember } from '~/admin/models/cmdr';
+import { Rank, RankString } from '~/admin/models/ranks';
 
 const checkInstanceofAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
   cmdr.rank === Rank.Ambassador;
@@ -11,7 +11,7 @@ const checkInstanceofMember = (cmdr: ICMDR): cmdr is IMember =>
 
 const API_PATH = '/api/cmdrs';
 
-export const useCMDRs = (init?: ICMDRs) => {
+export const useCMDRs = () => {
   const {
     data: cmdrs,
     error,
@@ -26,7 +26,7 @@ export const useCMDRs = (init?: ICMDRs) => {
           ambassadors: IAmbassador[];
         }>(url)
         .then((data) => data.data),
-    { fallbackData: init }
+    { fallbackData: { members: [], ambassadors: [], guests: [] } }
   );
 
   cmdrs.members = cmdrs.members.map((cmdr) => {
@@ -148,7 +148,7 @@ export const useCMDRs = (init?: ICMDRs) => {
 
   return {
     cmdrs,
-    loading: !error && !cmdrs,
+    loading: !error && cmdrs.members.length < 1,
     error,
     addCMDR,
     updateCMDR,

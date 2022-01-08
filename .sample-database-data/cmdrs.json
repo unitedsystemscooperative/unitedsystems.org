@@ -1,0 +1,50 @@
+[
+    {
+        "_id": {
+            "$oid": "61d94cbe84cbde24c077795a"
+        },
+        "cmdrName": "testAdmin",
+        "discordName": "testAdmin#1234",
+        "joinDate": {
+            "$date": "2020-01-22T06:00:00Z"
+        },
+        "discordJoinDate": {
+            "$date": "2020-01-19T06:00:00Z"
+        },
+        "platform": 0,
+        "rank": 1,
+        "isInInaraSquad": true,
+        "region": 0,
+        "ref1": 0,
+        "notes": "",
+        "promotion": null,
+        "entersVoice": true,
+        "inaraLink": "https://inara.cz/cmdr/139240/",
+        "email": "",
+        "ref2": ""
+    },
+    {
+        "_id": {
+            "$oid": "61d94c97d30234aec50f6d36"
+        },
+        "cmdrName": "testUser",
+        "discordName": "testUser#1234",
+        "joinDate": {
+            "$date": "2020-01-22T06:00:00Z"
+        },
+        "discordJoinDate": {
+            "$date": "2020-01-19T06:00:00Z"
+        },
+        "platform": 0,
+        "rank": 6,
+        "isInInaraSquad": true,
+        "region": 0,
+        "ref1": 0,
+        "notes": "",
+        "promotion": null,
+        "entersVoice": true,
+        "inaraLink": "https://inara.cz/cmdr/139240/",
+        "email": "",
+        "ref2": ""
+    }
+]

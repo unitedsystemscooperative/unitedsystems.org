@@ -1,10 +1,6 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { PlatformString, RegionString } from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
-import { FileCopy } from '@mui/icons-material';
+import { CopyButton } from '@/components/_common';
 import {
   Checkbox,
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -15,6 +11,8 @@ import {
   TableRow,
 } from '@mui/material';
 import { ChangeEvent, useState } from 'react';
+import { PlatformString, RegionString } from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 
 export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
@@ -52,22 +50,10 @@ export const AmbassadorsTable = ({ ambassadors }: { ambassadors: IJoinRequest[] 
                   <TableRow key={`${map.discord} ${map.timeStamp}`}>
                     <TableCell>{map.timeStamp}</TableCell>
                     <TableCell>
-                      {map.cmdr}{' '}
-                      <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
-                        <FileCopy />
-                      </IconButton>
+                      {map.cmdr} <CopyButton value={map.cmdr.toUpperCase()} />
                     </TableCell>
                     <TableCell>
-                      {map.discord}{' '}
-                      <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={() => copytoClipboard(map.discord)}>
-                        <FileCopy />
-                      </IconButton>
+                      {map.discord} <CopyButton value={map.discord} />
                     </TableCell>
                     <TableCell>{PlatformString[map.platform]}</TableCell>
                     <TableCell>{map.group}</TableCell>

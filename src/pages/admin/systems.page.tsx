@@ -1,7 +1,7 @@
 import { getSystems } from '#/systems.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { System } from '@@/about/models/system';
-import { SystemDashboard } from '@@/admin/components/systems/systemDashboard';
+import { System } from '~/about/models/system';
+import { SystemDashboard } from '~/admin/components/systems/systemDashboard';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 

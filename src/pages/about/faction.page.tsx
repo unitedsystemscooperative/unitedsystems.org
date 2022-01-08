@@ -1,8 +1,8 @@
 import { getSystems } from '#/systems.api';
 import { connectToDatabase } from '@/utils/mongo';
-import { AboutSystems } from '@@/about/components';
-import { AboutLayout } from '@@/about/layouts/about';
-import { System } from '@@/about/models/system';
+import { AboutSystems } from '~/about/components';
+import { AboutLayout } from '~/about/layouts/about';
+import { System } from '~/about/models/system';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 
@@ -21,7 +21,7 @@ const FactionPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) =
 };
 
 export const getStaticProps: GetStaticProps<{ data: System[] }> = async () => {
-  const { db } = await connectToDatabase();
+  const db = await connectToDatabase();
   const systems = await getSystems(db);
 
   return { props: { data: systems } };

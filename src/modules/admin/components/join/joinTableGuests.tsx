@@ -1,9 +1,5 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { PlatformString, ReferralString, RegionString } from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
-import { FileCopy } from '@mui/icons-material';
+import { CopyButton } from '@/components/_common';
 import {
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -14,6 +10,8 @@ import {
   TableRow,
 } from '@mui/material';
 import { ChangeEvent, useState } from 'react';
+import { PlatformString, ReferralString, RegionString } from '~/admin/models';
+import { IJoinRequest } from '~/join/models/joinRequest';
 
 export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
   const [page, setPage] = useState(0);
@@ -27,6 +25,7 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   return (
     <Paper>
       <TableContainer component={Paper}>
@@ -48,22 +47,10 @@ export const GuestsTable = ({ guests }: { guests: IJoinRequest[] }) => {
                 <TableRow key={`${map.discord} ${map.timeStamp}`}>
                   <TableCell>{map.timeStamp}</TableCell>
                   <TableCell>
-                    {map.cmdr}{' '}
-                    <IconButton
-                      size="small"
-                      color="secondary"
-                      onClick={() => copytoClipboard(map.cmdr.toUpperCase())}>
-                      <FileCopy />
-                    </IconButton>
+                    {map.cmdr} <CopyButton value={map.cmdr.toUpperCase()} />
                   </TableCell>
                   <TableCell>
-                    {map.discord}{' '}
-                    <IconButton
-                      size="small"
-                      color="secondary"
-                      onClick={() => copytoClipboard(map.discord)}>
-                      <FileCopy />
-                    </IconButton>
+                    {map.discord} <CopyButton value={map.discord} />
                   </TableCell>
                   <TableCell>{PlatformString[map.platform]}</TableCell>
                   <TableCell>{ReferralString[map.referral]}</TableCell>

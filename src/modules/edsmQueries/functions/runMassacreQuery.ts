@@ -1,5 +1,5 @@
-import { IPossibility } from '@@/edsmQueries/models/possibility.model';
-import { ISphereSystem } from '@@/edsmQueries/models/sphereSystems.model';
+import { IPossibility } from '~/edsmQueries/models/possibility.model';
+import { ISphereSystem } from '~/edsmQueries/models/sphereSystems.model';
 import { BehaviorSubject } from 'rxjs';
 import { getBodiesinSystem } from './getBodiesinSystem';
 import { getFactionsinSystem } from './getFactionsinSystem';

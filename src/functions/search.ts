@@ -11,20 +11,12 @@ export const genericSearchArray = <T>(objects: T[], query: string) => {
   return objects.filter((x) => genericSearch(x, props, query));
 };
 
-export const genericSearch = <T>(
-  object: T,
-  properties: Array<keyof T>,
-  query: string
-): boolean => {
+const genericSearch = <T>(object: T, properties: Array<keyof T>, query: string): boolean => {
   if (query === '') return true;
 
   return properties.some((property) => {
     const value = object[property] ?? '';
-    if (
-      typeof value === 'string' ||
-      typeof value === 'number' ||
-      typeof value === 'boolean'
-    )
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
       return value.toString().toLowerCase().includes(query.toLowerCase());
     if (value instanceof Date) {
       return value.toISOString().toLowerCase().includes(query.toLowerCase());

@@ -1,0 +1,19 @@
+[
+    {
+        "_id": {
+            "$oid": "61d94ea5496cf915c878ea49"
+        },
+        "cmdr": "TestJoiner",
+        "discord": "TestJoiner#4321",
+        "platform": "0",
+        "playingLength": "morethan1Year",
+        "referral": "1",
+        "referral2": "-",
+        "rules": true,
+        "timeStamp": {
+            "$date": "2022-01-06T06:00:00Z"
+        },
+        "region": "0",
+        "type": "join"
+    }
+]

@@ -1,7 +1,7 @@
 import { USCMarkdown } from '@/components/uscmarkdown';
 import { PaperOutlineButton } from '@/components/_common/button';
-import { getAllReleaseIDs, getReleaseData } from '@@/releases/getReleases';
-import { ReleaseInfo } from '@@/releases/releaseInfo';
+import { getAllReleaseIDs, getReleaseData } from '~/releases/getReleases';
+import { ReleaseInfo } from '~/releases/releaseInfo';
 import { Container, Divider, Paper, Typography } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';

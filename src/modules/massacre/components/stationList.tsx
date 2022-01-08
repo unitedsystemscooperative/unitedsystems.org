@@ -1,5 +1,6 @@
-import { getStationSize } from '@@/edsmQueries/functions/getStationSize';
+import { getStationSize } from '~/edsmQueries/functions/getStationSize';
 import { Box, Divider, Paper, Typography } from '@mui/material';
+import { CopyButton } from '@/components/_common';
 
 export const StationList = (props: {
   system: string;
@@ -10,6 +11,7 @@ export const StationList = (props: {
     <Box maxWidth="xs" m={1}>
       <Typography variant="h5" m={1}>
         {system}
+        <CopyButton value={system} />
       </Typography>
       <Paper sx={{ width: 200, p: 1, mx: 'auto' }}>
         {stations.map((station) => (

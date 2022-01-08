@@ -1,5 +1,5 @@
-import { useShipIdfromMap } from '@@/builds/hooks/useShipMap';
-import { IBuildInfov2, ShipSize } from '@@/builds/models';
+import { useShipIdfromMap } from '~/builds/hooks/useShipMap';
+import { IBuildInfov2, ShipSize } from '~/builds/models';
 import {
   Box,
   Button,

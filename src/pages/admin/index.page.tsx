@@ -1,5 +1,5 @@
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { AdminDashboard } from '@@/admin/components/adminDashboard';
+import { AdminDashboard } from '~/admin/components/adminDashboard';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 

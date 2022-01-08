@@ -1,4 +1,4 @@
-import { ShipSpecialty } from '@@/builds/models/shipSpecialty';
+import { ShipSpecialty } from '~/builds/models/shipSpecialty';
 import { styled, ToggleButton } from '@mui/material';
 import { QueryExplanation, QuerySection, QuerySectionHeader } from './sharedComponents';
 

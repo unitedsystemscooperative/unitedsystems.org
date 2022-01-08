@@ -1,5 +1,5 @@
 import { TextFieldwM1 } from '@/components/_common';
-import { System } from '@@/about/models/system';
+import { System } from '~/about/models/system';
 import {
   Button,
   Checkbox,

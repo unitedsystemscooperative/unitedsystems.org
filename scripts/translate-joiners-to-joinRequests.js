@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const mongodb = require('mongodb4');
+const mongodb = require('mongodb');
 const { ObjectId } = require('bson');
 require('dotenv').config();
 
