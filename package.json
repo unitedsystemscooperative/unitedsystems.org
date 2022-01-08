@@ -29,7 +29,7 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
-    "@mui/lab": "^5.0.0-alpha.62",
+    "@mui/lab": "^5.0.0-alpha.63",
     "@mui/material": "^5.2.7",
     "@mui/styles": "^5.2.3",
     "@next-auth/mongodb-adapter": "^1.0.1",
