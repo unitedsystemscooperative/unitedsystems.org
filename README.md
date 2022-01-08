@@ -27,3 +27,30 @@ This site was designed near the end of 2020 when the legacy site was unable to h
   - cypress
   - jest
   - msw (to mock api requests)
+
+## Dev Setup
+
+### Dev Container (recommended)
+
+Using a dev container, the dependencies of the application can be installed automatically.
+
+1. Start the devcontainer. Dependencies will be installed. A mongodb instance will be started also.
+2. Copy `.env.local.example` to `.env.local` and update it with the appropriate values. Mongodb's connection strings are set already for the dev instance.
+3. Run `scripts/copy-sample-db-to-dev.mjs` to populate the database with some default data.
+
+### Manual Setup
+
+Requirements:
+
+- mongodb instance
+- nodejs 14.x with npm 7.x or later.
+
+Setup:
+
+1. Run `npm install`
+2. Copy `.env.local.example` to `.env.local` and update it with the appropriate values. Mongodb's connection strings are set already for the dev instance.
+3. Run `scripts/copy-sample-db-to-dev.mjs` to populate the database with some default data.
+
+## Dev Notes
+
+There is an `BYPASS_AUTH` boolean value in `.env.local`. If it is set to true, node is set to development, and mongodb is running locally, then it permits you to access the admin features of the site without having to be logged in.
