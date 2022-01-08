@@ -1,4 +1,4 @@
-import { INavItem } from 'models/navItem';
+import { INavItem } from '@/models/navItem';
 
 export const navItems: INavItem[] = [
   { to: '/home', text: 'Home' },

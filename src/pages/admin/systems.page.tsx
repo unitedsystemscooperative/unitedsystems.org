@@ -1,0 +1,23 @@
+import { getSystems } from '#/systems.api';
+import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { System } from '~/about/models/system';
+import { SystemDashboard } from '~/admin/components/systems/systemDashboard';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
+
+const SystemManagementPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  return (
+    <>
+      <Head>
+        <title>USC | System Management</title>
+      </Head>
+      <SystemDashboard init={data} />
+    </>
+  );
+};
+
+export default SystemManagementPage;
+
+export const getServerSideProps: GetServerSideProps<{ data: System[] }> = async (context) => {
+  return runAdminAuthCheck(context, 'admin_systems', getSystems);
+};

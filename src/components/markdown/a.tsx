@@ -1,3 +1,3 @@
-import { Link } from '@material-ui/core';
+import { Link } from '@mui/material';
 
 export const A = (props) => <Link {...props} />;

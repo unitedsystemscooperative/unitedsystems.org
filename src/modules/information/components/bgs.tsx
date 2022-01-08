@@ -1,0 +1,137 @@
+import {
+  Container,
+  Divider,
+  Paper,
+  styled,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from '@mui/material';
+
+const IndentDiv = styled('div')(({ theme }) => ({
+  marginLeft: theme.spacing(3),
+  '& p': {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+export const BGSInfo = () => {
+  return (
+    <Container maxWidth="lg">
+      <Typography variant="h4" textAlign="center">
+        Background Simulation (BGS) General Information
+      </Typography>
+      <Paper sx={{ p: 2 }}>
+        <section>
+          <Typography variant="h5">Influence</Typography>
+          <IndentDiv>
+            <Typography variant="h6">Adding Influence</Typography>
+            <IndentDiv>
+              <Typography>There are multiple ways to add influence:</Typography>
+              <ul>
+                <Typography component="li">
+                  Complete INF missions. The more +'s the better.
+                </Typography>
+                <Typography component="li">
+                  Bounty Hunting - Dropping the bounties at a station where the giver of the bounty
+                  has a presence.
+                </Typography>
+                <Typography component="li">
+                  Exploration Data hand-in - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Commodity Trading - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Interstellar Factors - Increases INF for the owner of the station.
+                </Typography>
+                <Typography component="li">
+                  Vista Genomics hand-in (Odyssey-Only and Unconfirmed) - Increases INF for the
+                  owner of the station.
+                </Typography>
+              </ul>
+            </IndentDiv>
+
+            <Typography variant="h6">Decreasing Influence</Typography>
+            <IndentDiv>
+              <ul>
+                <Typography component="li">
+                  Completing INF missions for other factions in the system.
+                </Typography>
+                <Typography component="li">
+                  "Clean Killing" - Killing innocent NPCs of that faction. This is considered
+                  illegal and can bring System Authority against you.
+                </Typography>
+                <Typography component="li">
+                  Black Market Trading - Bringing illegal/illicit goods and selling them to a
+                  station will decrease the station owner's INF.
+                </Typography>
+                <Typography component="li">
+                  Failing missions - Failing missions, whether intentional or not, will decrease the
+                  mission faction's INF.
+                  <br />
+                  Note: Aborting the mission will only decrease your REP without affecting INF.
+                </Typography>
+              </ul>
+            </IndentDiv>
+            <Typography variant="h6">Diminishing Returns</Typography>
+            <IndentDiv>
+              <Typography>
+                Too much of one thing is too much. There are caps in place to prevent over-inflating
+                changes in influence
+              </Typography>
+            </IndentDiv>
+          </IndentDiv>
+        </section>
+        <Divider />
+        <section>
+          <Typography variant="h5">Conflicts</Typography>
+          <IndentDiv>
+            <Typography variant="h6">Elections</Typography>
+            <Typography ml={3}>Complete election missions to win the conflict.</Typography>
+
+            <Typography variant="h6">Wars</Typography>
+            <IndentDiv>
+              <Typography>Wars are won in two ways:</Typography>
+              <ul>
+                <Typography component="li">Conflict Zones</Typography>
+                <Typography component="li">Combat Bonds</Typography>
+              </ul>
+              <Typography>
+                Diminishing returns are a possibility here. Follow the list below. A maximum of 9
+                should be a good cap.
+              </Typography>
+              <Container maxWidth="xs">
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">Conflict Zone Level</TableCell>
+                      <TableCell align="center">Number Completed</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell align="center">Low</TableCell>
+                      <TableCell align="center">1</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="center">Medium</TableCell>
+                      <TableCell align="center">2</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="center">High</TableCell>
+                      <TableCell align="center">3</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </Container>
+            </IndentDiv>
+          </IndentDiv>
+        </section>
+      </Paper>
+    </Container>
+  );
+};

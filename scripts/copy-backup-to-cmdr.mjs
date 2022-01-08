@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { MongoClient } from 'mongodb4';
+import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
 
@@ -50,8 +50,7 @@ const batchFixDates = async () => {
       { upsert: false }
     );
 
-    if (response.modifiedCount === 1)
-      console.log({ status: 'updated', cmdr: cmdr.cmdrName });
+    if (response.modifiedCount === 1) console.log({ status: 'updated', cmdr: cmdr.cmdrName });
     else console.log({ status: 'not updated', cmdr: cmdr.cmdrName });
   }
 

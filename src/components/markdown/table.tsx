@@ -1,4 +1,4 @@
-import { Paper, Table, TableContainer } from '@material-ui/core';
+import { Paper, Table, TableContainer } from '@mui/material';
 
 export const TableWrapper = (props) => (
   <TableContainer component={Paper}>

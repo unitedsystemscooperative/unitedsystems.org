@@ -1,32 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# United Systems Cooperative Website
 
-## Getting Started
+[![codecov](https://codecov.io/gh/Admiralfeb/usc-website/branch/main/graph/badge.svg?token=IaHGsZAblr)](https://codecov.io/gh/Admiralfeb/usc-website)
+[![usc-website](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/k3gzuz&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/k3gzuz/runs)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Admiralfeb/usc-website.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Admiralfeb/usc-website/context:javascript)
 
-First, run the development server:
+## United Systems Cooperative
 
-```bash
-npm run dev
-```
+The USC is a player group of the game Elite: Dangerous.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Established in the game's year of 3306 (2020), the group has around 150 members from all across the globe.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## This site
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This site was designed near the end of 2020 when the legacy site was unable to handle the new features of the USC Build system. Written once in Create React App, then moved into Next.js, the site has grown to encompass most of USC's knowledge of the game that has not been found in other places on the internet.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Technologies Used
 
-## Learn More
+- Next.js / React
+- MongoDb
+- TypeScript
+- next-auth
+- swr
+- mui
+- vercel
+- Testing:
+  - cypress
+  - jest
+  - msw (to mock api requests)
 
-To learn more about Next.js, take a look at the following resources:
+## Dev Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Dev Container (recommended)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Using a dev container, the dependencies of the application can be installed automatically.
 
-## Deploy on Vercel
+1. Start the devcontainer. Dependencies will be installed. A mongodb instance will be started also.
+2. Copy `.env.local.example` to `.env.local` and update it with the appropriate values. Mongodb's connection strings are set already for the dev instance.
+3. Run `scripts/copy-sample-db-to-dev.mjs` to populate the database with some default data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Manual Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Requirements:
+
+- mongodb instance
+- nodejs 14.x with npm 7.x or later.
+
+Setup:
+
+1. Run `npm install`
+2. Copy `.env.local.example` to `.env.local` and update it with the appropriate values. Mongodb's connection strings are set already for the dev instance.
+3. Run `scripts/copy-sample-db-to-dev.mjs` to populate the database with some default data.
+
+## Dev Notes
+
+There is an `BYPASS_AUTH` boolean value in `.env.local`. If it is set to true, node is set to development, and mongodb is running locally, then it permits you to access the admin features of the site without having to be logged in.
