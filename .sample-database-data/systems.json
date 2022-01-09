@@ -1,190 +1,137 @@
-[{
-  "_id": {
-    "$oid": "5fe95a5599885807ec4935d3"
+[
+  {
+    "name": "HIP 3633",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/126610/",
+    "isControlled": true
   },
-  "name": "HIP 3633",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/126610/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "5fe95a5599885807ec4935d5"
+  {
+    "name": "HIP 3161",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/13262/",
+    "isControlled": true
   },
-  "name": "HIP 3161",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/13262/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "5fe95a5599885807ec4935d4"
+  {
+    "name": "HIP 4120",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/13182/",
+    "isControlled": true
   },
-  "name": "HIP 4120",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/13182/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "5fe95a5599885807ec4935d2"
+  {
+    "name": "Arugbal",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/13156/",
+    "isControlled": true
   },
-  "name": "Arugbal",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/13156/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "60205c6c7bf8d05970b4d2b5"
+  {
+    "name": "Pegasi Sector JW-W c1-23",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/126677/",
+    "isControlled": true
   },
-  "name": "Pegasi Sector JW-W c1-23",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/126677/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "5fe95a5599885807ec4935d6"
+  {
+    "name": "Bibaridji",
+    "inaraLink": "https://inara.cz/galaxy-starsystem/13189/",
+    "isControlled": true
   },
-  "name": "Bibaridji",
-  "inaraLink": "https://inara.cz/galaxy-starsystem/13189/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "605f5d200ce8d8780c9290bf"
+  {
+    "name": "Mono",
+    "inaraLink": "https://inara.cz/starsystem/13205/",
+    "isControlled": true
   },
-  "name": "Mono",
-  "inaraLink": "https://inara.cz/starsystem/13205/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "605f5d560ce8d8780c9290c0"
+  {
+    "name": "79 Psi-2 Piscium",
+    "inaraLink": "https://inara.cz/starsystem/29174/",
+    "isControlled": false
   },
-  "name": "79 Psi-2 Piscium",
-  "inaraLink": "https://inara.cz/starsystem/29174/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5de30ce8d8780c9290c1"
+  {
+    "name": "Audheim",
+    "inaraLink": "https://inara.cz/starsystem/13185/",
+    "isControlled": false
   },
-  "name": "Audheim",
-  "inaraLink": "https://inara.cz/starsystem/13185/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e1b0ce8d8780c9290c2"
+  {
+    "name": "Bolonaz",
+    "inaraLink": "https://inara.cz/starsystem/13165/",
+    "isControlled": false
   },
-  "name": "Bolonaz",
-  "inaraLink": "https://inara.cz/starsystem/13165/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e300ce8d8780c9290c3"
+  {
+    "name": "HIP 2828",
+    "inaraLink": "https://inara.cz/starsystem/13177/",
+    "isControlled": false
   },
-  "name": "HIP 2828",
-  "inaraLink": "https://inara.cz/starsystem/13177/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e4f0ce8d8780c9290c4"
+  {
+    "name": "HIP 6439",
+    "inaraLink": "https://inara.cz/starsystem/13142/",
+    "isControlled": false
   },
-  "name": "HIP 6439",
-  "inaraLink": "https://inara.cz/starsystem/13142/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e600ce8d8780c9290c5"
+  {
+    "name": "Luchunza",
+    "inaraLink": "https://inara.cz/starsystem/13487/",
+    "isControlled": false
   },
-  "name": "Luchunza",
-  "inaraLink": "https://inara.cz/starsystem/13487/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e760ce8d8780c9290c6"
+  {
+    "name": "Nan Yamanes",
+    "inaraLink": "https://inara.cz/starsystem/13458/",
+    "isControlled": false
   },
-  "name": "Nan Yamanes",
-  "inaraLink": "https://inara.cz/starsystem/13458/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e840ce8d8780c9290c7"
+  {
+    "name": "Neris",
+    "inaraLink": "https://inara.cz/starsystem/13208/",
+    "isControlled": false
   },
-  "name": "Neris",
-  "inaraLink": "https://inara.cz/starsystem/13208/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5e950ce8d8780c9290c8"
+  {
+    "name": "Ogowen",
+    "inaraLink": "https://inara.cz/starsystem/13579/",
+    "isControlled": false
   },
-  "name": "Ogowen",
-  "inaraLink": "https://inara.cz/starsystem/13579/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "605f5eab0ce8d8780c9290c9"
+  {
+    "name": "Pegasi Sector IG-X b1-1",
+    "inaraLink": "https://inara.cz/starsystem/88236/",
+    "isControlled": true
   },
-  "name": "Pegasi Sector IG-X b1-1",
-  "inaraLink": "https://inara.cz/starsystem/88236/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "605f5eb70ce8d8780c9290ca"
+  {
+    "name": "Pegasi Sector PH-V b2-0",
+    "inaraLink": "https://inara.cz/starsystem/88928/",
+    "isControlled": true
   },
-  "name": "Pegasi Sector PH-V b2-0",
-  "inaraLink": "https://inara.cz/starsystem/88928/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "60a16ebeeffa4c0009d7e024"
+  {
+    "name": "LP 348-64",
+    "inaraLink": "https://inara.cz/starsystem/22392/",
+    "isControlled": false
   },
-  "name": "LP 348-64",
-  "inaraLink": "https://inara.cz/starsystem/22392/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "60b701cbbc5253681061c3af"
+  {
+    "name": "Yurong",
+    "inaraLink": "https://inara.cz/starsystem/13170/",
+    "isControlled": true
   },
-  "name": "Yurong",
-  "inaraLink": "https://inara.cz/starsystem/13170/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "60b701fdbc5253681061c3b0"
+  {
+    "name": "Sanopijcha",
+    "inaraLink": "https://inara.cz/starsystem/13191/",
+    "isControlled": true
   },
-  "name": "Sanopijcha",
-  "inaraLink": "https://inara.cz/starsystem/13191/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "60b70254bc5253681061c3b1"
+  {
+    "name": "HIP 996",
+    "inaraLink": "https://inara.cz/starsystem/13181/",
+    "isControlled": true
   },
-  "name": "HIP 996",
-  "inaraLink": "https://inara.cz/starsystem/13181/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "6110bab42f6c630008f0036f"
+  {
+    "name": "Cuicatec",
+    "inaraLink": "https://inara.cz/starsystem/13215/",
+    "isControlled": false
   },
-  "name": "Cuicatec",
-  "inaraLink": "https://inara.cz/starsystem/13215/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "6110bbfff15c9a056cf7ac83"
+  {
+    "name": "HIP 1427",
+    "inaraLink": "https://inara.cz/starsystem/13368/",
+    "isControlled": false
   },
-  "name": "HIP 1427",
-  "inaraLink": "https://inara.cz/starsystem/13368/",
-  "isControlled": false
-},{
-  "_id": {
-    "$oid": "6110bc18f15c9a056cf7ac84"
+  {
+    "name": "HIP 1771",
+    "inaraLink": "https://inara.cz/starsystem/13321/",
+    "isControlled": true
   },
-  "name": "HIP 1771",
-  "inaraLink": "https://inara.cz/starsystem/13321/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "6110bc49f15c9a056cf7ac85"
+  {
+    "name": "HIP 4727",
+    "inaraLink": "https://inara.cz/starsystem/13154/",
+    "isControlled": true
   },
-  "name": "HIP 4727",
-  "inaraLink": "https://inara.cz/starsystem/13154/",
-  "isControlled": true
-},{
-  "_id": {
-    "$oid": "6110bc9df15c9a056cf7ac87"
-  },
-  "name": "Sopema",
-  "inaraLink": "https://inara.cz/starsystem/13171/",
-  "isControlled": false
-}]
+  {
+    "name": "Sopema",
+    "inaraLink": "https://inara.cz/starsystem/13171/",
+    "isControlled": false
+  }
+]

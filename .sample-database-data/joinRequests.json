@@ -1,8 +1,5 @@
 [
     {
-        "_id": {
-            "$oid": "61d94ea5496cf915c878ea49"
-        },
         "cmdr": "TestJoiner",
         "discord": "TestJoiner#4321",
         "platform": "0",

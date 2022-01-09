@@ -1,8 +1,5 @@
 [
     {
-        "_id": {
-            "$oid": "61d94cbe84cbde24c077795a"
-        },
         "cmdrName": "testAdmin",
         "discordName": "testAdmin#1234",
         "joinDate": {
@@ -24,9 +21,6 @@
         "ref2": ""
     },
     {
-        "_id": {
-            "$oid": "61d94c97d30234aec50f6d36"
-        },
         "cmdrName": "testUser",
         "discordName": "testUser#1234",
         "joinDate": {
