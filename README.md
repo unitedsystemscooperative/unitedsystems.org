@@ -43,7 +43,7 @@ Using a dev container, the dependencies of the application can be installed auto
 Requirements:
 
 - mongodb instance
-- nodejs 14.x with npm 7.x or later.
+- nodejs 16.x
 
 Setup:
 
@@ -53,4 +53,4 @@ Setup:
 
 ## Dev Notes
 
-There is an `BYPASS_AUTH` boolean value in `.env.local`. If it is set to true, node is set to development, and mongodb is running locally, then it permits you to access the admin features of the site without having to be logged in.
+There is a `BYPASS_AUTH` boolean value in `.env.local`. If it is set to true, node is set to development, and mongodb is running locally, then it permits you to access the admin features of the site without having to be logged in.
