@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { AboutLayout } from '../about';
+import { AboutLayout } from '~/about/layouts/about';
 
 describe('About Layout', () => {
   it('should render', () => {
