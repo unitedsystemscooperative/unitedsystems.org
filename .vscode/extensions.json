@@ -3,6 +3,10 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "mikestead.dotenv"
+    "mikestead.dotenv",
+    "hbenl.vscode-test-explorer",
+    "mongodb.mongodb-vscode",
+    "orta.vscode-jest",
+    "eg2.vscode-npm-script"
   ]
 }
