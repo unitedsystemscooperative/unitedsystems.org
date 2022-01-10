@@ -1,4 +1,4 @@
-import { useData } from '@/hooks/useData';
+import { useArrayData } from '@/hooks/useArrayData';
 import { IAlly } from '~/about/models/ally';
 
 const API_PATH = '/api/allies';
@@ -11,7 +11,7 @@ export const useAllies = (initState?: IAlly[]) => {
     addItem: addAlly,
     updateItem: updateAlly,
     deleteItem: deleteAlly,
-  } = useData(API_PATH, initState);
+  } = useArrayData(API_PATH, initState);
 
   return {
     allies,

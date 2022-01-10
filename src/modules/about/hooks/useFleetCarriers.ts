@@ -1,5 +1,5 @@
 import { genericSortArray } from '@/functions/sort';
-import { useData } from '@/hooks/useData';
+import { useArrayData } from '@/hooks/useArrayData';
 import { useMemo } from 'react';
 import { IFleetCarrier } from '~/about/models/fleetCarrier';
 
@@ -13,7 +13,7 @@ export const useFleetCarriers = (initState?: IFleetCarrier[]) => {
     addItem: addCarrier,
     updateItem: updateCarrier,
     deleteItem: deleteCarrier,
-  } = useData(API_PATH, initState);
+  } = useArrayData(API_PATH, initState);
 
   const personalCarriers = useMemo(() => {
     if (fleetCarriers) {

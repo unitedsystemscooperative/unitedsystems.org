@@ -2,7 +2,7 @@ import { IDbItem } from '@/models/dbItem';
 import axios from 'axios';
 import useSWR from 'swr';
 
-export const useData = <T extends IDbItem>(api_path: string, init: T[]) => {
+export const useArrayData = <T extends IDbItem>(api_path: string, init: T[]) => {
   const { data, mutate, error } = useSWR(
     api_path,
     (url: string) => axios.get<T[]>(url).then((res) => res.data),
@@ -28,8 +28,18 @@ export const useData = <T extends IDbItem>(api_path: string, init: T[]) => {
   };
 
   const deleteItem = async (item: T) => {
+    const params = new URLSearchParams();
+    params.append('id', item._id.toString());
     try {
-      await axios.delete(`${api_path}?id=${item._id}`);
+      await axios.delete(api_path, { params });
+      mutate();
+    } catch (e) {
+      throw new Error(e.response.statusText);
+    }
+  };
+  const deleteItemCustom = async (params: URLSearchParams) => {
+    try {
+      await axios.delete(api_path, { params });
       mutate();
     } catch (e) {
       throw new Error(e.response.statusText);
@@ -43,5 +53,6 @@ export const useData = <T extends IDbItem>(api_path: string, init: T[]) => {
     addItem,
     updateItem,
     deleteItem,
+    deleteItemCustom,
   };
 };

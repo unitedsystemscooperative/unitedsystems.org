@@ -1,4 +1,4 @@
-import { useData } from '@/hooks/useData';
+import { useArrayData } from '@/hooks/useArrayData';
 import { System } from '~/about/models/system';
 
 const API_PATH = '/api/systems';
@@ -11,7 +11,7 @@ export const useSystems = (initState?: System[]) => {
     addItem: addSystem,
     updateItem: updateSystem,
     deleteItem: deleteSystem,
-  } = useData(API_PATH, initState);
+  } = useArrayData(API_PATH, initState);
 
   return {
     factionSystems,
