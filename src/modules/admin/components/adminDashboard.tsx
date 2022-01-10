@@ -1,11 +1,13 @@
 import { Button, ButtonProps, Container, Paper, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
 
+/* istanbul ignore next */
 const Header = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
   marginBottom: theme.spacing(1),
 }));
 
+/* istanbul ignore next */
 const AdminPaper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   padding: theme.spacing(1),
@@ -18,6 +20,7 @@ const AdminPaper = styled(Paper)(({ theme }) => ({
 interface LinkButtonProps extends ButtonProps {
   target?: string;
 }
+/* istanbul ignore next */
 const LinkButton = styled(Button)<LinkButtonProps>(({ theme }) => ({
   marginRight: theme.spacing(1),
   marginBlock: theme.spacing(1),

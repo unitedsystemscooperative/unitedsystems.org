@@ -7,3 +7,9 @@ export const IndentedDiv = styled('div')(({ theme }) => ({
     marginBottom: theme.spacing(2),
   },
 }));
+
+/* istanbul ignore next */
+
+export const FillerDiv = styled('div')({
+  flexGrow: 1,
+});

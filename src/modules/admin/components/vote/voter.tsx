@@ -1,34 +1,36 @@
-import { IVoter } from '~/admin/models';
+import { FillerDiv } from '@/components/_common';
 import { Check, Clear, Remove } from '@mui/icons-material';
-import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import { styled, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';
+import { IVoter } from '~/admin/models';
+
+const StyledDiv = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
 
 export const Voter = ({ voter }: { voter: IVoter }) => {
-  const [vote, setVote] = useState<boolean | null>(null);
+  const [vote, setVote] = useState<'yay' | 'nay' | 'nil'>('nil');
 
-  const handleVote = (_: MouseEvent<HTMLElement>, newVote: boolean | null) => {
+  const handleVote = (_: MouseEvent<HTMLElement>, newVote: 'yay' | 'nay' | 'nil') => {
     setVote(newVote);
   };
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <StyledDiv data-testid={`voter-${voter.name}`}>
       <Typography>{voter.name}</Typography>
-      <div style={{ flexGrow: 1 }} />
+      <FillerDiv />
       <ToggleButtonGroup value={vote} exclusive onChange={handleVote}>
-        <ToggleButton value={true}>
+        <ToggleButton value="yay" color="success">
           <Check />
         </ToggleButton>
-        <ToggleButton value={null}>
+        <ToggleButton value="nil">
           <Remove />
         </ToggleButton>
-        <ToggleButton value={false}>
+        <ToggleButton value="nay" color="error">
           <Clear />
         </ToggleButton>
       </ToggleButtonGroup>
-    </div>
+    </StyledDiv>
   );
 };

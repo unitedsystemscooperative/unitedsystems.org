@@ -1,37 +1,14 @@
-import { useCMDRs } from '@/hooks/useCmdrs';
+import { EDSpinner } from '@admiralfeb/react-components';
 import { Container, Paper, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { IVoter, Rank } from '~/admin/models';
+import { useVoteInfo } from '../../hooks/useVoteInfo';
 import { Voter } from './voter';
 
 export const VoteDashboard = () => {
-  const {
-    cmdrs: { members },
-    loading,
-  } = useCMDRs();
-  const [voteInfo, setVoteInfo] = useState<IVoter[]>([]);
+  const { loading, voters } = useVoteInfo();
 
-  // useEffect(() => {
-  //   if (window) {
-  //     const store: IVoter[] | null = JSON.parse(
-  //       window.localStorage.getItem('voters') ?? ''
-  //     );
-  //     if (store && store.length > 0) {
-  //       setVoteInfo(store);
-  //     }
-  //   }
-  // }, []);
-
-  useEffect(() => {
-    if (!loading && voteInfo.length < 1) {
-      const hcCmdrs = members.filter((c) => c.rank <= Rank.Captain && c.isDeleted !== true);
-      let hcVoters: IVoter[] = [];
-      for (const voter of hcCmdrs) {
-        hcVoters = [...hcVoters, { name: voter.cmdrName.toUpperCase(), hasVoted: null }];
-      }
-      setVoteInfo(hcVoters);
-    }
-  }, [loading, members, voteInfo]);
+  if (loading) {
+    return <EDSpinner />;
+  }
 
   return (
     <>
@@ -39,7 +16,7 @@ export const VoteDashboard = () => {
         Vote Assistant
       </Typography>
       <Container maxWidth="xs" component={Paper} sx={{ py: 1 }}>
-        {voteInfo.map((voter) => (
+        {voters.map((voter) => (
           <Voter key={voter.name} voter={voter} />
         ))}
       </Container>
