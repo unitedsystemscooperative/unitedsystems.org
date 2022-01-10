@@ -1,5 +1,6 @@
 import { styled, TextField, TextFieldProps } from '@mui/material';
 
+/* istanbul ignore next */
 /**
  * Text Field with 1 spacing on Margin Top/Bottom
  */
