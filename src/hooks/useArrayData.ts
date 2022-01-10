@@ -2,7 +2,7 @@ import { IDbItem } from '@/models/dbItem';
 import axios from 'axios';
 import useSWR from 'swr';
 
-export const useArrayData = <T extends IDbItem>(api_path: string, init: T[]) => {
+export const useArrayData = <T extends IDbItem>(api_path: string, init?: T[]) => {
   const { data, mutate, error } = useSWR(
     api_path,
     (url: string) => axios.get<T[]>(url).then((res) => res.data),
