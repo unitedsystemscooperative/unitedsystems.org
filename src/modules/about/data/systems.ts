@@ -1,0 +1,167 @@
+import { ObjectId } from 'bson';
+import { System } from '../models/system';
+
+export const testSystems: System[] = [
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 3633',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/126610/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 3161',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/13262/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 4120',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/13182/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Arugbal',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/13156/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Pegasi Sector JW-W c1-23',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/126677/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Bibaridji',
+    inaraLink: 'https://inara.cz/galaxy-starsystem/13189/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Mono',
+    inaraLink: 'https://inara.cz/starsystem/13205/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: '79 Psi-2 Piscium',
+    inaraLink: 'https://inara.cz/starsystem/29174/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Audheim',
+    inaraLink: 'https://inara.cz/starsystem/13185/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Bolonaz',
+    inaraLink: 'https://inara.cz/starsystem/13165/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 2828',
+    inaraLink: 'https://inara.cz/starsystem/13177/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 6439',
+    inaraLink: 'https://inara.cz/starsystem/13142/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Luchunza',
+    inaraLink: 'https://inara.cz/starsystem/13487/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Nan Yamanes',
+    inaraLink: 'https://inara.cz/starsystem/13458/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Neris',
+    inaraLink: 'https://inara.cz/starsystem/13208/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Ogowen',
+    inaraLink: 'https://inara.cz/starsystem/13579/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Pegasi Sector IG-X b1-1',
+    inaraLink: 'https://inara.cz/starsystem/88236/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Pegasi Sector PH-V b2-0',
+    inaraLink: 'https://inara.cz/starsystem/88928/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'LP 348-64',
+    inaraLink: 'https://inara.cz/starsystem/22392/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Yurong',
+    inaraLink: 'https://inara.cz/starsystem/13170/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Sanopijcha',
+    inaraLink: 'https://inara.cz/starsystem/13191/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 996',
+    inaraLink: 'https://inara.cz/starsystem/13181/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Cuicatec',
+    inaraLink: 'https://inara.cz/starsystem/13215/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 1427',
+    inaraLink: 'https://inara.cz/starsystem/13368/',
+    isControlled: false,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 1771',
+    inaraLink: 'https://inara.cz/starsystem/13321/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'HIP 4727',
+    inaraLink: 'https://inara.cz/starsystem/13154/',
+    isControlled: true,
+  },
+  {
+    _id: new ObjectId().toString(),
+    name: 'Sopema',
+    inaraLink: 'https://inara.cz/starsystem/13171/',
+    isControlled: false,
+  },
+];

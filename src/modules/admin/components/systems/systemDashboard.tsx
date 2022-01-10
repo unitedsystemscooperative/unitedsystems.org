@@ -18,7 +18,7 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { SystemDialog } from './systemDialog';
 
-const SystemList = ({
+const AdminSystemList = ({
   title,
   systems,
   editSystem,
@@ -35,7 +35,8 @@ const SystemList = ({
         <ListSubheader>
           {title} - {systems.length}
         </ListSubheader>
-      }>
+      }
+      data-testid={`systemList-${title}`}>
       {systems.map((system) => (
         <ListItem button key={system.name} component={Link} href={system.inaraLink} target="_blank">
           <ListItemText primary={system.name} />
@@ -119,13 +120,13 @@ export const SystemDashboard = ({ init }: { init?: System[] }) => {
           </ListItem>
           {factionSystems && (
             <>
-              <SystemList
+              <AdminSystemList
                 title="Controlled Systems"
                 systems={factionSystems.filter((system) => system.isControlled === true)}
                 editSystem={handleOpenDialog}
                 deleteSystem={handleDelete}
               />
-              <SystemList
+              <AdminSystemList
                 title="Present In Systems"
                 systems={factionSystems.filter((system) => system.isControlled === false)}
                 editSystem={handleOpenDialog}

@@ -4,7 +4,7 @@ import { SWRConfigReset } from '@/__mocks__/swr-reset';
 import { render, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { AboutSystems } from '~/about/components/systems';
-import systems from '~/about/data/systems.json';
+import { testSystems } from '~/about/data/systems';
 
 const mockenqueueSnackbar = jest.fn();
 jest.mock('notistack', () => ({
@@ -28,7 +28,7 @@ describe('Allies Component', () => {
   });
 
   it('should render with data', async () => {
-    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(systems))));
+    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(testSystems))));
 
     const { queryByTestId, getByText } = render(
       <SWRConfigReset>

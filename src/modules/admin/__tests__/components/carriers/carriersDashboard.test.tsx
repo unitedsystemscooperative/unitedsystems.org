@@ -1,26 +1,26 @@
+import { testFleetCarriers } from '@/modules/about/data/fleetCarriers';
+import { CarriersDashboard } from '@/modules/admin/components/carriers/carriersDashboard';
 import { server } from '@/__mocks__/server/server';
 import { SWRConfigReset } from '@/__mocks__/swr-reset';
 import { render, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
-import { Carriers } from '~/about/components/carriers/carriers';
-import { testFleetCarriers } from '../../data/fleetCarriers';
 
-describe('Carriers', () => {
-  it('renders when loading', () => {
-    const { getByText } = render(
+describe('Admin Carrier Dashboard', () => {
+  it('should render with loading', () => {
+    const { queryByText } = render(
       <SWRConfigReset>
-        <Carriers />
+        <CarriersDashboard />
       </SWRConfigReset>
     );
-
-    expect(getByText('Loading')).toBeDefined();
+    expect(queryByText('Zocalo')).toBeNull();
   });
 
-  it('renders Fleet Carriers', async () => {
+  it('should render with data', async () => {
     server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(testFleetCarriers))));
+
     const { getByText } = render(
       <SWRConfigReset>
-        <Carriers />
+        <CarriersDashboard />
       </SWRConfigReset>
     );
 
@@ -30,4 +30,10 @@ describe('Carriers', () => {
       expect(getByText('Ellen Jameson')).toBeDefined();
     });
   });
+
+  it.todo('should add an carrier');
+
+  it.todo('should edit an carrier');
+
+  it.todo('should delete an carrier');
 });
