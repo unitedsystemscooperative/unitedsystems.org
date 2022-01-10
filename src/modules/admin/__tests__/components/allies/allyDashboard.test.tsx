@@ -3,7 +3,7 @@ import { server } from '@/__mocks__/server/server';
 import { SWRConfigReset } from '@/__mocks__/swr-reset';
 import { render, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
-import { AllyDashboard } from '../../components/allies/allyDashboard';
+import { AllyDashboard } from '../../../components/allies/allyDashboard';
 
 describe('Admin Ally Dashboard', () => {
   it('should render with loading', () => {
