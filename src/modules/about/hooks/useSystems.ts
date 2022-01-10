@@ -1,48 +1,21 @@
+import { useData } from '@/hooks/useData';
 import { System } from '~/about/models/system';
-import axios from 'axios';
-import useSWR from 'swr';
 
 const API_PATH = '/api/systems';
 
-export const useSystems = (init?: System[]) => {
+export const useSystems = (initState?: System[]) => {
   const {
     data: factionSystems,
     error,
-    mutate,
-  } = useSWR(API_PATH, (url: string) => axios.get<System[]>(url).then((data) => data?.data ?? []), {
-    fallbackData: init,
-  });
-
-  const addSystem = async (system: System) => {
-    try {
-      await axios.post<System>(API_PATH, system);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
-
-  const updateSystem = async (system: System) => {
-    try {
-      await axios.put(API_PATH, system);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
-
-  const deleteSystem = async (system: System) => {
-    try {
-      await axios.delete(`${API_PATH}?id=${system._id}`);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
+    isLoading,
+    addItem: addSystem,
+    updateItem: updateSystem,
+    deleteItem: deleteSystem,
+  } = useData(API_PATH, initState);
 
   return {
     factionSystems,
-    loading: !error && !factionSystems,
+    loading: isLoading,
     error,
     addSystem,
     updateSystem,
