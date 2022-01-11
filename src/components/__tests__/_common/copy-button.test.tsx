@@ -1,16 +1,9 @@
 import { CopyButton } from '@/components/_common/copy-button';
 import * as copyFn from '@/functions/copytoClipboard';
+import { mockenqueueSnackbar } from '@/__mocks__/notistack';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 
 const copySpy = jest.spyOn(copyFn, 'copytoClipboard');
-const mockenqueueSnackbar = jest.fn();
-jest.mock('notistack', () => ({
-  useSnackbar() {
-    return {
-      enqueueSnackbar: mockenqueueSnackbar ?? jest.fn(),
-    };
-  },
-}));
 
 describe('Copy Button', () => {
   it('should call copy and enqueueSnackbar', async () => {

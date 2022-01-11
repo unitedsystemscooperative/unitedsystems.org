@@ -1,38 +1,37 @@
-import { allies } from '@/modules/about/data/allies';
+import { testBuilds } from '@/modules/builds/data/shipBuildsv2';
 import { server } from '@/__mocks__/server/server';
 import { SWRConfigReset } from '@/__mocks__/swr-reset';
 import { render, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
-import { AllyDashboard } from '../../../components/allies/allyDashboard';
+import { BuildDashboard } from '~/admin/components/builds/buildDashboard';
 
-describe('Admin Ally Dashboard', () => {
-  xit('should render with loading', () => {
+describe('Admin Build Dashboard', () => {
+  it('should render with loading', () => {
     const { queryByTestId } = render(
       <SWRConfigReset>
-        <AllyDashboard />
+        <BuildDashboard />
       </SWRConfigReset>
     );
     expect(queryByTestId('allies-list')).toBeNull();
   });
 
-  xit('should render with data', async () => {
-    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(allies))));
+  it('should render with data', async () => {
+    server.use(rest.get('*', (req, res, ctx) => res(ctx.status(200), ctx.json(testBuilds))));
 
-    const { queryByTestId, getByText } = render(
+    const { getByText } = render(
       <SWRConfigReset>
-        <AllyDashboard init={null} />
+        <BuildDashboard init={null} />
       </SWRConfigReset>
     );
 
     await waitFor(() => {
-      expect(queryByTestId('allies-list')).toBeTruthy();
-      expect(getByText('ROOKS')).toBeTruthy();
+      expect(getByText('Author')).toBeTruthy();
     });
   });
 
-  it.todo('should add an ally');
+  it.todo('should add an build');
 
-  it.todo('should edit an ally');
+  it.todo('should edit an build');
 
-  it.todo('should delete an ally');
+  it.todo('should delete an build');
 });

@@ -1,4 +1,5 @@
 import { theme } from '@/styles/theme';
+import { mockenqueueSnackbar } from '@/__mocks__/notistack';
 import { server } from '@/__mocks__/server/server';
 import { ThemeProvider } from '@mui/material';
 import { cleanup, fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
@@ -8,15 +9,6 @@ import { ISphereSystem } from '~/edsmQueries/models/sphereSystems.model';
 import { ISystemStations } from '~/edsmQueries/models/stationsInSystem';
 import { MassacreKillTracker } from '../components/massacreKillTracker';
 import MASSACRE_DEFAULT from '../data/massacreDefaults.json';
-
-const mockenqueueSnackbar = jest.fn();
-jest.mock('notistack', () => ({
-  useSnackbar() {
-    return {
-      enqueueSnackbar: mockenqueueSnackbar ?? jest.fn(),
-    };
-  },
-}));
 
 const bbtestId = 'massacretab-BIBARIDJI';
 
