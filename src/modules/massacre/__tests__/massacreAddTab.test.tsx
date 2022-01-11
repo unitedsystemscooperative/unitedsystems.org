@@ -2,20 +2,12 @@ import { ISystemFactionInfo } from '@/modules/edsmQueries/models/faction.model';
 import { ISphereSystem } from '@/modules/edsmQueries/models/sphereSystems.model';
 import { ISystemStations } from '@/modules/edsmQueries/models/stationsInSystem';
 import { theme } from '@/styles/theme';
+import { mockenqueueSnackbar } from '@/__mocks__/notistack';
 import { server } from '@/__mocks__/server/server';
 import { ThemeProvider } from '@mui/material';
 import { fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
 import { RequestHandler, rest } from 'msw';
 import { MassacreKillTracker } from '../components/massacreKillTracker';
-
-const mockenqueueSnackbar = jest.fn();
-jest.mock('notistack', () => ({
-  useSnackbar() {
-    return {
-      enqueueSnackbar: mockenqueueSnackbar ?? jest.fn(),
-    };
-  },
-}));
 
 const TestComponent = () => {
   return (

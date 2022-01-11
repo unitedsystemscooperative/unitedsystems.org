@@ -1,3 +1,4 @@
+import { mockenqueueSnackbar } from '@/__mocks__/notistack';
 import { errorHandlers } from '@/__mocks__/server/handlers/errorHandlers';
 import { server } from '@/__mocks__/server/server';
 import { SWRConfigReset } from '@/__mocks__/swr-reset';
@@ -5,15 +6,6 @@ import { render, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { AboutSystems } from '~/about/components/systems';
 import { testSystems } from '~/about/data/systems';
-
-const mockenqueueSnackbar = jest.fn();
-jest.mock('notistack', () => ({
-  useSnackbar() {
-    return {
-      enqueueSnackbar: mockenqueueSnackbar ?? jest.fn(),
-    };
-  },
-}));
 
 describe('Systems Component', () => {
   it('should render with loading', () => {
