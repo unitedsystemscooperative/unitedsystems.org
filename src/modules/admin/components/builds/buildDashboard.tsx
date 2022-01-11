@@ -1,10 +1,6 @@
 import { TitleBarwAdd } from '@/components/_common';
 import { genericSortArray, Order } from '@/functions/sort';
-import { EngIcons } from '~/builds/components/engIcons';
-import { TagGroup } from '~/builds/components/tagGroup';
-import { useShipMap } from '~/builds/hooks/useShipMap';
-import { IBuildInfov2, IShipInfo } from '~/builds/models';
-import { BuildContext, BuildContextProvider } from '~/builds/providers/buildProvider';
+import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Box,
@@ -24,6 +20,11 @@ import {
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { MouseEvent, useContext, useState } from 'react';
+import { EngIcons } from '~/builds/components/engIcons';
+import { TagGroup } from '~/builds/components/tagGroup';
+import { useShipMap } from '~/builds/hooks/useShipMap';
+import { IBuildInfov2, IShipInfo } from '~/builds/models';
+import { BuildContext, BuildContextProvider } from '~/builds/providers/buildProvider';
 
 const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(1),
@@ -195,7 +196,11 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
 };
 
 const BuildDashboardDisplay = () => {
-  const { builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
+  const { builds, areBuildsLoading, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
+
+  if (areBuildsLoading) {
+    return <EDSpinner />;
+  }
 
   return (
     <Container maxWidth="xl">

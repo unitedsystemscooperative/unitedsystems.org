@@ -15,7 +15,7 @@ jest.mock('notistack', () => ({
   },
 }));
 
-describe('Allies Component', () => {
+describe('Systems Component', () => {
   it('should render with loading', () => {
     const { queryByTestId } = render(
       <SWRConfigReset>
