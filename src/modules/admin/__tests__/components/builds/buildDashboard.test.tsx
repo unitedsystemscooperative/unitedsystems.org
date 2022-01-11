@@ -6,6 +6,7 @@ import { rest } from 'msw';
 import { BuildDashboard } from '~/admin/components/builds/buildDashboard';
 
 describe('Admin Build Dashboard', () => {
+  jest.setTimeout(10000);
   it('should render with loading', () => {
     const { queryByTestId } = render(
       <SWRConfigReset>
