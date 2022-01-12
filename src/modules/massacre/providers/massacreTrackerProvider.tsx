@@ -20,6 +20,7 @@ export interface IMassacreContext {
 }
 export const MassacreContext = createContext<IMassacreContext | null>(null);
 
+// TODO: change add to a string and move hazrez process to this file.
 type trackerAction =
   | { type: 'add'; tracker: IMassacreTrack }
   | { type: 'update'; tracker: IMassacreTrack; hazRezSystem: string }
@@ -65,10 +66,12 @@ const reducer = (prevTrackers: IMassacreTrack[], action: trackerAction) => {
         const index = prevTrackers.indexOf(trackerToDelete);
         return [...prevTrackers.slice(0, index), ...prevTrackers.slice(index + 1)];
       } else {
+        // TODO: can't reach this via normal means
         return [];
       }
     case 'set':
       return action.trackers;
+    /* istanbul ignore next */
     default:
       throw new Error('No action exists for that tracker action.');
   }

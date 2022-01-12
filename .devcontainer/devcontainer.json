@@ -18,7 +18,8 @@
     "hbenl.vscode-test-explorer",
     "esbenp.prettier-vscode",
     "eg2.vscode-npm-script",
-    "firsttris.vscode-jest-runner"
+    "firsttris.vscode-jest-runner",
+    "gruntfuggly.todo-tree"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.

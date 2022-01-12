@@ -11,6 +11,7 @@ import { MassacreKillTracker } from '../components/massacreKillTracker';
 import MASSACRE_DEFAULT from '../data/massacreDefaults.json';
 
 const bbtestId = 'massacretab-BIBARIDJI';
+const hip4120testId = 'massacretab-HIP 4120';
 
 const TestComponent = () => {
   return (
@@ -1397,5 +1398,20 @@ describe('Massacre Mission Tracker Tab', () => {
     const bbButton = getByTestId(bbtestId);
     expect(bbButton).toBeTruthy();
     expect(bbButton).toHaveClass('Mui-selected');
+  });
+
+  it('should be able to delete all trackers', () => {
+    const confirmSpy = jest.spyOn(window, 'confirm');
+    confirmSpy.mockReturnValue(true);
+
+    const { getByText, getByTestId, queryByTestId } = component;
+    fireEvent.click(getByText('Delete Tracker'));
+    fireEvent.click(getByTestId(hip4120testId));
+    fireEvent.click(getByText('Delete Tracker'));
+
+    expect(queryByTestId(bbtestId)).toBeFalsy();
+    expect(queryByTestId(hip4120testId)).toBeFalsy();
+    expect(getByTestId('massacretab-add')).toBeTruthy();
+    expect(getByTestId('massacretab-add')).toHaveClass('Mui-selected');
   });
 });
