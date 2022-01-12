@@ -2,10 +2,9 @@ import { PaperOutlineButton } from '@/components/_common/button';
 import { Box, Container, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useContext, useMemo } from 'react';
-import { IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
+import { IMassacreTrack } from '~/massacre/massacreTrack';
 import { processHazRezSystem } from '~/massacre/processHazRezSystem';
 import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
-import { ReputationLevels } from '~/massacre/reputationLevels';
 import { MassacreMissionTable } from './massacreMissionTable';
 import { MassacreSummary } from './massacreSummary';
 import { StationList } from './stationList';
@@ -87,32 +86,7 @@ export const MassacreTrackerTab = ({ system }: { system: string }) => {
 
     const refreshFactions = async () => {
       const result = await processHazRezSystem(tracker.hazRezSystem);
-      let factions: IFactionwMissions[] = [];
-
-      result.forEach((r) => {
-        r.factions.forEach((f) => {
-          if (factions.find((x) => x.id === f.id)) {
-            // do nothing
-          } else {
-            const newFaction: IFactionwMissions = {
-              name: f.name,
-              id: f.id,
-              removed: false,
-              reputation: ReputationLevels.allied,
-              missions: [null, null, null, null, null],
-            };
-            factions = [...factions, newFaction];
-          }
-        });
-      });
-      const final: IMassacreTrack = {
-        hazRezSystem: system,
-        systemsin10LY: result,
-        factions,
-        current: true,
-      };
-
-      context.updateTracker(tracker.hazRezSystem, final);
+      context.updateTracker(tracker.hazRezSystem, result);
     };
 
     return (

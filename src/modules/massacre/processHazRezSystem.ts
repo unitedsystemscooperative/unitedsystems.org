@@ -4,6 +4,8 @@ import {
   getStationsinSystem,
   getSystemsinSphere,
 } from '~/edsmQueries/functions';
+import { IFactionwMissions, IMassacreTrack } from './massacreTrack';
+import { ReputationLevels } from './reputationLevels';
 
 export const processHazRezSystem = async (system: string) => {
   const systemsInSphere = await getSystemsinSphere(system, 10);
@@ -43,5 +45,29 @@ export const processHazRezSystem = async (system: string) => {
       return { name: x.name, factions: sortedFactions, stations: sortedStations };
     })
   );
-  return systems;
+
+  const factions = systems.reduce<IFactionwMissions[]>((acc, system) => {
+    system.factions.forEach((faction) => {
+      if (acc.find((x) => x.id !== faction.id)) {
+        const newFaction: IFactionwMissions = {
+          name: faction.name,
+          id: faction.id,
+          removed: false,
+          reputation: ReputationLevels.allied,
+          missions: [null, null, null, null, null],
+        };
+        acc = [...acc, newFaction];
+      }
+    });
+    return acc;
+  }, []);
+
+  const final: IMassacreTrack = {
+    hazRezSystem: system,
+    systemsin10LY: systems,
+    factions,
+    current: true,
+  };
+
+  return final;
 };
