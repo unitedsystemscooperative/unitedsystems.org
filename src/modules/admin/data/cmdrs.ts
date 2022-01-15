@@ -1,0 +1,45 @@
+import { ObjectId } from 'bson';
+import { ICMDRs } from '../models';
+
+export const testCmdrs: ICMDRs = {
+  members: [
+    {
+      _id: new ObjectId(),
+      cmdrName: 'TESTADMIN0',
+      discordName: 'testAdmin0#1234',
+      joinDate: new Date('2020-01-22T06:00:00Z'),
+      discordJoinDate: new Date('2020-01-22T06:00:00Z'),
+      platform: 0,
+      rank: 0,
+      isInInaraSquad: true,
+      region: 0,
+      ref1: 0,
+      ref2: '',
+      notes: '',
+      promotion: null,
+      entersVoice: true,
+      inaraLink: 'https://inara.cz/cmdr/139240',
+      email: '',
+    },
+    {
+      _id: new ObjectId(),
+      cmdrName: 'TESTADMIN1',
+      discordName: 'testAdmin#1234',
+      joinDate: new Date('2020-01-22T06:00:00Z'),
+      discordJoinDate: new Date('2020-01-22T06:00:00Z'),
+      platform: 0,
+      rank: 1,
+      isInInaraSquad: true,
+      region: 0,
+      ref1: 0,
+      ref2: '',
+      notes: '',
+      promotion: null,
+      entersVoice: true,
+      inaraLink: 'https://inara.cz/cmdr/139240',
+      email: '',
+    },
+  ],
+  ambassadors: [],
+  guests: [],
+};

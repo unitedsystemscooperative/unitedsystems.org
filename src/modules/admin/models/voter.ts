@@ -1,4 +1,4 @@
 export interface IVoter {
   name: string;
-  hasVoted: boolean | null;
+  hasVoted: 'yay' | 'nay' | 'nil';
 }

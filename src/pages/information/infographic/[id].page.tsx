@@ -1,9 +1,9 @@
-import { infoGraphics } from '~/information/data/infographicList';
-import { Infographic } from '~/information/models/infographic';
 import { Container, Typography } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { infoGraphics } from '~/information/data/infographicList';
+import { Infographic } from '~/information/models/infographic';
 
 /**
  * Displays an infographic

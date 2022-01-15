@@ -1,23 +1,20 @@
 import { genericSortArray } from '@/functions/sort';
-import { IFleetCarrier } from '~/about/models/fleetCarrier';
-import axios from 'axios';
+import { useArrayData } from '@/hooks/useArrayData';
 import { useMemo } from 'react';
-import useSWR from 'swr';
+import { IFleetCarrier } from '~/about/models/fleetCarrier';
 
 const API_PATH = '/api/fc';
 
-export const useFleetCarriers = (init?: IFleetCarrier[]) => {
+export const useFleetCarriers = (initState?: IFleetCarrier[]) => {
   const {
     data: fleetCarriers,
     error,
-    mutate,
-  } = useSWR(
-    API_PATH,
-    (url: string) => axios.get<IFleetCarrier[]>(url).then((data) => data?.data ?? []),
-    {
-      fallbackData: init,
-    }
-  );
+    isLoading,
+    addItem: addCarrier,
+    updateItem: updateCarrier,
+    deleteItem: deleteCarrier,
+  } = useArrayData(API_PATH, initState);
+
   const personalCarriers = useMemo(() => {
     if (fleetCarriers) {
       const personalCarriers = fleetCarriers.filter((x) => !x.purpose);
@@ -41,38 +38,11 @@ export const useFleetCarriers = (init?: IFleetCarrier[]) => {
     }
   }, [fleetCarriers]);
 
-  const addCarrier = async (carrier: IFleetCarrier) => {
-    try {
-      await axios.post<IFleetCarrier>(API_PATH, carrier);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
-
-  const updateCarrier = async (carrier: IFleetCarrier) => {
-    try {
-      await axios.put(API_PATH, carrier);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
-
-  const deleteCarrier = async (carrier: IFleetCarrier) => {
-    try {
-      await axios.delete(`${API_PATH}?id=${carrier._id}`);
-      mutate();
-    } catch (error) {
-      throw new Error(error.response.statusText);
-    }
-  };
-
   return {
     fleetCarriers,
     personalCarriers,
     squadCarriers,
-    isLoading: !error && !fleetCarriers,
+    isLoading,
     error,
     addCarrier,
     updateCarrier,

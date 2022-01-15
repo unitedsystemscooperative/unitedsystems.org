@@ -77,9 +77,9 @@ export const AllyDashboard = ({ init }: { init?: IAlly[] }) => {
           marginBottom: 1,
         }}>
         <TitleBarwAdd title="Ally Dashboard" addTip="Add an ally" addItem={handleOpenDialog} />
-        <List>
-          {allies.map((ally: { name: string }, i: number) => (
-            <ListItem key={i}>
+        <List data-testid="allies-list">
+          {allies.map((ally: IAlly) => (
+            <ListItem key={ally._id.toString()}>
               <ListItemText primary={`${ally.name}`} />
               <ListItemSecondaryAction>
                 <IconButton

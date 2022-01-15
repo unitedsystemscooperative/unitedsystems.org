@@ -1,11 +1,8 @@
 import { CenteredTypography } from '@/components/_common';
-import { IFactionwMissions, IMassacreTrack } from '~/massacre/massacreTrack';
-import { processHazRezSystem } from '~/massacre/processHazRezSystem';
-import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
-import { ReputationLevels } from '~/massacre/reputationLevels';
 import { Button, Paper, TextField, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useContext, useState } from 'react';
+import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 
 /**
  * 1. Ask user for system.
@@ -35,41 +32,14 @@ export const MassacreAddTab = () => {
       return;
     }
 
-    const result = await processHazRezSystem(system);
-
-    let factions: IFactionwMissions[] = [];
-
-    result.forEach((r) => {
-      r.factions.forEach((f) => {
-        if (factions.find((x) => x.id === f.id)) {
-          // do nothing
-        } else {
-          const newFaction: IFactionwMissions = {
-            name: f.name,
-            id: f.id,
-            removed: false,
-            reputation: ReputationLevels.allied,
-            missions: [null, null, null, null, null],
-          };
-          factions = [...factions, newFaction];
-        }
-      });
-    });
-    const final: IMassacreTrack = {
-      hazRezSystem: system,
-      systemsin10LY: result,
-      factions,
-      current: true,
-    };
-
-    const response = context?.addTracker(final);
-    if (response) {
+    const response = await context?.addTracker(system);
+    if (typeof response === 'string') {
       enqueueSnackbar(response, {
         variant: 'info',
       });
+    } else {
+      context?.setSelectedTab(response.hazRezSystem);
     }
-
-    context?.setSelectedTab(final.hazRezSystem);
   };
 
   return (

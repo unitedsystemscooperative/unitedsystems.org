@@ -1,7 +1,8 @@
+import { scrolltoRef } from '@/functions/scrolltoRef';
 import { useInfoButtons } from '@/hooks/useInfoButtons';
-import { InfoSection } from '~/information/components/infoSection';
 import { Box, Button, Container, Paper, Theme, Typography, useMediaQuery } from '@mui/material';
-import { MutableRefObject, useRef } from 'react';
+import { useRef } from 'react';
+import { InfoSection } from '~/information/components/infoSection';
 
 export const InformationMain = () => {
   const { toolsList, docsList, guidesList, odysseyList } = useInfoButtons();
@@ -11,11 +12,6 @@ export const InformationMain = () => {
   const docsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
 
-  const handleScroll = (ref: MutableRefObject<HTMLDivElement | null>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
   return (
     <Container maxWidth="lg">
       <Typography variant="h3" sx={{ textAlign: 'center' }}>
@@ -50,30 +46,30 @@ export const InformationMain = () => {
             },
           }}>
           <Typography variant="subtitle1">Scroll To:</Typography>
-          <Button variant="outlined" onClick={() => handleScroll(odysseyRef)} title="odyssey">
+          <Button variant="outlined" onClick={() => scrolltoRef(odysseyRef)} title="odyssey">
             Odyssey
           </Button>
-          <Button variant="outlined" onClick={() => handleScroll(guidesRef)} title="guides">
+          <Button variant="outlined" onClick={() => scrolltoRef(guidesRef)} title="guides">
             Guides
           </Button>
-          <Button variant="outlined" onClick={() => handleScroll(toolsRef)} title="tools">
+          <Button variant="outlined" onClick={() => scrolltoRef(toolsRef)} title="tools">
             Tools
           </Button>
-          <Button variant="outlined" onClick={() => handleScroll(docsRef)} title="docs">
+          <Button variant="outlined" onClick={() => scrolltoRef(docsRef)} title="docs">
             Documentation
           </Button>
         </Paper>
       )}
-      <div ref={odysseyRef}>
+      <div ref={odysseyRef} data-testid="section-odyssey">
         <InfoSection id="odyssey" key="odyssey" header="Odyssey" buttons={odysseyList} />
       </div>
-      <div ref={guidesRef}>
+      <div ref={guidesRef} data-testid="section-guides">
         <InfoSection id="guides" key="guides" header="Guides" buttons={guidesList} />
       </div>
-      <div ref={toolsRef}>
+      <div ref={toolsRef} data-testid="section-tools">
         <InfoSection id="tools" key="tools" header="Tools" buttons={toolsList} />
       </div>
-      <div ref={docsRef}>
+      <div ref={docsRef} data-testid="section-docs">
         <InfoSection id="docs" key="docs" header="Documentation" buttons={docsList} />
       </div>
     </Container>

@@ -74,29 +74,29 @@ const StyledTableRow = withStyles((theme) =>
   })
 )(TableRow);
 
+const processMissions = (faction: IFactionwMissions) => {
+  const missions = faction.missions.map((mission) => {
+    if (mission === null) {
+      const newMission: IFactionMission = {
+        timeStamp: new Date(),
+        killsforMission: 0,
+        killsCompleted: 0,
+      };
+      return newMission;
+    } else {
+      return mission;
+    }
+  });
+  return missions;
+};
+const reduceTotalKills = (acc: number, current: IFactionMission) => {
+  return acc + current.killsforMission;
+};
+
 const FactionRow = (props: {
   faction: IFactionwMissions;
   onFactionChange: (faction: IFactionwMissions) => void;
 }) => {
-  const processMissions = (faction: IFactionwMissions) => {
-    const missions = faction.missions.map((mission) => {
-      if (mission === null) {
-        const newMission: IFactionMission = {
-          timeStamp: new Date(),
-          killsforMission: 0,
-          killsCompleted: 0,
-        };
-        return newMission;
-      } else {
-        return mission;
-      }
-    });
-    return missions;
-  };
-  const reduceTotalKills = (acc: number, current: IFactionMission) => {
-    return acc + current.killsforMission;
-  };
-
   const { faction, onFactionChange } = props;
   const { enqueueSnackbar } = useSnackbar();
 

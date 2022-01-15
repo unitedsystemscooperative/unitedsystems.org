@@ -12,15 +12,11 @@ export const TitleBarwAdd = ({
 }) => {
   return (
     <Toolbar sx={{ pl: 2, pr: 1, '& button': { m: 1 } }}>
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{ flex: '2 1 100%', textAlign: 'left' }}
-      >
+      <Typography variant="h4" component="div" sx={{ flex: '2 1 100%', textAlign: 'left' }}>
         {title}
       </Typography>
       <Tooltip title={addTip} arrow>
-        <Button variant="outlined" color="primary" onClick={addItem}>
+        <Button variant="outlined" color="primary" onClick={addItem} data-testid="addbutton">
           <Add />
         </Button>
       </Tooltip>

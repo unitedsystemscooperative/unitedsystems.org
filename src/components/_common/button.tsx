@@ -4,12 +4,12 @@ interface StyledButtonProps extends ButtonProps {
   target?: string;
 }
 
-export const PaperOutlineButton = styled(Button)<StyledButtonProps>(
-  ({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-  })
-);
+/* istanbul ignore next */
+export const PaperOutlineButton = styled(Button)<StyledButtonProps>(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
 
+/* istanbul ignore next */
 export const PaperOutlineToggleButton = styled(ToggleButton)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));

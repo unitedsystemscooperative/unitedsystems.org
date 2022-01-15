@@ -1,15 +1,14 @@
-import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
+import { Add } from '@mui/icons-material';
 import { AppBar, Collapse, Tab, Tabs, Typography } from '@mui/material';
-import { ChangeEvent, useContext } from 'react';
+import { useContext } from 'react';
+import { MassacreContext } from '~/massacre/providers/massacreTrackerProvider';
 import { MassacreAddTab } from './massacreAddTab';
 import { MassacreTrackerTab } from './massacreTrackerTab';
-import { Add } from '@mui/icons-material';
 
 export const MassacreTabs = () => {
   const context = useContext(MassacreContext);
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  const handleTabChange = (_: ChangeEvent<{}>, newValue: string) => {
+  const handleTabChange = (_: never, newValue: string) => {
     context?.setSelectedTab(newValue);
   };
 
