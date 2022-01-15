@@ -52,7 +52,7 @@
     "react-hook-form": "^7.15.4",
     "react-markdown": "^7.1.2",
     "remark-gfm": "^3.0.1",
-    "rxjs": "^7.5.1",
+    "rxjs": "^7.5.2",
     "swr": "^1.1.2"
   },
   "devDependencies": {
