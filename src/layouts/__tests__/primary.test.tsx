@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/styles';
 import { render, fireEvent } from '@testing-library/react';
 import * as useAdmin from '@/hooks/useAdmin';
 import * as auth from 'next-auth/react';
+import * as router from 'next/router';
 import { createMatchMedia } from '@/__mocks__/mediaquery';
 
 const useAdminSpy = jest.spyOn(useAdmin, 'useAdmin');
@@ -14,17 +15,7 @@ const signOutSpy = jest
   .spyOn(auth, 'signOut')
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   .mockImplementation(jest.fn().mockImplementation(() => {}));
-
-jest.mock('next/router', () => ({
-  useRouter() {
-    return {
-      route: '/',
-      pathname: '/home',
-      query: '',
-      asPath: '',
-    };
-  },
-}));
+const useRouterSpy = jest.spyOn(router, 'useRouter');
 
 const TestComponent = () => (
   <ThemeProvider theme={theme}>
@@ -35,6 +26,16 @@ const TestComponent = () => (
 );
 
 describe('Primary Layout', () => {
+  beforeEach(() => {
+    useRouterSpy.mockImplementation(
+      jest.fn().mockReturnValue({
+        route: '/',
+        pathname: '/home',
+        query: null,
+        asPath: '',
+      })
+    );
+  });
   describe('Full Screen', () => {
     beforeEach(() => {
       window.matchMedia = createMatchMedia(1200);
