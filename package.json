@@ -59,7 +59,7 @@
     "@cypress/code-coverage": "^3.9.12",
     "@next/eslint-plugin-next": "^12.0.8",
     "@testing-library/cypress": "^8.0.2",
-    "@testing-library/dom": "^8.11.1",
+    "@testing-library/dom": "^8.11.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
