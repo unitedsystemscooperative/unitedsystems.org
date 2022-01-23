@@ -23,6 +23,7 @@
     "report-dir": "coverage-cypress"
   },
   "dependencies": {
+    "@admiralfeb/ed-calculations": "^1.0.0",
     "@admiralfeb/react-components": "^1.2.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",

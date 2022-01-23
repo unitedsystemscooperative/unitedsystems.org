@@ -1,4 +1,4 @@
-import { getStationSize } from '~/edsmQueries/functions/getStationSize';
+import { getStationSize } from '@/functions/getStationSize';
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import { CopyButton } from '@/components/_common';
 

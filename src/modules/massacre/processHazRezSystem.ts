@@ -3,7 +3,7 @@ import {
   getFactionsinSystem,
   getStationsinSystem,
   getSystemsinSphere,
-} from '~/edsmQueries/functions';
+} from '@admiralfeb/ed-calculations/dist/edsmQueries';
 import { IFactionMission, IFactionwMissions, IMassacreTrack } from './massacreTrack';
 import { ReputationLevels } from './reputationLevels';
 

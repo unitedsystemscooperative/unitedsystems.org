@@ -1,4 +1,4 @@
-import { buildInaraLink } from '@/functions/buildInaraLink';
+import { buildInaraLink } from '@admiralfeb/ed-calculations/dist/functions';
 import { useSystems } from '~/about/hooks/useSystems';
 import { System } from '~/about/models/system';
 import { EDSpinner } from '@admiralfeb/react-components';
@@ -29,7 +29,7 @@ const SystemList = ({ title, systems }: { title: string; systems: System[] }) =>
           button
           key={system.name}
           component={Link}
-          href={buildInaraLink('system', system.name)}
+          href={buildInaraLink({ searchType: 'system', value: system.name })}
           target="_blank">
           <ListItemText primary={system.name} />
         </ListItem>

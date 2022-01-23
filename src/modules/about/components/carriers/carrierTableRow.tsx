@@ -1,4 +1,4 @@
-import { buildInaraLink } from '@/functions/buildInaraLink';
+import { buildInaraLink } from '@admiralfeb/ed-calculations/dist/functions';
 import { IFleetCarrier } from '~/about/models/fleetCarrier';
 import { Link, TableCell } from '@mui/material';
 
@@ -7,7 +7,9 @@ export const CarrierTableRow = ({ carrier }: { carrier: IFleetCarrier }) => {
     <>
       <TableCell>{carrier.name}</TableCell>
       <TableCell>
-        <Link href={buildInaraLink('fleetcarrier', carrier.id)} target="_blank">
+        <Link
+          href={buildInaraLink({ searchType: 'fleetcarrier', value: carrier.id })}
+          target="_blank">
           {carrier.id}
         </Link>
       </TableCell>
