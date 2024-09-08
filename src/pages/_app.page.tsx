@@ -2,7 +2,7 @@ import { PrimaryLayout } from '@/layouts';
 import createEmotionCache from '@/styles/createEmotionCache';
 import { theme } from '@/styles/theme';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import DateAdapter from '@mui/x-date-pickers/AdapterLuxon';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { Provider } from 'next-auth/client';
@@ -37,7 +37,7 @@ const USCApp = ({ Component, emotionCache = USCEmotionCache, pageProps }: USCApp
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </Head>
       <Provider session={pageProps.session}>
-        <LocalizationProvider dateAdapter={DateAdapter} locale="en-ca">
+        <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="en-ca">
           <SnackbarProvider maxSnack={3}>
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={theme}>
