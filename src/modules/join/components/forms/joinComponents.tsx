@@ -108,15 +108,15 @@ export const FormCmdrName = ({ control }: FormControlProps) => {
 export const FormDiscordName = ({ control }: FormControlProps) => {
   return (
     <FormTextField
-      question="Please enter your discord name in format: name#1234"
+      question="Please enter your discord name"
       label="Discord Tag"
       controllerProps={{
         name: 'discord',
         rules: {
-          required: 'The Discord tag is required.',
-          pattern: {
-            value: /^.+#\d{4}$/gi,
-            message: 'This must be in {username}#0000 format',
+          required: 'Your Discord name is required.',
+          minLength: {
+            value: 2,
+            message: 'Your Discord name must be longer than 2 characters',
           },
         },
         control,
