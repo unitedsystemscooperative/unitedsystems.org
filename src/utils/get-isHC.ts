@@ -1,8 +1,9 @@
+import { connectToDatabase } from '@/lib/db';
 import { IMember, Rank } from '@@/admin/models';
-import { Db } from 'mongodb4';
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 
-export async function getIsHC(req, db: Db) {
+export async function getIsHC(req) {
+  const db = await connectToDatabase();
   const session = await getSession({ req });
   let isHC = false;
   if (session) {

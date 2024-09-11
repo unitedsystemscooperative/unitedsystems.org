@@ -1,13 +1,13 @@
+import { EDSpinner } from '@/components/_common/spinner';
 import { buildInaraLink } from '@/functions/buildInaraLink';
 import { useSystems } from '@@/about/hooks/useSystems';
 import { System } from '@@/about/models/system';
-import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Container,
   Fade,
   Link,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   ListSubheader,
   Paper,
@@ -25,14 +25,13 @@ const SystemList = ({ title, systems }: { title: string; systems: System[] }) =>
         </ListSubheader>
       }>
       {systems.map((system) => (
-        <ListItem
-          button
+        <ListItemButton
           key={system.name}
           component={Link}
           href={buildInaraLink('system', system.name)}
           target="_blank">
           <ListItemText primary={system.name} />
-        </ListItem>
+        </ListItemButton>
       ))}
     </List>
   );
@@ -65,13 +64,12 @@ export const AboutSystems = ({ init }: { init?: System[] }) => {
           Faction Information
         </Typography>
         <List component={Paper} sx={{ margin: 'auto' }}>
-          <ListItem
-            button
+          <ListItemButton
             component={Link}
             href="https://inara.cz/galaxy-minorfaction/78085/"
             target="_blank">
             <ListItemText primary="United Systems Cooperative - Minor Faction" />
-          </ListItem>
+          </ListItemButton>
           {factionSystems && (
             <>
               <SystemList

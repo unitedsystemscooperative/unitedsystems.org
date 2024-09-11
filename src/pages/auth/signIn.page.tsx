@@ -2,7 +2,7 @@ import { redirects } from '@/data/redirects';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, Paper, TextField } from '@mui/material';
 import { GetServerSideProps } from 'next';
-import { getSession, signIn } from 'next-auth/client';
+import { getSession, signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
 const SignInPage = () => {

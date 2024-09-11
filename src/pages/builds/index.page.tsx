@@ -1,5 +1,4 @@
 import { getBuilds } from '#/builds.api';
-import { connectToDatabase } from '@/utils/mongo';
 import { BuildSystem } from '@@/builds/components';
 import { IBuildInfov2 } from '@@/builds/models';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
@@ -18,8 +17,7 @@ const BuildPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => 
 };
 
 export const getStaticProps: GetStaticProps<{ data: IBuildInfov2[] }> = async () => {
-  const { db } = await connectToDatabase();
-  const builds = await getBuilds(db);
+  const builds = await getBuilds();
 
   return { props: { data: builds } };
 };

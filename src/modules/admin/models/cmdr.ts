@@ -1,10 +1,10 @@
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 import { Platform } from './platforms';
 import { Rank } from './ranks';
 import { Referral } from './referrals';
 import { Region } from './regions';
 
-export interface ICMDR extends IDbItem {
+interface CMDR {
   cmdrName: string;
   discordName: string;
   discordJoinDate: Date;
@@ -18,7 +18,9 @@ export interface ICMDR extends IDbItem {
   isDeleted?: boolean;
 }
 
-export interface IMember extends ICMDR {
+export type ICMDR = WithStringId<CMDR>;
+
+export interface IMember extends WithStringId<ICMDR> {
   joinDate: Date;
   promotion?: Rank | null;
   isInInaraSquad: boolean;
@@ -27,12 +29,12 @@ export interface IMember extends ICMDR {
   entersVoice: boolean;
 }
 
-export interface IGuest extends ICMDR {
+export interface IGuest extends WithStringId<ICMDR> {
   ref1: Referral;
   ref2?: string;
 }
 
-export interface IAmbassador extends ICMDR {
+export interface IAmbassador extends WithStringId<ICMDR> {
   groupRepresented: string;
   isCoalition: boolean;
 }

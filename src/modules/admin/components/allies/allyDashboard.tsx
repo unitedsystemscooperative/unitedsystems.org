@@ -1,17 +1,9 @@
 import { TitleBarwAdd } from '@/components/_common';
+import { EDSpinner } from '@/components/_common/spinner';
 import { useAllies } from '@@/about/hooks/useAllies';
 import { IAlly } from '@@/about/models/ally';
-import { EDSpinner } from '@admiralfeb/react-components';
 import { Delete, Edit } from '@mui/icons-material';
-import {
-  Container,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  Paper,
-} from '@mui/material';
+import { Container, IconButton, List, ListItem, ListItemText, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { AllyDialog } from './allyDialog';
@@ -78,10 +70,10 @@ export const AllyDashboard = ({ init }: { init?: IAlly[] }) => {
         }}>
         <TitleBarwAdd title="Ally Dashboard" addTip="Add an ally" addItem={handleOpenDialog} />
         <List>
-          {allies.map((ally: { name: string }, i: number) => (
+          {allies.map((ally, i: number) => (
             <ListItem key={i}>
               <ListItemText primary={`${ally.name}`} />
-              <ListItemSecondaryAction>
+              <ListItem secondaryAction>
                 <IconButton
                   edge="end"
                   sx={{ ml: 1 }}
@@ -96,7 +88,7 @@ export const AllyDashboard = ({ init }: { init?: IAlly[] }) => {
                   size="large">
                   <Delete />
                 </IconButton>
-              </ListItemSecondaryAction>
+              </ListItem>
             </ListItem>
           ))}
         </List>

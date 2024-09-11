@@ -1,40 +1,13 @@
-import { connectToDatabase } from '@/utils/mongo';
+import mongoClient from '@/lib/db';
 import { ICMDR } from '@@/admin/models/cmdr';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import EmailProvider from 'next-auth/providers/email';
 
-const signIn = async (user) => {
-  const { db } = await connectToDatabase();
-  const email: string = user.email;
-
-  const cursor = db.collection<ICMDR>('cmdrs').find({});
-  const members = await cursor.toArray();
-  cursor.close();
-  const authUser = members.find((x) => x.email.toLowerCase() === email.toLowerCase());
-
-  return authUser ? true : false;
-};
-
-const jwt = async (token, user) => {
-  if (user) {
-    const email: string = user.email;
-    const { db } = await connectToDatabase();
-    const cursor = db.collection<ICMDR>('cmdrs').find({});
-    const members = await cursor.toArray();
-    cursor.close();
-    const authUser = members.find((x) => x.email.toLowerCase() === email);
-    token = { ...token, ...authUser };
-  }
-  return token;
-};
-
-// For more information on each option (and a full list of options) go to
-// https://next-auth.js.org/configuration/options
-const options = {
+export default NextAuth({
   // https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Email({
+    EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER,
         port: 465,
@@ -52,7 +25,8 @@ const options = {
   // Notes:
   // * You must to install an appropriate node_module for your database
   // * The Email provider requires a database (OAuth providers do not)
-  database: process.env.MONGODB_URI,
+  // database: process.env.MONGODB_URI,
+  adapter: MongoDBAdapter(mongoClient),
 
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
@@ -63,7 +37,7 @@ const options = {
     // Use JSON Web Tokens for session instead of database sessions.
     // This option can be used with or without a database for users/accounts.
     // Note: `jwt` is automatically set to `true` if no database is specified.
-    jwt: true,
+    strategy: 'jwt',
 
     // Seconds - How long until an idle session expires and is no longer valid.
     // maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -74,18 +48,8 @@ const options = {
     // updateAge: 24 * 60 * 60, // 24 hours
   },
 
-  // JSON Web tokens are only used for sessions if the `jwt: true` session
-  // option is set - or by default if no database is specified.
-  // https://next-auth.js.org/configuration/options#jwt
-  jwt: {
-    // A secret to use for key generation (you should set this explicitly)
-    // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
-    // Set to true to use encryption (default: false)
-    encryption: false,
-    // You can define your own encode/decode functions for signing and encryption
-    // if you want to override the default behaviour.
-    // encode: async ({ secret, token, maxAge }) => {},
-    // decode: async ({ secret, token, maxAge }) => {},
+  theme: {
+    colorScheme: 'dark',
   },
 
   // You can define custom pages to override the built-in pages.
@@ -104,10 +68,32 @@ const options = {
   // when an action is performed.
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
-    signIn: signIn,
+    signIn: async ({ user }) => {
+      const db = (await mongoClient).db();
+      const email: string = user.email;
+
+      const cursor = db.collection<ICMDR>('cmdrs').find({});
+      const members = await cursor.toArray();
+      cursor.close();
+      const authUser = members.find((x) => x.email.toLowerCase() === email.toLowerCase());
+
+      return authUser ? true : false;
+    },
     // redirect: redirect,
     // session: session,
-    jwt: jwt,
+    jwt: async ({ token, user }) => {
+      if (user) {
+        const db = (await mongoClient).db();
+
+        const email: string = user.email;
+        const cursor = db.collection<ICMDR>('cmdrs').find({});
+        const members = await cursor.toArray();
+        cursor.close();
+        const authUser = members.find((x) => x.email.toLowerCase() === email);
+        token = { ...token, ...authUser };
+      }
+      return token;
+    },
   },
 
   // Events are useful for logging
@@ -116,6 +102,4 @@ const options = {
 
   // Enable debug messages in the console if you are having problems
   debug: false,
-};
-
-export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);
+});

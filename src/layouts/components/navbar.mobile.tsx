@@ -13,14 +13,14 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { signout, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/react';
 import { KeyboardEvent, MouseEvent, useState } from 'react';
 import Link from './navLink';
 
 export const NavbarMobile = (props: { title: string | undefined; navItems: INavItem[] }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { title, navItems } = props;
-  const [session] = useSession();
+  const { data: session } = useSession();
   const isCommand = useAdmin();
   const theme = useTheme();
 
@@ -52,7 +52,7 @@ export const NavbarMobile = (props: { title: string | undefined; navItems: INavI
           </Link>
         )}
         {session ? (
-          <ListItem button component="button" onClick={() => signout()}>
+          <ListItem button component="button" onClick={() => signOut()}>
             <ListItemText primary="Sign Out" />
           </ListItem>
         ) : (

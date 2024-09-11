@@ -1,4 +1,3 @@
-import { connectToDatabase } from '@/utils/mongo';
 import { BuildDetail } from '@@/builds/components/builds/buildDetail';
 import { IBuildInfov2 } from '@@/builds/models';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
@@ -18,15 +17,13 @@ const BuildDetailPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps
 };
 
 export const getStaticProps: GetStaticProps<{ data: IBuildInfov2[] }> = async () => {
-  const { db } = await connectToDatabase();
-  const builds = await getBuilds(db);
+  const builds = await getBuilds();
 
   return { props: { data: builds } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { db } = await connectToDatabase();
-  const builds = await getBuilds(db);
+  const builds = await getBuilds();
 
   const paths = builds.map((build) => ({ params: { id: build._id.toString() } }));
   return { paths, fallback: 'blocking' };

@@ -1,4 +1,5 @@
 import { BoxwMB1andFlex, DatePickerwMB1, TextFieldwM1 } from '@/components/_common';
+import { WithOptionalId } from '@/utils/db';
 import {
   IMember,
   Platform,
@@ -23,14 +24,9 @@ import {
 } from '@mui/material';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { CmdrDialogProps } from './cmdrDialogProps';
 
-export interface MemberDialogProps {
-  open: boolean;
-  values: IMember[];
-  onClose: (value?: IMember, membersToEdit?: IMember[]) => void;
-}
-
-export const MemberDialog = (props: MemberDialogProps) => {
+export const MemberDialog = (props: CmdrDialogProps<IMember>) => {
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset, control } = useForm<Omit<IMember, '_id'>>();
 
@@ -86,7 +82,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
 
   const onSubmit: SubmitHandler<IMember> = (data) => {
     if (values.length > 1) {
-      const multiCmdrUpdate: IMember = {
+      const multiCmdrUpdate: Omit<IMember, '_id'> = {
         cmdrName: undefined,
         discordName: undefined,
         joinDate: data.joinDate,
@@ -106,7 +102,7 @@ export const MemberDialog = (props: MemberDialogProps) => {
       onClose(multiCmdrUpdate, values);
     } else {
       const _id = values[0]?._id ? values[0]._id : undefined;
-      const singleCmdrUpdate: IMember = {
+      const singleCmdrUpdate: WithOptionalId<IMember> = {
         _id,
         cmdrName: data.cmdrName,
         discordName: data.discordName,
@@ -143,10 +139,9 @@ export const MemberDialog = (props: MemberDialogProps) => {
               {...register('cmdrName', { required: true })}
             />
           )}
-          {/* TODO: Enforce Discord Tag schema */}
           {values?.length <= 1 && (
             <TextFieldwM1
-              label="Discord Handle - Format [name]#0000"
+              label="Discord Handle"
               fullWidth
               disabled={values?.length > 1}
               {...register('discordName', { required: true })}
@@ -162,10 +157,11 @@ export const MemberDialog = (props: MemberDialogProps) => {
                   <DatePickerwMB1
                     label="Join Date"
                     disableFuture
-                    mask="____-__-__"
                     {...field}
-                    clearable
-                    renderInput={(params) => <TextField {...params} />}
+                    slotProps={{
+                      field: { clearable: true },
+                      textField: { fullWidth: true, ...field },
+                    }}
                   />
                 )}
               />
@@ -176,10 +172,11 @@ export const MemberDialog = (props: MemberDialogProps) => {
                   <DatePickerwMB1
                     label="Discord Join Date"
                     disableFuture
-                    mask="____-__-__"
                     {...field}
-                    clearable
-                    renderInput={(params) => <TextField {...params} />}
+                    slotProps={{
+                      field: { clearable: true },
+                      textField: { fullWidth: true, ...field },
+                    }}
                   />
                 )}
               />

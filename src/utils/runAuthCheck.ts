@@ -1,8 +1,8 @@
-import { Db } from 'mongodb4';
+import { Db } from 'mongodb';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import { getIsHC } from './get-isHC';
-import { connectToDatabase } from './mongo';
+import { connectToDatabase } from '@/lib/db';
 
 /**
  * For use in getServerSideProps of admin pages.
@@ -18,8 +18,8 @@ export const runAdminAuthCheck = async <T = never>(
   const session = await getSession(context);
 
   if (session) {
-    const { db } = await connectToDatabase();
-    const isHC = await getIsHC(context.req, db);
+    const db = await connectToDatabase();
+    const isHC = await getIsHC(context.req);
     if (isHC) {
       if (fetchFn) {
         const result = await fetchFn(db);

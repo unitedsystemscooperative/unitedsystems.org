@@ -1,8 +1,9 @@
+import { connectToDatabase } from '@/lib/db';
 import { IMember } from '@@/admin/models';
-import { Db } from 'mongodb4';
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 
-export async function getUserId(req, db: Db): Promise<string> {
+export async function getUserId(req): Promise<string> {
+  const db = await connectToDatabase();
   const session = await getSession({ req });
   let id: string;
   if (session) {

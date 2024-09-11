@@ -1,15 +1,13 @@
+import { deleteItem, getItems, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { connectToDatabase, deleteItem, getItems, insertItem, updateItem } from '@/utils/mongo';
 import { IAlly } from '@@/about/models/ally';
-import { Db } from 'mongodb4';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'allies';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
-    const isHC = await getIsHC(req, db);
+    const isHC = await getIsHC(req);
 
     const ally: IAlly = req.body;
 
@@ -20,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
 
-        await insertItem(COLLECTION, ally, db);
+        await insertItem(COLLECTION, ally);
 
         res.status(200).end();
 
@@ -31,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
 
-        const updateResult = await updateItem(COLLECTION, ally, db);
+        const updateResult = await updateItem(COLLECTION, ally);
         if (updateResult) res.status(200).end();
         else res.status(500).send(`Failed to update id: ${req.body._id}`);
 
@@ -41,12 +39,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        await deleteItem(COLLECTION, req.query['id'] as string, db);
+        await deleteItem(COLLECTION, req.query['id'] as string);
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const result = await getAllies(db);
+        const result = await getAllies();
 
         res.status(200).send(result);
         break;
@@ -56,8 +54,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export const getAllies = async (db: Db) => {
-  const items = await getItems<IAlly>(COLLECTION, db, 'name', 1);
+export const getAllies = async () => {
+  const items = await getItems<IAlly>(COLLECTION, 'name', 1);
   return items.map((x) => {
     x._id = x._id.toString();
     return x;

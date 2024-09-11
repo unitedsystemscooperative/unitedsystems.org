@@ -1,5 +1,4 @@
 import { getFCs } from '#/fc.api';
-import { connectToDatabase } from '@/utils/mongo';
 import { Carriers } from '@@/about/components';
 import { AboutLayout } from '@@/about/layouts/about';
 import { IFleetCarrier } from '@@/about/models/fleetCarrier';
@@ -21,8 +20,7 @@ const FleetCarriersPage = ({ data }: InferGetStaticPropsType<typeof getStaticPro
 };
 
 export const getStaticProps: GetStaticProps<{ data: IFleetCarrier[] }> = async () => {
-  const { db } = await connectToDatabase();
-  const fcs = await getFCs(db);
+  const fcs = await getFCs();
 
   return { props: { data: fcs } };
 };

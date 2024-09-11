@@ -13,9 +13,9 @@
 //   moreInfo?: string;
 // }
 
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 
-export interface IBuildInfov2 extends IDbItem {
+interface BuildInfov2 {
   shipId: string;
   title: string;
   specializations: string[];
@@ -30,3 +30,5 @@ export interface IBuildInfov2 extends IDbItem {
   description: string;
   jsonBuild: string;
 }
+
+export type IBuildInfov2 = WithStringId<BuildInfov2>;

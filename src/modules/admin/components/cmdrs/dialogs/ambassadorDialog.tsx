@@ -1,4 +1,5 @@
 import { DatePickerwMB1, TextFieldwM1 } from '@/components/_common';
+import { WithOptionalId } from '@/utils/db';
 import { IAmbassador, Platform, Rank, Region, RegionString } from '@@/admin/models';
 import {
   Button,
@@ -12,14 +13,9 @@ import {
 } from '@mui/material';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { CmdrDialogProps } from './cmdrDialogProps';
 
-export interface AmbassadorDialogProps {
-  open: boolean;
-  values: IAmbassador[];
-  onClose: (value?: IAmbassador, membersToEdit?: IAmbassador[]) => void;
-}
-
-export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
+export const AmbassadorDialog = (props: CmdrDialogProps<IAmbassador>) => {
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset, control } = useForm<Omit<IAmbassador, '_id'>>();
 
@@ -64,7 +60,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
 
   const onSubmit: SubmitHandler<IAmbassador> = (data) => {
     if (values.length > 1) {
-      const multiCmdrUpdate: IAmbassador = {
+      const multiCmdrUpdate: WithOptionalId<IAmbassador> = {
         cmdrName: undefined,
         discordName: undefined,
         discordJoinDate: data.discordJoinDate,
@@ -80,7 +76,7 @@ export const AmbassadorDialog = (props: AmbassadorDialogProps) => {
       onClose(multiCmdrUpdate, values);
     } else {
       const _id = values[0]?._id ? values[0]._id : undefined;
-      const singleCmdrUpdate: IAmbassador = {
+      const singleCmdrUpdate: WithOptionalId<IAmbassador> = {
         _id,
         cmdrName: data.cmdrName,
         discordName: data.discordName,

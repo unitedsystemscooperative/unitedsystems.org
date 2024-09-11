@@ -1,9 +1,11 @@
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 
-export interface IFleetCarrier extends IDbItem {
+interface FleetCarrier {
   owner: string;
   name: string;
   id: string;
   inaraLink?: string;
   purpose: string;
 }
+
+export type IFleetCarrier = WithStringId<FleetCarrier>;

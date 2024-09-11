@@ -43,7 +43,6 @@ const BuildSystemDisplay = () => {
   }, [areBuildsLoading, filterBuilds, buildError, enqueueSnackbar]);
 
   const handleAddBuild = () => {
-    console.log('BuildSystem: Add clicked');
     addBuild();
   };
 

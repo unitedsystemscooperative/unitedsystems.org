@@ -3,10 +3,10 @@ import Link from '@/layouts/components/navLink';
 import { INavItem } from '@/models/navItem';
 import { AppBar, Button, Toolbar, useTheme } from '@mui/material';
 import { Box, SxProps } from '@mui/system';
-import { signout, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/react';
 
 export const NavbarFull = (props: { navItems: INavItem[] }) => {
-  const [session] = useSession();
+  const { data: session } = useSession();
   const isCommand = useAdmin();
   const theme = useTheme();
   const { navItems } = props;
@@ -60,7 +60,7 @@ export const NavbarFull = (props: { navItems: INavItem[] }) => {
           </Link>
         )}
         {session ? (
-          <Button onClick={() => signout()} color="secondary" sx={sxJoinLink} variant="contained">
+          <Button onClick={() => signOut()} color="secondary" sx={sxJoinLink} variant="contained">
             Sign Out
           </Button>
         ) : (

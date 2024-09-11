@@ -1,5 +1,7 @@
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 
-export interface IAlly extends IDbItem {
+interface Ally {
   name: string;
 }
+
+export type IAlly = WithStringId<Ally>;

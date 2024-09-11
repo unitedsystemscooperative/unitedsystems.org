@@ -1,4 +1,5 @@
 import { TextFieldwM1 } from '@/components/_common';
+import { WithOptionalId } from '@/utils/db';
 import {
   IGuest,
   Platform,
@@ -8,7 +9,6 @@ import {
   Region,
   RegionString,
 } from '@@/admin/models';
-import { DatePicker } from '@mui/lab';
 import {
   Button,
   Dialog,
@@ -17,18 +17,13 @@ import {
   DialogContentText,
   DialogTitle,
   MenuItem,
-  TextField,
 } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { CmdrDialogProps } from './cmdrDialogProps';
 
-export interface GuestDialogProps {
-  open: boolean;
-  values: IGuest[];
-  onClose: (value?: IGuest, membersToEdit?: IGuest[]) => void;
-}
-
-export const GuestDialog = (props: GuestDialogProps) => {
+export const GuestDialog = (props: CmdrDialogProps<IGuest>) => {
   const { open, values, onClose } = props;
   const { register, handleSubmit, reset, control } = useForm<Omit<IGuest, '_id'>>();
 
@@ -73,9 +68,9 @@ export const GuestDialog = (props: GuestDialogProps) => {
     onClose();
   };
 
-  const onSubmit: SubmitHandler<IGuest> = (data) => {
+  const onSubmit: SubmitHandler<Omit<IGuest, '_id'>> = (data) => {
     if (values.length > 1) {
-      const multiCmdrUpdate: IGuest = {
+      const multiCmdrUpdate: Omit<IGuest, '_id'> = {
         cmdrName: undefined,
         discordName: undefined,
         discordJoinDate: data.discordJoinDate,
@@ -90,7 +85,7 @@ export const GuestDialog = (props: GuestDialogProps) => {
       onClose(multiCmdrUpdate, values);
     } else {
       const _id = values[0]?._id ? values[0]._id : undefined;
-      const singleCmdrUpdate: IGuest = {
+      const singleCmdrUpdate: WithOptionalId<IGuest> = {
         _id,
         cmdrName: data.cmdrName,
         discordName: data.discordName,
@@ -142,10 +137,11 @@ export const GuestDialog = (props: GuestDialogProps) => {
                 <DatePicker
                   label="Discord Join Date"
                   disableFuture
-                  mask="____-__-__"
                   {...field}
-                  clearable
-                  renderInput={(params) => <TextField fullWidth {...params} />}
+                  slotProps={{
+                    field: { clearable: true },
+                    textField: { fullWidth: true },
+                  }}
                 />
               )}
             />

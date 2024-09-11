@@ -1,6 +1,5 @@
 import { useCMDRs } from '@/hooks/useCmdrs';
 import { IAmbassador, ICMDRs, IGuest, IMember } from '@@/admin/models';
-import { EDSpinner } from '@admiralfeb/react-components';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
   Button,
@@ -21,6 +20,9 @@ import { GuestDialog } from './dialogs/guestDialog';
 import { MemberDialog } from './dialogs/memberDialog';
 import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
+import { EDSpinner } from '@/components/_common/spinner';
+import { WithOptionalId } from '@/utils/db';
+import { WithId } from 'mongodb';
 
 interface TitleBarProps {
   setView: (CmdrView) => void;
@@ -150,8 +152,8 @@ export const CMDRDashboard = ({ init }: { init?: ICMDRs }) => {
   };
 
   const handleCloseDialog = async (
-    returnedCmdr?: IMember | IGuest | IAmbassador,
-    returnedCmdrs?: IMember[] | IGuest[] | IAmbassador[]
+    returnedCmdr?: WithId<IMember | IGuest | IAmbassador>,
+    returnedCmdrs?: WithOptionalId<IMember | IGuest | IAmbassador>[]
   ) => {
     setShowDialog(undefined);
 

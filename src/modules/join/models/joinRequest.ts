@@ -1,7 +1,7 @@
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 import { Platform, Referral, Region } from '@@/admin/models';
 
-export interface IJoinRequest extends IDbItem {
+interface JoinRequest {
   //   type: 'join' | 'guest' | 'ambassador';
   timeStamp?: Date | string;
   type: string;
@@ -22,3 +22,5 @@ export interface IJoinRequest extends IDbItem {
   needPrivate?: boolean;
   group?: string;
 }
+
+export type IJoinRequest = WithStringId<JoinRequest>;

@@ -1,7 +1,7 @@
+import { getItems, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { connectToDatabase, getItems, insertItem, updateItem } from '@/utils/mongo';
 import { IAmbassador, ICMDR, ICMDRs, IGuest, IMember, Rank } from '@@/admin/models';
-import { Db } from 'mongodb4';
+import { WithId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
@@ -13,8 +13,7 @@ const determineCMDRisMember = (cmdr: ICMDR): cmdr is IMember =>
 const COLLECTION = 'cmdrs';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
-    const isHC = await getIsHC(req, db);
+    const isHC = await getIsHC(req);
 
     const cmdr: IAmbassador | IGuest | IMember = req.body;
 
@@ -27,7 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         if (determineCMDRisMember(cmdr)) cmdr.joinDate = new Date(cmdr.joinDate);
         cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
-        await insertItem(COLLECTION, cmdr, db);
+        await insertItem(COLLECTION, cmdr);
 
         res.status(200).end();
 
@@ -40,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if (determineCMDRisMember(cmdr)) cmdr.joinDate = new Date(cmdr.joinDate);
         cmdr.discordJoinDate = new Date(cmdr.discordJoinDate);
 
-        const updateResult = await updateItem(COLLECTION, cmdr, db);
+        const updateResult = await updateItem(COLLECTION, cmdr);
         if (updateResult) res.status(200).end();
         else res.status(500).send(`Failed to update id: ${req.body._id}`);
 
@@ -52,12 +51,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         const idtoDelete = req.query['id'] as string;
-        const partialCmdr: Partial<IAmbassador | IGuest | IMember> = {
+        const partialCmdr: WithId<Partial<IAmbassador | IGuest | IMember>> = {
           _id: idtoDelete,
           isDeleted: true,
         };
 
-        const deleteResult = await updateItem(COLLECTION, partialCmdr, db);
+        const deleteResult = await updateItem(COLLECTION, partialCmdr);
 
         if (deleteResult) res.status(200).end();
         else res.status(500).send(`Failed to update id: ${req.body._id}`);
@@ -68,7 +67,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.status(401).send('unauthorized');
           return;
         }
-        const result = await getCmdrs(db);
+        const result = await getCmdrs();
 
         res.status(200).send(result);
         break;
@@ -79,8 +78,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export const getCmdrs = async (db: Db): Promise<ICMDRs> => {
-  const items = await getItems<IAmbassador | IGuest | IMember>(COLLECTION, db, 'cmdrName', 1);
+export const getCmdrs = async (): Promise<ICMDRs> => {
+  const items = await getItems<IAmbassador | IGuest | IMember>(COLLECTION, 'cmdrName', 1);
   const newItems = items.map((x) => {
     x._id = x._id.toString();
     return x;

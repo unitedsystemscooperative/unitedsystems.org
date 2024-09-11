@@ -9,7 +9,7 @@ import {
   DialogTitle,
   FormGroup,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { OptionsObject, SnackbarKey, SnackbarMessage, useSnackbar } from 'notistack';
 import { ChangeEvent, Fragment, MouseEvent, useEffect, useMemo, useReducer } from 'react';
@@ -19,6 +19,7 @@ import { ShipAutocomplete } from '../shipAutocomplete';
 import { BuildAddText } from './buildAddText';
 import { BuildCheckBox } from './buildCheckBox';
 import { BuildOption } from './buildOption';
+import { WithOptionalId } from '@/utils/db';
 
 export interface BuildDialogProps {
   open: boolean;
@@ -28,7 +29,7 @@ export interface BuildDialogProps {
   onClose: (build?: IBuildInfov2) => void;
 }
 
-const DEFAULTBUILD: IBuildInfov2 = {
+const DEFAULTBUILD: WithOptionalId<IBuildInfov2> = {
   shipId: 'adder',
   title: '',
   specializations: [],
@@ -42,10 +43,6 @@ const DEFAULTBUILD: IBuildInfov2 = {
   description: '',
   jsonBuild: '',
 };
-
-function isOptionEqualToValue(option: IBuildInfov2, value: IBuildInfov2): boolean {
-  return option._id.toString() === value._id.toString();
-}
 
 type action =
   | { type: 'default'; value?: string }

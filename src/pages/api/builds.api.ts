@@ -1,27 +1,27 @@
-import { getIsHC } from '@/utils/get-isHC';
-import { getUserId } from '@/utils/get-userId';
+import { connectToDatabase } from '@/lib/db';
 import {
-  connectToDatabase,
   deleteItem,
   getItems,
   getItemsByQuery,
   insertItem,
   updateItem,
-} from '@/utils/mongo';
+  WithStringId,
+} from '@/utils/db';
+import { getIsHC } from '@/utils/get-isHC';
+import { getUserId } from '@/utils/get-userId';
 import { IBuildInfov2 } from '@@/builds/models';
-import { Db, Filter, ObjectId } from 'mongodb4';
+import { Filter, WithId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'shipBuildsv2';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { db } = await connectToDatabase();
-    const isHC = await getIsHC(req, db);
-    const userId = await getUserId(req, db);
+    const isHC = await getIsHC(req);
+    const userId = await getUserId(req);
 
     const build: IBuildInfov2 = req.body;
-    const updateBuild: Partial<IBuildInfov2> = req.body;
+    const updateBuild: WithStringId<Partial<IBuildInfov2>> = req.body;
 
     switch (req.method) {
       case 'POST':
@@ -29,8 +29,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if (userId) {
           newBuild.authorId = userId;
         }
-        const insertedId = await insertItem(COLLECTION, newBuild, db);
-        await processOtherBuilds({ ...newBuild, _id: insertedId }, db);
+        const insertedId = await insertItem(COLLECTION, newBuild);
+        await processOtherBuilds({ ...newBuild, _id: insertedId });
 
         res.status(200).end();
         break;
@@ -43,12 +43,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           }
         }
 
-        const oldBuild = await db
-          .collection<IBuildInfov2>(COLLECTION)
-          .findOne({ _id: new ObjectId(updateBuild._id) });
+        const db = await connectToDatabase();
 
-        const updateResult = await updateItem(COLLECTION, updateBuild, db);
-        await processOtherBuilds(updateBuild, db, oldBuild);
+        const oldBuild = await db
+          .collection<WithId<IBuildInfov2>>(COLLECTION)
+          .findOne({ _id: updateBuild._id });
+
+        const updateResult = await updateItem(COLLECTION, updateBuild);
+        await processOtherBuilds(updateBuild, oldBuild);
 
         if (updateResult) res.status(200).end();
         else res.status(500).send(`Failed to update id: ${req.body._id}`);
@@ -64,9 +66,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const buildId = req.query['id'] as string;
         const buildQuery: Filter<IBuildInfov2> = { related: { $in: [buildId] } };
 
-        const builds = await getItemsByQuery<IBuildInfov2>(COLLECTION, db, buildQuery);
+        const builds = await getItemsByQuery<IBuildInfov2>(COLLECTION, buildQuery);
 
-        await deleteItem(COLLECTION, req.query['id'] as string, db);
+        await deleteItem(COLLECTION, req.query['id'] as string);
         for (const b of builds) {
           if (b.related.includes(buildId)) {
             // remove specific item from related
@@ -74,14 +76,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               ...b.related.slice(0, b.related.indexOf(buildId)),
               ...b.related.slice(b.related.indexOf(buildId) + 1),
             ];
-            await updateItem<IBuildInfov2>(COLLECTION, { ...b, related: newRelated }, db);
+            await updateItem<IBuildInfov2>(COLLECTION, { ...b, related: newRelated });
           }
         }
         res.status(200).end();
         break;
       case 'GET':
       default:
-        const result = await getBuilds(db);
+        const result = await getBuilds();
 
         res.status(200).send(result);
         break;
@@ -92,12 +94,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export const getBuilds = async (db: Db) => {
-  const items = await getItems<IBuildInfov2>(COLLECTION, db, 'shipId', 1);
-  return items.map((x) => {
-    x._id = x._id.toString();
-    return x;
-  });
+export const getBuilds = async () => {
+  const items = await getItems<IBuildInfov2>(COLLECTION, 'shipId', 1);
+  console.log({ items });
+  return items;
 };
 
 /**
@@ -107,11 +107,10 @@ export const getBuilds = async (db: Db) => {
  */
 const processOtherBuilds = async (
   newBuild: IBuildInfov2 | Partial<IBuildInfov2>,
-  db: Db,
   oldBuild?: IBuildInfov2
 ) => {
   if (newBuild.related && newBuild.related !== oldBuild?.related) {
-    const builds = await getItems<IBuildInfov2>(COLLECTION, db);
+    const builds = await getItems<IBuildInfov2>(COLLECTION);
     const newRelated = newBuild.related.filter((x) => !oldBuild.related?.includes(x)) ?? [];
     const oldRelated = oldBuild?.related.filter((x) => !newBuild.related?.includes(x)) ?? [];
 
@@ -119,11 +118,7 @@ const processOtherBuilds = async (
       for (const bId of newRelated) {
         const b = builds.find((x) => x._id.toString() === bId);
         if (b) {
-          await updateItem(
-            COLLECTION,
-            { ...b, related: [...b.related, newBuild._id.toString()] },
-            db
-          );
+          await updateItem(COLLECTION, { ...b, related: [...b.related, newBuild._id.toString()] });
         }
       }
     }
@@ -131,17 +126,13 @@ const processOtherBuilds = async (
       for (const bId of oldRelated) {
         const b = builds.find((x) => x._id.toString() === bId);
         if (b) {
-          await updateItem(
-            COLLECTION,
-            {
-              ...b,
-              related: [
-                ...b.related.slice(0, b.related.indexOf(newBuild._id.toString())),
-                ...b.related.slice(b.related.indexOf(newBuild._id.toString() + 1)),
-              ],
-            },
-            db
-          );
+          await updateItem(COLLECTION, {
+            ...b,
+            related: [
+              ...b.related.slice(0, b.related.indexOf(newBuild._id.toString())),
+              ...b.related.slice(b.related.indexOf(newBuild._id.toString() + 1)),
+            ],
+          });
         }
       }
     }

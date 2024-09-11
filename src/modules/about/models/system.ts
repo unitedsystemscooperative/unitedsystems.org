@@ -1,7 +1,9 @@
-import { IDbItem } from '@/models/dbItem';
+import { WithStringId } from '@/utils/db';
 
-export interface System extends IDbItem {
+interface ISystem {
   name: string;
   inaraLink?: string;
   isControlled: boolean;
 }
+
+export type System = WithStringId<ISystem>;

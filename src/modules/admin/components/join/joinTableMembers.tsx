@@ -43,7 +43,7 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
   };
 
   const handleAddMember = (joinInfo: IJoinRequest) => {
-    const newMember: IMember = {
+    const newMember: Omit<IMember, '_id'> = {
       cmdrName: joinInfo.cmdr.toUpperCase(),
       discordName: joinInfo.discord,
       discordJoinDate: null,
@@ -60,7 +60,6 @@ export const MembersTable = ({ members }: { members: IJoinRequest[] }) => {
     setDialog(true);
   };
   const onDialogClose = (value?: IMember) => {
-    console.log({ value });
     if (value) {
       try {
         addCMDR(value);

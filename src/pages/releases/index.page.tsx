@@ -1,6 +1,6 @@
 import { getReleases } from '@@/releases/getReleases';
 import { ReleaseInfo } from '@@/releases/releaseInfo';
-import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import { Container, List, ListItemButton, ListItemText, Paper, Typography } from '@mui/material';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -19,11 +19,11 @@ const ReleaseIndexPage = ({ allReleases }: InferGetStaticPropsType<typeof getSta
         <List component={Paper}>
           {allReleases.map(({ id, date, title }) => (
             <NextLink key={id} href={`/releases/${id}`} passHref>
-              <ListItem button component="a">
+              <ListItemButton component="a">
                 <ListItemText>
                   {title} - {date}
                 </ListItemText>
-              </ListItem>
+              </ListItemButton>
             </NextLink>
           ))}
         </List>
