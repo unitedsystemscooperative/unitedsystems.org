@@ -1,32 +1,24 @@
-import { BuildDetail } from '../../_components/builds/buildDetail';
-import { IBuildInfov2 } from '@/app/builds/_models';
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { getBuilds } from 'src/pages/api/builds.api';
+import { BuildDetail } from '../../_components/builds/buildDetail';
 
-const BuildDetailPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+export async function generateStaticParams() {
+  const builds = await getBuilds();
+
+  const paths = builds.map((build) => ({ id: build._id.toString() }));
+
+  return paths;
+}
+
+export default async function BuildDetailPage() {
+  const builds = await getBuilds();
   return (
     <>
       <Head>
         <title>USC Build</title>
         <meta name="description" content="USC Build Detail" />
       </Head>
-      <BuildDetail init={data} />
+      <BuildDetail init={builds} />
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps<{ data: IBuildInfov2[] }> = async () => {
-  const builds = await getBuilds();
-
-  return { props: { data: builds } };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const builds = await getBuilds();
-
-  const paths = builds.map((build) => ({ params: { id: build._id.toString() } }));
-  return { paths, fallback: 'blocking' };
-};
-
-export default BuildDetailPage;
+}

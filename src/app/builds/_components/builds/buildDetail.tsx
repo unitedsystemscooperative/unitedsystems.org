@@ -1,3 +1,4 @@
+'use client';
 import { USCMarkdown } from '@/components/uscmarkdown';
 import { BoxwMB1, CenteredTypography } from '@/components/_common';
 import { useLinks } from '@/hooks/useLinks';

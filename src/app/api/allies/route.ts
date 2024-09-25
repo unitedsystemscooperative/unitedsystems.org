@@ -1,7 +1,8 @@
 import { IAlly } from '@/app/about/_models/ally';
-import { deleteItem, getItems, insertItem, updateItem } from '@/utils/db';
+import { deleteItem, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
 import { NextRequest } from 'next/server';
+import { getAllies } from './getAllies';
 
 const COLLECTION = 'allies';
 
@@ -55,11 +56,3 @@ export async function DELETE(request: NextRequest) {
 
   return new Response(null, { status: 200 });
 }
-
-export const getAllies = async () => {
-  const items = await getItems<IAlly>(COLLECTION, 'name', 1);
-  return items.map((x) => {
-    x._id = x._id.toString();
-    return x;
-  });
-};

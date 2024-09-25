@@ -1,4 +1,4 @@
-import { getAllies } from '@/app/api/allies/route';
+import { getAllies } from '@/app/api/allies/getAllies';
 import { Container, Fade, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { Metadata } from 'next';
 

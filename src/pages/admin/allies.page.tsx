@@ -1,4 +1,4 @@
-import { getAllies } from '#/allies.api';
+import { getAllies } from '@/app/api/allies/getAllies';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
 import { IAlly } from '@/app/about/_models/ally';
 import { AllyDashboard } from '@@/admin/components/allies/allyDashboard';
