@@ -1,9 +1,9 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import { ReleaseInfo } from './releaseInfo';
+import { ReleaseInfo } from './_releaseInfo';
 
-const postsDirectory = path.join(process.cwd(), 'src', 'modules', 'releases', 'data');
+const postsDirectory = path.join(process.cwd(), 'src', 'app', 'releases', 'data');
 
 export function getReleases(): Omit<ReleaseInfo, 'content'>[] {
   // Get file names under /posts
@@ -43,9 +43,7 @@ export function getAllReleaseIDs() {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
-      params: {
-        id: fileName.replace(/\.md$/, ''),
-      },
+      id: fileName.replace(/\.md$/, ''),
     };
   });
 }
