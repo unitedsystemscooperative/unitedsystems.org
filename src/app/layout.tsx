@@ -1,9 +1,11 @@
 import { theme } from '@/styles/theme';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Roboto } from 'next/font/google';
 import { AuthSessionProvider } from './_components/auth-session-provider';
 import { Navbar } from './_components/navbar';
+import { Footer } from './_components/footer';
+import info from '../../package.json';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -20,8 +22,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider theme={theme}>
             <AuthSessionProvider>
               <CssBaseline />
-              <Navbar />
-              {children}
+              <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <Navbar />
+                <Box component="main" sx={{ mt: 0, mb: 2 }}>
+                  {children}
+                </Box>
+                <Footer version={info.version} />
+              </Box>
             </AuthSessionProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>

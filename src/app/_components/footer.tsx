@@ -64,8 +64,6 @@ function SiteMap() {
 }
 
 export const Footer = ({ version }: { version: string }) => {
-  const theme = useTheme();
-
   return (
     <Box
       component="footer"
@@ -74,9 +72,10 @@ export const Footer = ({ version }: { version: string }) => {
       }}>
       <Paper
         sx={{
-          padding: theme.spacing(3, 2),
-          marginRight: 0,
-          marginLeft: 0,
+          px: 2,
+          py: 3,
+          mr: 0,
+          ml: 0,
         }}>
         <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
           <Copyright />

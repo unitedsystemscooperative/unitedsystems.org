@@ -1,22 +1,23 @@
 import { Box, Container, Link, Paper, Typography } from '@mui/material';
-import Head from 'next/head';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import errorImg from 'public/img/404.jpg';
 
-const NotFoundPage = () => {
+export const metadata: Metadata = {
+  title: 'United Systems Cooperative',
+  description: 'not found page',
+};
+
+export default function NotFoundPage() {
   return (
     <>
-      <Head>
-        <title>United Systems Cooperative</title>
-        <meta name="description" content="Web site of the United Systems Cooperative" />
-      </Head>
       <Container maxWidth="lg" sx={{ textAlign: 'center', marginTop: 1 }}>
         <Paper>
           <Typography variant="h3">Mistakes were made</Typography>
           <Typography variant="subtitle1">
             You were hyperdicted... escape destruction by going{' '}
-            <NextLink href="/home" passHref>
+            <NextLink href="/home" passHref legacyBehavior>
               <Link>home</Link>
             </NextLink>
             .
@@ -31,6 +32,4 @@ const NotFoundPage = () => {
       </Container>
     </>
   );
-};
-
-export default NotFoundPage;
+}
