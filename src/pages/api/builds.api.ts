@@ -9,7 +9,7 @@ import {
 } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
 import { getUserId } from '@/utils/get-userId';
-import { IBuildInfov2 } from '@@/builds/models';
+import { IBuildInfov2 } from '@/app/builds/_models';
 import { Filter, WithId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 

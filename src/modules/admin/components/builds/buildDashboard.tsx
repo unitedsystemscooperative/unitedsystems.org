@@ -1,10 +1,10 @@
 import { TitleBarwAdd } from '@/components/_common';
 import { genericSortArray, Order } from '@/functions/sort';
-import { EngIcons } from '@@/builds/components/engIcons';
-import { TagGroup } from '@@/builds/components/tagGroup';
-import { useShipMap } from '@@/builds/hooks/useShipMap';
-import { IBuildInfov2, IShipInfo } from '@@/builds/models';
-import { BuildContext, BuildContextProvider } from '@@/builds/providers/buildProvider';
+import { EngIcons } from '@/app/builds/_components/engIcons';
+import { TagGroup } from '@/app/builds/_components/tagGroup';
+import { useShipMap } from '@/app/builds/_hooks/useShipMap';
+import { IBuildInfov2, IShipInfo } from '@/app/builds/_models';
+import { BuildContext, BuildContextProvider } from '@/app/builds/_providers/buildProvider';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Box,

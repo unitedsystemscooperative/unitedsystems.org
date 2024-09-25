@@ -1,7 +1,7 @@
 import { getBuilds } from '#/builds.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
 import { BuildDashboard } from '@@/admin/components/builds/buildDashboard';
-import { IBuildInfov2 } from '@@/builds/models';
+import { IBuildInfov2 } from '@/app/builds/_models';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
