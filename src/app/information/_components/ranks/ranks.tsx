@@ -1,20 +1,8 @@
 import { CenteredTypography } from '@/components/_common';
-import { RankData } from '@@/information/data/ranks';
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Paper,
-  styled,
-} from '@mui/material';
+import { StyledSection } from '@/components/_common/section';
+import { Container, List, ListItem, ListItemAvatar, ListItemText, Paper } from '@mui/material';
 import Image from 'next/image';
-
-const StyledSection = styled('section')(({ theme }) => ({
-  margin: theme.spacing(1),
-  flexGrow: 1,
-}));
+import { RankData } from '../../_data/ranks';
 
 const generatePilotsRankList = (name: string) => {
   return (

@@ -1,3 +1,4 @@
+'use client';
 import { DatePicker } from '@mui/x-date-pickers';
 import type {} from '@mui/x-date-pickers/AdapterDayjs';
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';

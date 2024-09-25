@@ -1,4 +1,4 @@
-import { ShipReviews } from '@@/information/components/shipReviews';
+import { ShipReviews } from '@/app/information/_components/shipReviews';
 import Head from 'next/head';
 
 /** Displays the ship Review Table */

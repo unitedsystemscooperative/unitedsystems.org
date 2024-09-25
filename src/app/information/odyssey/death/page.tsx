@@ -1,4 +1,4 @@
-import { OdysseyDeath } from '@@/information/components/odyssey/death';
+import { OdysseyDeath } from '@/app/information/_components/odyssey/death';
 import Head from 'next/head';
 
 const OdyDeathPage = () => {

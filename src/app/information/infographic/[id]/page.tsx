@@ -1,15 +1,24 @@
-import { infoGraphics } from '@@/information/data/infographicList';
-import { Infographic } from '@@/information/models/infographic';
+import { infoGraphics } from '../../_data/infographicList';
 import { Container, Typography } from '@mui/material';
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { Metadata } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'USC Infographic',
+  description: 'USC Infographic',
+};
+
+export function generateStaticParams() {
+  return infoGraphics.map((infographic) => ({ id: infographic.id }));
+}
 
 /**
  * Displays an infographic
  * @param props imgID to display
  */
-const InfographicPage = ({ infographic }: InferGetStaticPropsType<typeof getStaticProps>) => {
+export default function InfographicPage({ params }: { params: { id: string } }) {
+  const infographic = infoGraphics.find((x) => params.id === x.id);
   return (
     <>
       <Head>
@@ -33,19 +42,4 @@ const InfographicPage = ({ infographic }: InferGetStaticPropsType<typeof getStat
       </Container>
     </>
   );
-};
-
-export const getStaticPaths: GetStaticPaths = () => {
-  const paths = infoGraphics.map((infographic) => ({
-    params: { id: infographic.id },
-  }));
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<{ infographic: Infographic }> = ({ params }) => {
-  const infographic = infoGraphics.find((x) => params.id === x.id);
-  return { props: { infographic } };
-};
-
-export default InfographicPage;
+}

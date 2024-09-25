@@ -1,4 +1,4 @@
-import { Ranks } from '@@/information/components/ranks/ranks';
+import { Ranks } from '@/app/information/_components/ranks/ranks';
 import Head from 'next/head';
 
 const RanksPage = () => {

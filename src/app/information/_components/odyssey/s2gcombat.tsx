@@ -64,7 +64,8 @@ export const OdysseyS2GCombat = () => {
                     pathname: '/builds',
                     query: { specialties: 'Combat - Ship to Ground' },
                   }}
-                  passHref>
+                  passHref
+                  legacyBehavior>
                   <Link>Ship to Ground Combat Builds</Link>
                 </NextLink>
               </li>
@@ -74,7 +75,8 @@ export const OdysseyS2GCombat = () => {
                     pathname: '/builds',
                     query: { specialties: 'Odyssey Lander / Support' },
                   }}
-                  passHref>
+                  passHref
+                  legacyBehavior>
                   <Link>Odyssey Lander/Support Builds</Link>
                 </NextLink>
               </li>

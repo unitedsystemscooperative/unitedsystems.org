@@ -1,3 +1,4 @@
+'use client';
 import { styled } from '@mui/material';
 
 export const IndentedDiv = styled('div')(({ theme }) => ({

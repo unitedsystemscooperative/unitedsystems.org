@@ -1,8 +1,8 @@
+import { IndentedDiv } from '@/components/_common';
 import {
   Container,
   Divider,
   Paper,
-  styled,
   Table,
   TableBody,
   TableCell,
@@ -10,13 +10,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-
-const IndentDiv = styled('div')(({ theme }) => ({
-  marginLeft: theme.spacing(3),
-  '& p': {
-    marginBottom: theme.spacing(2),
-  },
-}));
 
 export const BGSInfo = () => {
   return (
@@ -27,9 +20,9 @@ export const BGSInfo = () => {
       <Paper sx={{ p: 2 }}>
         <section>
           <Typography variant="h5">Influence</Typography>
-          <IndentDiv>
+          <IndentedDiv>
             <Typography variant="h6">Adding Influence</Typography>
-            <IndentDiv>
+            <IndentedDiv>
               <Typography>There are multiple ways to add influence:</Typography>
               <Typography>
                 <ul>
@@ -47,10 +40,10 @@ export const BGSInfo = () => {
                   </li>
                 </ul>
               </Typography>
-            </IndentDiv>
+            </IndentedDiv>
 
             <Typography variant="h6">Decreasing Influence</Typography>
-            <IndentDiv>
+            <IndentedDiv>
               <Typography>
                 <ul>
                   <li>Completing INF missions for other factions in the system.</li>
@@ -70,25 +63,25 @@ export const BGSInfo = () => {
                   </li>
                 </ul>
               </Typography>
-            </IndentDiv>
+            </IndentedDiv>
             <Typography variant="h6">Diminishing Returns</Typography>
-            <IndentDiv>
+            <IndentedDiv>
               <Typography>
                 Too much of one thing is too much. There are caps in place to prevent over-inflating
                 changes in influence
               </Typography>
-            </IndentDiv>
-          </IndentDiv>
+            </IndentedDiv>
+          </IndentedDiv>
         </section>
         <Divider />
         <section>
           <Typography variant="h5">Conflicts</Typography>
-          <IndentDiv>
+          <IndentedDiv>
             <Typography variant="h6">Elections</Typography>
             <Typography ml={3}>Complete election missions to win the conflict.</Typography>
 
             <Typography variant="h6">Wars</Typography>
-            <IndentDiv>
+            <IndentedDiv>
               <Typography>Wars are won in two ways:</Typography>
               <Typography>
                 <ul>
@@ -124,8 +117,8 @@ export const BGSInfo = () => {
                   </TableBody>
                 </Table>
               </Container>
-            </IndentDiv>
-          </IndentDiv>
+            </IndentedDiv>
+          </IndentedDiv>
         </section>
       </Paper>
     </Container>
