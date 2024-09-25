@@ -1,7 +1,7 @@
 import { TitleBarwAdd } from '@/components/_common';
-import { CarrierTableRow } from '@@/about/components/carriers/carrierTableRow';
-import { useFleetCarriers } from '@@/about/hooks/useFleetCarriers';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { CarrierTableRow } from '@/app/about/_components/carriers/carrierTableRow';
+import { useFleetCarriers } from '@/app/about/_hooks/useFleetCarriers';
+import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Container,

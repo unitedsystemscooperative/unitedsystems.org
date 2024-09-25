@@ -1,6 +1,6 @@
 import { navItems } from '@/data/navItems';
 import { Theme, useMediaQuery } from '@mui/material';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import { NavbarFull } from './navbar.full';
 import { NavbarMobile } from './navbar.mobile';

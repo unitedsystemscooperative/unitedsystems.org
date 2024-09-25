@@ -1,5 +1,5 @@
 import { TextFieldwM1 } from '@/components/_common';
-import { IAlly } from '@@/about/models/ally';
+import { IAlly } from '@/app/about/_models/ally';
 import {
   Button,
   Dialog,

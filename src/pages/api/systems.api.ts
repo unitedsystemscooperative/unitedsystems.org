@@ -1,6 +1,6 @@
 import { deleteItem, getItems, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { System } from '@@/about/models/system';
+import { System } from '@/app/about/_models/system';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'systems';

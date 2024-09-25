@@ -1,2 +1,2 @@
-export * from '../modules/about/layouts/about';
+export * from '../app/about/layouts/about';
 export * from './primary';

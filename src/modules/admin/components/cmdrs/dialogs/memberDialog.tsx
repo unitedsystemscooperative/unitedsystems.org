@@ -82,7 +82,7 @@ export const MemberDialog = (props: CmdrDialogProps<IMember>) => {
 
   const onSubmit: SubmitHandler<IMember> = (data) => {
     if (values.length > 1) {
-      const multiCmdrUpdate: Omit<IMember, '_id'> = {
+      const multiCmdrUpdate: Partial<Omit<IMember, '_id'>> = {
         cmdrName: undefined,
         discordName: undefined,
         joinDate: data.joinDate,
@@ -154,30 +154,14 @@ export const MemberDialog = (props: CmdrDialogProps<IMember>) => {
                 control={control}
                 defaultValue={new Date()}
                 render={({ field }) => (
-                  <DatePickerwMB1
-                    label="Join Date"
-                    disableFuture
-                    {...field}
-                    slotProps={{
-                      field: { clearable: true },
-                      textField: { fullWidth: true, ...field },
-                    }}
-                  />
+                  <DatePickerwMB1 label="Join Date" disableFuture field={field} clearable />
                 )}
               />
               <Controller
                 name="discordJoinDate"
                 control={control}
                 render={({ field }) => (
-                  <DatePickerwMB1
-                    label="Discord Join Date"
-                    disableFuture
-                    {...field}
-                    slotProps={{
-                      field: { clearable: true },
-                      textField: { fullWidth: true, ...field },
-                    }}
-                  />
+                  <DatePickerwMB1 label="Discord Join Date" disableFuture field={field} clearable />
                 )}
               />
             </BoxwMB1andFlex>

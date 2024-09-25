@@ -1,6 +1,6 @@
 import { deleteItem, getItems, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { IFleetCarrier } from '@@/about/models/fleetCarrier';
+import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'fleetCarriers';

@@ -7,7 +7,7 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   Toolbar,
   Typography,
@@ -39,27 +39,27 @@ export const NavbarMobile = (props: { title: string | undefined; navItems: INavI
       <List>
         {navItems.map((x) => (
           <Link key={x.to} href={x.to}>
-            <ListItem button component="a">
+            <ListItemButton component="a">
               <ListItemText primary={x.text} />
-            </ListItem>
+            </ListItemButton>
           </Link>
         ))}
         {isCommand && (
           <Link href="/admin">
-            <ListItem button component="a">
+            <ListItemButton component="a">
               <ListItemText primary="Admin" />
-            </ListItem>
+            </ListItemButton>
           </Link>
         )}
         {session ? (
-          <ListItem button component="button" onClick={() => signOut()}>
+          <ListItemButton component="button" onClick={() => signOut()}>
             <ListItemText primary="Sign Out" />
-          </ListItem>
+          </ListItemButton>
         ) : (
           <Link href="/join">
-            <ListItem button component="a">
+            <ListItemButton component="a">
               <ListItemText primary="Join" />
-            </ListItem>
+            </ListItemButton>
           </Link>
         )}
       </List>

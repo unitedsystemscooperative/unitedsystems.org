@@ -1,6 +1,6 @@
 import { deleteItem, getItems, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { IAlly } from '@@/about/models/ally';
+import { IAlly } from '@/app/about/_models/ally';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'allies';

@@ -1,4 +1,4 @@
-import { uscLinksList } from '@@/about/data';
+import { uscLinksList } from '@/app/about/data';
 import { docsList, guidesList, odysseyList, toolsList } from '@@/information/data';
 
 export const useInfoButtons = () => {

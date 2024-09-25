@@ -8,10 +8,10 @@ const withPWA = require('next-pwa')({
  */
 module.exports = {
   experimental: { esmExternals: true },
-  pageExtensions: ['page.tsx', 'api.ts'],
+  // pageExtensions: ['page.tsx', 'api.ts'],
   async redirects() {
     return [
-      { source: '/', destination: '/home', permanent: true },
+      // { source: '/', destination: '/home', permanent: true },
       // Join Request List has moved twice since inception.
       {
         source: '/admin/joinList',

@@ -1,7 +1,7 @@
 import { TitleBarwAdd } from '@/components/_common';
 import { EDSpinner } from '@/components/_common/spinner';
-import { useAllies } from '@@/about/hooks/useAllies';
-import { IAlly } from '@@/about/models/ally';
+import { useAllies } from '@/app/about/_hooks/useAllies';
+import { IAlly } from '@/app/about/_models/ally';
 import { Delete, Edit } from '@mui/icons-material';
 import { Container, IconButton, List, ListItem, ListItemText, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';

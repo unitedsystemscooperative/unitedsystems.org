@@ -1,7 +1,7 @@
 import { TitleBarwAdd } from '@/components/_common';
-import { useSystems } from '@@/about/hooks/useSystems';
-import { System } from '@@/about/models/system';
-import { EDSpinner } from '@admiralfeb/react-components';
+import { EDSpinner } from '@/components/_common/spinner';
+import { useSystems } from '@/app/about/_hooks/useSystems';
+import { System } from '@/app/about/_models/system';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Container,
@@ -9,7 +9,7 @@ import {
   Link,
   List,
   ListItem,
-  ListItemSecondaryAction,
+  ListItemButton,
   ListItemText,
   ListSubheader,
   Paper,
@@ -37,17 +37,17 @@ const SystemList = ({
         </ListSubheader>
       }>
       {systems.map((system) => (
-        <ListItem button key={system.name} component={Link} href={system.inaraLink} target="_blank">
+        <ListItemButton key={system.name} component={Link} href={system.inaraLink} target="_blank">
           <ListItemText primary={system.name} />
-          <ListItemSecondaryAction>
+          <ListItem secondaryAction>
             <IconButton edge="end" sx={{ ml: 1 }} onClick={() => editSystem(system)} size="large">
               <Edit />
             </IconButton>
             <IconButton edge="end" sx={{ ml: 1 }} onClick={() => deleteSystem(system)} size="large">
               <Delete />
             </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
+          </ListItem>
+        </ListItemButton>
       ))}
     </List>
   );
@@ -110,13 +110,12 @@ export const SystemDashboard = ({ init }: { init?: System[] }) => {
       <Paper sx={{ p: 1, my: 1, textAlign: 'center' }}>
         <TitleBarwAdd title="System Management" addTip="Add a system" addItem={handleOpenDialog} />
         <List>
-          <ListItem
-            button
+          <ListItemButton
             component={Link}
             href="https://inara.cz/galaxy-minorfaction/78085/"
             target="_blank">
             <ListItemText primary="United Systems Cooperative - Minor Faction" />
-          </ListItem>
+          </ListItemButton>
           {factionSystems && (
             <>
               <SystemList

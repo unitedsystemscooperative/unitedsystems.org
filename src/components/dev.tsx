@@ -1,5 +1,5 @@
-import { UnderConstruction } from '@admiralfeb/react-components';
 import { Container, Paper, Typography } from '@mui/material';
+import { UnderConstruction } from './_common/under-Construction';
 
 export const DevComponent = () => {
   return (

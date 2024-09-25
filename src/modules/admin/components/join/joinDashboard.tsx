@@ -1,5 +1,4 @@
 import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
-import { EDSpinner } from '@admiralfeb/react-components';
 import {
   Box,
   Button,
@@ -15,6 +14,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
 import { GuestsTable } from './joinTableGuests';
 import { MembersTable } from './joinTableMembers';
+import { EDSpinner } from '@/components/_common/spinner';
 
 enum JoinViews {
   'Members',

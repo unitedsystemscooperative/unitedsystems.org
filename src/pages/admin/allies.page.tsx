@@ -1,6 +1,6 @@
 import { getAllies } from '#/allies.api';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { IAlly } from '@@/about/models/ally';
+import { IAlly } from '@/app/about/_models/ally';
 import { AllyDashboard } from '@@/admin/components/allies/allyDashboard';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
