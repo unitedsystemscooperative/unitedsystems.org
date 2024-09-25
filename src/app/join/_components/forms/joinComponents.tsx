@@ -7,7 +7,7 @@ import {
   Region,
   RegionString,
 } from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import {
   Box,
   Button,

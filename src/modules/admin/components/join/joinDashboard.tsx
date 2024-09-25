@@ -1,4 +1,4 @@
-import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
+import { useJoinRequests } from '@/app/join/_hooks/useJoinInfo';
 import {
   Box,
   Button,

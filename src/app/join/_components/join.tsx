@@ -1,7 +1,8 @@
-import { useJoinRequests } from '@@/join/hooks/useJoinInfo';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+'use client';
+import { useJoinRequests } from '@/app/join/_hooks/useJoinInfo';
+import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import { Box, Button, Collapse, Container, Paper, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { JoinFormAmbassador } from './forms/joinFormAmbassador';
@@ -22,7 +23,7 @@ export const Join = () => {
     try {
       addJoinRequest(newData);
       enqueueSnackbar('Successfully submitted form', { variant: 'success' });
-      router.push('/join/nextSteps');
+      router.push('/join/next-steps');
     } catch (e) {
       enqueueSnackbar(`Failed to submit: ${e.message}`, { variant: 'error' });
     }

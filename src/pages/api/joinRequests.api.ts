@@ -1,6 +1,6 @@
 import { insertItem, getItems } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const COLLECTION = 'joinRequests';

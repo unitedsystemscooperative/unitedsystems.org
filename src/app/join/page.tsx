@@ -1,4 +1,4 @@
-import { Join } from '@@/join/components/join';
+import { Join } from '@/app/join/_components/join';
 import Head from 'next/head';
 
 const JoinRequestPage = () => {

@@ -9,7 +9,7 @@ import {
   Region,
   RegionString,
 } from '@@/admin/models';
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,

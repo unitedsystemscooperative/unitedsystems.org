@@ -1,4 +1,4 @@
-import { IJoinRequest } from '@@/join/models/joinRequest';
+import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import axios from 'axios';
 import { useMemo } from 'react';
 import useSWR from 'swr';

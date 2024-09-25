@@ -1,19 +1,22 @@
-import { useLinks } from '@/hooks/useLinks';
+import { DiscordLink, InaraSquadLink } from '@/data/links';
 import LinkIcon from '@mui/icons-material/Link';
 import {
   Container,
   IconButton,
   List,
   ListItem,
-  ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
   Paper,
   Typography,
 } from '@mui/material';
+import { Metadata } from 'next';
 
-export const JoinNextSteps = () => {
-  const { inaraSquadLink, discordLink } = useLinks();
+export const metadata: Metadata = {
+  title: 'Next Steps after Joining USC',
+};
+
+export const JoinNextStepsPage = () => {
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" sx={{ textAlign: 'center' }}>
@@ -21,25 +24,25 @@ export const JoinNextSteps = () => {
       </Typography>
       <Paper sx={{ p: 2 }}>
         <List>
-          <ListItem>
-            <ListItemText primary={'Join our Discord'} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" href={discordLink} target="_blank" size="large">
+          <ListItem
+            secondaryAction={
+              <IconButton edge="end" href={DiscordLink} target="_blank" size="large">
                 <LinkIcon />
               </IconButton>
-            </ListItemSecondaryAction>
+            }>
+            <ListItemText primary={'Join our Discord'} />
           </ListItem>
           <List
             component="div"
             disablePadding
             subheader={<ListSubheader component="div">Recommended</ListSubheader>}>
-            <ListItem>
-              <ListItemText primary={'Join our Inara Squadron'} />
-              <ListItemSecondaryAction>
-                <IconButton edge="end" href={inaraSquadLink} target="_blank" size="large">
+            <ListItem
+              secondaryAction={
+                <IconButton edge="end" href={InaraSquadLink} target="_blank" size="large">
                   <LinkIcon />
                 </IconButton>
-              </ListItemSecondaryAction>
+              }>
+              <ListItemText primary={'Join our Inara Squadron'} />
             </ListItem>
             <List
               component="div"
@@ -54,3 +57,5 @@ export const JoinNextSteps = () => {
     </Container>
   );
 };
+
+export default JoinNextStepsPage;
