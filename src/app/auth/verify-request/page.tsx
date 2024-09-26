@@ -1,6 +1,6 @@
 import { Container, Paper, Typography } from '@mui/material';
 
-const AuthErrorPage = () => {
+export default function VerifyRequestPage() {
   return (
     <Container maxWidth="xs">
       <Paper
@@ -10,14 +10,12 @@ const AuthErrorPage = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-        }}
-      >
+          textAlign: 'center',
+        }}>
         <Typography component="h1" variant="h5">
-          Sign In Failed
+          Check your email for a 'magic' link to sign in.
         </Typography>
       </Paper>
     </Container>
   );
-};
-
-export default AuthErrorPage;
+}

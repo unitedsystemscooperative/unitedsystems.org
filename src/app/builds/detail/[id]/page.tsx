@@ -1,6 +1,9 @@
 import Head from 'next/head';
-import { getBuilds } from 'src/pages/api/builds.api';
+import { getBuildById, getBuilds } from 'src/app/api/builds/getBuilds';
 import { BuildDetail } from '../../_components/builds/buildDetail';
+
+export const revalidate = 60;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const builds = await getBuilds();
@@ -10,8 +13,8 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function BuildDetailPage() {
-  const builds = await getBuilds();
+export default async function BuildDetailPage({ params }: { params: { id: string } }) {
+  const builds = await getBuildById(params.id);
   return (
     <>
       <Head>

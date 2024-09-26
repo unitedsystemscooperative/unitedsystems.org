@@ -1,24 +1,12 @@
 import mongoClient from '@/lib/db';
 import { ICMDR } from '@@/admin/models/cmdr';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import NextAuth from 'next-auth';
-import EmailProvider from 'next-auth/providers/email';
+import { authConfig } from './auth.config';
 
-export default NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
   // https://next-auth.js.org/configuration/providers
-  providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER,
-        port: 465,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-      },
-      from: process.env.EMAIL_FROM,
-    }),
-  ],
+  ...authConfig,
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/databases
   //
@@ -70,12 +58,13 @@ export default NextAuth({
   callbacks: {
     signIn: async ({ user }) => {
       const db = (await mongoClient).db();
-      const email: string = user.email;
+
+      const email: string | null | undefined = user.email;
 
       const cursor = db.collection<ICMDR>('cmdrs').find({});
       const members = await cursor.toArray();
       cursor.close();
-      const authUser = members.find((x) => x.email.toLowerCase() === email.toLowerCase());
+      const authUser = members.find((x) => x.email?.toLowerCase() === email?.toLowerCase());
 
       return authUser ? true : false;
     },
@@ -85,11 +74,11 @@ export default NextAuth({
       if (user) {
         const db = (await mongoClient).db();
 
-        const email: string = user.email;
+        const email: string | undefined | null = user.email;
         const cursor = db.collection<ICMDR>('cmdrs').find({});
         const members = await cursor.toArray();
         cursor.close();
-        const authUser = members.find((x) => x.email.toLowerCase() === email);
+        const authUser = members.find((x) => x.email?.toLowerCase() === email?.toLowerCase());
         token = { ...token, ...authUser };
       }
       return token;

@@ -1,9 +1,13 @@
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
 import { AdminDashboard } from '@@/admin/components/adminDashboard';
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { redirect, RedirectType } from 'next/navigation';
 
-const AdminPage = () => {
+export default async function AdminPage() {
+  const authResult = await runAdminAuthCheck('admin_index');
+  if (authResult.redirect) {
+    redirect(authResult.destination, RedirectType.replace);
+  }
   return (
     <>
       <Head>
@@ -13,10 +17,4 @@ const AdminPage = () => {
       <AdminDashboard />
     </>
   );
-};
-
-export default AdminPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  return runAdminAuthCheck(context, 'admin_index');
-};
+}

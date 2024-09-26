@@ -1,11 +1,10 @@
-import { redirects } from '@/data/redirects';
+'use client';
+import { signIn } from '@/auth';
 import { LockOutlined } from '@mui/icons-material';
-import { Avatar, Box, Button, Container, Paper, TextField } from '@mui/material';
-import { GetServerSideProps } from 'next';
-import { getSession, signIn } from 'next-auth/react';
+import { Container, Paper, Avatar, Box, TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-const SignInPage = () => {
+export function SignInForm() {
   const { register, handleSubmit } = useForm<{ email: string }>({
     defaultValues: { email: '' },
   });
@@ -40,7 +39,6 @@ const SignInPage = () => {
             required
             fullWidth
             label="Email Address"
-            name="email"
             autoComplete="email"
             autoFocus
             {...register('email', { required: 'Your email is required' })}
@@ -61,25 +59,4 @@ const SignInPage = () => {
       </Paper>
     </Container>
   );
-};
-
-export default SignInPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
-  if (session) {
-    const redirectKey = context.query.redirect as string;
-    const redirectPath = redirects.find((x) => x.key === redirectKey)?.path;
-    if (redirectPath) {
-      return {
-        redirect: { destination: redirectPath, permanent: false },
-      };
-    } else {
-      return {
-        redirect: { destination: '/home', permanent: false },
-      };
-    }
-  }
-
-  return { props: {} };
-};
+}

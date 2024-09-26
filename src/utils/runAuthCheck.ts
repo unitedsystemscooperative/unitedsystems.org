@@ -1,8 +1,9 @@
-import { Db } from 'mongodb';
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { getSession } from 'next-auth/react';
+import { auth } from '@/auth';
 import { getIsHC } from './get-isHC';
-import { connectToDatabase } from '@/lib/db';
+
+export type AuthCheckValue<T = never> =
+  | { redirect: true; permanent: boolean; destination: string }
+  | { redirect: false; data: T | null };
 
 /**
  * For use in getServerSideProps of admin pages.
@@ -11,31 +12,30 @@ import { connectToDatabase } from '@/lib/db';
  * @returns
  */
 export const runAdminAuthCheck = async <T = never>(
-  context: GetServerSidePropsContext,
   redirect: string,
-  fetchFn?: (db: Db) => Promise<T>
-): Promise<GetServerSidePropsResult<{ data: T }>> => {
-  const session = await getSession(context);
+  fetchFn?: () => Promise<T>
+): Promise<AuthCheckValue<T>> => {
+  const session = await auth();
 
   if (session) {
-    const db = await connectToDatabase();
-    const isHC = await getIsHC(context.req);
+    const isHC = await getIsHC();
     if (isHC) {
       if (fetchFn) {
-        const result = await fetchFn(db);
-        return { props: { data: result } };
+        const result = await fetchFn();
+        return { redirect: false, data: result };
       } else {
-        return { props: { data: null } };
+        return { redirect: false, data: null };
       }
     } else
       return {
-        redirect: { permanent: false, destination: '/auth/not-authorized' },
+        redirect: true,
+        permanent: false,
+        destination: '/auth/not-authorized',
       };
   } else
     return {
-      redirect: {
-        permanent: false,
-        destination: `/auth/signIn?redirect=${redirect}`,
-      },
+      redirect: true,
+      permanent: false,
+      destination: `/auth/signIn?redirect=${redirect}`,
     };
 };

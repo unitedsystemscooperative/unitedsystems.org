@@ -1,4 +1,4 @@
-import { getBuilds } from '#/builds.api';
+import { getBuilds } from '../api/builds/getBuilds';
 import { BuildSystem } from '@/app/builds/_components';
 import Head from 'next/head';
 

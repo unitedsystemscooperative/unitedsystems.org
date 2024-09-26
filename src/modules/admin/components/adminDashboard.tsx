@@ -1,3 +1,4 @@
+'use client';
 import { Button, ButtonProps, Container, Paper, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
 

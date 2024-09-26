@@ -5,7 +5,7 @@ import { getShipInfofromID } from '@/app/builds/_functions/getShipInfo';
 import { useShipBuilds } from '@/app/builds/_hooks/useShipBuilds';
 import { IBuildInfov2, IShipInfo } from '@/app/builds/_models';
 import { useSnackbar } from 'notistack';
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 /**
  * Add Build Function. Used in the Build Provider to trigger the dialog.
@@ -42,6 +42,8 @@ interface IBuildContext {
 }
 
 export const BuildContext = createContext<IBuildContext | null>(null);
+
+export const useBuildService = () => useContext(BuildContext);
 
 export const BuildContextProvider = ({
   children,
