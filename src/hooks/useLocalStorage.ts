@@ -5,7 +5,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
+    } catch (_error) {
       return initialValue;
     }
   });
@@ -18,7 +18,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       setStoredValue(valueToStore);
 
       localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {}
+    } catch (_error) {}
   };
 
   return [storedValue, setValue];

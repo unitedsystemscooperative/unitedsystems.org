@@ -90,7 +90,7 @@ const buildReducer = (prevState: IBuildInfov2, action: action): IBuildInfov2 => 
           'JSON parsed. Title, Build Link, Ship Type, Engineering, Guardian, and PowerPlay have been updated.',
           { variant: 'success' }
         );
-      } catch (e) {
+      } catch (_e) {
         action.enqueueSnackbar(
           'Issue parsing JSON. Was it copy/pasted correctly?\nNo changes have been made to the build.',
           { variant: 'warning' }

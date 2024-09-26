@@ -36,7 +36,6 @@ export const QuestionBox = styled('div')(({ theme }) => ({
 interface ControllerProps {
   name: keyof Omit<IJoinRequest, '_id'>;
   rules?: RegisterOptions;
-  // eslint-disable-next-line @typescript-eslint/ban-types
   control: Control<Omit<IJoinRequest, '_id'>, object>;
 }
 

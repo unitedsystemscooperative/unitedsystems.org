@@ -11,7 +11,12 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { "argsIgnorePattern": "^_" }
+      {
+        "argsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
     ],
     // the following jsx rules are in relation to React 17's new JSX runtime
     "react/jsx-uses-react": "off",
@@ -20,7 +25,9 @@
   "overrides": [
     {
       // Default exports are normal for api functions.
-      "files": ["src/pages/api/**/*.ts"],
+      "files": [
+        "src/pages/api/**/*.ts"
+      ],
       "rules": {
         "import/no-anonymous-default-export": "off"
       }

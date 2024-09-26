@@ -1,4 +1,4 @@
-import { Box, Container, Link, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Container, Link, Paper, Typography } from '@mui/material';
 import NextLink from 'next/link';
 
 function ImgCopyright() {

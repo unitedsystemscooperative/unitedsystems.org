@@ -115,7 +115,7 @@ export const useCMDRs = (init: ICMDRs = { members: [], ambassadors: [], guests: 
 
       try {
         await axios.put(API_PATH, cmdr);
-      } catch (error) {
+      } catch (_error) {
         failedUpdates = [...failedUpdates, cmdr];
       }
     }
