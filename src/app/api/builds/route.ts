@@ -13,13 +13,11 @@ import { getUserId } from '@/utils/get-userId';
 import { Filter } from 'mongodb';
 import { NextRequest } from 'next/server';
 import { getBuilds } from './getBuilds';
+import { generateGet } from '../_common/get';
 
 const COLLECTION = 'shipBuildsv2';
 
-export async function GET() {
-  const result = await getBuilds();
-  return Response.json(result);
-}
+export const GET = generateGet(getBuilds);
 
 export async function POST(request: Request) {
   const build: IBuildInfov2 = JSON.parse(await request.json());
@@ -36,7 +34,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   const updateBuild: IBuildInfov2 = JSON.parse(await request.json());
   const userId = await getUserId(request);
-  const isHC = await getIsHC(request);
+  const isHC = await getIsHC();
 
   if (updateBuild.title) {
     const authorId = (updateBuild.authorId as string) ?? '';
@@ -66,7 +64,7 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: NextRequest) {
   const userId = await getUserId(request);
-  const isHC = await getIsHC(request);
+  const isHC = await getIsHC();
 
   const authorId = request.nextUrl.searchParams.get('authorId') ?? '';
   if (authorId !== userId && !isHC) {

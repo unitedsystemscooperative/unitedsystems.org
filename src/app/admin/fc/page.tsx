@@ -1,4 +1,4 @@
-import { getFCs } from '#/fc.api';
+import { getFCs } from '@/app/api/fc/fc-api-utils';
 import { CarriersDashboard } from '@/app/admin/fc/_components/carriersDashboard';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
 import { Metadata } from 'next';

@@ -1,4 +1,4 @@
-import { getSystems } from '#/systems.api';
+import { getSystems } from '@/app/api/systems/route';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
 import { SystemDashboard } from '@/app/admin/systems/_components/systemDashboard';
 import { Metadata } from 'next';

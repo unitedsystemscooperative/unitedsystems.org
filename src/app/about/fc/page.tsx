@@ -1,4 +1,4 @@
-import { getFCs } from '#/fc.api';
+import { getFCs } from '@/app/api/fc/fc-api-utils';
 import { genericSortArray } from '@/functions/sort';
 import { Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
