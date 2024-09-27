@@ -1,4 +1,4 @@
-import { getAllies } from '@/app/api/allies/getAllies';
+import { getAllies } from '@/app/api/allies/allies-api-utils';
 import { Container, Fade, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { Metadata } from 'next';
 

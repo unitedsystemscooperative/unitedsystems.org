@@ -1,7 +1,7 @@
 'use client';
-import { signIn } from '@/auth';
 import { LockOutlined } from '@mui/icons-material';
-import { Container, Paper, Avatar, Box, TextField, Button } from '@mui/material';
+import { Avatar, Box, Button, Container, Paper, TextField } from '@mui/material';
+import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
 export function SignInForm() {
@@ -9,10 +9,9 @@ export function SignInForm() {
     defaultValues: { email: '' },
   });
 
-  const onSubmit = async (data: { email: string }) => {
-    const { email } = data;
-
-    await signIn('email', { email });
+  const onSubmit = async ({ email }: { email: string }) => {
+    // await signInAction(email);
+    await signIn('sendgrid', { email });
   };
 
   return (

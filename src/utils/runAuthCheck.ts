@@ -3,7 +3,7 @@ import { getIsHC } from './get-isHC';
 
 export type AuthCheckValue<T = never> =
   | { redirect: true; permanent: boolean; destination: string }
-  | { redirect: false; data: T | null };
+  | { redirect: false; data: T | undefined };
 
 /**
  * For use in getServerSideProps of admin pages.
@@ -24,7 +24,7 @@ export const runAdminAuthCheck = async <T = never>(
         const result = await fetchFn();
         return { redirect: false, data: result };
       } else {
-        return { redirect: false, data: null };
+        return { redirect: false, data: undefined };
       }
     } else
       return {

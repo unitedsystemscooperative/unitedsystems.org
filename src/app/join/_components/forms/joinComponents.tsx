@@ -1,4 +1,4 @@
-import { TextFieldwM1 } from '@/components/_common';
+import { TextFieldwM1 } from '@/app/_components/_common';
 import {
   Platform,
   PlatformString,
@@ -6,7 +6,7 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@@/admin/models';
+} from '@/app/admin/_models';
 import { IJoinRequest } from '@/app/join/_models/joinRequest';
 import {
   Box,

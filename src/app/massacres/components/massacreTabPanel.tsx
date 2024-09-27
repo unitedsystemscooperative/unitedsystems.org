@@ -1,4 +1,4 @@
-import { PaperOutlineButton } from '@/components/_common/button';
+import { PaperOutlineButton } from '@/app/_components/_common/button';
 import { IFactionwMissions, IMassacreTrack } from '@/app/massacres/massacreTrack';
 import { processHazRezSystem } from '@/app/massacres/processHazRezSystem';
 import { MassacreContext } from '@/app/massacres/providers/massacreTrackerProvider';

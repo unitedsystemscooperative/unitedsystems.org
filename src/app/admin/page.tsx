@@ -1,7 +1,12 @@
+import { AdminDashboard } from '@/app/admin/_components/adminDashboard';
 import { runAdminAuthCheck } from '@/utils/runAuthCheck';
-import { AdminDashboard } from '@@/admin/components/adminDashboard';
-import Head from 'next/head';
+import { Metadata } from 'next';
 import { redirect, RedirectType } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'USC | Administration',
+  description: 'USC Administration Tools',
+};
 
 export default async function AdminPage() {
   const authResult = await runAdminAuthCheck('admin_index');
@@ -10,10 +15,6 @@ export default async function AdminPage() {
   }
   return (
     <>
-      <Head>
-        <title>USC Administration</title>
-        <meta name="description" content="USC Administration Tools" />
-      </Head>
       <AdminDashboard />
     </>
   );

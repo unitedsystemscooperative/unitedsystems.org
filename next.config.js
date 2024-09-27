@@ -18,6 +18,11 @@ module.exports = {
         destination: '/admin/joinRequests',
         permanent: true,
       },
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };

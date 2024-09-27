@@ -1,4 +1,4 @@
-import { CenteredTypography } from '@/components/_common/typography';
+import { CenteredTypography } from '@/app/_components/_common/typography';
 import { Box, Button, Container, Paper, Typography } from '@mui/material';
 import NavLink from 'next/link';
 import { ReactNode } from 'react';

@@ -1,5 +1,5 @@
-import { EDSpinner } from '@/components/_common/spinner';
-import { ConfirmDialog } from '@/components/confirmDialog';
+import { EDSpinner } from '@/app/_components/_common/spinner';
+import { ConfirmDialog } from '@/app/_components/confirmDialog';
 import { BuildDialog, BuildDialogProps } from '@/app/builds/_components/dialog/buildDialog';
 import { getShipInfofromID } from '@/app/builds/_functions/getShipInfo';
 import { useShipBuilds } from '@/app/builds/_hooks/useShipBuilds';

@@ -1,5 +1,5 @@
 import mongoClient from '@/lib/db';
-import { ICMDR } from '@@/admin/models/cmdr';
+import { ICMDR } from '@/app/admin/_models/cmdr';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';

@@ -1,4 +1,4 @@
-import { CenteredTypography, PaperP2 } from '@/components/_common';
+import { CenteredTypography, PaperP2 } from '@/app/_components/_common';
 import { Link } from '@mui/material';
 
 /** Acknowledges where the Images on the Build System come from. */

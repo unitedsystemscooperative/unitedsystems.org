@@ -1,6 +1,12 @@
 import Head from 'next/head';
 import { getBuildById, getBuilds } from 'src/app/api/builds/getBuilds';
 import { BuildDetail } from '../../_components/builds/buildDetail';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Build',
+  description: 'USC Build Detail',
+};
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -17,10 +23,6 @@ export default async function BuildDetailPage({ params }: { params: { id: string
   const builds = await getBuildById(params.id);
   return (
     <>
-      <Head>
-        <title>USC Build</title>
-        <meta name="description" content="USC Build Detail" />
-      </Head>
       <BuildDetail init={builds} />
     </>
   );

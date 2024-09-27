@@ -1,6 +1,6 @@
 import { useAdmin } from '@/hooks/useAdmin';
 import Link from './navLink';
-import { INavItem } from '@/models/navItem';
+import { INavItem } from '@/app/_models/navItem';
 import { AppBar, Button, Toolbar, useTheme } from '@mui/material';
 import { Box, SxProps } from '@mui/system';
 import { signOut, useSession } from 'next-auth/react';
@@ -17,7 +17,7 @@ export const NavbarFull = (props: { navItems: INavItem[]; pathName: string | nul
     color: '#f2f2f2',
     textAlign: 'center',
     textDecoration: 'none',
-    marginRight: theme.spacing(1),
+    marginRight: 1,
     fontSize: 16,
     '&.active': {
       backgroundColor: 'primary.main',

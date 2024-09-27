@@ -1,13 +1,14 @@
 import { BGSInfo } from '@/app/information/_components/bgs';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'BGS General Info',
+  description: 'Background Information (BGS) General Information',
+};
 
 const BGSPage = () => {
   return (
     <>
-      <Head>
-        <title>BGS General Info</title>
-        <meta name="description" content="Background Information (BGS) General Information" />
-      </Head>
       <BGSInfo />
     </>
   );

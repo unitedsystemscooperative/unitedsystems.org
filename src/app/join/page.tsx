@@ -1,13 +1,14 @@
 import { Join } from '@/app/join/_components/join';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Join',
+  description: 'Join the USC! We have cookies!',
+};
 
 const JoinRequestPage = () => {
   return (
     <>
-      <Head>
-        <title>Join USC!</title>
-        <meta name="description" content="Join the USC! We have cookies!" />
-      </Head>
       <Join />
     </>
   );

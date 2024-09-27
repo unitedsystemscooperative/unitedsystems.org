@@ -1,13 +1,14 @@
 import { OdysseyEngineering } from '@/app/information/_components/odyssey/engineering';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Odyssey Engineering',
+  description: "What's different in Odyssey for Engineering?",
+};
 
 const OdyEngPage = () => {
   return (
     <>
-      <Head>
-        <title>USC | Odyssey Engineering</title>
-        <meta name="description" content="What's different in Odyssey for Engineering?" />
-      </Head>
       <OdysseyEngineering />
     </>
   );

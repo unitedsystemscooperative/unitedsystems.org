@@ -1,8 +1,7 @@
-import { infoGraphics } from '../../_data/infographicList';
 import { Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
+import { infoGraphics } from '../../_data/infographicList';
 
 export const metadata: Metadata = {
   title: 'USC Infographic',
@@ -21,10 +20,6 @@ export default function InfographicPage({ params }: { params: { id: string } }) 
   const infographic = infoGraphics.find((x) => params.id === x.id);
   return (
     <>
-      <Head>
-        <title>USC Infographic</title>
-        <meta name="description" content="Infographic" />
-      </Head>
       <Container sx={{ textAlign: 'center' }} maxWidth="lg">
         {infographic ? (
           <>

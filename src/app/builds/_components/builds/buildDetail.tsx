@@ -1,6 +1,6 @@
 'use client';
-import { USCMarkdown } from '@/components/uscmarkdown';
-import { BoxwMB1, CenteredTypography } from '@/components/_common';
+import { USCMarkdown } from '@/app/_components/uscmarkdown';
+import { BoxwMB1, CenteredTypography } from '@/app/_components/_common';
 import { useLinks } from '@/hooks/useLinks';
 import { IBuildInfov2, IShipInfo, ShipSize } from '@/app/builds/_models';
 import {

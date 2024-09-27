@@ -1,15 +1,16 @@
-import { getBuilds } from '../api/builds/getBuilds';
 import { BuildSystem } from '@/app/builds/_components';
-import Head from 'next/head';
+import { Metadata } from 'next';
+import { getBuilds } from '../api/builds/getBuilds';
+
+export const metadata: Metadata = {
+  title: 'USC | Build Archive',
+  description: 'Builds of the USC',
+};
 
 export default async function BuildPage() {
   const builds = await getBuilds();
   return (
     <>
-      <Head>
-        <title>USC Build Archive</title>
-        <meta name="description" content="Builds of the USC" />
-      </Head>
       <BuildSystem init={builds} />
     </>
   );

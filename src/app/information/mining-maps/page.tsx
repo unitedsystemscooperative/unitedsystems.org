@@ -1,13 +1,14 @@
 import { MiningMaps } from '@/app/information/_components/miningMaps';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'BGS Mining Maps',
+  description: 'Compiled Mining Maps',
+};
 
 const MiningMapPage = () => {
   return (
     <>
-      <Head>
-        <title>USC Mining Maps</title>
-        <meta name="description" content="Compiled Mining Maps" />
-      </Head>
       <MiningMaps />
     </>
   );

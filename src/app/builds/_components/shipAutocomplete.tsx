@@ -1,4 +1,4 @@
-import { TextFieldwM1 } from '@/components/_common';
+import { TextFieldwM1 } from '@/app/_components/_common';
 import { genericSortArray } from '@/functions/sort';
 import { useShipMap } from '@/app/builds/_hooks/useShipMap';
 import { IShipInfo } from '@/app/builds/_models';

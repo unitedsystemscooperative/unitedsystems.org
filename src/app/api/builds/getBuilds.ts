@@ -14,6 +14,6 @@ export const getBuildById = async (id: string) => {
   if (items.length > 0) {
     return items[0];
   } else {
-    return null;
+    return undefined;
   }
 };

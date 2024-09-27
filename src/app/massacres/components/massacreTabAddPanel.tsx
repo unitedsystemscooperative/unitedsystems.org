@@ -1,4 +1,4 @@
-import { CenteredTypography } from '@/components/_common';
+import { CenteredTypography } from '@/app/_components/_common';
 import { IFactionwMissions, IMassacreTrack } from '@/app/massacres/massacreTrack';
 import { processHazRezSystem } from '@/app/massacres/processHazRezSystem';
 import { MassacreContext } from '@/app/massacres/providers/massacreTrackerProvider';

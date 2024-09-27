@@ -1,4 +1,4 @@
-import { CenteredTypography, PaperP2 } from '@/components/_common';
+import { CenteredTypography, PaperP2 } from '@/app/_components/_common';
 import { IBuildInfov2 } from '@/app/builds/_models';
 import { BuildCard } from './buildCard';
 

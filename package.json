@@ -31,6 +31,7 @@
     "luxon": "^3.5.0",
     "moment": "^2.29.1",
     "mongodb": "^6.9.0",
+    "mongoose": "^8.6.4",
     "next": "^14.2.13",
     "next-auth": "^5.0.0-beta.21",
     "nodemailer": "^6.9.15",

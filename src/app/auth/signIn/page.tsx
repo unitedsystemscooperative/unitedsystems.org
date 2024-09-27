@@ -20,7 +20,8 @@ export default async function SignInPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  await redirectIfLoggedIn(searchParams['redirect'] as string);
+  const redirectLocation = searchParams['redirect'] as string;
+  await redirectIfLoggedIn(redirectLocation);
 
   return <SignInForm />;
 }

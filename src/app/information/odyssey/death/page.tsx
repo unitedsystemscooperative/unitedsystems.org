@@ -1,13 +1,14 @@
 import { OdysseyDeath } from '@/app/information/_components/odyssey/death';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Odyssey Death',
+  description: 'What happens on player death in Odyssey?',
+};
 
 const OdyDeathPage = () => {
   return (
     <>
-      <Head>
-        <title>USC | Odyssey Death</title>
-        <meta name="description" content="What happens on player death in Odyssey?" />
-      </Head>
       <OdysseyDeath />
     </>
   );

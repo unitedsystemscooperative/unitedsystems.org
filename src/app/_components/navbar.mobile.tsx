@@ -1,5 +1,5 @@
 import { useAdmin } from '@/hooks/useAdmin';
-import { INavItem } from '@/models/navItem';
+import { INavItem } from '@/app/_models/navItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,

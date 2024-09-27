@@ -1,4 +1,4 @@
-import { CenteredTypography, IndentedDiv, PaperP2 } from '@/components/_common';
+import { CenteredTypography, IndentedDiv, PaperP2 } from '@/app/_components/_common';
 import { Container, Link, Typography } from '@mui/material';
 
 export const OdysseyEngineering = () => {

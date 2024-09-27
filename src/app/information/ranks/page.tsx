@@ -1,13 +1,14 @@
 import { Ranks } from '@/app/information/_components/ranks/ranks';
-import Head from 'next/head';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Elite Ranks',
+  description: "Pilot's Federation Ranks in Elite Dangerous",
+};
 
 const RanksPage = () => {
   return (
     <>
-      <Head>
-        <title>USC | Elite Ranks</title>
-        <meta name="description" content="Pilot's Federation Ranks in Elite Dangerous" />
-      </Head>
       <Ranks />
     </>
   );

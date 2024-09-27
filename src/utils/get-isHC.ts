@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
 import { connectToDatabase } from '@/lib/db';
-import { IMember, Rank } from '@@/admin/models';
+import { IMember, Rank } from '@/app/admin/_models';
 
 export async function getIsHC() {
   const db = await connectToDatabase();

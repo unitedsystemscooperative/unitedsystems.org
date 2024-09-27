@@ -2,9 +2,7 @@ import { IAlly } from '@/app/about/_models/ally';
 import { deleteItem, insertItem, updateItem } from '@/utils/db';
 import { getIsHC } from '@/utils/get-isHC';
 import { NextRequest } from 'next/server';
-import { getAllies } from './getAllies';
-
-const COLLECTION = 'allies';
+import { COLLECTION, getAllies } from './allies-api-utils';
 
 export async function GET() {
   const result = await getAllies();
@@ -13,7 +11,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const isHC = await getIsHC(request);
+  const isHC = await getIsHC();
 
   if (!isHC) {
     return new Response(null, { status: 403 });
@@ -25,7 +23,7 @@ export async function POST(request: Request) {
   return new Response(null, { status: 200 });
 }
 export async function PUT(request: Request) {
-  const isHC = await getIsHC(request);
+  const isHC = await getIsHC();
 
   if (!isHC) {
     return new Response(null, { status: 403 });
@@ -42,7 +40,7 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const isHC = await getIsHC(request);
+  const isHC = await getIsHC();
 
   if (!isHC) {
     return new Response(null, { status: 403 });
