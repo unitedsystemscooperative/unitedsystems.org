@@ -1,4 +1,9 @@
 import { Container, Paper, Typography } from '@mui/material';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'USC | Verify Email',
+};
 
 export default function VerifyRequestPage() {
   return (

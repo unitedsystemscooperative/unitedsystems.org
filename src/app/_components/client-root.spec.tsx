@@ -1,11 +1,11 @@
-import { Home } from 'components/home';
+import ClientRoot from './client-root';
 import { cleanup, render, RenderResult } from '@testing-library/react';
 
 let componentBody: RenderResult;
 
 describe('Home', () => {
   beforeEach(() => {
-    componentBody = render(<Home />);
+    componentBody = render(<ClientRoot />);
   });
 
   afterEach(cleanup);
@@ -21,8 +21,7 @@ describe('Home', () => {
   });
 
   it(`should render 'Through Hardships to the Stars' in an h6 element`, () => {
-    const tag = componentBody.getByText('Through hardships to the stars')
-      .tagName;
+    const tag = componentBody.getByText('Through hardships to the stars').tagName;
     expect(tag).toBe('H6');
   });
 });

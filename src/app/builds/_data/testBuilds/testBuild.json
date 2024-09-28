@@ -1,8 +1,8 @@
 {
-  "_id": {
-    "$oid": "5fc926dee5b2c0512a10acda"
-  },
-  "specializations": ["Combat - PvE"],
+  "_id": "5fc926dee5b2c0512a10acda",
+  "specializations": [
+    "Combat - PvE"
+  ],
   "title": "FDL Endurance 3.0p",
   "hasGuardian": false,
   "hasPowerplay": true,

@@ -9,13 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function CmdrManagementPage() {
-  const authResult = await runAdminAuthCheck('admin_cmdrs', getCmdrs);
-  if (authResult.redirect) {
-    redirect(authResult.destination, RedirectType.replace);
-  }
+  const data = await runAdminAuthCheck('admin_cmdrs', getCmdrs);
   return (
     <>
-      <CMDRDashboard init={authResult.data} />
+      <CMDRDashboard init={data} />
     </>
   );
 }

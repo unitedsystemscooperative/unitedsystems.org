@@ -1,4 +1,6 @@
+'use server';
 import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 import { getIsHC } from './get-isHC';
 
 export type AuthCheckValue<T = never> =
@@ -12,9 +14,9 @@ export type AuthCheckValue<T = never> =
  * @returns
  */
 export const runAdminAuthCheck = async <T = never>(
-  redirect: string,
+  redirectPath: string,
   fetchFn?: () => Promise<T>
-): Promise<AuthCheckValue<T>> => {
+): Promise<T | undefined> => {
   const session = await auth();
 
   if (session) {
@@ -22,20 +24,10 @@ export const runAdminAuthCheck = async <T = never>(
     if (isHC) {
       if (fetchFn) {
         const result = await fetchFn();
-        return { redirect: false, data: result };
+        return result;
       } else {
-        return { redirect: false, data: undefined };
+        return undefined;
       }
-    } else
-      return {
-        redirect: true,
-        permanent: false,
-        destination: '/auth/not-authorized',
-      };
-  } else
-    return {
-      redirect: true,
-      permanent: false,
-      destination: `/auth/signIn?redirect=${redirect}`,
-    };
+    } else redirect('/auth/not-authorized');
+  } else redirect(`/auth/signIn?redirect=${redirectPath}`);
 };

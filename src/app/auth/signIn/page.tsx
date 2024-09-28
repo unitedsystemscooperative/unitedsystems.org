@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { redirects } from '@/data/redirects';
 import { redirect } from 'next/navigation';
 import { SignInForm } from './signIn-form';
+import { Metadata } from 'next';
 
 async function redirectIfLoggedIn(redirectKey: string) {
   const session = await auth();
@@ -14,6 +15,10 @@ async function redirectIfLoggedIn(redirectKey: string) {
     }
   }
 }
+
+export const metadata: Metadata = {
+  title: 'USC | SignIn',
+};
 
 export default async function SignInPage({
   searchParams,

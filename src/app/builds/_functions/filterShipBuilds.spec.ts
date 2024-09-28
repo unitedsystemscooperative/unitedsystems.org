@@ -1,35 +1,10 @@
-import shipBuildJSON from 'data/builds/builds.json';
-import { getShipInfofromID } from 'functions/builds';
-import { filterShipBuilds } from 'functions/builds/filterShipBuilds';
-import { IBuildInfov2, IQuery, ShipSize } from 'models/builds';
+import shipBuildJSON from '../_data/builds.json';
+import { getShipInfofromID } from './getShipInfo';
+import { filterShipBuilds } from './filterShipBuilds';
+import { IBuildInfov2, IQuery, ShipSize } from '../_models';
 
 describe('filterShipBuilds', () => {
   const shipBuilds: IBuildInfov2[] = shipBuildJSON;
-
-  it('should filter only variants', () => {
-    const query: IQuery = {
-      ship: null,
-      size: null,
-      specialties: [],
-      engLevel: null,
-
-      guardian: null,
-      powerplay: null,
-      beginner: null,
-      showVariants: null,
-    };
-    const expectedResult = shipBuilds.filter((x) => x.isVariant === false);
-
-    const result = filterShipBuilds(shipBuilds, query);
-
-    expect(result).toEqual(expectedResult);
-
-    query.showVariants = false;
-
-    const result2 = filterShipBuilds(shipBuilds, query);
-
-    expect(result2).toEqual(expectedResult);
-  });
 
   it('should filter to alliance chieftains', () => {
     const query: IQuery = {
@@ -41,11 +16,8 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
-    const expectedResult = shipBuilds.filter(
-      (x) => x.shipId === 'alliance_chieftain'
-    );
+    const expectedResult = shipBuilds.filter((x) => x.shipId === 'alliance_chieftain');
 
     const result = filterShipBuilds(shipBuilds, query);
 
@@ -62,7 +34,6 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
     const expectedResult = shipBuilds.filter((x) => {
       const shipInfo = getShipInfofromID(x.shipId);
@@ -87,7 +58,6 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
     const expectedResult = shipBuilds.filter((x) => x.engLevel === 0);
 
@@ -104,11 +74,8 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
-    const expectedResult = shipBuilds.filter((x) =>
-      x.specializations.includes('Jump Ship')
-    );
+    const expectedResult = shipBuilds.filter((x) => x.specializations.includes('Jump Ship'));
 
     const result = filterShipBuilds(shipBuilds, query);
     expect(result).toEqual(expectedResult);
@@ -123,7 +90,6 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
     const expectedResult = shipBuilds
       .filter((x) => x.specializations.includes('Combat - PvE'))
@@ -142,7 +108,6 @@ describe('filterShipBuilds', () => {
       guardian: 1,
       powerplay: null,
       beginner: null,
-      showVariants: null,
     };
     const expectedResult = shipBuilds.filter((x) => x.hasGuardian === true);
 
@@ -165,7 +130,6 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: 1,
       beginner: null,
-      showVariants: null,
     };
     const expectedResult = shipBuilds.filter((x) => x.hasPowerplay === true);
 
@@ -188,7 +152,6 @@ describe('filterShipBuilds', () => {
       guardian: null,
       powerplay: null,
       beginner: 1,
-      showVariants: null,
     };
     const expectedResult = shipBuilds.filter((x) => x.isBeginner === true);
 

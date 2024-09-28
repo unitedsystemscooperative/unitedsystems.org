@@ -1,11 +1,11 @@
 import { cleanup, render, RenderResult } from '@testing-library/react';
-import { Footer } from 'components';
+import { Footer } from './footer';
 
 let componentBody: RenderResult;
 
 describe('Home', () => {
   beforeEach(() => {
-    componentBody = render(<Footer />);
+    componentBody = render(<Footer version="testVersion" />);
   });
 
   afterEach(cleanup);

@@ -1,4 +1,4 @@
-import { getFCs } from '@/app/api/fc/fc-api-utils';
+import { getFCs } from '#/fc/fc-api-utils';
 import { genericSortArray } from '@/functions/sort';
 import { Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
@@ -28,15 +28,13 @@ async function getFleetCarriers() {
 export default async function FleetCarriersPage() {
   const { personalCarriers, squadCarriers } = await getFleetCarriers();
   return (
-    <>
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
-        <Typography variant="h4">USC Fleet Carriers - {squadCarriers.length}</Typography>
-        <USCCarriers carriers={squadCarriers} />
-        <Typography variant="h4">
-          Personal Fleet Carriers of USC - {personalCarriers.length}
-        </Typography>
-        <PersonalCarriers carriers={personalCarriers} />
-      </Container>
-    </>
+    <Container maxWidth="md" sx={{ textAlign: 'center' }}>
+      <Typography variant="h4">USC Fleet Carriers - {squadCarriers.length}</Typography>
+      <USCCarriers carriers={squadCarriers} />
+      <Typography variant="h4">
+        Personal Fleet Carriers of USC - {personalCarriers.length}
+      </Typography>
+      <PersonalCarriers carriers={personalCarriers} />
+    </Container>
   );
 }

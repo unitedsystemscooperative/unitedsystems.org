@@ -18,6 +18,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
+    "types": [
+      "@testing-library/jest-dom"
+    ],
     "paths": {
       "public/*": [
         "public/*"
@@ -26,11 +29,8 @@
         "src/*"
       ],
       "#/*": [
-        "src/pages/api/*"
+        "src/app/api/*"
       ],
-      "@@/*": [
-        "src/modules/*"
-      ]
     },
     "incremental": true,
     "plugins": [
@@ -45,7 +45,7 @@
     "usc.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
   ],
   "exclude": [
     "node_modules"
