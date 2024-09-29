@@ -13,6 +13,7 @@ const theme = createTheme({
     mode: 'dark',
   },
   spacing: 8,
+  typography: { fontFamily: 'var(--font-roboto)' },
 });
 
 theme.components = {
