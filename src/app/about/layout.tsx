@@ -1,8 +1,17 @@
 import { CenteredTypography } from '@/app/_components/_common/typography';
-import { Box, Button, Container, Paper, Typography } from '@mui/material';
-import NavLink from 'next/link';
+import { Box, Container, Paper, SxProps } from '@mui/material';
 import { ReactNode } from 'react';
+import { InfoButton } from '../_components/_common/button';
 import { uscLinksList } from './uscLinksList';
+
+const boxSXProps: SxProps = {
+  '& button': {
+    margin: 1,
+  },
+  '& a': {
+    margin: 1,
+  },
+};
 
 export default function AboutLayout({ children }: { children: ReactNode }) {
   return (
@@ -20,89 +29,19 @@ export default function AboutLayout({ children }: { children: ReactNode }) {
               marginBottom: 1,
             }}>
             <Box sx={{ display: 'grid', gridTemplateRows: 'auto' }}>
-              <Box
-                sx={{
-                  '& button': {
-                    margin: 1,
-                  },
-                  '& a': {
-                    margin: 1,
-                  },
-                }}>
+              <Box sx={boxSXProps}>
                 {uscLinksList
-                  .filter((x) => x.beginner === true)
-                  .map((guide) => {
-                    if (guide.local === true) {
-                      return (
-                        <NavLink href={guide.link} key={guide.title} passHref>
-                          <Button
-                            variant="outlined"
-                            color={guide.beginner ? 'secondary' : 'primary'}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                              <Typography>{guide.title}</Typography>
-                              <Typography variant="caption">{guide.caption}</Typography>
-                            </Box>
-                          </Button>
-                        </NavLink>
-                      );
-                    } else {
-                      return (
-                        <Button
-                          variant="outlined"
-                          color={guide.beginner ? 'secondary' : 'primary'}
-                          href={guide.link}
-                          target="_blank"
-                          key={guide.title}>
-                          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                            <Typography>{guide.title}</Typography>
-                            <Typography variant="caption">{guide.caption}</Typography>
-                          </Box>
-                        </Button>
-                      );
-                    }
-                  })}
+                  .filter((x) => x.local === true)
+                  .map((guide) => (
+                    <InfoButton {...guide} color="secondary" key={guide.title} />
+                  ))}
               </Box>
-              <Box
-                sx={{
-                  '& button': {
-                    margin: 1,
-                  },
-                  '& a': {
-                    margin: 1,
-                  },
-                }}>
+              <Box sx={boxSXProps}>
                 {uscLinksList
-                  .filter((x) => x.beginner === false)
-                  .map((guide) => {
-                    if (guide.local === true) {
-                      return (
-                        <NavLink key={guide.title} href={guide.link} passHref>
-                          <Button
-                            variant="outlined"
-                            color={guide.beginner ? 'secondary' : 'primary'}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                              <Typography>{guide.title}</Typography>
-                              <Typography variant="caption">{guide.caption}</Typography>
-                            </Box>
-                          </Button>
-                        </NavLink>
-                      );
-                    } else {
-                      return (
-                        <Button
-                          variant="outlined"
-                          color={guide.beginner ? 'secondary' : 'primary'}
-                          href={guide.link}
-                          target="_blank"
-                          key={guide.title}>
-                          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                            <Typography>{guide.title}</Typography>
-                            <Typography variant="caption">{guide.caption}</Typography>
-                          </Box>
-                        </Button>
-                      );
-                    }
-                  })}
+                  .filter((x) => x.local === false)
+                  .map((guide) => (
+                    <InfoButton {...guide} color="primary" key={guide.title} />
+                  ))}
               </Box>
             </Box>
           </Paper>

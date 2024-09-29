@@ -1,6 +1,6 @@
 import { TitleBarwAdd } from '@/app/_components/_common';
 import { EDSpinner } from '@/app/_components/_common/spinner';
-import { useSystems } from '@/app/about/_hooks/useSystems';
+import { useSystems } from '@/app/admin/_hooks/useSystems';
 import { System } from '@/app/about/_models/system';
 import { Delete, Edit } from '@mui/icons-material';
 import {

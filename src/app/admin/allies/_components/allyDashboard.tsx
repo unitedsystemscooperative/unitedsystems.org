@@ -1,7 +1,7 @@
 'use client';
 import { TitleBarwAdd } from '@/app/_components/_common';
 import { EDSpinner } from '@/app/_components/_common/spinner';
-import { useAllies } from '@/app/about/_hooks/useAllies';
+import { useAllies } from '@/app/admin/_hooks/useAllies';
 import { IAlly } from '@/app/about/_models/ally';
 import { Delete, Edit } from '@mui/icons-material';
 import { Container, IconButton, List, ListItem, ListItemText, Paper } from '@mui/material';

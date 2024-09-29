@@ -1,9 +1,8 @@
-import { discordRules, memberRules } from './data';
 import {
   Box,
   Container,
   Fade,
-  Grid,
+  Grid2,
   List,
   ListItem,
   ListItemText,
@@ -14,6 +13,7 @@ import {
 } from '@mui/material';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { discordRules, memberRules } from './data';
 
 export const metadata: Metadata = {
   title: 'United Systems Cooperative Rules',
@@ -41,8 +41,8 @@ export default function RulesPage() {
           Rules
         </Typography>
         <Box component={Paper} sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
-            <Grid item xs={4}>
+          <Grid2 container spacing={1}>
+            <Grid2 size={4}>
               <Box sx={sxRules}>
                 <Typography variant="h5">Discord</Typography>
                 <List>
@@ -53,8 +53,8 @@ export default function RulesPage() {
                   ))}
                 </List>
               </Box>
-            </Grid>
-            <Grid item xs={8}>
+            </Grid2>
+            <Grid2 size={8}>
               <Box sx={sxRules}>
                 <Typography variant="h5">Members of USC</Typography>
                 <List>
@@ -77,8 +77,8 @@ export default function RulesPage() {
                   ))}
                 </List>
               </Box>
-            </Grid>
-            <Grid item xs={12}>
+            </Grid2>
+            <Grid2 size={12}>
               <Typography
                 sx={{
                   border: '3px solid white',
@@ -90,8 +90,8 @@ export default function RulesPage() {
                 further offences will be subject to demotion, expulsion, and/or USC Kill-on-Sight
                 status.
               </Typography>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </Box>
       </Container>
     </Fade>

@@ -1,4 +1,4 @@
-import { getSystems } from '@/app/api/systems/route';
+import { getSystems } from '#/systems/systems-api-utils';
 import { buildInaraLink } from '@/functions/buildInaraLink';
 import {
   Container,

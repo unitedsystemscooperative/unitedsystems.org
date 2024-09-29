@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "1",
+    "name": "1st Imperium Auxiliary Cohort",
+    "isControlled": true
+  },
+  {
+    "_id": "1",
+    "name": "Alba Rotam Private Military",
+    "isControlled": true
+  },
+  {
+    "_id": "1",
+    "name": "The Altruists",
+    "isControlled": true
+  },
+  {
+    "_id": "1",
+    "name": "Arbor Caelum",
+    "isControlled": true
+  },
+  {
+    "_id": "1",
+    "name": "Gilgamesh Corps",
+    "isControlled": true
+  }
+]
