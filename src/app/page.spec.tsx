@@ -1,11 +1,11 @@
-import ClientRoot from './client-root';
+import Page from './page';
 import { cleanup, render, RenderResult } from '@testing-library/react';
 
 let componentBody: RenderResult;
 
 describe('Home', () => {
   beforeEach(() => {
-    componentBody = render(<ClientRoot />);
+    componentBody = render(<Page />);
   });
 
   afterEach(cleanup);
