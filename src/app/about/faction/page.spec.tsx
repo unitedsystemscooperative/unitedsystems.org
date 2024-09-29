@@ -3,7 +3,10 @@ import SystemsPage from './page';
 import * as api from '#/systems/systems-api-utils';
 import systemsJson from '../_data/systems.json';
 
-jest.mock('#/systems/systems-api-utils');
+jest.mock<typeof api>('#/systems/systems-api-utils', () => ({
+  getSystems: jest.fn(),
+  COLLECTION: 'systems',
+}));
 
 describe('Systems page', () => {
   afterEach(cleanup);

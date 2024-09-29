@@ -3,7 +3,10 @@ import AlliesPage from './page';
 import * as api from '#/allies/allies-api-utils';
 import alliesJson from '../_data/allies.json';
 
-jest.mock('#/allies/allies-api-utils');
+jest.mock<typeof api>('#/allies/allies-api-utils', () => ({
+  getAllies: jest.fn(),
+  COLLECTION: 'allies',
+}));
 
 describe('Allies page', () => {
   afterEach(cleanup);
