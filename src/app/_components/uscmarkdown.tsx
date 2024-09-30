@@ -4,7 +4,7 @@ import gfm from 'remark-gfm';
 
 export const USCMarkdown = ({ children }: { children: string }) => {
   return (
-    <ReactMarkdown plugins={[gfm]} components={{ p: P, a: A, code: Code }}>
+    <ReactMarkdown remarkPlugins={[gfm]} components={{ p: P, a: A, code: Code }}>
       {children}
     </ReactMarkdown>
   );

@@ -1,9 +1,10 @@
-import { getIsHC } from '@/utils/get-isHC';
-import { NextApiRequest } from 'next';
+import { auth } from '@/auth';
+import { getIsHC } from '@/utils/auth-check';
 
-export async function GET(req: NextApiRequest) {
+export async function GET() {
   try {
-    const isHC = await getIsHC(req);
+    const session = await auth();
+    const isHC = await getIsHC(session);
     return Response.json(isHC, { status: 200 });
   } catch (e) {
     return new Response(null, { status: 500, statusText: e.message });

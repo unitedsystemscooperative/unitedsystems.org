@@ -1,4 +1,4 @@
-import { getStationSize } from '@@/edsmQueries/functions/getStationSize';
+import { getStationSize } from '@/modules/edsmQueries/functions';
 import { Box, Divider, Paper, Typography } from '@mui/material';
 
 export const StationList = (props: {

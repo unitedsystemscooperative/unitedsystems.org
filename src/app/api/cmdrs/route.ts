@@ -1,11 +1,13 @@
-import { getIsHC } from '@/utils/get-isHC';
-import { COLLECTION, determineCMDRisMember, getCmdrs } from './cmdrs-api-utils';
-import { deleteItem, insertItem, updateItem } from '@/utils/db';
 import { ICMDR } from '@/app/admin/_models';
+import { auth } from '@/auth';
+import { getIsHC } from '@/utils/auth-check';
+import { deleteItem, insertItem, updateItem } from '@/utils/db';
 import { NextRequest } from 'next/server';
+import { COLLECTION, determineCMDRisMember, getCmdrs } from './cmdrs-api-utils';
 
 export async function GET() {
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (!isHC) {
     return new Response(null, { status: 403 });
@@ -17,7 +19,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (!isHC) {
     return new Response(null, { status: 403 });
@@ -33,7 +36,8 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (!isHC) {
     return new Response(null, { status: 403 });
@@ -53,7 +57,8 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (!isHC) {
     return new Response(null, { status: 403 });

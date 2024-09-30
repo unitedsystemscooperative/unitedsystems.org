@@ -1,11 +1,11 @@
 import { cleanup, render } from '@testing-library/react';
-import AboutLayout from './layout';
+import AdminLayout from './layout';
 
-describe('about layout', () => {
+describe('Admin Layout', () => {
   afterEach(cleanup);
 
   test('should render', () => {
-    const result = render(<AboutLayout>child</AboutLayout>);
+    const result = render(<AdminLayout>child</AdminLayout>);
 
     expect(result).toBeTruthy();
   });

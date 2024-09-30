@@ -1,6 +1,6 @@
 import { SystemDashboard } from '@/app/admin/systems/_components/systemDashboard';
 import { getSystems } from '@/app/api/systems/systems-api-utils';
-import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { runAdminAuthCheck } from '@/utils/auth-check';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -25,6 +25,7 @@ import {
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { MouseEvent, useContext, useState } from 'react';
+import { IBuildContext } from '@/app/builds/_models/action-models';
 
 const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(1),
@@ -159,7 +160,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
                   <TableCell component="th" scope="row" padding="normal">
                     {build.title}
                   </TableCell>
-                  <TableCell>{handleShipInfo(build.shipId, ships).name ?? ''}</TableCell>
+                  <TableCell>{handleShipInfo(build.shipId, ships)?.name ?? ''}</TableCell>
                   <TableCell>{build.author}</TableCell>
                   <TableCell padding="none">
                     <TagGroup build={build} />
@@ -196,7 +197,7 @@ const BuildTable = ({ builds, onDelete, onEdit }: BuildTableProps) => {
 };
 
 const BuildDashboardDisplay = () => {
-  const { builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext);
+  const { builds, addBuild, editBuild, deleteBuild } = useContext(BuildContext) as IBuildContext;
 
   return (
     <Container maxWidth="xl">

@@ -9,11 +9,14 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { BuildList } from './builds/buildList';
 import { ShipImgAcknowledgement } from './builds/shipImgAcknowledgement';
 import { Query } from './query/query';
+import { IBuildContext } from '../_models/action-models';
 
 const BuildSystemDisplay = () => {
   const [query, setQuery] = useState<IQuery>();
   const [queriedBuilds, setQueriedBuilds] = useState<IBuildInfov2[]>([]);
-  const { builds, buildError, areBuildsLoading, addBuild } = useContext(BuildContext);
+  const { builds, buildError, areBuildsLoading, addBuild } = useContext(
+    BuildContext
+  ) as IBuildContext;
   const { enqueueSnackbar } = useSnackbar();
 
   const buildRef = useRef<HTMLDivElement>(null);

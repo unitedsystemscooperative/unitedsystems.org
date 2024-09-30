@@ -1,7 +1,9 @@
 'use server';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import { getIsHC } from './get-isHC';
+import { IMember, Rank } from '@/app/admin/_models';
+import { connectToDatabase } from '@/lib/db';
+import { Session } from 'next-auth';
 
 export type AuthCheckValue<T = never> =
   | { redirect: true; permanent: boolean; destination: string }
@@ -20,7 +22,7 @@ export const runAdminAuthCheck = async <T = never>(
   const session = await auth();
 
   if (session) {
-    const isHC = await getIsHC();
+    const isHC = await getIsHC(session);
     if (isHC) {
       if (fetchFn) {
         const result = await fetchFn();
@@ -31,3 +33,12 @@ export const runAdminAuthCheck = async <T = never>(
     } else redirect('/auth/not-authorized');
   } else redirect(`/auth/signIn?redirect=${redirectPath}`);
 };
+
+export async function getIsHC(session?: Session | null) {
+  if (!session || !session.user) {
+    return false;
+  }
+  const db = await connectToDatabase();
+  const user = await db.collection('cmdrs').findOne<IMember>({ email: session.user.email });
+  return user && user.rank.valueOf() <= Rank.Captain.valueOf() ? true : false;
+}

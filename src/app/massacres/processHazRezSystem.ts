@@ -3,7 +3,7 @@ import {
   getFactionsinSystem,
   getStationsinSystem,
   getSystemsinSphere,
-} from '@@/edsmQueries/functions';
+} from '@/modules/edsmQueries/functions';
 
 export const processHazRezSystem = async (system: string) => {
   const systemsInSphere = await getSystemsinSphere(system, 10);

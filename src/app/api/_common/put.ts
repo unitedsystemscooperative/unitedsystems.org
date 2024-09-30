@@ -1,10 +1,12 @@
+import { auth } from '@/auth';
+import { getIsHC } from '@/utils/auth-check';
 import { updateItem } from '@/utils/db';
-import { getIsHC } from '@/utils/get-isHC';
 import { WithId } from 'mongodb';
 
 export function generatePut<T extends { _id: string }>(collection: string) {
   return async (request: Request) => {
-    const isHC = await getIsHC();
+    const session = await auth();
+    const isHC = await getIsHC(session);
 
     if (!isHC) {
       return new Response(null, { status: 403 });

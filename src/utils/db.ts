@@ -1,6 +1,14 @@
 import { connectToDatabase } from '@/lib/db';
 
-import { Filter, ObjectId, OptionalUnlessRequiredId, UpdateOptions, WithId } from 'mongodb';
+import {
+  Filter,
+  ObjectId,
+  OptionalUnlessRequiredId,
+  UpdateOptions,
+  WithId,
+  Document,
+  UpdateFilter,
+} from 'mongodb';
 
 export type WithStringId<T> = Omit<T, '_id'> & { _id: string };
 export type WithOptionalId<T> = Omit<T, '_id'> & { _id?: string };
@@ -16,14 +24,18 @@ export const insertItem = async <T>(collectionName: string, itemToInsert: WithId
 
   return result.insertedId;
 };
-export const updateItem = async <T>(collectionName: string, itemToUpdate: WithId<T>) => {
+export const updateItem = async <T extends Document>(
+  collectionName: string,
+  itemToUpdate: WithStringId<T>
+) => {
   const db = await connectToDatabase();
 
-  const filter: Filter<WithId<T>> = itemToUpdate._id;
+  const { _id: id, ...item } = itemToUpdate;
+  const filter: UpdateFilter<T> = { _id: new ObjectId(id) };
   const options: UpdateOptions = { upsert: false };
   const updateResult = await db
-    .collection<WithId<T>>(collectionName)
-    .updateOne(filter, { ...itemToUpdate }, options);
+    .collection<T>(collectionName)
+    .updateOne(filter, { $set: { ...item } }, options);
 
   if (updateResult.modifiedCount > 0) return true;
   else return false;
@@ -36,17 +48,17 @@ export const deleteItem = async (collectionName: string, id: string) => {
   await db.collection(collectionName).deleteOne({ _id: idtoDelete });
 };
 
-export const getItems = async <T>(
+export const getItems = async <T extends Document>(
   collectionName: string,
   sortField?: keyof T,
   order?: 1 | -1
 ): Promise<WithStringId<T>[]> => {
   const db = await connectToDatabase();
 
-  const cursor = db
-    .collection<T>(collectionName)
-    .find({})
-    .sort({ [sortField]: order });
+  let cursor = db.collection<T>(collectionName).find({});
+  if (sortField) {
+    cursor = cursor.sort({ [sortField]: order });
+  }
   const results = await cursor.toArray();
   cursor.close();
 

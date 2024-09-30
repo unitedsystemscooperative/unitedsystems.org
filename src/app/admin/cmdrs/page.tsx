@@ -1,4 +1,4 @@
-import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { runAdminAuthCheck } from '@/utils/auth-check';
 import { CMDRDashboard } from '@/app/admin/cmdrs/_components/cmdrDashboard';
 import { Metadata } from 'next';
 import { redirect, RedirectType } from 'next/navigation';

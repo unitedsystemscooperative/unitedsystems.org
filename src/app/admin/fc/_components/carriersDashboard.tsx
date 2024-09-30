@@ -1,3 +1,4 @@
+'use client';
 import { TitleBarwAdd } from '@/app/_components/_common';
 import { CarrierTableRow } from '@/app/about/fc/_components/carrierTableRow';
 import { useFleetCarriers } from '@/app/admin/_hooks/useFleetCarriers';

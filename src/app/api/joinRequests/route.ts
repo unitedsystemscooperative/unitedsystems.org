@@ -1,11 +1,13 @@
 import { IJoinRequest } from '@/app/join/_models/joinRequest';
+import { auth } from '@/auth';
+import { getIsHC } from '@/utils/auth-check';
 import { getItems, insertItem } from '@/utils/db';
-import { getIsHC } from '@/utils/get-isHC';
 
 const COLLECTION = 'joinRequests';
 
 export async function GET() {
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (!isHC) {
     return new Response(null, { status: 403 });

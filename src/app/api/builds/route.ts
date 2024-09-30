@@ -1,5 +1,7 @@
 import { IBuildInfov2 } from '@/app/builds/_models';
+import { auth } from '@/auth';
 import { connectToDatabase } from '@/lib/db';
+import { getIsHC } from '@/utils/auth-check';
 import {
   deleteItem,
   getItems,
@@ -8,12 +10,11 @@ import {
   updateItem,
   WithStringId,
 } from '@/utils/db';
-import { getIsHC } from '@/utils/get-isHC';
 import { getUserId } from '@/utils/get-userId';
 import { Filter } from 'mongodb';
 import { NextRequest } from 'next/server';
-import { getBuilds } from './getBuilds';
 import { generateGet } from '../_common/get';
+import { getBuilds } from './getBuilds';
 
 const COLLECTION = 'shipBuildsv2';
 
@@ -34,7 +35,8 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   const updateBuild: IBuildInfov2 = JSON.parse(await request.json());
   const userId = await getUserId(request);
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   if (updateBuild.title) {
     const authorId = (updateBuild.authorId as string) ?? '';
@@ -64,7 +66,8 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: NextRequest) {
   const userId = await getUserId(request);
-  const isHC = await getIsHC();
+  const session = await auth();
+  const isHC = await getIsHC(session);
 
   const authorId = request.nextUrl.searchParams.get('authorId') ?? '';
   if (authorId !== userId && !isHC) {

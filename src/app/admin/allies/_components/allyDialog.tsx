@@ -1,5 +1,6 @@
 import { TextFieldwM1 } from '@/app/_components/_common';
 import { IAlly } from '@/app/about/_models/ally';
+import { WithOptionalId } from '@/utils/db';
 import {
   Button,
   Dialog,
@@ -14,7 +15,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 export interface AllyDialogProps {
   open: boolean;
   values?: IAlly;
-  onClose: (value?: IAlly) => void;
+  onClose: (value?: WithOptionalId<IAlly>) => void;
 }
 
 export const AllyDialog = (props: AllyDialogProps) => {

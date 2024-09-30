@@ -1,3 +1,4 @@
+'use client';
 import { TitleBarwAdd } from '@/app/_components/_common';
 import { EDSpinner } from '@/app/_components/_common/spinner';
 import { useSystems } from '@/app/admin/_hooks/useSystems';

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'Next Steps after Joining USC',
 };
 
-export const JoinNextStepsPage = () => {
+export default function JoinNextStepsPage() {
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" sx={{ textAlign: 'center' }}>
@@ -56,6 +56,4 @@ export const JoinNextStepsPage = () => {
       </Paper>
     </Container>
   );
-};
-
-export default JoinNextStepsPage;
+}

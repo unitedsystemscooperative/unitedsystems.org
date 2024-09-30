@@ -1,5 +1,5 @@
 import { JoinDashboard } from '@/app/admin/joinRequests/_components/joinDashboard';
-import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { runAdminAuthCheck } from '@/utils/auth-check';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

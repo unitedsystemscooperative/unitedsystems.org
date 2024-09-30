@@ -1,7 +1,7 @@
 'use client';
 import { IQuery, OtherFilters } from '@/app/builds/_models';
 import { Box } from '@mui/material';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 import { useEffect, useReducer } from 'react';
 import { QueryActions } from './queryActions';
@@ -15,66 +15,84 @@ interface QueryProps {
   addBuild: () => void;
 }
 
+type action =
+  | { type: 'ship'; value: string | null }
+  | { type: 'size'; value: number | null }
+  | { type: 'specialties'; value: string[] }
+  | { type: 'engLevel'; value: number | null }
+  | { type: 'other'; value: OtherFilters | null }
+  | { type: 'guardian'; value: number | null }
+  | { type: 'powerplay'; value: number | null }
+  | { type: 'beginner'; value: number | null }
+  | { type: 'query'; value: IQuery | null }
+  | { type: 'reset' };
+
+function processQueryParams(queryParams: ReadonlyURLSearchParams): IQuery {
+  const ship = queryParams.get('ship');
+
+  const sizeParam = queryParams.get('size');
+  const size = sizeParam ? parseInt(sizeParam) : null;
+
+  const engParam = queryParams.get('engLevel');
+  const engLevel = engParam ? parseInt(engParam) : null;
+
+  const specialties = queryParams.getAll('specialties');
+
+  const guardianParam = queryParams.get('guardian');
+  const guardian = guardianParam === '1' ? 1 : guardianParam === '0' ? 0 : null;
+
+  const powerplayParam = queryParams.get('powerplay');
+  const powerplay = powerplayParam === '1' ? 1 : powerplayParam === '0' ? 0 : null;
+
+  const beginnerParam = queryParams.get('beginner');
+  const beginner = beginnerParam === '1' ? 1 : beginnerParam === '0' ? 0 : null;
+
+  return {
+    ship,
+    size,
+    engLevel,
+    specialties,
+    guardian,
+    powerplay,
+    beginner,
+  } satisfies IQuery;
+}
+
 export const Query = (props: QueryProps) => {
   const queryParams = useSearchParams();
   const router = useRouter();
   const { updateQuery, addBuild } = props;
 
-  type action = {
-    type:
-      | 'ship'
-      | 'size'
-      | 'specialties'
-      | 'engLevel'
-      | 'other'
-      | 'guardian'
-      | 'powerplay'
-      | 'beginner'
-      | 'query'
-      | 'reset';
-    value: IQuery | OtherFilters | string | string[] | boolean | number | null;
-  };
   const queryReducer = (prevState: IQuery, action: action): IQuery => {
     let newQuery: IQuery;
     switch (action.type) {
       case 'ship':
-        const ship = typeof action.value === 'string' ? action.value : null;
-        newQuery = { ...prevState, ship };
+        newQuery = { ...prevState, ship: action.value };
         break;
       case 'size':
-        const size = typeof action.value === 'number' ? action.value : null;
-        newQuery = { ...prevState, size };
+        newQuery = { ...prevState, size: action.value };
         break;
       case 'specialties':
-        const specialties = Array.isArray(action.value) ? action.value : [];
+        const specialties = action.value ?? [];
         newQuery = { ...prevState, specialties };
         break;
       case 'other':
-        const other: OtherFilters | null =
-          typeof action.value === 'object' && !Array.isArray(action.value) ? action.value : null;
-        newQuery = other ? { ...prevState, ...other } : prevState;
+        newQuery = action.value ? { ...prevState, ...action.value } : prevState;
         break;
       case 'engLevel':
-        const engLevel = typeof action.value === 'number' ? action.value : null;
-        newQuery = { ...prevState, engLevel };
+        newQuery = { ...prevState, engLevel: action.value };
         break;
       case 'guardian':
-        const guardian = typeof action.value === 'number' ? action.value : null;
-        newQuery = { ...prevState, guardian };
+        newQuery = { ...prevState, guardian: action.value };
         break;
       case 'powerplay':
-        const powerplay = typeof action.value === 'number' ? action.value : null;
-        newQuery = { ...prevState, powerplay };
+        newQuery = { ...prevState, powerplay: action.value };
         break;
       case 'beginner':
-        const beginner = typeof action.value === 'number' ? action.value : null;
-        newQuery = { ...prevState, beginner };
+        newQuery = { ...prevState, beginner: action.value };
         break;
       case 'query':
-        newQuery =
-          typeof action.value === 'object' && !Array.isArray(action.value)
-            ? (action.value as IQuery)
-            : prevState;
+        newQuery = action.value ?? prevState;
         break;
       case 'reset':
         newQuery = {
@@ -111,43 +129,8 @@ export const Query = (props: QueryProps) => {
   });
 
   useEffect(() => {
-    const shipParam = queryParams?.get('ship');
-    const ship = shipParam && !Array.isArray(shipParam) ? shipParam : null;
+    const query = processQueryParams(queryParams);
 
-    const sizeParam = queryParams?.get('size');
-    const size = sizeParam && !Array.isArray(sizeParam) ? parseInt(sizeParam) : null;
-
-    const engParam = queryParams?.get('engLevel');
-    const engLevel = engParam && !Array.isArray(engParam) ? parseInt(engParam) : null;
-
-    const specialtiesParam = queryParams?.get('specialties');
-    let specialties: string[] = [];
-    if (specialtiesParam) {
-      if (Array.isArray(specialtiesParam) && specialtiesParam.length > 0) {
-        specialties = specialtiesParam;
-      } else if (!Array.isArray(specialtiesParam)) {
-        specialties = [specialtiesParam];
-      }
-    }
-
-    const guardianParam = queryParams?.get('guardian');
-    const guardian = guardianParam === '1' ? 1 : guardianParam === '0' ? 0 : null;
-
-    const powerplayParam = queryParams?.get('powerplay');
-    const powerplay = powerplayParam === '1' ? 1 : powerplayParam === '0' ? 0 : null;
-
-    const beginnerParam = queryParams?.get('beginner');
-    const beginner = beginnerParam === '1' ? 1 : beginnerParam === '0' ? 0 : null;
-
-    const query: IQuery = {
-      ship,
-      size,
-      engLevel,
-      specialties,
-      guardian,
-      powerplay,
-      beginner,
-    };
     dispatch({ type: 'query', value: query });
 
     // Disable as I only want this on initial load.
@@ -155,7 +138,7 @@ export const Query = (props: QueryProps) => {
   }, []);
 
   const resetQueries = () => {
-    dispatch({ type: 'reset', value: null });
+    dispatch({ type: 'reset' });
   };
 
   const handleAdd = () => {

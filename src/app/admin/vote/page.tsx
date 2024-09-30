@@ -1,6 +1,6 @@
 import { VoteDashboard } from '@/app/admin/vote/_components/voteDashboard';
 import { getCmdrs } from '@/app/api/cmdrs/cmdrs-api-utils';
-import { runAdminAuthCheck } from '@/utils/runAuthCheck';
+import { runAdminAuthCheck } from '@/utils/auth-check';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

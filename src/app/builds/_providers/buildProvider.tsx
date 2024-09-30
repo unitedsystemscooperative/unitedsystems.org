@@ -3,20 +3,15 @@ import { ConfirmDialog } from '@/app/_components/confirmDialog';
 import { BuildDialog, BuildDialogProps } from '@/app/builds/_components/dialog/buildDialog';
 import { getShipInfofromID } from '@/app/builds/_functions/getShipInfo';
 import { useShipBuilds } from '@/app/builds/_hooks/useShipBuilds';
-import { IBuildInfov2, IShipInfo } from '@/app/builds/_models';
+import { IBuildInfov2 } from '@/app/builds/_models';
 import { useSnackbar } from 'notistack';
 import { createContext, ReactNode, useContext, useState } from 'react';
-
-/**
- * Add Build Function. Used in the Build Provider to trigger the dialog.
- *
- * Type made to standardize the function.
- */
-export type AddBuildFunction = (refId?: string) => void;
-export type FindBuildandShipInfoFunc = (
-  buildId: string,
-  builds?: IBuildInfov2[]
-) => { build: IBuildInfov2; shipInfo: IShipInfo } | null;
+import {
+  AddBuildFunction,
+  EditorDeleteFunction,
+  FindBuildandShipInfoFunc,
+  IBuildContext,
+} from '../_models/action-models';
 
 const findBuildandShipInfo: FindBuildandShipInfoFunc = (
   buildId: string,
@@ -31,17 +26,7 @@ const findBuildandShipInfo: FindBuildandShipInfoFunc = (
   }
 };
 
-interface IBuildContext {
-  builds: IBuildInfov2[];
-  areBuildsLoading: boolean;
-  buildError?: { message: string };
-  addBuild: AddBuildFunction;
-  editBuild: (build: IBuildInfov2) => void;
-  deleteBuild: (build: IBuildInfov2) => void;
-  findBuildandShipInfo: FindBuildandShipInfoFunc;
-}
-
-export const BuildContext = createContext<IBuildContext | null>(null);
+export const BuildContext = createContext<IBuildContext | undefined>(undefined);
 
 export const useBuildService = () => useContext(BuildContext);
 
@@ -104,14 +89,14 @@ export const BuildContextProvider = ({
       open: true,
     }));
   };
-  const handleEditBuild = (build: IBuildInfov2) => {
+  const handleEditBuild: EditorDeleteFunction = (build: IBuildInfov2) => {
     setDialogProps((prev) => ({
       ...prev,
       build,
       open: true,
     }));
   };
-  const handleDeleteBuild = (build: IBuildInfov2) => {
+  const handleDeleteBuild: EditorDeleteFunction = (build: IBuildInfov2) => {
     setShowDeleteDialog(build);
   };
   const handleFindBuildandShipInfo: FindBuildandShipInfoFunc = (buildId: string) => {
@@ -146,7 +131,7 @@ export const BuildContextProvider = ({
           title="Delete"
           open={showDeleteDialog !== undefined}
           onClose={() => setShowDeleteDialog(undefined)}
-          onConfirm={() => confirmDelete(showDeleteDialog)}>
+          onConfirm={() => confirmDelete(showDeleteDialog!)}>
           Are you sure you want to delete build '{showDeleteDialog?.title}'?
         </ConfirmDialog>
       </>
