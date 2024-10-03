@@ -2,7 +2,7 @@
 import { auth } from 'auth';
 import { redirect } from 'next/navigation';
 import { IMember, Rank } from '@/admin/_models';
-import { connectToDatabase } from '@/lib/db';
+import { connectToDatabase } from 'lib/db';
 import { Session } from 'next-auth';
 
 export type AuthCheckValue<T = never> =

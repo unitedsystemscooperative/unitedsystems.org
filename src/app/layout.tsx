@@ -1,4 +1,4 @@
-import { theme } from '@/theme';
+import { theme } from 'theme';
 import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Roboto } from 'next/font/google';

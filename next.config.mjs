@@ -1,9 +1,12 @@
+import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const nextConfig = {
   experimental: { esmExternals: true },
-  // pageExtensions: ['page.tsx', 'api.ts'],
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   async redirects() {
     return [
       // { source: '/', destination: '/home', permanent: true },
@@ -26,3 +29,12 @@ module.exports = {
     ];
   },
 };
+
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+  options: {
+    remarkPlugins: [remarkGfm],
+  },
+});
+
+export default withMDX(nextConfig);
