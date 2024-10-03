@@ -1,8 +1,8 @@
 'use client';
-import { TitleBarwAdd } from '@/app/_components/_common';
-import { CarrierTableRow } from '@/app/about/fc/_components/carrierTableRow';
-import { useFleetCarriers } from '@/app/admin/_hooks/useFleetCarriers';
-import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
+import { TitleBarwAdd } from '@/_components/_common';
+import { CarrierTableRow } from '@/about/fc/_components/carrierTableRow';
+import { useFleetCarriers } from '@/admin/_hooks/useFleetCarriers';
+import { IFleetCarrier } from '@/about/_models/fleetCarrier';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Container,
@@ -20,7 +20,7 @@ import {
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { CarrierDialog } from './carriersDialog';
-import { EDSpinner } from '@/app/_components/_common/spinner';
+import { EDSpinner } from '@/_components/_common/spinner';
 
 const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(1),

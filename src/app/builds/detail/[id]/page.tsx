@@ -1,7 +1,6 @@
-import Head from 'next/head';
-import { getBuildById, getBuilds } from 'src/app/api/builds/getBuilds';
-import { BuildDetail } from '../../_components/builds/buildDetail';
+import { getBuildById, getBuilds } from '#/builds/getBuilds';
 import { Metadata } from 'next';
+import { BuildDetail } from '../../_components/builds/buildDetail';
 
 export const metadata: Metadata = {
   title: 'USC | Build',

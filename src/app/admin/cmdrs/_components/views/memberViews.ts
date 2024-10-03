@@ -1,10 +1,4 @@
-import {
-  IMember,
-  PlatformString,
-  RankString,
-  ReferralString,
-  RegionString,
-} from '@/app/admin/_models';
+import { IMember, PlatformString, RankString, ReferralString, RegionString } from '@/admin/_models';
 import { handleDate, HeadCell, ViewData } from './commonView';
 
 export const memberDefaultHeadCells: HeadCell<IMember>[] = [

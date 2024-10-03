@@ -1,4 +1,4 @@
-import { CenteredTypography } from '@/app/_components/_common/typography';
+import { CenteredTypography } from '@/_components/_common/typography';
 import { Box, Container, Paper, SxProps } from '@mui/material';
 import { ReactNode } from 'react';
 import { InfoButton } from '../_components/_common/button';

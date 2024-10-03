@@ -1,6 +1,6 @@
-import { BuildDashboard } from '@/app/admin/builds/_components/buildDashboard';
-import { getBuilds } from '@/app/api/builds/getBuilds';
-import { runAdminAuthCheck } from '@/utils/auth-check';
+import { BuildDashboard } from '@/admin/builds/_components/buildDashboard';
+import { getBuilds } from '@/api/builds/getBuilds';
+import { runAdminAuthCheck } from 'utils/auth-check';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

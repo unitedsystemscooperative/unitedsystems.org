@@ -1,6 +1,6 @@
 'use client';
 import { useInfoButtons } from '../_hooks/useInfoButtons';
-import { InfoSection } from '@/app/information/_components/infoSection';
+import { InfoSection } from '@/information/_components/infoSection';
 import { Box, Button, Container, Paper, Theme, Typography, useMediaQuery } from '@mui/material';
 import { MutableRefObject, useRef } from 'react';
 

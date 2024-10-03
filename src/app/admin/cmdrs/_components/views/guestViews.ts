@@ -1,4 +1,4 @@
-import { IGuest, PlatformString } from '@/app/admin/_models';
+import { IGuest, PlatformString } from '@/admin/_models';
 import { handleDate, HeadCell, ViewData } from './commonView';
 
 export const guestDefaultHeadCells: HeadCell<IGuest>[] = [

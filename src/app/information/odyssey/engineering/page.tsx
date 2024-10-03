@@ -1,4 +1,4 @@
-import { OdysseyEngineering } from '@/app/information/_components/odyssey/engineering';
+import { OdysseyEngineering } from '@/information/_components/odyssey/engineering';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

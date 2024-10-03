@@ -1,5 +1,5 @@
-import { System } from '@/app/about/_models/system';
-import { getItems } from '@/utils/db';
+import { System } from '@/about/_models/system';
+import { getItems } from 'utils/db';
 
 export const COLLECTION = 'systems';
 export const getSystems = async () => {

@@ -1,6 +1,6 @@
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
-import { updateItem } from '@/utils/db';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
+import { updateItem } from 'utils/db';
 import { WithId } from 'mongodb';
 
 export function generatePut<T extends { _id: string }>(collection: string) {

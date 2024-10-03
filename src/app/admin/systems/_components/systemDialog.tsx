@@ -1,5 +1,5 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
-import { System } from '@/app/about/_models/system';
+import { TextFieldwM1 } from '@/_components/_common';
+import { System } from '@/about/_models/system';
 import {
   Button,
   Checkbox,

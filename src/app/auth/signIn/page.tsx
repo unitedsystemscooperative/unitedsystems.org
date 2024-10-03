@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { auth } from 'auth';
 import { redirects } from '@/data/redirects';
 import { redirect } from 'next/navigation';
 import { SignInForm } from './signIn-form';

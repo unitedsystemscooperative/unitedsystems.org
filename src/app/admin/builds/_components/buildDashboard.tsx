@@ -1,11 +1,11 @@
 'use client';
-import { TitleBarwAdd } from '@/app/_components/_common';
-import { genericSortArray, Order } from '@/functions/sort';
-import { EngIcons } from '@/app/builds/_components/engIcons';
-import { TagGroup } from '@/app/builds/_components/tagGroup';
-import { useShipMap } from '@/app/builds/_hooks/useShipMap';
-import { IBuildInfov2, IShipInfo } from '@/app/builds/_models';
-import { BuildContext, BuildContextProvider } from '@/app/builds/_providers/buildProvider';
+import { TitleBarwAdd } from '@/_components/_common';
+import { genericSortArray, Order } from 'functions/sort';
+import { EngIcons } from '@/builds/_components/engIcons';
+import { TagGroup } from '@/builds/_components/tagGroup';
+import { useShipMap } from '@/builds/_hooks/useShipMap';
+import { IBuildInfov2, IShipInfo } from '@/builds/_models';
+import { BuildContext, BuildContextProvider } from '@/builds/_providers/buildProvider';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Box,
@@ -25,7 +25,7 @@ import {
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { MouseEvent, useContext, useState } from 'react';
-import { IBuildContext } from '@/app/builds/_models/action-models';
+import { IBuildContext } from '@/builds/_models/action-models';
 
 const StyledIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   marginLeft: theme.spacing(1),

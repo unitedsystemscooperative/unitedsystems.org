@@ -1,4 +1,4 @@
-import { OdysseyS2GCombat } from '@/app/information/_components/odyssey/s2gcombat';
+import { OdysseyS2GCombat } from '@/information/_components/odyssey/s2gcombat';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

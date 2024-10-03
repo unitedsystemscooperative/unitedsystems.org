@@ -1,4 +1,4 @@
-import { BuildSystem } from '@/app/builds/_components';
+import { BuildSystem } from '@/builds/_components';
 import { Metadata } from 'next';
 import { getBuilds } from '../api/builds/getBuilds';
 

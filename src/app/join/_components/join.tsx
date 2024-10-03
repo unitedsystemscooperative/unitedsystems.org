@@ -1,6 +1,6 @@
 'use client';
-import { useJoinRequests } from '@/app/join/_hooks/useJoinInfo';
-import { IJoinRequest } from '@/app/join/_models/joinRequest';
+import { useJoinRequests } from '@/join/_hooks/useJoinInfo';
+import { IJoinRequest } from '@/join/_models/joinRequest';
 import { Box, Button, Collapse, Container, Paper, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useSnackbar } from 'notistack';

@@ -1,5 +1,5 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
-import { WithOptionalId } from '@/utils/db';
+import { TextFieldwM1 } from '@/_components/_common';
+import { WithOptionalId } from 'utils/db';
 import {
   IGuest,
   Platform,
@@ -8,7 +8,7 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@/app/admin/_models';
+} from '@/admin/_models';
 import {
   Button,
   Dialog,

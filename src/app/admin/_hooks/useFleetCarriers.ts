@@ -1,5 +1,5 @@
-import { genericSortArray } from '@/functions/sort';
-import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
+import { genericSortArray } from 'functions/sort';
+import { IFleetCarrier } from '@/about/_models/fleetCarrier';
 import axios from 'axios';
 import { useMemo } from 'react';
 import useSWR from 'swr';

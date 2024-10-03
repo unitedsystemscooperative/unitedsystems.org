@@ -1,5 +1,5 @@
-import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
-import { getItems } from '@/utils/db';
+import { IFleetCarrier } from '@/about/_models/fleetCarrier';
+import { getItems } from 'utils/db';
 
 export const COLLECTION = 'fleetCarriers';
 export const getFCs = async () => {

@@ -1,4 +1,4 @@
-import { genericSortArray } from '@/functions/sort';
+import { genericSortArray } from 'functions/sort';
 import {
   getFactionsinSystem,
   getStationsinSystem,

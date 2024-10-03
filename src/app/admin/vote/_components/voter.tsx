@@ -1,4 +1,4 @@
-import { IVoter } from '@/app/admin/_models';
+import { IVoter } from '@/admin/_models';
 import { Check, Clear, Remove } from '@mui/icons-material';
 import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';

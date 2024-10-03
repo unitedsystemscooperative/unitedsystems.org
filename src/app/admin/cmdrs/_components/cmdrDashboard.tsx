@@ -1,6 +1,6 @@
 'use client';
-import { useCMDRs } from '@/hooks/useCmdrs';
-import { IAmbassador, ICMDRs, IGuest, IMember } from '@/app/admin/_models';
+import { useCMDRs } from 'hooks/useCmdrs';
+import { IAmbassador, ICMDRs, IGuest, IMember } from '@/admin/_models';
 import { Add, Delete, Edit, FilterList } from '@mui/icons-material';
 import {
   Button,
@@ -21,8 +21,8 @@ import { GuestDialog } from './dialogs/guestDialog';
 import { MemberDialog } from './dialogs/memberDialog';
 import { GuestDashboard } from './guestDashboard';
 import { MemberDashboard } from './memberDashboard';
-import { EDSpinner } from '@/app/_components/_common/spinner';
-import { WithOptionalId } from '@/utils/db';
+import { EDSpinner } from '@/_components/_common/spinner';
+import { WithOptionalId } from 'utils/db';
 import { WithId } from 'mongodb';
 
 interface TitleBarProps {

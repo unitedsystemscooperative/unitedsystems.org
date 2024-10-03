@@ -1,5 +1,5 @@
-import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '@/app/builds/_functions';
-import { IBuildInfov2, IShipInfo } from '@/app/builds/_models';
+import { getShipInfofromID, groupandSortBuilds, processJSONBuild } from '@/builds/_functions';
+import { IBuildInfov2, IShipInfo } from '@/builds/_models';
 import {
   Autocomplete,
   Button,
@@ -19,7 +19,7 @@ import { ShipAutocomplete } from '../shipAutocomplete';
 import { BuildAddText } from './buildAddText';
 import { BuildCheckBox } from './buildCheckBox';
 import { BuildOption } from './buildOption';
-import { WithOptionalId } from '@/utils/db';
+import { WithOptionalId } from 'utils/db';
 
 export interface BuildDialogProps {
   open: boolean;

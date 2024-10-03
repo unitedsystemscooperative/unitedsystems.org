@@ -1,4 +1,4 @@
-import { WithStringId } from '@/utils/db';
+import { WithStringId } from 'utils/db';
 
 interface ISystem {
   name: string;

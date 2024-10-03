@@ -1,5 +1,5 @@
 import { getSystems } from '#/systems/systems-api-utils';
-import { buildInaraLink } from '@/functions/buildInaraLink';
+import { buildInaraLink } from 'functions/buildInaraLink';
 import {
   Container,
   Fade,

@@ -1,9 +1,9 @@
-import { useAdmin } from '@/hooks/useAdmin';
-import Link from './navLink';
-import { INavItem } from '@/app/_models/navItem';
+import { INavItem } from '@/_models/navItem';
 import { AppBar, Button, Toolbar, useTheme } from '@mui/material';
 import { Box, SxProps } from '@mui/system';
+import { useAdmin } from 'hooks/useAdmin';
 import { signOut, useSession } from 'next-auth/react';
+import Link from './navLink';
 
 export const NavbarFull = (props: { navItems: INavItem[]; pathName: string | null }) => {
   const { data: session } = useSession();

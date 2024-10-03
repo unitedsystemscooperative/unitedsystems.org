@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { PaperOutlineButton } from '@/app/_components/_common/button';
+import { PaperOutlineButton } from '@/_components/_common/button';
 
 export interface QueryActionsProps {
   resetQueries: () => void;

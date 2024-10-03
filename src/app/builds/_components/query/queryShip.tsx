@@ -1,4 +1,4 @@
-import { IShipInfo } from '@/app/builds/_models';
+import { IShipInfo } from '@/builds/_models';
 import { Box, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { ShipAutocomplete } from '../shipAutocomplete';

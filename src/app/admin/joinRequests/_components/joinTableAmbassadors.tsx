@@ -1,6 +1,6 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { PlatformString, RegionString } from '@/app/admin/_models';
-import { IJoinRequest } from '@/app/join/_models/joinRequest';
+import { copytoClipboard } from 'functions/copytoClipboard';
+import { PlatformString, RegionString } from '@/admin/_models';
+import { IJoinRequest } from '@/join/_models/joinRequest';
 import { FileCopy } from '@mui/icons-material';
 import {
   Checkbox,

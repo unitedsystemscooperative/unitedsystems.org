@@ -1,4 +1,4 @@
-import { WithOptionalId } from '@/utils/db';
+import { WithOptionalId } from 'utils/db';
 
 export interface CmdrDialogProps<T> {
   open: boolean;

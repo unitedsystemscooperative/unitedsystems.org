@@ -17,19 +17,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "types": [
       "@testing-library/jest-dom"
     ],
     "paths": {
       "public/*": [
-        "public/*"
+        "../public/*"
       ],
       "@/*": [
-        "src/*"
+        "app/*"
       ],
       "#/*": [
-        "src/app/api/*"
+        "app/api/*"
       ],
     },
     "incremental": true,

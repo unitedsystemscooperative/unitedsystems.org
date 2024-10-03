@@ -1,4 +1,4 @@
-import { IndentedDiv } from '@/app/_components/_common';
+import { IndentedDiv } from '@/_components/_common';
 import {
   Container,
   Divider,

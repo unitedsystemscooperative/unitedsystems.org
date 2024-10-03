@@ -1,5 +1,5 @@
-import { IBuildInfov2 } from '@/app/builds/_models';
-import { getItems, getItemsByQuery } from '@/utils/db';
+import { IBuildInfov2 } from '@/builds/_models';
+import { getItems, getItemsByQuery } from 'utils/db';
 
 const COLLECTION = 'shipBuildsv2';
 export const getBuilds = async () => {

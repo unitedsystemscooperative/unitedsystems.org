@@ -1,6 +1,6 @@
 'use client';
-import { navItems } from '@/data/navItems';
 import { Theme, useMediaQuery } from '@mui/material';
+import { navItems } from 'data/navItems';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 import { NavbarFull } from './navbar.full';

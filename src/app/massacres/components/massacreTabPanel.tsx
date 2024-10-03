@@ -1,8 +1,8 @@
-import { PaperOutlineButton } from '@/app/_components/_common/button';
-import { IFactionwMissions, IMassacreTrack } from '@/app/massacres/massacreTrack';
-import { processHazRezSystem } from '@/app/massacres/processHazRezSystem';
-import { MassacreContext } from '@/app/massacres/providers/massacreTrackerProvider';
-import { ReputationLevels } from '@/app/massacres/reputationLevels';
+import { PaperOutlineButton } from '@/_components/_common/button';
+import { IFactionwMissions, IMassacreTrack } from '@/massacres/massacreTrack';
+import { processHazRezSystem } from '@/massacres/processHazRezSystem';
+import { MassacreContext } from '@/massacres/providers/massacreTrackerProvider';
+import { ReputationLevels } from '@/massacres/reputationLevels';
 import { Box, Container, Typography } from '@mui/material';
 import { useContext, useMemo } from 'react';
 import { MassacreMissions } from './massacreMissions';

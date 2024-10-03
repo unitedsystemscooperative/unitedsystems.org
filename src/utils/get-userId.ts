@@ -1,5 +1,5 @@
 import { connectToDatabase } from '@/lib/db';
-import { IMember } from '@/app/admin/_models';
+import { IMember } from '@/admin/_models';
 import { getSession } from 'next-auth/react';
 
 export async function getUserId(req): Promise<string> {

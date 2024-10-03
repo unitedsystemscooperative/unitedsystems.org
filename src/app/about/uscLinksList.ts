@@ -1,4 +1,4 @@
-import { getLinks } from '@/hooks/useLinks';
+import { getLinks } from 'hooks/useLinks';
 import { IInfoButton } from '../information/_models/infoButtonModel';
 const { inaraSquadLink, discordLink, patreonLink, youtube } = getLinks();
 

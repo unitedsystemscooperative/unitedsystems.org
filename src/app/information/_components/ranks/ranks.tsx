@@ -1,5 +1,5 @@
-import { CenteredTypography } from '@/app/_components/_common';
-import { StyledSection } from '@/app/_components/_common/section';
+import { CenteredTypography } from '@/_components/_common';
+import { StyledSection } from '@/_components/_common/section';
 import { Container, List, ListItem, ListItemAvatar, ListItemText, Paper } from '@mui/material';
 import Image from 'next/image';
 import { RankData } from '../../_data/ranks';

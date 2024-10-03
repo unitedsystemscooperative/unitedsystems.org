@@ -1,8 +1,8 @@
 import { cleanup, render } from '@testing-library/react';
 import AlliesAdminPage from './page';
-import * as authCheck from '@/utils/auth-check';
+import * as authCheck from 'utils/auth-check';
 
-jest.mock<Partial<typeof authCheck>>('@/utils/auth-check', () => ({
+jest.mock<Partial<typeof authCheck>>('utils/auth-check', () => ({
   runAdminAuthCheck: jest.fn(),
 }));
 

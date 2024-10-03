@@ -1,4 +1,4 @@
-import { WithStringId } from '@/utils/db';
+import { WithStringId } from 'utils/db';
 import { Platform } from './platforms';
 import { Rank } from './ranks';
 import { Referral } from './referrals';

@@ -1,4 +1,4 @@
-import { ShipReviews } from '@/app/information/_components/shipReviews';
+import { ShipReviews } from '@/information/_components/shipReviews';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

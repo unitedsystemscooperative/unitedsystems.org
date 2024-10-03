@@ -1,5 +1,4 @@
-import { useAdmin } from '@/hooks/useAdmin';
-import { INavItem } from '@/app/_models/navItem';
+import { INavItem } from '@/_models/navItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
@@ -13,6 +12,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
+import { useAdmin } from 'hooks/useAdmin';
 import { signOut, useSession } from 'next-auth/react';
 import { KeyboardEvent, MouseEvent, useState } from 'react';
 import Link from './navLink';

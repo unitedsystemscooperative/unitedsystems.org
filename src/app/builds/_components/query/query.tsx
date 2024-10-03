@@ -1,5 +1,5 @@
 'use client';
-import { IQuery, OtherFilters } from '@/app/builds/_models';
+import { IQuery, OtherFilters } from '@/builds/_models';
 import { Box } from '@mui/material';
 import { ReadonlyURLSearchParams, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';

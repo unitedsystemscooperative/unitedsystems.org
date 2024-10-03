@@ -1,5 +1,5 @@
-import { genericSortArray } from '@/functions/sort';
-import reviews from '@/app/builds/_data/shipMap.json';
+import { genericSortArray } from 'functions/sort';
+import reviews from '@/builds/_data/shipMap.json';
 import { IShipReview } from '@@/information/models/shipReview';
 
 export const useShipReviews = (): IShipReview[] => {

@@ -1,4 +1,4 @@
-import { IFactionMission, IFactionwMissions, IMassacreTrack } from '@/app/massacres/massacreTrack';
+import { IFactionMission, IFactionwMissions, IMassacreTrack } from '@/massacres/massacreTrack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Container,

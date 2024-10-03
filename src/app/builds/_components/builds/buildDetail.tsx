@@ -1,13 +1,13 @@
 'use client';
-import { USCMarkdown } from '@/app/_components/uscmarkdown';
-import { BoxwMB1, CenteredTypography } from '@/app/_components/_common';
-import { useLinks } from '@/hooks/useLinks';
-import { IBuildInfov2, IShipInfo, ShipSize } from '@/app/builds/_models';
+import { USCMarkdown } from '@/_components/uscmarkdown';
+import { BoxwMB1, CenteredTypography } from '@/_components/_common';
+import { useLinks } from 'hooks/useLinks';
+import { IBuildInfov2, IShipInfo, ShipSize } from '@/builds/_models';
 import {
   AddBuildFunction,
   BuildContext,
   BuildContextProvider,
-} from '@/app/builds/_providers/buildProvider';
+} from '@/builds/_providers/buildProvider';
 import {
   Box,
   Button,

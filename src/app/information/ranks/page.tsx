@@ -1,4 +1,4 @@
-import { Ranks } from '@/app/information/_components/ranks/ranks';
+import { Ranks } from '@/information/_components/ranks/ranks';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

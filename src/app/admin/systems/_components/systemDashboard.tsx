@@ -1,8 +1,8 @@
 'use client';
-import { TitleBarwAdd } from '@/app/_components/_common';
-import { EDSpinner } from '@/app/_components/_common/spinner';
-import { useSystems } from '@/app/admin/_hooks/useSystems';
-import { System } from '@/app/about/_models/system';
+import { TitleBarwAdd } from '@/_components/_common';
+import { EDSpinner } from '@/_components/_common/spinner';
+import { useSystems } from '@/admin/_hooks/useSystems';
+import { System } from '@/about/_models/system';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   Container,

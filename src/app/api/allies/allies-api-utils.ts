@@ -1,5 +1,5 @@
-import { IAlly } from '@/app/about/_models/ally';
-import { getItems } from '@/utils/db';
+import { IAlly } from '@/about/_models/ally';
+import { getItems } from 'utils/db';
 
 export const COLLECTION = 'allies';
 export const getAllies = async () => {

@@ -1,5 +1,5 @@
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
 
 export async function GET() {
   try {

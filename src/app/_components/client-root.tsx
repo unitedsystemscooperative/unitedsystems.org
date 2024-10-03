@@ -1,6 +1,6 @@
 'use client';
 
-import { lore, latin, latinTranslation } from '@/data/home';
+import { lore, latin, latinTranslation } from 'data/home';
 import { Container, Typography, Paper, Box } from '@mui/material';
 
 export default function ClientRoot() {

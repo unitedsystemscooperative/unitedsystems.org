@@ -1,6 +1,6 @@
-import { AllyDashboard } from '@/app/admin/allies/_components/allyDashboard';
-import { getAllies } from '@/app/api/allies/allies-api-utils';
-import { runAdminAuthCheck } from '@/utils/auth-check';
+import { AllyDashboard } from '@/admin/allies/_components/allyDashboard';
+import { getAllies } from '@/api/allies/allies-api-utils';
+import { runAdminAuthCheck } from 'utils/auth-check';
 import { Metadata } from 'next';
 import { unstable_cache } from 'next/cache';
 import { addAlly, updateAlly, deleteAlly } from './actions';

@@ -1,7 +1,7 @@
-import { IBuildInfov2 } from '@/app/builds/_models';
-import { auth } from '@/auth';
+import { IBuildInfov2 } from '@/builds/_models';
+import { auth } from 'auth';
 import { connectToDatabase } from '@/lib/db';
-import { getIsHC } from '@/utils/auth-check';
+import { getIsHC } from 'utils/auth-check';
 import {
   deleteItem,
   getItems,
@@ -9,8 +9,8 @@ import {
   insertItem,
   updateItem,
   WithStringId,
-} from '@/utils/db';
-import { getUserId } from '@/utils/get-userId';
+} from 'utils/db';
+import { getUserId } from 'utils/get-userId';
 import { Filter } from 'mongodb';
 import { NextRequest } from 'next/server';
 import { generateGet } from '../_common/get';

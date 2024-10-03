@@ -1,5 +1,5 @@
-import { WithStringId } from '@/utils/db';
-import { Platform, Referral, Region } from '@/app/admin/_models';
+import { WithStringId } from 'utils/db';
+import { Platform, Referral, Region } from '@/admin/_models';
 
 interface JoinRequest {
   //   type: 'join' | 'guest' | 'ambassador';

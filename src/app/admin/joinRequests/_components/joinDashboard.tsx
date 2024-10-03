@@ -1,5 +1,5 @@
 'use client';
-import { useJoinRequests } from '@/app/join/_hooks/useJoinInfo';
+import { useJoinRequests } from '@/join/_hooks/useJoinInfo';
 import {
   Box,
   Button,
@@ -15,7 +15,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { AmbassadorsTable } from './joinTableAmbassadors';
 import { GuestsTable } from './joinTableGuests';
 import { MembersTable } from './joinTableMembers';
-import { EDSpinner } from '@/app/_components/_common/spinner';
+import { EDSpinner } from '@/_components/_common/spinner';
 
 enum JoinViews {
   'Members',

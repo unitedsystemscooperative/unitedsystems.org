@@ -3,7 +3,7 @@ import {
   IShipCoreModules,
   IShipHardpoints,
   IShipInternalModules,
-} from '@/app/builds/_models/coriolis';
+} from '@/builds/_models/coriolis';
 
 export const processJSONBuild = (
   json: string

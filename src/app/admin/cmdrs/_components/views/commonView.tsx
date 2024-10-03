@@ -1,5 +1,5 @@
-import { genericSortArray, Order } from '@/functions/sort';
-import { ICMDR } from '@/app/admin/_models';
+import { genericSortArray, Order } from 'functions/sort';
+import { ICMDR } from '@/admin/_models';
 import { RestoreFromTrash } from '@mui/icons-material';
 import Link from '@mui/icons-material/Link';
 import {

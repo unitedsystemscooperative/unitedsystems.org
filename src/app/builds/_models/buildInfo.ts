@@ -13,7 +13,7 @@
 //   moreInfo?: string;
 // }
 
-import { WithStringId } from '@/utils/db';
+import { WithStringId } from 'utils/db';
 
 interface BuildInfov2 {
   shipId: string;

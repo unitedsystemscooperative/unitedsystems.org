@@ -1,4 +1,4 @@
-import { IBuildInfov2 } from '@/app/builds/_models';
+import { IBuildInfov2 } from '@/builds/_models';
 import axios from 'axios';
 import useSWR from 'swr';
 

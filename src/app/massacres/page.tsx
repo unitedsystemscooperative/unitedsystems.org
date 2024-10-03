@@ -1,4 +1,4 @@
-import { MassacreKillTracker } from '@/app/massacres/components/massacreKillTracker';
+import { MassacreKillTracker } from '@/massacres/components/massacreKillTracker';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

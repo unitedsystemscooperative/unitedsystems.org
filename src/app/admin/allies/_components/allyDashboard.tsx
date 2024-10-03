@@ -1,6 +1,6 @@
 'use client';
-import { TitleBarwAdd } from '@/app/_components/_common';
-import { IAlly } from '@/app/about/_models/ally';
+import { TitleBarwAdd } from '@/_components/_common';
+import { IAlly } from '@/about/_models/ally';
 import { Delete, Edit } from '@mui/icons-material';
 import { Container, IconButton, List, ListItem, ListItemText, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';

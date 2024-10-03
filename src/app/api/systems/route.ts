@@ -1,4 +1,4 @@
-import { System } from '@/app/about/_models/system';
+import { System } from '@/about/_models/system';
 import { generateDelete } from '../_common/delete';
 import { generateGet } from '../_common/get';
 import { generatePost } from '../_common/post';

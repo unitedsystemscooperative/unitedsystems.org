@@ -1,7 +1,7 @@
-import { IJoinRequest } from '@/app/join/_models/joinRequest';
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
-import { getItems, insertItem } from '@/utils/db';
+import { IJoinRequest } from '@/join/_models/joinRequest';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
+import { getItems, insertItem } from 'utils/db';
 
 const COLLECTION = 'joinRequests';
 

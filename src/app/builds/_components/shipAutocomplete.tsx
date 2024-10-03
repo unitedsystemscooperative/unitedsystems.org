@@ -1,7 +1,7 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
-import { genericSortArray } from '@/functions/sort';
-import { useShipMap } from '@/app/builds/_hooks/useShipMap';
-import { IShipInfo } from '@/app/builds/_models';
+import { TextFieldwM1 } from '@/_components/_common';
+import { genericSortArray } from 'functions/sort';
+import { useShipMap } from '@/builds/_hooks/useShipMap';
+import { IShipInfo } from '@/builds/_models';
 import { Autocomplete } from '@mui/material';
 
 const findShipName = (ships: IShipInfo[], shipID: string | null) => {

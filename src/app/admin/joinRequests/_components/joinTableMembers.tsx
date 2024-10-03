@@ -1,6 +1,6 @@
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { useCMDRs } from '@/hooks/useCmdrs';
-import { MemberDialog } from '@/app/admin/cmdrs/_components/dialogs/memberDialog';
+import { copytoClipboard } from 'functions/copytoClipboard';
+import { useCMDRs } from 'hooks/useCmdrs';
+import { MemberDialog } from '@/admin/cmdrs/_components/dialogs/memberDialog';
 import {
   IMember,
   PlatformString,
@@ -8,8 +8,8 @@ import {
   ReferralString,
   Region,
   RegionString,
-} from '@/app/admin/_models';
-import { IJoinRequest } from '@/app/join/_models/joinRequest';
+} from '@/admin/_models';
+import { IJoinRequest } from '@/join/_models/joinRequest';
 import { Add, FileCopy } from '@mui/icons-material';
 import {
   IconButton,

@@ -1,5 +1,5 @@
 'use client';
-import { MassacreContextProvider } from '@/app/massacres/providers/massacreTrackerProvider';
+import { MassacreContextProvider } from '@/massacres/providers/massacreTrackerProvider';
 import { MassacreTabSystem } from './massacreTabSystem';
 
 export const MassacreKillTracker = () => {

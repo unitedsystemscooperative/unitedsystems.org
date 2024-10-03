@@ -1,4 +1,4 @@
-import { genericSortArray } from '@/functions/sort';
+import { genericSortArray } from 'functions/sort';
 import maps from '../_data/miningMaps.json';
 import { IMiningMap } from '../_models/miningMap';
 

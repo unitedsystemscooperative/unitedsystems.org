@@ -1,4 +1,4 @@
-import { MiningMaps } from '@/app/information/_components/miningMaps';
+import { MiningMaps } from '@/information/_components/miningMaps';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

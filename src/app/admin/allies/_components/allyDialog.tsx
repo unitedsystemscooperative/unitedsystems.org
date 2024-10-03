@@ -1,6 +1,6 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
-import { IAlly } from '@/app/about/_models/ally';
-import { WithOptionalId } from '@/utils/db';
+import { TextFieldwM1 } from '@/_components/_common';
+import { IAlly } from '@/about/_models/ally';
+import { WithOptionalId } from 'utils/db';
 import {
   Button,
   Dialog,

@@ -1,9 +1,9 @@
-import { EDSpinner } from '@/app/_components/_common/spinner';
-import { ConfirmDialog } from '@/app/_components/confirmDialog';
-import { BuildDialog, BuildDialogProps } from '@/app/builds/_components/dialog/buildDialog';
-import { getShipInfofromID } from '@/app/builds/_functions/getShipInfo';
-import { useShipBuilds } from '@/app/builds/_hooks/useShipBuilds';
-import { IBuildInfov2 } from '@/app/builds/_models';
+import { EDSpinner } from '@/_components/_common/spinner';
+import { ConfirmDialog } from '@/_components/confirmDialog';
+import { BuildDialog, BuildDialogProps } from '@/builds/_components/dialog/buildDialog';
+import { getShipInfofromID } from '@/builds/_functions/getShipInfo';
+import { useShipBuilds } from '@/builds/_hooks/useShipBuilds';
+import { IBuildInfov2 } from '@/builds/_models';
 import { useSnackbar } from 'notistack';
 import { createContext, ReactNode, useContext, useState } from 'react';
 import {

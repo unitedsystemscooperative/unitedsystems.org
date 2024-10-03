@@ -1,10 +1,10 @@
 'use server';
 
-import { IAlly } from '@/app/about/_models/ally';
-import { COLLECTION } from '@/app/api/allies/allies-api-utils';
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
-import { deleteItem, insertItem, updateItem } from '@/utils/db';
+import { IAlly } from '@/about/_models/ally';
+import { COLLECTION } from '@/api/allies/allies-api-utils';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
+import { deleteItem, insertItem, updateItem } from 'utils/db';
 import { revalidateTag } from 'next/cache';
 
 export async function addAlly(ally: IAlly): Promise<void> {

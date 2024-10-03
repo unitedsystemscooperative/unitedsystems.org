@@ -1,5 +1,5 @@
-import { ICMDR, IAmbassador, Rank, IGuest, IMember, ICMDRs } from '@/app/admin/_models';
-import { getItems } from '@/utils/db';
+import { ICMDR, IAmbassador, Rank, IGuest, IMember, ICMDRs } from '@/admin/_models';
+import { getItems } from 'utils/db';
 
 export const determineCMDRisAmbassador = (cmdr: ICMDR): cmdr is IAmbassador =>
   cmdr.rank === Rank.Ambassador;

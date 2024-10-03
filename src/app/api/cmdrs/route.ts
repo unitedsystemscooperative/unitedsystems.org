@@ -1,7 +1,7 @@
-import { ICMDR } from '@/app/admin/_models';
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
-import { deleteItem, insertItem, updateItem } from '@/utils/db';
+import { ICMDR } from '@/admin/_models';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
+import { deleteItem, insertItem, updateItem } from 'utils/db';
 import { NextRequest } from 'next/server';
 import { COLLECTION, determineCMDRisMember, getCmdrs } from './cmdrs-api-utils';
 

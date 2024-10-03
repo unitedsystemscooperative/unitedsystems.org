@@ -1,4 +1,4 @@
-import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
+import { IFleetCarrier } from '@/about/_models/fleetCarrier';
 import { generateDelete } from '../_common/delete';
 import { generateGet } from '../_common/get';
 import { generatePost } from '../_common/post';

@@ -1,7 +1,7 @@
 'use server';
-import { auth } from '@/auth';
+import { auth } from 'auth';
 import { redirect } from 'next/navigation';
-import { IMember, Rank } from '@/app/admin/_models';
+import { IMember, Rank } from '@/admin/_models';
 import { connectToDatabase } from '@/lib/db';
 import { Session } from 'next-auth';
 

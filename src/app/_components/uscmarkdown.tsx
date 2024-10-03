@@ -1,4 +1,4 @@
-import { A, Code, P } from '@/app/_components/markdown';
+import { A, Code, P } from '@/_components/markdown';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 

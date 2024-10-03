@@ -1,8 +1,8 @@
-import { CenteredTypography } from '@/app/_components/_common';
-import { IFactionwMissions, IMassacreTrack } from '@/app/massacres/massacreTrack';
-import { processHazRezSystem } from '@/app/massacres/processHazRezSystem';
-import { MassacreContext } from '@/app/massacres/providers/massacreTrackerProvider';
-import { ReputationLevels } from '@/app/massacres/reputationLevels';
+import { CenteredTypography } from '@/_components/_common';
+import { IFactionwMissions, IMassacreTrack } from '@/massacres/massacreTrack';
+import { processHazRezSystem } from '@/massacres/processHazRezSystem';
+import { MassacreContext } from '@/massacres/providers/massacreTrackerProvider';
+import { ReputationLevels } from '@/massacres/reputationLevels';
 import { Button, Paper, TextField, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useContext, useState } from 'react';

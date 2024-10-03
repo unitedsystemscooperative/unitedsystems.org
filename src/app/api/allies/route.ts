@@ -1,4 +1,4 @@
-import { IAlly } from '@/app/about/_models/ally';
+import { IAlly } from '@/about/_models/ally';
 import { generateDelete } from '../_common/delete';
 import { generateGet } from '../_common/get';
 import { generatePost } from '../_common/post';

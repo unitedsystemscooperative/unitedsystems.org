@@ -1,6 +1,6 @@
-import { Order } from '@/functions/sort';
-import { useCmdrSearch } from '@/hooks/useCmdrSearch';
-import { IMember } from '@/app/admin/_models';
+import { Order } from 'functions/sort';
+import { useCmdrSearch } from 'hooks/useCmdrSearch';
+import { IMember } from '@/admin/_models';
 import { Divider, TablePagination } from '@mui/material';
 import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { DashboardToolbar } from './dashboardToolbar';

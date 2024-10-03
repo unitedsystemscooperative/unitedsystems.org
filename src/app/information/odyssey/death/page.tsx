@@ -1,4 +1,4 @@
-import { OdysseyDeath } from '@/app/information/_components/odyssey/death';
+import { OdysseyDeath } from '@/information/_components/odyssey/death';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

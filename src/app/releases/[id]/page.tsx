@@ -1,5 +1,5 @@
-import { PaperOutlineButton } from '@/app/_components/_common/button';
-import { USCMarkdown } from '@/app/_components/uscmarkdown';
+import { PaperOutlineButton } from '@/_components/_common/button';
+import { USCMarkdown } from '@/_components/uscmarkdown';
 import { Container, Divider, Paper, Typography } from '@mui/material';
 import { Metadata } from 'next';
 import NextLink from 'next/link';

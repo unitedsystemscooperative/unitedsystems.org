@@ -1,4 +1,4 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
+import { TextFieldwM1 } from '@/_components/_common';
 import { ChangeEvent } from 'react';
 
 interface IBuildAddText {

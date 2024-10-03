@@ -1,4 +1,4 @@
-import { FetchFn } from '@/app/_models/fetchFn';
+import { FetchFn } from '@/_models/fetchFn';
 
 export function generateGet<T>(fetchFn: FetchFn<T>) {
   return async () => {

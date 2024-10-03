@@ -1,4 +1,4 @@
-import { UnderConstruction } from '@/app/_components/_common/under-Construction';
+import { UnderConstruction } from '@/_components/_common/under-Construction';
 import { Container, Typography, Paper } from '@mui/material';
 import { Metadata } from 'next';
 

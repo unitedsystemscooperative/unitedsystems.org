@@ -1,7 +1,7 @@
 'use client';
-import { filterShipBuilds } from '@/app/builds/_functions';
-import { IBuildInfov2, IQuery } from '@/app/builds/_models';
-import { BuildContext, BuildContextProvider } from '@/app/builds/_providers/buildProvider';
+import { filterShipBuilds } from '@/builds/_functions';
+import { IBuildInfov2, IQuery } from '@/builds/_models';
+import { BuildContext, BuildContextProvider } from '@/builds/_providers/buildProvider';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Box, Container, Fab, Slide, Theme, Typography, useMediaQuery } from '@mui/material';
 import { useSnackbar } from 'notistack';

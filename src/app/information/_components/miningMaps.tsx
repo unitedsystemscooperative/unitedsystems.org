@@ -1,6 +1,6 @@
 'use client';
-import { copytoClipboard } from '@/functions/copytoClipboard';
-import { useLinks } from '@/hooks/useLinks';
+import { copytoClipboard } from 'functions/copytoClipboard';
+import { useLinks } from 'hooks/useLinks';
 import { useMiningMaps } from '../_hooks/useMiningMaps';
 import { FileCopy } from '@mui/icons-material';
 import {

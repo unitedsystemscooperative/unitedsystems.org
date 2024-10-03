@@ -1,4 +1,4 @@
-import { BGSInfo } from '@/app/information/_components/bgs';
+import { BGSInfo } from '@/information/_components/bgs';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

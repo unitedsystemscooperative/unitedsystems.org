@@ -1,6 +1,6 @@
-import { DatePickerwMB1, TextFieldwM1 } from '@/app/_components/_common';
-import { WithOptionalId } from '@/utils/db';
-import { IAmbassador, Platform, Rank, Region, RegionString } from '@/app/admin/_models';
+import { DatePickerwMB1, TextFieldwM1 } from '@/_components/_common';
+import { WithOptionalId } from 'utils/db';
+import { IAmbassador, Platform, Rank, Region, RegionString } from '@/admin/_models';
 import {
   Button,
   Dialog,

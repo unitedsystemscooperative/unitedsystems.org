@@ -1,4 +1,4 @@
-import { InformationMain } from '@/app/information/_components/informationMain';
+import { InformationMain } from '@/information/_components/informationMain';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

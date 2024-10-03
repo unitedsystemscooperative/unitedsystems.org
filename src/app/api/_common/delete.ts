@@ -1,6 +1,6 @@
-import { auth } from '@/auth';
-import { getIsHC } from '@/utils/auth-check';
-import { deleteItem } from '@/utils/db';
+import { auth } from 'auth';
+import { getIsHC } from 'utils/auth-check';
+import { deleteItem } from 'utils/db';
 import { NextRequest } from 'next/server';
 
 export function generateDelete(collection: string) {

@@ -1,5 +1,5 @@
-import { TextFieldwM1 } from '@/app/_components/_common';
-import { IFleetCarrier } from '@/app/about/_models/fleetCarrier';
+import { TextFieldwM1 } from '@/_components/_common';
+import { IFleetCarrier } from '@/about/_models/fleetCarrier';
 import {
   Button,
   Dialog,
